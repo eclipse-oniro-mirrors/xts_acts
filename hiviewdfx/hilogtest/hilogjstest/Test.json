@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "270000",
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.hiviewdfx.hilog.function",
+        "package-name": "ohos.acts.hiviewdfx.hilog.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHilogJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -b D -D 0x3200",
+                "hilog -b D -D 0xD003200"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestination",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestination2",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestinationByName3",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestination4",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestinationByName5",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestinationByName6",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestinationByName7",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestinationByName8",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestination9",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestination10",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestination11",
+        "MainAbility/pages/Navigation_pushResult/navigation_pushDestination12"
+    ]
+}

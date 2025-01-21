@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Other"
+    },
+    {
+      "name": "UIExtension_desc",
+      "value": "description"
+    },
+    {
+      "name": "UIExtension_label",
+      "value": "label"
+    },
+    {
+      "name": "CalledAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CalledAbility_label",
+      "value": "label"
+    }
+  ]
+}

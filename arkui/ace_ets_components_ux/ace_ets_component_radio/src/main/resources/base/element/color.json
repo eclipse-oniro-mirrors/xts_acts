@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "radio_BackgroundColor",
+      "value": "#FFA67D3D"
+    },
+    {
+      "name": "radio_UnBorderColor",
+      "value": "#FFFF0000"
+    },
+    {
+      "name": "radio_IndicatorColor",
+      "value": "#FF00FF00"
+    }
+  ]
+}

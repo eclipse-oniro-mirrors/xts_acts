@@ -1,0 +1,253 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+import("//test/xts/acts/arkui/libuv/comm.gni")
+
+ohos_static_library("libuvTestStatic") {
+  include_dirs = [
+    "//third_party/libuv/include",
+    "//third_party/libuv/src",
+    "//third_party/libuv/src/unix",
+  ]
+  part_name = "libuv"
+  subsystem_name = "thirdparty"
+  sources = [
+    "//third_party/libuv/test/blackhole-server.c",
+    "//third_party/libuv/test/echo-server.c",
+    "//third_party/libuv/test/runner-unix.c",
+    "//third_party/libuv/test/runner.c",
+    "//third_party/libuv/test/test-active.c",
+    "//third_party/libuv/test/test-async-null-cb.c",
+    "//third_party/libuv/test/test-async.c",
+    "//third_party/libuv/test/test-barrier.c",
+    "//third_party/libuv/test/test-callback-stack.c",
+    "//third_party/libuv/test/test-close-fd.c",
+    "//third_party/libuv/test/test-close-order.c",
+    "//third_party/libuv/test/test-condvar.c",
+    "//third_party/libuv/test/test-connect-unspecified.c",
+    "//third_party/libuv/test/test-connection-fail.c",
+    "//third_party/libuv/test/test-cwd-and-chdir.c",
+    "//third_party/libuv/test/test-default-loop-close.c",
+    "//third_party/libuv/test/test-delayed-accept.c",
+    "//third_party/libuv/test/test-dlerror.c",
+    "//third_party/libuv/test/test-eintr-handling.c",
+    "//third_party/libuv/test/test-embed.c",
+    "//third_party/libuv/test/test-emfile.c",
+    "//third_party/libuv/test/test-env-vars.c",
+    "//third_party/libuv/test/test-error.c",
+    "//third_party/libuv/test/test-fail-always.c",
+    "//third_party/libuv/test/test-fork.c",
+    "//third_party/libuv/test/test-fs-copyfile.c",
+    "//third_party/libuv/test/test-fs-event.c",
+    "//third_party/libuv/test/test-fs-fd-hash.c",
+    "//third_party/libuv/test/test-fs-open-flags.c",
+    "//third_party/libuv/test/test-fs-poll.c",
+    "//third_party/libuv/test/test-fs-readdir.c",
+    "//third_party/libuv/test/test-fs.c",
+    "//third_party/libuv/test/test-get-currentexe.c",
+    "//third_party/libuv/test/test-get-loadavg.c",
+    "//third_party/libuv/test/test-get-memory.c",
+    "//third_party/libuv/test/test-get-passwd.c",
+    "//third_party/libuv/test/test-getaddrinfo.c",
+    "//third_party/libuv/test/test-gethostname.c",
+    "//third_party/libuv/test/test-getsockname.c",
+    "//third_party/libuv/test/test-getters-setters.c",
+    "//third_party/libuv/test/test-gettimeofday.c",
+    "//third_party/libuv/test/test-handle-fileno.c",
+    "//third_party/libuv/test/test-homedir.c",
+    "//third_party/libuv/test/test-hrtime.c",
+    "//third_party/libuv/test/test-idle.c",
+    "//third_party/libuv/test/test-idna.c",
+    "//third_party/libuv/test/test-ip-name.c",
+    "//third_party/libuv/test/test-ip4-addr.c",
+    "//third_party/libuv/test/test-ip6-addr.c",
+    "//third_party/libuv/test/test-ipc-heavy-traffic-deadlock-bug.c",
+    "//third_party/libuv/test/test-ipc-send-recv.c",
+    "//third_party/libuv/test/test-ipc.c",
+    "//third_party/libuv/test/test-loop-alive.c",
+    "//third_party/libuv/test/test-loop-close.c",
+    "//third_party/libuv/test/test-loop-configure.c",
+    "//third_party/libuv/test/test-loop-handles.c",
+    "//third_party/libuv/test/test-loop-stop.c",
+    "//third_party/libuv/test/test-loop-time.c",
+    "//third_party/libuv/test/test-metrics.c",
+    "//third_party/libuv/test/test-multiple-listen.c",
+    "//third_party/libuv/test/test-mutexes.c",
+    "//third_party/libuv/test/test-not-readable-nor-writable-on-read-error.c",
+    "//third_party/libuv/test/test-not-writable-after-shutdown.c",
+    "//third_party/libuv/test/test-osx-select.c",
+    "//third_party/libuv/test/test-pass-always.c",
+    "//third_party/libuv/test/test-ping-pong.c",
+    "//third_party/libuv/test/test-pipe-bind-error.c",
+    "//third_party/libuv/test/test-pipe-close-stdout-read-stdin.c",
+    "//third_party/libuv/test/test-pipe-connect-error.c",
+    "//third_party/libuv/test/test-pipe-connect-multiple.c",
+    "//third_party/libuv/test/test-pipe-connect-prepare.c",
+    "//third_party/libuv/test/test-pipe-getsockname.c",
+    "//third_party/libuv/test/test-pipe-pending-instances.c",
+    "//third_party/libuv/test/test-pipe-sendmsg.c",
+    "//third_party/libuv/test/test-pipe-server-close.c",
+    "//third_party/libuv/test/test-pipe-set-fchmod.c",
+    "//third_party/libuv/test/test-pipe-set-non-blocking.c",
+    "//third_party/libuv/test/test-platform-output.c",
+    "//third_party/libuv/test/test-poll-close-doesnt-corrupt-stack.c",
+    "//third_party/libuv/test/test-poll-close.c",
+    "//third_party/libuv/test/test-poll-closesocket.c",
+    "//third_party/libuv/test/test-poll-multiple-handles.c",
+    "//third_party/libuv/test/test-poll-oob.c",
+    "//third_party/libuv/test/test-poll.c",
+    "//third_party/libuv/test/test-process-priority.c",
+    "//third_party/libuv/test/test-process-title-threadsafe.c",
+    "//third_party/libuv/test/test-process-title.c",
+    "//third_party/libuv/test/test-queue-foreach-delete.c",
+    "//third_party/libuv/test/test-random.c",
+    "//third_party/libuv/test/test-readable-on-eof.c",
+    "//third_party/libuv/test/test-ref.c",
+    "//third_party/libuv/test/test-run-nowait.c",
+    "//third_party/libuv/test/test-run-once.c",
+    "//third_party/libuv/test/test-semaphore.c",
+    "//third_party/libuv/test/test-shutdown-close.c",
+    "//third_party/libuv/test/test-shutdown-eof.c",
+    "//third_party/libuv/test/test-shutdown-simultaneous.c",
+    "//third_party/libuv/test/test-shutdown-twice.c",
+    "//third_party/libuv/test/test-signal-multiple-loops.c",
+    "//third_party/libuv/test/test-signal-pending-on-close.c",
+    "//third_party/libuv/test/test-signal.c",
+    "//third_party/libuv/test/test-socket-buffer-size.c",
+    "//third_party/libuv/test/test-spawn.c",
+    "//third_party/libuv/test/test-stdio-over-pipes.c",
+    "//third_party/libuv/test/test-strscpy.c",
+    "//third_party/libuv/test/test-tcp-alloc-cb-fail.c",
+    "//third_party/libuv/test/test-tcp-bind-error.c",
+    "//third_party/libuv/test/test-tcp-bind6-error.c",
+    "//third_party/libuv/test/test-tcp-close-accept.c",
+    "//third_party/libuv/test/test-tcp-close-after-read-timeout.c",
+    "//third_party/libuv/test/test-tcp-close-reset.c",
+    "//third_party/libuv/test/test-tcp-close-while-connecting.c",
+    "//third_party/libuv/test/test-tcp-close.c",
+    "//third_party/libuv/test/test-tcp-connect-error-after-write.c",
+    "//third_party/libuv/test/test-tcp-connect-error.c",
+    "//third_party/libuv/test/test-tcp-connect-timeout.c",
+    "//third_party/libuv/test/test-tcp-connect6-error.c",
+    "//third_party/libuv/test/test-tcp-create-socket-early.c",
+    "//third_party/libuv/test/test-tcp-flags.c",
+    "//third_party/libuv/test/test-tcp-oob.c",
+    "//third_party/libuv/test/test-tcp-open.c",
+    "//third_party/libuv/test/test-tcp-rst.c",
+
+    #    "//third_party/libuv/test/test-metrics-idle-time.c",
+    #    "//third_party/libuv/test/test-metrics-idle-time-thread.c",
+    #    "//third_party/libuv/test/test-metrics-idle-time-zero.c",
+    "//third_party/libuv/test/test-tcp-read-stop-start.c",
+    "//third_party/libuv/test/test-tcp-read-stop.c",
+    "//third_party/libuv/test/test-tcp-shutdown-after-write.c",
+    "//third_party/libuv/test/test-tcp-try-write-error.c",
+    "//third_party/libuv/test/test-tcp-try-write.c",
+    "//third_party/libuv/test/test-tcp-unexpected-read.c",
+    "//third_party/libuv/test/test-tcp-write-after-connect.c",
+    "//third_party/libuv/test/test-tcp-write-fail.c",
+    "//third_party/libuv/test/test-tcp-write-queue-order.c",
+    "//third_party/libuv/test/test-tcp-write-to-half-open-connection.c",
+    "//third_party/libuv/test/test-tcp-writealot.c",
+    "//third_party/libuv/test/test-test-macros.c",
+    "//third_party/libuv/test/test-thread-equal.c",
+    "//third_party/libuv/test/test-thread.c",
+    "//third_party/libuv/test/test-threadpool-cancel.c",
+    "//third_party/libuv/test/test-threadpool.c",
+    "//third_party/libuv/test/test-timer-again.c",
+    "//third_party/libuv/test/test-timer-from-check.c",
+    "//third_party/libuv/test/test-timer.c",
+    "//third_party/libuv/test/test-tmpdir.c",
+    "//third_party/libuv/test/test-tty-duplicate-key.c",
+    "//third_party/libuv/test/test-tty-escape-sequence-processing.c",
+    "//third_party/libuv/test/test-tty.c",
+    "//third_party/libuv/test/test-udp-alloc-cb-fail.c",
+    "//third_party/libuv/test/test-udp-bind.c",
+    "//third_party/libuv/test/test-udp-connect.c",
+    "//third_party/libuv/test/test-udp-connect6.c",
+    "//third_party/libuv/test/test-udp-create-socket-early.c",
+    "//third_party/libuv/test/test-udp-dgram-too-big.c",
+    "//third_party/libuv/test/test-udp-ipv6.c",
+    "//third_party/libuv/test/test-udp-mmsg.c",
+    "//third_party/libuv/test/test-udp-multicast-interface.c",
+    "//third_party/libuv/test/test-udp-multicast-interface6.c",
+    "//third_party/libuv/test/test-udp-multicast-join.c",
+    "//third_party/libuv/test/test-udp-multicast-join6.c",
+    "//third_party/libuv/test/test-udp-multicast-ttl.c",
+    "//third_party/libuv/test/test-udp-open.c",
+    "//third_party/libuv/test/test-udp-options.c",
+    "//third_party/libuv/test/test-udp-send-and-recv.c",
+    "//third_party/libuv/test/test-udp-send-hang-loop.c",
+    "//third_party/libuv/test/test-udp-send-immediate.c",
+    "//third_party/libuv/test/test-udp-send-unreachable.c",
+    "//third_party/libuv/test/test-udp-sendmmsg-error.c",
+    "//third_party/libuv/test/test-udp-try-send.c",
+    "//third_party/libuv/test/test-uname.c",
+    "//third_party/libuv/test/test-walk-handles.c",
+    "//third_party/libuv/test/test-watcher-cross-stop.c",
+  ]
+  deps = [ "//third_party/libuv:uv_static" ]
+}
+
+ohos_executable("libuvruntest") {
+  include_dirs = [
+    "//third_party/libuv/include",
+    "//third_party/libuv/src",
+    "//third_party/libuv/src/unix",
+  ]
+  sources = [ "//third_party/libuv/test/run-tests.c" ]
+  external_deps = [ "hilog:libhilog" ]
+  deps = [ ":libuvTestStatic" ]
+  part_name = "libuv"
+  subsystem_name = "thirdparty"
+}
+
+ohos_moduletest_suite("ActsLibuvTest") {
+  sources = [ "src/ActsLibuvTest.cpp" ]
+
+  include_dirs = [
+    "../src",
+    "//third_party/libuv/test",
+    "//third_party/libuv/include",
+    "//third_party/libuv/src",
+    "//third_party/libuv/src/unix",
+  ]
+  external_deps = [ "hilog:libhilog" ]
+  deps = [ ":libuvTestStatic" ]
+  cflags = [ "-Wno-error" ]
+}
+
+ohos_sh_assist_suite("cpLibuv") {
+  testonly = true
+  script = "cplibuv.sh"
+  outputs = [ "${target_out_dir}/cplibuv.log" ]
+  root_libuv_path = rebase_path("//")
+  args = [ "$root_libuv_path" ]
+  deps = [
+    ":ActsLibuvTest",
+    ":libuvruntest",
+  ]
+  part_name = "libuv"
+}
+
+group("libuvTest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      ":ActsLibuvTest",
+      ":cpLibuv",
+    ]
+  }
+}

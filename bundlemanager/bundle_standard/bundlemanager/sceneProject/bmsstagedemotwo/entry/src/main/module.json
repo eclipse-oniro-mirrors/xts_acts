@@ -1,0 +1,183 @@
+{
+    "module": {
+        "name": "myfeature",
+        "type": "feature",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:phone_entry_dsc",
+        "mainElement": "MainAbility1",
+        "deviceTypes": [
+            "default",
+            "tablet",
+            "2in1",
+            "wearable"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "abilities": [
+            {
+                "name": "com.acts.bundle.stage.MainAbility1",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "orientation": "portrait",
+                "visible": true,
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon"
+            },
+            {
+                "name": "MainAbility1",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+                "orientation": "unspecified",
+                "supportWindowMode": [
+                    "fullscreen"
+                ]
+            },
+            {
+                "name": "MainAbility2",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+                "orientation": "landscape",
+                "supportWindowMode": [
+                    "split"
+                ]
+            },
+            {
+                "name": "MainAbility3",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+                "orientation": "portrait",
+                "supportWindowMode": [
+                    "floating"
+                ]
+            }
+        ],
+        "extensionAbilities": [
+            {
+                "name": "ExtensionAbilityQ",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "form",
+                "skills": [
+                    {
+                        "actions": [
+                            "actionQ"
+                        ],
+                        "entities": [
+                            "entitiesQ"
+                        ]
+                    }
+                ],
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
+            },
+            {
+                "name": "ExtensionAbilityW",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "service",
+                "skills": [
+                    {
+                        "actions": [
+                            "actionW"
+                        ],
+                        "entities": [
+                            "entitiesW",
+                            "entitiesCommon"
+                        ]
+                    }
+                ],
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ],
+                "permissions": [
+                    "ohos.permission.GET_BUNDLE_INFO"
+                ]
+            },
+            {
+                "name": "ExtensionAbilityA",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "wallpaper",
+                "skills": [
+                    {
+                        "actions": [
+                            "action_3"
+                        ],
+                        "uris": [
+                            {
+                                "scheme": "https",
+                                "host": "www.test.com",
+                                "pathRegex": "ab*c"
+                            }
+                        ]
+                    }
+                ],
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
+            },
+            {
+                "name": "ExtensionAbilityB",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "workScheduler",
+                "skills": [
+                    {
+                        "actions": [
+                            "action_4"
+                        ],
+                        "uris": [
+                            {
+                                "scheme": "https",
+                                "host": "www.test.com",
+                                "path": "query/student/name",
+                                "pathRegex": "ab*c",
+                                "pathStartWith": "query/teacher"
+                            }
+                        ]
+                    }
+                ],
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ],
+                "permissions": [
+                    "ohos.permission.GET_BUNDLE_INFO"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "gaugeColor1",
+      "value": "#FF0000FF"
+    },
+    {
+      "name": "gaugeColor2",
+      "value": "#FF00FFFF"
+    },
+    {
+      "name": "ResourceColor1",
+      "value": "#FFC0ECE5"
+    },
+    {
+      "name": "ResourceColor2",
+      "value": "#FF61CFBE"
+    },
+    {
+      "name": "ResourceColor3",
+      "value": "#FF64BB5C"
+    },
+    {
+      "name": "ResourceColor4",
+      "value": "#FFDBEFA5"
+    }
+  ]
+}

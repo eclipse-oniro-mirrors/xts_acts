@@ -1,0 +1,18 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "1800000",
+    "shell-timeout": "1500000",
+    "testcase-timeout": "900000",
+    "bundle-name": "com.openharmony.cryptoFramework3",
+    "module-name": "entry_test"
+  },
+  "kits": [
+    {
+      "test-file-name": ["ActsCryptoFrameworkThreeJSFuncTest.hap"],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}

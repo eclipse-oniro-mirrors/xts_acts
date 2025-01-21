@@ -1,0 +1,20 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "1800000",
+    "shell-timeout": "900000",
+    "testcase-timeout": "60000",
+    "bundle-name": "com.openharmony.asset_xts_ndk",
+    "module-name": "entry_test"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsAssetNDKFuncTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}

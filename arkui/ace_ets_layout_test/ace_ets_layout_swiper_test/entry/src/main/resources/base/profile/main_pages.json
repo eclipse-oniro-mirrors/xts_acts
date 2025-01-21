@@ -1,0 +1,25 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Swiper/Swiper_ItemChange/swiperItemMargin",
+        "MainAbility/pages/Swiper/Swiper_ItemChange/swiperItemPadding",
+        "MainAbility/pages/Swiper/Swiper_ItemChange/swiperItemPadMar",
+        "MainAbility/pages/Swiper/Swiper_ItemChange/swiperItemSize",
+        "MainAbility/pages/Swiper/Swiper_ItemChange/swiperItemSize2",
+        "MainAbility/pages/Swiper/Swiper_ItemChange/swiperItemVisibility",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperAutoPlay_1",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperAutoPlay_2",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperAutoPlay_3",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperAutoPlay_4",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperDisableSwipeFalse",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperDisableSwipeTrue",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperIndex",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperItemSpace",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperLoopFalse",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperLoopTrue",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperMargin",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperMarPad",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperPadding",
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperVertical"
+    ]
+}

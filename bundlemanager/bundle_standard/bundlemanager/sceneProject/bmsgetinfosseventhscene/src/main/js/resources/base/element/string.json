@@ -1,0 +1,28 @@
+{
+    "string": [
+      {
+        "name": "app_name",
+        "value": "third7"
+      },
+      {
+          "name":"master_desc",
+          "value":"master_desc"
+      },
+      {
+        "name": "entry_MainAbility",
+        "value": "entry_MainAbility"
+      },
+      {
+        "name": "description_mainability",
+        "value": "eTS_Empty Ability"
+      },
+      {
+        "name": "mainability_description",
+        "value": "eTS_Empty Ability"
+      },
+      {
+        "name": "description_serviceability",
+        "value": "hap sample empty service"
+      }
+    ]
+  }

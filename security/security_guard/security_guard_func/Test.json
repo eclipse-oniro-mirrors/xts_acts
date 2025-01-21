@@ -1,0 +1,20 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "180000",
+    "shell-timeout": "180000",
+    "testcase-timeout": "180000",
+    "bundle-name": "com.example.securityguard",
+    "module-name": "entry_test"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsSecurityGuardFunctionTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}

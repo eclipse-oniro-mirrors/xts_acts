@@ -1,0 +1,20 @@
+{
+  "float": [
+    {
+      "name": "start",
+      "value": "0px"
+    },
+    {
+      "name": "top",
+      "value": "0px"
+    },
+    {
+      "name": "end",
+      "value": "0px"
+    },
+    {
+      "name": "bottom",
+      "value": "0px"
+    }
+  ]
+}

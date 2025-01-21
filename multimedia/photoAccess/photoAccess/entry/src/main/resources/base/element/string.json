@@ -1,0 +1,32 @@
+{
+    "string": [
+        {
+            "name": "phone_entry_dsc",
+            "value": "i am an entry for phone"
+        },
+        {
+            "name": "phone_entry_main",
+            "value": "the phone entry ability"
+        },
+        {
+            "name": "entry_label",
+            "value": "ActsPhotoAccessTest"
+        },
+        {
+            "name": "form_description",
+            "value": "photoAccess"
+        },
+        {
+            "name": "serviceability_description",
+            "value": "photoAccess"
+        },
+        {
+            "name": "description_application",
+            "value": "photoAccess test"
+        },
+        {
+            "name": "app_name",
+            "value": "ActsPhotoAccessTest"
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Component3D",
+        "MainAbility/pages/Component3D1",
+        "MainAbility/pages/backgroundBrightness"
+    ]
+}

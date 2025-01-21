@@ -1,0 +1,17 @@
+{
+ "string":[
+    {
+      "name":"app_name",
+      "value":"ohosProject"
+    }
+ ,
+   {
+     "name": "String_10",
+     "value": "10"
+   },
+   {
+     "name": "String_5",
+     "value": "5"
+   }
+  ]
+}      

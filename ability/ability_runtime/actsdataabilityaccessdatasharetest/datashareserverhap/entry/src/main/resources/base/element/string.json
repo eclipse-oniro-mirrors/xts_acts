@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DataShareExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "DataShareExtAbility_label",
+      "value": "label"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+    "module": {
+        "name": "phone",
+        "type": "entry",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:phone_entry_dsc",
+        "mainElement": "MainAbility",
+        "deviceTypes": [
+            "default",
+            "tablet",
+            "2in1",
+            "wearable"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "abilities": [
+            {
+                "name": "ohos.acts.multimedia.avplayer.MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "orientation": "portrait",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "requestPermissions": [
+            {
+                "name": "ohos.permission.GRANT_SENSITIVE_PERMISSIONS",
+                "reason": "use ohos.permission.GRANT_SENSITIVE_PERMISSIONS"
+            },
+            {
+                "name": "ohos.permission.MEDIA_LOCATION",
+                "reason": "use ohos.permission.MEDIA_LOCATION"
+            },
+            {
+                "name": "ohos.permission.READ_MEDIA",
+                "reason": "use ohos.permission.READ_MEDIA"
+            },
+            {
+                "name": "ohos.permission.WRITE_MEDIA",
+                "reason": "use ohos.permission.WRITE_MEDIA"
+            }
+        ]
+    }
+}

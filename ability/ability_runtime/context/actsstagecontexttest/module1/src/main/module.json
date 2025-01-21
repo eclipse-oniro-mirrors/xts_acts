@@ -1,0 +1,30 @@
+{
+  "module": {
+    "name": "module1",
+    "type": "feature",
+    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "description": "$string:module1_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true
+      }
+    ]
+  }
+}

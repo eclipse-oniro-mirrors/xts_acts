@@ -1,0 +1,13 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/observer/observerScroll",
+        "MainAbility/pages/observer/ObserverNavDestinationState",
+        "MainAbility/pages/observer/ObserverNavDestinationId",
+        "MainAbility/pages/observer/ObserverPageId",
+        "MainAbility/pages/observer/ObserverApi1",
+        "MainAbility/pages/observer/DensityInfo",
+        "MainAbility/pages/observer/tabContentState",
+        "MainAbility/pages/observer/observeTab"
+    ]
+}

@@ -1,0 +1,61 @@
+{
+    "module": {
+        "name": "phone",
+        "type": "entry",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:phone_entry_dsc",
+        "mainElement": "MainAbility",
+        "deviceTypes": [
+            "tablet",
+            "default",
+            "phone",
+            "2in1",
+            "wearable"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "abilities": [
+            {
+                "name": "com.acts.inputmethoddrawncontrol.test.MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "orientation": "portrait",
+                "launchType": "singleton",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "extensionAbilities": [
+            {
+                "description": "inputPanelTest",
+                "icon": "$media:icon",
+                "name": "inputMethodWindService",
+                "srcEntrance": "./ets/InputMethodDrawnControl/InputMethodControlService.ts",
+                "type": "inputMethod",
+                "visible": true
+            }
+        ],
+        "requestPermissions": [
+            {
+                "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+                "reason": "need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+            },
+            {
+                "name": "ohos.permission.CONNECT_IME_ABILITY"
+            }
+        ]
+    }
+}

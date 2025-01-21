@@ -1,0 +1,43 @@
+{
+    "module": {
+        "name": "phone",
+        "type": "entry",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:phone_entry_dsc",
+        "mainElement": "MainAbility",
+        "deviceTypes": [
+            "tablet",
+            "default",
+            "phone",
+            "2in1",
+            "wearable"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "pages": "$profile:main_pages",
+        "uiSyntax": "ets",
+        "abilities": [
+            {
+                "name": "com.example.secondaryDirectory.MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "startWindowIcon": "$media:icon",
+                "startWindowBackground": "$color:white",
+                "visible": true,
+                "orientation": "portrait",
+                "skills": [
+                    {
+                        "entities": [
+                            "entity.system.home"
+                        ],
+                        "actions": [
+                            "action.system.home"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,27 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "180000",
+    "bundle-name": "com.example.myapplication",
+    "module-name": "phone",
+    "shell-timeout": "600000",
+    "testcase-timeout": 70000
+  },
+  "kits": [
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+        "power-shell setmode 602"
+      ]
+    },
+    {
+      "test-file-name": [
+        "ActsWindowPermissionTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}

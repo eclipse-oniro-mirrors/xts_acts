@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ActsStopServiceExtensionRely"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "service_description"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "service_label"
+    },
+    {
+      "name": "ServiceAbilitySec_desc",
+      "value": "service_description"
+    },
+    {
+      "name": "ServiceAbilitySec_label",
+      "value": "service_label"
+    }
+  ]
+}

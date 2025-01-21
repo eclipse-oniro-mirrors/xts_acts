@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for huksDeriveBasicPromise js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.example.huksderivebasicpromise",
+        "package-name": "com.example.huksderivebasicpromise",
+        "testcase-timeout": 1500000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHuksDeriveBasicPromiseJSApiReformedTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

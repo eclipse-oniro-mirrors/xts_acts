@@ -1,0 +1,14 @@
+{
+  "src": [
+    "MainAbility/pages/geolocationPermissionsErrorCode",
+    "MainAbility/pages/jsMessageExtErrorCode",
+    "MainAbility/pages/webCookieManagerErrorCode",
+    "MainAbility/pages/webMessageExtErrorCode",
+    "MainAbility/pages/webMessagePortErrorCode",
+    "MainAbility/pages/webStorageErrorCode",
+    "MainAbility/pages/webViewControllerErrorCode",
+    "MainAbility/pages/webErrorCode",
+    "MainAbility/pages/WebViewControllerPostUrlErrorCode",
+    "MainAbility/pages/webDownloadErrorCode"
+  ]
+}

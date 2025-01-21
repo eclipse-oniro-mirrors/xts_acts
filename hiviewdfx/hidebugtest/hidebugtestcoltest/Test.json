@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for ActsHiDebugColTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.hidebug.collect.test",
+        "package-name": "com.hidebug.collect.test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHiDebugColTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

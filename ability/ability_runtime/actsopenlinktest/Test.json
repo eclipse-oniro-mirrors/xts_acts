@@ -1,0 +1,21 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "com.acts.openlinktest",
+        "module-name": "entry_test",
+        "shell-timeout": "300000",
+        "testcase-timeout": "15000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsOpenLinkTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+

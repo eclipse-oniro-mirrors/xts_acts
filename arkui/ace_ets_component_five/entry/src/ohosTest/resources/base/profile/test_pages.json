@@ -1,0 +1,24 @@
+{
+    "src": [
+          "MainAbility/pages/index",
+          "MainAbility/pages/checkbox",
+          "MainAbility/pages/enumsImage",
+          "MainAbility/pages/fillMode",
+          "MainAbility/pages/index/index",
+          "MainAbility/pages/ohosMatrix4",
+          "MainAbility/pages/select",
+          "MainAbility/pages/colorGradient",
+          "MainAbility/pages/checkboxGroup",
+          "MainAbility/pages/edgeEffect",
+          "MainAbility/pages/slider",
+          "MainAbility/pages/backgroundAndSizeSetting",
+          "MainAbility/pages/border",
+          "MainAbility/pages/positionSetting",
+          "MainAbility/pages/shapeClipping",
+          "MainAbility/pages/transForm",
+          "MainAbility/pages/visibility",
+          "MainAbility/pages/enumsFlexAlign",
+          "MainAbility/pages/enumsVerticalAlign",
+          "MainAbility/pages/enumsHorizontalAlign"
+    ]
+}

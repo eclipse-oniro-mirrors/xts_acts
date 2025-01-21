@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for avScreenCaptureRecorder Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "6000000",
+        "shell-timeout": "6000000",
+        "testcase-timeout": 1100000,
+        "bundle-name": "ohos.acts.multimedia.avscreencapturerecorder",
+        "package-name": "ohos.acts.multimedia.avscreencapturerecorder"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAvScreenCaptureRecorderJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo02",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo03",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo04",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo05",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo06",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo09",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo11",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo12",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo13",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo14",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo16",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo17",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo20",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo23",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo25",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo26",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo27",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo28",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo30",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo31",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo32",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo33",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo35",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo37",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo42",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo43",
+        "MainAbility/pages/WaterFlowSectionDemo/WaterFlowSectionDemo45"
+    ]
+}

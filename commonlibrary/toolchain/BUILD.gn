@@ -1,0 +1,124 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//build/ohos_var.gni")
+import("//test/xts/tools/build/suite.gni")
+
+group("toolchain") {
+  testonly = true
+  deps = [ "//third_party/musl:libctest" ]
+  if (is_standard_system) {
+    deps += [ ":tar_dllib" ]
+  }
+}
+
+action("tar_testcases") {
+  testonly = true
+  deps = [
+    "libc-test:ActsToolChainTest",
+    "//third_party/musl:libctest",
+  ]
+  project_dir = rebase_path(".")
+  print("project_dir-58:", project_dir)
+  project_dird = rebase_path("tar_files.py", ".", root_out_dir)
+  print("project_dird-60:", project_dird)
+
+  project_dirf = project_dir + "/" + project_dird
+  print("project_dirf-64:", project_dirf)
+
+  test_path = string_replace(project_dirf, "/tar_files.py", "")
+  script = rebase_path(
+          "//test/xts/acts/commonlibrary/toolchain/libc-test/tar_files.py")
+
+  _outputs = [ "$target_out_dir/libc-test.tar" ]
+  outputs = _outputs
+
+  input_path = rebase_path("$test_path/musl/libc-test")
+  output_path =
+      rebase_path("$test_path/suites/acts/acts/testcases/libc-test.tar")
+
+  print("root_build_dir-49", root_build_dir)
+  args = [
+    "--input_path",
+    input_path,
+    "--output_path",
+    output_path,
+    "--temp_path",
+    "./libc-test",
+  ]
+}
+
+action("tar_dllib") {
+  testonly = true
+  deps = [ ":tar_testcases" ]
+  project_dir = rebase_path(".")
+  print("project_dir-58:", project_dir)
+  project_dird = rebase_path("tar_files.py", ".", root_out_dir)
+  print("project_dird-60:", project_dird)
+
+  project_dirf = project_dir + "/" + project_dird
+  print("project_dirf-64:", project_dirf)
+
+  dllib_path = string_replace(project_dirf, "/tar_files.py", "")
+  script = rebase_path(
+          "//test/xts/acts/commonlibrary/toolchain/libc-test/tar_files.py")
+
+  if (target_cpu == "arm") {
+    _outputs = [ "$target_out_dir/libc-test-lib.tar" ]
+    outputs = _outputs
+
+    input_path = rebase_path("$dllib_path/musl/libc-test-lib")
+    output_path =
+        rebase_path("$dllib_path/suites/acts/acts/testcases/libc-test-lib.tar")
+
+    print("root_build_dir-49", root_build_dir)
+    args = [
+      "--input_path",
+      input_path,
+      "--output_path",
+      output_path,
+      "--temp_path",
+      "./libc-test-lib",
+    ]
+  } else if (target_cpu == "arm64") {
+    _outputs = [ "$target_out_dir/libc-test-lib.tar" ]
+    outputs = _outputs
+
+    input_path = rebase_path("$dllib_path/musl/libc-test-lib")
+    output_path =
+        rebase_path("$dllib_path/suites/acts/acts/testcases/libc-test-lib.tar")
+    print("root_build_dir-49", root_build_dir)
+    args = [
+      "--input_path",
+      input_path,
+      "--output_path",
+      output_path,
+      "--temp_path",
+      "./libc-test-lib",
+    ]
+  } else {
+    _outputs = [ "" ]
+    outputs = _outputs
+
+    input_path = rebase_path("")
+    output_path = rebase_path("")
+    print("root_build_dir-49", root_build_dir)
+    args = [
+      "--input_path",
+      input_path,
+      "--output_path",
+      output_path,
+      "--temp_path",
+      "./libc-test-lib",
+    ]
+  }
+}

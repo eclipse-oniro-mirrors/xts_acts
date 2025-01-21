@@ -1,0 +1,16 @@
+{
+    "color": [
+      {
+        "name": "start_window_background",
+        "value": "#FFFFFF"
+      },
+      {
+        "name": "start_block_Border_Color",
+        "value": "#FF19D41C"
+      },
+      {
+        "name": "start_Step_Color",
+        "value": "#FF19D41C"
+      }
+    ]
+  }

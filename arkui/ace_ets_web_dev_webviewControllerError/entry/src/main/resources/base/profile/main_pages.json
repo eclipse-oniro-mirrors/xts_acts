@@ -1,0 +1,13 @@
+{
+    "src": [
+        "MainAbility/pages/webViewContMessageError",
+        "MainAbility/pages/webViewContPageOperationsError",
+        "MainAbility/pages/webViewContJavaScriptError",
+        "MainAbility/pages/webViewContZoomAndOthersError",
+        "MainAbility/pages/webViewContStoreWebArchiveError",
+        "MainAbility/pages/webViewContGetUrlAndOthersError",
+        "MainAbility/pages/webViewContCookieToGeoLocationError",
+        "MainAbility/pages/webViewContJsMessageExtReturnError",
+        "MainAbility/pages/webViewContWebMessageExtReturnError"
+    ]
+}

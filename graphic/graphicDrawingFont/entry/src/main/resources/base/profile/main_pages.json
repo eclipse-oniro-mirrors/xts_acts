@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/second/second",
+        "MainAbility/pages/second/pageOne",
+        "MainAbility/pages/second/pageTwo",
+        "MainAbility/pages/RunMetrics"
+    ]
+}

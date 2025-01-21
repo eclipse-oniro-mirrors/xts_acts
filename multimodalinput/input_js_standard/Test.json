@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for multimodalinput js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "bundle-name": "ohos.acts.multimodalinput.input",
+        "package-name": "ohos.acts.multimodalinput.input",
+        "test-timeout": "300000",
+        "shell-timeout": "300000",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsMultimodalinputJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

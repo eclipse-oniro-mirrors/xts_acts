@@ -1,0 +1,29 @@
+{
+    "src": [
+          "MainAbility/pages/appear",
+          "MainAbility/pages/second/second",
+          "MainAbility/pages/index/index",
+          "MainAbility/pages/areaChange",
+          "MainAbility/pages/ellipse",
+          "MainAbility/pages/enable",
+          "MainAbility/pages/flex",
+          "MainAbility/pages/gauge",
+          "MainAbility/pages/global",
+          "MainAbility/pages/gridContainer",
+          "MainAbility/pages/gridSettings",
+          "MainAbility/pages/imageEffects",
+          "MainAbility/pages/layoutConstraints",
+          "MainAbility/pages/list",
+          "MainAbility/pages/marquee",
+          "MainAbility/pages/overlay",
+          "MainAbility/pages/stepper",
+          "MainAbility/pages/swiper",
+          "MainAbility/pages/textAreaAutoFill",
+          "MainAbility/pages/textInputAutoFill",
+          "MainAbility/pages/textStyle",
+          "MainAbility/pages/touchAble",
+          "MainAbility/pages/touch",
+          "MainAbility/pages/visibility",
+          "MainAbility/pages/zIndex"
+    ]
+}

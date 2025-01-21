@@ -1,0 +1,29 @@
+{
+  "forms": [
+    {
+      "name": "module1_widget",
+      "displayName": "GetFormsInfo Demo1",
+      "description": "This is a service widget.",
+      "src": "./js/module1_widget/pages/index/index",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2",
+        "1*1"
+      ],
+      "supportShapes": [
+        "circle"
+      ],
+      "formConfigAbility": "ability://xxxxx",
+      "formVisibleNotify":true
+    }
+  ]
+}

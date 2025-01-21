@@ -1,0 +1,79 @@
+/**
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import {MessageManager,Callback} from '../utils/MessageManager';
+
+type Message = boolean|number|Date
+
+@Entry
+@Component
+struct TimePickerPage {
+  @State isMilitaryTime: boolean = true
+  private selectedTime: Date = new Date('2022-02-22T08:00:00')
+  @State hour: number = 8
+  @State minute: number = 0
+  @State mode: boolean = true
+  messageManager = new MessageManager<Message>()
+
+  onPageShow() {
+    console.info('TimePicker onPageShow')
+    globalThis.value = {
+      name:'messageManager',message:this.messageManager
+    }
+    let callback: Callback<Message> = message => {
+      console.error('message = ' + message.name + "--" + message.value)
+      if (message.name == 'isMilitaryTime') {
+        this.isMilitaryTime = message.value as boolean
+      }
+      if (message.name == 'selectedTime') {
+        this.selectedTime = message.value as Date
+      }
+      if (message.name == 'hour') {
+        this.hour = message.value as number
+      }
+      if (message.name == 'minute') {
+        this.minute = message.value as number
+      }
+    }
+    this.messageManager.registerCallback(callback)
+  }
+
+  build() {
+    Column() {
+      Button('切换12小时制/24小时制')
+        .margin({ top: 30 })
+        .key('button')
+        .onClick(() => {
+          this.mode = !this.mode
+          this.isMilitaryTime = !this.isMilitaryTime
+        })
+      TimePicker({
+        selected: this.selectedTime,
+      })
+        .key('timePicker')
+        .width('100%')
+        .height("70%")
+        .useMilitaryTime(this.isMilitaryTime)
+        .onChange((value: TimePickerResult) => {
+          this.hour = value.hour
+          this.minute = value.minute
+          this.selectedTime.setHours(value.hour, value.minute)
+          console.info('select current date is: ' + JSON.stringify(value))
+        })
+      Text('hour:' + this.hour).fontSize(20).margin(10).key('hour')
+      Text('minute:' + this.minute).fontSize(20).margin(10).key('minute')
+      Text('24hour:' + this.mode).fontSize(20).margin(10).key('mode')
+    }
+  }
+}

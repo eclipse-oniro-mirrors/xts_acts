@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Scroll/Scroll_attribute/ScrollFrictionPage"
+        
+    ]
+}

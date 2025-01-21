@@ -1,0 +1,246 @@
+{
+  "app": {
+    "bundleName": "com.example.bmsaccesstoken1",
+    "vendor": "example",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 5,
+      "target": 5,
+      "releaseType": "Beta1"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.bmsaccesstoken1",
+    "name": ".MyApplication1",
+    "deviceType": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "name": ".MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "isVisible": "true",
+        "launchType": "standard",
+        "language": "C++",
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "originWidgetName",
+              "value": "com.weather.testWidget"
+            }
+          ]
+        }
+      },
+      {
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "uris": [
+              {
+                "scheme": "scheme"
+              }
+            ]
+          }
+        ],
+        "name": ".canOpenLinktest1",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "isVisible": "true",
+        "launchType": "standard",
+        "language": "C++",
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "originWidgetName",
+              "value": "com.weather.testWidget"
+            }
+          ]
+        }
+      },
+      {
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "uris": [
+              {
+                "scheme": "matchscheme1"
+              }
+            ]
+          }
+        ],
+        "name": ".canOpenLinktest2",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "isVisible": "true",
+        "launchType": "standard",
+        "language": "C++",
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "originWidgetName",
+              "value": "com.weather.testWidget"
+            }
+          ]
+        }
+      },
+      {
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "uris": [
+              {
+                "scheme": "matchscheme2",
+                "host": "com.ohos.test"
+              }
+            ]
+          }
+        ],
+        "name": ".canOpenLinktest3",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "isVisible": "true",
+        "launchType": "standard",
+        "language": "C++",
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "originWidgetName",
+              "value": "com.weather.testWidget"
+            }
+          ]
+        }
+      },
+      {
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "uris": [
+              {
+                "scheme": "Matchscheme3",
+                "host": "com.ohos.test",
+                "port": "8080"
+              }
+            ]
+          }
+        ],
+        "name": ".canOpenLinktest4",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "isVisible": "true",
+        "launchType": "standard",
+        "language": "C++",
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "originWidgetName",
+              "value": "com.weather.testWidget"
+            }
+          ]
+        }
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".canOpenLinktest1",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".canOpenLinktest2",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".canOpenLinktest3",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".canOpenLinktest4",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "use ohos.permission.DISTRIBUTED_DATASYNC"
+      },
+      {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "reason": "use ohos.permission.KEEP_BACKGROUND_RUNNING"
+      }
+    ]
+  }
+}

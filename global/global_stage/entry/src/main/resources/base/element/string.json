@@ -1,0 +1,44 @@
+{
+    "string": [
+        {
+            "name": "phone_entry_dsc",
+            "value": "i am an entry for phone %d"
+        },
+        {
+            "name": "phone_entry_main",
+            "value": "the phone entry ability"
+        },
+        {
+            "name": "entry_label",
+            "value": "ActsMediaLibraryTest"
+        },
+        {
+            "name": "form_description",
+            "value": "mediaLibrary"
+        },
+        {
+            "name": "serviceability_description",
+            "value": "mediaLibrary"
+        },
+        {
+            "name": "description_application",
+            "value": "mediaLibrary test"
+        },
+        {
+            "name": "app_name",
+            "value": "ActsMediaLibraryTest"
+        },
+        {
+            "name": "module_desc",
+            "value": "module description"
+        },
+        {
+            "name": "EntryAbility_desc",
+            "value": "description"
+        },
+        {
+            "name": "EntryAbility_label",
+            "value": "label"
+        }
+    ]
+}

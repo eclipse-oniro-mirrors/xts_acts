@@ -1,0 +1,28 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/component/textInputCopyOption",
+    "MainAbility/pages/component/textInputMaxLines",
+    "MainAbility/pages/component/textInputFontFamily",
+    "MainAbility/pages/component/textInputBarState",
+    "MainAbility/pages/component/textInputShowUnderline",
+    "MainAbility/pages/component/textInputPlaceholderFont",
+    "MainAbility/pages/component/textInputShowError",
+    "MainAbility/pages/component/textInputFontColor",
+    "MainAbility/pages/component/textInputFontSize",
+    "MainAbility/pages/component/textInputStyle",
+    "MainAbility/pages/component/textInputFontWeight",
+    "MainAbility/pages/component/textInputType",
+    "MainAbility/pages/component/textInputPlaceholderColor",
+    "MainAbility/pages/component/textInputFontStyle",
+    "MainAbility/pages/component/textInputEnterKeyType",
+    "MainAbility/pages/component/textInputMaxLength",
+    "MainAbility/pages/component/textInputCaretColor",
+    "MainAbility/pages/component/textInputCaretPosition",
+    "MainAbility/pages/component/textInputCaretStyle",
+    "MainAbility/pages/component/textInputSelectedBackgroundColor",
+    "MainAbility/pages/component/textInputShowPasswordIcon",
+    "MainAbility/pages/component/textInputTextAlign",
+    "MainAbility/pages/component/textInputPasswordIcon"
+  ]
+}

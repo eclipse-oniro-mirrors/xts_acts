@@ -1,0 +1,76 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CalledAbility",
+        "srcEntry": "./ets/calledability/CalledAbility.ts",
+        "description": "$string:CalledAbility_desc",
+        "visible": true,
+        "icon": "$media:icon",
+        "label": "$string:CalledAbility_label",
+        "exported": false,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      {
+        "name": "ThirdAbility",
+        "srcEntrance": "./ets/third/ThirdAbility.ts",
+        "description": "$string:ThirdAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:ThirdAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true,
+        "exported": false
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "UIExtAbility",
+        "icon": "$media:icon",
+        "description": "UIExtAbility",
+        "type": "share",
+        "visible": true,
+        "srcEntrance": "./ets/UIExtensionAbility/UIExtAbility.ts"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ]
+  }
+}

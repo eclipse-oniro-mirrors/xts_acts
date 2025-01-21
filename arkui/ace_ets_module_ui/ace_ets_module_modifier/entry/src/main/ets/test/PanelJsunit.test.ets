@@ -1,0 +1,269 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
+import router from '@ohos.router';
+import events_emitter from '@ohos.events.emitter';
+import Utils from './Utils';
+import bundle from '@ohos.bundle.bundleManager';
+
+export default function panelJsunit() {
+  describe('panelTest', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/panel',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get panel state success " + JSON.stringify(pages));
+        if (!("panel" == pages.name)) {
+          console.info("get panel pages success " + JSON.stringify(pages.name));
+          await router.pushUrl(options);
+          await Utils.sleep(2000);
+        }
+      } catch (err) {
+        console.error("push panel page error: " + err);
+      }
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_001
+     * @tc.name Test the properties of components
+     * @tc.desc Set type values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_001', 0, async (done: Function) => {
+      console.info('[test_panel_001] START');
+      var strJson = getInspectorByKey('PanelKey1');
+      var obj = JSON.parse(strJson);
+      console.info("[test_panel_001] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.type).assertEqual("PanelType.Foldable");
+
+      console.info('[test_panel_001] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_002
+     * @tc.name Test the properties of components
+     * @tc.desc Set showCloseIcon values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_002', 0, async (done: Function) => {
+      console.info('[test_panel_002] START');
+      var strJson = getInspectorByKey('PanelKey1');
+      var obj = JSON.parse(strJson);
+      console.info("[test_panel_002] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.showCloseIcon).assertEqual("true");
+
+      console.info('[test_panel_002] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_003
+     * @tc.name Test the properties of components
+     * @tc.desc Set show values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_003', 0, async (done: Function) => {
+      console.info('[test_panel_003] START');
+      var strJson = getInspectorByKey('PanelKey1');
+      var obj = JSON.parse(strJson);
+      console.info("[test_panel_003] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.show).assertEqual("true");
+
+      console.info('[test_panel_003] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_004
+     * @tc.name Test the properties of components
+     * @tc.desc Set mode values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_004', 0, async (done: Function) => {
+      console.info('[test_panel_004] START');
+      var strJson = getInspectorByKey('PanelKey1');
+      var obj = JSON.parse(strJson);
+      console.info("[test_panel_004] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.mode).assertEqual("PanelMode.Full");
+
+      console.info('[test_panel_004] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_005
+     * @tc.name Test the properties of components
+     * @tc.desc Set dragBar values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_005', 0, async (done: Function) => {
+      console.info('[test_panel_005] START');
+      var strJson = getInspectorByKey('PanelKey1');
+      var obj = JSON.parse(strJson);
+      console.info("[test_panel_005] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.dragBar).assertEqual("true");
+
+      console.info('[test_panel_005] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_006
+     * @tc.name Test the properties of components
+     * @tc.desc Set miniHeight values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_006', 0, async (done: Function) => {
+      console.info('[test_panel_006] START');
+      var strJson = getInspectorByKey('PanelKey1');
+      var obj = JSON.parse(strJson);
+      console.info("[test_panel_006] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.miniHeight).assertEqual("20.00vp");
+
+      console.info('[test_panel_006] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_007
+     * @tc.name Test the properties of components
+     * @tc.desc Set halfHeight values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_007', 0, async (done: Function) => {
+      console.info('[test_panel_007] START');
+      var strJson = getInspectorByKey('PanelKey1');
+      var obj = JSON.parse(strJson);
+      console.info("[test_panel_007] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.halfHeight).assertEqual("300.00vp");
+
+      console.info('[test_panel_007] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_008
+     * @tc.name Test the properties of components
+     * @tc.desc Set fullHeight values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_008', 0, async (done: Function) => {
+      console.info('[test_panel_008] START');
+      var strJson = getInspectorByKey('PanelKey1');
+      var obj = JSON.parse(strJson);
+      console.info("[test_panel_008] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.fullHeight).assertEqual("800.00vp");
+
+      console.info('[test_panel_008] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_009
+     * @tc.name Test the properties of components
+     * @tc.desc Set customHeight values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_009', 0, async (done: Function) => {
+      console.info('[test_panel_009] START');
+      var strJson = getInspectorByKey('PanelKey2');
+      var obj = JSON.parse(strJson);
+      console.info("[test_panel_009] obj  is: " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.customHeight).assertEqual("10.00vp");
+      console.info('[test_panel_009] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_0010
+     * @tc.name Test the properties of components
+     * @tc.desc Set backgroundMask values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_0010', 0, async (done: Function) => {
+      console.info('[test_panel_0010] START');
+      var strJson = getInspectorByKey('PanelKey2');
+      var obj = JSON.parse(strJson);
+      console.info("[test_panel_0010] obj is: " + JSON.stringify(obj.$attrs));
+
+      var strJson3 = getInspectorByKey('PanelKey3');
+      var obj3 = JSON.parse(strJson3);
+      console.info("[test_panel_0010] obj is: " + JSON.stringify(obj3.$attrs));
+      // 得到json值与 设置不一致，与原生json返回做对比
+      expect(obj.$attrs.backgroundMask).assertEqual(obj3.$attrs.backgroundMask);
+
+      console.info('[test_panel_002] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_panel_0011
+     * @tc.name Test the properties of components
+     * @tc.desc Change backgroundMask values
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level 0
+     */
+    it('test_panel_0011', 0, async (done: Function) => {
+
+      console.info('test_panel_0011 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('PanelKey2');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("test_panel_0011 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.backgroundMask).assertEqual("#00000000");
+      console.info('test_panel_0011 END');
+      done();
+    });
+  })
+}

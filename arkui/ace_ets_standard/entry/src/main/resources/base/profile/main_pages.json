@@ -1,0 +1,27 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/second/second",
+        "MainAbility/pages/index",
+        "MainAbility/pages/Button",
+        "MainAbility/pages/Blank",
+        "MainAbility/pages/DataPanel",
+        "MainAbility/pages/Divider",
+        "MainAbility/pages/Text",
+        "MainAbility/pages/RowSplit",
+        "MainAbility/pages/Scroll",
+        "MainAbility/pages/Stack",
+        "MainAbility/pages/Image",
+        "MainAbility/pages/Progress",
+        "MainAbility/pages/Qrcode",
+        "MainAbility/pages/Rating",
+        "MainAbility/pages/Span",
+        "MainAbility/pages/Slider",
+        "MainAbility/pages/Badge",
+        "MainAbility/pages/Column",
+        "MainAbility/pages/ColumnSplit",
+        "MainAbility/pages/Counter",
+        "MainAbility/pages/Flex",
+        "MainAbility/pages/GridContainer"
+    ]
+}

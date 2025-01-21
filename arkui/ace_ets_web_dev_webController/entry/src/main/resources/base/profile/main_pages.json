@@ -1,0 +1,31 @@
+{
+    "src": [
+        "MainAbility/pages/webOnBeforeUnload",
+        "MainAbility/pages/webOnSslError",
+        "MainAbility/pages/webOnInterceptReqOne",
+        "MainAbility/pages/webOnInterceptReqTwo",
+        "MainAbility/pages/webOnInterceptReqThree",
+        "MainAbility/pages/webDefaultFontSizeWithMinLogical",
+        "MainAbility/pages/webDefaultFontSize",
+        "MainAbility/pages/webDefaultFontSizeNoMinFontSize",
+        "MainAbility/pages/webDefaultFontSizeNoAll",
+        "MainAbility/pages/webOnFirstCont",
+        "MainAbility/pages/webOnFirstContTwo",
+        "MainAbility/pages/webOnFirstContThree",
+        "MainAbility/pages/webOnFirstContFour",
+        "MainAbility/pages/webOnFullScreenEnter",
+        "MainAbility/pages/webOnFullScreenExit",
+        "MainAbility/pages/webGetCookieManager",
+        "MainAbility/pages/webONHttpErrorReceive",
+        "MainAbility/pages/webONHttpErrorReceiveExample",
+        "MainAbility/pages/webONHttpErrorRecvExampleIsReady",
+        "MainAbility/pages/webONHttpErrorReceiveIframe",
+        "MainAbility/pages/webOnAudioStateChanged",
+        "MainAbility/pages/webviewTerminateRenderProcess",
+        "MainAbility/pages/webviewSelectionMenuOptions",
+        "MainAbility/pages/DNSHostIP",
+        "MainAbility/pages/WebZoomAccessTest",
+        "MainAbility/pages/wholeWebPageDrawing",
+        "MainAbility/pages/getSurfaceId"
+    ]
+}

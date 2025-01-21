@@ -1,0 +1,54 @@
+# Copyright (c) 2022 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+group("freeinstalltest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "connectabilityfatest/actsfreeinstallconnectabilityfatest:ActsFreeInstallConnectAbilityFaTest",
+      "connectabilityfatest/connectdifferentapplication:ConnectDifferentApplication",
+      "connectabilityfatest/connectfamyapplication1:ConnectFaMyApplication1",
+      "connectabilityfatest/connectfamyapplication10:ConnectFaMyApplication10",
+      "connectabilityfatest/connectfamyapplication11:ConnectFaMyApplication11",
+      "connectabilityfatest/connectfamyapplication2:ConnectFaMyApplication2",
+      "connectabilityfatest/connectfamyapplication4:ConnectFaMyApplication4",
+      "connectabilityfatest/connectfamyapplication5:ConnectFaMyApplication5",
+      "connectabilityfatest/connectfamyapplication6:ConnectFaMyApplication6",
+      "connectabilityfatest/connectfamyapplication7:ConnectFaMyApplication7",
+      "connectabilityfatest/connectfamyapplication8:ConnectFaMyApplication8",
+      "connectabilityfatest/connectfamyapplication9:ConnectFaMyApplication9",
+      "mockservice:MockService",
+      "mockservicetimeout:MockServiceTimeout",
+      "startabilityfatest/actsstartabilitynotargetbundlelistfatest:ActsStartAbilityNoTargetBundleListFaTest",
+      "startabilityfatest/atomizationfaentry:AtomizationFaEntry",
+      "startabilityfatest/famyapplication1:FaMyApplication1",
+      "startabilityforresultfatest/actsstartabilityforresultnotargetfatest:ActsStartAbilityForResultNoTargetFaTest",
+      "startabilityforresultfatest/atomizationresultfaentry:AtomizationResultFaEntry",
+      "startabilityforresultfatest/faresultmyapplication1:FaResultMyApplication1",
+      "startabilityforresultstagetest/actsfreeinstallstartabilityforresultstagetest:ActsFreeInstallStartAbilityForResultStageTest",
+      "startabilityforresultstagetest/actsstartabilityforresultnotargetbundleliststagetest:ActsStartAbilityForResultNoTargetBundleListStageTest",
+      "startabilityforresultstagetest/atomizationresultstageentry:AtomizationResultStageEntry",
+      "startabilityforresultstagetest/atomizationresultstagehm2:AtomizationResultStageHm2",
+      "startabilityforresultstagetest/atomizationresultstagehnm2:AtomizationResultStageHnm2",
+      "startabilityforresultstagetest/stageresultmyapplication1:StageResultMyApplication1",
+      "startabilitystagetest/actsfreeinstallstartabilitystagetest:ActsFreeInstallStartAbilityStageTest",
+      "startabilitystagetest/actsstartabilitynotargetbundleliststagetest:ActsStartAbilityNoTargetBundleListStageTest",
+      "startabilitystagetest/atomizationstageentry:AtomizationStageEntry",
+      "startabilitystagetest/atomizationstagehm2:AtomizationStageHm2",
+      "startabilitystagetest/atomizationstagehm4:AtomizationStageHm4",
+      "startabilitystagetest/stagemyapplication1:StageMyApplication1",
+    ]
+  }
+}

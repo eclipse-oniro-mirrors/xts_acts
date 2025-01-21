@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/xts/GridFlingCallback",
+        "MainAbility/pages/xts/ListFlingCallback",
+        "MainAbility/pages/xts/ScrollFlingCallback",
+        "MainAbility/pages/xts/WaterFlowFlingCallback"
+    ]
+}

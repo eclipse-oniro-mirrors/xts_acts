@@ -1,0 +1,29 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/TextPicker/gradientHeight",
+        "MainAbility/pages/TextPicker/divider",
+        "MainAbility/pages/CheckboxGroup/CheckBoxShape",
+        "MainAbility/pages/Checkbox/contentModifier",
+        "MainAbility/pages/Checkbox/triggerChange",
+        "MainAbility/pages/TimePicker/dateTimeOptions",
+        "MainAbility/pages/TimePicker/TimePickerAddApi",
+        "MainAbility/pages/Checkbox/indicatorBuilder",
+        "MainAbility/pages/Button/ButtonApi1",
+        "MainAbility/pages/Button/ButtonApi2",
+        "MainAbility/pages/Radio/RadioContentModifier",
+        "MainAbility/pages/Radio/RadioIndicatorType",
+        "MainAbility/pages/Rating/RatingContentModifier",
+        "MainAbility/pages/Slider/SliderAttrs",
+        "MainAbility/pages/Slider/SliderContentModifier",
+        "MainAbility/pages/Toggle/ToggleContentModifier",
+        "MainAbility/pages/Toggle/ToggleSwitchStyle",
+        "MainAbility/pages/Toggle/ToggleIsOn",
+        "MainAbility/pages/Toggle/ToggleEnabled",
+        "MainAbility/pages/select/selectApi1",
+        "MainAbility/pages/select/triggerSelect",
+        "MainAbility/pages/Slider/slideRange",
+        "MainAbility/pages/Slider/SliderAttrs2",
+        "MainAbility/pages/TimePicker/enableHapticFeedback"
+    ]
+}

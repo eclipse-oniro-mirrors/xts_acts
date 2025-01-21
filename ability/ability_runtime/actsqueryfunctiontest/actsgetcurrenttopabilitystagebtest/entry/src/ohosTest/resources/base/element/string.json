@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Ability1_desc",
+      "value": "description"
+    },
+    {
+      "name": "Ability1_label",
+      "value": "label"
+    },
+    {
+      "name": "Ability2_desc",
+      "value": "description"
+    },
+    {
+      "name": "Ability2_label",
+      "value": "label"
+    },
+    {
+      "name": "app_name",
+      "value": "ActsGetCurrentTopAbilityStagebTest"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+   }
+  ]
+}

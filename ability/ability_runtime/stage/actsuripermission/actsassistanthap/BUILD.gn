@@ -1,0 +1,73 @@
+# Copyright (c) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+ohos_hap_assist_suite("ActsAssistantHap") {
+  hap_name = "ActsAssistantHap"
+  js_build_mode = "debug"
+
+  testonly = true
+  hap_profile = "entry/src/main/module.json"
+  deps = [
+    ":actsassistanthap_js_assets",
+    ":actsassistanthap_resources",
+  ]
+  ets2abc = true
+  certificate_profile = "signature/openharmony_sx.p7b"
+
+  subsystem_name = "ability"
+  part_name = "ability_runtime"
+}
+
+ohos_app_scope("actsassistanthap_app_profile") {
+  app_profile = "AppScope/app.json"
+  sources = [ "AppScope/resources" ]
+}
+
+ohos_js_assets("actsassistanthap_js_assets") {
+  source_dir = "entry/src/main/ets"
+}
+
+ohos_resources("actsassistanthap_resources") {
+  sources = [ "entry/src/main/resources" ]
+  deps = [ ":actsassistanthap_app_profile" ]
+  hap_profile = "entry/src/main/module.json"
+}
+
+ohos_hap_assist_suite("ActsAssistantHap4") {
+  hap_name = "ActsAssistantHap4"
+  js_build_mode = "debug"
+
+  testonly = true
+  hap_profile = "hap4/src/main/module.json"
+  deps = [
+    ":actsassistanthap4_js_assets",
+    ":actsassistanthap4_resources",
+  ]
+  ets2abc = true
+  certificate_profile = "signature/openharmony_sx.p7b"
+
+  subsystem_name = "ability"
+  part_name = "ability_runtime"
+}
+
+ohos_js_assets("actsassistanthap4_js_assets") {
+  source_dir = "hap4/src/main/ets"
+}
+
+ohos_resources("actsassistanthap4_resources") {
+  sources = [ "hap4/src/main/resources" ]
+  deps = [ ":actsassistanthap_app_profile" ]
+  hap_profile = "hap4/src/main/module.json"
+}

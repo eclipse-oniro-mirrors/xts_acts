@@ -1,0 +1,98 @@
+{
+  "module": {
+    "name": "phone",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:phone_entry_dsc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "uiSyntax": "ets",
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "com.example.lifecycletest.MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:phone_entry_main",
+        "icon": "$media:icon",
+        "label": "$string:entry_label",
+        "visible": true,
+        "orientation": "portrait",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility1",
+        "srcEntrance": "./ets/MainAbility1/MainAbility1.ts",
+        "description": "$string:MainAbility1_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility1_label"
+      },
+      {
+        "name": "MainAbility2",
+        "srcEntrance": "./ets/MainAbility2/MainAbility2.ts",
+        "description": "$string:MainAbility2_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility2_label"
+      },
+      {
+        "name": "MainAbility3",
+        "srcEntrance": "./ets/MainAbility3/MainAbility3.ts",
+        "description": "$string:MainAbility3_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility3_label"
+      },
+      {
+        "name": "MainAbility4",
+        "srcEntrance": "./ets/MainAbility4/MainAbility4.ts",
+        "description": "$string:MainAbility4_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility4_label"
+      },
+      {
+        "name": "MainAbility5",
+        "srcEntrance": "./ets/MainAbility5/MainAbility5.ts",
+        "description": "$string:MainAbility5_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility5_label"
+      },
+      {
+        "name": "MainAbility6",
+        "srcEntrance": "./ets/MainAbility6/MainAbility6.ts",
+        "description": "$string:MainAbility6_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility6_label",
+        "launchType": "standard"
+      },
+      {
+        "name": "MainAbility7",
+        "srcEntrance": "./ets/MainAbility7/MainAbility7.ts",
+        "description": "$string:MainAbility7_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility7_label"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+    "kits": [
+        {
+            "push": [
+                "ActsGraphicEffectFliterTest->/data/local/tmp/ActsGraphicEffectFliterTest"
+            ],
+            "type": "PushKit",
+            "post-push" : [
+                "chmod -R 777 /data/local/tmp/*"
+            ]
+        }
+    ],
+    "driver": {
+        "native-test-timeout": "150000",
+        "type": "CppTest",
+        "module-name": "ActsGraphicEffectFliterTest",
+        "runtime-hint": "1s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "description": "Configuration for ActsGraphicEffectFliterTest Tests"
+}
