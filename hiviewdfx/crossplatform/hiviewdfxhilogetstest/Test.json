@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    // 指定设备执行的驱动
+    "driver": {
+        "type": "OHJSUnitTest",
+        //test-timeout: 测试hap 整体执行用例的执行时长
+        "test-timeout": "60000",
+        //shell-timeout: aa test 拉起命令执行时长
+        "shell-timeout": "60000",
+        //bundle-name: 与HAP的app.json 中 bundleName 保持一致
+        "bundle-name": "ohos.acts.hiviewdfx.crossplatform.hilog.normal",
+        //module-name: 与HAP的module.json 中"module"字段的 name 保持一致
+        "module-name": "entry_test"
+        //testcase-timeout: 测试hap 单条用例的执行时长
+        //"testcase-timeout": 5000
+    },
+    // kit的作用主要是为了支撑测试执行活动，在测试前执行预制操作(Setup)，在测试后执行清理操作(Teardown)
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCrossplatformHilogTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

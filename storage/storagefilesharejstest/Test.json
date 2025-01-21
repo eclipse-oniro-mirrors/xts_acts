@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for storage fileshare Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.storage.fileshare",
+        "package-name": "ohos.acts.storage.fileshare"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStorageFileShareJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

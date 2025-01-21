@@ -1,0 +1,23 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "bundle-name": "ohos.acts.multimedia.image.receiverMultiThread",
+        "module-name": "entry",
+        "shell-timeout": "800000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageReceiverMultiThreadJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": []
+        }
+    ]
+}

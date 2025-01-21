@@ -1,0 +1,15 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Stack/StackItem_change/stack_offset_change",
+        "MainAbility/pages/Stack/StackItem_change/stack_position_change",
+        "MainAbility/pages/Stack/StackItem_change/stack_zIndex",
+        "MainAbility/pages/Stack/Stack_alignContent/stack_alignContent",
+        "MainAbility/pages/Stack/Stack_change/stackAlignChange",
+        "MainAbility/pages/Stack/Stack_change/stackMarginChange",
+        "MainAbility/pages/Stack/Stack_change/stackNoneSettingWidthHeight",
+        "MainAbility/pages/Stack/Stack_change/stackPaddingChange",
+        "MainAbility/pages/Stack/Stack_change/stackSizeChange"
+        
+    ]
+}

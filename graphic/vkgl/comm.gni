@@ -1,0 +1,145 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+common_include = [
+  ".",
+  "//test/xts/acts/graphic/vkgl/src",
+  "//foundation/graphic/graphic_2d/rosen/modules/2d_graphics/include",
+  "//foundation/graphic/graphic_2d/rosen/modules/2d_graphics/src",
+  "//foundation/graphic/graphic_2d/rosen/modules/render_service_base/src",
+  "//foundation/graphic/graphic_2d/rosen/modules/render_service_base/include",
+  "//foundation/graphic/graphic_2d/rosen/modules/render_service_client",
+  "//foundation/graphic/graphic_2d/interfaces/innerkits/vsync_module",
+  "//foundation/graphic/graphic_2d/rosen/include/common",
+  "//foundation/window/window_manager/interfaces/innerkits/wm",
+  "//third_party/vk-gl-cts",
+  "//third_party/vk-gl-cts/framework/delibs/debase",
+  "//third_party/vk-gl-cts/framework/delibs/decpp",
+  "//third_party/vk-gl-cts/framework/delibs/depool",
+  "//third_party/vk-gl-cts/framework/delibs/dethread",
+  "//third_party/vk-gl-cts/framework/delibs/deutil",
+  "//third_party/vk-gl-cts/framework/delibs/destream",
+  "//third_party/vk-gl-cts/framework/common",
+  "//third_party/vk-gl-cts/framework/qphelper",
+  "//third_party/vk-gl-cts/framework/xexml",
+  "//third_party/vk-gl-cts/framework/egl",
+  "//third_party/vk-gl-cts/framework/egl/wrapper",
+  "//third_party/vk-gl-cts/framework/opengl",
+  "//third_party/vk-gl-cts/framework/opengl/wrapper",
+  "//third_party/vk-gl-cts/framework/opengl/simplereference",
+  "//third_party/vk-gl-cts/framework/platform/ohos",
+  "//third_party/libpng",
+  "//third_party/vk-gl-cts/external/openglcts/modules",
+  "//third_party/vk-gl-cts/external/openglcts/modules/common",
+  "//third_party/vk-gl-cts/external/openglcts/modules/gl",
+  "//third_party/vk-gl-cts/external/openglcts/modules/gles2",
+  "//third_party/vk-gl-cts/external/openglcts/modules/gles3",
+  "//third_party/vk-gl-cts/external/openglcts/modules/gles31",
+  "//third_party/vk-gl-cts/external/openglcts/modules/gles32",
+  "//third_party/vk-gl-cts/external/openglcts/modules/glesext",
+  "//third_party/vk-gl-cts/external/openglcts/modules/runner",
+  "//third_party/vk-gl-cts/external/vulkancts/framework/vulkan",
+  "//third_party/vk-gl-cts/build/external/vulkancts/framework/vulkan",
+  "//third_party/vk-gl-cts/framework/referencerenderer",
+  "//third_party/vk-gl-cts/modules/glshared",
+  "//third_party/vk-gl-cts/framework/platform/ohos/rosen_context",
+]
+
+common_depends_gles2 = [
+  "//third_party/zlib:libz",
+  "//third_party/vk-gl-cts/framework/common:libdeqp_tcutil",
+  "//third_party/vk-gl-cts/framework/delibs/decpp:libdeqp_decpp",
+  "//third_party/vk-gl-cts/framework/delibs/debase:libdeqp_debase",
+  "//third_party/vk-gl-cts/framework/delibs/deutil:libdeqp_deutil",
+  "//third_party/vk-gl-cts/framework/qphelper:libdeqp_qphelper",
+  "//third_party/vk-gl-cts/framework/delibs/dethread:libdeqp_dethread",
+  "//third_party/vk-gl-cts/framework/xexml:libdeqp_xexml",
+  "//third_party/vk-gl-cts/framework/egl:libdeqp_eglutil",
+  "//third_party/vk-gl-cts/framework/egl/wrapper:libdeqp_eglwrapper",
+  "//third_party/vk-gl-cts/framework/opengl:libdeqp_glutil",
+  "//third_party/vk-gl-cts/framework/opengl/wrapper:libdeqp_glwrapper",
+  "//third_party/vk-gl-cts/framework/opengl/simplereference:libdeqp_glutil-sglr",
+  "//third_party/vk-gl-cts/modules/egl:libdeqp-egl",
+  "//third_party/vk-gl-cts/modules/gles2:libdeqp-gles2",
+  "//third_party/vk-gl-cts/modules/gles3:libdeqp-gles3",
+  "//third_party/vk-gl-cts/modules/glshared:libdeqp-gl-shared",
+  "//third_party/vk-gl-cts/external/openglcts/modules:libdeqp_glcts",
+
+  "//third_party/vk-gl-cts/framework/platform/ohos/rosen_context:rosen_context",
+]
+
+common_depends_gles3 = [
+  "//third_party/zlib:libz",
+  "//third_party/vk-gl-cts/framework/common:libdeqp_tcutil",
+  "//third_party/vk-gl-cts/framework/delibs/decpp:libdeqp_decpp",
+  "//third_party/vk-gl-cts/framework/delibs/debase:libdeqp_debase",
+  "//third_party/vk-gl-cts/framework/delibs/deutil:libdeqp_deutil",
+  "//third_party/vk-gl-cts/framework/qphelper:libdeqp_qphelper",
+  "//third_party/vk-gl-cts/framework/delibs/dethread:libdeqp_dethread",
+  "//third_party/vk-gl-cts/framework/xexml:libdeqp_xexml",
+  "//third_party/vk-gl-cts/framework/egl:libdeqp_eglutil",
+  "//third_party/vk-gl-cts/framework/egl/wrapper:libdeqp_eglwrapper",
+  "//third_party/vk-gl-cts/framework/opengl:libdeqp_glutil",
+  "//third_party/vk-gl-cts/framework/opengl/wrapper:libdeqp_glwrapper",
+  "//third_party/vk-gl-cts/framework/opengl/simplereference:libdeqp_glutil-sglr",
+  "//third_party/vk-gl-cts/modules/egl:libdeqp-egl",
+  "//third_party/vk-gl-cts/modules/gles3:libdeqp-gles3",
+  "//third_party/vk-gl-cts/modules/glshared:libdeqp-gl-shared",
+  "//third_party/vk-gl-cts/external/openglcts/modules:libdeqp_glcts",
+
+  "//third_party/vk-gl-cts/framework/platform/ohos/rosen_context:rosen_context",
+]
+
+common_depends_gles31 = [
+  "//third_party/zlib:libz",
+  "//third_party/vk-gl-cts/framework/common:libdeqp_tcutil",
+  "//third_party/vk-gl-cts/framework/delibs/decpp:libdeqp_decpp",
+  "//third_party/vk-gl-cts/framework/delibs/debase:libdeqp_debase",
+  "//third_party/vk-gl-cts/framework/delibs/deutil:libdeqp_deutil",
+  "//third_party/vk-gl-cts/framework/qphelper:libdeqp_qphelper",
+  "//third_party/vk-gl-cts/framework/delibs/dethread:libdeqp_dethread",
+  "//third_party/vk-gl-cts/framework/xexml:libdeqp_xexml",
+  "//third_party/vk-gl-cts/framework/egl:libdeqp_eglutil",
+  "//third_party/vk-gl-cts/framework/egl/wrapper:libdeqp_eglwrapper",
+  "//third_party/vk-gl-cts/framework/opengl:libdeqp_glutil",
+  "//third_party/vk-gl-cts/framework/opengl/wrapper:libdeqp_glwrapper",
+  "//third_party/vk-gl-cts/framework/opengl/simplereference:libdeqp_glutil-sglr",
+  "//third_party/vk-gl-cts/modules/egl:libdeqp-egl",
+  "//third_party/vk-gl-cts/modules/gles31:libdeqp-gles31",
+  "//third_party/vk-gl-cts/modules/glshared:libdeqp-gl-shared",
+  "//third_party/vk-gl-cts/external/openglcts/modules:libdeqp_glcts",
+
+  "//third_party/vk-gl-cts/framework/platform/ohos/rosen_context:rosen_context",
+]
+
+common_src = [
+  "//third_party/vk-gl-cts/framework/platform/ohos/context/tcuOhosNativeContext.cpp",
+  "//third_party/vk-gl-cts/framework/platform/ohos/context/tcuOhosEglContextFactory.cpp",
+
+  "//third_party/vk-gl-cts/framework/platform/ohos/display/tcuOhosNativeDisplay.cpp",
+  "//third_party/vk-gl-cts/framework/platform/ohos/display/tcuOhosEglDisplayFactory.cpp",
+
+  "//third_party/vk-gl-cts/framework/platform/ohos/display/window/tcuOhosNativeWindow.cpp",
+  "//third_party/vk-gl-cts/framework/platform/ohos/display/window/tcuOhosWindowFactory.cpp",
+  "//third_party/vk-gl-cts/framework/platform/ohos/display/pixmap/tcuOhosNativePixmap.cpp",
+  "//third_party/vk-gl-cts/framework/platform/ohos/display/pixmap/tcuOhosPixmapFactory.cpp",
+
+  "//third_party/vk-gl-cts/framework/platform/ohos/tcuOhosPlatform.cpp",
+  "logdefine.cpp",
+  "../../ActsApp.cpp",
+]
+
+import("//foundation/graphic/graphic_2d/graphic_config.gni")
+import("//third_party/vk-gl-cts/vk_gl_cts.gni")

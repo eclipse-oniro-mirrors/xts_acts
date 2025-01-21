@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "STDataAbility"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+		},
+	{
+		"name": "MainAbility_desc",
+		"value": "description"
+	},
+		{
+		"name": "MainAbility_label",
+		"value": "label"
+	},
+		{
+		"name": "TestAbility_desc",
+		"value": "description"
+	},
+		{
+		"name": "TestAbility_label",
+		"value": "label"
+	},
+	{
+		"name": "description_testdataability",
+		 "value": "hap sample empty provider"
+	 },
+	  {
+		  "name": "description_dataability",
+		  "value": "hap sample empty provider"
+	  }
+  ]
+}

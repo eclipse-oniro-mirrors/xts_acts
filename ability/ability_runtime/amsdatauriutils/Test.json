@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.amsst.amsdatauriutils",
+        "package-name": "com.amsst.amsdatauriutils"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAmsDataUriUtilsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

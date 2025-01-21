@@ -1,0 +1,41 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "testcase-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.image.colorSpaceTransfer",
+        "package-name": "ohos.acts.multimedia.image.colorSpaceTransfer",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageColorSpaceTransferTest.hap"
+            ],
+            "type": "AppInstallKit",
+           
+            "cleanup-apps": true
+        },
+         {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.colorSpaceTransfer/haps/entry/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.colorSpaceTransfer/haps/entry/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "./resource/image/colorspace.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.colorSpaceTransfer/haps/entry/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 /data/app/el2/100/base/ohos.acts.multimedia.image.colorSpaceTransfer/haps/entry/files/colorspace.jpg"
+            ]
+        }
+    ]
+}

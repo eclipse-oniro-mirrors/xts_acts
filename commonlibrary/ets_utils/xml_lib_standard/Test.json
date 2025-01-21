@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for startup xml js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "shell-timeout": "800000",
+        "bundle-name": "com.example.xml",
+        "package-name": "com.example.xml"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsXmlJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+  "src": [
+    "MainAbility/pages/webResourceResponseGet",
+    "MainAbility/pages/webResourceResponseSet",
+    "MainAbility/pages/webResourceError",
+    "MainAbility/pages/webViewControllerPart2",
+    "MainAbility/pages/WebViewZoomRatio",
+    "MainAbility/pages/WebViewControllerZoom",
+    "MainAbility/pages/WebControllerZoom",
+    "MainAbility/pages/WebViewMenuShowResult",
+    "MainAbility/pages/ScreenCapture",
+    "MainAbility/pages/WebViewMenuInputFieldType",
+    "MainAbility/pages/WebViewMinLogicalFontSize",
+    "MainAbility/pages/WebMessagePortIsExtentionTypeTest",
+    "MainAbility/pages/WebCookieManagerFetchCookieSync",
+    "MainAbility/pages/WebCookieManagerFetchCookie",
+    "MainAbility/pages/WebCookieManagerExistCookie",
+    "MainAbility/pages/WebNestedScrollOptionsScrollBackwardTest",
+    "MainAbility/pages/WebNestedScrollOptionsScrollForwardTest",
+    "MainAbility/pages/WebNestedScrollOptionsScrollBackwardHorizontalTest",
+    "MainAbility/pages/WebNestedScrollOptionsScrollForwardHorizontalTest",
+    "MainAbility/pages/WebViewControllerPostUrlTest",
+    "MainAbility/pages/WebViewControllerSetConnectionTimeoutTest",
+    "MainAbility/pages/WebJavaScriptOnDocumentStartTest"
+  ]
+}
+

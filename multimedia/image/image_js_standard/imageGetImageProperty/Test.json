@@ -1,0 +1,52 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.multimedia.image",
+        "package-name": "ohos.acts.multimedia.image"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageGetImagePropertyJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test_exif1.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
+                "./resource/image/snow.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
+                "./resource/image/greenplant.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
+                "./resource/image/flower.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
+                "./resource/image/text.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
+                "./resource/image/food.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
+                "./resource/image/bluesky.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
+                "./resource/image/sunset.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
+                "./resource/image/night.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files",
+                "./resource/image/test_hw.jpg->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 /data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry/files/*"
+            ],
+            "teardown-command": [
+                "rm -rf /data/app/el2/100/base/ohos.acts.multimedia.image/*"
+            ]
+        }
+    ]
+}

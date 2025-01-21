@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for storage fileuri Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.storage.fileuri",
+        "package-name": "ohos.acts.storage.fileuri"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStorageFileUriJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

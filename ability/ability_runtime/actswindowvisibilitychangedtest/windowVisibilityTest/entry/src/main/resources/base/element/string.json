@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "SingleServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SingleServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MultipleServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MultipleServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "SingleServiceExtAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "SingleServiceExtAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "singleserviceextability2_desc",
+      "value": "description"
+    },
+    {
+      "name": "singleserviceextability2_label",
+      "value": "label"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libkhrgles3func0004") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Khrgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsKhrgles3TestSuite0004") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsKhrgles30004TestSuite.cpp",
+    "../copy_tex_image_conversions/Khrgles3copy_tex_image_conversions_forbiddenTestCase.cpp",
+    "../copy_tex_image_conversions/Khrgles3copy_tex_image_conversions_requiredTestCase.cpp",
+    "../core/Khrgles3core_constant_expressionsTestCase.cpp",
+    "../core/Khrgles3core_nearest_edgeTestCase.cpp",
+    "../core/Khrgles3core_shader_macrosTestCase.cpp",
+    "../core/Khrgles3internalformat_copy_tex_imageTestCase.cpp",
+    "../core/Khrgles3internalformat_renderbufferTestCase.cpp",
+    "../core/Khrgles3internalformat_texture2dTestCase.cpp",
+    "../exposed_extensions/Khrgles3KHR-GLES3_exposed_extensionsTestCase.cpp",
+    "../framebuffer_completeness/Khrgles3KHR-GLES3_framebuffer_completenessTestCase.cpp",
+    "../packed_depth_stencil/Khrgles3packed_depth_stencil_blitTestCase.cpp",
+    "../packed_depth_stencil/Khrgles3packed_depth_stencil_clear_bufferTestCase.cpp",
+    "../packed_depth_stencil/Khrgles3packed_depth_stencil_renderbuffersTestCase.cpp",
+    "../packed_depth_stencil/Khrgles3packed_depth_stencil_stencil_texturingTestCase.cpp",
+    "../packed_depth_stencil/Khrgles3packed_depth_stencil_validate_errorsTestCase.cpp",
+    "../packed_depth_stencil/Khrgles3packed_depth_stencil_verify_mixed_attachmentsTestCase.cpp",
+    "../packed_depth_stencil/Khrgles3packed_depth_stencil_verify_parametersTestCase.cpp",
+    "../packed_depth_stencil/Khrgles3packed_depth_stencil_verify_partial_attachmentsTestCase.cpp",
+    "../packed_depth_stencil/Khrgles3packed_depth_stencil_verify_read_pixelsTestCase.cpp",
+    "../packed_pixels/Khrgles3packed_pixels_pbo_rectangleTestCase.cpp",
+    "../packed_pixels/Khrgles3packed_pixels_rectangleTestCase.cpp",
+    "../packed_pixels/Khrgles3packed_pixels_varied_rectangleTestCase.cpp",
+    "../parallel_shader_compile/Khrgles3KHR-GLES3_parallel_shader_compileTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libkhrgles3func0004" ]
+
+  cflags = [ "-Wno-error" ]
+}

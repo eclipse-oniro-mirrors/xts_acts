@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1000000",
+        "shell-timeout": "1000000",
+        "bundle-name": "ohos.acts.preferencesjstest",
+        "package-name": "ohos.acts.preferencesjstest"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsPreferencesJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

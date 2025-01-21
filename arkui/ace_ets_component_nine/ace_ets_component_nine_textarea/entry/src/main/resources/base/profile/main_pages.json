@@ -1,0 +1,22 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index", 
+    "MainAbility/pages/component/textAreaBarState",
+    "MainAbility/pages/component/textAreaCaretColor",
+    "MainAbility/pages/component/textAreaCopyOption",
+    "MainAbility/pages/component/textAreaEnableKeyboardOnFocus",
+    "MainAbility/pages/component/textAreaFontColor",
+    "MainAbility/pages/component/textAreaFontFamily",
+    "MainAbility/pages/component/textAreaFontSize",
+    "MainAbility/pages/component/textAreaFontStyle",
+    "MainAbility/pages/component/textAreaFontWeight",
+    "MainAbility/pages/component/textAreaMaxLength",
+    "MainAbility/pages/component/textAreaMaxLines",
+    "MainAbility/pages/component/textAreaPlaceholderColor",
+    "MainAbility/pages/component/textAreaPlaceholderFont",
+    "MainAbility/pages/component/textAreaSelectionMenuHidden",
+    "MainAbility/pages/component/textAreaShowCounter",
+    "MainAbility/pages/component/textAreaStyle",
+    "MainAbility/pages/component/textAreaTextAlign"
+  ]
+}

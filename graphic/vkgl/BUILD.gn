@@ -1,0 +1,131 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+group("VKGLCTSTest") {
+  testonly = true
+  deps = [
+    "src/deqpgles2/build0001:ActsDeqpgles2TestSuite0001",
+    "src/deqpgles2/build0002:ActsDeqpgles2TestSuite0002",
+    "src/deqpgles2/build0004:ActsDeqpgles2TestSuite0004",
+    "src/deqpgles2/build0005:ActsDeqpgles2TestSuite0005",
+    "src/deqpgles2/build0006:ActsDeqpgles2TestSuite0006",
+    "src/deqpgles2/build0007:ActsDeqpgles2TestSuite0007",
+    "src/deqpgles2/build0008:ActsDeqpgles2TestSuite0008",
+    "src/deqpgles2/build0009:ActsDeqpgles2TestSuite0009",
+    "src/deqpgles2/build0010:ActsDeqpgles2TestSuite0010",
+    "src/deqpgles2/build0011:ActsDeqpgles2TestSuite0011",
+    "src/deqpgles2/build0012:ActsDeqpgles2TestSuite0012",
+    "src/deqpgles2/build0015:ActsDeqpgles2TestSuite0015",
+    "src/deqpgles2/build0016:ActsDeqpgles2TestSuite0016",
+    "src/deqpgles3/build0001:ActsDeqpgles3TestSuite0001",
+    "src/deqpgles3/build0002:ActsDeqpgles3TestSuite0002",
+    "src/deqpgles3/build0003:ActsDeqpgles3TestSuite0003",
+    "src/deqpgles3/build0004:ActsDeqpgles3TestSuite0004",
+    "src/deqpgles3/build0005:ActsDeqpgles3TestSuite0005",
+    "src/deqpgles3/build0006:ActsDeqpgles3TestSuite0006",
+    "src/deqpgles3/build0007:ActsDeqpgles3TestSuite0007",
+    "src/deqpgles3/build0008:ActsDeqpgles3TestSuite0008",
+    "src/deqpgles3/build0009:ActsDeqpgles3TestSuite0009",
+    "src/deqpgles3/build0010:ActsDeqpgles3TestSuite0010",
+    "src/deqpgles3/build0011:ActsDeqpgles3TestSuite0011",
+    "src/deqpgles3/build0012:ActsDeqpgles3TestSuite0012",
+    "src/deqpgles3/build0013:ActsDeqpgles3TestSuite0013",
+    "src/deqpgles3/build0014:ActsDeqpgles3TestSuite0014",
+    "src/deqpgles3/build0015:ActsDeqpgles3TestSuite0015",
+    "src/deqpgles3/build0016:ActsDeqpgles3TestSuite0016",
+    "src/deqpgles3/build0017:ActsDeqpgles3TestSuite0017",
+    "src/deqpgles3/build0018:ActsDeqpgles3TestSuite0018",
+    "src/deqpgles3/build0019:ActsDeqpgles3TestSuite0019",
+    "src/deqpgles3/build0020:ActsDeqpgles3TestSuite0020",
+    "src/deqpgles3/build0021:ActsDeqpgles3TestSuite0021",
+    "src/deqpgles3/build0022:ActsDeqpgles3TestSuite0022",
+    "src/deqpgles3/build0023:ActsDeqpgles3TestSuite0023",
+    "src/deqpgles3/build0024:ActsDeqpgles3TestSuite0024",
+    "src/deqpgles3/build0025:ActsDeqpgles3TestSuite0025",
+    "src/deqpgles3/build0027:ActsDeqpgles3TestSuite0027",
+    "src/deqpgles3/build0028:ActsDeqpgles3TestSuite0028",
+    "src/deqpgles3/build0029:ActsDeqpgles3TestSuite0029",
+    "src/deqpgles3/build0030:ActsDeqpgles3TestSuite0030",
+    "src/deqpgles3/build0031:ActsDeqpgles3TestSuite0031",
+    "src/deqpgles3/build0032:ActsDeqpgles3TestSuite0032",
+    "src/deqpgles3/build0033:ActsDeqpgles3TestSuite0033",
+    "src/deqpgles3/build0034:ActsDeqpgles3TestSuite0034",
+    "src/deqpgles3/build0035:ActsDeqpgles3TestSuite0035",
+    "src/deqpgles3/build0037:ActsDeqpgles3TestSuite0037",
+    "src/deqpgles3/build0038:ActsDeqpgles3TestSuite0038",
+    "src/deqpgles3/build0039:ActsDeqpgles3TestSuite0039",
+    "src/deqpgles3/build0041:ActsDeqpgles3TestSuite0041",
+    "src/deqpgles3/build0042:ActsDeqpgles3TestSuite0042",
+    "src/deqpgles3/build0043:ActsDeqpgles3TestSuite0043",
+    "src/deqpgles3/build0044:ActsDeqpgles3TestSuite0044",
+    "src/deqpgles31/build0001:ActsDeqpgles31TestSuite0001",
+    "src/deqpgles31/build0002:ActsDeqpgles31TestSuite0002",
+    "src/deqpgles31/build0003:ActsDeqpgles31TestSuite0003",
+    "src/deqpgles31/build0004:ActsDeqpgles31TestSuite0004",
+    "src/deqpgles31/build0005:ActsDeqpgles31TestSuite0005",
+    "src/deqpgles31/build0006:ActsDeqpgles31TestSuite0006",
+    "src/deqpgles31/build0007:ActsDeqpgles31TestSuite0007",
+    "src/deqpgles31/build0008:ActsDeqpgles31TestSuite0008",
+    "src/deqpgles31/build0009:ActsDeqpgles31TestSuite0009",
+    "src/deqpgles31/build0010:ActsDeqpgles31TestSuite0010",
+    "src/deqpgles31/build0011:ActsDeqpgles31TestSuite0011",
+    "src/deqpgles31/build0012:ActsDeqpgles31TestSuite0012",
+    "src/deqpgles31/build0014:ActsDeqpgles31TestSuite0014",
+    "src/deqpgles31/build0015:ActsDeqpgles31TestSuite0015",
+    "src/deqpgles31/build0016:ActsDeqpgles31TestSuite0016",
+    "src/deqpgles31/build0017:ActsDeqpgles31TestSuite0017",
+    "src/deqpgles31/build0018:ActsDeqpgles31TestSuite0018",
+    "src/deqpgles31/build0019:ActsDeqpgles31TestSuite0019",
+    "src/deqpgles31/build0020:ActsDeqpgles31TestSuite0020",
+    "src/deqpgles31/build0021:ActsDeqpgles31TestSuite0021",
+    "src/deqpgles31/build0022:ActsDeqpgles31TestSuite0022",
+    "src/deqpgles31/build0023:ActsDeqpgles31TestSuite0023",
+    "src/deqpgles31/build0024:ActsDeqpgles31TestSuite0024",
+    "src/deqpgles31/build0025:ActsDeqpgles31TestSuite0025",
+    "src/deqpgles31/build0026:ActsDeqpgles31TestSuite0026",
+    "src/deqpgles31/build0027:ActsDeqpgles31TestSuite0027",
+    "src/deqpgles31/build0028:ActsDeqpgles31TestSuite0028",
+    "src/deqpgles31/build0029:ActsDeqpgles31TestSuite0029",
+    "src/deqpgles31/build0030:ActsDeqpgles31TestSuite0030",
+    "src/deqpgles31/build0031:ActsDeqpgles31TestSuite0031",
+    "src/deqpgles31/build0032:ActsDeqpgles31TestSuite0032",
+    "src/deqpgles31/build0033:ActsDeqpgles31TestSuite0033",
+    "src/deqpgles31/build0034:ActsDeqpgles31TestSuite0034",
+    "src/deqpgles31/build0035:ActsDeqpgles31TestSuite0035",
+    "src/deqpgles31/build0036:ActsDeqpgles31TestSuite0036",
+    "src/deqpgles31/build0037:ActsDeqpgles31TestSuite0037",
+    "src/deqpgles31/build0038:ActsDeqpgles31TestSuite0038",
+    "src/khrgles2/build0001:ActsKhrgles2TestSuite0001",
+    "src/khrgles3/build0001:ActsKhrgles3TestSuite0001",
+    "src/khrgles3/build0002:ActsKhrgles3TestSuite0002",
+    "src/khrgles3/build0003:ActsKhrgles3TestSuite0003",
+    "src/khrgles3/build0005:ActsKhrgles3TestSuite0005",
+    "src/khrgles31/build0001:ActsKhrgles31TestSuite0001",
+    "src/khrgles31/build0002:ActsKhrgles31TestSuite0002",
+    "src/khrgles31/build0004:ActsKhrgles31TestSuite0004",
+  ]
+}
+
+action("cpvkgl") {
+  testonly = true
+  script = "cpvkgl.sh"
+  outputs = [ "${target_out_dir}/cpvkgl.log" ]
+  root_vkgl_path = rebase_path("//")
+  args = [ "$root_vkgl_path" ]
+  deps = [
+    ":VKGLCTSTest",
+    "//third_party/vk-gl-cts/framework/platform:glcts",
+  ]
+}

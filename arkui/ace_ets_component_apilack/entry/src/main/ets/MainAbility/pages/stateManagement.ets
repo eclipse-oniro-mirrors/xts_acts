@@ -1,0 +1,137 @@
+/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import Log from '../common/Log.ets';
+const TAG = 'ets_apiLack_add';
+import events_emitter from '@ohos.events.emitter';
+
+let storage1 = LocalStorage.GetShared()
+let storage2 = new LocalStorage({"PropA":47});
+
+@Entry(storage1)
+@Component
+struct StateManagementGetShared {
+  @LocalStorageLink("storageSimpleProp") simpleVarName: number = 0
+
+  aboutToAppear() {
+    Log.showInfo(TAG, `aboutToAppear StateManagementGetShared start`)
+  }
+
+  aboutToDisappear(){
+    Log.showInfo(TAG, `aboutToDisAppear StateManagementGetShared end`)
+  }
+
+  build(){
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,justifyContent:FlexAlign.Center }){
+
+      Text(`Parent from LocalStorage ${ this.simpleVarName }`)
+        .key("GetSharedText")
+        .onClick(()=>{
+          try {
+            var backDataOne = {
+              data: {
+                "Result": (storage1 != null)
+              }
+            }
+            let backEventOne = {
+              eventId: 60223,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("GetShared start to emit action state")
+            events_emitter.emit(backEventOne, backDataOne)
+          } catch (err) {
+            console.info("GetShared emit action state err: " + JSON.stringify(err.message))
+          }
+        })
+
+      Text(`Parent from LocalStorage ${ this.simpleVarName }`)
+        .key("setAndLinkText")
+        .onClick(()=>{
+          try {
+            var backDataTwo = {
+              data: {
+                "Result": "callback2"
+              }
+            }
+            let backEventTwo = {
+              eventId: 60224,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("setAndLink start to emit action state")
+            events_emitter.emit(backEventTwo, backDataTwo)
+          } catch (err) {
+            console.info("setAndLink emit action state err: " + JSON.stringify(err.message))
+          }
+         // storage1.setAndLink("storageSimpleProp",48)
+         // console.log("storage1.setAndLink('PropA',48) :" + this.simpleVarName )
+        })
+
+      Text(`Parent from LocalStorage ${ this.simpleVarName }`)
+        .key("setOrCreateText")
+        .onClick(()=>{
+          try {
+            var backDataThree = {
+              data: {
+                "Result": "callback3"
+              }
+            }
+            let backEventThree = {
+              eventId: 60225,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("setOrCreate start to emit action state")
+            events_emitter.emit(backEventThree, backDataThree)
+          } catch (err) {
+            console.info("setOrCreate emit action state err: " + JSON.stringify(err.message))
+          }
+         // storage1.setOrCreate("storageSimpleProp",47)
+          // console.log("storageSimpleProp setOrCreate is :  " + this.simpleVarName)
+        })
+
+      Text(`Parent from LocalStorage ${ this.simpleVarName }`)
+        .key("setAndPropText")
+        .onClick(()=>{
+          try {
+            var backDataFour = {
+              data: {
+                "Result": "callback4"
+              }
+            }
+            let backEventFour = {
+              eventId: 60226,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("setAndProp start to emit action state")
+            events_emitter.emit(backEventFour, backDataFour)
+          } catch (err) {
+            console.info("setAndProp emit action state err: " + JSON.stringify(err.message))
+          }
+
+         // storage1.setAndProp("storageSimpleProp",49)
+        //console.log("storageSimpleProp setAndProp is :  " + this.simpleVarName)
+        })
+    
+    }.width("100%").height("100%")
+  }
+}
+
+@Component
+struct Child{
+  @LocalStorageLink("PropA") storLink: number = 1;
+  build() {
+    Text(`Parent from LocalStorage ${ this.storLink }`)
+      .onClick(()=>this.storLink+=1)
+  }
+}

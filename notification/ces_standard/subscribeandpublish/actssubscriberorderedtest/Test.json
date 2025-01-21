@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.actssubscribertestorder",
+        "package-name": "com.example.actssubscribertestorder"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsSubscriberOrderTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

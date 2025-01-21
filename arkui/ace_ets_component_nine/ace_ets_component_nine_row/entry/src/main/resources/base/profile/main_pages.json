@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/component/rowJustifyContent",
+    "MainAbility/pages/component/rowVerticalAlign"
+  ]
+}

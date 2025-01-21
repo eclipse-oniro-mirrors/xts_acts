@@ -1,0 +1,42 @@
+{
+  "forms": [
+    {
+      "isDefault": true,
+      "src": "./js/widget/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*1",
+      "name": "widget",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "2*1"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    },
+    {
+      "isDefault": false,
+      "src": "./js/widget/pages/index/index",
+      "scheduledUpdateTime": "10:30",
+      "defaultDimension": "2*2",
+      "name": "form1",
+      "description": "This is a service widget.",
+      "colorMode": "auto",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "formConfigAbility": "ability://xxxxx",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "updateEnabled": true,
+      "updateDuration": 1
+    }
+  ]
+}

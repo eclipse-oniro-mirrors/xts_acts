@@ -1,0 +1,88 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import router from '@system.router';
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
+import Utils from '../../MainAbility/utils/Common';
+import { Driver, ON } from '@ohos.UiTest';
+
+export default function NavigationApi() {
+  describe('NavigationApi', function () {
+    beforeEach(async function (done) {
+      console.info("NavigationApi beforeEach start");
+      let options = {
+        uri: 'MainAbility/pages/AttrApi/NavigationApi',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get NavigationApi state success " + JSON.stringify(pages));
+        if (!("NavigationApi" == pages.name)) {
+          console.info("get NavigationApi state success " + JSON.stringify(pages.name));
+          let result = await router.push(options);
+          await Utils.sleep(2000);
+          console.info("push NavigationApi page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push NavigationApi page error: " + err);
+      }
+      done()
+    });
+
+    afterEach(async function () {
+      await Utils.sleep(1000);
+      console.info("NavigationApi after each called");
+    });
+
+    /*
+     * @tc.number      NavigationApi_001
+     * @tc.name        NavigationApi_001
+     * @tc.desc        Navigation replacePathByName test
+     * @tc.level       Level 2
+     */
+    it('NavigationApi_001', 0, async function (done) {
+      console.info('[NavigationApi_001] START');
+      await Utils.sleep(1000);
+
+      let driver= Driver.create();
+      await Utils.sleep(1000);
+      let btn1 = await driver.findComponent(ON.id('NavigationApi_pushPath'));
+      await btn1.click()
+      await Utils.sleep(2000);
+      console.info("[NavigationApi_001] btn1")
+
+      let btn2 = await driver.findComponent(ON.id('NavigationApi_replacePathByName'));
+      await btn2.click()
+      await Utils.sleep(2000);
+      console.info("[NavigationApi_001] btn2")
+
+      let btn3 = await driver.findComponent(ON.id('NavigationApi_pop2'));
+      await btn3.click()
+      await Utils.sleep(2000);
+      console.info("[NavigationApi_001] btn3")
+
+      let strJson = getInspectorByKey('NavigationApi_text_Navigation');
+      let obj = JSON.parse(strJson);
+      await Utils.sleep(1000);
+      console.info("[NavigationApi_001] obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('Navigation');
+
+      console.info('[NavigationApi_001] END');
+      done();
+
+    });
+  })
+}
+
+

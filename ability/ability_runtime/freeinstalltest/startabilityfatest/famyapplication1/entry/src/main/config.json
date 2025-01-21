@@ -1,0 +1,73 @@
+{
+  "app": {
+    "vendor": "example",
+    "bundleName": "com.open.harmony.startAbility",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+	"apiVersion": {
+      "compatible": 8,
+      "releaseType": "Release",
+      "target": 8
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "mainAbility": ".MainAbility1",
+    "deviceType": [
+      "default",
+      "tablet"
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility1",
+        "name": ".MainAbility1",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility1_desc",
+        "formsEnabled": false,
+        "label": "$string:MainAbility1_label",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "distro": {
+      "moduleType": "feature",
+      "installationFree": true,
+      "deliveryWithInstall": true,
+      "moduleName": "myapplication1"
+    },
+    "package": "com.example.myapplication1",
+    "srcPath": "",
+    "name": ".myapplication1",
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".MainAbility1",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

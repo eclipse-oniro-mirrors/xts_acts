@@ -1,0 +1,40 @@
+{
+  "module": {
+    "name": "Fourthentry",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "FourthentryAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "FourthentryAbility",
+        "srcEntry": "./ets/fourthentryability/FourthentryAbility.ts",
+        "description": "$string:FourthentryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:FourthentryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true,
+        "exported": true,
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.nfc.tag.test.action"
+            ],
+            "uris": [
+              {
+                "type":"tag-tech/MultiHapNFCB"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

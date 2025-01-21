@@ -1,0 +1,40 @@
+{
+  "float": [
+    {
+      "name": "prevMargin",
+      "value": "30"
+    },
+    {
+      "name": "nextMargin",
+      "value": "30"
+    },
+    {
+      "name": "float_1",
+      "value": "20"
+    },
+    {
+      "name": "float_2",
+      "value": "40"
+    },
+    {
+      "name": "float_3",
+      "value": "80"
+    },
+    {
+      "name": "float_4",
+      "value": "160"
+    },
+    {
+      "name": "float_",
+      "value": "320"
+    },
+    {
+      "name": "float_0",
+      "value": "320"
+    },
+    {
+      "name": "font_size",
+      "value": "14fp"
+    }
+  ]
+}

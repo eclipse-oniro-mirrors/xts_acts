@@ -1,0 +1,86 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@Entry
+@Component
+struct RichEditorApi22Com {
+
+  controller: RichEditorController = new RichEditorController();
+  options: RichEditorOptions = { controller: this.controller }
+
+  controller2: RichEditorController = new RichEditorController();
+  options2: RichEditorOptions = { controller: this.controller2 }
+
+  @State text1: string = ''
+  @State text2: string = ''
+  @State text3: string = ''
+
+  @Builder
+  panel() {
+    Text("Select").borderWidth(1)
+  }
+
+
+  build() {
+    Column({ space: 10 }){
+
+      Text(this.text1).id('RichEditorApi2_text1')
+
+      RichEditor(this.options)
+        .id('RichEditorApi2_RichEditor1')
+        .onReady(()=> {
+          this.controller.addTextSpan('paragraphparagraphparagraphparagraphparagraphparagraphparagraphparagraphparagraphparagraphparagraphparagraphparagraph')
+        })
+        .bindSelectionMenu(RichEditorSpanType.TEXT, this.panel, RichEditorResponseType.SELECT, {onAppear:()=>{
+          this.text1 = 'SelectMenuAppear'
+        }} )
+        .borderWidth(1)
+        .borderColor(Color.Green)
+        .width('60%')
+
+      Button('getSpans')
+        .id('RichEditorApi2_getSpans')
+        .onClick(()=>{
+          this.controller2.getSpans()
+            .forEach(item => {
+              if(typeof(item as RichEditorTextSpanResult)['symbolSpanStyle'] != 'undefined'){
+                this.text2 += (item as RichEditorTextSpanResult).symbolSpanStyle?.renderingStrategy
+                this.text3 += (item as RichEditorTextSpanResult).symbolSpanStyle?.effectStrategy
+            }
+          })
+
+        })
+
+      Text(`renderingStrategy:${this.text2},effectStrategy:${this.text3}`).id('RichEditorApi2_text2')
+
+      RichEditor(this.options2)
+        .id('RichEditorApi2_RichEditor2')
+        .onReady(()=> {
+          this.controller2.addSymbolSpan($r("sys.symbol.ohos_trash"),
+            {
+              style:
+              {
+                renderingStrategy:SymbolRenderingStrategy.SINGLE,
+                effectStrategy:SymbolEffectStrategy.NONE
+              }
+            })
+        })
+        .borderWidth(1)
+        .borderColor(Color.Green)
+        .width('60%')
+
+    }.width('100%')
+  }
+}

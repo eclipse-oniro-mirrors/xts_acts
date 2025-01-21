@@ -1,0 +1,116 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0018") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3TestSuite0018") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles30018TestSuite.cpp",
+    "../functional/Deqpgles3common_absTestCase.cpp",
+    "../functional/Deqpgles3dfdx_constantTestCase.cpp",
+    "../functional/Deqpgles3dfdx_fboTestCase.cpp",
+    "../functional/Deqpgles3dfdx_fbo_floatTestCase.cpp",
+    "../functional/Deqpgles3dfdx_fbo_msaa2TestCase.cpp",
+    "../functional/Deqpgles3dfdx_fbo_msaa4TestCase.cpp",
+    "../functional/Deqpgles3dfdx_in_functionTestCase.cpp",
+    "../functional/Deqpgles3dfdx_linearTestCase.cpp",
+    "../functional/Deqpgles3dfdx_static_ifTestCase.cpp",
+    "../functional/Deqpgles3dfdx_static_loopTestCase.cpp",
+    "../functional/Deqpgles3dfdx_static_switchTestCase.cpp",
+    "../functional/Deqpgles3dfdx_uniform_ifTestCase.cpp",
+    "../functional/Deqpgles3dfdx_uniform_loopTestCase.cpp",
+    "../functional/Deqpgles3dfdx_uniform_switchTestCase.cpp",
+    "../functional/Deqpgles3dfdy_constantTestCase.cpp",
+    "../functional/Deqpgles3dfdy_fboTestCase.cpp",
+    "../functional/Deqpgles3dfdy_fbo_floatTestCase.cpp",
+    "../functional/Deqpgles3dfdy_fbo_msaa2TestCase.cpp",
+    "../functional/Deqpgles3dfdy_fbo_msaa4TestCase.cpp",
+    "../functional/Deqpgles3dfdy_in_functionTestCase.cpp",
+    "../functional/Deqpgles3dfdy_linearTestCase.cpp",
+    "../functional/Deqpgles3dfdy_static_ifTestCase.cpp",
+    "../functional/Deqpgles3dfdy_static_loopTestCase.cpp",
+    "../functional/Deqpgles3dfdy_static_switchTestCase.cpp",
+    "../functional/Deqpgles3dfdy_uniform_ifTestCase.cpp",
+    "../functional/Deqpgles3dfdy_uniform_loopTestCase.cpp",
+    "../functional/Deqpgles3dfdy_uniform_switchTestCase.cpp",
+    "../functional/Deqpgles3fastest_defaultTestCase.cpp",
+    "../functional/Deqpgles3fastest_fbo_floatTestCase.cpp",
+    "../functional/Deqpgles3fastest_fbo_msaa4TestCase.cpp",
+    "../functional/Deqpgles3fwidth_constantTestCase.cpp",
+    "../functional/Deqpgles3fwidth_fboTestCase.cpp",
+    "../functional/Deqpgles3fwidth_fbo_floatTestCase.cpp",
+    "../functional/Deqpgles3fwidth_fbo_msaa2TestCase.cpp",
+    "../functional/Deqpgles3fwidth_fbo_msaa4TestCase.cpp",
+    "../functional/Deqpgles3fwidth_in_functionTestCase.cpp",
+    "../functional/Deqpgles3fwidth_linearTestCase.cpp",
+    "../functional/Deqpgles3fwidth_static_ifTestCase.cpp",
+    "../functional/Deqpgles3fwidth_static_loopTestCase.cpp",
+    "../functional/Deqpgles3fwidth_static_switchTestCase.cpp",
+    "../functional/Deqpgles3fwidth_uniform_ifTestCase.cpp",
+    "../functional/Deqpgles3fwidth_uniform_loopTestCase.cpp",
+    "../functional/Deqpgles3fwidth_uniform_switchTestCase.cpp",
+    "../functional/Deqpgles3nicest_defaultTestCase.cpp",
+    "../functional/Deqpgles3nicest_fbo_floatTestCase.cpp",
+    "../functional/Deqpgles3nicest_fbo_msaa4TestCase.cpp",
+    "../functional/Deqpgles3texture_basicTestCase.cpp",
+    "../functional/Deqpgles3texture_float_fastestTestCase.cpp",
+    "../functional/Deqpgles3texture_float_nicestTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_invalidTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_texelfetchTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_texelfetchoffsetTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_texturegradTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_texturegradoffsetTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_texturelodoffsetTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_textureprojgradTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_textureprojgradoffsetTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_textureprojlodTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_textureprojlodoffsetTestCase.cpp",
+    "../functional/Deqpgles3texture_functions_texturesizeTestCase.cpp",
+    "../functional/Deqpgles3texture_msaa4TestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles3func0018" ]
+
+  cflags = [ "-Wno-error" ]
+}

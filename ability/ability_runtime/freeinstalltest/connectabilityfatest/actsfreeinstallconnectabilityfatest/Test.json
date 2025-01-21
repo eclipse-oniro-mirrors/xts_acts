@@ -1,0 +1,44 @@
+{
+    "description": "Configuration for freeinstallconnectabilityfatest Tests",
+    "driver": {
+       "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+		"bundle-name": "com.example.myapplication.hmservice",
+        "package-name": "com.example.myapplication",
+        "shell-timeout": "600000",
+        "testcase-timeout": "10000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsFreeInstallConnectAbilityFaTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test/"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push":[
+                "MockService.hap -> /data/test/MockService.hap",
+                "ConnectFaMyApplication1.hap -> /data/test/ConnectFaMyApplication1.hap",
+                "ConnectFaMyApplication2.hap -> /data/test/ConnectFaMyApplication2.hap",
+                "ConnectFaMyApplication4.hap -> /data/test/ConnectFaMyApplication4.hap",
+				"ConnectFaMyApplication5.hap -> /data/test/ConnectFaMyApplication5.hap",
+				"ConnectFaMyApplication6.hap -> /data/test/ConnectFaMyApplication6.hap",
+				"ConnectFaMyApplication7.hap -> /data/test/ConnectFaMyApplication7.hap",
+				"ConnectFaMyApplication8.hap -> /data/test/ConnectFaMyApplication8.hap",
+				"ConnectFaMyApplication9.hap -> /data/test/ConnectFaMyApplication9.hap",
+				"ConnectFaMyApplication10.hap -> /data/test/ConnectFaMyApplication10.hap",
+				"ConnectFaMyApplication11.hap -> /data/test/ConnectFaMyApplication11.hap",
+                "ConnectDifferentApplication.hap -> /data/test/ConnectDifferentApplication.hap"
+            ]
+        }
+    ]
+}

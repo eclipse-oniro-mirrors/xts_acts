@@ -1,0 +1,53 @@
+{
+  "module": {
+    "name": "phone",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:phone_entry_dsc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "uiSyntax": "ets",
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "com.example.newwanttest.MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:phone_entry_main",
+        "icon": "$media:icon",
+        "label": "$string:entry_label",
+        "visible": true,
+        "orientation": "portrait",
+        "launchType": "singleton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+        "reason": "need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO",
+        "reason": "need use ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+        "reason":"need use ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ]
+  }
+}

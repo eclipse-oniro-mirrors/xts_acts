@@ -1,0 +1,97 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libkhrglesextfunc0001") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../KhrglesextBaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsKhrglesextTestSuite0001") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsKhrglesext0001TestSuite.cpp",
+    "../disjoint_timer_query/KhrglesextKHR-GLESEXT_disjoint_timer_queryTestCase.cpp",
+    "../draw_elements_base_vertex_tests/KhrglesextKHR-GLESEXT_draw_elements_base_vertex_testsTestCase.cpp",
+    "../ext_texture_shadow_lod/Khrglesextext_texture_shadow_lod_textureTestCase.cpp",
+    "../ext_texture_shadow_lod/Khrglesextext_texture_shadow_lod_texturelodTestCase.cpp",
+    "../ext_texture_shadow_lod/Khrglesextext_texture_shadow_lod_texturelodoffsetTestCase.cpp",
+    "../ext_texture_shadow_lod/Khrglesextext_texture_shadow_lod_textureoffsetTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_adjacencyTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_apiTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_blittingTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_clippingTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_constant_variablesTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_inputTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_layered_fboTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_layered_framebufferTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_layered_renderingTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_layered_rendering_boundary_conditionTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_layered_rendering_fbo_no_attachmentTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_limitsTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_linkingTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_nonarray_inputTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_outputTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_primitive_counterTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_primitive_queriesTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_program_resourceTestCase.cpp",
+    "../geometry_shader/Khrglesextgeometry_shader_qualifiersTestCase.cpp",
+    "../geometry_shader/Khrglesextrendering_renderingTestCase.cpp",
+    "../gpu_shader5/KhrglesextKHR-GLESEXT_gpu_shader5TestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_compilation_and_linking_errorsTestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_singleTestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_tessellation_control_to_tessellation_evaluationTestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_tessellation_invarianceTestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_tessellation_shader_point_modeTestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_tessellation_shader_quads_tessellationTestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_tessellation_shader_tc_barriersTestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_tessellation_shader_tessellationTestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_tessellation_shader_triangles_tessellationTestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_vertexTestCase.cpp",
+    "../tessellation_shader/Khrglesexttessellation_shader_windingTestCase.cpp",
+    "../texture_border_clamp/KhrglesextKHR-GLESEXT_texture_border_clampTestCase.cpp",
+    "../texture_buffer/KhrglesextKHR-GLESEXT_texture_bufferTestCase.cpp",
+    "../texture_cube_map_array/KhrglesextKHR-GLESEXT_texture_cube_map_arrayTestCase.cpp",
+    "../viewport_array/KhrglesextKHR-GLESEXT_viewport_arrayTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libkhrglesextfunc0001" ]
+
+  cflags = [ "-Wno-error" ]
+}

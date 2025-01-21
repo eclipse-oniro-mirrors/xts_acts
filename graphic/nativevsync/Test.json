@@ -1,0 +1,18 @@
+{
+    "description": "Configuration for native vsync Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.nativevsync.napitest",
+        "module-name": "com.nativevsync.napitest",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsNativeVsyncTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }]
+}

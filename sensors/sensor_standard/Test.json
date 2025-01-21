@@ -1,0 +1,33 @@
+{
+    "description": "Configuration for sensor js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "160000",
+        "shell-timeout": "160000",
+        "bundle-name": "ohos.acts.sensors.sensor.function",
+        "package-name": "ohos.acts.sensors.sensor.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsSensorJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 594 2117 594 864 400",
+                "power-shell setmode 602",
+                "param set persist.bms.ohCert.verify true",
+                "param get persist.bms.ohCert.verify"
+            ],
+			"teardown-command":[
+			    "power-shell setmode 600",
+			    "param set persist.bms.ohCert.verify false"
+			]
+        }
+    ]
+}

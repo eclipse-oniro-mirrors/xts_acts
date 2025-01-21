@@ -1,0 +1,220 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../ComputeBaseFunc.h"
+#include "../ActsCompute0006TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint0uint4, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_0_uint_4*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint0uint20, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_0_uint_20*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint0uint36, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_0_uint_36*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint0uint52, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_0_uint_52*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint0uint68, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_0_uint_68*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint0uint84, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_0_uint_84*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint0uint100, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_0_uint_100*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint0uint116, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_0_uint_116*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint4uint8, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_4_uint_8*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint4uint24, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_4_uint_24*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint4uint40, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_4_uint_40*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint4uint56, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_4_uint_56*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint4uint72, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_4_uint_72*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint4uint88, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_4_uint_88*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint4uint104, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_4_uint_104*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint4uint120, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_4_uint_120*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8uint12, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_8_uint_12*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8uint28, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_8_uint_28*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8uint44, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_8_uint_44*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8uint60, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_8_uint_60*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8uint76, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_8_uint_76*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8uint92, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_8_uint_92*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8uint108, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_8_uint_108*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8uint124, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_8_uint_124*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint12uint16, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_12_uint_16*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint12uint32, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_12_uint_32*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint12uint48, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_12_uint_48*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint12uint64, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_12_uint_64*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint12uint80, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_12_uint_80*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint12uint96, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_12_uint_96*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint12uint112, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_12_uint_112*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint16uint20, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_16_uint_20*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint16uint36, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_16_uint_36*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint16uint52, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_16_uint_52*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint16uint68, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_16_uint_68*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint16uint84, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_16_uint_84*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint16uint100, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_16_uint_100*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint16uint116, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_16_uint_116*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint20uint24, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_20_uint_24*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint20uint40, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_20_uint_40*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint20uint56, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_20_uint_56*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint20uint72, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_20_uint_72*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint20uint88, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_20_uint_88*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint20uint104, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_20_uint_104*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint20uint120, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_20_uint_120*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint24uint28, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_24_uint_28*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint24uint44, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_24_uint_44*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint24uint60, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_24_uint_60*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint24uint76, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_24_uint_76*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint24uint92, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_24_uint_92*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint24uint108, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_24_uint_108*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint24uint124, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_24_uint_124*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint28uint32, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_28_uint_32*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint28uint48, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_28_uint_48*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint28uint64, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_28_uint_64*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint28uint80, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_28_uint_80*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint28uint96, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_28_uint_96*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint28uint112, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_28_uint_112*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint32uint36, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_32_uint_36*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint32uint52, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_32_uint_52*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint32uint68, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_32_uint_68*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint32uint84, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_32_uint_84*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint32uint100, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_32_uint_100*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint32uint116, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_32_uint_116*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint36uint40, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_36_uint_40*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint36uint56, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_36_uint_56*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint36uint72, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_36_uint_72*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint36uint88, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_36_uint_88*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint36uint104, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_36_uint_104*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint36uint120, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_36_uint_120*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint40uint44, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_40_uint_44*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint40uint60, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_40_uint_60*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint40uint76, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_40_uint_76*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint40uint92, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_40_uint_92*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint40uint108, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_40_uint_108*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint40uint124, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_40_uint_124*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint44uint48, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_44_uint_48*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint44uint64, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_44_uint_64*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint44uint80, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_44_uint_80*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint44uint96, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_44_uint_96*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint44uint112, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_44_uint_112*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint48uint52, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_48_uint_52*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint48uint68, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_48_uint_68*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint48uint84, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_48_uint_84*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint48uint100, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_48_uint_100*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint48uint116, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_48_uint_116*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint52uint56, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_52_uint_56*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint52uint72, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_52_uint_72*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint52uint88, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_52_uint_88*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint52uint104, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_52_uint_104*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint52uint120, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_52_uint_120*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint56uint60, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_56_uint_60*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint56uint76, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_56_uint_76*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint56uint92, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_56_uint_92*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint56uint108, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_56_uint_108*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint56uint124, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_56_uint_124*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint60uint64, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_60_uint_64*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint60uint80, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_60_uint_80*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint60uint96, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_60_uint_96*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint60uint112, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_60_uint_112*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint64uint68, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_64_uint_68*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint64uint84, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_64_uint_84*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint64uint100, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_64_uint_100*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint64uint116, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_64_uint_116*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint68uint72, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_68_uint_72*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint68uint88, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_68_uint_88*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint68uint104, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_68_uint_104*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint68uint120, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_68_uint_120*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint72uint76, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_72_uint_76*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint72uint92, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_72_uint_92*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint72uint108, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_72_uint_108*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint72uint124, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_72_uint_124*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint76uint80, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_76_uint_80*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint76uint96, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_76_uint_96*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint76uint112, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_76_uint_112*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint80uint84, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_80_uint_84*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint80uint100, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_80_uint_100*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint80uint116, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_80_uint_116*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint84uint88, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_84_uint_88*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint84uint104, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_84_uint_104*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint84uint120, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_84_uint_120*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint88uint92, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_88_uint_92*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint88uint108, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_88_uint_108*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint88uint124, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_88_uint_124*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint92uint96, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_92_uint_96*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint92uint112, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_92_uint_112*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint96uint100, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_96_uint_100*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint96uint116, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_96_uint_116*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint100uint104, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_100_uint_104*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint100uint120, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_100_uint_120*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint104uint108, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_104_uint_108*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint104uint124, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_104_uint_124*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint108uint112, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_108_uint_112*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint112uint116, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_112_uint_116*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint116uint120, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_116_uint_120*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint120uint124, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint_120_uint_124*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t0uint8t1, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_0_uint8_t_1*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t0uint8t17, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_0_uint8_t_17*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t1uint8t2, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_1_uint8_t_2*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t1uint8t18, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_1_uint8_t_18*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t2uint8t3, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_2_uint8_t_3*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t2uint8t19, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_2_uint8_t_19*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t3uint8t4, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_3_uint8_t_4*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t3uint8t20, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_3_uint8_t_20*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t4uint8t5, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_4_uint8_t_5*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t4uint8t21, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_4_uint8_t_21*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t5uint8t6, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_5_uint8_t_6*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t5uint8t22, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_5_uint8_t_22*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t6uint8t7, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_6_uint8_t_7*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t6uint8t23, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_6_uint8_t_23*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t7uint8t8, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_7_uint8_t_8*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t7uint8t24, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_7_uint8_t_24*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t8uint8t9, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_8_uint8_t_9*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t8uint8t25, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_8_uint8_t_25*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t9uint8t10, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_9_uint8_t_10*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t9uint8t26, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_9_uint8_t_26*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t10uint8t11, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_10_uint8_t_11*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t10uint8t27, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_10_uint8_t_27*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t11uint8t12, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_11_uint8_t_12*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t11uint8t28, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_11_uint8_t_28*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t12uint8t13, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_12_uint8_t_13*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t12uint8t29, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_12_uint8_t_29*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t13uint8t14, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_13_uint8_t_14*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t13uint8t30, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_13_uint8_t_30*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t14uint8t15, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_14_uint8_t_15*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t14uint8t31, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_14_uint8_t_31*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t15uint8t16, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_15_uint8_t_16*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t16uint8t17, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_16_uint8_t_17*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t17uint8t18, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_17_uint8_t_18*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t18uint8t19, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_18_uint8_t_19*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t19uint8t20, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_19_uint8_t_20*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t20uint8t21, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_20_uint8_t_21*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t21uint8t22, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_21_uint8_t_22*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t22uint8t23, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_22_uint8_t_23*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t23uint8t24, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_23_uint8_t_24*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t24uint8t25, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_24_uint8_t_25*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t25uint8t26, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_25_uint8_t_26*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t26uint8t27, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_26_uint8_t_27*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t27uint8t28, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_27_uint8_t_28*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t28uint8t29, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_28_uint8_t_29*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t29uint8t30, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_29_uint8_t_30*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCPaddingUint8t30uint8t31, "dEQP-VK.compute.workgroup_memory_explicit_layout.padding.uint8_t_30_uint8_t_31*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCSize8, "dEQP-VK.compute.workgroup_memory_explicit_layout.size.8*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCSize64, "dEQP-VK.compute.workgroup_memory_explicit_layout.size.64*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCSize4096, "dEQP-VK.compute.workgroup_memory_explicit_layout.size.4096*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCSize16384, "dEQP-VK.compute.workgroup_memory_explicit_layout.size.16384*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCSize32768, "dEQP-VK.compute.workgroup_memory_explicit_layout.size.32768*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCSize49152, "dEQP-VK.compute.workgroup_memory_explicit_layout.size.49152*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCSize65536, "dEQP-VK.compute.workgroup_memory_explicit_layout.size.65536*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCCopymemoryBasic, "dEQP-VK.compute.workgroup_memory_explicit_layout.copy_memory.basic*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCCopymemoryTwoinvocations, "dEQP-VK.compute.workgroup_memory_explicit_layout.copy_memory.two_invocations*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCCopymemoryVariablepointers, "dEQP-VK.compute.workgroup_memory_explicit_layout.copy_memory.variable_pointers*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCZeroextBlock, "dEQP-VK.compute.workgroup_memory_explicit_layout.zero_ext.block*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCZeroextOtherblock, "dEQP-VK.compute.workgroup_memory_explicit_layout.zero_ext.other_block*");
+static SHRINK_HWTEST_F(ActsCompute0006TS, TCZeroextBlockwithoffset, "dEQP-VK.compute.workgroup_memory_explicit_layout.zero_ext.block_with_offset*");

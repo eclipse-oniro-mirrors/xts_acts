@@ -1,0 +1,34 @@
+{
+  "description": "Configuration for debuggable demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "180000",
+    "bundle-name": "com.acts.flagstartwithouttipstest",
+    "module-name": "entry",
+    "shell-timeout": "600000",
+    "testcase-timeout": 15000
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsFlagStartWithoutTipsTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "param set persist.ace.testmode.enabled 1",
+        "reboot",
+        "sleep 10",
+        "power-shell wakeup",
+        "power-shell setmode 602",
+        "uinput -T -m 300 2700 280 200"
+      ],
+      "teardown-command": [
+        "power-shell setmode 601"
+      ]
+    }
+  ]
+}

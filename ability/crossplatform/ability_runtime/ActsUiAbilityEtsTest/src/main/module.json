@@ -1,0 +1,65 @@
+{
+  "module": {
+    "name": "entry_test",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:test_pages",
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/TestAbility/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility1",
+        "srcEntry": "./ets/MainAbility1/MainAbility1.ts",
+        "description": "$string:MainAbility1_desc",
+        "icon": "$media:icon",
+        "launchType": "singleton",
+        "label": "$string:MainAbility1_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      {
+        "name": "MainAbility2",
+        "srcEntry": "./ets/MainAbility2/MainAbility2.ts",
+        "description": "$string:MainAbility2_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility2_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      {
+        "name": "MainAbility3",
+        "srcEntry": "./ets/MainAbility3/MainAbility3.ts",
+        "description": "$string:MainAbility2_desc",
+        "launchType": "standard",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility2_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      }
+    ]
+  }
+}

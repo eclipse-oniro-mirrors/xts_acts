@@ -1,0 +1,1855 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/config/ohos/config.gni")
+import("//build/ohos.gni")
+import("//foundation/arkui/napi/napi.gni")
+
+config("config") {
+  visibility = [ ":*" ]
+
+  cflags = [
+    "-Wall",
+    "-Werror",
+    "-g3",
+    "-Wunused-variable",
+  ]
+}
+
+config("public_config") {
+}
+
+ohos_shared_library("aeabindk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./aeabindk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("applicationTargetSdkVersionndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./applicationTargetSdkVersionndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("capabilityndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./capabilityndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("complexndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./complexndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [
+    "../cpp",
+    "//third_party/musl/include",
+  ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("deviceApiVersionndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./deviceApiVersionndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("ctypendk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./ctypendk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("direntndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./direntndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fcntlndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fcntlndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fenvndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fenvndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fenvndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fenvndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fnmatchndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fnmatchndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fnmatchndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fnmatchndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fsuidndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fsuidndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fsuidndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fsuidndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("ftwndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./ftwndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("getoptndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./getoptndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("globndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./globndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("iconvndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./iconvndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("ifndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./ifndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("initndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./initndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("inndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./inndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("ipcndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./ipcndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("klogndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./klogndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("klogndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./klogndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("langinfondk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./langinfondk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("libgenndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./libgenndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("localendk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./localendk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("mallocndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./mallocndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("membarrierndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./membarrierndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("mmanndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./mmanndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("mmanndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./mmanndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("mntentndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./mntentndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("mntentndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./mntentndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("mountndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./mountndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("mountndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./mountndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("msgndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./msgndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("nameserndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./nameserndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("nltypesndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./nltypesndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("otherstestndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./otherstestndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("personalityndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./personalityndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("pollndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./pollndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("prctlndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./prctlndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("ptracendk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./ptracendk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("ptyndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./ptyndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("pwdndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./pwdndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("quotandk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./quotandk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("quotandk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./quotandk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("randomndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./randomndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("randomndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./randomndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("resolvndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./resolvndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("searchndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./searchndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("searchndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./searchndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("selectndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./selectndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("semndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./semndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("sendfilendk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./sendfilendk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("shmndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./shmndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("socketndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./socketndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("spawnndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./spawnndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("spawnndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./spawnndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("statfsndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./statfsndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("statndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./statndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("statvfsndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./statvfsndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("stdioextndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./stdioextndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("stdioextndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./stdioextndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("stroptsndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./stroptsndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("sysinfondk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./sysinfondk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("syslogndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./syslogndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("sysmmanndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./sysmmanndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("termiosndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./termiosndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("termiosndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./termiosndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("tgkillndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./tgkillndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("threadsndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./threadsndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("threadsndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./threadsndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("timerfdndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./timerfdndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("timesndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./timesndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("timexndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./timexndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("ucharndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./ucharndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("uiondk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./uiondk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("utimendk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./utimendk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("utmpndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./utmpndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("xattrndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./xattrndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("grpndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./grpndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("ifaddrsndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./ifaddrsndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("ifaddrsndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./ifaddrsndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("inetndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./inetndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("inotifyndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./inotifyndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("inttypesndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./inttypesndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("mathndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./mathndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("netdbndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./netdbndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("pthreadndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./pthreadndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("pthreadndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./pthreadndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("regexndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./regexndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("resourcendk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./resourcendk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("resourcendk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./resourcendk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("schedndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./schedndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("semaphorendk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./semaphorendk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("semaphorendk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./semaphorendk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("setjmpndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./setjmpndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("setjmpndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./setjmpndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("signalndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./signalndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("signalndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./signalndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("stdiondk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./stdiondk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("stdiondk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./stdiondk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("stdlibndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./stdlibndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("stringndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./stringndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("stringsndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./stringsndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("timendk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./timendk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("timendk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./timendk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("unistdndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./unistdndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("unistdndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./unistdndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("wcharndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./wcharndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("wcharndk1") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./wcharndk1.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("wctypendk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./wctypendk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("swapndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./swapndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("dlfcnndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./dlfcnndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("waitndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./waitndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("linkndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./linkndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+
+ohos_shared_library("auxv1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./auxv1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("capability1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./capability1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("dirent1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./dirent1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fcntl1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fcntl1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fnmatch1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fnmatch1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("ftw1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./ftw1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("getopt1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./getopt1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("glob1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./glob1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("grp1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./grp1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("inotify1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./inotify1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("locale1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./locale1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("malloc1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./malloc1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("stat1ndk") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./stat1ndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}

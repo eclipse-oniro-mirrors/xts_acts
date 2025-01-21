@@ -1,0 +1,32 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "270000",
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.hiviewdfx.hilogdomainon.function",
+        "package-name": "ohos.acts.hiviewdfx.hilogdomainon.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHilogDomainOnJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.sys.hilog.debug.on false",
+                "service_control stop hilogd",
+                "service_control start hilogd"
+            ],
+            "teardown-command": [
+                "param set persist.sys.hilog.debug.on true",
+                "service_control stop hilogd",
+                "service_control start hilogd"
+            ]
+        }
+    ]
+}

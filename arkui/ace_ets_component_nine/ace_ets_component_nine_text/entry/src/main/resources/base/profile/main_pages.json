@@ -1,0 +1,21 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/component/textShadow",
+    "MainAbility/pages/component/textTextOverflow",
+    "MainAbility/pages/component/textHeightAdaptivePolicyPage",
+    "MainAbility/pages/component/textDecoration",
+    "MainAbility/pages/component/textDraggable",
+    "MainAbility/pages/component/textCopyOption",
+    "MainAbility/pages/component/textLineHeight",
+    "MainAbility/pages/component/textLetterSpacing",
+    "MainAbility/pages/component/textLineHeight",
+    "MainAbility/pages/component/textMaxLines",
+    "MainAbility/pages/component/textTextCase",
+    "MainAbility/pages/component/textFont",
+    "MainAbility/pages/component/textBaseLineOffset",
+    "MainAbility/pages/component/textFontFamily",
+    "MainAbility/pages/component/textMaxFontSize",
+    "MainAbility/pages/component/textMinFontSize"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+    "module": {
+        "name": "phone",
+        "type": "entry",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:phone_entry_dsc",
+        "mainElement": "MainAbility",
+        "deviceTypes": [
+            "tablet",
+            "default",
+            "phone"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+	"metadata": [
+            {
+              "name": "ArkTSPartialUpdate",
+              "value": "true"
+            }
+          ],
+        "abilities": [
+            {
+                "name": "com.acts.inputmethodengine.test.MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "orientation": "portrait",
+                "launchType": "singleton",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "extensionAbilities": [
+            {
+                "description": "\u8f93\u5165\u6cd5demoStage",
+                "icon": "$media:icon",
+                "name": "inputStageService",
+                "srcEntrance": "./ets/InputMethodAbility/InputStageService.ts",
+                "type": "inputMethod",
+                "visible": true
+            },
+            {
+                "description": "\u8f93\u5165\u6cd5Demo",
+                "icon": "$media:icon",
+                "name": "InputDemoService",
+                "srcEntrance": "./ets/InputMethodEngine/InputDemoService.ts",
+                "type": "inputMethod",
+                "visible": true
+            },
+            {
+                "description": "keyEventDemo",
+                "icon": "$media:icon",
+                "name": "InputKeyService",
+                "srcEntrance": "./ets/InputMethodEngineKey/InputKeyService.ts",
+                "type": "inputMethod",
+                "visible":true
+            }
+        ],
+        "requestPermissions": [
+            {
+                "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+                "reason": "need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+            },
+            {
+                "name": "ohos.permission.CONNECT_IME_ABILITY"
+            }
+        ]
+    }
+}

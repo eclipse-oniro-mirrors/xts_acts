@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for startup js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "ohos.acts.startup.js.function",
+        "package-name": "ohos.acts.startup.js.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStartupSysDeviceInfoTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

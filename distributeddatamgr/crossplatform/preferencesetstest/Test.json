@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.distributeddatamgr.crossplatform.preferences.normal",
+        "module-name": "preferences_test_normal_ets"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCrossplatformPreferencesTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

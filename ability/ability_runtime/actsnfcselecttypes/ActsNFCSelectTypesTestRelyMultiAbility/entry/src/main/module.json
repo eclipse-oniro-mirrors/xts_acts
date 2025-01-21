@@ -1,0 +1,111 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home",
+              "ohos.nfc.tag.test.action"
+            ],
+            "uris": [
+              {
+                "type": "tag-tech/MultiAbilityNFCA"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SecondEntryAbility",
+        "srcEntry": "./ets/secondentryability/SecondEntryAbility.ts",
+        "description": "$string:SecondEntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondEntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.nfc.tag.test.action"
+            ],
+            "uris": [
+              {
+                "type": "tag-tech/MultiAbilityNFCB"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ThirdEntryAbility",
+        "srcEntry": "./ets/thirdentryability/ThirdEntryAbility.ts",
+        "description": "$string:ThirdEntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:ThirdEntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.nfc.tag.test.action"
+            ],
+            "uris": [
+              {
+                "type": "tag-tech/MultiAbilityNFCC"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "FourthEntryAbility",
+        "srcEntry": "./ets/fourthentryability/FourthEntryAbility.ts",
+        "description": "$string:FourthEntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:FourthEntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.nfc.tag.test.action"
+            ],
+            "uris": [
+              {
+                "type": "tag-tech/MultiAbilityNFCC"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

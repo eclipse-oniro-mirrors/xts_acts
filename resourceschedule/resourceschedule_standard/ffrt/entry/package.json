@@ -1,0 +1,6 @@
+{
+    "name": "entry",
+    "devDependencies": {
+        "libffrtndk.so": "file:./src/main/cpp/types/libffrtndk"
+    }
+}

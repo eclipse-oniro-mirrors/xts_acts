@@ -1,0 +1,55 @@
+# Copyright (C) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//base/hiviewdfx/hitrace/hitrace.gni")
+import("//build/config/ohos/config.gni")
+import("//build/ohos.gni")
+import("//foundation/arkui/napi/napi.gni")
+
+MEDIA_ROOT_DIR = "//foundation/multimedia/camera_framework/"
+config("config") {
+  visibility = [ ":*" ]
+  cflags = [
+    "-Wall",
+    "-Werror",
+    "-g3",
+    "-Wunused-variable",
+  ]
+}
+
+ohos_shared_library("entry") {
+  sources = [
+    "./camera_manager.cpp",
+    "./main.cpp",
+  ]
+  if (!(product_name == "m40")) {
+    if (target_cpu == "arm") {
+      libs = [ "${clang_base_path}/../libcxx-ndk/lib/arm-linux-ohos/c++/libc++_shared.so" ]
+    } else if (target_cpu == "arm64") {
+      libs = [ "${clang_base_path}/../libcxx-ndk/lib/aarch64-linux-ohos/c++/libc++_shared.so" ]
+    } else {
+      libs = []
+    }
+  }
+  include_dirs = [ "$MEDIA_ROOT_DIR/interfaces/kits/native/include/camera" ]
+  external_deps = [
+    "graphic_2d:surface",
+    "hilog:hilog_ndk",
+    "napi:ace_napi",
+  ]
+  deps = [ "$MEDIA_ROOT_DIR/frameworks/native/ndk:ohcamera" ]
+  configs = [ ":config" ]
+  output_extension = "so"
+  part_name = "camera_framework"
+  subsystem_name = "multimedia"
+}

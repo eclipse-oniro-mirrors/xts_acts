@@ -1,0 +1,147 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import hilog from '@ohos.hilog';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import router from '@system.router';
+
+export default function ActsListTest() {
+  describe('ActsListTest', function () {
+    beforeEach(async function (done) {
+      console.info("flex beforeEach start");
+      let options = {
+        uri: 'TestAbility/pages/list',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get list state success " + JSON.stringify(pages));
+        if (!("list" == pages.name)) {
+          console.info("get list state success " + JSON.stringify(pages.name));
+          let result = await router.push(options);
+          console.info("push list page success " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push list page error: " + err);
+      }
+      done()
+    });
+    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
+    beforeAll(function () {
+      // Presets an action, which is performed only once before all test cases of the test suite start.
+      // This API supports only one parameter: preset action function.
+    })
+
+    it('ArkUX_Grid_List_Swiper_0250', 0, async function (done) {
+      console.info('ArkUX_Grid_List_Swiper_0250 START');
+      setTimeout(()=>{
+        try{
+          let strJson = getInspectorByKey('ArkUX_Grid_List_Swiper_0250');
+          console.info('ArkUX_Grid_List_Swiper_0250 START  :'+ JSON.stringify(strJson));
+          let obj = JSON.parse(strJson);
+          console.info("ArkUX_Grid_List_Swiper_0250 obj is: " + JSON.stringify(obj));
+          let laneGutter = obj.$attrs.laneGutter
+          expect(laneGutter).assertEqual("20.00vp");
+          console.info('ArkUX_Grid_List_Swiper_0250 END ');
+
+        } catch(err) {
+          expect().assertFail()
+          console.info('ArkUX_Grid_List_Swiper_0250 ERR  '+ JSON.stringify(err));
+        }
+        done();
+      },500)
+    });
+
+    it('ArkUX_Grid_List_Swiper_0260', 0, async function (done) {
+      console.info('ArkUX_Grid_List_Swiper_0260 START');
+      setTimeout(()=>{
+        try{
+          let strJson = getInspectorByKey('ArkUX_Grid_List_Swiper_0260');
+          console.info('ArkUX_Grid_List_Swiper_0260 START  :'+ JSON.stringify(strJson));
+          let obj = JSON.parse(strJson);
+          console.info("ArkUX_Grid_List_Swiper_0260 obj is: " + JSON.stringify(obj));
+          let laneGutter = obj.$attrs.laneGutter
+          expect(laneGutter).assertEqual("100.00vp");
+          console.info('ArkUX_Grid_List_Swiper_0260 END ');
+
+        } catch(err) {
+          expect().assertFail()
+          console.info('ArkUX_Grid_List_Swiper_0260 ERR  '+ JSON.stringify(err));
+        }
+        done();
+      },500)
+    });
+
+    it('ArkUX_Grid_List_Swiper_0270', 0, async function (done) {
+      console.info('ArkUX_Grid_List_Swiper_0270 START');
+      setTimeout(()=>{
+        try{
+          let strJson = getInspectorByKey('ArkUX_Grid_List_Swiper_0270');
+          console.info('ArkUX_Grid_List_Swiper_0270 START  :'+ JSON.stringify(strJson));
+          let obj = JSON.parse(strJson);
+          console.info("ArkUX_Grid_List_Swiper_0270 obj is: " + JSON.stringify(obj));
+          let laneGutter = obj.$attrs.laneGutter
+          expect(laneGutter).assertEqual("0.00vp");
+          console.info('ArkUX_Grid_List_Swiper_0270 END ');
+
+        } catch(err) {
+          expect().assertFail()
+          console.info('ArkUX_Grid_List_Swiper_0270 ERR  '+ JSON.stringify(err));
+        }
+        done();
+      },500)
+    });
+
+    it('ArkUX_Grid_List_Swiper_0280', 0, async function (done) {
+      console.info('ArkUX_Grid_List_Swiper_0280 START');
+      setTimeout(()=>{
+        try{
+          let strJson = getInspectorByKey('ArkUX_Grid_List_Swiper_0280');
+          console.info('ArkUX_Grid_List_Swiper_0280 START  :'+ JSON.stringify(strJson));
+          let obj = JSON.parse(strJson);
+          console.info("ArkUX_Grid_List_Swiper_0280 obj is: " + JSON.stringify(obj));
+          let laneGutter = obj.$attrs.laneGutter
+          expect(laneGutter).assertEqual("500.00vp");
+          console.info('ArkUX_Grid_List_Swiper_0280 END ');
+
+        } catch(err) {
+          expect().assertFail()
+          console.info('ArkUX_Grid_List_Swiper_0280 ERR  '+ JSON.stringify(err));
+        }
+        done();
+      },500)
+    });
+
+    it('ArkUX_Grid_List_Swiper_0290', 0, async function (done) {
+      console.info('ArkUX_Grid_List_Swiper_0290 START');
+      setTimeout(()=>{
+        try{
+          let strJson = getInspectorByKey('ArkUX_Grid_List_Swiper_0290');
+          console.info('ArkUX_Grid_List_Swiper_0290 START  :'+ JSON.stringify(strJson));
+          let obj = JSON.parse(strJson);
+          console.info("ArkUX_Grid_List_Swiper_0290 obj is: " + JSON.stringify(obj));
+          let laneGutter = obj.$attrs.laneGutter
+          expect(laneGutter).assertEqual("250.00vp");
+          console.info('ArkUX_Grid_List_Swiper_0290 END ');
+
+        } catch(err) {
+          expect().assertFail()
+          console.info('ArkUX_Grid_List_Swiper_0290 ERR  '+ JSON.stringify(err));
+        }
+        done();
+      },500)
+    });
+
+  })
+}

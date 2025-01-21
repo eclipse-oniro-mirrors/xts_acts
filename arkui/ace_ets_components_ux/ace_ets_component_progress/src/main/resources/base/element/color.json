@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "Progress_borderColor",
+      "value": "#FFFD0000"
+    },
+    {
+      "name": "Progress_updateColor",
+      "value": "#FFFD0000"
+    },
+    {
+      "name": "Progress_updateColor_transparency",
+      "value": "#33006cde"
+    }
+  ]
+}

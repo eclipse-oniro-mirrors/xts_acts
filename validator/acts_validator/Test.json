@@ -1,0 +1,67 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "ValidatorTest",
+        "bundle-name": "com.example.actsvalidator",
+        "package-name": "com.example.actsvalidator",
+        "xml_path": "/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/Test.xml"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "validator.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": false
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff"
+            ]
+        },
+        {
+            "type": "CommandKit",
+            "shell": [
+                {
+                    "name": "shell",
+                    "value": "\"SP_daemon &\""
+                },
+                {
+                    "name": "shell",
+                    "value": "mkdir /storage/media/100/local/files/Audios/ValidatorData"
+                },
+                {
+                    "name": "shell",
+                    "value": "mkdir /storage/media/100/local/files/Videos/ValidatorData"
+                },
+                {
+                    "name": "push",
+                    "value": "picture->/storage/media/100/local/files/Pictures"
+                }
+                
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "AAC160001.aac->/storage/media/100/local/files/Audios/ValidatorData/AAC160001.aac",
+                "AAC48000321.aac->/storage/media/100/local/files/Audios/ValidatorData/AAC48000321.aac",
+                "FLAC48000321.flac->/storage/media/100/local/files/Audios/ValidatorData/FLAC48000321.flac",
+                "MP348000321.mp3->/storage/media/100/local/files/Audios/ValidatorData/MP348000321.mp3",
+                "MPEG448000321.m4a->/storage/media/100/local/files/Audios/ValidatorData/MPEG448000321.m4a",
+                "OGG480001.ogg->/storage/media/100/local/files/Audios/ValidatorData/OGG480001.ogg",
+                "vorbis48000321.wav->/storage/media/100/local/files/Audios/ValidatorData/vorbis48000321.wav",
+                "h264Mp3.mkv->/storage/media/100/local/files/Videos/ValidatorData/h264Mp3.mkv",
+                "h264Mp3.mp4->/storage/media/100/local/files/Videos/ValidatorData/h264Mp3.mp4"
+            ],
+            "uninstall": false
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "scanner"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.actsbmsmetadatatest",
+        "package-name": "com.example.actsbmsmetadatatest"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBmsMetaDataTest.hap",
+                "bmsSystemBundleTest1.hap",
+                "bmsVendorBundleTest1.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "bmsThirdBundleTest1.hap->/data/test/bmsThirdBundleTest1.hap",
+                "bmsThirdBundleTestA1.hap->/data/test/bmsThirdBundleTestA1.hap",
+                "bmsThirdBundleTest5.hap->/data/test/bmsThirdBundleTest5.hap",
+                "bmsSystemBundleTest1.hap->/data/test/bmsSystemBundleTest1.hap",
+                "bmsVendorBundleTest1.hap->/data/test/bmsVendorBundleTest1.hap",
+                "first_right.hap->/data/test/first_right.hap",
+                "second_right.hap->/data/test/second_right.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "bm install -p /data/test/bmsThirdBundleTest1.hap",
+                "bm install -p /data/test/bmsThirdBundleTestA1.hap",
+                "bm install -p /data/test/bmsSystemBundleTest1.hap",
+                "bm install -p /data/test/bmsVendorBundleTest1.hap",
+                "bm install -p /data/test/bmsThirdBundleTest5.hap",
+                "bm install -p /data/test/first_right.hap",
+                "bm install -p /data/test/second_right.hap"
+            ],
+            "teardown-command": [
+                "bm uninstall -n com.example.third1",
+                "bm uninstall -n com.example.system1",
+                "bm uninstall -n com.example.vendor1",
+                "bm uninstall -n com.example.third5",
+                "bm uninstall -n com.example.l3jsdemo",
+                "rm -rf /data/test/"
+            ]
+        }
+    ]
+}

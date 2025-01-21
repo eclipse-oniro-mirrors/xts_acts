@@ -1,0 +1,281 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+// @ts-nocheck
+import hilog from '@ohos.hilog';
+import events_emitter from '@ohos.events.emitter';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../../test/List.test';
+
+@Entry
+@Component
+struct SwiperExample {
+
+  private swiperController: SwiperController = new SwiperController()
+  @State isHoverShow: boolean = false
+  @State isTrue: boolean = true
+  @State isArrow: boolean = true
+  @State arrowStyle: ArrowStyle = {}
+  @State boolFlag: boolean = false
+  @State bool: boolean = false
+  @State boolIsNum: boolean = false
+  @State boolIsStr: boolean = false
+  @State boolIsNull: boolean = false
+  @State boolNum: number = 2
+  @State boolStr: string = ''
+    private colorList:any=[
+    {cardId:1,color:Color.White},
+    {cardId:2,color:Color.Yellow},
+    {cardId:3,color:Color.Blue},
+    {cardId:4,color:Color.Brown},
+    {cardId:5,color:Color.Gray},
+    {cardId:6,color:Color.Green},
+    {cardId:7,color:Color.Grey},
+    {cardId:8,color:Color.Orange},
+    {cardId:9,color:Color.Pink},
+    {cardId:10,color:Color.Red}]
+
+    private valueChangeCallBack = (eventData) => {
+    console.info("key==> page valueChangeCallBack");
+    console.info("valueChangeCallBack eventData:"+   JSON.stringify(eventData));
+      console.info("valueChangeCallBack eventData.data.type:"+   JSON.stringify(eventData.data.type));
+    if(eventData != null){
+      if (eventData.data.type == undefined){
+        this.arrowStyle = JSON.parse(eventData.data.arrowStyle)
+      }
+      if(eventData.data.type == "BoolTrue"){
+        console.info("valueChangeCallBack BoolTrue:"+   JSON.stringify(eventData));
+        this.boolFlag = true
+        this.bool = true
+        console.info("valueChangeCallBack this.bool:"+   JSON.stringify(this.bool));
+      }
+      if(eventData.data.type == "BoolFalse"){
+        console.info("valueChangeCallBack BoolFalse:"+   JSON.stringify(eventData));
+        this.boolFlag = true
+        this.bool = false
+      }
+      if(eventData.data.type == "BoolErrNum"){
+        console.info("valueChangeCallBack BoolErrNum:"+   JSON.stringify(eventData));
+        this.boolFlag = false
+        this.boolIsNum = true
+        this.boolNum = Number(eventData.data.displayArrow)
+      }
+      if(eventData.data.type == "BoolErrStr"){
+        console.info("valueChangeCallBack BoolErrStr:"+   JSON.stringify(eventData));
+        this.boolFlag = false
+        this.boolIsNum = false
+        this.boolIsStr = true
+        this.boolStr = eventData.data.displayArrow
+      }
+      if(eventData.data.type == "BoolErrNull"){
+        console.info("valueChangeCallBack BoolErrNull:"+   JSON.stringify(eventData));
+        this.boolFlag = false
+        this.boolIsNum = false
+        this.boolIsStr = false
+        this.boolIsNull = true
+      }
+      if(eventData.data.type == "BoolErrUndefined"){
+        console.info("valueChangeCallBack BoolErrUndefined:"+   JSON.stringify(eventData));
+        this.boolFlag = false
+        this.boolIsNum = false
+        this.boolIsStr = false
+        this.boolIsNull = false
+      }
+    }
+  }
+
+  aboutToAppear(): void {
+    let valueChangeEvent={
+      eventId:10,
+      priority:events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(valueChangeEvent, this.valueChangeCallBack)
+  }
+  build() {
+    Column({ space: 5 }) {
+      Column() {
+        Swiper(this.swiperController) {
+            ForEach(this.colorList,(item,index) => {
+              Text("第"+(item.cardId).toString()+"页")
+                .width('90%')
+                .height(160)
+                .backgroundColor(item.color)
+                .textAlign(TextAlign.Center)
+                .fontSize(30)
+            })
+        }
+        .key("SwiperA")
+        .backgroundColor($r("sys.color.ohos_id_color_component_normal"))
+        .foregroundColor($r("sys.color.ohos_id_color_primary"))
+        .index(0) 
+        .indicator(this.indicator) 
+        .cachedCount(1) 
+        .loop(false) 
+        .duration(1000) 
+        .vertical(false) 
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .displayArrow(this.arrowStyle, true)
+      }
+      Column() {
+        Swiper(this.swiperController) {
+            ForEach(this.colorList,  (item,index) => {
+              Text("第"+(item.cardId).toString()+"页")
+                .width('90%')
+                .height(160)
+                .backgroundColor(item.color)
+                .textAlign(TextAlign.Center)
+                .fontSize(30)
+            })
+        }
+        .key("SwiperB")
+        .index(0) 
+        .indicator(this.indicator) 
+        .cachedCount(1) 
+        .loop(false) 
+        .duration(1000) 
+        .vertical(false) 
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .displayArrow((this.boolFlag ? this.bool : (this.boolIsNum ? this.boolNum :
+          (this.boolIsStr ? this.boolStr : (this.boolIsNull ? null : undefined)))), true) 
+      }
+      Column() {
+        Swiper(this.swiperController) {
+            ForEach(this.colorList,  (item,index) => {
+              Text("第"+(item.cardId).toString()+"页")
+                .width('90%')
+                .height(160)
+                .backgroundColor(item.color)
+                .textAlign(TextAlign.Center)
+                .fontSize(30)
+            })
+        }
+        .key("SwiperC")
+        .index(0) 
+        .indicator(this.indicator) 
+        .cachedCount(1) 
+        .loop(false) 
+        .duration(1000) 
+        .vertical(false) 
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .displayArrow(true, (this.boolFlag ? this.bool : (this.boolIsNum ? this.boolNum :
+          (this.boolIsStr ? this.boolStr : (this.boolIsNull ? null : undefined))))) 
+      }
+      Column() {
+      Swiper(this.swiperController) {
+            ForEach(this.colorList,  (item,index) => {
+              Text("第"+(item.cardId).toString()+"页")
+                .width('90%')
+                .height(160)
+                .backgroundColor(item.color)
+                .textAlign(TextAlign.Center)
+                .fontSize(30)
+            })
+      }
+      .key("SwiperC")
+      .index(0) 
+      .indicator(this.indicator)
+      .cachedCount(1) 
+      .loop(false) 
+      .duration(1000) 
+      .vertical(false) 
+      .onChange((index: number) => {
+        console.info(index.toString())
+      })
+      .displayArrow(true, (this.boolFlag ? this.bool : (this.boolIsNum ? this.boolNum :
+        (this.boolIsStr ? this.boolStr : (this.boolIsNull ? null : undefined))))) 
+
+    }
+      Column() {
+        Swiper(this.swiperController) {
+          LazyForEach(this.data, (item: string) => {
+            Text(item)
+              .width('90%')
+              .height(160)
+              .backgroundColor(0xAFEEEE)
+              .textAlign(TextAlign.Center)
+              .fontSize(30)
+          }, item => item)
+        }
+        .key("SwiperD")
+        .foregroundColor($r("sys.color.ohos_id_color_primary"))
+        .index(0) 
+        .indicator(this.indicator) //是否启用导航点指示器。
+        .cachedCount(1) 
+        .loop(false) 
+        .duration(1000) 
+        .vertical(false) 
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .displayArrow(this.arrowStyle) 
+      }
+      Column() {
+        Swiper(this.swiperController) {
+          LazyForEach(this.data, (item: string) => {
+            Text(item)
+              .width('90%')
+              .height(160)
+              .backgroundColor(0xAFEEEE)
+              .textAlign(TextAlign.Center)
+              .fontSize(30)
+          }, item => item)
+        }
+        .key("SwiperE")
+        .foregroundColor($r("sys.color.ohos_id_color_primary"))
+        .index(0) 
+        .indicator(this.indicator) 
+        .cachedCount(1) 
+        .loop(false) 
+        .duration(1000) 
+        .vertical(false)
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+        .displayArrow(true) 
+      }
+      Column() {
+        Swiper(this.swiperController) {
+          LazyForEach(this.data, (item: string) => {
+            Text(item)
+              .width('90%')
+              .height(160)
+              .backgroundColor(0xAFEEEE)
+              .textAlign(TextAlign.Center)
+              .fontSize(30)
+          }, item => item)
+        }
+        .key("SwiperF")
+        .index(0)
+        .indicator(this.indicator) 
+        .cachedCount(1)
+        .loop(false) 
+        .duration(1000) 
+        .vertical(false) 
+        .onChange((index: number) => {
+          console.info(index.toString())
+        })
+      }
+    }
+    .height('100%')
+    .width('80%')
+    .margin({ top: 5 })
+  }
+}

@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.actscallability",
+        "module-name": "entry_test",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "acm create -n user101 -t normal"
+            ],
+            "teardown-command": [
+                "acm delete -i 101"
+            ]
+        },
+	{
+            "test-file-name": [
+                "ActsCrossCalleeRely.hap",
+                "ActsCrossCallerNoPermissionRely.hap",
+                "ActsCallerNormalRely.hap",
+                "ActsCrossCallerRely.hap",
+                "ActsCrossCallTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

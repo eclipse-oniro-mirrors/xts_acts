@@ -1,0 +1,40 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "com.acts.actsinterfacemultiusersthirdtest",
+        "module-name":"phone",
+        "shell-timeout": "300000",
+        "testcase-timeout": "30000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "uinput -T -d 620 1130 -u 620 1130 -i 1500 -m 620 2736 620 1130"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "acm create -n user101 -t normal",
+                "acm switch -i 101"
+            ],
+            "teardown-command":[
+                "acm switch -i 100",
+                "acm delete -i 101"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsAmsUsersThirdTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

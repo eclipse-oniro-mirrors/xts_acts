@@ -1,0 +1,22 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.getformsinfotest",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": 20000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsFormProviderGetFormsInfoTest.hap",
+                "ActsFormProviderGetFormsInfoModule1.hap",
+                "ActsFormProviderGetFormsInfoModule2.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ] 
+}

@@ -1,0 +1,12 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Stack/Stack_Text/Stack_Text",
+        "MainAbility/pages/richEditor/richEditorApi/richEditorApi1",
+        "MainAbility/pages/richEditor/richEditorApi/richEditorApi2",
+        "MainAbility/pages/richEditor/richEditorApi/richEditorApi3",
+        "MainAbility/pages/richEditor/richEditorApi/richEditorApi4",
+        "MainAbility/pages/richEditor/richEditorApi/richEditorApi5"
+
+    ]
+}

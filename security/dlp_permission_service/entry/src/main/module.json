@@ -1,0 +1,157 @@
+{
+  "module": {
+    "name": "phone",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:phone_entry_dsc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "tablet",
+      "default",
+      "phone",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "uiSyntax": "ets",
+    "pages": "$profile:main_pages",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "true"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS"
+      },
+      {
+        "name": "ohos.permission.ACCESS_DLP_FILE"
+      },
+      {
+        "name": "ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS"
+      },
+      {
+        "name": "ohos.permission.START_ABILIIES_FROM_BACKGROUND"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "com.ohos.dlp_xts.MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:phone_entry_main",
+        "icon": "$media:icon",
+        "label": "$string:entry_label",
+        "visible": true,
+        "orientation": "portrait",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+	  {
+        "name": "IsInSandboxPromise",
+        "srcEntrance": "./ets/isinsandboxpromise/IsInSandboxPromise.ets",
+        "description": "$string:IsInSandboxPromise_desc",
+        "icon": "$media:icon",
+        "label": "$string:IsInSandboxPromise_label",
+        "visible": true,
+        "orientation": "portrait"
+      },
+      {
+        "name": "IsInSandboxCallback",
+        "srcEntry": "./ets/isinsandboxcallback/IsInSandboxCallback.ets",
+        "description": "$string:IsInSandboxCallback_desc",
+        "icon": "$media:icon",
+        "label": "$string:IsInSandboxCallback_label",
+        "visible": true
+      },
+      {
+        "name": "GetDLPPermissionInfoPromise",
+        "srcEntry": "./ets/getdlppermissioninfopromise/GetDLPPermissionInfoPromise.ets",
+        "description": "$string:GetDLPPermissionInfoPromise_desc",
+        "icon": "$media:icon",
+        "label": "$string:GetDLPPermissionInfoPromise_label",
+        "visible": true
+      },
+      {
+        "name": "GetDLPPermissionInfoCallback",
+        "srcEntry": "./ets/getdlppermissioninfocallback/GetDLPPermissionInfoCallback.ets",
+        "description": "$string:GetDLPPermissionInfoCallback_desc",
+        "icon": "$media:icon",
+        "label": "$string:GetDLPPermissionInfoCallback_label",
+        "visible": true
+      },
+      {
+        "name": "OnOpenDlpFile",
+        "srcEntry": "./ets/onopendlpfile/OnOpenDlpFile.ets",
+        "description": "$string:OnOpenDlpFile_desc",
+        "icon": "$media:icon",
+        "label": "$string:OnOpenDlpFile_label",
+        "visible": true
+      },
+      {
+        "name": "GetDLPFileAccessRecordsCallback",
+        "srcEntry": "./ets/getDLPFileAccessRecordscallback/GetDLPFileAccessRecordsCallback.ets",
+        "description": "$string:GetDLPFileAccessRecordsCallback_desc",
+        "icon": "$media:icon",
+        "label": "$string:GetDLPFileAccessRecordsCallback_label",
+        "visible": true
+      },
+      {
+        "name": "GetDLPFileAccessRecordsPromise",
+        "srcEntry": "./ets/getDLPFileAccessRecordspromise/GetDLPFileAccessRecordsPromise.ets",
+        "description": "$string:GetDLPFileAccessRecordsPromise_desc",
+        "icon": "$media:icon",
+        "label": "$string:GetDLPFileAccessRecordsPromise_label",
+        "visible": true
+      },
+      {
+        "name": "GetRetentionSandboxListCallback",
+        "srcEntry": "./ets/getRetentionSandboxListcallback/GetRetentionSandboxListCallback.ets",
+        "description": "$string:GetRetentionSandboxListCallback_desc",
+        "icon": "$media:icon",
+        "label": "$string:GetRetentionSandboxListCallback_label",
+        "visible": true
+      },
+      {
+        "name": "GetRetentionSandboxListPromise",
+        "srcEntry": "./ets/getRetentionSandboxListpromise/GetRetentionSandboxListPromise.ets",
+        "description": "$string:GetRetentionSandboxListPromise_desc",
+        "icon": "$media:icon",
+        "label": "$string:GetRetentionSandboxListPromise_label",
+        "visible": true
+      },
+      {
+        "name": "SandboxConfigPromise",
+        "srcEntry": "./ets/sandboxconfigpromise/SandboxConfigPromise.ets",
+        "description": "$string:SandboxConfigPromise_desc",
+        "icon": "$media:icon",
+        "label": "$string:SandboxConfigPromise_label",
+        "visible": true
+      },
+      {
+        "name": "SetRetentionStateCallback",
+        "srcEntry": "./ets/setRetentionStatecallback/SetRetentionStateCallback.ets",
+        "description": "$string:SetRetentionStateCallback_desc",
+        "icon": "$media:icon",
+        "label": "$string:SetRetentionStateCallback_label",
+        "visible": true
+      },
+      {
+        "name": "SetRetentionStatePromise",
+        "srcEntry": "./ets/setRetentionStatepromise/SetRetentionStatePromise.ets",
+        "description": "$string:SetRetentionStatePromise_desc",
+        "icon": "$media:icon",
+        "label": "$string:SetRetentionStatePromise_label",
+        "visible": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "default"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:test_pages",
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "requestPermissions":[
+        {
+			"name" : "ohos.permission.GET_WIFI_INFO",
+			"reason" : "use ohos.permission.GET_WIFI_INFO"
+		},
+       {
+			"name" : "ohos.permission.SET_WIFI_INFO",
+			"reason" : "use ohos.permission.SET_WIFI_INFO"
+		},
+		{
+			"name" : "ohos.permission.MANAGE_WIFI_CONNECTION",
+			"reason" : "use ohos.permission.MANAGE_WIFI_CONNECTION"
+		},
+		{
+			"name": "ohos.permission.LOCATION",
+			"reason": "need use ohos.permission.LOCATION",
+			"usedScene": {
+             "ability": [
+                 "ohos.acts.location.geolocation.function.MainAbility"
+             ],
+            "when": "inuse"
+         }
+     } 
+	  
+
+    ],
+    "testRunner": {
+      "name": "OpenHarmonyTestRunner",
+      "srcPath": "TestRunner"
+    }
+  }
+}

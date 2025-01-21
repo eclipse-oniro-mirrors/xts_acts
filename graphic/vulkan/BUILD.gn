@@ -1,0 +1,144 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+import("//foundation/graphic/graphic_2d/graphic_config.gni")
+
+group("ActsVkTest") {
+  testonly = true
+  deps = [
+    "src/compute/build0001:ActsComputeTestSuite0001",
+    "src/compute/build0002:ActsComputeTestSuite0002",
+    "src/compute/build0003:ActsComputeTestSuite0003",
+    "src/compute/build0004:ActsComputeTestSuite0004",
+
+    #"src/compute/build0005:ActsComputeTestSuite0005",
+    "src/compute/build0006:ActsComputeTestSuite0006",
+    "src/image/build0001:ActsImageTestSuite0001",
+    "src/image/build0002:ActsImageTestSuite0002",
+
+    #"src/image/build0003:ActsImageTestSuite0003",
+    #"src/image/build0004:ActsImageTestSuite0004",
+    #"src/image/build0005:ActsImageTestSuite0005",
+    #"src/image/build0006:ActsImageTestSuite0006",
+    "src/image/build0007:ActsImageTestSuite0007",
+
+    #"src/image/build0008:ActsImageTestSuite0008",
+    #"src/image/build0009:ActsImageTestSuite0009",
+    #"src/image/build0010:ActsImageTestSuite0010",
+    #"src/image/build0011:ActsImageTestSuite0011",
+    "src/image/build0012:ActsImageTestSuite0012",
+    "src/image/build0013:ActsImageTestSuite0013",
+    "src/image/build0014:ActsImageTestSuite0014",
+    "src/image/build0015:ActsImageTestSuite0015",
+    "src/image/build0016:ActsImageTestSuite0016",
+    "src/image/build0017:ActsImageTestSuite0017",
+    "src/image/build0018:ActsImageTestSuite0018",
+    "src/image/build0019:ActsImageTestSuite0019",
+    "src/image/build0020:ActsImageTestSuite0020",
+    "src/renderpass/build0001:ActsRenderpassTestSuite0001",
+    "src/renderpass/build0002:ActsRenderpassTestSuite0002",
+    "src/renderpass/build0003:ActsRenderpassTestSuite0003",
+
+    #"src/renderpass/build0004:ActsRenderpassTestSuite0004",
+    "src/renderpass/build0005:ActsRenderpassTestSuite0005",
+    "src/renderpass/build0006:ActsRenderpassTestSuite0006",
+    "src/renderpass/build0007:ActsRenderpassTestSuite0007",
+    "src/renderpass2/build0001:ActsRenderpass2TestSuite0001",
+
+    # "src/renderpass2/build0002:ActsRenderpass2TestSuite0002",
+    # "src/renderpass2/build0003:ActsRenderpass2TestSuite0003",
+    # "src/renderpass2/build0004:ActsRenderpass2TestSuite0004",
+    # "src/renderpass2/build0005:ActsRenderpass2TestSuite0005",
+    # "src/renderpass2/build0006:ActsRenderpass2TestSuite0006",
+    # "src/renderpass2/build0007:ActsRenderpass2TestSuite0007",
+    # "src/renderpass2/build0008:ActsRenderpass2TestSuite0008",
+    # "src/renderpass2/build0009:ActsRenderpass2TestSuite0009",
+    # "src/renderpass2/build0010:ActsRenderpass2TestSuite0010",
+    # "src/renderpass2/build0011:ActsRenderpass2TestSuite0011",
+    # "src/renderpass2/build0012:ActsRenderpass2TestSuite0012",
+    # "src/renderpass2/build0013:ActsRenderpass2TestSuite0013",
+    # "src/renderpass2/build0014:ActsRenderpass2TestSuite0014",
+    # "src/renderpass2/build0015:ActsRenderpass2TestSuite0015",
+    # "src/renderpass2/build0016:ActsRenderpass2TestSuite0016",
+    # "src/renderpass2/build0017:ActsRenderpass2TestSuite0017",
+    # "src/renderpass2/build0018:ActsRenderpass2TestSuite0018",
+    "src/renderpass2/build0019:ActsRenderpass2TestSuite0019",
+
+    # "src/renderpass2/build0020:ActsRenderpass2TestSuite0020",
+    # "src/renderpass2/build0021:ActsRenderpass2TestSuite0021",
+    # "src/renderpass2/build0022:ActsRenderpass2TestSuite0022",
+    "src/renderpass2/build0023:ActsRenderpass2TestSuite0023",
+
+    # "src/renderpass2/build0024:ActsRenderpass2TestSuite0024",
+    # "src/renderpass2/build0025:ActsRenderpass2TestSuite0025",
+    "src/renderpass2/build0026:ActsRenderpass2TestSuite0026",
+    "src/robustness/build0001:ActsRobustnessTestSuite0001",
+    "src/subgroups/build0001:ActsSubgroupsTestSuite0001",
+    "src/subgroups/build0002:ActsSubgroupsTestSuite0002",
+    "src/subgroups/build0003:ActsSubgroupsTestSuite0003",
+    "src/subgroups/build0004:ActsSubgroupsTestSuite0004",
+    "src/subgroups/build0005:ActsSubgroupsTestSuite0005",
+    "src/subgroups/build0006:ActsSubgroupsTestSuite0006",
+    "src/subgroups/build0007:ActsSubgroupsTestSuite0007",
+
+    #"src/subgroups/build0008:ActsSubgroupsTestSuite0008",
+    "src/subgroups/build0009:ActsSubgroupsTestSuite0009",
+    "src/subgroups/build0010:ActsSubgroupsTestSuite0010",
+    "src/subgroups/build0011:ActsSubgroupsTestSuite0011",
+    "src/subgroups/build0012:ActsSubgroupsTestSuite0012",
+    "src/subgroups/build0013:ActsSubgroupsTestSuite0013",
+    "src/subgroups/build0014:ActsSubgroupsTestSuite0014",
+
+    #"src/subgroups/build0015:ActsSubgroupsTestSuite0015",
+    #"src/subgroups/build0016:ActsSubgroupsTestSuite0016",
+    #"src/subgroups/build0017:ActsSubgroupsTestSuite0017",
+    "src/subgroups/build0018:ActsSubgroupsTestSuite0018",
+    "src/subgroups/build0019:ActsSubgroupsTestSuite0019",
+    "src/subgroups/build0020:ActsSubgroupsTestSuite0020",
+    "src/subgroups/build0021:ActsSubgroupsTestSuite0021",
+    "src/subgroups/build0022:ActsSubgroupsTestSuite0022",
+    "src/texture/build0001:ActsTextureTestSuite0001",
+    "src/texture/build0002:ActsTextureTestSuite0002",
+    "src/texture/build0003:ActsTextureTestSuite0003",
+    "src/texture/build0004:ActsTextureTestSuite0004",
+    "src/texture/build0005:ActsTextureTestSuite0005",
+    "src/texture/build0006:ActsTextureTestSuite0006",
+    "src/texture/build0007:ActsTextureTestSuite0007",
+    "src/texture/build0008:ActsTextureTestSuite0008",
+    "src/texture/build0009:ActsTextureTestSuite0009",
+    "src/texture/build0010:ActsTextureTestSuite0010",
+    "src/texture/build0011:ActsTextureTestSuite0011",
+    "src/ubo/build0001:ActsUboTestSuite0001",
+    "src/ubo/build0002:ActsUboTestSuite0002",
+    "src/ubo/build0003:ActsUboTestSuite0003",
+    "src/ubo/build0004:ActsUboTestSuite0004",
+    "src/ubo/build0005:ActsUboTestSuite0005",
+    "src/ubo/build0006:ActsUboTestSuite0006",
+    "src/ubo/build0007:ActsUboTestSuite0007",
+    "src/ubo/build0008:ActsUboTestSuite0008",
+  ]
+}
+
+action("cpvktest") {
+  testonly = true
+  script = "cpvkTest.sh"
+  outputs = [ "${target_out_dir}/cpVktest.log" ]
+  root_vkgl_path = rebase_path("//")
+  args = [ "$root_vkgl_path" ]
+  deps = [
+    ":ActsVkTest",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute",
+  ]
+}

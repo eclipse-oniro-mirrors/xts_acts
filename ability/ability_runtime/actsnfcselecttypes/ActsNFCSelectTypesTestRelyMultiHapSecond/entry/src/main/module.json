@@ -1,0 +1,39 @@
+{
+  "module": {
+    "name": "Secondentry",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "SecondentryAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "SecondentryAbility",
+        "srcEntry": "./ets/secondentryability/SecondentryAbility.ts",
+        "description": "$string:SecondentryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondentryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.nfc.tag.test.action"
+            ],
+            "uris": [
+              {
+                "type":"tag-tech/MultiHapNFCB"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

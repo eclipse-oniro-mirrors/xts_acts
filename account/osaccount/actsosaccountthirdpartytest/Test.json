@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "com.example.actsosaccountthirdpartytest",
+        "package-name": "com.example.actsosaccountthirdpartytest",
+        "shell-timeout": "60000",
+        "testcase-timeout": "100000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsOsAccountThirdPartyTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
