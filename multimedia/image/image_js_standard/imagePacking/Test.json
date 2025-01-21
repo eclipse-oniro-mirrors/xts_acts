@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1500000",
+        "shell-timeout": "1500000",
+        "bundle-name": "ohos.acts.multimedia.image.Packing",
+        "package-name": "ohos.acts.multimedia.image.Packing",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImagePackingJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.Packing/haps/entry/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.Packing/haps/entry/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.Packing/haps/entry/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": []
+        }
+    ]
+}

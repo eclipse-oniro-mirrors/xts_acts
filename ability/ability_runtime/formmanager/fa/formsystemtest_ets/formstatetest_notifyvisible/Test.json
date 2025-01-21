@@ -1,0 +1,31 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "com.ohos.st.formstatenotifyvisibletest",
+        "package-name": "com.ohos.st.formstatenotifyvisibletest",
+        "shell-timeout": "600000",
+        "testcase-timeout":"30000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsFormStateNotifyVisibleTest.hap",
+                "FormSystemHostF.hap",
+                "FormSystemHostG.hap",
+                "FormSystemHostNoPerm.hap",
+                "FormSupplyAppA.hap",
+                "FormSupplyAppB.hap",
+                "FormSupplyAppD.hap",
+                "FormSupplyAppE.hap",
+                "FormSupplyAppF.hap",
+                "FormSupplyAppG.hap",
+                "FormSupplyAppH.hap",
+                "FormSupplyAppNS.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

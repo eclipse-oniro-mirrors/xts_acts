@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "700000",
+	    "bundle-name": "com.open.harmony.acetestfive",
+        "package-name": "com.open.harmony.acetestfive",
+        "shell-timeout": "700000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAceEtsComponentFiveTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

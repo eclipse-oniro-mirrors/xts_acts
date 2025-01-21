@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },   
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "SingleUserModel0500_desc",
+      "value": "description"
+    },
+    {
+      "name": "SingleUserModel0500_label",
+      "value": "label"
+    },
+    {
+      "name": "SingleUserModel0600_desc",
+      "value": "description"
+    },
+    {
+      "name": "SingleUserModel0600_label",
+      "value": "label"
+    },
+    {
+      "name": "SingleUserModel0700_desc",
+      "value": "description"
+    },
+    {
+      "name": "SingleUserModel0700_label",
+      "value": "label"
+    },
+    {
+      "name": "SingleUserModel0800_desc",
+      "value": "description"
+    },
+    {
+      "name": "SingleUserModel0800_label",
+      "value": "label"
+    },
+    {
+      "name": "SingleUserModel1300_desc",
+      "value": "description"
+    },
+    {
+      "name": "SingleUserModel1300_label",
+      "value": "label"
+    }
+  ]
+}

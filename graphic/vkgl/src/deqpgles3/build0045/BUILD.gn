@@ -1,0 +1,107 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0045") {
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends
+  external_deps = [
+    "hilog_native:libhilog",
+    "multimedia_image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3TestSuite0045") {
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
+  sources = [
+    "../ActsDeqpgles30045TestSuite.cpp",
+    "../functional/Deqpgles3attach_deleted_inputTestCase.cpp",
+    "../functional/Deqpgles3attach_deleted_nameTestCase.cpp",
+    "../functional/Deqpgles3attach_deleted_outputTestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_floatTestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_intTestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_ivec2TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_ivec3TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_ivec4TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_mat2TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_mat2x3TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_mat2x4TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_mat3TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_mat3x2TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_mat3x4TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_mat4TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_mat4x2TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_mat4x3TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_uintTestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_uvec2TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_uvec3TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_uvec4TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_vec2TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_vec3TestCase.cpp",
+    "../functional/Deqpgles3default_vertex_attrib_vec4TestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_instanced_line_loopTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_instanced_line_stripTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_instanced_linesTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_instanced_triangle_fanTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_instanced_triangle_stripTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_instanced_line_loopTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_instanced_line_stripTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_instanced_linesTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_instanced_pointsTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_instanced_triangle_fanTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_instanced_triangle_stripTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_instanced_trianglesTestCase.cpp",
+    "../functional/Deqpgles3draw_instancingTestCase.cpp",
+    "../functional/Deqpgles3draw_randomTestCase.cpp",
+    "../functional/Deqpgles3draw_range_elements_line_loopTestCase.cpp",
+    "../functional/Deqpgles3draw_range_elements_line_stripTestCase.cpp",
+    "../functional/Deqpgles3draw_range_elements_linesTestCase.cpp",
+    "../functional/Deqpgles3draw_range_elements_pointsTestCase.cpp",
+    "../functional/Deqpgles3draw_range_elements_triangle_fanTestCase.cpp",
+    "../functional/Deqpgles3draw_range_elements_triangle_stripTestCase.cpp",
+    "../functional/Deqpgles3draw_range_elements_trianglesTestCase.cpp",
+    "../functional/Deqpgles3functional_default_vertex_array_objectTestCase.cpp",
+    "../functional/Deqpgles3functional_flush_finishTestCase.cpp",
+    "../functional/Deqpgles3lifetime_bindTestCase.cpp",
+    "../functional/Deqpgles3lifetime_bind_no_genTestCase.cpp",
+    "../functional/Deqpgles3lifetime_deleteTestCase.cpp",
+    "../functional/Deqpgles3lifetime_delete_activeTestCase.cpp",
+    "../functional/Deqpgles3lifetime_delete_boundTestCase.cpp",
+    "../functional/Deqpgles3lifetime_delete_usedTestCase.cpp",
+    "../functional/Deqpgles3lifetime_genTestCase.cpp",
+  ]
+
+  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
+
+  deps = [ ":libdeqpgles3func0045" ]
+
+  cflags = [ "-Wno-error" ]
+}

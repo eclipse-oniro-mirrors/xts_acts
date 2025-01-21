@@ -1,0 +1,88 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles31func0006") {
+  sources = common_src
+  sources += [ "../Deqpgles31BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends
+  external_deps = [
+    "hilog_native:libhilog",
+    "multimedia_image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles31TestSuite0006") {
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
+  sources = [
+    "../ActsDeqpgles310006TestSuite.cpp",
+    "../functional/Deqpgles31array_subscripts_input_before_subscriptTestCase.cpp",
+    "../functional/Deqpgles31array_subscripts_subscript_before_inputTestCase.cpp",
+    "../functional/Deqpgles31builtin_constants_geometry_shaderTestCase.cpp",
+    "../functional/Deqpgles31builtin_constants_sample_variablesTestCase.cpp",
+    "../functional/Deqpgles31builtin_constants_tessellation_shaderTestCase.cpp",
+    "../functional/Deqpgles31es31_functionsTestCase.cpp",
+    "../functional/Deqpgles31helper_invocation_derivateTestCase.cpp",
+    "../functional/Deqpgles31helper_invocation_valueTestCase.cpp",
+    "../functional/Deqpgles31input_before_literal_addTestCase.cpp",
+    "../functional/Deqpgles31input_before_literal_divTestCase.cpp",
+    "../functional/Deqpgles31input_before_literal_equalTestCase.cpp",
+    "../functional/Deqpgles31input_before_literal_greaterTestCase.cpp",
+    "../functional/Deqpgles31input_before_literal_greater_or_equalTestCase.cpp",
+    "../functional/Deqpgles31input_before_literal_lessTestCase.cpp",
+    "../functional/Deqpgles31input_before_literal_less_or_equalTestCase.cpp",
+    "../functional/Deqpgles31input_before_literal_mulTestCase.cpp",
+    "../functional/Deqpgles31input_before_literal_not_equalTestCase.cpp",
+    "../functional/Deqpgles31input_before_literal_subTestCase.cpp",
+    "../functional/Deqpgles31invalid_variablesTestCase.cpp",
+    "../functional/Deqpgles31literal_before_input_addTestCase.cpp",
+    "../functional/Deqpgles31literal_before_input_divTestCase.cpp",
+    "../functional/Deqpgles31literal_before_input_equalTestCase.cpp",
+    "../functional/Deqpgles31literal_before_input_greaterTestCase.cpp",
+    "../functional/Deqpgles31literal_before_input_greater_or_equalTestCase.cpp",
+    "../functional/Deqpgles31literal_before_input_lessTestCase.cpp",
+    "../functional/Deqpgles31literal_before_input_less_or_equalTestCase.cpp",
+    "../functional/Deqpgles31literal_before_input_mulTestCase.cpp",
+    "../functional/Deqpgles31literal_before_input_not_equalTestCase.cpp",
+    "../functional/Deqpgles31literal_before_input_subTestCase.cpp",
+    "../functional/Deqpgles31literal_before_paren_expr_input_in_parensTestCase.cpp",
+    "../functional/Deqpgles31literal_before_paren_expr_input_outside_parensTestCase.cpp",
+    "../functional/Deqpgles31paren_expr_before_literal_input_in_parensTestCase.cpp",
+    "../functional/Deqpgles31paren_expr_before_literal_input_outside_parensTestCase.cpp",
+    "../functional/Deqpgles31struct_fields_field_before_inputTestCase.cpp",
+    "../functional/Deqpgles31struct_fields_input_before_fieldTestCase.cpp",
+  ]
+
+  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
+
+  deps = [ ":libdeqpgles31func0006" ]
+
+  cflags = [ "-Wno-error" ]
+}

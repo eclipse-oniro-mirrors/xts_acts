@@ -1,0 +1,10 @@
+{
+  "src": [
+    "MainAbility/pages/index",
+    "MainAbility/pages/second",
+    "MainAbility/pages/third",
+    "MainAbility/pages/fourth",
+    "MainAbility/pages/screen",
+    "MainAbility/pages/drag"
+  ]
+}

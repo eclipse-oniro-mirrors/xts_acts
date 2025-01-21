@@ -1,0 +1,11 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.actskillprocesswithaccountclosetest",
+        "module-name": "entry",
+        "shell-timeout": "600000"
+    }
+}
+

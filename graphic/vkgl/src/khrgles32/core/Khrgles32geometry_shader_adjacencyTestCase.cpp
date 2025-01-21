@@ -1,0 +1,56 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../Khrgles32BaseFunc.h"
+#include "../ActsKhrgles320001TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000029,
+        "KHR-GLES32.core.geometry_shader.ad",
+        "jacency.adjacency_non_indiced_lines");
+
+static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000030,
+        "KHR-GLES32.core.geometry_shader.",
+        "adjacency.adjacency_indiced_lines");
+
+static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000031,
+        "KHR-GLES32.core.geometry_shader.adjac",
+        "ency.adjacency_non_indiced_line_strip");
+
+static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000032,
+        "KHR-GLES32.core.geometry_shader.adj",
+        "acency.adjacency_indiced_line_strip");
+
+static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000033,
+        "KHR-GLES32.core.geometry_shader.adja",
+        "cency.adjacency_non_indiced_triangles");
+
+static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000034,
+        "KHR-GLES32.core.geometry_shader.ad",
+        "jacency.adjacency_indiced_triangles");
+
+static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000035,
+        "KHR-GLES32.core.geometry_shader.adjacen",
+        "cy.adjacency_non_indiced_triangle_strip");
+
+static SHRINK_HWTEST_F(ActsKhrgles320001TestSuite, TestCase_000036,
+        "KHR-GLES32.core.geometry_shader.adjac",
+        "ency.adjacency_indiced_triangle_strip");

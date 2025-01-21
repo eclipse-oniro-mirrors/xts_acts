@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for startup taskpool js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "shell-timeout": "800000",
+        "bundle-name": "com.example.taskpool",
+        "package-name": "com.example.taskpool"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsTaskPoolJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

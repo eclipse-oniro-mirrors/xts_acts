@@ -1,0 +1,19 @@
+{
+    "description": "Function test of sim manager interface",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "900000",
+        "bundle-name": "com.ohos.network_wifi",
+        "package-name": "com.ohos.network_wifi",
+        "shell-timeout": "900000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "$module.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

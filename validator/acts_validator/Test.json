@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "testcase-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "com.example.actsvalidator",
+        "package-name": "com.example.actsvalidator"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsValidatorTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff"
+            ]
+        }
+    ]
+}

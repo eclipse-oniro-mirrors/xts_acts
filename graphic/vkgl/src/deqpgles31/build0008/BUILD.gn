@@ -1,0 +1,98 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles31func0008") {
+  sources = common_src
+  sources += [ "../Deqpgles31BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends
+  external_deps = [
+    "hilog_native:libhilog",
+    "multimedia_image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles31TestSuite0008") {
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
+  sources = [
+    "../ActsDeqpgles310008TestSuite.cpp",
+    "../functional/Deqpgles31atomic_addTestCase.cpp",
+    "../functional/Deqpgles31atomic_andTestCase.cpp",
+    "../functional/Deqpgles31atomic_compswapTestCase.cpp",
+    "../functional/Deqpgles31atomic_exchangeTestCase.cpp",
+    "../functional/Deqpgles31atomic_maxTestCase.cpp",
+    "../functional/Deqpgles31atomic_minTestCase.cpp",
+    "../functional/Deqpgles31atomic_orTestCase.cpp",
+    "../functional/Deqpgles31atomic_xorTestCase.cpp",
+    "../functional/Deqpgles31compute_basicTestCase.cpp",
+    "../functional/Deqpgles31compute_interop_combinedTestCase.cpp",
+    "../functional/Deqpgles31compute_interop_largeTestCase.cpp",
+    "../functional/Deqpgles31compute_interop_separateTestCase.cpp",
+    "../functional/Deqpgles31draw_arrays_indirect_firstTestCase.cpp",
+    "../functional/Deqpgles31draw_arrays_indirect_line_loopTestCase.cpp",
+    "../functional/Deqpgles31draw_arrays_indirect_line_stripTestCase.cpp",
+    "../functional/Deqpgles31draw_arrays_indirect_linesTestCase.cpp",
+    "../functional/Deqpgles31draw_arrays_indirect_pointsTestCase.cpp",
+    "../functional/Deqpgles31draw_arrays_indirect_triangle_fanTestCase.cpp",
+    "../functional/Deqpgles31draw_arrays_indirect_triangle_stripTestCase.cpp",
+    "../functional/Deqpgles31draw_arrays_indirect_trianglesTestCase.cpp",
+    "../functional/Deqpgles31draw_elements_indirect_base_vertexTestCase.cpp",
+    "../functional/Deqpgles31draw_elements_indirect_indicesTestCase.cpp",
+    "../functional/Deqpgles31draw_elements_indirect_line_loopTestCase.cpp",
+    "../functional/Deqpgles31draw_elements_indirect_line_stripTestCase.cpp",
+    "../functional/Deqpgles31draw_elements_indirect_linesTestCase.cpp",
+    "../functional/Deqpgles31draw_elements_indirect_pointsTestCase.cpp",
+    "../functional/Deqpgles31draw_elements_indirect_triangle_fanTestCase.cpp",
+    "../functional/Deqpgles31draw_elements_indirect_triangle_stripTestCase.cpp",
+    "../functional/Deqpgles31draw_elements_indirect_trianglesTestCase.cpp",
+    "../functional/Deqpgles31draw_indirect_instancingTestCase.cpp",
+    "../functional/Deqpgles31draw_indirect_negativeTestCase.cpp",
+    "../functional/Deqpgles31draw_indirect_randomTestCase.cpp",
+    "../functional/Deqpgles31es31_validTestCase.cpp",
+    "../functional/Deqpgles31es32_validTestCase.cpp",
+    "../functional/Deqpgles31framebuffer_fetch_basicTestCase.cpp",
+    "../functional/Deqpgles31framebuffer_fetch_framebuffer_formatTestCase.cpp",
+    "../functional/Deqpgles31indirect_dispatch_gen_in_computeTestCase.cpp",
+    "../functional/Deqpgles31indirect_dispatch_upload_bufferTestCase.cpp",
+    "../functional/Deqpgles31shared_var_basic_typeTestCase.cpp",
+    "../functional/Deqpgles31shared_var_work_group_sizeTestCase.cpp",
+    "../functional/Deqpgles31tessellation_misc_drawTestCase.cpp",
+    "../functional/Deqpgles31tessellation_shader_input_outputTestCase.cpp",
+    "../functional/Deqpgles31tessellation_state_queryTestCase.cpp",
+    "../functional/Deqpgles31tessellation_tesscoordTestCase.cpp",
+    "../functional/Deqpgles31tessellation_windingTestCase.cpp",
+  ]
+
+  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
+
+  deps = [ ":libdeqpgles31func0008" ]
+
+  cflags = [ "-Wno-error" ]
+}

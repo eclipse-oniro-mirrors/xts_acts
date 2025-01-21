@@ -1,0 +1,41 @@
+<!--/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+
+<div class="container">
+    <div id="testDiv" class="testDiv">
+
+    </div>
+    <input id="function1" class="title" onclick="functionTest1">
+        Element setStyle
+    </input>
+    <input id="function2" class="title" onclick="functionTest2">
+        Element setAttribute
+    </input>
+    <input id="function3" class="title" onclick="functionTest3">
+        Element addChild
+    </input>
+    <input id="function4" class="title" onclick="functionTest4">
+        Element rotation
+    </input>
+    <input id="function5" class="title" onclick="functionTest5">
+        watch test
+    </input>
+    <input id="function6" class="title" onclick="functionTest6">
+        set/delete test
+    </input>
+     <input id="function7" class="title" onclick="functionTest7">
+        set/delete test
+    </input>
+</div>

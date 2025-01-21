@@ -1,0 +1,65 @@
+{
+    "module": {
+        "name": "phone",
+        "type": "entry",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:phone_entry_dsc",
+        "mainElement": "MainAbility",
+        "deviceTypes": [
+            "default",
+            "tablet"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "metadata": [
+            {
+              "name": "ArkTSPartialUpdate",
+              "value": "false"
+            }
+          ],
+        "abilities": [
+            {
+                "name": "com.example.systemappcallera.MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "orientation": "portrait",
+                "launchType": "singleton",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities":[
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            },
+            {
+              "name": "com.example.systemappcallera.SecondAbility",
+              "srcEntrance": "./ets/SecondAbility/SecondAbility.ts",
+              "description": "$string:phone_entry_main",
+              "icon": "$media:icon",
+              "label": "$string:entry_label",
+              "visible": true,
+              "orientation": "portrait",
+              "launchType": "singleton"
+            },
+            {
+              "name": "com.example.systemappcallera.ThirdAbility",
+              "srcEntrance": "./ets/ThirdAbility/ThirdAbility.ts",
+              "description": "$string:phone_entry_main",
+              "icon": "$media:icon",
+              "label": "$string:entry_label",
+              "visible": true,
+              "orientation": "portrait",
+              "launchType": "standard"
+            }
+        ]
+    }
+}

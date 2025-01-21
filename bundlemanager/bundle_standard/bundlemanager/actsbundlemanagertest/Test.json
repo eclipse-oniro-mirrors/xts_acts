@@ -1,0 +1,56 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "com.example.actsbundlemanagertest",
+        "package-name": "com.example.actsbundlemanagertest"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBundleManagerTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test/"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "bmsJstest1.hap->/data/test/bmsJstest1.hap",
+                "bmsJstest2.hap->/data/test/bmsJstest2.hap",
+                "bmsJstest3.hap->/data/test/bmsJstest3.hap",
+                "bmsJstest4.hap->/data/test/bmsJstest4.hap",
+                "bmsJstest5.hap->/data/test/bmsJstest5.hap",
+                "bmsJstest6.hap->/data/test/bmsJstest6.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "bm install -p /data/test/bmsJstest1.hap",
+                "bm install -p /data/test/bmsJstest2.hap",
+                "bm install -p /data/test/bmsJstest3.hap",
+                "bm install -p /data/test/bmsJstest4.hap",
+                "bm install -p /data/test/bmsJstest5.hap",
+                "bm install -p /data/test/bmsJstest6.hap"
+            ],
+            "teardown-command": [
+                "bm uninstall -n com.example.myapplication1",
+                "bm uninstall -n com.example.myapplication2",
+                "bm uninstall -n com.example.myapplication4",
+                "bm uninstall -n com.example.myapplication5",
+                "bm uninstall -n com.example.myapplication6",
+                "rm -rf /data/test/"
+            ]
+        }
+    ]
+}

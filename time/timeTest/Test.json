@@ -1,0 +1,18 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.acts.time.test",
+        "module-name": "entry_test",
+        "shell-timeout": "180000",
+        "testcase-timeout": 600000
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsTimeAPITest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }]
+}

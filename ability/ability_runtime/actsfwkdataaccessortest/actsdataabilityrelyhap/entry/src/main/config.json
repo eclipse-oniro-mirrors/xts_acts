@@ -1,0 +1,110 @@
+{
+  "app": {
+    "bundleName": "com.amsst.stdataability",
+    "vendor": "test",
+    "version": {
+      "code": 1000110,
+      "name": "1.1.1"
+    },
+    "apiVersion": {
+      "compatible": 8,
+      "target": 9
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.amsst.stdataability",
+    "name": ".MyApplication",
+    "mainAbility": ".MainAbility",
+    "srcPath": "",
+    "deviceType": [
+        "default",
+        "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "formsEnabled": false,
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "srcPath": "TestDataAbility",
+        "name": ".TestDataAbility",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_testdataability",
+        "type": "data",
+        "visible": true,
+        "uri": "dataability://com.example.myapplication.DataAbility"
+      },
+      {
+        "srcPath": "TestDataAbility2",
+        "name": ".TestDataAbility2",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_testdataability",
+        "type": "data",
+        "visible": true,
+        "uri": "dataability://com.example.myapplication.DataAbility2"
+      },
+      {
+        "srcPath": "TestDataAbility3",
+        "name": ".TestDataAbility3",
+        "icon": "$media:icon",
+        "srcLanguage": "ets",
+        "description": "$string:description_testdataability",
+        "type": "data",
+        "visible": true,
+        "uri": "dataability://com.example.myapplication.DataAbility3",
+        "readPermission": "ohos.permission.READ_CONTACTS",
+        "writePermission": "ohos.permission.WRITE_CONTACTS"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "defPermissions": [
+      {
+        "name": "com.ohos.screenlock.DataAbilityShellProvider.PROVIDER"
+      }
+    ]
+  }
+}

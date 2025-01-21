@@ -1,0 +1,106 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles31func0026") {
+  sources = common_src
+  sources += [ "../Deqpgles31BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends
+  external_deps = [
+    "hilog_native:libhilog",
+    "multimedia_image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles31TestSuite0026") {
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
+  sources = [
+    "../ActsDeqpgles310026TestSuite.cpp",
+    "../functional/Deqpgles31android_extension_pack_extensionsTestCase.cpp",
+    "../functional/Deqpgles31android_extension_pack_limitsTestCase.cpp",
+    "../functional/Deqpgles31depth_builtin_depthTestCase.cpp",
+    "../functional/Deqpgles31depth_user_defined_depthTestCase.cpp",
+    "../functional/Deqpgles31es31_extension_directiveTestCase.cpp",
+    "../functional/Deqpgles31es31_extension_macrosTestCase.cpp",
+    "../functional/Deqpgles31es31_implementation_limitsTestCase.cpp",
+    "../functional/Deqpgles31es32_extension_directiveTestCase.cpp",
+    "../functional/Deqpgles31es32_extension_macrosTestCase.cpp",
+    "../functional/Deqpgles31es32_implementation_limitsTestCase.cpp",
+    "../functional/Deqpgles31primitive_bounding_box_blit_fboTestCase.cpp",
+    "../functional/Deqpgles31primitive_bounding_box_call_orderTestCase.cpp",
+    "../functional/Deqpgles31primitive_bounding_box_clearTestCase.cpp",
+    "../functional/Deqpgles31tessellation_set_per_draw_vertex_tessellation_geometry_fragmentTestCase.cpp",
+    "../functional/Deqpgles31tessellation_set_per_primitive_vertex_tessellation_fragmentTestCase.cpp",
+    "../functional/Deqpgles31tessellation_set_per_primitive_vertex_tessellation_geometry_fragmentTestCase.cpp",
+    "../functional/Deqpgles31viewclass_128_bits_rgba32f_rgba32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_128_bits_rgba32f_rgba32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_128_bits_rgba32f_rgba32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_128_bits_rgba32i_rgba32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_128_bits_rgba32i_rgba32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_128_bits_rgba32i_rgba32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_128_bits_rgba32ui_rgba32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_128_bits_rgba32ui_rgba32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_128_bits_rgba32ui_rgba32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32f_rg32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32f_rg32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32f_rg32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32f_rgba16iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32f_rgba16uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32i_rg32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32i_rg32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32i_rg32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32i_rgba16fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32i_rgba16iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32i_rgba16uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32ui_rg32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32ui_rg32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32ui_rg32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32ui_rgba16fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32ui_rgba16iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rg32ui_rgba16uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rgba16f_rg32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_64_bits_rgba16f_rg32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_96_bits_rgb32f_rgb32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_96_bits_rgb32f_rgb32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_96_bits_rgb32f_rgb32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_96_bits_rgb32i_rgb32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_96_bits_rgb32i_rgb32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_96_bits_rgb32i_rgb32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_96_bits_rgb32ui_rgb32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_96_bits_rgb32ui_rgb32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_96_bits_rgb32ui_rgb32uiTestCase.cpp",
+  ]
+
+  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
+
+  deps = [ ":libdeqpgles31func0026" ]
+
+  cflags = [ "-Wno-error" ]
+}

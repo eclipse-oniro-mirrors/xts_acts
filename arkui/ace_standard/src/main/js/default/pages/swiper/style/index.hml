@@ -1,0 +1,164 @@
+<!--/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+
+<div class="container">
+    <div class="style-container">
+        <text class="title">
+            swiper通用样式
+        </text>
+
+        <text class="sub-title">
+            通用样式 1-8 \n width height padding margin border opacity align-self
+        </text>
+        <swiper id="styleOne">
+        </swiper>
+        <swiper id="styleTwo">
+        </swiper>
+        <swiper id="styleThree">
+        </swiper>
+        <swiper id="styleFour">
+        </swiper>
+        <swiper id="styleFive">
+        </swiper>
+        <swiper id="styleSix">
+        </swiper>
+        <swiper id="styleSeven">
+        </swiper>
+        <swiper id="styleEight">
+        </swiper>
+
+        <text class="sub-title">
+            通用样式9-20 \n display flex z-index position
+        </text>
+        <swiper id="styleNine">
+        </swiper>
+        <swiper id="styleTen">
+        </swiper>
+        <swiper id="styleEleven">
+        </swiper>
+        <swiper id="styleTwelve">
+        </swiper>
+        <swiper id="styleThirteen">
+        </swiper>
+        <swiper id="styleFourteen">
+        </swiper>
+        <swiper id="styleFifteen">
+        </swiper>
+        <swiper id="styleSixteen">
+        </swiper>
+        <swiper id="styleSeventeen">
+        </swiper>
+        <swiper id="styleEighteen">
+        </swiper>
+        <swiper id="styleNineteen">
+        </swiper>
+        <swiper id="styleTwenty">
+        </swiper>
+
+        <text class="sub-title">
+            通用样式21-23 box-shadow
+        </text>
+        <div style="width: 100%;flex-direction: row;">
+            <swiper id="styleTwentyOne">
+            </swiper>
+            <swiper id="styleTwentyTwo">
+            </swiper>
+            <swiper id="styleTwentyThree">
+            </swiper>
+        </div>
+
+        <text class="sub-title">
+            通用样式23-25 visibility clip-path
+        </text>
+        <swiper id="styleTwentyFour">
+        </swiper>
+        <swiper id="styleTwentyFive">
+        </swiper>
+
+        <text class="sub-title">
+            通用样式26-31 background
+        </text>
+        <swiper id="styleTwentySix">
+        </swiper>
+        <swiper id="styleTwentySeven">
+        </swiper>
+        <swiper id="styleTwentyNine">
+        </swiper>
+        <swiper id="styleThirty">
+        </swiper>
+        <swiper id="styleThirtyOne">
+        </swiper>
+
+        <text class="sub-title">
+            通用样式32 clip-path image-fill mask-image
+        </text>
+        <swiper id="styleThirtyTwo">
+        </swiper>
+    </div>
+    <div style="background-color: #000000; width: 2px; height: 100%;">
+    </div>
+    <div class="specific-container">
+        <text class="title">
+            swiper特有样式
+        </text>
+        <text class="sub-title">
+            特有样式 indicator-color
+        </text>
+        <swiper id="specificOne1">
+        </swiper>
+        <swiper id="specificOne2">
+        </swiper>
+        <text class="sub-title">
+            特有样式 indicator-selected-color
+        </text>
+        <swiper id="specificTwo1">
+        </swiper>
+        <swiper id="specificTwo2">
+        </swiper>
+        <text class="sub-title">
+            特有样式 indicator-size
+        </text>
+        <swiper id="specificThree1">
+        </swiper>
+        <swiper id="specificThree2">
+        </swiper>
+        <text class="sub-title">
+            特有样式 indicator-top|left|right|bottom
+        </text>
+        <swiper id="specificFour1">
+        </swiper>
+        <swiper id="specificFour2">
+        </swiper>
+        <swiper id="specificFour3">
+        </swiper>
+        <swiper id="specificFour4">
+        </swiper>
+        <text class="sub-title">
+            特有样式 next-margin
+        </text>
+        <swiper id="specificFive1">
+        </swiper>
+        <swiper id="specificFive2">
+        </swiper>
+        <text class="sub-title">
+            特有样式 previous-margin
+        </text>
+        <swiper id="specificSix1">
+        </swiper>
+        <swiper id="specificSix2">
+        </swiper>
+    </div>
+</div>
+

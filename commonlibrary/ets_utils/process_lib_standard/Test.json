@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for startup process js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "shell-timeout": "800000",
+        "bundle-name": "com.example.childprocess",
+        "package-name": "com.example.childprocess"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsProcessJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

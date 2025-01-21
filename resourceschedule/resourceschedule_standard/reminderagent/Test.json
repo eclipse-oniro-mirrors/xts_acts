@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for resourceschedule js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "ohos.acts.resourceschedule.reminderagent.js.function",
+        "package-name": "ohos.acts.resourceschedule.reminderagent.js.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsResourcescheduleReminderAgentTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

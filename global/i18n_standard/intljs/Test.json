@@ -1,0 +1,32 @@
+{
+    "description": "Configuration for intljs Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "testcase-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "ohos.intl.test",
+        "package-name": "ohos.intl.test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsIntlJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "resource/global/white_languages.xml->/system/usr/ohos_locale_config/white_languages.xml"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /system/usr/ohos_locale_config/white_languages.xml"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,64 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "com.example.actsabilitypermissiontest",
+        "module-name": "com.example.actsabilitypermissiontest",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsSystemAppATest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsSystemAppATest.hap->/system/app/ActsSystemAppATest.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "acm create -n 101 -t normal",
+                "acm switch -i 101"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsSystemAppOneRelyHap.hap->/system/app/ActsSystemAppOneRelyHap.hap"
+            ]
+        },
+		 {
+            "test-file-name": [
+                "ActsSystemAppOneRelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "acm switch -i 100"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /data/*.hap"
+            ]
+        }
+    ]
+}

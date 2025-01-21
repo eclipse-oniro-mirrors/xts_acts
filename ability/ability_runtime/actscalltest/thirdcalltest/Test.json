@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "100000",
+        "bundle-name": "com.example.thirdcalltest",
+        "module-name": "phone",
+        "shell-timeout": "60000",
+        "testcase-timeout": 100000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsThirdCallTest.hap",
+                "ActsSystemAppCalleeARelyHap.hap",
+                "ActsThirdAppARelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount"
+            ]
+        }
+    ]
+}

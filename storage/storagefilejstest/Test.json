@@ -1,0 +1,17 @@
+{
+    "description": "Configuration for storage file Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "120000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.storage.file",
+        "package-name": "ohos.acts.storage.file"
+    },
+    "kits": [
+        {
+            "test-file-name": ["ActsStorageFileJSTest.hap"],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

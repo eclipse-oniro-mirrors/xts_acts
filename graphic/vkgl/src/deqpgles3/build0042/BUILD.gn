@@ -1,0 +1,65 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0042") {
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends
+  external_deps = [
+    "hilog_native:libhilog",
+    "multimedia_image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3TestSuite0042") {
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
+  sources = [
+    "../ActsDeqpgles30042TestSuite.cpp",
+    "../functional/Deqpgles3functional_fence_syncTestCase.cpp",
+    "../functional/Deqpgles3interpolation_centroidTestCase.cpp",
+    "../functional/Deqpgles3interpolation_flatTestCase.cpp",
+    "../functional/Deqpgles3interpolation_smoothTestCase.cpp",
+    "../functional/Deqpgles3negative_api_bufferTestCase.cpp",
+    "../functional/Deqpgles3negative_api_textureTestCase.cpp",
+    "../functional/Deqpgles3program_binary_binary_persistenceTestCase.cpp",
+    "../functional/Deqpgles3program_binary_simpleTestCase.cpp",
+    "../functional/Deqpgles3shader_api_compile_linkTestCase.cpp",
+    "../functional/Deqpgles3shader_api_create_deleteTestCase.cpp",
+    "../functional/Deqpgles3shader_api_program_stateTestCase.cpp",
+    "../functional/Deqpgles3shader_api_shader_sourceTestCase.cpp",
+  ]
+
+  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
+
+  deps = [ ":libdeqpgles3func0042" ]
+
+  cflags = [ "-Wno-error" ]
+}
