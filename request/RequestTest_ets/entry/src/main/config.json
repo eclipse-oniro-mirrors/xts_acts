@@ -1,0 +1,114 @@
+{
+    "app": {
+        "bundleName": "com.acts.requesttest",
+        "vendor": "example",
+        "version": {
+            "code": 1,
+            "name": "1.0.0"
+        },
+        "apiVersion": {
+            "compatible": 7,
+            "target": 9,
+            "releaseType": "Release"
+        }
+    },
+    "deviceConfig": {},
+    "module": {
+        "package": "com.acts.requesttest",
+        "name": ".MyApplication",
+        "mainAbility": "com.acts.requesttest.MainAbility",
+        "deviceType": [
+            "tablet",
+            "default",
+            "phone",
+            "2in1",
+            "wearable"
+        ],
+        "distro": {
+            "deliveryWithInstall": true,
+            "moduleName": "entry",
+            "moduleType": "entry",
+            "installationFree": true
+        },
+        "abilities": [
+            {
+                "skills": [
+                    {
+                        "entities": [
+                            "entity.system.home"
+                        ],
+                        "actions": [
+                            "action.system.home"
+                        ]
+                    }
+                ],
+                "orientation": "unspecified",
+                "visible": true,
+                "srcPath": "MainAbility",
+                "name": ".MainAbility",
+                "srcLanguage": "ets",
+                "icon": "$media:icon",
+                "description": "$string:description_mainability",
+                "formsEnabled": false,
+                "label": "$string:entry_MainAbility",
+                "type": "page",
+                "launchType": "standard"
+            },
+            {
+                "orientation": "unspecified",
+                "visible": true,
+                "srcPath": "TestAbility",
+                "name": ".TestAbility",
+                "srcLanguage": "ets",
+                "icon": "$media:icon",
+                "description": "$string:TestAbility_desc",
+                "formsEnabled": false,
+                "label": "$string:TestAbility_label",
+                "type": "page",
+                "launchType": "standard"
+            }
+        ],
+        "reqPermissions": [
+            {
+                "name": "ohos.permission.INTERNET",
+                "reason": "need use ohos.permission.INTERNET",
+                "usedScene": {
+                    "ability": [
+                        "com.acts.request.test.MainAbility"
+                    ],
+                    "when": "inuse"
+                }
+            }
+        ],
+        "js": [
+            {
+                "mode": {
+                    "syntax": "ets",
+                    "type": "pageAbility"
+                },
+                "pages": [
+                    "pages/index"
+                ],
+                "name": ".MainAbility",
+                "window": {
+                    "designWidth": 720,
+                    "autoDesignWidth": false
+                }
+            },
+            {
+                "mode": {
+                    "syntax": "ets",
+                    "type": "pageAbility"
+                },
+                "pages": [
+                    "pages/index"
+                ],
+                "name": ".TestAbility",
+                "window": {
+                    "designWidth": 720,
+                    "autoDesignWidth": false
+                }
+            }
+        ]
+    }
+}

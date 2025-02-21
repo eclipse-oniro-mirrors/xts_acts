@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+      "type": "OHJSUnitTest",
+      "test-timeout": "600000",
+      "bundle-name": "com.example.aaappdebugtest",
+      "module-name": "entry_test",
+      "shell-timeout": "600000",
+      "testcase-timeout": 25000
+    },
+    "kits": [
+      {
+        "test-file-name": [
+          "ActsAaAppDebugrely.hap",
+          "ActsAaAppDebugTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+      },
+      {
+        "type": "ShellKit",
+        "teardown-command": [
+          "power-shell wakeup",
+          "power-shell setmode 602"
+        ]
+      }
+    ]
+  }

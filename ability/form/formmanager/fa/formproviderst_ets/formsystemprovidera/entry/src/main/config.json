@@ -1,0 +1,161 @@
+{
+  "app": {
+    "bundleName": "com.ohos.st.formsystemprovidera",
+    "vendor": "ohos",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 7,
+      "releaseType": "Release",
+      "target": 7
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.ohos.st.formsystemprovidera",
+    "name": ".FormSTApp",
+    "mainAbility": ".MainAbility",
+    "deviceType": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "form_module_a",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "visible": true,
+        "name": ".MainAbility",
+        "srcPath": "MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "label": "$string:entry_MainAbility",
+        "type": "service",
+        "launchType": "standard",
+        "formsEnabled": true,
+        "forms": [
+          {
+            "name": "FormA_Js001",
+            "description": "form_description_FormA_Js001",
+            "descriptionId": 0,
+            "isDefault": true,
+            "type": "JS",
+            "colorMode": "dark",
+            "supportDimensions": [
+              "1*2",
+              "2*4"
+            ],
+            "defaultDimension": "1*2",
+            "updateEnabled": true,
+            "updateDuration": 1,
+            "scheduledUpdateTime": "5:30",
+            "jsComponentName": "card_a01",
+            "formVisibleNotify": true,
+            "formConfigAbility": "abilitya01",
+            "metaData": {
+              "customizeData": [
+                {
+                  "name": "originWidgetNameA01",
+                  "value": "valueA01"
+                }
+              ]
+            }
+          },
+          {
+            "name": "FormA_Js002",
+            "description": "form_description_FormA_Js002",
+            "descriptionId": 10,
+            "isDefault": false,
+            "type": "JS",
+            "colorMode": "light",
+            "supportDimensions": [
+              "1*2",
+              "2*2",
+              "2*4",
+              "4*4"
+            ],
+            "defaultDimension": "4*4",
+            "updateEnabled": false,
+            "updateDuration": 2,
+            "scheduledUpdateTime": "20:30",
+            "jsComponentName": "card_a02",
+            "formVisibleNotify": false,
+            "formConfigAbility": "abilitya02",
+            "metaData": {
+              "customizeData": [
+                {
+                  "name": "originWidgetNameA02",
+                  "value": "valueA02"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "defPermissions": [
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormDelete_commonEvent"
+      },
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormOnAcquired_commonEvent"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "FMS_FormOnAcquired_commonEvent",
+        "reason": "need use onAcquired commonEvent"
+      },
+      {
+        "name": "FMS_FormDelete_commonEvent",
+        "reason": "need use delete commonEvent"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+        "reason": "need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

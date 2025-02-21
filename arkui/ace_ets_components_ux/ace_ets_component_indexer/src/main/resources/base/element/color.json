@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "Divider_color",
+      "value": "#000000"
+    },
+    {
+      "name": "popupSelectedColor",
+      "value": "#00C5CD"
+    },
+    {
+      "name": "popupUnselectedColor",
+      "value": "#FFEC8B"
+    },
+    {
+      "name": "popupItemBackground",
+      "value": "#4EEE94"
+    }
+  ]
+}

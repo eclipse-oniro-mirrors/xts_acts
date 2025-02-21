@@ -1,0 +1,32 @@
+{
+    "description": "Configuration for camera ndk Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+	    "bundle-name": "com.example.camerandk",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+	    "testcase-timeout": 700000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCameraFrameWorkNdkTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ],
+            "teardown-command":[
+                "power-shell setmode 600"
+            ],
+            "cleanup-apps": true
+        }
+    ]
+}

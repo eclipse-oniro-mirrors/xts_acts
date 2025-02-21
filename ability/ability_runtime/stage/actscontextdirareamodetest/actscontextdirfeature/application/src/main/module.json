@@ -1,0 +1,29 @@
+{
+  "module": {
+    "name": "application",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "ApplicationAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "ApplicationAbility",
+        "srcEntry": "./ets/applicationability/ApplicationAbility.ets",
+        "description": "$string:ApplicationAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:ApplicationAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ]
+  }
+}

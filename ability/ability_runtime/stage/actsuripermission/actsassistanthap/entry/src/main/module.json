@@ -1,0 +1,79 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:hap2_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "uiSyntax": "ets",
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "Hap2MainAbility1",
+        "srcEntrance": "./ets/Hap2MainAbility1/Hap2MainAbility1.ts",
+        "description": "$string:Hap2MainAbility1_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility1_label",
+        "visible": true,
+        "orientation": "portrait"
+      },
+      {
+        "name": "Hap2MainAbility2",
+        "srcEntrance": "./ets/Hap2MainAbility2/Hap2MainAbility2.ts",
+        "description": "$string:Hap2MainAbility2_desc",
+        "icon": "$media:icon",
+        "visible": true,
+        "label": "$string:Hap2MainAbility2_label"
+      },
+      {
+        "name": "Hap2MainAbility3",
+        "srcEntrance": "./ets/Hap2MainAbility3/Hap2MainAbility3.ts",
+        "description": "$string:Hap2MainAbility3_desc",
+        "icon": "$media:icon",
+        "visible": true,
+        "label": "$string:Hap2MainAbility3_label",
+        "skills": [
+          {
+            "entities": [
+              "entity.system.uripermissiontest"
+            ],
+            "actions": [
+              "action.system.uripermissiontest"
+            ],
+            "uris": [
+              {
+                "scheme": "file"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hap2MainAbility4",
+        "srcEntrance": "./ets/Hap2MainAbility4/Hap2MainAbility4.ts",
+        "description": "$string:Hap2MainAbility4_desc",
+        "icon": "$media:icon",
+        "visible": true,
+        "label": "$string:Hap2MainAbility4_label",
+        "launchType": "singleton"
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "ServiceAbility",
+        "srcEntrance": "./ets/serviceability/ServiceAbility.ts",
+        "label": "$string:ServiceAbility_label",
+        "visible": true,
+        "description": "$string:ServiceAbility_desc",
+        "type": "service"
+      }
+    ]
+  }
+}

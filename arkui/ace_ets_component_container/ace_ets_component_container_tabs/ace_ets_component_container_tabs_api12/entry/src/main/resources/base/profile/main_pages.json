@@ -1,0 +1,21 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChange",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex3",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex03",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex04",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex05",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex06",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex07",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex08",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex09",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex10",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex11",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex12",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex13",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex14",
+        "MainAbility/pages/tabs_api12/tabs_onContentWillChangeIndex15"
+        
+    ]
+}

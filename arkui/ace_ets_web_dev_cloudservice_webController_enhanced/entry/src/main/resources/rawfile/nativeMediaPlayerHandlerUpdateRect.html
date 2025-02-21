@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单个播放源：preload-metadata</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+<div>
+    <button onclick="buttonLoad()">load()</button>
+    <button id="playButton" onclick="getVideo('bodyId').play()">play()</button>
+
+</div>
+<video  id='bodyId'  preload='none' muted autoplay>
+    <source id='mp4'
+            src='https://www-file.huawei.com/-/media/corp2020/videos/giv/2030/1/intelligent-2030-cn-720.mp4'
+            type='video/mp4'>
+    <source  src='https://www-file.huawei.com/-/media/corp2020/videos/giv/2030/green-ict/green-ict-cn-1080p.mp4' >
+</video>
+<div id='props'>
+    <table>
+        <caption>Media Events</caption>
+        <tbody id='events'>
+        </tbody>
+    </table>
+    <table id='tracks'>
+        <caption>Tracks</caption>
+        <tbody>
+        <tr>
+            <th>Audio</th>
+            <th>Video</th>
+            <th>Text</th>
+        </tr>
+        <tr>
+            <td id='m_audiotracks' class='false'>?</td>
+            <td id='m_videotracks' class='false'>?</td>
+            <td id='m_texttracks' class='false'>?</td>
+        </tr>
+        </tbody>
+    </table>
+    <table>
+        <caption>Media Properties</caption>
+        <tbody id='properties'>
+        </tbody>
+    </table>
+
+    <table id='canPlayType'>
+        <caption>canPlayType</caption>
+        <tbody id='m_video'>
+        </tbody>
+    </table>
+</div>
+
+
+
+</body>
+</html>
+<script>
+
+function myFunction() {
+    var element = document.getElementById('bodyId');
+    element.remove();
+}
+function resize() {
+    resizeDom('bodyId');
+    return 'resizeDom';
+}
+function resizeDom(id) {
+    var element = document.getElementById(id);
+    element.style.width = '180px';
+    element.style.height = '190px';
+}
+
+</script>
+<script>
+    function getVideo(id) {
+        return document.getElementById(id)；
+    }
+    function buttonLoad() {
+        getVideo('bodyId').load();
+        return true;
+    }
+     function buttonPlay() {
+        document.getElementById('playButton').click()；
+        return 'play';
+    }
+
+</script>
+
+<style>
+    .btnGroup{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .object-container{
+        margin-bottom: 10px;
+    }
+</style>
+<style>
+
+    a { color: #ffffe0;}
+   video {
+      border: 1px solid black;
+      padding: 0; margin: 0;
+      width: 427px;
+      height: 240px;
+      background-color: black;
+      margin: auto;
+    }
+    table { border: none;  margin-top: 1ex;}
+    th {  text-align: right; }
+    caption { background-color: #ffffe0; color: black;}
+    thead th {  background-color: #ffffe0; color: black;}
+    #events td { text-align: right; width: 4ex;}
+    #properties td { }
+    hr { clear: both; margin-top: 2em;}
+    .true { background-color: #360; color: #ffffe0; }
+    .false { background-color: #603; color: #ffffe0; }
+
+</style>

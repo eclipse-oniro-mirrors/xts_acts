@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.image.imagePackerExif",
+        "module-name": "entry",
+        "shell-timeout": "300000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImagePackerExifTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files/*",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/cache/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/cache/*",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/*"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files",
+                "./resource/image/test_exif_v2.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files",
+                "./resource/image/test_exif_v2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files",
+                "./resource/image/test_exif_empty.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files",
+                "./resource/image/test_exif_empty.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files",
+                "./resource/image/test_exif_empty.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files",
+                "./resource/image/test_exif_v3.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files",
+                "./resource/image/test_exif_v3.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files",
+                "./resource/image/test_exif_v3.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackerExif/haps/entry/files"
+            ]
+        }
+    ]
+}

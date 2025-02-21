@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for ActsStorageFileshareNdkTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.acts.storage.filesharendk",
+        "module-name": "com.acts.storage.filesharendk",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStorageFileshareNdkTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }, {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+    
+        }
+    ]
+}

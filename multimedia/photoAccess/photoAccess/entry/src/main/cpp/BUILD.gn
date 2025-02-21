@@ -1,0 +1,80 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/config/ohos/config.gni")
+import("//build/ohos.gni")
+import("//foundation/arkui/napi/napi.gni")
+
+MEDIA_ROOT_DIR = "//foundation/multimedia/media_library/"
+config("config") {
+  visibility = [ ":*" ]
+
+  cflags = [
+    "-Wall",
+    "-Werror",
+    "-g3",
+    "-Wunused-variable",
+  ]
+}
+
+config("public_config") {
+}
+
+ohos_shared_library("mediaAssetManager") {
+  sources = [ "./napi/mediaAssetManager.cpp" ]
+  include_dirs = [
+    "../cpp",
+    "//foundation/multimedia/image_framework/frameworks/kits/js/common/ndk/include/",
+    "//foundation/multimedia/image_framework/interfaces/kits/native/include/image",
+  ]
+  configs = [ ":config" ]
+
+  external_deps = [
+    "c_utils:utils",
+    "hilog:libhilog",
+    "image_framework:image",
+    "image_framework:image_source",
+    "napi:ace_napi",
+    "resource_management:librawfile",
+  ]
+  deps = [ "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_asset_manager" ]
+  output_extension = "so"
+  subsystem_name = "multimedia"
+  part_name = "media_library"
+}
+
+ohos_shared_library("photoAccessHelperTest") {
+  sources = [
+    "./napi/main.cpp",
+    "./napi/photoAccessHelper.cpp",
+  ]
+  include_dirs = [
+    "../cpp",
+    "//foundation/multimedia/image_framework/frameworks/kits/js/common/ndk/include/",
+    "//foundation/multimedia/image_framework/interfaces/kits/native/include/image",
+  ]
+  configs = [ ":config" ]
+
+  external_deps = [
+    "c_utils:utils",
+    "hilog:libhilog",
+    "image_framework:image",
+    "image_framework:image_source",
+    "napi:ace_napi",
+    "resource_management:librawfile",
+  ]
+  deps = [ "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_asset_manager" ]
+  output_extension = "so"
+  subsystem_name = "multimedia"
+  part_name = "media_library"
+}

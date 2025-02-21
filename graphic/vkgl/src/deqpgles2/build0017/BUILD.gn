@@ -1,0 +1,94 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles2func0017") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles2BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles2
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles2TestSuite0017") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles20017TestSuite.cpp",
+    "../functional/Deqpgles2attach_deleted_inputTestCase.cpp",
+    "../functional/Deqpgles2attach_deleted_nameTestCase.cpp",
+    "../functional/Deqpgles2attach_deleted_outputTestCase.cpp",
+    "../functional/Deqpgles2default_vertex_attrib_floatTestCase.cpp",
+    "../functional/Deqpgles2default_vertex_attrib_mat2TestCase.cpp",
+    "../functional/Deqpgles2default_vertex_attrib_mat3TestCase.cpp",
+    "../functional/Deqpgles2default_vertex_attrib_mat4TestCase.cpp",
+    "../functional/Deqpgles2default_vertex_attrib_vec2TestCase.cpp",
+    "../functional/Deqpgles2default_vertex_attrib_vec3TestCase.cpp",
+    "../functional/Deqpgles2default_vertex_attrib_vec4TestCase.cpp",
+    "../functional/Deqpgles2draw_arrays_firstTestCase.cpp",
+    "../functional/Deqpgles2draw_arrays_line_loopTestCase.cpp",
+    "../functional/Deqpgles2draw_arrays_line_stripTestCase.cpp",
+    "../functional/Deqpgles2draw_arrays_linesTestCase.cpp",
+    "../functional/Deqpgles2draw_arrays_pointsTestCase.cpp",
+    "../functional/Deqpgles2draw_arrays_triangle_fanTestCase.cpp",
+    "../functional/Deqpgles2draw_arrays_triangle_stripTestCase.cpp",
+    "../functional/Deqpgles2draw_arrays_trianglesTestCase.cpp",
+    "../functional/Deqpgles2draw_elements_line_loopTestCase.cpp",
+    "../functional/Deqpgles2draw_elements_line_stripTestCase.cpp",
+    "../functional/Deqpgles2draw_elements_linesTestCase.cpp",
+    "../functional/Deqpgles2draw_elements_pointsTestCase.cpp",
+    "../functional/Deqpgles2draw_elements_triangle_fanTestCase.cpp",
+    "../functional/Deqpgles2draw_elements_triangle_stripTestCase.cpp",
+    "../functional/Deqpgles2draw_elements_trianglesTestCase.cpp",
+    "../functional/Deqpgles2draw_randomTestCase.cpp",
+    "../functional/Deqpgles2functional_debug_markerTestCase.cpp",
+    "../functional/Deqpgles2functional_flush_finishTestCase.cpp",
+    "../functional/Deqpgles2functional_polygon_offsetTestCase.cpp",
+    "../functional/Deqpgles2indices_bufferTestCase.cpp",
+    "../functional/Deqpgles2indices_unaligned_user_ptrTestCase.cpp",
+    "../functional/Deqpgles2indices_user_ptrTestCase.cpp",
+    "../functional/Deqpgles2lifetime_bindTestCase.cpp",
+    "../functional/Deqpgles2lifetime_bind_no_genTestCase.cpp",
+    "../functional/Deqpgles2lifetime_deleteTestCase.cpp",
+    "../functional/Deqpgles2lifetime_delete_boundTestCase.cpp",
+    "../functional/Deqpgles2lifetime_delete_usedTestCase.cpp",
+    "../functional/Deqpgles2lifetime_genTestCase.cpp",
+    "../functional/Deqpgles2triangle_vertex_clip_threeTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles2func0017" ]
+
+  cflags = [ "-Wno-error" ]
+}

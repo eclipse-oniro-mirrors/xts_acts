@@ -1,0 +1,21 @@
+{
+    "description": "Configuration for MultimodalInput Input Device Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "bundle-name": "com.acts.mmiinputdeviceetstest",
+        "module-name": "entry_test",
+        "shell-timeout": "1800000",
+        "testcase-timeout": 70000
+
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsMMIInputDeviceEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

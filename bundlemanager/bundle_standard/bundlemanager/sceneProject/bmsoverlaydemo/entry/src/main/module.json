@@ -1,0 +1,21 @@
+{
+    "module": {
+        "name": "stage1",
+        "type": "feature",
+        "targetModuleName": "entry1",
+        "targetPriority": 1,
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:phone_entry_dsc",
+        "mainElement": "MainAbility",
+        "deviceTypes": [
+            "default",
+            "tablet",
+            "2in1",
+            "wearable"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages"
+    }
+}

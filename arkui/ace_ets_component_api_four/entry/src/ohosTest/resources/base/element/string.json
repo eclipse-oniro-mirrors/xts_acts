@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "Divider_width",
+      "value": "10px"
+    },
+    {
+      "name": "Divider_startMargin",
+      "value": "5px"
+    },
+    {
+      "name": "Divider_endMargin",
+      "value": "5px"
+    },
+    {
+      "name": "badge_Size_test",
+      "value": "7vp"
+    },
+    {
+      "name": "swiper_margin",
+      "value": "12"
+    },
+    {
+      "name": "test_title",
+      "value": "test_resource_title"
+    }
+ ]
+}

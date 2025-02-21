@@ -1,0 +1,12 @@
+{
+  "float": [
+    {
+      "name": "textShadowRadius",
+      "value": "5.0"
+    },
+    {
+      "name": "textShadowOffset",
+      "value": "5.0"
+    }
+  ]
+}

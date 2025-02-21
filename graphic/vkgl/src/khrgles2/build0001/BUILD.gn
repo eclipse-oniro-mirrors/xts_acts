@@ -1,0 +1,67 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libkhrgles2func0001") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Khrgles2BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles2
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsKhrgles2TestSuite0001") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsKhrgles20001TestSuite.cpp",
+    "../core/Khrgles2internalformat_copy_tex_imageTestCase.cpp",
+    "../core/Khrgles2internalformat_renderbufferTestCase.cpp",
+    "../core/Khrgles2internalformat_texture2dTestCase.cpp",
+    "../shaders/Khrgles2shaders_aggressive_optimizationsTestCase.cpp",
+    "../shaders/Khrgles2shaders_negativeTestCase.cpp",
+    "../texture_3d/Khrgles2filtering_combinationsTestCase.cpp",
+    "../texture_3d/Khrgles2filtering_formatsTestCase.cpp",
+    "../texture_3d/Khrgles2filtering_sizesTestCase.cpp",
+    "../texture_3d/Khrgles2texture_3d_compressed_textureTestCase.cpp",
+    "../texture_3d/Khrgles2texture_3d_copy_sub_imageTestCase.cpp",
+    "../texture_3d/Khrgles2texture_3d_framebuffer_textureTestCase.cpp",
+    "../texture_3d/Khrgles2texture_3d_sub_imageTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libkhrgles2func0001" ]
+
+  cflags = [ "-Wno-error" ]
+}

@@ -1,0 +1,31 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/AlphabetIndexer/PopupAlpha",
+        "MainAbility/pages/Scroll/ListScroll",
+        "MainAbility/pages/List/ListMainChildren",
+        "MainAbility/pages/Refresh/refreshOffset",
+        "MainAbility/pages/List/listVisible",
+        "MainAbility/pages/Scroll/scrollOffset",
+        "MainAbility/pages/Swiper/swiperCustom",
+        "MainAbility/pages/Tabs/tabIcon",
+        "MainAbility/pages/List/ListAddApi",
+        "MainAbility/pages/List/listSwipeActionApi12",
+        "MainAbility/pages/Scroll/ScrollSourceOther",
+        "MainAbility/pages/Scroll/ScrollSource",
+        "MainAbility/pages/Scroll/offsetRemain",
+        "MainAbility/pages/Swiper/SwiperApi",
+        "MainAbility/pages/Tabs/TabsAp1",
+        "MainAbility/pages/Scroll/ScrollApi1",
+        "MainAbility/pages/Tabs/tabsAnimationMode",
+        "MainAbility/pages/List/childrenMainSize/set",
+        "MainAbility/pages/List/childrenMainSize/get",
+        "MainAbility/pages/AlphabetIndexer/alphabetEnable",
+        "MainAbility/pages/Swiper/swiperCount",
+        "MainAbility/pages/WaterFlow/waterFlowLayoutMode",
+        "MainAbility/pages/List/listOffset",
+        "MainAbility/pages/Swiper/swiperSyncType",
+        "MainAbility/pages/List/listVisibleContent",
+        "MainAbility/pages/Refresh/RefreshingContent"
+    ]
+}

@@ -1,0 +1,47 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+ohos_js_hap_suite("ActsAceEtsComponentCommonSevenAttrsPixelStretchEffectTest") {
+  hap_profile = "entry/src/main/module.json"
+  js_build_mode = "debug"
+  deps = [
+    ":ace_ets_component_common_seven_attrs_pixelStretchEffect_js_assets",
+    ":ace_ets_component_common_seven_attrs_pixelStretchEffect_resources",
+  ]
+  ets2abc = true
+  certificate_profile = "signature/openharmony_sx.p7b"
+  hap_name = "ActsAceEtsComponentCommonSevenAttrsPixelStretchEffectTest"
+  part_name = "ace_engine"
+  subsystem_name = "arkui"
+}
+
+ohos_app_scope(
+    "ace_ets_component_common_seven_attrs_pixelStretchEffect_app_profile") {
+  app_profile = "AppScope/app.json"
+  sources = [ "AppScope/resources" ]
+}
+
+ohos_js_assets(
+    "ace_ets_component_common_seven_attrs_pixelStretchEffect_js_assets") {
+  source_dir = "entry/src/main/ets"
+}
+
+ohos_resources(
+    "ace_ets_component_common_seven_attrs_pixelStretchEffect_resources") {
+  sources = [ "entry/src/main/resources" ]
+  deps =
+      [ ":ace_ets_component_common_seven_attrs_pixelStretchEffect_app_profile" ]
+  hap_profile = "entry/src/main/module.json"
+}

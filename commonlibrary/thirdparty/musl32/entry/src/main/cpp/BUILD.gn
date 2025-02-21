@@ -1,0 +1,157 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/config/ohos/config.gni")
+import("//build/ohos.gni")
+import("//foundation/arkui/napi/napi.gni")
+
+config("config") {
+  visibility = [ ":*" ]
+
+  cflags = [
+    "-Wall",
+    "-Werror",
+    "-g3",
+    "-Wunused-variable",
+  ]
+}
+
+config("public_config") {
+}
+
+ohos_shared_library("aeabindk32") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./aeabindk32.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fnmatchndk32") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fnmatchndk32.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fnmatchndk132") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fnmatchndk132.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("fnmatch1ndk32") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./fnmatch1ndk32.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("otherstestndk32") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./otherstestndk32.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("signalndk32") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./signalndk32.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("timendk32") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./timendk32.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("timexndk32") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./timexndk32.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}
+ohos_shared_library("localendk32") {
+  testonly = true
+  subsystem_name = "thirdparty"
+  part_name = "musl"
+  sources = [ "./localendk32.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [ "../cpp" ]
+  configs = [ ":config" ]
+
+  external_deps = [ "napi:ace_napi" ]
+
+  output_extension = "so"
+}

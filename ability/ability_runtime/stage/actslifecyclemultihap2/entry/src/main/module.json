@@ -1,0 +1,113 @@
+{
+  "module": {
+    "name": "hap2",
+    "type": "feature",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:hap2_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "uiSyntax": "ets",
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "com.example.lifecycletest.Hap2MainAbility1",
+        "srcEntrance": "./ets/Hap2MainAbility1/Hap2MainAbility1.ts",
+        "description": "$string:Hap2MainAbility1_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility1_label",
+        "visible": true,
+        "orientation": "portrait",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Hap2MainAbility2",
+        "srcEntrance": "./ets/Hap2MainAbility2/Hap2MainAbility2.ts",
+        "description": "$string:Hap2MainAbility2_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility2_label"
+      },
+      {
+        "name": "Hap2MainAbility3",
+        "srcEntrance": "./ets/Hap2MainAbility3/Hap2MainAbility3.ts",
+        "description": "$string:Hap2MainAbility3_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility3_label"
+      },
+      {
+        "name": "Hap2MainAbility4",
+        "srcEntrance": "./ets/Hap2MainAbility4/Hap2MainAbility4.ts",
+        "description": "$string:Hap2MainAbility4_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility4_label",
+        "launchType": "singleton"
+      },
+      {
+        "name": "Hap2MainAbility5",
+        "srcEntrance": "./ets/Hap2MainAbility5/Hap2MainAbility5.ts",
+        "description": "$string:Hap2MainAbility5_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility5_label",
+        "launchType": "standard"
+      },
+      {
+        "name": "Hap2MainAbility6",
+        "srcEntrance": "./ets/Hap2MainAbility6/Hap2MainAbility6.ts",
+        "description": "$string:Hap2MainAbility6_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility6_label"
+      },
+      {
+        "name": "Hap2MainAbility7",
+        "srcEntrance": "./ets/Hap2MainAbility7/Hap2MainAbility7.ts",
+        "description": "$string:Hap2MainAbility7_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility7_label"
+      },
+      {
+        "name": "Hap2MainAbility8",
+        "srcEntrance": "./ets/Hap2MainAbility8/Hap2MainAbility8.ts",
+        "description": "$string:Hap2MainAbility8_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility8_label"
+      },
+      {
+        "name": "Hap2MainAbility9",
+        "srcEntrance": "./ets/Hap2MainAbility9/Hap2MainAbility9.ts",
+        "description": "$string:Hap2MainAbility9_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility9_label"
+      },
+      {
+        "name": "Hap2MainAbility10",
+        "srcEntrance": "./ets/Hap2MainAbility10/Hap2MainAbility10.ts",
+        "description": "$string:Hap2MainAbility10_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap2MainAbility10_label"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ]
+  }
+}

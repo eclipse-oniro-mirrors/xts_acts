@@ -1,0 +1,67 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:test_pages",
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INSTALL_CLONE_BUNDLE",
+        "reason": "need use ohos.permission.INSTALL_CLONE_BUNDLE"
+      },
+      {
+        "name": "ohos.permission.UNINSTALL_CLONE_BUNDLE",
+        "reason": "need use ohos.permission.UNINSTALL_CLONE_BUNDLE"
+      },
+      {
+        "name": "ohos.permission.START_ABILIIES_FROM_BACKGROUND",
+        "reason": "need use ohos.permission.START_ABILIIES_FROM_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.ABILITY_BACKGROUND_COMMUNICATION",
+        "reason": "need use ohos.permission.ABILITY_BACKGROUND_COMMUNICATION"
+      }
+    ]
+  }
+}

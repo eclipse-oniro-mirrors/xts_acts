@@ -1,0 +1,24 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/onSelectionChange/onSelectionChange1",
+        "MainAbility/pages/onSelectionChange/onSelectionChange2",
+        "MainAbility/pages/onSelectionChange/onSelectionChange3",
+        "MainAbility/pages/onSelectionChange/onSelectionChange4",
+        "MainAbility/pages/onSelectionChange/onSelectionChange6",
+        "MainAbility/pages/onSelectionChange/onSelectionChange5",
+        "MainAbility/pages/onSelectionChange/onSelectionChange7",
+        "MainAbility/pages/onSelectionChange/onSelectionChange8",
+        "MainAbility/pages/onSelectionChange/onSelectionChange9",
+        "MainAbility/pages/onSelectionChange/onSelectionChange10",
+        "MainAbility/pages/onSelectionChange/onSelectionChange11",
+        "MainAbility/pages/onSelectionChange/onSelectionChange12",
+        "MainAbility/pages/onSelectionChange/onSelectionChange13",
+        "MainAbility/pages/onSelectionChange/onSelectionChange14",
+        "MainAbility/pages/onSelectionChange/onSelectionChange15",
+        "MainAbility/pages/onSelectionChange/onSelectionChange16",
+        "MainAbility/pages/onSelectionChange/onSelectionChange17",
+        "MainAbility/pages/onSelectionChange/onSelectionChange18",
+        "MainAbility/pages/onSelectionChange/onSelectionChange19"
+    ]
+}

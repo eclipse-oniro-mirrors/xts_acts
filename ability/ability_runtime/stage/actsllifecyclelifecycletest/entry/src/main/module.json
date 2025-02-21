@@ -1,0 +1,103 @@
+{
+  "module": {
+    "name": "entry_test",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
+    "mainElement": "TestAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:test_pages",
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbilityA",
+        "srcEntry": "./ets/MainAbilityA/MainAbilityA.ets",
+        "description": "$string:TestAbility_label",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "launchType": "singleton",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      {
+        "name": "MainAbilityB",
+        "srcEntry": "./ets/MainAbilityB/MainAbilityB.ets",
+        "description": "$string:TestAbility_label",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      {
+        "name": "MainAbilityC",
+        "srcEntry": "./ets/MainAbilityC/MainAbilityC.ets",
+        "description": "$string:TestAbility_label",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      {
+        "name": "MainAbilitySingle1",
+        "srcEntry": "./ets/MainAbilitySingle1/MainAbilitySingle1.ets",
+        "description": "$string:TestAbility_label",
+        "icon": "$media:icon",
+        "launchType": "singleton",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      {
+        "name": "MainAbility3",
+        "srcEntry": "./ets/MainAbility3/MainAbility3.ets",
+        "description": "$string:TestAbility_label",
+        "icon": "$media:icon",
+        "launchType": "multiton",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      {
+        "name": "MainAbilityMultitonA",
+        "srcEntry": "./ets/MainAbilityMultitonA/MainAbilityMultitonA.ets",
+        "description": "$string:TestAbility_label",
+        "icon": "$media:icon",
+        "launchType": "multiton",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ]
+  }
+}

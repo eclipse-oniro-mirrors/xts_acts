@@ -1,0 +1,42 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover">
+    <script>
+		function getFile() {
+			var file = "file:///data/storage/el1/bundle/com.acewebenhanced.test3/resources/resfile/js/script.js";
+			var xmlHttpReq = new XMLHttpRequest();
+			xmlHttpReq.onreadystatechange = function(){
+			    console.log("readyState:" + xmlHttpReq.readyState);
+			    console.log("status:" + xmlHttpReq.status);
+				if(xmlHttpReq.readyState == 4){
+				    if (xmlHttpReq.status == 200) {
+                // 如果ets侧正确设置路径列表，则此处能正常获取资源
+				        const element = document.getElementById('text');
+                        element.textContent = "load " + file + " success";
+				    } else {
+                // 如果ets侧不设置路径列表，则此处会触发CORS跨域检查错误
+				        const element = document.getElementById('text');
+                        element.textContent = "load " + file + " failed";
+				    }
+				}
+			}
+			xmlHttpReq.open("GET", file);
+			xmlHttpReq.send(null);
+		}
+
+    </script>
+</head>
+
+<body>
+<div class="page">
+    <button id="example" onclick="getFile()">stealFile</button>
+</div>
+<div id="text"></div>
+</body>
+
+</html>

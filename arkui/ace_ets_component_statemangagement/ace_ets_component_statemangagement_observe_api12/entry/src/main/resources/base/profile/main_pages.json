@@ -1,0 +1,15 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+		"MainAbility/pages/observeTrack/ExtendTrack",
+        "MainAbility/pages/observeTrack/NestTrack",
+        "MainAbility/pages/observeTrack/ObjectArray",
+        "MainAbility/pages/observeTrack/OnlyObserve",
+        "MainAbility/pages/observeTrack/StaticTrack",
+        "MainAbility/pages/observeTrack/TwoNestTrack",
+        "MainAbility/pages/observeTrack/TrackDate",
+        "MainAbility/pages/observeTrack/TrackMap",
+        "MainAbility/pages/observeTrack/TrackSet",
+        "MainAbility/pages/observeTrack/ArrayTrack"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+  "src": [
+    "TestAbility/pages/Index",
+    "TestAbility/pages/IndexMark",
+    "TestAbility/pages/IndexOff",
+    "TestAbility/pages/IndexOrig"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "Divider_Stroke_Width",
+      "value": "10px"
+    },
+    {
+      "name": "Divider_Start_Margin",
+      "value": "5px"
+    },
+    {
+      "name": "Divider_End_Margin",
+      "value": "5px"
+    },
+    {
+      "name": "Indicator_Height",
+      "value": "10vp"
+    },
+    {
+      "name": "Indicator_Width",
+      "value": "30vp"
+    },
+    {
+      "name": "Indicator_Radius",
+      "value": "5vp"
+    },
+    {
+      "name": "Indicator_Sub_Radius",
+      "value": "20vp"
+    },
+    {
+      "name": "Indicator_Space",
+      "value": "10vp"
+    },
+    {
+      "name": "BottomTabBarStyleLabelStyle_family_Test",
+      "value": "HarmonyOS Sans"
+    }
+  ]
+}

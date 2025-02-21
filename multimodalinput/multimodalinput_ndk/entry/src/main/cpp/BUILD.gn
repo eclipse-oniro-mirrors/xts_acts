@@ -1,0 +1,60 @@
+# Copyright (C) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/config/ohos/config.gni")
+import("//build/ohos.gni")
+import("//build/ohos/ndk/ndk.gni")
+import("//foundation/arkui/napi/napi.gni")
+import("//foundation/multimodalinput/input/multimodalinput_mini.gni")
+
+config("config") {
+  visibility = [ ":*" ]
+
+  cflags = [
+    "-Wall",
+    "-Werror",
+    "-g3",
+    "-Wunused-variable",
+  ]
+}
+
+ohos_shared_library("inputndk") {
+  testonly = true
+  subsystem_name = "multimodalinput"
+  part_name = "input"
+  sources = [ "./inputndk.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+
+  include_dirs = [
+    "${mmi_path}/interfaces/kits/c/input/",
+    "./",
+  ]
+
+  configs = [
+    "${mmi_path}:coverage_flags",
+    "${mmi_path}/frameworks/proxy:libmmi_test_util",
+  ]
+
+  deps = [ "${mmi_path}/interfaces/kits/c:libohinput_ndk" ]
+
+  external_deps = [
+    "c_utils:utils",
+    "hilog:libhilog",
+    "input:oh_input_manager",
+    "ipc:ipc_single",
+    "napi:ace_napi",
+    "samgr:samgr_proxy",
+  ]
+
+  output_extension = "so"
+}

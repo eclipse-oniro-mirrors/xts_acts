@@ -1,0 +1,20 @@
+{
+  "app": {
+    "bundleName": "com.example.aaappdebugtest",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "distributedNotificationEnabled": true,
+    "keepAlive" : true,
+    "singleUser": true,
+    "minAPIVersion": 12,
+    "debug": true,
+    "targetAPIVersion": 12,
+    "car": {
+        "apiCompatibleVersion": 12,
+        "singleUser": false
+     }
+  }
+}

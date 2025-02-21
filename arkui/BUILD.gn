@@ -1,0 +1,95 @@
+# Copyright (C) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+group("arkui") {
+  testonly = true
+  deps = [
+    "ace_c_arkui_test:ActsAceCArkUITest",
+
+    #"ace_ets_arkts_api:ActsAceEtsArkTSApiTest",
+    #"ace_ets_component:ActsAceEtsComponentTest",
+    #"ace_ets_component_ArkUI_test:ActsAceAPITest",
+    "ace_ets_component_advanced:componentAdvancedTest",
+
+    #"ace_ets_component_api:ActsAceComponentApi03Test",
+    #"ace_ets_component_api11_completion:ActsAceEtsComponentApi11CompletionTest",
+    #"ace_ets_component_api12:ActsAceEtsComponentApi12Test",
+    #"ace_ets_component_api_five:ActsAceComponentApi06Test",
+    #"ace_ets_component_api_four:ActsAceComponentApi05Test",
+    #"ace_ets_component_api_three:ActsAceComponentApi04Test",
+    #"ace_ets_component_api_two:ActsAceComponentApi02Test",
+    "ace_ets_component_apilack:ActsAceEtsApiLackTest",
+
+    #"ace_ets_component_attrlack:ActsAceEtsAttrLackTest",
+    #"ace_ets_component_basic:ActsAceEtsComponentBasicTest",
+    "ace_ets_component_common_attrss:componentAttrssTest",
+
+    #"ace_ets_component_completion:componentCompletionTest",
+    #"ace_ets_component_container:ActsAceEtsComponentContainerTest",
+    #"ace_ets_component_dialog:ActsAceEtsComponentDialogTest",
+    #"ace_ets_component_five:ActsAceEtsComponentFiveTest",
+    #"ace_ets_component_four:ActsAceEtsComponentFourTest",
+    "ace_ets_component_nine/ace_ets_component_nine_gridcol:NineStyleActsAceEtsComponentGridColTest",
+
+    #"ace_ets_component_node:ActsAceEtsComponentNodeTest",
+    "ace_ets_component_seven:componentSevenAttrssTest",
+
+    #"ace_ets_component_statemangagement:ActsAceEtsComponentState",
+    #"ace_ets_component_three:ActsAceEtsComponentThreeTest",
+    #"ace_ets_component_two:ActsAceEtsComponentTwoTest",
+    #"ace_ets_component_ui:ActsAceEtsComponentUITest",
+    #"ace_ets_components_ux:componentUxTest",
+    #"ace_ets_dev:ActsAceDevTest",
+    #"ace_ets_layout_test:ActsAceEtsLayoutTest",
+    "ace_ets_module_noui:ActsAceEtsModuleNoUITest",
+    "ace_ets_module_ui:ActsAceEtsModuleUITest",
+
+    #"ace_ets_standard:ActsAceEtsStTest",
+    #"ace_ets_test:ActsAceEtsTest",
+    #"ace_ets_third_test:ActsAceEtsThirdTest",
+    "ace_ets_ux_five:UxFiveTest",
+    "ace_ets_ux_one:UxOneTest",
+    "ace_ets_web_dev:ActsAceWebDevTest",
+    "ace_ets_web_dev_cloudservice_webController:ActsAceWebDevCloudServiceWebControllerTest",
+    "ace_ets_web_dev_cloudservice_webController_enhanced:ActsAceWebDevCloudServiceWebControllerEnhancedTest",
+    "ace_ets_web_dev_cloudservice_webController_five:ActsAceWebDevCloudServiceWebControllerFiveTest",
+    "ace_ets_web_dev_cloudservice_webController_four:ActsAceWebDevCloudServiceWebControllerFourTest",
+    "ace_ets_web_dev_cloudservice_webController_group:ActsAceWebDevCloudServiceWebControllerGroupTest",
+    "ace_ets_web_dev_cloudservice_webController_seven:ActsAceWebDevCloudServiceWebControllerSevenTest",
+    "ace_ets_web_dev_cloudservice_webController_six:ActsAceWebDevCloudServiceWebControllerSixTest",
+    "ace_ets_web_dev_cloudservice_webController_three:ActsAceWebDevCloudServiceWebControllerThreeTest",
+    "ace_ets_web_dev_cloudservice_webController_two:ActsAceWebDevCloudServiceWebControllerTwoTest",
+    "ace_ets_web_dev_four:ActsAceWebDevFourTest",
+    "ace_ets_web_dev_three:ActsAceWebDevThreeTest",
+    "ace_ets_web_dev_two:ActsAceWebDevTwoTest",
+    "ace_ets_web_dev_webController:ActsAceWebDevWebControllerTest",
+    "ace_ets_web_dev_webviewController:ActsAceWebDevWebViewControllerTest",
+    "ace_ets_web_dev_webviewControllerError:ActsAceWebDevWebViewContErrorTest",
+    "ace_ets_web_enhanced:webEnhancedTest",
+    "ace_ets_web_error_code:ActsAceWebErrorCodeTest",
+    "ace_ets_web_napis:ActsNativeWebTest",
+    "ace_ets_web_scheme_handler_four_napis:ActsNativeWebSchemeHandlerTest",
+    "ace_ets_web_scheme_handler_napis:ActsNativeWebSchemeHandlerOneTest",
+    "ace_ets_web_scheme_handler_napis_enhance:ActsNativeWebSchemeHandlerEnhanceTest",
+    "ace_ets_web_scheme_handler_napis_enhance_two:ActsNativeWebSchemeHandlerEnhanceTwoTest",
+    "ace_ets_web_scheme_handler_three_napis:ActsNativeWebSchemeHandlerThreeTest",
+    "ace_ets_web_scheme_handler_two_napis:ActsNativeWebSchemeHandlerTwoTest",
+    "ace_ets_web_view:ActsAceWebViewTest",
+    "ace_ets_xcomponent:ActsAceXComponentEtsTest",
+    "ace_js_attribute_api:ActsAceJsApiTest",
+    "ace_napi_test:ActsAceNapiEtsTest",
+    "ace_standard:ActsAceStandardTest",
+    "ace_standard_video:ActsAceStandardVideoTest",
+    "libuv:libuvTest",
+  ]
+}

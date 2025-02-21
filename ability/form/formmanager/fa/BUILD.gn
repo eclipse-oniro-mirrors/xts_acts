@@ -1,0 +1,66 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+group("formmanager") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "formhostst_ets/formsystemhost:FormSystemHost",
+      "formhostst_ets/formsystemhostb:FormSystemHostB",
+      "formhostst_ets/formsystemhostc:FormSystemHostC",
+      "formhostst_ets/formsystemhostd:FormSystemHostD",
+      "formhostst_ets/formsystemhoste:FormSystemHostE",
+      "formhostst_ets/formsystemhostf:FormSystemHostF",
+      "formhostst_ets/formsystemhostg:FormSystemHostG",
+      "formhostst_ets/formsystemhosti:FormSystemHostI",
+      "formhostst_ets/formsystemhostj:FormSystemHostJ",
+      "formhostst_ets/formsystemhostk:FormSystemHostK",
+      "formhostst_ets/formsystemhostl:FormSystemHostL",
+      "formhostst_ets/formsystemhostn:FormSystemHostN",
+      "formhostst_ets/formsystemhostnoperm:FormSystemHostNoPerm",
+      "formhostst_ets/formsystemhosto:FormSystemHostO",
+      "formhostst_ets/formsystemhostp:FormSystemHostP",
+      "formproviderst_ets/formsupplyapplicationA:FormSupplyAppA",
+      "formproviderst_ets/formsupplyapplicationB:FormSupplyAppB",
+      "formproviderst_ets/formsupplyapplicationC:FormSupplyAppC",
+      "formproviderst_ets/formsupplyapplicationD:FormSupplyAppD",
+      "formproviderst_ets/formsupplyapplicationE:FormSupplyAppE",
+      "formproviderst_ets/formsupplyapplicationF:FormSupplyAppF",
+      "formproviderst_ets/formsupplyapplicationG:FormSupplyAppG",
+      "formproviderst_ets/formsupplyapplicationH:FormSupplyAppH",
+      "formproviderst_ets/formsupplyapplicationNotSysApp:FormSupplyAppNS",
+      "formproviderst_ets/formsystemprovidera:FormSystemProviderA",
+      "formproviderst_ets/formsystemproviderb:FormSystemProviderB",
+      "formproviderst_ets/formsystemproviderc:FormSystemProviderC",
+      "formproviderst_ets/formsystemproviderd:FormSystemProviderD",
+      "formsystemtest_ets/formacquiretest:ActsFormAcquireTest",
+      "formsystemtest_ets/formacquiretest2:ActsFormAcquire2Test",
+      "formsystemtest_ets/formdeletetest:ActsFormDeleteTest",
+      "formsystemtest_ets/formdynamicrefreshtest:ActsFormDynamicRefreshTest",
+      "formsystemtest_ets/formfuzztest:ActsFormFuzzTest",
+      "formsystemtest_ets/formgetformsinfotest/formsoneandonetest:ActsFormsOneAndOneTest",
+      "formsystemtest_ets/formgetformsinfotest/formsoneandtwotest:ActsFormsOneAndTwoTest",
+      "formsystemtest_ets/formgetformsinfotest/formsoneandzerotest:ActsFormsOneAndZeroTest",
+      "formsystemtest_ets/formgetformsinfotest/formswithoutpermtest:ActsFormsWithoutPermTest",
+      "formsystemtest_ets/formgetformsinfotest/formszerotest:ActsFormsZeroTest",
+      "formsystemtest_ets/formhostdeathrecipienttest:ActsFormHostDeathRecipientTest",
+      "formsystemtest_ets/formreleasetest:ActsFormReleaseTest",
+      "formsystemtest_ets/formstatetest_disable:ActsFormStateDisableTest",
+      "formsystemtest_ets/formstatetest_enable:ActsFormStateEnableTest",
+      "formsystemtest_ets/formstresstest:ActsFormStressTest",
+      "formsystemtest_ets/formupdatefreshtest:ActsFormUpdateRefreshTest",
+    ]
+  }
+}

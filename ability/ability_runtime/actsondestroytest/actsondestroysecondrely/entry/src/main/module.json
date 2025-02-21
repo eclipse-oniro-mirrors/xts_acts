@@ -1,0 +1,40 @@
+{
+  "module": {
+    "name": "second",
+    "type": "feature",
+    "srcEntry": "./ets/application/SecondAbilityStage.ts",
+    "description": "$string:module_desc",
+    "mainElement": "SecondAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "SecondAbility",
+        "srcEntry": "./ets/secondability/SecondAbility.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "SecondOtherAbility",
+        "srcEntry": "./ets/secondotherability/SecondOtherAbility.ts",
+        "description": "$string:SecondOtherAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondOtherAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      }
+    ]
+  }
+}

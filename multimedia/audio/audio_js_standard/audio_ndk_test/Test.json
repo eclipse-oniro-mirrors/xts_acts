@@ -1,0 +1,41 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "ohos.audio.napitest",
+        "package-name": "ohos.audio.napitest",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioNapiEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/ohos.audio.napitest/haps/entry/files",
+                "chmod 777 -R /data/app/el2/100/base/ohos.audio.napitest/haps/entry"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600"
+            ],
+            "cleanup-apps": true
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/audio/audioRenderer/test_44100_2.wav ->/data/app/el2/100/base/ohos.audio.napitest/haps/entry/files/"
+                
+            ]
+        }
+    ]
+}

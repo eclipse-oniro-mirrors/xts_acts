@@ -1,0 +1,17 @@
+{
+  "app": {
+    "bundleName": "ohos.acts.multimedia.image.imagequalityenhancement",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "keepAlive": true,
+    "minAPIVersion": 12,
+    "targetAPIVersion": 12,
+    "car": {
+      "apiCompatibleVersion": 12,
+      "singleUser": false
+    }
+  }
+}

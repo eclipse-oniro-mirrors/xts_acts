@@ -1,0 +1,38 @@
+{
+    "description": "Configuration for storage filefs Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "ohos.acts.storage.fileiov9",
+        "package-name": "ohos.acts.storage.fileiov9",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push":[],
+            "run-command":[
+                "setenforce 1",
+                "power-shel1 setmode602",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "hilog -b I",
+                "hilog -b D -D 0xD002B70",
+                "sleep 2"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": []
+        },
+        {
+            "test-file-name": ["ActsStorageFileIoV9JSTest.hap"],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

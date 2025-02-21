@@ -1,0 +1,329 @@
+// @ts-nocheck
+/**
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
+import { UiDriver, BY } from '@ohos.UiTest';
+import router from '@ohos.router';
+import events_emitter from '@ohos.events.emitter';
+import Utils from './Utils';
+
+export default function textAreaJsunit() {
+  describe('appInfoTest_four_10', () => {
+    beforeEach(async (done: Function) => {
+      console.info("textArea beforeEach start");
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/textArea',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get textArea state pages:" + JSON.stringify(pages));
+        if (!("textArea" == pages.name)) {
+          console.info("get textArea state pages.name:" + JSON.stringify(pages.name));
+          let result = await router.pushUrl(options);
+          await Utils.sleep(2000);
+          console.info("push textArea page result:" + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push textArea page error:" + JSON.stringify(result));
+      }
+      done()
+    });
+
+    afterEach(async () => {
+      await Utils.sleep(1000);
+      console.info("textArea after each called");
+    });
+
+    it('textAreaTest01', 0, async (done: Function) => {
+      console.info('[textAreaTest01] START');
+      await Utils.sleep(1000);
+      let strJson: string = getInspectorByKey('textArea');
+      console.info("[textAreaTest01] JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$type).assertEqual('TextArea');
+      expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('30.00fp');
+      console.info('textAreaTest01 END');
+      done();
+    });
+
+    it('textAreaTest02', 0, async (done: Function) => {
+      console.info('[textAreaTest02] START');
+      try {
+        let eventData: events_emitter.EventData = {
+          data: {
+            "fontSize": '50',
+          }
+        }
+        let innerEvent: events_emitter.InnerEvent = {
+          eventId: 215,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[textAreaTest02] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[textAreaTest02] change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJson: string = getInspectorByKey('textArea');
+
+      console.info("[textAreaTest02] JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('50.00fp');
+      console.info('textAreaTest02 END');
+      done();
+    });
+
+    it('textAreaTest03', 0, async (done: Function) => {
+      console.info('[textAreaTest03] START');
+      await Utils.sleep(1000);
+      let strJson: string = getInspectorByKey('textArea');
+
+      console.info("[textAreaTest03] JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      // 适配开发侧非法入参修改
+      expect(JSON.parse(strJson).$attrs.fontColor).assertEqual('#FF182432');
+      console.info('textAreaTest03 END');
+      done();
+    });
+
+    it('textAreaTest04', 0, async (done: Function) => {
+      console.info('[textAreaTest04] START');
+      try {
+        let eventData: events_emitter.EventData = {
+          data: {
+            "fontColor": '#FFFF0000',
+          }
+        }
+        let innerEvent: events_emitter.InnerEvent = {
+          eventId: 216,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[textAreaTest04] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[textAreaTest04] change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJson: string = getInspectorByKey('textArea');
+
+      console.info("[textAreaTest04] JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.fontColor).assertEqual('#FFFF0000');
+      console.info('textAreaTest04 END');
+      done();
+    });
+
+    it('textAreaTest05', 0, async (done: Function) => {
+      console.info('[testArea05] START');
+      await Utils.sleep(1000);
+      let strJson: string = getInspectorByKey('textArea');
+
+      console.info("[textAreaTest05] JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.textAlign).assertEqual('TextAlign.Center');
+      console.info('textAreaTest05 END');
+      done();
+    });
+
+    it('textAreaTest06', 0, async (done: Function) => {
+      console.info('[textAreaTest06] START');
+      try {
+        let eventData: events_emitter.EventData = {
+          data: {
+            "textAlign": 'TextAlign.Start',
+          }
+        }
+        let innerEvent: events_emitter.InnerEvent = {
+          eventId: 217,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[textAreaTest06] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[textAreaTest06] change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJson: string = getInspectorByKey('textArea');
+
+      console.info("[textAreaTest06] JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.textAlign).assertEqual('TextAlign.Start');
+      console.info('textAreaTest06 END');
+      done();
+    });
+
+    it('textAreaTest07', 0, async (done: Function) => {
+      console.info('[textAreaTest07] START');
+      await Utils.sleep(1000);
+      let strJson: string = getInspectorByKey('textArea');
+
+      console.info("[textAreaTest07] JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .constructor));
+      expect(JSON.parse(strJson).$attrs.constructor.text).assertEqual(undefined);
+      console.info('textAreaTest07 END');
+      done();
+    });
+
+    it('textAreaTest08', 0, async (done: Function) => {
+      console.info('[textAreaTest08] START');
+      try {
+        let eventData: events_emitter.EventData = {
+          data: {
+            "text": 'TextArea_1',
+          }
+        }
+        let innerEvent: events_emitter.InnerEvent = {
+          eventId: 218,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[textAreaTest08] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[textAreaTest08] change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJson: string = getInspectorByKey('textArea');
+
+      console.info("[textAreaTest08] JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .constructor));
+      expect(JSON.parse(strJson).$attrs.constructor.text).assertEqual(undefined);
+      console.info('textAreaTest08 END');
+      done();
+    });
+
+    it('textAreaTest09', 0, async (done: Function) => {
+      console.info('[textAreaTest09] START');
+      await Utils.sleep(1000);
+      let strJson: string = getInspectorByKey('textArea');
+
+      console.info("[textAreaTest09] JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.textAlign).assertEqual('TextAlign.Start');
+      console.info('textAreaTest09 END');
+      done();
+    });
+
+    it('textAreaTest10', 0, async (done: Function) => {
+      console.info('[textAreaTest10] START');
+      try {
+        let eventData: events_emitter.EventData = {
+          data: {
+            "textAlign": TextAlign.Start,
+          }
+        }
+        let innerEvent: events_emitter.InnerEvent = {
+          eventId: 218,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[textAreaTest10] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[textAreaTest10] change component data error: " + err.message);
+      }
+      await Utils.sleep(1000);
+      let strJson: string = getInspectorByKey('textArea');
+
+      console.info("[textAreaTest10] JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.textAlign).assertEqual('TextAlign.Start');
+      console.info('textAreaTest10 END');
+      done();
+    });
+
+    /*
+     * @tc.number :textAreaTest11
+     * @tc.name   :test getCaretOffset when iput text is null
+     * @tc.desc   :expect caretOffset index 0 when text is null
+     */
+    it('textAreaTest11', 0, async (done: Function) => {
+      console.info('[textAreaTest11] START');
+      await Utils.sleep(1000);
+      let driver = UiDriver.create();
+      await Utils.sleep(1000);
+      let btn = await driver.findComponent(BY.key('caretOffsetBtn1'));
+      await btn.click();
+      await Utils.sleep(2000);
+      let caretText = await driver.findComponent(BY.key('caretOffsetText1'));
+      let text = await caretText.getText();
+      expect(text).assertEqual('Index0');
+      done();
+    });
+
+    /*
+     * @tc.number :textAreaTest12
+     * @tc.name   :test getCaretOffset when iput text length not exceed maxLength.
+     * @tc.desc   :expect caretOffset index equal text length
+     */
+    it('textAreaTest12', 0, async (done: Function) => {
+      console.info('[textAreaTest12] START');
+      await Utils.sleep(1000);
+      try {
+        let eventData: events_emitter.EventData = {
+          data: {
+            "text2": '123456789'
+          }
+        }
+        let innerEvent: events_emitter.InnerEvent = {
+          eventId: 218,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[textAreaTest12] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[textAreaTest12] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let driver = UiDriver.create();
+      await Utils.sleep(1000);
+      let btn = await driver.findComponent(BY.key('caretOffsetBtn1'));
+      await btn.click();
+      await Utils.sleep(1000);
+      let caretText = await driver.findComponent(BY.key('caretOffsetText1'));
+      let text = await caretText.getText();
+      expect(text).assertEqual('Index9');
+      done();
+    });
+
+    /*
+     * @tc.number :textAreaTest13
+     * @tc.name   :test getCaretOffset when iput text length exceed maxLength.
+     * @tc.desc   :expect caretOffset index equal maxLength
+     */
+    it('textAreaTest13', 0, async (done: Function) => {
+      console.info('[textAreaTest13] START');
+      await Utils.sleep(1000);
+      try {
+        let eventData: events_emitter.EventData = {
+          data: {
+            "text2": '1234567890abc'
+          }
+        }
+        let innerEvent: events_emitter.InnerEvent = {
+          eventId: 218,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("[textAreaTest13] start to publish emit");
+        events_emitter.emit(innerEvent, eventData);
+      } catch (err) {
+        console.log("[textAreaTest13] change component data error: " + err.message);
+      }
+      await Utils.sleep(2000);
+      let driver = UiDriver.create();
+      await Utils.sleep(1000);
+      let btn = await driver.findComponent(BY.key('caretOffsetBtn1'));
+      await btn.click();
+      await Utils.sleep(1000);
+      let caretText = await driver.findComponent(BY.key('caretOffsetText1'));
+      let text = await caretText.getText();
+      expect(text).assertEqual('Index10');
+      done();
+    });
+  })
+}

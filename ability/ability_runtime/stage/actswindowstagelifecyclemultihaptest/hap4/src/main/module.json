@@ -1,0 +1,48 @@
+{
+    "module": {
+        "name": "hap4",
+        "type": "feature",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:hap4_desc",
+        "mainElement": "Hap4MainAbility1",
+        "deviceTypes": [
+            "default",
+            "tablet",
+            "2in1"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "process": "hap4mainability",
+        "pages": "$profile:main_pages",
+        "abilities": [
+            {
+                "name": "com.example.lifecycletest.hap4mainability",
+                "srcEntrance": "./ets/hap4mainability/hap4mainability.ts",
+                "description": "$string:Hap4MainAbility1_desc",
+                "icon": "$media:icon",
+                "label": "$string:Hap4MainAbility1_label",
+                "visible": true,
+                "orientation": "portrait",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "requestPermissions": [
+          {
+            "name": "ohos.permission.GET_BUNDLE_INFO"
+          },
+          {
+            "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+          }
+        ]
+    }
+}

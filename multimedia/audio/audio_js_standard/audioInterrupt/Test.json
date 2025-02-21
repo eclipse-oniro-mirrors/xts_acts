@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for audio manager Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "testcase-timeout": "300000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.multimedia.audio.audiointerrupt",
+        "package-name": "ohos.acts.multimedia.audio.audiointerrupt"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioInterruptJsTest.hap",
+                "audioRenderInterrupt.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.audiointerrupt/haps/entry/files/",
+                "mkdir -p /data/app/el2/100/base/com.example.audiorenderinterrupt/haps/entry/files/",
+                "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.audio.audiointerrupt/haps/entry",
+                "chmod 777 -R /data/app/el2/100/base/com.example.audiorenderinterrupt/haps/entry"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600"
+            ],
+            "cleanup-apps": true
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/audio/audioManager/StarWars10s-2C-48000-4SW.wav ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audiointerrupt/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-48000-4SW.wav ->/data/app/el2/100/base/com.example.audiorenderinterrupt/haps/entry/files/"
+            ]
+        }
+    ]
+}

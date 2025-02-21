@@ -1,0 +1,27 @@
+{
+    "src": [
+          "MainAbility/pages/index/index",
+          "MainAbility/pages/themeTokensPages/SetDefaultThemeTestPage",
+          "MainAbility/pages/themeTokensPages/SystemThemeTestPage",
+          "MainAbility/pages/themeTokensPages/WithThemeTestPage",
+          "MainAbility/pages/components/AlphabetIndexerPage",
+          "MainAbility/pages/components/BadgePage",
+          "MainAbility/pages/components/ButtonPage",
+          "MainAbility/pages/components/CheckboxPage",
+          "MainAbility/pages/components/CounterPage",
+          "MainAbility/pages/components/DatePickerPage",
+          "MainAbility/pages/components/DividerPage",
+          "MainAbility/pages/components/IfPage",
+          "MainAbility/pages/components/ForEachPage",
+          "MainAbility/pages/components/LazyForEachPage",
+          "MainAbility/pages/components/LoadingProgressPage",
+          "MainAbility/pages/components/MenuPage",
+          "MainAbility/pages/components/PatternLockPage",
+          "MainAbility/pages/components/QRCodePage",
+          "MainAbility/pages/components/SliderPage",
+          "MainAbility/pages/components/TextPage",
+          "MainAbility/pages/components/TextPickerPage",
+          "MainAbility/pages/components/TimePickerPage",
+          "MainAbility/pages/components/TogglePage"
+    ]
+}

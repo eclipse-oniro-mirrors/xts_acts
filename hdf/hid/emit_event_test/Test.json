@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for ActsDriversExternalHidEmitEventTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.drivers.hid.emit_event_test",
+        "module-name": "com.drivers.hid.emit_event_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 60000
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsDriversExternalHidEmitEventTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }, {
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "power-shell setmode 602"
+        ]
+
+    }]
+}

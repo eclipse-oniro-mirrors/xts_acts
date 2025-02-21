@@ -1,0 +1,20 @@
+{
+    "description": "Global js interface performance Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "testcase-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "ohos.perf.test",
+        "package-name": "ohos.perf.test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsGlobalPerfJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

@@ -1,0 +1,77 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0036") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3TestSuite0036") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles30036TestSuite.cpp",
+    "../functional/Deqpgles3instance_array_basic_type_packedTestCase.cpp",
+    "../functional/Deqpgles3instance_array_basic_type_sharedTestCase.cpp",
+    "../functional/Deqpgles3instance_array_basic_type_std140TestCase.cpp",
+    "../functional/Deqpgles3multi_basic_types_per_block_bufferTestCase.cpp",
+    "../functional/Deqpgles3multi_basic_types_single_bufferTestCase.cpp",
+    "../functional/Deqpgles3multi_nested_struct_per_block_bufferTestCase.cpp",
+    "../functional/Deqpgles3multi_nested_struct_single_bufferTestCase.cpp",
+    "../functional/Deqpgles3random_basic_arraysTestCase.cpp",
+    "../functional/Deqpgles3random_basic_typesTestCase.cpp",
+    "../functional/Deqpgles3random_scalar_typesTestCase.cpp",
+    "../functional/Deqpgles3random_vector_typesTestCase.cpp",
+    "../functional/Deqpgles3single_basic_array_std140TestCase.cpp",
+    "../functional/Deqpgles3single_nested_struct_array_per_block_bufferTestCase.cpp",
+    "../functional/Deqpgles3single_nested_struct_array_single_bufferTestCase.cpp",
+    "../functional/Deqpgles3single_nested_struct_mixed_matrix_packing_per_block_bufferTestCase.cpp",
+    "../functional/Deqpgles3single_nested_struct_mixed_matrix_packing_single_bufferTestCase.cpp",
+    "../functional/Deqpgles3single_nested_struct_per_block_bufferTestCase.cpp",
+    "../functional/Deqpgles3single_nested_struct_single_bufferTestCase.cpp",
+    "../functional/Deqpgles3single_struct_array_per_block_bufferTestCase.cpp",
+    "../functional/Deqpgles3single_struct_array_single_bufferTestCase.cpp",
+    "../functional/Deqpgles3single_struct_per_block_bufferTestCase.cpp",
+    "../functional/Deqpgles3single_struct_single_bufferTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles3func0036" ]
+
+  cflags = [ "-Wno-error" ]
+}

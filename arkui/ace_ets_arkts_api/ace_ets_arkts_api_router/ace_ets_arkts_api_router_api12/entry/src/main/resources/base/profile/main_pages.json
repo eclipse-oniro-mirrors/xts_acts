@@ -1,0 +1,33 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/router/router_getStateByUrl1",
+        "MainAbility/pages/router/router_getStateByUrl2",
+        "MainAbility/pages/router/router_getStateByUrl02",
+        "MainAbility/pages/router/router_getStateByIndex3",
+        "MainAbility/pages/router/router_getStateByIndex4",
+        "MainAbility/pages/router/router_getStateByUrl5",
+        "MainAbility/pages/router/router_back6",
+        "MainAbility/pages/router/router_back7",
+        "MainAbility/pages/router/router_back8",
+        "MainAbility/pages/router/router_back08",
+        "MainAbility/pages/router/router_back9",
+        "MainAbility/pages/router/router_back09",
+        "MainAbility/pages/router/router_back10",
+        "MainAbility/pages/router/router_back11",
+        "MainAbility/pages/router/router_back12",
+        "MainAbility/pages/router/router_back012",
+        "MainAbility/pages/router/router_back13",
+        "MainAbility/pages/router/router_back013",
+        "MainAbility/pages/router/router_getStateByUrl14",
+        "MainAbility/pages/router/router_getStateByUrl14a",
+        "MainAbility/pages/router/router_getStateByUrl14b",
+        "MainAbility/pages/router/router_back15",
+        "MainAbility/pages/router/router_back15a",
+        "MainAbility/pages/router/router_back15b",
+        "MainAbility/pages/router/router_back15c",
+        "MainAbility/pages/router/router_getStateByIndex16",
+        "MainAbility/pages/router/router_getStateByIndex16a",
+        "MainAbility/pages/router/router_getStateByIndex16b"
+    ]
+}

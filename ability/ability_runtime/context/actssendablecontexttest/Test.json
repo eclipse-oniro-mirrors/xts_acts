@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for sendable context tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1200000",
+        "bundle-name": "com.example.sendablecontexttest",
+        "module-name": "entry_test",
+        "shell-timeout": "1200000",
+        "testcase-timeout": "30000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsSendableContextTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell timeout -o 5000000",
+                "power-shell setmode 602",
+                "uinput -T -m 300 2700 280 200",
+                "uinput -T -d 1070 1070 -u 1070 1070"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,140 @@
+{
+  "startupTasks": [
+    {
+      "name": "Sample_001",
+      "srcEntry": "./ets/startup/Sample_001.ets",
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_002",
+      "srcEntry": "./ets/startup/Sample_002.ets",
+      "dependencies": [
+        "Sample_003"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_003",
+      "srcEntry": "./ets/startup/Sample_003.ets",
+      "dependencies": [
+        "Sample_001"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_004",
+      "srcEntry": "./ets/startup/Sample_004.ets",
+      "dependencies": [
+        "Sample_005",
+        "Sample_007"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_005",
+      "srcEntry": "./ets/startup/Sample_005.ets",
+      "dependencies": [
+        "Sample_006"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_006",
+      "srcEntry": "./ets/startup/Sample_006.ets",
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_007",
+      "srcEntry": "./ets/startup/Sample_007.ets",
+      "dependencies": [
+        "Sample_008",
+        "Sample_001"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_008",
+      "srcEntry": "./ets/startup/Sample_008.ets",
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_009",
+      "srcEntry": "./ets/startup/Sample_009.ets",
+      "dependencies": [
+        "Sample_010"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_010",
+      "srcEntry": "./ets/startup/Sample_010.ets",
+      "dependencies": [
+        "Sample_009",
+        "Sample_011"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_011",
+      "srcEntry": "./ets/startup/Sample_011.ets",
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample_012",
+      "srcEntry": "./ets/startup/Sample_012.ets",
+      "excludeFromAutoStart": true,
+      "dependencies": [
+        "Sample_013",
+        "Sample_015"
+      ]
+    },
+    {
+      "name": "Sample_013",
+      "srcEntry": "./ets/startup/Sample_013.ets",
+      "excludeFromAutoStart": true,
+      "dependencies": [
+        "Sample_014"
+      ]
+    },
+    {
+      "name": "Sample_014",
+      "srcEntry": "./ets/startup/Sample_014.ets",
+      "excludeFromAutoStart": true,
+      "dependencies": [
+        "Sample_015"
+      ]
+    },
+    {
+      "name": "Sample_015",
+      "srcEntry": "./ets/startup/Sample_015.ets",
+      "excludeFromAutoStart": true,
+      "dependencies": [
+        "Sample_013"
+      ]
+    },
+    {
+      "name": "Sample_016",
+      "srcEntry": "./ets/startup/Sample_016.ets",
+      "excludeFromAutoStart": true,
+      "waitOnMainThread": true
+    },
+    {
+      "name": "Sample_017",
+      "srcEntry": "./ets/startup/Sample_017.ets",
+      "excludeFromAutoStart": true,
+      "waitOnMainThread": false
+    },
+    {
+      "name": "Sample_018",
+      "srcEntry": "./ets/startup/Sample_018.ets",
+      "excludeFromAutoStart": true,
+      "waitOnMainThread": false
+    },
+    {
+      "name": "Sample_019",
+      "srcEntry": "./ets/startup/Sample_019.ets",
+      "excludeFromAutoStart": true
+    }
+  ],
+  "configEntry": "./ets/startup/StartupConfig.ets"
+}

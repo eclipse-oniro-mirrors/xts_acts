@@ -1,0 +1,46 @@
+{
+  "module": {
+    "name": "entry_test",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/TestAbilityStage.ts",
+    "description": "$string:entry_test_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "phone",
+      "default",
+      "tablet",
+      "2in1"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "true"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "visible": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

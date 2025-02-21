@@ -1,0 +1,88 @@
+# Copyright (C) 2022 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+module_output_path = "hit/ActsGraphicEffectFliterTest"
+
+###############################################################################
+
+ohos_moduletest_suite("ActsGraphicEffectFliterTest") {
+  module_out_path = module_output_path
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  comPath = "../../../../../foundation/graphic/graphic_2d"
+
+  sources = [
+    "ImagePixelMapTest.cpp",
+    "NativeDisplaySoloistTest.cpp",
+    "NativeEffectTest.cpp",
+  ]
+
+  cflags = [
+    "-Wall",
+    "-Werror",
+    "-g3",
+    "-Dprivate=public",
+    "-Dprotected=public",
+  ]
+
+  include_dirs = [
+    "$comPath/interfaces/inner_api/hyper_graphic_manager",
+    "$comPath/rosen/modules/composer/vsync/include",
+    "$comPath/interfaces/inner_api/common",
+    "../../../../../foundation/graphic/graphic_2d/frameworks/surface/include",
+    "../../../../../foundation/multimedia/image_framework/interfaces/innerkits/include/",
+    "../../../../../drivers/peripheral/display/interfaces/include",
+    "$comPath/rosen/modules/effect/color_picker/include",
+    "$comPath/rosen/modules/effect/effectChain/include",
+    "$comPath/rosen/modules/effect/effect_ndk/include",
+    "$comPath/rosen/modules/effect/egl/include",
+  ]
+
+  external_deps = [
+    "access_token:libaccesstoken_sdk",
+    "access_token:libnativetoken",
+    "access_token:libtoken_setproc",
+    "graphic_2d:libgraphic_utils",
+    "graphic_surface:buffer_handle",
+    "graphic_surface:surface",
+    "graphic_surface:sync_fence",
+    "hilog:libhilog",
+    "image_framework:image",
+    "image_framework:pixelmap",
+    "ipc:ipc_core",
+    "samgr:samgr_proxy",
+  ]
+
+  deps = [
+    "$comPath:libnative_image",
+    "$comPath/frameworks/opengl_wrapper:EGL",
+    "$comPath/frameworks/opengl_wrapper:GLESv3",
+    "$comPath/rosen/modules/composer/native_vsync:libnative_vsync",
+    "$comPath/rosen/modules/composer/vsync:libvsync",
+    "$comPath/rosen/modules/effect/color_picker:color_picker",
+    "$comPath/rosen/modules/effect/effectChain:libeffectchain",
+    "$comPath/rosen/modules/effect/effect_ndk:native_effect_ndk",
+    "$comPath/rosen/modules/effect/egl:libegl_effect",
+    "$comPath/rosen/modules/effect/skia_effectChain:skeffectchain",
+    "$comPath/rosen/modules/hyper_graphic_manager/core/native_display_soloist:libnative_display_soloist",
+    "$comPath/rosen/modules/render_service_base:librender_service_base",
+    "$comPath/rosen/modules/render_service_base:render_service_base_src",
+    "$comPath/utils/test_header:test_header",
+    "../../../../../foundation/multimedia/image_framework/interfaces/innerkits:image_native",
+    "../../../../../foundation/multimedia/image_framework/interfaces/kits/js/common:image",
+    "//third_party/googletest:gmock_main",
+    "//third_party/googletest:gtest_main",
+  ]
+}

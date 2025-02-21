@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for wallpaper js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.theme.wallpaperauthoritytest",
+        "package-name": "com.acts.theme.wallpaperauthoritytest",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsWallpapernAuthorityETSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

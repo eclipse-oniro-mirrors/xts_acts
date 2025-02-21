@@ -1,0 +1,145 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+import("//test/xts/acts/graphic/vktest/comm.gni")
+
+ohos_moduletest_suite("ActsVulkanTests") {
+  part_name = "graphic_2d"
+  sources = [
+    "src/ActsVulkanApiTest.cpp",
+    "src/ActsVulkanBinding_modelTest.cpp",
+    "src/ActsVulkanClippingTest.cpp",
+    "src/ActsVulkanComputeTest.cpp",
+    "src/ActsVulkanConditional_renderingTest.cpp",
+    "src/ActsVulkanDescriptor_indexingTest.cpp",
+    "src/ActsVulkanDevice_groupTest.cpp",
+    "src/ActsVulkanDrawTest.cpp",
+    "src/ActsVulkanDrm_format_modifiersTest.cpp",
+    "src/ActsVulkanDynamic_renderingTest.cpp",
+    "src/ActsVulkanDynamic_stateTest.cpp",
+    "src/ActsVulkanFragment_operationsTest.cpp",
+    "src/ActsVulkanFragment_shader_interlockTest.cpp",
+    "src/ActsVulkanFragment_shading_rateTest.cpp",
+    "src/ActsVulkanGeometryTest.cpp",
+    "src/ActsVulkanGlslTest.cpp",
+    "src/ActsVulkanGraphicsfuzzTest.cpp",
+    "src/ActsVulkanImageTest.cpp",
+    "src/ActsVulkanImageless_framebufferTest.cpp",
+    "src/ActsVulkanInfoTest.cpp",
+    "src/ActsVulkanMemoryTest.cpp",
+    "src/ActsVulkanMemory_modelTest.cpp",
+    "src/ActsVulkanMesh_shaderTest.cpp",
+    "src/ActsVulkanMultiviewTest.cpp",
+    "src/ActsVulkanPipelineTest.cpp",
+    "src/ActsVulkanProtected_memoryTest.cpp",
+    "src/ActsVulkanQuery_poolTest.cpp",
+    "src/ActsVulkanRasterizationTest.cpp",
+    "src/ActsVulkanRay_queryTest.cpp",
+    "src/ActsVulkanRay_tracing_pipelineTest.cpp",
+    "src/ActsVulkanReconvergenceTest.cpp",
+    "src/ActsVulkanRenderpass2Test.cpp",
+    "src/ActsVulkanRenderpassTest.cpp",
+    "src/ActsVulkanRobustnessTest.cpp",
+    "src/ActsVulkanSparse_resourcesTest.cpp",
+    "src/ActsVulkanSpirv_assemblyTest.cpp",
+    "src/ActsVulkanSsboTest.cpp",
+    "src/ActsVulkanSubgroupsTest.cpp",
+    "src/ActsVulkanSynchronization2Test.cpp",
+    "src/ActsVulkanSynchronizationTest.cpp",
+    "src/ActsVulkanTessellationTest.cpp",
+    "src/ActsVulkanTest_issuesTest.cpp",
+    "src/ActsVulkanTextureTest.cpp",
+    "src/ActsVulkanTransform_feedbackTest.cpp",
+    "src/ActsVulkanUboTest.cpp",
+    "src/ActsVulkanWsiTest.cpp",
+    "src/ActsVulkanYcbcrTest.cpp",
+  ]
+
+  include_dirs = [ "src" ]
+  deps = [
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute",
+  ]
+  cflags = [ "-Wno-error" ]
+}
+
+ohos_sh_assist_suite("cpVulkan") {
+  testonly = true
+  script = "cpVulkan.sh"
+  outputs = [ "${target_out_dir}/cpVulkan.log" ]
+  root_vkgl_path = rebase_path("//")
+  args = [ "$root_vkgl_path" ]
+  deps = [
+    ":vulkanTest",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute",
+  ]
+  part_name = "graphic_2d"
+}
+
+group("vulkanTest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "src/apitest:ActsVulkanApiTest",
+      "src/bindingmodeltest:ActsVulkanBindingmodelTest",
+      "src/clippingtest:ActsVulkanClippingTest",
+      "src/computetest:ActsVulkanComputeTest",
+      "src/conditionalrenderingtest:ActsVulkanConditionalrenderingTest",
+      "src/descriptorindexingtest:ActsVulkanDescriptorindexingTest",
+      "src/devicegrouptest:ActsVulkanDevicegroupTest",
+      "src/drawtest:ActsVulkanDrawTest",
+      "src/drmformatmodifierstest:ActsVulkanDrmformatmodifiersTest",
+      "src/dynamicrenderingtest:ActsVulkanDynamicrenderingTest",
+      "src/dynamicstatetest:ActsVulkanDynamicstateTest",
+      "src/fastlinkedlibrary:ActsVulkanFastlinkedLibraryTest",
+      "src/fragmentoperationstest:ActsVulkanFragmentoperationsTest",
+      "src/fragmentshaderinterlocktest:ActsVulkanFragmentshaderinterlockTest",
+      "src/fragmentshadingratetest:ActsVulkanFragmentshadingrateTest",
+      "src/geometrytest:ActsVulkanGeometryTest",
+      "src/glsltest:ActsVulkanGlslTest",
+      "src/graphicsfuzztest:ActsVulkanGraphicsfuzzTest",
+      "src/imagelessframebuffertest:ActsVulkanImagelessframebufferTest",
+      "src/imagetest:ActsVulkanImageTest",
+      "src/infotest:ActsVulkanInfoTest",
+      "src/memorymodeltest:ActsVulkanMemorymodelTest",
+      "src/memorytest:ActsVulkanMemoryTest",
+      "src/meshshadertest:ActsVulkanMeshshaderTest",
+      "src/monolithic:ActsVulkanMonolithicTest",
+      "src/multiviewtest:ActsVulkanMultiviewTest",
+      "src/pipelinelibrary:ActsVulkanPipelineLibraryTest",
+      "src/protectedmemorytest:ActsVulkanProtectedmemoryTest",
+      "src/querypooltest:ActsVulkanQuerypoolTest",
+      "src/rasterizationtest:ActsVulkanRasterizationTest",
+      "src/rayquerytest:ActsVulkanRayqueryTest",
+      "src/raytracingpipelinetest:ActsVulkanRaytracingpipelineTest",
+      "src/reconvergencetest:ActsVulkanReconvergenceTest",
+      "src/renderpass2test:ActsVulkanRenderpass2Test",
+      "src/renderpasstest:ActsVulkanRenderpassTest",
+      "src/robustnesstest:ActsVulkanRobustnessTest",
+      "src/sparseresourcestest:ActsVulkanSparseresourcesTest",
+      "src/spirvassemblytest:ActsVulkanSpirvassemblyTest",
+      "src/ssbotest:ActsVulkanSsboTest",
+      "src/subgroupstest:ActsVulkanSubgroupsTest",
+      "src/synchronization2test:ActsVulkanSynchronization2Test",
+      "src/synchronizationtest:ActsVulkanSynchronizationTest",
+      "src/tessellationtest:ActsVulkanTessellationTest",
+      "src/texturetest:ActsVulkanTextureTest",
+      "src/transformfeedbacktest:ActsVulkanTransformfeedbackTest",
+      "src/ubotest:ActsVulkanUboTest",
+      "src/wsitest:ActsVulkanWsiTest",
+      "src/ycbcrtest:ActsVulkanYcbcrTest",
+      "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute",
+    ]
+  }
+}
