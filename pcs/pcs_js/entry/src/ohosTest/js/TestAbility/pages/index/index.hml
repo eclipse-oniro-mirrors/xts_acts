@@ -1,0 +1,48 @@
+<div class="container">
+    <text class="title">
+        {{ $t('strings.hello') }} {{ title }}
+    </text>
+    <text class="title" id="fileText1">
+        {{ fileText1 }}
+    </text>
+    <list style="flex-direction: row;">
+        <list-item>
+            <image id="absolutionPathImage" src="/common/test.png" oncomplete="onComplete1" style="height : 50px; width : 50px;"></image>
+        </list-item>
+        <list-item>
+            <text id="absolutionPathImageCompleted" style="font-size: 50px;">
+                {{ absolutionPathImageComplete }}
+            </text>
+        </list-item>
+    </list>
+    <list style="flex-direction: row;">
+        <list-item>
+            <image id="relativePathImage1" src="./test.png" oncomplete="onComplete2" style="height : 50px; width : 50px;"></image>
+        </list-item>
+        <list-item>
+            <text id="relativePathImageCompleted1" style="font-size: 50px;">
+                {{ relativePathImageCompleted1 }}
+            </text>
+        </list-item>
+    </list>
+    <list style="flex-direction: row;">
+        <list-item>
+            <image id="relativePathImage2" src="../index/test.png" oncomplete="onComplete3" style="height : 50px; width : 50px;"></image>
+        </list-item>
+        <list-item>
+            <text id="relativePathImageCompleted2" style="font-size: 50px;">
+                {{ relativePathImageCompleted2 }}
+            </text>
+        </list-item>
+    </list>
+    <list style="flex-direction: row;">
+        <list-item>
+            <image id="relativePathImage3" src="test.png" oncomplete="onComplete4" style="height : 50px; width : 50px;"></image>
+        </list-item>
+        <list-item>
+            <text id="relativePathImageCompleted3" style="font-size: 50px;">
+                {{ relativePathImageCompleted3 }}
+            </text>
+        </list-item>
+    </list>
+</div>

@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DataAbility_desc",
+      "value": "hap sample empty provider"
+    }
+  ]
+}

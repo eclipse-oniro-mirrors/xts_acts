@@ -1,0 +1,31 @@
+{
+    "description": "Configuration for actsbundleetsgetinfotest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.open.harmony.packagemag",
+        "package-name": "com.open.harmony.packagemag",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBundleManagerEtsTest.hap",
+                "bmsThirdBundleTest1.hap",
+                "first_right.hap",
+                "second_right.hap",
+                "bmsStageDemo1.hap",
+                "bmsStageDemo2.hap",
+                "bmsJstest1.hap",
+                "bmsJstest2.hap",
+                "bmsJstest3.hap",
+                "bmsJstest4.hap",
+                "bmsJstest5.hap",
+                "bmsJstest6.hap",
+                "bmsThirdBundleTest7.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

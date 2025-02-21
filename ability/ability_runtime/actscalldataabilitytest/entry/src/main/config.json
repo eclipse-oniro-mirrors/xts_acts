@@ -1,0 +1,103 @@
+{
+  "app": {
+    "vendor": "example",
+    "bundleName": "ohos.acts.aafwk.test.fasupplement",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 8,
+      "releaseType": "Release",
+      "target": 8
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "mainAbility": ".MainAbility",
+    "deviceType": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "launchType": "singleton"
+      },
+      {
+        "name": ".DataAbility",
+        "srcLanguage": "ets",
+        "srcPath": "DataAbility",
+        "icon": "$media:icon",
+        "description": "$string:DataAbility_desc",
+        "type": "data",
+        "uri": "dataability://ohos.acts.aafwk.test.fasupplement.DataAbility"
+      }
+    ],
+    "distro": {
+      "moduleType": "entry",
+      "installationFree": false,
+      "deliveryWithInstall": true,
+      "moduleName": "entry"
+    },
+    "package": "ohos.acts.aafwk.test.fasupplement",
+    "srcPath": "",
+    "name": ".entry",
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".MainAbility2",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "defPermissions": [
+      {
+        "name": "ohos.acts.aafwk.test.fasupplement.DataAbilityShellProvider.PROVIDER"
+      }
+    ]
+  }
+}

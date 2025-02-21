@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "800000",
+        "bundle-name": "com.example.mindsporejstest",
+        "module-name": "entry",
+        "testcase-timeout": 40000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsMindsporeJSTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

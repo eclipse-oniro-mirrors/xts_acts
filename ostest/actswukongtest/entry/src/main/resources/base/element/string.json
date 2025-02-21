@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "AbilityListTest entry"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "AbilityListTest MainAbility"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "AbilityList"
+    }
+  ]
+}

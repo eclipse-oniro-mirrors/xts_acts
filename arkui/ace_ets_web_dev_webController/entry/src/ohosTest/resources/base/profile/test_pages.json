@@ -1,0 +1,31 @@
+{
+  "src": [
+    "testability/pages/webOnBeforeUnload",
+    "testability/pages/webOnSslError",
+    "testability/pages/webOnInterceptReqOne",
+    "testability/pages/webOnInterceptReqTwo",
+    "testability/pages/webOnInterceptReqThree",
+    "testability/pages/webDefaultFontSizeWithMinLogical",
+    "testability/pages/webDefaultFontSize",
+    "testability/pages/webDefaultFontSizeNoMinFontSize",
+    "testability/pages/webDefaultFontSizeNoAll",
+    "testability/pages/webOnFirstCont",
+    "testability/pages/webOnFirstContTwo",
+    "testability/pages/webOnFirstContThree",
+    "testability/pages/webOnFirstContFour",
+    "testability/pages/webOnFullScreenEnter",
+    "testability/pages/webOnFullScreenExit",
+    "testability/pages/webGetCookieManager",
+    "testability/pages/webONHttpErrorReceive",
+    "testability/pages/webONHttpErrorReceiveExample",
+    "testability/pages/webONHttpErrorRecvExampleIsReady",
+    "testability/pages/webONHttpErrorReceiveIframe",
+    "testability/pages/webOnAudioStateChanged",
+    "testability/pages/webviewTerminateRenderProcess",
+    "testability/pages/webviewSelectionMenuOptions",
+    "testability/pages/DNSHostIP",
+    "testability/pages/WebZoomAccessTest",
+    "testability/pages/wholeWebPageDrawing",
+    "testability/pages/getSurfaceId"
+  ]
+}

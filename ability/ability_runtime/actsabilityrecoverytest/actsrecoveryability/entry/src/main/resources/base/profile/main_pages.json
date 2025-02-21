@@ -1,0 +1,16 @@
+{
+  "src": [
+    "pages/EntryPage1",
+    "pages/EntryPage2",
+    "pages/EntryPage3",
+    "pages/ProtectPage1",
+    "pages/ProtectPage2",
+    "pages/ShortPage1",
+    "pages/ShortPage2",
+    "pages/AnotherPage1",
+    "pages/AnotherPage2",
+    "pages/StandardPage1",
+    "pages/StandardPage2",
+    "pages/StandardPage3"
+  ]
+}

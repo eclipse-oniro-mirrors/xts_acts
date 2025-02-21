@@ -1,0 +1,251 @@
+{
+    "description": "Config for ActsVulkanTest test cases",
+    "driver": {
+        "module-name": "ActsVulkanTests",
+        "native-test-timeout": "120000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "100s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "pre-push" : [
+            ],
+            "post-push" : [
+                "mount -o rw,remount /",
+                "chmod -R 777 /data/local/tmp/*",
+                "rm -rf /data/local/tmp/*.qpa",
+                "rm -rf /data/local/tmp/*.xml",
+                "mkdir -p /data/storage/shader_cache/local",
+                "mkdir /data/local/tmp/vulkan",
+                "tar zxvf /data/local/tmp/vulkandata.tar.gz -C /data/local/tmp/vulkan",
+                "chmod -R 777 /data/local/tmp/vulkan/vk-default/*",
+                "cp -r /data/local/tmp/vulkan/vk-default /data/local/tmp",
+                "cp -r /data/local/tmp/vulkan/data/vulkan/* /data/local/tmp/vulkan",
+                "cp /data/local/tmp/libdeqp* /system/lib",
+                "cp /data/local/tmp/librosen_context* /system/lib",
+                "cp /data/local/tmp/libskia_canvaskit* /system/lib"
+            ],
+            
+            "push": [
+                "ActsVulkanTests->/data/local/tmp/ActsVulkanTests",
+                "vulkandata/libdeqp_ohos_platform.z.so->/data/local/tmp/libdeqp_ohos_platform.z.so",
+                "vulkandata/librosen_context.z.so->/data/local/tmp/librosen_context.z.so",
+                "vulkandata/libdeqp_spirv.z.so->/data/local/tmp/libdeqp_spirv.z.so",
+                "vulkandata/libdeqp_amber.z.so->/data/local/tmp/libdeqp_amber.z.so",
+                "vulkandata/libdeqp_spvremapper.z.so->/data/local/tmp/libdeqp_spvremapper.z.so", 
+                "vulkandata/libskia_canvaskit.z.so->/data/local/tmp/libskia_canvaskit.z.so",  
+                "vulkandata/vulkandata.tar.gz->/data/local/tmp/vulkandata.tar.gz"               
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "cd /data/local/tmp"
+            ],
+            "teardown-localcommand": [
+                "python testcases/vulkandata/genlocal.py"
+            ]
+        },
+        {
+            "type": "CommandKit",
+            "teardown": [
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanApiTest.qpa->ActsVulkanApiTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanBindingmodelTest.qpa->ActsVulkanBindingmodelTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanClippingTest.qpa->ActsVulkanClippingTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanComputeTest.qpa->ActsVulkanComputeTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanConditionalrenderingTest.qpa->ActsVulkanConditionalrenderingTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanDescriptorindexingTest.qpa->ActsVulkanDescriptorindexingTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanDevicegroupTest.qpa->ActsVulkanDevicegroupTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanDrawTest.qpa->ActsVulkanDrawTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanDrmformatmodifiersTest.qpa->ActsVulkanDrmformatmodifiersTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanDynamicrenderingTest.qpa->ActsVulkanDynamicrenderingTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanDynamicstateTest.qpa->ActsVulkanDynamicstateTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanFractionmandatorytestsTest.qpa->ActsVulkanFractionmandatorytestsTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanFragmentoperationsTest.qpa->ActsVulkanFragmentoperationsTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanFragmentshaderinterlockTest.qpa->ActsVulkanFragmentshaderinterlockTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanFragmentshadingrateTest.qpa->ActsVulkanFragmentshadingrateTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanGeometryTest.qpa->ActsVulkanGeometryTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanGlslTest.qpa->ActsVulkanGlslTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanGraphicsfuzzTest.qpa->ActsVulkanGraphicsfuzzTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanImagelessframebufferTest.qpa->ActsVulkanImagelessframebufferTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanImageTest.qpa->ActsVulkanImageTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanInfoTest.qpa->ActsVulkanInfoTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanMasterTest.qpa->ActsVulkanMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanMemorymodelTest.qpa->ActsVulkanMemorymodelTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanMemoryTest.qpa->ActsVulkanMemoryTest.qpa"
+                },{
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanMeshshaderTest.qpa->ActsVulkanMeshshaderTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanMultiviewTest.qpa->ActsVulkanMultiviewTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanPipelineTest.qpa->ActsVulkanPipelineTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanProtectedmemoryTest.qpa->ActsVulkanProtectedmemoryTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanQuerypoolTest.qpa->ActsVulkanQuerypoolTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanRasterizationTest.qpa->ActsVulkanRasterizationTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanRaytracingpipelineTest.qpa->ActsVulkanRaytracingpipelineTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanReconvergenceTest.qpa->ActsVulkanReconvergenceTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanRenderpass2Test.qpa->ActsVulkanRenderpass2Test.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanRenderpassTest.qpa->ActsVulkanRenderpassTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanRobustnessTest.qpa->ActsVulkanRobustnessTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanSparseresourcesTest.qpa->ActsVulkanSparseresourcesTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanSpirvassemblyTest.qpa->ActsVulkanSpirvassemblyTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanSsboTest.qpa->ActsVulkanSsboTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanSubgroupsTest.qpa->ActsVulkanSubgroupsTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanSynchronization2Test.qpa->ActsVulkanSynchronization2Test.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanSynchronizationTest.qpa->ActsVulkanSynchronizationTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanTessellationTest.qpa->ActsVulkanTessellationTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanTestissuesTest.qpa->ActsVulkanTestissuesTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanTextureTest.qpa->ActsVulkanTextureTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanTransformfeedbackTest.qpa->ActsVulkanTransformfeedbackTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanUboTest.qpa->ActsVulkanUboTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanWsiTest.qpa->ActsVulkanWsiTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanYcbcrTest.qpa->ActsVulkanYcbcrTest.qpa"
+                }
+            ]
+        }
+
+    ]
+}

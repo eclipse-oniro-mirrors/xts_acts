@@ -1,0 +1,66 @@
+{
+    "module": {
+        "name": "phone",
+        "type": "entry",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:phone_entry_dsc",
+        "mainElement": "MainAbility",
+        "deviceTypes": [
+            "tablet",
+            "default",
+            "phone",
+            "2in1"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "metadata": [
+            {
+              "name": "ArkTSPartialUpdate",
+              "value": "true"
+            }
+          ],
+        "abilities": [{
+            "name": "com.example.myapplication.MainAbility",
+            "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+            "description": "$string:phone_entry_main",
+            "icon": "$media:icon",
+            "label": "$string:entry_label",
+            "visible": true,
+            "orientation": "portrait",
+            "skills": [{
+                "actions": [
+                    "action.system.home"
+                ],
+                "entities": [
+                    "entity.system.home"
+                ]
+            }]
+        },{
+            "name": "com.example.myapplication.MainAbility2",
+            "srcEntrance": "./ets/MainAbility/MainAbility2.ts",
+            "description": "$string:phone_entry_main",
+            "icon": "$media:icon",
+            "label": "$string:entry_label",
+            "visible": true,
+            "orientation": "portrait",
+            "skills": [{
+                "actions": [
+                    "action.system.home"
+                ],
+                "entities": [
+                    "entity.system.home"
+                ]
+            }]
+        }],
+        "requestPermissions": [
+	    {
+                "name": "ohos.permission.LOCATION"
+            },
+            {
+                "name": "ohos.permission.INTERNET"
+            }
+        ]
+    }
+}

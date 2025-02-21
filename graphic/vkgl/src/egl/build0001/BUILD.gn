@@ -1,0 +1,263 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+
+  # defines -=["DE_PTR_SIZE=8"]
+  # defines += [
+  #   "DE_PTR_SIZE=4",
+  #   "_XOPEN_SOURCE=600"
+  # ]
+}
+
+ohos_static_library("libeglfunc0001") {
+  subsystem_name = "xts"
+  part_name = "acts"
+  sources = [
+    "../EglBaseFunc.cpp",
+    "logdefine.cpp",
+  ]
+
+  include_dirs = common_include
+  include_dirs += [
+    "//third_party/vk-gl-cts/framework/opengl",
+    "//third_party/vk-gl-cts/framework/opengl/wrapper",
+    "//third_party/vk-gl-cts/framework/opengl/simplereference",
+    "//third_party/vk-gl-cts/framework/randomshaders",
+    "//third_party/vk-gl-cts/framework/common",
+    "//third_party/vk-gl-cts/framework/xexml",
+    "//third_party/vk-gl-cts/framework/qphelper",
+    "//third_party/vk-gl-cts/framework/egl",
+    "//third_party/vk-gl-cts/framework/egl/wrapper",
+    "//third_party/vk-gl-cts/framework/referencerenderer",
+    "//third_party/vk-gl-cts/framework/delibs/decpp",
+    "//third_party/vk-gl-cts/framework/delibs/debase",
+    "//third_party/vk-gl-cts/framework/delibs/deutil",
+    "//third_party/vk-gl-cts/framework/delibs/dethread",
+    "//third_party/vk-gl-cts/framework/delibs/depool",
+    "//third_party/vk-gl-cts/framework/delibs/deimage",
+    "//third_party/vk-gl-cts/framework/delibs/destream",
+
+    "//third_party/vk-gl-cts/external/vulkancts/framework/vulkan",
+    "//third_party/vk-gl-cts/build/external/vulkancts/framework/vulkan",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan",
+
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/api",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/pipeline",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/binding_model",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/spirv_assembly",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/shaderrender",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/shaderexecutor",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/memory",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/ubo",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/dynamic_state",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/ssbo",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/query_pool",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/conditional_rendering",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/draw",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/device_group",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/compute",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/image",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/wsi",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/sparse_resources",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/tessellation",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/rasterization",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/synchronization",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/clipping",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/fragment_ops",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/texture",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/geometry",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/robustness",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/renderpass",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/multiview",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/subgroups",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/ycbcr",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/protected_memory",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/memory_model",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/transform_feedback",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/util",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/amber",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/imageless_framebuffer",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/descriptor_indexing",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/fragment_shader_interlock",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/fragment_shading_rate",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/modifiers",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/ray_tracing",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/ray_query",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/postmortem",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/reconvergence",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/mesh_shader",
+    "//third_party/zlib",
+    "//third_party/spirv-headers/include",
+    "//third_party/libpng",
+    "//third_party/vk-gl-cts/external/amber",
+    "//third_party/vk-gl-cts/build/include",
+    "//third_party/glslang",
+    "//third_party/spirv-tools/include",
+    "//third_party/vk-gl-cts/external/amber/src/include",
+
+    "//third_party/vk-gl-cts/framework/platform/ohos",
+  ]
+
+  deps = common_depends_egl
+
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsEglTestSuite0001") {
+  subsystem_name = "xts"
+  part_name = "acts"
+
+  sources = [
+    "../ActsEgl0001TestSuite.cpp",
+    "../functional/Egl_buffer_ageTestCase.cpp",
+    "../functional/Egl_choose_configTestCase.cpp",
+    "../functional/Egl_client_extensionsTestCase.cpp",
+    "../functional/Egl_color_clearsTestCase.cpp",
+    "../functional/Egl_create_contextTestCase.cpp",
+    "../functional/Egl_create_context_extTestCase.cpp",
+    "../functional/Egl_create_surfaceTestCase.cpp",
+    "../functional/Egl_fence_syncTestCase.cpp",
+    "../functional/Egl_get_frame_timestampsTestCase.cpp",
+    "../functional/Egl_get_proc_addressTestCase.cpp",
+    "../functional/Egl_hdr_metadataTestCase.cpp",
+    "../functional/Egl_imageTestCase.cpp",
+    "../functional/Egl_multicontextTestCase.cpp",
+    "../functional/Egl_multithreadTestCase.cpp",
+    "../functional/Egl_mutable_render_bufferTestCase.cpp",
+    "../functional/Egl_native_color_mappingTestCase.cpp",
+    "../functional/Egl_native_coord_mappingTestCase.cpp",
+    "../functional/Egl_negative_apiTestCase.cpp",
+    "../functional/Egl_negative_partial_updateTestCase.cpp",
+    "../functional/Egl_partial_updateTestCase.cpp",
+    "../functional/Egl_preserve_swapTestCase.cpp",
+    "../functional/Egl_query_configTestCase.cpp",
+    "../functional/Egl_query_contextTestCase.cpp",
+    "../functional/Egl_query_surfaceTestCase.cpp",
+    "../functional/Egl_renderTestCase.cpp",
+    "../functional/Egl_resizeTestCase.cpp",
+    "../functional/Egl_reusable_syncTestCase.cpp",
+    "../functional/Egl_robustnessTestCase.cpp",
+    "../functional/Egl_sharingTestCase.cpp",
+    "../functional/Egl_sharingTestCase1.cpp",
+    "../functional/Egl_surfaceless_contextTestCase.cpp",
+    "../functional/Egl_swap_buffersTestCase.cpp",
+    "../functional/Egl_swap_buffers_with_damageTestCase.cpp",
+    "../functional/Egl_thread_cleanupTestCase.cpp",
+    "../functional/Egl_wide_colorTestCase.cpp",
+    "../info/Egl_client_apisTestCase.cpp",
+    "../info/Egl_configsTestCase.cpp",
+    "../info/Egl_extensionsTestCase.cpp",
+    "../info/Egl_vendorTestCase.cpp",
+    "../info/Egl_versionTestCase.cpp",
+    "../performance/Egl_gles2_shared_renderTestCase.cpp",
+    "../performance/Egl_make_currentTestCase.cpp",
+  ]
+
+  include_dirs = common_include
+  include_dirs += [
+    "../../../src",
+    "//third_party/vk-gl-cts/framework/opengl",
+    "//third_party/vk-gl-cts/framework/opengl/wrapper",
+    "//third_party/vk-gl-cts/framework/opengl/simplereference",
+    "//third_party/vk-gl-cts/framework/randomshaders",
+    "//third_party/vk-gl-cts/framework/common",
+    "//third_party/vk-gl-cts/framework/xexml",
+    "//third_party/vk-gl-cts/framework/qphelper",
+    "//third_party/vk-gl-cts/framework/egl",
+    "//third_party/vk-gl-cts/framework/egl/wrapper",
+    "//third_party/vk-gl-cts/framework/referencerenderer",
+    "//third_party/vk-gl-cts/framework/delibs/decpp",
+    "//third_party/vk-gl-cts/framework/delibs/debase",
+    "//third_party/vk-gl-cts/framework/delibs/deutil",
+    "//third_party/vk-gl-cts/framework/delibs/dethread",
+    "//third_party/vk-gl-cts/framework/delibs/depool",
+    "//third_party/vk-gl-cts/framework/delibs/deimage",
+    "//third_party/vk-gl-cts/framework/delibs/destream",
+
+    "//third_party/vk-gl-cts/external/vulkancts/framework/vulkan",
+    "//third_party/vk-gl-cts/build/external/vulkancts/framework/vulkan",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan",
+
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/api",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/pipeline",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/binding_model",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/spirv_assembly",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/shaderrender",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/shaderexecutor",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/memory",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/ubo",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/dynamic_state",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/ssbo",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/query_pool",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/conditional_rendering",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/draw",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/device_group",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/compute",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/image",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/wsi",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/sparse_resources",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/tessellation",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/rasterization",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/synchronization",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/clipping",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/fragment_ops",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/texture",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/geometry",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/robustness",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/renderpass",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/multiview",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/subgroups",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/ycbcr",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/protected_memory",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/memory_model",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/transform_feedback",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/util",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/amber",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/imageless_framebuffer",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/descriptor_indexing",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/fragment_shader_interlock",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/fragment_shading_rate",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/modifiers",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/ray_tracing",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/ray_query",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/postmortem",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/reconvergence",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan/mesh_shader",
+    "//third_party/zlib",
+    "//third_party/spirv-headers/include",
+    "//third_party/libpng",
+    "//third_party/vk-gl-cts/external/amber",
+    "//third_party/vk-gl-cts/build/include",
+    "//third_party/glslang",
+    "//third_party/spirv-tools/include",
+    "//third_party/vk-gl-cts/external/amber/src/include",
+
+    "//third_party/vk-gl-cts/framework/platform/ohos",
+  ]
+
+  deps = [ ":libeglfunc0001" ]
+
+  cflags = [ "-Wno-error" ]
+}

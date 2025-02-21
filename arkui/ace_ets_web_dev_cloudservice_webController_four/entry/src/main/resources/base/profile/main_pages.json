@@ -1,0 +1,11 @@
+{
+    "src": [
+        "MainAbility/pages/Index",
+        "MainAbility/pages/webViewGetFrameUrlResourceType",
+        "MainAbility/pages/webViewAnrCallback",
+        "MainAbility/pages/webViewOnViewportFitChange",
+        "MainAbility/pages/webViewWarmupServiceWorker",
+        "MainAbility/pages/webViewWebResourceTypeProps"
+    ]
+}
+

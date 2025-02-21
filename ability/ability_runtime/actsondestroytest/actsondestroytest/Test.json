@@ -1,0 +1,33 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.ondestorytest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "8000"
+    },
+    "kits": [
+		{
+            "test-file-name": [
+                "ActsAbilityStageOnDestroyTest.hap",
+                "ActsAbilityStageOnDestroyEntryRely.hap",
+                "ActsAbilityStageOnDestroySecondRely.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "power-shell timeout -o 846000000",
+                "param set persist.sys.abilityms.support.start_other_app true",
+                "uinput -T -c 1080 1080",
+                "uinput -T -d 654 2750 -m 654 2750 654 2284 -u 300 2284"
+            ]
+        }
+    ]
+}

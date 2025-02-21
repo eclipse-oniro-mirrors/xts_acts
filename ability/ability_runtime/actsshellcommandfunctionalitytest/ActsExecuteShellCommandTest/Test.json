@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.executeshellcommand",
+        "module-name": "entry",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsKillProcessWithAccountCloseRelyHap.hap->/data/ActsKillProcessWithAccountCloseRelyHap.hap"
+            ]
+        },
+		{
+            "test-file-name": [
+                "ActsKillProcessWithAccountCloseRelyHap.hap",
+                "ActsExecuteShellCommandTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+

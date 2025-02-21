@@ -1,0 +1,110 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0040") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3TestSuite0040") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles30040TestSuite.cpp",
+    "../functional/Deqpgles3array_fixedTestCase.cpp",
+    "../functional/Deqpgles3array_floatTestCase.cpp",
+    "../functional/Deqpgles3array_intTestCase.cpp",
+    "../functional/Deqpgles3array_uintTestCase.cpp",
+    "../functional/Deqpgles3basic_uintTestCase.cpp",
+    "../functional/Deqpgles3fragment_out_randomTestCase.cpp",
+    "../functional/Deqpgles3functional_occlusion_queryTestCase.cpp",
+    "../functional/Deqpgles3functional_vertex_array_objectsTestCase.cpp",
+    "../functional/Deqpgles3interpolation_basicTestCase.cpp",
+    "../functional/Deqpgles3interpolation_projectedTestCase.cpp",
+    "../functional/Deqpgles3line_loop_unsigned_byteTestCase.cpp",
+    "../functional/Deqpgles3line_loop_unsigned_intTestCase.cpp",
+    "../functional/Deqpgles3line_loop_unsigned_shortTestCase.cpp",
+    "../functional/Deqpgles3line_strip_unsigned_byteTestCase.cpp",
+    "../functional/Deqpgles3line_strip_unsigned_intTestCase.cpp",
+    "../functional/Deqpgles3line_strip_unsigned_shortTestCase.cpp",
+    "../functional/Deqpgles3lines_unsigned_byteTestCase.cpp",
+    "../functional/Deqpgles3lines_unsigned_intTestCase.cpp",
+    "../functional/Deqpgles3lines_unsigned_shortTestCase.cpp",
+    "../functional/Deqpgles3pbo_nativeTestCase.cpp",
+    "../functional/Deqpgles3pbo_renderbufferTestCase.cpp",
+    "../functional/Deqpgles3points_unsigned_byteTestCase.cpp",
+    "../functional/Deqpgles3points_unsigned_intTestCase.cpp",
+    "../functional/Deqpgles3points_unsigned_shortTestCase.cpp",
+    "../functional/Deqpgles3rasterization_cullingTestCase.cpp",
+    "../functional/Deqpgles3rasterization_fill_rulesTestCase.cpp",
+    "../functional/Deqpgles3rasterization_flatshadingTestCase.cpp",
+    "../functional/Deqpgles3rasterization_primitivesTestCase.cpp",
+    "../functional/Deqpgles3rbo_multisample_4_fill_rulesTestCase.cpp",
+    "../functional/Deqpgles3rbo_multisample_4_interpolationTestCase.cpp",
+    "../functional/Deqpgles3rbo_multisample_4_primitivesTestCase.cpp",
+    "../functional/Deqpgles3rbo_multisample_max_fill_rulesTestCase.cpp",
+    "../functional/Deqpgles3rbo_multisample_max_interpolationTestCase.cpp",
+    "../functional/Deqpgles3rbo_multisample_max_primitivesTestCase.cpp",
+    "../functional/Deqpgles3rbo_singlesample_fill_rulesTestCase.cpp",
+    "../functional/Deqpgles3rbo_singlesample_interpolationTestCase.cpp",
+    "../functional/Deqpgles3rbo_singlesample_primitivesTestCase.cpp",
+    "../functional/Deqpgles3samplers_multi_cubemapTestCase.cpp",
+    "../functional/Deqpgles3samplers_multi_tex_2dTestCase.cpp",
+    "../functional/Deqpgles3samplers_multi_tex_3dTestCase.cpp",
+    "../functional/Deqpgles3samplers_single_cubemapTestCase.cpp",
+    "../functional/Deqpgles3samplers_single_tex_2dTestCase.cpp",
+    "../functional/Deqpgles3samplers_single_tex_3dTestCase.cpp",
+    "../functional/Deqpgles3texture_2d_fill_rulesTestCase.cpp",
+    "../functional/Deqpgles3texture_2d_interpolationTestCase.cpp",
+    "../functional/Deqpgles3texture_2d_primitivesTestCase.cpp",
+    "../functional/Deqpgles3triangle_fan_unsigned_byteTestCase.cpp",
+    "../functional/Deqpgles3triangle_fan_unsigned_intTestCase.cpp",
+    "../functional/Deqpgles3triangle_fan_unsigned_shortTestCase.cpp",
+    "../functional/Deqpgles3triangle_strip_unsigned_byteTestCase.cpp",
+    "../functional/Deqpgles3triangle_strip_unsigned_intTestCase.cpp",
+    "../functional/Deqpgles3triangle_strip_unsigned_shortTestCase.cpp",
+    "../functional/Deqpgles3triangles_unsigned_byteTestCase.cpp",
+    "../functional/Deqpgles3triangles_unsigned_intTestCase.cpp",
+    "../functional/Deqpgles3triangles_unsigned_shortTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles3func0040" ]
+
+  cflags = [ "-Wno-error" ]
+}

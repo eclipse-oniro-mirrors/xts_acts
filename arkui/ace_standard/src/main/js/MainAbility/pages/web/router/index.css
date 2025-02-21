@@ -1,0 +1,99 @@
+/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.container {
+    flex-direction:row;
+    width:100%;
+    height:100%;
+    padding: 1px;
+}
+
+button{
+    width: 60%;
+    height: 20px;
+}
+.sub-container{
+    flex-direction: column;
+    height: 100%;
+    flex-weight: 1;
+}
+
+.style-container{
+    flex-direction: column;
+    height: 70%;
+}
+.contain1{
+    width: 100%;
+    height: 15%;
+    flex-direction: column;
+}
+
+.ani-container{
+    flex-direction: column;
+    height: 100%;
+    flex-weight: 1;
+}
+
+.prop-container{
+    flex-direction: column;
+    height: 60%;
+    padding-left: 2px;
+}
+
+.event-container{
+    flex-direction: column;
+    height: 20%;
+}
+
+.function-container{
+    flex-direction: column;
+    height: 20%;
+}
+
+.gradient-container{
+    flex-direction: column;
+    height: 40%;
+}
+
+.access-container{
+    flex-direction: column;
+    height: 15%;
+}
+
+.atom-container{
+    flex-direction: column;
+    height: 45%;
+}
+
+.multimode-container{
+    flex-direction: column;
+    height: 45%;
+}
+
+.title{
+    width: 100%;
+    font-size: 18px;
+    margin: 2px;
+    font-weight: bold;
+    text-align: center;
+}
+.sub-title{
+    width: 100%;
+    height: 25px;
+    font-size: 15px;
+    text-align: left;
+    margin-bottom: 1px;
+    padding: 2px;
+}

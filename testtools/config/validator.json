@@ -1,0 +1,14 @@
+{
+    "description": "Config for acts test suites",
+    "kits": [
+        {
+            "type": "CommandKit",
+            "shell": [
+                {
+                    "name": "shell",
+                    "value": "\"SP_daemon &\""
+                }
+            ]
+        }
+    ]
+}

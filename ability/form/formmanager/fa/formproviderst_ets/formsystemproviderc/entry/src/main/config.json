@@ -1,0 +1,132 @@
+{
+  "app": {
+    "bundleName": "com.ohos.st.formsystemproviderc",
+    "vendor": "ohos",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 7,
+      "releaseType": "Release",
+      "target": 7
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.ohos.st.formsystemproviderc",
+    "name": ".FormSTApp",
+    "mainAbility": ".MainAbility",
+    "deviceType": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "form_module_c",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "visible": true,
+        "name": ".MainAbility",
+        "srcPath": "MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "label": "$string:entry_MainAbility",
+        "type": "service",
+        "launchType": "standard",
+        "formsEnabled": true,
+        "forms": [
+          {
+            "name": "FormC_Js001",
+            "description": "form_description_FormC_Js001",
+            "descriptionId": 30,
+            "isDefault": true,
+            "type": "JS",
+            "colorMode": "light",
+            "supportDimensions": [
+              "2*4",
+              "4*4"
+            ],
+            "defaultDimension": "2*4",
+            "updateEnabled": true,
+            "updateDuration": 4,
+            "scheduledUpdateTime": "15:30",
+            "jsComponentName": "card_c",
+            "formVisibleNotify": true,
+            "formConfigAbility": "abilityc",
+            "metaData": {
+              "customizeData": [
+                {
+                  "name": "originWidgetNameC",
+                  "value": "valueC"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "defPermissions": [
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormDelete_commonEvent"
+      },
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormOnAcquired_commonEvent"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "FMS_FormOnAcquired_commonEvent",
+        "reason": "need use onAcquired commonEvent"
+      },
+      {
+        "name": "FMS_FormDelete_commonEvent",
+        "reason": "need use delete commonEvent"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+        "reason": "need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

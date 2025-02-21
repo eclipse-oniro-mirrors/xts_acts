@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for inputMethod Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.inputmethodtest",
+        "package-name": "com.acts.inputmethodtest",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -m 300 720 300 360 200",
+                "uinput -T -m 650 2760 650 1380 200"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsInputMethodEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

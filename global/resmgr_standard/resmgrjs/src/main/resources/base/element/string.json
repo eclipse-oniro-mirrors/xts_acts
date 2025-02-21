@@ -1,0 +1,36 @@
+{
+	"string": [
+	  {
+		"name": "app_name",
+		"value": "L2Test"
+	  },
+	  {
+		"name": "mainability_description",
+		"value": "JS_Phone_Empty Feature Ability"
+	  },
+	  {
+		  "name": "MainAbility_desc",
+		  "value": "description"
+	  },
+		{
+		  "name": "MainAbility_label",
+		  "value": "label"
+	  },
+		{
+		  "name": "TestAbility_desc",
+		  "value": "description"
+	  },
+		{
+		  "name": "TestAbility_label",
+		  "value": "label"
+	  },
+		{
+			"name": "Test_name1",
+			"value": "$string:Test_name2"
+		},
+		{
+			"name": "Test_name2",
+			"value": "$string:Test_name1"
+		}
+	]
+  }

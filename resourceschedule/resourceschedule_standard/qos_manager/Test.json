@@ -1,0 +1,18 @@
+{
+    "description": "Config for ActsQoSCAPITest cases",
+    "driver": {
+        "module-name": "ActsQoSCAPITest",
+        "native-test-timeout": "300000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "1s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "push": [
+                "ActsQoSCAPITest->/data/local/tmp/ActsQoSCAPITest"
+            ],
+            "type": "PushKit"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "FaSupportFunction"
+    },
+    {
+      "name": "MainAbility2_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility2_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility3_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility3_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility4_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility4_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility5_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility5_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility6_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility6_label",
+      "value": "label"
+    }
+  ]
+}

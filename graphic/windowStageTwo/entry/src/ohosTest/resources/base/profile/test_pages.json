@@ -1,0 +1,18 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/First/index",
+    "testability/pages/second/second",
+    "testability/pages/second/pageOne",
+    "testability/pages/second/pageTwo",
+    "testability/pages/First/index2",
+    "testability/pages/First/index3",
+    "testability/pages/First/index1",
+    "testability/pages/WindowTest/StartMoving",
+    "testability/pages/WindowTest/Modality",
+    "testability/pages/WindowTest/extension",
+    "testability/pages/WindowTest/EmbeddedComponentPage",
+    "testability/pages/WindowTest/extensionRect",
+    "testability/pages/WindowTest/EmbeddedComponentRectPage"
+  ]
+}

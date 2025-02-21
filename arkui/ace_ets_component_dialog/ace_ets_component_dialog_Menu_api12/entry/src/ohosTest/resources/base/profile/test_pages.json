@@ -1,0 +1,14 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/bindContextMenu/aboutToAppearFalse",
+        "MainAbility/pages/bindContextMenu/aboutToDisappearFalse",
+        "MainAbility/pages/bindContextMenu/CloseContextMenu",
+        "MainAbility/pages/bindContextMenu/CloseEsc",
+        "MainAbility/pages/bindContextMenu/CloseFalse",
+        "MainAbility/pages/bindContextMenu/CloseMask",
+        "MainAbility/pages/bindContextMenu/CloseMenu",
+        "MainAbility/pages/bindContextMenu/IsShowFalse",
+        "MainAbility/pages/bindContextMenu/preview"
+    ]
+}

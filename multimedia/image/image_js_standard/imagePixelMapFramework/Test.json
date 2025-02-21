@@ -1,0 +1,40 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "ohos.acts.multimedia.image.PixelMapFramework",
+        "package-name": "ohos.acts.multimedia.image.PixelMapFramework"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImagePixelMapFrameworkJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.PixelMapFramework/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.PixelMapFramework/haps/entry_test/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/JPG-480360-YUV311.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.PixelMapFramework/haps/entry_test/files",
+                "./resource/image/CUVAHdrMulti.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.PixelMapFramework/haps/entry_test/files"
+            ]
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

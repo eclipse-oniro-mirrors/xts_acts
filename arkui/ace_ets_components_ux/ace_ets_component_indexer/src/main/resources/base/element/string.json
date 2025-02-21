@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "popupSelectedColor",
+      "value": "#00C5CD"
+    },
+    {
+      "name": "popupUnselectedColor",
+      "value": "#4EEE94"
+    },
+    {
+      "name": "popupItemBackground",
+      "value": "#FFEC8B"
+    },
+    {
+      "name": "fontSize",
+      "value": "25px"
+    },
+    {
+      "name": "popupSpace",
+      "value": "10"
+    }
+  ]
+}

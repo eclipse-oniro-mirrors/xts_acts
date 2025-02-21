@@ -1,0 +1,101 @@
+# Copyright (c) 2021-2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos_var.gni")
+
+group("ability_runtime") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "aacommand:aacommand",
+      "abilitygetstartparameterstest:abilitygetstartparameterstest",
+      "abilitymanager:actsabilitymanagertest",
+      "abilitymontior:ActsAbilityMonitorTest",
+      "abilitymultiinstance:abilitymultiinstance",
+      "abilitystagemonitor:abilitystagemonitor",
+      "abilitytoolabilitydelegatortest:abilitytoolabilitydelegatortest",
+      "actsNotificationWantAgentTest:ActsNotificationWantAgentTest",
+      "actsaaappdebugtest:actsaaappdebugtest",
+      "actsaastartabilitytest:actsaastartabilitytest",
+      "actsabilitydelegatorcase:ActsAbilityDelegatorCaseTest",
+      "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
+      "actsabilityrecoverytest:actsabilityrecoverytest",
+      "actsabilitytooltest:actsabilitytooltest",
+      "actsabilityusertest:ActsAbilityuserTest",
+      "actsactionextensionability:actsactionextensionability",
+      "actsautofilltest:actsautofilltest",
+      "actscalldataabilitytest:ActsCallDataAbilityTest",
+      "actscalltest:actscalltest",
+      "actschildprocessmanager:actschildprocessmanagertest",
+      "actscleantemptest:cleantempfiles",
+      "actscrosscall:actscrosscall",
+      "actsdataabilityaccessdatasharetest:dataabilityaccessdatashare",
+      "actsdelegatorfaabilitytest:ActsDelegatorFAAbilityTest",
+      "actsfaabilitydisplayorientationtest:ActsFAAbilityDisplayOrientationTest",
+      "actsfwkdataaccessortest:dataability",
+      "actsgetapplicationnewtest:ActsGetApplicationNewTest",
+      "actsjsdataabilitytest:ActsJsDataAbilityTest",
+      "actslastexitreason:actslastexitreason",
+      "actsmultiplecall:actsmultiplecall",
+      "actsnfcselecttypes:actsnfcselecttypes",
+      "actsondestroytest:actsondestroytest",
+      "actsopenlinktest:actsopenlinktest",
+      "actsparsingparameterstest:actsparsingparameterstest",
+      "actsphotoeditorextensiontest:ActsPhotoEditorExtensionTest",
+      "actsqueryfunctiontest:actsqueryfunctiontest",
+      "actsrequestdialogtest:actsrequestdialogtest",
+      "actsrevokequickfixtest:ActsRevokeQuickFixApp",
+      "actsserviceabilityclienttest:serviceability",
+      "actsshellcommandfunctionalitytest:actsshellcommandfunctionalitytest",
+      "actsstartabilityforresulttest:actsstartabilityforresulttest",
+      "actsstartabilitygetdisplayidtest:actsstartabilitygetdisplayidtest",
+      "actsstartabilityinnewprocesstest:actsstartabilityinnewprocesstest",
+      "actsstartabilitywantparamtest:ActsStartAbilityWantParamTest",
+      "actsstartrunnertest:ActsStartRunnerTest",
+      "actsstartuiserviceextensiontest:ActsStartuiServiceExtension",
+      "actsstartupruleoptimizetest:actsstartupruleoptimizetest",
+      "actsstserviceabilityclientcase:ActsStServiceAbilityClientCaseTest",
+      "actssupportfunction:actssupportfunction",
+      "actssystemapitest:ActsSystemAPITest",
+      "actsturipermisssiontest:actsturipermisssiontest",
+      "actsuiabilitycontext:actsuiabilitycontext",
+      "actsuiextensionforresulttest:actsuiextensionforresulttest",
+      "actsuiextensiontest:actsuiextensiontest",
+      "actsuiextforresultascallertest:actsuiextforresultascallertest",
+      "actsusers:actsusers",
+      "amscontextualinforquery:amscontextualinforquery",
+      "amsdatauriutils:ActsAmsDataUriUtilsTest",
+      "amsdisplayIdtest:amsdisplayIdtest",
+      "amsgetabilityprocessinfo:amsgetabilityprocessinfo",
+      "amsuiextensionexireason:amsuiextensionexireason",
+      "apicover:apicover",
+      "apitest:ActsApiTest",
+      "appclone:appclonetest",
+      "capiabilityruntime:ActsCapiAbilityRuntimeTest",
+      "capichildprocess:ActsCapiChildProcessTest",
+      "context:context",
+      "fa:fa",
+      "faapicover:faapicover",
+      "featureability:featureability",
+      "freeinstalltest:freeinstalltest",
+      "newwant:newwant",
+      "registerjserror:registerjserror",
+      "shareextensionability:actsshareextensionability",
+      "stage:stage",
+      "startup:startup",
+      "stopserviceextension:stopserviceextension",
+      "want:want",
+      "workercontextcover:workercontextcover",
+    ]
+  }
+}

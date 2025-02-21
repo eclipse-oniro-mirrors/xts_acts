@@ -1,0 +1,18 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/progress/ProgressMask",
+        "MainAbility/pages/PatternLock/PatternLockActivateCircleStyle1",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyph_API/BounceSymbolEffect",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyph_API/ReplaceSymbolEffect",
+        "MainAbility/pages/Tabs/AnimationMode_API/ACTION_FIRST",
+        "MainAbility/pages/Tabs/AnimationMode_API/CONTENT_FIRST",
+        "MainAbility/pages/Tabs/AnimationMode_API/NO_ANIMATION",
+        "MainAbility/pages/ChipGroup/startSpace",
+        "MainAbility/pages/ChipGroup/endSpace",
+        "MainAbility/pages/ChipGroup/itemSpace",
+        "MainAbility/pages/Chip/localizedLabelMargin",
+        "MainAbility/pages/SegmentButton/localizedButtonPadding",
+        "MainAbility/pages/SegmentButton/localizedTextPadding"
+    ]
+}

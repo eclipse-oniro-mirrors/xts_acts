@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "240000",
+        "bundle-name": "com.example.accessibilitysendaccessibilityevent",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAccessibilitySendAccessibilityEventTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ],
+            "teardown-command":[
+                "bm uninstall -n com.example.accessibilitysendaccessibilityevent"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+{
+    "string": [
+      {
+        "name": "module_test_desc",
+        "value": "test ability description"
+      },
+      {
+        "name": "TestAbility_desc",
+        "value": "the test ability"
+      },
+      {
+        "name": "TestAbility_label",
+        "value": "test label"
+      },
+      {
+        "name": "block_border_width_test",
+        "value": "7"
+      },
+      {
+        "name": "trach_border_radius_test",
+        "value": "50"
+      },
+      {
+        "name": "block_size_test",
+        "value": "50"
+      },
+      {
+        "name": "step_size_test",
+        "value": "50vp"
+      },
+      {
+        "name":"block_size_width_test",
+        "value":"50vp"
+      },
+      {
+        "name":"block_size_height_test",
+        "value":"50vp"
+      },
+      {
+        "name": "sliderTest",
+        "value": "ResourceTest"
+      }
+    ]
+  }

@@ -1,0 +1,20 @@
+{
+  "string":  [
+      {
+        "name": "hap4_desc",
+        "value": "description"
+      },
+      {
+        "name": "description_application",
+        "value": "demo for test"
+      },
+      {
+        "name": "Hap4MainAbility1_desc",
+        "value": "description"
+      },
+      {
+        "name": "Hap4MainAbility1_label",
+        "value": "label"
+      }
+  ]
+}

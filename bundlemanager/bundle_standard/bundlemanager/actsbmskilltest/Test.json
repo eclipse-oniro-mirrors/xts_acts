@@ -1,0 +1,22 @@
+{
+    "description": "Configuration for aaaaaa demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "com.test.myapplication",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 30000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBmsSkillTest.hap"
+
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+
+    ]
+}

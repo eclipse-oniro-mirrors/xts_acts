@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1200000",
+        "shell-timeout": "1200000",
+        "bundle-name": "ohos.acts.dataObject",
+        "package-name": "ohos.acts.dataObject"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsDataObjectJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

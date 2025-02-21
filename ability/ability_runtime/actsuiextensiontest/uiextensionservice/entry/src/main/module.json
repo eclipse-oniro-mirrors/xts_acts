@@ -1,0 +1,122 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "description": "$string:entry_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "TestServiceExtAbility",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": true,
+        "srcEntrance": "./ets/testServiceExtAbility/TestServiceExtAbility.ts"
+      },
+      {
+        "name": "SubServiceExtAbility",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": true,
+        "srcEntrance": "./ets/testServiceExtAbility/SubServiceExtAbility.ts"
+      },
+      {
+        "name": "MultipServiceExtAbility",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": true,
+        "srcEntrance": "./ets/testServiceExtAbility/MultipServiceExtAbility.ts"
+      },
+      {
+        "name": "TestServiceExtAbilityEvent",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": true,
+        "srcEntrance": "./ets/testServiceExtAbility/TestServiceExtAbilityEvent.ts"
+      },
+      {
+        "name": "SubServiceExtAbilityEvent",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": true,
+        "srcEntrance": "./ets/testServiceExtAbility/SubServiceExtAbilityEvent.ts"
+      },
+      {
+        "name": "MultipServiceExtAbilityEvent",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": true,
+        "srcEntrance": "./ets/testServiceExtAbility/MultipServiceExtAbilityEvent.ts"
+      },
+      {
+        "name": "TestServiceExtAbilityTerminalSelf",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": true,
+        "srcEntrance": "./ets/testServiceExtAbility/TestServiceExtAbilityTerminalSelf.ts"
+      },
+      {
+        "name": "SubServiceExtAbility005",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": true,
+        "srcEntrance": "./ets/testServiceExtAbility/SubServiceExtAbility005.ts"
+      },
+      {
+        "name": "TestServiceExtAbility005",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": true,
+        "srcEntrance": "./ets/testServiceExtAbility/TestServiceExtAbility005.ts"
+      },
+      {
+        "name": "TestServiceExtAbilityUnvisible",
+        "icon": "$media:icon",
+        "description": "service",
+        "type": "service",
+        "visible": false,
+        "srcEntrance": "./ets/testServiceExtAbility/TestServiceExtAbilityUnvisible.ts"
+      }
+    ]
+  }
+}
