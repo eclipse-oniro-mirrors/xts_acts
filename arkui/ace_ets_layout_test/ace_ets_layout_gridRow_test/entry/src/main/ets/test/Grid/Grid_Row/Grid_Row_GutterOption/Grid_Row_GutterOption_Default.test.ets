@@ -1,0 +1,137 @@
+/**
+ * Copyright (c) 2023 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import router from '@ohos.router';
+import CommonFunc from '../../../../MainAbility/common/Common';
+export default function Grid_Row_GutterOption_Default() {
+  describe('Grid_Row_GutterOption_Default', function () {
+    beforeEach(async function (done) {
+      console.info("Grid_Row_GutterOption_Default beforeEach start");
+      let options = {
+        url: "MainAbility/pages/Grid/Grid_Row/Grid_Row_GutterOption/Grid_Row_GutterOption_Default",
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get Grid_Row_GutterOption_Default state pages:" + JSON.stringify(pages));
+        if (!("Grid_Row_GutterOption_Default" == pages.name)) {
+          console.info("get Grid_Row_GutterOption_Default pages.name:" + JSON.stringify(pages.name));
+          let result = await router.push(options);
+          await CommonFunc.sleep(2000);
+          console.info("push Grid_Row_GutterOption_Default page result:" + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push Grid_Row_GutterOption_Default page error " + JSON.stringify(err));
+        expect().assertFail();
+      }
+      console.info("Grid_Row_GutterOption_Default beforeEach end");
+      done();
+    });
+    afterEach(async function () {
+      await CommonFunc.sleep(2000);
+      console.info("Grid_Row_GutterOption_Default after each called")
+    });
+
+    /**
+     * @tc.number    SUB_ACE_GRIDROWGUTTEROPTION_DEFAULT_0100
+     * @tc.name      testGutterOption
+     * @tc.desc      Set the GridRowSizeOption of GridRow to {x: 0 ,y: 0}
+     */
+    it('SUB_ACE_GridRowGutterOption_Default_0100', 0, async function (done) {
+      console.info('SUB_ACE_GridRowGutterOption_Default_0100 START');
+      await CommonFunc.sleep(2000)
+
+      let GutterOption_1 = CommonFunc.getComponentRect('GutterOptionChange_001');
+      let firstGutterOption = CommonFunc.getComponentRect('GutterOptionChange_0');
+      let secondGutterOption = CommonFunc.getComponentRect('GutterOptionChange_1');
+      let thirdGutterOption = CommonFunc.getComponentRect('GutterOptionChange_2');
+      let gridRowGutterOptionJson = getInspectorByKey('GutterOptionChange_001');
+      let gridRowGutterOption = JSON.parse(gridRowGutterOptionJson);
+      expect(gridRowGutterOption.$type).assertEqual('GridRow');
+
+      expect(firstGutterOption.top).assertEqual(GutterOption_1.top);
+      expect(firstGutterOption.left).assertEqual(GutterOption_1.left);
+
+      expect(Math.round(secondGutterOption.left - firstGutterOption.right)).assertEqual(Math.round(vp2px(0)));
+      expect(Math.round(thirdGutterOption.top - firstGutterOption.bottom)).assertEqual(Math.round(vp2px(0)));
+
+
+      console.info('SUB_ACE_GridRowGutterOption_Default_0100 END');
+      done();
+    });
+
+    /**
+     * @tc.number    SUB_ACE_GRIDROWGUTTEROPTION_DEFAULT_0200
+     * @tc.name      testGutterOptionNoSetXY
+     * @tc.desc      Set the GridRowSizeOption of GridRow to {x: 10 ,y: 0}
+     */
+    it('SUB_ACE_GridRowGutterOption_Default_0200', 0, async function (done) {
+      console.info('SUB_ACE_GridRowGutterOption_Default_0200 START');
+      globalThis.value.message.notify({ name:'optionX', value:10 })
+      await CommonFunc.sleep(2000)
+
+      let GutterOption_1 = CommonFunc.getComponentRect('GutterOptionChange_001');
+      let firstGutterOption = CommonFunc.getComponentRect('GutterOptionChange_0');
+      let secondGutterOption = CommonFunc.getComponentRect('GutterOptionChange_1');
+      let thirdGutterOption = CommonFunc.getComponentRect('GutterOptionChange_2');
+      let gridRowGutterOptionJson = getInspectorByKey('GutterOptionChange_001');
+      let gridRowGutterOption = JSON.parse(gridRowGutterOptionJson);
+      expect(gridRowGutterOption.$type).assertEqual('GridRow');
+
+      expect(Math.abs(firstGutterOption.top - GutterOption_1.top) <= 1).assertTrue();
+      expect(Math.abs(firstGutterOption.left - GutterOption_1.left) <= 1).assertTrue();
+
+      expect(Math.round(secondGutterOption.left - firstGutterOption.right)).assertEqual(Math.round(vp2px(10)));
+      expect(Math.round(thirdGutterOption.top - firstGutterOption.bottom)).assertEqual(Math.round(vp2px(0)));
+
+
+      console.info('SUB_ACE_GridRowGutterOption_Default_0200 END');
+      done();
+    });
+
+    /**
+     * @tc.number    SUB_ACE_GRIDROWGUTTEROPTION_DEFAULT_0300
+     * @tc.name      testGutterOptionNoSetXY
+     * @tc.desc      Set the GridRowSizeOption of GridRow to {x: 0 ,y: 10}
+     */
+    it('SUB_ACE_GridRowGutterOption_Default_0300', 0, async function (done) {
+      console.info('SUB_ACE_GridRowGutterOption_Default_0300 START');
+      globalThis.value.message.notify({ name:'optionX', value: 0 })
+      globalThis.value.message.notify({ name:'optionY', value: 10 })
+      await CommonFunc.sleep(2000)
+
+      let GutterOption_1 = CommonFunc.getComponentRect('GutterOptionChange_001');
+      let firstGutterOption = CommonFunc.getComponentRect('GutterOptionChange_0');
+      let secondGutterOption = CommonFunc.getComponentRect('GutterOptionChange_1');
+      let thirdGutterOption = CommonFunc.getComponentRect('GutterOptionChange_2');
+      let gridRowGutterOptionJson = getInspectorByKey('GutterOptionChange_001');
+      let gridRowGutterOption = JSON.parse(gridRowGutterOptionJson);
+      expect(gridRowGutterOption.$type).assertEqual('GridRow');
+
+      expect(firstGutterOption.top).assertEqual(GutterOption_1.top);
+      expect(firstGutterOption.left).assertEqual(GutterOption_1.left);
+
+      expect(Math.round(secondGutterOption.left - firstGutterOption.right)).assertEqual(Math.round(vp2px(0)));
+      expect(Math.round(thirdGutterOption.top - firstGutterOption.bottom)).assertEqual(Math.round(vp2px(10)));
+
+
+      console.info('SUB_ACE_GridRowGutterOption_Default_0300 END');
+      done();
+    });
+
+
+  })
+}

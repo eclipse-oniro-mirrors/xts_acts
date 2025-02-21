@@ -1,0 +1,47 @@
+{
+    "description": "Config for ActsSubgroupsTestSuite0015 test cases",
+    "driver": {
+        "module-name": "ActsSubgroupsTestSuite0015",
+        "native-test-timeout": "120000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "100s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "pre-push" : [
+            ],
+            "post-push" : [
+                "mount -o rw,remount /",
+                "chmod -R 777 /data/local/tmp/*",
+                "mkdir /data/local/tmp/vkTest",
+                "tar zxvf /data/local/tmp/vulkandata.tar.gz -C /data/local/tmp/vkTest",
+                "chmod -R 777 /data/local/tmp/vkTest/*",
+                "cp -r /data/local/tmp/vkTest /data/local/tmp",
+                "cp /data/local/tmp/libdeqp* /system/lib",
+                "cp /data/local/tmp/librosen_context* /system/lib",
+                "cp /data/local/tmp/libskia_canvaskit* /system/lib"
+            ],
+            "push": [
+                "ActsSubgroupsTestSuite0015->/data/local/tmp/ActsSubgroupsTestSuite0015",
+                "vulkandata/libdeqp_ohos_platform.z.so->/data/local/tmp/libdeqp_ohos_platform.z.so",
+                "vulkandata/librosen_context.z.so->/data/local/tmp/librosen_context.z.so",
+                "vulkandata/libdeqp_spirv.z.so->/data/local/tmp/libdeqp_spirv.z.so",
+                "vulkandata/libdeqp_amber.z.so->/data/local/tmp/libdeqp_amber.z.so",
+                "vulkandata/libdeqp_spvremapper.z.so->/data/local/tmp/libdeqp_spvremapper.z.so", 
+                "vulkandata/libskia_canvaskit.z.so->/data/local/tmp/libskia_canvaskit.z.so",  
+                "vulkandata/vulkandata.tar.gz->/data/local/tmp/vulkandata.tar.gz"
+
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "cd /data/local/tmp"
+            ]
+        }
+    ]
+}

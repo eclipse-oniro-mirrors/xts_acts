@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/MainAbility_pages",
+    "SecondAbility/pages/MainAbility_pages",
+    "CreateFormAbility/pages/MainAbility_pages",
+    "FormHostAbility/pages/MainAbility_pages",
+    "ThirdAbility/pages/MainAbility_pages"
+  ]
+}

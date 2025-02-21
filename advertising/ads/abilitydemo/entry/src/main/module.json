@@ -1,0 +1,49 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "FullScreenAdAbility",
+        "srcEntry": "./ets/ability/FullScreenAdAbility.ts",
+        "description": "full screen ad ability",
+        "icon": "$media:icon",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "standard"
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "AdsCoreService",
+        "type": "adsService",
+        "srcEntry": "./ets/ability/AdsCoreService.ts",
+        "description": "AdsCoreService",
+        "exported": true,
+        "skills": []
+      },
+      {
+        "name": "AdsUIExtensionAbility",
+        "type": "ads",
+        "srcEntry": "./ets/ability/AdsUIExtensionAbility.ts",
+        "description": "AdsUIExtensionAbility",
+        "exported": true
+      }
+    ]
+  }
+}

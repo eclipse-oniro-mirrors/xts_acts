@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "MulAbFirst"
+    },
+    {
+      "name": "SecondEntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondEntryAbility_label",
+      "value": "MulAbSecond"
+    },
+    {
+      "name": "ThirdEntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThirdEntryAbility_label",
+      "value": "MulAbThird"
+    },
+    {
+      "name": "FourthEntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "FourthEntryAbility_label",
+      "value": "label"
+    }
+  ]
+}

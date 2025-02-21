@@ -1,0 +1,39 @@
+{
+  "module": {
+    "name": "Thirdentry",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "ThirdentryAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "ThirdentryAbility",
+        "srcEntry": "./ets/thirdentryability/ThirdentryAbility.ts",
+        "description": "$string:ThirdentryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:ThirdentryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.nfc.tag.test.action"
+            ],
+            "uris": [
+              {
+                "type":"tag-tech/MultiHapNFCC"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

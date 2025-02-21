@@ -1,0 +1,141 @@
+
+/**
+ * Copyright (c) 2023 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import router from '@ohos.router';
+import CommonFunc from '../../../MainAbility/common/Common';
+import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection,
+  WindowMode, PointerMatrix, UiDirection, MouseButton } from '@ohos.UiTest';
+export default function list_ListInitialIndex3Test() {
+  describe('List_ListInitialIndex3Test', function () {
+    beforeEach(async function (done) {
+      console.info("List_ListInitialIndex3Test beforeEach start");
+      let options = {
+        url: 'MainAbility/pages/List/List_initialIndex/List_ListInitialIndex3',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get List_ListInitialIndex3 state pages:" + JSON.stringify(pages));
+        if (!("List_ListInitialIndex3" == pages.name)) {
+          console.info("get List_ListInitialIndex3 pages.name:" + JSON.stringify(pages.name));
+          let result = await router.push(options);
+          await CommonFunc.sleep(2000);
+          console.info("push List_ListInitialIndex3 page result:" + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push List_ListInitialIndex3 page error:" + err);
+      }
+      console.info("List_ListInitialIndex3Test beforeEach end");
+      done();
+    });
+    afterEach(async function () {
+      await CommonFunc.sleep(1000);
+      console.info("List_ListInitialIndex3Test after each called");
+    });
+    /**
+     * @tc.number    SUB_ACE_LIST_LISTINITIALINDEX_0300
+     * @tc.name      testListInitialIndexToNegativeWithOneLane
+     * @tc.desc     the InitialIndex of list set to -1
+     */
+    it('testListInitialIndexToNegativeWithOneLane', 0, async function (done) {
+      console.info('[testListInitialIndexToNegativeWithOneLane] START');
+      let firstListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_1');
+      let secondListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_2');
+      let thirdListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_3');
+      let fourthListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_4');
+      let fifthListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_5');
+      let sixthListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_6');
+      let seventhListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_7');
+      let eighthListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_8');
+      let ninthListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_9');
+      let tenthListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_10');
+      let eleventhListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_11');
+      let twelfthListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_12');
+      let listContainer = CommonFunc.getComponentRect('List_ListInitialIndex3_Container01');
+      let listContainerStrJson = getInspectorByKey('List_ListInitialIndex3_Container01');
+      let listContainerObj = JSON.parse(listContainerStrJson);
+      expect(listContainerObj.$type).assertEqual('List');
+
+      expect(firstListItem.top).assertEqual(firstListItem.top);
+      expect(firstListItem.left).assertEqual(listContainer.left);
+      expect(Math.round(firstListItem.right - firstListItem.left)).assertEqual(Math.round(vp2px(100)));
+      expect(Math.round(firstListItem.bottom - firstListItem.top)).assertEqual(Math.round(vp2px(100)));
+
+      expect(Math.round(secondListItem.top - firstListItem.bottom)).assertEqual(Math.round(vp2px(20)));
+      expect(secondListItem.left).assertEqual(listContainer.left);
+      expect(Math.round(secondListItem.right - secondListItem.left)).assertEqual(Math.round(vp2px(100)));
+      expect(Math.round(secondListItem.bottom - secondListItem.top)).assertEqual(Math.round(vp2px(100)));
+
+      expect(Math.round(thirdListItem.top - secondListItem.bottom)).assertEqual(Math.round(vp2px(20)));
+      expect(thirdListItem.left).assertEqual(listContainer.left);
+      expect(Math.round(thirdListItem.right - thirdListItem.left)).assertEqual(Math.round(vp2px(100)));
+      expect(Math.round(thirdListItem.bottom - thirdListItem.top)).assertEqual(Math.round(vp2px(100)));
+
+      expect(Math.round(fourthListItem.top - thirdListItem.bottom)).assertEqual(Math.round(vp2px(20)));
+      expect(fourthListItem.left).assertEqual(listContainer.left);
+      expect(Math.round(fourthListItem.right - fourthListItem.left)).assertEqual(Math.round(vp2px(100)));
+      expect(Math.round(fourthListItem.bottom - fourthListItem.top)).assertEqual(Math.round(vp2px(100)));
+
+      expect(Math.round(fifthListItem.top - fourthListItem.bottom)).assertEqual(Math.round(vp2px(20)));
+      expect(fifthListItem.left).assertEqual(listContainer.left);
+      expect(Math.round(fifthListItem.right - fifthListItem.left)).assertEqual(Math.round(vp2px(100)));
+      expect(Math.round(fifthListItem.bottom - fifthListItem.top)).assertEqual(Math.round(vp2px(100)));
+
+      expect(Math.round(sixthListItem.right - sixthListItem.left)).assertEqual(vp2px(0));
+      expect(Math.round(sixthListItem.bottom - sixthListItem.top)).assertEqual(vp2px(0));
+
+      expect(Math.round(seventhListItem.right - seventhListItem.left)).assertEqual(vp2px(0));
+      expect(Math.round(seventhListItem.bottom - seventhListItem.top)).assertEqual(vp2px(0));
+
+      expect(Math.round(eighthListItem.right - eighthListItem.left)).assertEqual(vp2px(0));
+      expect(Math.round(eighthListItem.bottom - eighthListItem.top)).assertEqual(vp2px(0));
+
+      expect(Math.round(ninthListItem.right - ninthListItem.left)).assertEqual(vp2px(0));
+      expect(Math.round(ninthListItem.bottom - ninthListItem.top)).assertEqual(vp2px(0));
+
+      expect(Math.round(tenthListItem.right - tenthListItem.left)).assertEqual(vp2px(0));
+      expect(Math.round(tenthListItem.bottom - tenthListItem.top)).assertEqual(vp2px(0));
+
+      expect(Math.round(eleventhListItem.right - eleventhListItem.left)).assertEqual(vp2px(0));
+      expect(Math.round(eleventhListItem.bottom - eleventhListItem.top)).assertEqual(vp2px(0));
+
+      expect(Math.round(twelfthListItem.right - twelfthListItem.left)).assertEqual(vp2px(0));
+      expect(Math.round(twelfthListItem.bottom - twelfthListItem.top)).assertEqual(vp2px(0));
+
+      let driver = await Driver.create();
+      await driver.swipe(Math.round(fourthListItem.left + ((fourthListItem.right - fourthListItem.left) / 2)),
+      Math.round(fourthListItem.bottom), Math.round(firstListItem.left + (firstListItem.right - firstListItem.left) / 2),
+      Math.round(firstListItem.bottom));
+      await CommonFunc.sleep(2000);
+      fifthListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_5');
+      sixthListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_6');
+      seventhListItem = CommonFunc.getComponentRect('List_ListInitialIndex3_7');
+      listContainer = CommonFunc.getComponentRect('List_ListInitialIndex3_Container01');
+
+      expect(Math.round(sixthListItem.top - fifthListItem.bottom)).assertEqual(Math.round(vp2px(20)));
+      expect(sixthListItem.left).assertEqual(listContainer.left);
+      expect(Math.round(sixthListItem.right - sixthListItem.left)).assertEqual(Math.round(vp2px(100)));
+      expect(Math.round(sixthListItem.bottom - sixthListItem.top)).assertEqual(Math.round(vp2px(100)));
+
+      expect(Math.round(seventhListItem.top - sixthListItem.bottom)).assertEqual(Math.round(vp2px(20)));
+      expect(seventhListItem.left).assertEqual(listContainer.left);
+      expect(Math.round(seventhListItem.right - seventhListItem.left)).assertEqual(Math.round(vp2px(100)));
+      expect(Math.round(seventhListItem.bottom - seventhListItem.top)).assertEqual(Math.round(vp2px(100)));
+      console.info('[testListInitialIndexToNegativeWithOneLane] END');
+      done();
+    });
+  })
+}

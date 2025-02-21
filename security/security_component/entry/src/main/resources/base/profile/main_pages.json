@@ -1,0 +1,12 @@
+{
+    "src": [
+          "MainAbility/pages/index/index",
+          "MainAbility/pages/pasteButton",
+          "MainAbility/pages/pasteButton_1",
+          "MainAbility/pages/locationButton",
+          "MainAbility/pages/locationButton_1",
+          "MainAbility/pages/locationButton_2",
+          "MainAbility/pages/saveButton",
+          "MainAbility/pages/saveButton_1"
+    ]
+}

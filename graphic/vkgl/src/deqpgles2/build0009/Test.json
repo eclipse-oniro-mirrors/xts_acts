@@ -1,0 +1,44 @@
+{
+    "description": "Config for ActsDeqpgles2TestSuite0009 test cases",
+    "driver": {
+        "module-name": "ActsDeqpgles2TestSuite0009",
+        "native-test-timeout": "120000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "100s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "pre-push" : [
+            ],
+            "post-push" : [
+                "mount -o rw,remount /",
+                "chmod -R 777 /data/local/tmp/*",
+                "mkdir /data/local/tmp/gl_cts",
+                "tar zxvf /data/local/tmp/vkgldata.tar.gz -C /data/local/tmp/gl_cts",
+                "cp -r /data/local/tmp/gl_cts/data/gles2 /data/local/tmp",
+                "cp -r /data/local/tmp/gl_cts/data/gles3 /data/local/tmp",
+                "cp -r /data/local/tmp/gl_cts/data/gles31 /data/local/tmp",
+                "cp /data/local/tmp/libdeqp* /system/lib",
+                "cp /data/local/tmp/librosen_context* /system/lib"
+            ],
+            "push": [
+                "ActsDeqpgles2TestSuite0009->/data/local/tmp/ActsDeqpgles2TestSuite0009",
+                "vkgldata/libdeqp_ohos_platform.z.so->/data/local/tmp/libdeqp_ohos_platform.z.so",
+                "vkgldata/librosen_context.z.so->/data/local/tmp/librosen_context.z.so",
+                "vkgldata/libdeqp_spirv.z.so->/data/local/tmp/libdeqp_spirv.z.so",
+                "vkgldata/libdeqp_spvremapper.z.so->/data/local/tmp/libdeqp_spvremapper.z.so",
+                "vkgldata/vkgldata.tar.gz->/data/local/tmp/vkgldata.tar.gz"
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "cd /data/local/tmp"
+            ]
+        }
+    ]
+}

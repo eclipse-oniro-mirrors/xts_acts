@@ -1,0 +1,39 @@
+{
+    "description": "Config for opensles ndk test cases",
+    "driver": {
+        "module-name": "ActsSensorMiscdeviceTest",
+        "native-test-timeout": "300000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "1s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push" : [
+                "mount -o rw,remount /"
+            ],
+            "push": [
+                "ActsSensorMiscdeviceTest->/data/local/tmp/ActsSensorMiscdeviceTest",
+                "resource/sensors/miscdevice/json_file/coin_drop.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/on_carpet.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/test_128_event.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/test_129_event.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/test_big_file_size.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/test_event_overlap_1.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/test_event_overlap_2.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/test_invalid_duration.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/test_invalid_frequency.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/test_invalid_intensity.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/test_invalid_startTime.json ->/data/local/tmp",
+                "resource/sensors/miscdevice/json_file/test_invalid_type.json ->/data/local/tmp"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 -R /data/local/tmp"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+  "module": {
+    "name": "com.netconn.napitest",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "tablet",
+      "default"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "visible": true,
+        "orientation": "portrait",
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+   "requestPermissions": [
+     {
+       "name": "ohos.permission.GET_NETWORK_INFO"
+     },
+     {
+       "name": "ohos.permission.INTERNET"
+     }
+   ]
+  }
+}

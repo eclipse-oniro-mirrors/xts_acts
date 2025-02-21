@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "Divider_Color",
+      "value": "#FF121212"
+    },
+    {
+      "name": "Indicator_Color",
+      "value": "#FFFF0000"
+    }
+  ]
+}

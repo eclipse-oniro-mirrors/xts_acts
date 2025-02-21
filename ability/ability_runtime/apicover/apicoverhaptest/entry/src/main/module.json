@@ -1,0 +1,121 @@
+{
+    "module": {
+      "name": "phone",
+      "type": "entry",
+      "srcEntrance": "./ets/Application/AbilityStage.ts",
+      "description": "$string:phone_entry_dsc",
+      "mainElement": "MainAbility",
+      "deviceTypes": [
+        "default",
+        "tablet"
+      ],
+      "deliveryWithInstall": true,
+      "installationFree": false,
+      "pages": "$profile:main_pages",
+      "uiSyntax": "ets",
+      "abilities": [
+        {
+          "name": "com.example.apicoverhaptest.MainAbility",
+          "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+          "description": "$string:phone_entry_main",
+          "icon": "$media:icon",
+          "label": "$string:entry_label",
+          "startWindowIcon": "$media:icon",
+          "startWindowBackground": "$color:white",
+          "visible": true,
+          "orientation": "portrait",
+          "skills": [
+            {
+              "entities": [
+                "entity.system.home"
+              ],
+              "actions": [
+                "action.system.home"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "SecondAbility",
+          "srcEntrance": "./ets/SecondAbility/SecondAbility.ts",
+          "description": "$string:phone_entry_main",
+          "icon": "$media:icon",
+          "label": "$string:entry_label",
+          "startWindowIcon": "$media:icon",
+          "startWindowBackground": "$color:white",
+          "visible": true,
+          "launchType": "singleton"
+        },
+        {
+          "name": "ThirdAbility",
+          "srcEntrance": "./ets/ThirdAbility/SecondAbility.ts",
+          "description": "$string:phone_entry_main",
+          "icon": "$media:icon",
+          "label": "$string:entry_label",
+          "startWindowIcon": "$media:icon",
+          "startWindowBackground": "$color:white",
+          "visible": true,
+          "launchType": "specified"
+        },
+        {
+          "name": "CreateFormAbility",
+          "srcEntrance": "./ets/CreateFormAbility/CreateFormAbility.ts",
+          "description": "$string:phone_entry_main",
+          "icon": "$media:icon",
+          "label": "$string:entry_label",
+          "startWindowIcon": "$media:icon",
+          "startWindowBackground": "$color:white",
+          "visible": true,
+          "launchType": "singleton"
+        },
+        {
+          "name": "FormHostAbility",
+          "srcEntrance": "./ets/FormHostAbility/FormHostAbility.ts",
+          "description": "$string:phone_entry_main",
+          "icon": "$media:icon",
+          "label": "$string:entry_label",
+          "startWindowIcon": "$media:icon",
+          "startWindowBackground": "$color:white",
+          "visible": true,
+          "launchType": "singleton"
+        }
+      ],
+      "extensionAbilities": [
+        {
+          "name": "FormAbility",
+          "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+          "label": "$string:MainAbility_label",
+          "description": "$string:MainAbility_desc",
+          "type": "form",
+          "metadata": [
+            {
+              "name": "ohos.extension.form",
+              "resource": "$profile:form_config"
+            }
+          ]
+        }
+      ],
+      "requestPermissions": [
+        {
+          "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+          "reason": "need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+        },
+        {
+          "name": "ohos.permission.REQUIRE_FORM",
+          "reason": "need use ohos.permission.REQUIRE_FORM"
+        },
+        {
+          "name": "ohos.permission.UPDATE_CONFIGURATION",
+          "reason": "need use ohos.permission.UPDATE_CONFIGURATION"
+        },
+        {
+          "name": "ohos.permission.GET_RUNNING_INFO",
+          "reason": "need use ohos.permission.GET_RUNNING_INFO"
+        },
+        {
+          "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+          "reason":"need use ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        }
+      ]
+    }
+  }

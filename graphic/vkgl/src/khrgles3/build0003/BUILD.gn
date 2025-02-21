@@ -1,0 +1,80 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libkhrgles3func0003") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Khrgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsKhrgles3TestSuite0003") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsKhrgles30003TestSuite.cpp",
+    "../shaders/Khrgles3instance_array_basic_type_packedTestCase.cpp",
+    "../shaders/Khrgles3instance_array_basic_type_sharedTestCase.cpp",
+    "../shaders/Khrgles3instance_array_basic_type_std140TestCase.cpp",
+    "../shaders/Khrgles3multi_basic_types_per_block_bufferTestCase.cpp",
+    "../shaders/Khrgles3multi_basic_types_single_bufferTestCase.cpp",
+    "../shaders/Khrgles3multi_nested_struct_per_block_bufferTestCase.cpp",
+    "../shaders/Khrgles3multi_nested_struct_single_bufferTestCase.cpp",
+    "../shaders/Khrgles3random_all_per_block_buffersTestCase.cpp",
+    "../shaders/Khrgles3random_all_shared_bufferTestCase.cpp",
+    "../shaders/Khrgles3random_basic_arraysTestCase.cpp",
+    "../shaders/Khrgles3random_basic_instance_arraysTestCase.cpp",
+    "../shaders/Khrgles3random_basic_typesTestCase.cpp",
+    "../shaders/Khrgles3random_nested_structsTestCase.cpp",
+    "../shaders/Khrgles3random_nested_structs_arraysTestCase.cpp",
+    "../shaders/Khrgles3random_nested_structs_arrays_instance_arraysTestCase.cpp",
+    "../shaders/Khrgles3random_nested_structs_instance_arraysTestCase.cpp",
+    "../shaders/Khrgles3random_scalar_typesTestCase.cpp",
+    "../shaders/Khrgles3random_vector_typesTestCase.cpp",
+    "../shaders/Khrgles3shaders_aggressive_optimizationsTestCase.cpp",
+    "../shaders/Khrgles3shaders_glsl_constructorsTestCase.cpp",
+    "../shaders/Khrgles3shaders_negativeTestCase.cpp",
+    "../shaders/Khrgles3shaders_shader_integer_mixTestCase.cpp",
+    "../shaders/Khrgles3uniform_block_commonTestCase.cpp",
+    "../texture_filter_anisotropic/Khrgles3KHR-GLES3_texture_filter_anisotropicTestCase.cpp",
+    "../texture_repeat_mode/Khrgles3KHR-GLES3_texture_repeat_modeTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libkhrgles3func0003" ]
+
+  cflags = [ "-Wno-error" ]
+}

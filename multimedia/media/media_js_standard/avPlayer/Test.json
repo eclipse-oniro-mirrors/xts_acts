@@ -1,0 +1,88 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "ohos.acts.multimedia.avplayer",
+        "module-name": "phone",
+        "shell-timeout": "9000000",
+        "testcase-timeout": 850000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAVPlayerTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files",
+                "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsAVPlayerTest.hap->/data/test/ActsAVPlayerTest.hap",
+                "./resource/audio/H264_AAC.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/mp4/h264_mp3_128x96_30r.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/h263_aac.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/h263_mp3.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/MPEG2_AAC.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/MPEG2_MP3.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/h264_1280x720_30.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/H263.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/MPEG2.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/mpeg_ts/h264_aac_480p_25r.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/mpeg_ts/h264_mp3_480p_25r.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/H263_AAC.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/H263_MP3.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/mpeg_ts/mpeg2_aac_720p_30r.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/mpeg_ts/mpeg2_mp3_480p_25r.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/mpeg_ts/mpeg4_aac_720p_30r.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/mpeg_ts/mpeg4_mp3_480p_25r.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/h264_320x240_60.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/h263_1408x1152_30.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/MPEG2.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/mpeg4_320x240_60.ts -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/webm/vp8_vorbis_480p_25r.webm -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/vp8_720x480_60.webm -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/H264_AAC.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/H264_MP3.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/mkv/h263_aac_640x480_30r.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/mkv/h263_mp3_176x144_25r.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/MPEG2_AAC.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/MPEG2_MP3.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/videoplayer/mkv/mpeg4_aac_720p_30r.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/MPEG4_MP3.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/h264_320x240_30.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/h263_1408x1152_60.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/MPEG2.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/mpeg4_320x240_60.mkv -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AAC_48000_32_1.aac -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/audio/01.mp3 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/audio/56.m4a -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/OGG_48000_1.ogg -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/vorbis_48000_32_1.wav -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/audioplayer/flac/flac_48ksr_16kbr_1ch.flac -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/hevc_320x240_60.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/H264_MP3_1s.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/",
+                "./resource/media/AVPlayer/h264_aac_3840_2160.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avplayer/haps/phone/files/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /data/test/*.hap",
+                "scanner",
+                "param set persist.ace.testmode.enabled 1",
+                "setenforce 0"
+            ]
+        }
+    ]
+}

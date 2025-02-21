@@ -1,0 +1,32 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.acts.inputmethoddrawncontrol.test",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout": "40000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -m 300 720 300 360 200",
+                "uinput -T -m 650 2760 650 1380 200",
+                "mount -o rw,remount /",
+                "sed -i 's/enableInputMethodFeature\": true/enableInputMethodFeature\": false/' /system/variant/phone/base/etc/inputmethod/inputmethod_framework_config.json",
+                "pkill inputmethod_ser"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsInputMethodDrawnControlTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

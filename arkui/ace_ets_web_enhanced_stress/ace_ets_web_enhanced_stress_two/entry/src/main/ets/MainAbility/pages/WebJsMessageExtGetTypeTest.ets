@@ -1,0 +1,184 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import webView from '@ohos.web.webview';
+import Utils from '../../test/Utils';
+import business_error from '@ohos.base';
+import events_emitter from '@ohos.events.emitter';
+
+@Entry
+@Component
+struct WebJsMessageExtGetTypeTest {
+  controller: webView.WebviewController = new webView.WebviewController();
+  nativePort: webView.WebMessagePort | null = null;
+  message: webView.WebMessageExt = new webView.WebMessageExt();
+  @State str: string = ""
+  @State buttonKey: string = '';
+  @State stressTimes: number = 0;
+  @State successTimes: number = 0;
+  @State callBackId: number = 0;
+  @State javaScriptAccess: boolean = true;
+  @State databaseAccess: boolean = true;
+
+  onPageShow() {
+    Utils.registerEventPage((eventData: events_emitter.EventData) => {
+      if (eventData.data) {
+        this.str = eventData.data.CASE_NAME;
+        this.callBackId = eventData.data.CALL_BACK_ID;
+        this.stressTimes = eventData.data.STRESS_TIMES;
+        this.buttonKey = eventData.data.BUTTON_KEY
+      }
+    })
+  }
+
+  onPageHide() {
+    Utils.unRegisterEventPage()
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Button(this.buttonKey)
+          .key(this.buttonKey)
+          .onClick(async () => {
+            console.info("key==>" + this.str)
+            switch (this.str) {
+              case "testJsMessageExtGetType001": {
+                try {
+                  this.controller.runJavaScriptExt(
+                    'getString()',
+                    (error, result) => {
+                      if (error) {
+                        let e: business_error.BusinessError = error as business_error.BusinessError;
+                        console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                      }
+                      for (let i = 0; i < this.stressTimes; i++) {
+                        result.getType();
+                        Utils.stressingLog('JsMessageExt.getType()', i + 1, this.stressTimes)
+                      }
+                      Utils.emitEvent(true, this.callBackId)
+                    });
+                } catch (error) {
+                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  Utils.emitEvent(false, this.callBackId)
+                }
+                break;
+              }
+
+              case "testJsMessageExtGetType002": {
+                try {
+                  this.controller.runJavaScriptExt(
+                    'getNumber()',
+                    (error, result) => {
+                      if (error) {
+                        let e: business_error.BusinessError = error as business_error.BusinessError;
+                        console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                      }
+                      for (let i = 0; i < this.stressTimes; i++) {
+                        result.getType();
+                        Utils.stressingLog('JsMessageExt.getType()', i + 1, this.stressTimes)
+                      }
+                      Utils.emitEvent(true, this.callBackId)
+                    });
+                } catch (error) {
+                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  Utils.emitEvent(false, this.callBackId)
+                }
+                break;
+              }
+
+              case "testJsMessageExtGetType003": {
+                try {
+                  this.controller.runJavaScriptExt(
+                    'getBoolean()',
+                    (error, result) => {
+                      if (error) {
+                        let e: business_error.BusinessError = error as business_error.BusinessError;
+                        console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                      }
+                      for (let i = 0; i < this.stressTimes; i++) {
+                        result.getType();
+                        Utils.stressingLog('JsMessageExt.getType()', i + 1, this.stressTimes)
+                      }
+                      Utils.emitEvent(true, this.callBackId)
+                    });
+                } catch (error) {
+                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  Utils.emitEvent(false, this.callBackId)
+                }
+                break;
+              }
+
+              case "testJsMessageExtGetType004": {
+                try {
+                  this.controller.runJavaScriptExt(
+                    'getArrayBuffer()',
+                    (error, result) => {
+                      if (error) {
+                        let e: business_error.BusinessError = error as business_error.BusinessError;
+                        console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                      }
+                      for (let i = 0; i < this.stressTimes; i++) {
+                        result.getType();
+                        Utils.stressingLog('JsMessageExt.getType()', i + 1, this.stressTimes)
+                      }
+                      Utils.emitEvent(true, this.callBackId)
+                    });
+                } catch (error) {
+                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  Utils.emitEvent(false, this.callBackId)
+                }
+                break;
+              }
+
+              case "testJsMessageExtGetType005": {
+                try {
+                  this.controller.runJavaScriptExt(
+                    'getArray()',
+                    (error, result) => {
+                      if (error) {
+                        let e: business_error.BusinessError = error as business_error.BusinessError;
+                        console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+                      }
+                      for (let i = 0; i < this.stressTimes; i++) {
+                        result.getType();
+                        Utils.stressingLog('JsMessageExt.getType()', i + 1, this.stressTimes)
+                      }
+                      Utils.emitEvent(true, this.callBackId)
+                    });
+                } catch (error) {
+                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                  Utils.emitEvent(false, this.callBackId)
+                }
+                break;
+              }
+
+            }
+          })
+
+        Web({ src: $rawfile('getJsMessageExt.html'), controller: this.controller })
+          .javaScriptAccess(this.javaScriptAccess)
+          .onPageEnd((event) => {
+            if (event) {
+              console.log('url:' + event.url)
+            }
+
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}

@@ -1,0 +1,227 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../SubgroupsBaseFunc.h"
+#include "../ActsSubgroups0009TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupaddi8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupadd_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmuli8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmul_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmini8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmin_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmaxi8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmax_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupandi8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupand_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupori8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupor_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupxori8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupxor_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveaddi8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveadd_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemuli8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemul_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemini8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemin_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemaxi8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemax_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveandi8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveand_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveori8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveor_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivexori8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivexor_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveaddi8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveadd_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemuli8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemul_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemini8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemin_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemaxi8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemax_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveandi8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveand_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveori8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveor_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivexori8vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivexor_i8vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupadduint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupadd_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmuluint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmul_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupminuint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmin_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmaxuint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmax_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupanduint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupand_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgrouporuint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupor_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupxoruint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupxor_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveadduint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveadd_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemuluint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemul_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveminuint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemin_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemaxuint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemax_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveanduint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveand_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveoruint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveor_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivexoruint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivexor_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveadduint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveadd_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemuluint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemul_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveminuint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemin_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemaxuint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemax_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveanduint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveand_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveoruint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveor_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivexoruint8t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivexor_uint8_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupaddu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupadd_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmulu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmul_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupminu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmin_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmaxu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmax_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupandu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupand_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgrouporu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupor_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupxoru8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupxor_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveaddu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveadd_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemulu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemul_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveminu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemin_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemaxu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemax_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveandu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveand_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveoru8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveor_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivexoru8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivexor_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveaddu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveadd_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemulu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemul_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveminu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemin_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemaxu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemax_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveandu8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveand_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveoru8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveor_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivexoru8vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivexor_u8vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupaddi16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupadd_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmuli16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmul_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmini16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmin_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmaxi16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmax_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupandi16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupand_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupori16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupor_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupxori16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupxor_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveaddi16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveadd_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemuli16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemul_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemini16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemin_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemaxi16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemax_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveandi16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveand_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveori16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveor_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivexori16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivexor_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveaddi16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveadd_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemuli16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemul_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemini16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemin_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemaxi16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemax_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveandi16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveand_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveori16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveor_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivexori16vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivexor_i16vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupadduint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupadd_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmuluint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmul_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupminuint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmin_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmaxuint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmax_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupanduint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupand_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgrouporuint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupor_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupxoruint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupxor_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveadduint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveadd_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemuluint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemul_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveminuint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemin_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemaxuint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemax_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveanduint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveand_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveoruint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveor_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivexoruint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivexor_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveadduint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveadd_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemuluint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemul_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveminuint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemin_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemaxuint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemax_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveanduint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveand_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveoruint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveor_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivexoruint16t, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivexor_uint16_t*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupaddu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupadd_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmulu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmul_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupminu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmin_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmaxu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmax_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupandu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupand_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgrouporu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupor_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupxoru16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupxor_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveaddu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveadd_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemulu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemul_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveminu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemin_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemaxu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemax_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveandu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveand_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveoru16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveor_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivexoru16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivexor_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveaddu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveadd_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemulu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemul_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveminu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemin_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemaxu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemax_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveandu16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveand_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveoru16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveor_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivexoru16vec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivexor_u16vec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupaddivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupadd_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmulivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmul_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupminivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmin_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmaxivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmax_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupandivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupand_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgrouporivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupor_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupxorivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupxor_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveaddivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveadd_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemulivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemul_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveminivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemin_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemaxivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemax_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveandivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveand_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveorivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveor_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivexorivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivexor_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveaddivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveadd_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemulivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemul_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveminivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemin_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemaxivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemax_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveandivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveand_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveorivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveor_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivexorivec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivexor_ivec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupadduint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupadd_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmuluint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmul_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupminuint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmin_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmaxuint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmax_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupanduint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupand_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgrouporuint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupor_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupxoruint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupxor_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveadduint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveadd_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemuluint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemul_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveminuint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemin_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemaxuint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemax_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveanduint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveand_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveoruint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveor_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivexoruint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivexor_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveadduint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveadd_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemuluint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemul_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveminuint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemin_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemaxuint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemax_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveanduint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveand_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveoruint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveor_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivexoruint, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivexor_uint*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupadduvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupadd_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmuluvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmul_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupminuvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmin_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmaxuvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmax_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupanduvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupand_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgrouporuvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupor_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupxoruvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupxor_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveadduvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveadd_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemuluvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemul_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveminuvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemin_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemaxuvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemax_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveanduvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveand_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveoruvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveor_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivexoruvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivexor_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveadduvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveadd_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemuluvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemul_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveminuvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemin_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivemaxuvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivemax_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveanduvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveand_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusiveoruvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusiveor_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupexclusivexoruvec4, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupexclusivexor_uvec4*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupaddi64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupadd_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmuli64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmul_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmini64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmin_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupmaxi64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupmax_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupandi64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupand_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupori64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupor_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupxori64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupxor_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveaddi64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveadd_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemuli64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemul_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemini64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemin_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusivemaxi64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusivemax_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveandi64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveand_i64vec3*");
+static SHRINK_HWTEST_F(ActsSubgroups0009TS, TCRaytracingSubgroupinclusiveori64vec3, "dEQP-VK.subgroups.arithmetic.ray_tracing.subgroupinclusiveor_i64vec3*");

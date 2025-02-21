@@ -1,0 +1,112 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+export class Constants {
+  static readonly USE_LOW_STRESS_TIMES = true
+  static readonly LOW_STRESS_TIMES = 200
+  static readonly DEFAULT_STRESS_TIMES = 2000
+  static readonly PAGE_EVENT_KEY = 10
+  static readonly WEB_VIEW_CONTROLLER_LOAD_URL_BUTTON_KEY = 'WebViewControllerLoadUrlTestButton'
+  static readonly WEB_ON_PAGE_END_BUTTON_KEY = 'WebOnPageEndTestButton'
+  static readonly WEB_VIEW_ONCE_BUTTON_KEY = 'WebViewOnceTestButton'
+  static readonly WEB_VIEW_CONTROLLER_CUSTOMIZE_SCHEMES_BUTTON_KEY = 'WebViewControllerCustomizeSchemesTestButton'
+  static readonly WEB_ON_FIRST_CONTENTFUL_PAINT_BUTTON_KEY = 'WebOnFirstContentfulPaintTestButton'
+  static readonly WEB_ON_FAVICON_RECEIVED_BUTTON_KEY = 'WebOnFaviconReceivedTestButton'
+  static readonly WEB_ON_AUDIO_STATE_CHANGED_BUTTON_KEY = 'WebOnAudioStateChangedTestButton'
+  static readonly WEB_ON_SEARCH_RESULT_RECEIVE_BUTTON_KEY = 'WebOnSearchResultReceiveTestButton'
+  static readonly WEB_MESSAGE_EXT_GET_ARRAY_BUTTON_KEY = 'WebMessageExtGetArrayTestButton'
+  static readonly WEB_MESSAGE_EXT_GET_ARRAY_BUFFER_BUTTON_KEY = 'WebMessageExtGetArrayBufferTestButton'
+  static readonly WEB_MESSAGE_EXT_GET_BOOLEAN_BUTTON_KEY = 'WebMessageGetBooleanExtTestButton'
+  static readonly WEB_MESSAGE_EXT_GET_ERROR_BUTTON_KEY = 'WebMessageGetErrorExtTestButton'
+  static readonly WEB_MESSAGE_EXT_GET_NUMBER_BUTTON_KEY = 'WebMessageGetNumberExtTestButton'
+  static readonly WEB_MESSAGE_EXT_GET_STRING_BUTTON_KEY = 'WebMessageGetStringExtTestButton'
+  static readonly WEB_MESSAGE_EXT_GET_TYPE_BUTTON_KEY = 'WebMessageGetTypeExtTestButton'
+  static readonly WEB_MESSAGE_EXT_SET_ARRAY_BUTTON_KEY = 'WebMessageSetArrayExtTestButton'
+  static readonly WEB_MESSAGE_EXT_SET_BOOLEAN_BUTTON_KEY = 'WebMessageSetBooleanExtTestButton'
+  static readonly WEB_MESSAGE_EXT_SET_ARRAY_BUFFER_BUTTON_KEY = 'WebMessageSetArrayBufferExtTestButton'
+  static readonly WEB_MESSAGE_EXT_SET_ERROR_BUTTON_KEY = 'WebMessageSetErrorExtTestButton'
+  static readonly WEB_MESSAGE_EXT_SET_NUMBER_BUTTON_KEY = 'WebMessageSetNumberExtTestButton'
+  static readonly WEB_MESSAGE_EXT_SET_STRING_BUTTON_KEY = 'WebMessageSetStringExtTestButton'
+  static readonly WEB_MESSAGE_EXT_SET_TYPE_BUTTON_KEY = 'WebMessageSetTypeExtTestButton'
+  static readonly WEB_JS_MESSAGE_EXT_GET_ARRAY_BUTTON_KEY = 'WebJsMessageExtGetArrayTestButton'
+  static readonly WEB_JS_MESSAGE_EXT_GET_ARRAY_BUFFER_BUTTON_KEY = 'WebJsMessageExtGetArrayBufferTestButton'
+  static readonly WEB_JS_MESSAGE_EXT_GET_BOOLEAN_BUTTON_KEY = 'WebJsMessageExtGetBooleanBufferTestButton'
+  static readonly WEB_JS_MESSAGE_EXT_GET_NUMBER_BUTTON_KEY = 'WebJsMessageExtGetNumberTestButton'
+  static readonly WEB_JS_MESSAGE_EXT_GET_STRING_BUTTON_KEY = 'WebJsMessageExtGetStringTestButton'
+  static readonly WEB_JS_MESSAGE_EXT_GET_TYPE_BUTTON_KEY = 'WebJsMessageExtGetTypeTestButton'
+  static readonly WEB_STORAGE_DELETE_ALL_DATA_BUTTON_KEY = 'WebStorageDeleteAllDataTestButton'
+  static readonly WEB_STORAGE_DELETE_ORIGIN_BUTTON_KEY = 'WebStorageDeleteOriginTestButton'
+  static readonly WEB_STORAGE_GET_ORIGIN_QUOTA_BUTTON_KEY = 'WebStorageGetOriginQuotaTestButton'
+  static readonly WEB_STORAGE_GET_ORIGINS_BUTTON_KEY = 'WebStorageGetOriginsTestButton'
+  static readonly WEB_STORAGE_GET_ORIGINS_USAGE_BUTTON_KEY = 'WebStorageGetOriginUsageTestButton'
+  static readonly WEB_DATABASE_DELETE_HTTP_AUTH_CREDENTIALS_BUTTON_KEY = 'WebDataBaseDeleteHttpAuthCredentialsTestButton'
+  static readonly WEB_DATABASE_EXIST_HTTP_AUTH_CREDENTIALS_BUTTON_KEY = 'WebDataBaseExistHttpAuthCredentialsTestButton'
+  static readonly WEB_DATABASE_GET_HTTP_AUTH_CREDENTIALS_BUTTON_KEY = 'WebDataBaseGetHttpAuthCredentialsTestButton'
+  static readonly WEB_DATABASE_SAVE_HTTP_AUTH_CREDENTIALS_BUTTON_KEY = 'WebDataBaseSaveHttpAuthCredentialsTestButton'
+  static readonly WEB_GEOLOCATION_PERMISSIONS_ALLOW_GEOLOCATION_BUTTON_KEY = 'WebGeolocationPermissionsAllowGeolocationTestButton'
+  static readonly WEB_GEOLOCATION_PERMISSIONS_DELETE_ALL_GEOLOCATION_BUTTON_KEY = 'WebGeolocationPermissionsDeleteAllGeolocationTestButton'
+  static readonly WEB_GEOLOCATION_PERMISSIONS_DELETE_GEOLOCATION_BUTTON_KEY = 'WebGeolocationPermissionsDeleteGeolocationTestButton'
+  static readonly WEB_GEOLOCATION_PERMISSIONS_GET_ACCESSIBLE_GEOLOCATION_BUTTON_KEY = 'WebGeolocationPermissionsGetAccessibleGeolocationTestButton'
+  static readonly WEB_GEOLOCATION_PERMISSIONS_GET_STORED_GEOLOCATION_BUTTON_KEY = 'WebGeolocationPermissionsGetStoredGeolocationTestButton'
+  static readonly WEB_MESSAGE_PORT_CLOSE_BUTTON_KEY = 'WebMessagePortCloseTestButton'
+  static readonly WEB_MESSAGE_PORT_ON_MESSAGE_EVENT_BUTTON_KEY = 'WebMessagePortOnMessageEventTestButton'
+  static readonly WEB_MESSAGE_PORT_ON_MESSAGE_EVENT_EXT_BUTTON_KEY = 'WebMessagePortOnMessageEventExtTestButton'
+  static readonly WEB_MESSAGE_PORT_POST_MESSAGE_EVENT_BUTTON_KEY = 'WebMessagePortPostMessageEventTestButton'
+  static readonly WEB_MESSAGE_PORT_POST_MESSAGE_EVENT_EXT_BUTTON_KEY = 'WebMessagePortPostMessageEventExtTestButton'
+  static readonly WEB_RESOURCE_REQUEST_GET_REQUEST_HEADER_BUTTON_KEY = 'WebResourceRequestGetRequestHeaderTestButton'
+  static readonly WEB_RESOURCE_REQUEST_GET_REQUEST_METHOD_BUTTON_KEY = 'WebResourceRequestGetRequestMethodTestButton'
+  static readonly WEB_RESOURCE_REQUEST_GET_REQUEST_URL_BUTTON_KEY = 'WebResourceRequestGetRequestUrlTestButton'
+  static readonly WEB_RESOURCE_REQUEST_IS_MAIN_FRAME_BUTTON_KEY = 'WebResourceRequestIsMainFrameTestButton'
+  static readonly WEB_RESOURCE_REQUEST_IS_REDIRECT_BUTTON_KEY = 'WebResourceRequestIsRedirectTestButton'
+  static readonly WEB_RESOURCE_REQUEST_IS_REQUEST_GESTURE_BUTTON_KEY = 'WebResourceRequestIsRequestGestureTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_GET_REASON_MESSAGE_BUTTON_KEY = 'WebResourceResponseGetReasonMessageTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_GET_RESPONSE_CODE_BUTTON_KEY = 'WebResourceResponseGetResponseCodeTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_GET_RESPONSE_DATA_BUTTON_KEY = 'WebResourceResponseGetResponseDataTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_GET_RESPONSE_ENCODING_BUTTON_KEY = 'WebResourceResponseGetResponseEncodingTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_GET_RESPONSE_HEADER_BUTTON_KEY = 'WebResourceResponseGetResponseHeaderTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_GET_RESPONSE_MIMETYPE_BUTTON_KEY = 'WebResourceResponseGetResponseMimeTypeTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_SET_REASON_MESSAGE_BUTTON_KEY = 'WebResourceResponseSetReasonMessageTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_SET_RESPONSE_CODE_BUTTON_KEY = 'WebResourceResponseSetResponseCodeTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_SET_RESPONSE_DATA_BUTTON_KEY = 'WebResourceResponseSetResponseDataTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_SET_RESPONSE_ENCODING_BUTTON_KEY = 'WebResourceResponseSetResponseEncodingTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_SET_RESPONSE_HEADER_BUTTON_KEY = 'WebResourceResponseSetResponseHeaderTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_SET_RESPONSE_IS_READY_BUTTON_KEY = 'WebResourceResponseSetResponseIsReadyTestButton'
+  static readonly WEB_RESOURCE_RESPONSE_SET_RESPONSE_SET_RESPONSE_MIMETYPE_BUTTON_KEY = 'WebResourceResponseSetResponseMimeTypeTestButton'
+  static readonly WEB_FILE_SELECTOR_PARAM_GET_ACCEPT_TYPE_BUTTON_KEY = 'WebFileSelectorParamGetAcceptTypeTestButton'
+  static readonly WEB_FILE_SELECTOR_PARAM_GET_MODE_BUTTON_KEY = 'WebFileSelectorParamGetModeTestButton'
+  static readonly WEB_FILE_SELECTOR_PARAM_GET_TITLE_BUTTON_KEY = 'WebFileSelectorParamGetTitleTestButton'
+  static readonly WEB_FILE_SELECTOR_PARAM_IS_CAPTURE_BUTTON_KEY = 'WebFileSelectorParamIsCaptureTestButton'
+  static readonly WEB_FILE_SELECTOR_RESULT_HANDLE_FILE_LIST_BUTTON_KEY = 'WebFileSelectorResultHandleFileListTestButton'
+  static readonly WEB_VIEW_CONTROLLER_CREATE_WEB_MESSAGE_PORTS_BUTTON_KEY = 'WebViewControllerCreateWebMessagePortsTestButton'
+  static readonly WEB_VIEW_CONTROLLER_POST_MESSAGE_BUTTON_KEY = 'WebViewControllerPostMessageTestButton'
+  static readonly WEB_VIEW_CONTROLLER_SET_NETWORK_AVAILABLE_BUTTON_KEY = 'WebViewControllerSetNetworkAvailableTestButton'
+  static readonly WEB_ATTRIBUTE_ON_FILE_SELECTOR_SHOW_BUTTON_KEY = 'WebAttributeOnFileSelectorShowTestButton'
+  static readonly WEB_ATTRIBUTE_ON_SHOW_FILE_SELECTOR_BUTTON_KEY = 'WebAttributeOnShowFileSelectorTestButton'
+  static readonly WEB_ATTRIBUTE_ON_RESOURCE_LOAD_BUTTON_KEY = 'WebAttributeOnResourceLoadTestButton'
+  static readonly WEB_ATTRIBUTE_ON_WINDOW_EXIT_BUTTON_KEY = 'WebAttributeOnWindowExitTestButton'
+  static readonly WEB_ATTRIBUTE_ON_WINDOW_NEW_BUTTON_KEY = 'WebAttributeOnWindowNewTestButton'
+  static readonly WEB_CONTROLLER_HANDLER_SET_WEB_CONTROLLER_BUTTON_KEY = 'WebControllerHandlerSetWebControllerTestButton'
+  static readonly WEB_ATTRIBUTE_ON_OVER_SCROLL_BUTTON_KEY = 'WebAttributeOnOverScrollTestButton'
+  static readonly WEB_COOKIE_MANAGER_FETCH_COOKIE_SYNC_BUTTON_KEY = 'WebCookieManagerFetchCookieSyncTestButton'
+  static readonly WEB_COOKIE_MANAGER_FETCH_COOKIE_BUTTON_KEY = 'WebCookieManagerFetchCookieTestButton'
+  static readonly WEB_COOKIE_MANAGER_CONFIG_COOKIE_SYNC_BUTTON_KEY = 'WebCookieManagerConfigCookieSyncTestButton'
+  static readonly WEB_COOKIE_MANAGER_CONFIG_COOKIE_BUTTON_KEY = 'WebCookieManagerConfigCookieTestButton'
+  static readonly WEB_COOKIE_MANAGER_CLEAR_SESSION_COOKIE_SYNC_BUTTON_KEY = 'WebCookieManagerClearSessionCookieSyncTestButton'
+  static readonly WEB_COOKIE_MANAGER_CLEAR_SESSION_COOKIE_BUTTON_KEY = 'WebCookieManagerClearSessionCookieTestButton'
+  static readonly WEB_COOKIE_MANAGER_CLEAR_ALL_COOKIES_SYNC_BUTTON_KEY = 'WebCookieManagerClearAllCookiesSyncTestButton'
+  static readonly WEB_COOKIE_MANAGER_CLEAR_ALL_COOKIES_BUTTON_KEY = 'WebCookieManagerClearAllCookiesTestButton'
+  static readonly WEB_VIEW_CONTROLLER_POST_URL_BUTTON_KEY = 'WebViewControllerPostUrlTestButton'
+  static readonly WEB_VIEW_CONTROLLER_SET_CONNECTION_TIMEOUT_BUTTON_KEY = 'WebViewControllerSetConnectionTimeoutTestButton'
+}

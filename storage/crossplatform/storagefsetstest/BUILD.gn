@@ -1,0 +1,50 @@
+# Copyright (C) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+ohos_js_hap_suite("ActsCrossplatformFsTest") {
+  hap_profile = "src/main/module.json"
+  deps = [
+    ":windowStage_js_assets",
+    ":windowStage_resources",
+  ]
+  ets2abc = true
+  certificate_profile = "./signature/openharmony_sx.p7b"
+
+  # hap_name: HAP的名字，可选，默认为目标名
+  hap_name = "ActsCrossplatformFsTest"
+  subsystem_name = "filemanagement"
+  part_name = "file_api"
+}
+ohos_app_scope("windowStage_app_profile") {
+  # app_profile: HAP的AppScope中的app.json，只在Stage模型下使用
+  app_profile = "AppScope/app.json"
+
+  # sources: 资源文件路径
+  sources = [ "AppScope/resources" ]
+}
+ohos_js_assets("windowStage_js_assets") {
+  # source_dir: js或ets代码路径，兼容FA模型的单ability配置到ability目录
+  source_dir = "src/main/ets"
+}
+ohos_resources("windowStage_resources") {
+  # sources: 资源文件路径
+  sources = [ "src/main/resources" ]
+
+  # deps: 当前目标的依赖
+  deps = [ ":windowStage_app_profile" ]
+
+  # hap_profile: HAP的config.json，Stage模型对应module.json
+  hap_profile = "src/main/module.json"
+}

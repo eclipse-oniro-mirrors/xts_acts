@@ -1,0 +1,63 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../ImageBaseFunc.h"
+#include "../ActsImage0020TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlystencilattachmentoptimalD16unorms8uintDepthattstencilrw, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_stencil_attachment_optimal.d16_unorm_s8_uint.depth_att_stencil_rw*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlystencilattachmentoptimalD16unorms8uintDepthsampledstencilrw, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_stencil_attachment_optimal.d16_unorm_s8_uint.depth_sampled_stencil_rw*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlystencilattachmentoptimalD16unorms8uintDepthattsampledstencilrw, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_stencil_attachment_optimal.d16_unorm_s8_uint.depth_att_sampled_stencil_rw*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlystencilattachmentoptimalD24unorms8uintDepthattstencilrw, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_stencil_attachment_optimal.d24_unorm_s8_uint.depth_att_stencil_rw*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlystencilattachmentoptimalD24unorms8uintDepthsampledstencilrw, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_stencil_attachment_optimal.d24_unorm_s8_uint.depth_sampled_stencil_rw*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlystencilattachmentoptimalD24unorms8uintDepthattsampledstencilrw, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_stencil_attachment_optimal.d24_unorm_s8_uint.depth_att_sampled_stencil_rw*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlystencilattachmentoptimalD32sfloats8uintDepthattstencilrw, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_stencil_attachment_optimal.d32_sfloat_s8_uint.depth_att_stencil_rw*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlystencilattachmentoptimalD32sfloats8uintDepthsampledstencilrw, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_stencil_attachment_optimal.d32_sfloat_s8_uint.depth_sampled_stencil_rw*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlystencilattachmentoptimalD32sfloats8uintDepthattsampledstencilrw, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_stencil_attachment_optimal.d32_sfloat_s8_uint.depth_att_sampled_stencil_rw*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthattachmentstencilreadonlyoptimalD16unorms8uintDepthrwstencilatt, "dEQP-VK.image.depth_stencil_descriptor.depth_attachment_stencil_read_only_optimal.d16_unorm_s8_uint.depth_rw_stencil_att*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthattachmentstencilreadonlyoptimalD16unorms8uintDepthrwstencilsampled, "dEQP-VK.image.depth_stencil_descriptor.depth_attachment_stencil_read_only_optimal.d16_unorm_s8_uint.depth_rw_stencil_sampled*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthattachmentstencilreadonlyoptimalD16unorms8uintDepthrwstencilattsampled, "dEQP-VK.image.depth_stencil_descriptor.depth_attachment_stencil_read_only_optimal.d16_unorm_s8_uint.depth_rw_stencil_att_sampled*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthattachmentstencilreadonlyoptimalD24unorms8uintDepthrwstencilatt, "dEQP-VK.image.depth_stencil_descriptor.depth_attachment_stencil_read_only_optimal.d24_unorm_s8_uint.depth_rw_stencil_att*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthattachmentstencilreadonlyoptimalD24unorms8uintDepthrwstencilsampled, "dEQP-VK.image.depth_stencil_descriptor.depth_attachment_stencil_read_only_optimal.d24_unorm_s8_uint.depth_rw_stencil_sampled*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthattachmentstencilreadonlyoptimalD24unorms8uintDepthrwstencilattsampled, "dEQP-VK.image.depth_stencil_descriptor.depth_attachment_stencil_read_only_optimal.d24_unorm_s8_uint.depth_rw_stencil_att_sampled*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthattachmentstencilreadonlyoptimalD32sfloats8uintDepthrwstencilatt, "dEQP-VK.image.depth_stencil_descriptor.depth_attachment_stencil_read_only_optimal.d32_sfloat_s8_uint.depth_rw_stencil_att*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthattachmentstencilreadonlyoptimalD32sfloats8uintDepthrwstencilsampled, "dEQP-VK.image.depth_stencil_descriptor.depth_attachment_stencil_read_only_optimal.d32_sfloat_s8_uint.depth_rw_stencil_sampled*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthattachmentstencilreadonlyoptimalD32sfloats8uintDepthrwstencilattsampled, "dEQP-VK.image.depth_stencil_descriptor.depth_attachment_stencil_read_only_optimal.d32_sfloat_s8_uint.depth_rw_stencil_att_sampled*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalD16unormDepthattstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.d16_unorm.depth_att_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalD16unormDepthiastencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.d16_unorm.depth_ia_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalD16unormDepthsampledstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.d16_unorm.depth_sampled_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalD16unormDepthattsampledstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.d16_unorm.depth_att_sampled_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalD16unormDepthiasampledstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.d16_unorm.depth_ia_sampled_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalX8d24unormpack32Depthattstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.x8_d24_unorm_pack32.depth_att_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalX8d24unormpack32Depthiastencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.x8_d24_unorm_pack32.depth_ia_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalX8d24unormpack32Depthsampledstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.x8_d24_unorm_pack32.depth_sampled_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalX8d24unormpack32Depthattsampledstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.x8_d24_unorm_pack32.depth_att_sampled_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalX8d24unormpack32Depthiasampledstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.x8_d24_unorm_pack32.depth_ia_sampled_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalD32sfloatDepthattstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.d32_sfloat.depth_att_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalD32sfloatDepthiastencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.d32_sfloat.depth_ia_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalD32sfloatDepthsampledstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.d32_sfloat.depth_sampled_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalD32sfloatDepthattsampledstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.d32_sfloat.depth_att_sampled_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCDepthreadonlyoptimalD32sfloatDepthiasampledstencilnone, "dEQP-VK.image.depth_stencil_descriptor.depth_read_only_optimal.d32_sfloat.depth_ia_sampled_stencil_none*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCStencilreadonlyoptimalS8uintdnsatt, "dEQP-VK.image.depth_stencil_descriptor.stencil_read_only_optimal.s8_uint.depth_none_stencil_att*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCStencilreadonlyoptimalS8uintdnsia, "dEQP-VK.image.depth_stencil_descriptor.stencil_read_only_optimal.s8_uint.depth_none_stencil_ia*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCStencilreadonlyoptimalS8uintdnssampled, "dEQP-VK.image.depth_stencil_descriptor.stencil_read_only_optimal.s8_uint.depth_none_stencil_sampled*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCStencilreadonlyoptimalS8uintdnsattsampled, "dEQP-VK.image.depth_stencil_descriptor.stencil_read_only_optimal.s8_uint.depth_none_stencil_att_sampled*");
+static SHRINK_HWTEST_F(ActsImage0020TS, TCStencilreadonlyoptimalS8uintdnsiasampled, "dEQP-VK.image.depth_stencil_descriptor.stencil_read_only_optimal.s8_uint.depth_none_stencil_ia_sampled*");

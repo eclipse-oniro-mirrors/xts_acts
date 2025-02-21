@@ -1,0 +1,38 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "900000",
+        "shell-timeout": "900000",
+        "bundle-name": "com.example.myapplication101",
+        "package-name": "com.example.myapplication101"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsUserauthTwoTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir -p /data/local/tmp/xts-test"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsUserauthTwoTest.hap->/data/local/tmp/xts-test/ActsUserauthTwoTest.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 -R /data/local/tmp/xts-test"
+            ]
+        }
+    ]
+}

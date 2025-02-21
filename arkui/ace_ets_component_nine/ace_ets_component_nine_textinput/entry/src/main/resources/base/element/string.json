@@ -1,0 +1,54 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Dynamic Style XTS Test"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Dynamic Style XTS Test"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Dynamic Style XTS Test"
+    },
+    {
+      "name": "font_family_regular",
+      "value": "HarmonyOS Sans SC-Regular"
+    },
+    {
+      "name": "length_sm",
+      "value": "80vp"
+    },
+    {
+      "name": "length_xs",
+      "value": "50px"
+    },{
+      "name": "length_response",
+      "value": "70%"
+    },{
+      "name": "font_family_arial",
+      "value": "Arial"
+    },
+    {
+      "name": "fontSizeWidth1",
+      "value": "80%"
+    },
+    {
+      "name": "fontSizeHeight1",
+      "value": "10vp"
+    },
+    {
+      "name": "fontSizeWidth2",
+      "value": "10"
+    },
+    {
+      "name": "fontSizeHeight2",
+      "value": "10px"
+    },
+    {
+      "name": "fontSize",
+      "value": "10"
+    }
+  ]
+}

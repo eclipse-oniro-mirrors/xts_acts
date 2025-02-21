@@ -1,0 +1,74 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
+    "deviceTypes": [
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:test_pages",
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/mainability/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
+        "name": "Main2Ability",
+        "srcEntrance": "./ets/Main2Ability/Main2Ability.ts",
+        "description": "$string:Main2Ability_desc",
+        "icon": "$media:icon",
+        "label": "$string:Main2Ability_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true
+      },
+      {
+        "name": "Main3Ability",
+        "srcEntry": "./ets/Main3Ability/Main3Ability.ts",
+        "description": "$string:Main3Ability_desc",
+        "icon": "$media:icon",
+        "label": "$string:Main3Ability_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      },
+      {
+        "name": "Main4Ability",
+        "srcEntry": "./ets/Main4Ability/Main4Ability.ts",
+        "description": "$string:Main4Ability_desc",
+        "icon": "$media:icon",
+        "label": "$string:Main4Ability_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for startup util js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+	"shell-timeout": "60000",
+	"bundle-name": "com.example.util2",
+	"package-name": "com.example.util2"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsUtil2JsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

@@ -1,0 +1,4813 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+<head>
+<title>xts_acts——Surface Refactoring step 1：separate IConsumerSurface from Surface · Pull Request !7445 · OpenHarmony/xts_acts - Gitee.com</title>
+<meta content='on' http-equiv='x-dns-prefetch-control'>
+<link href='//e.gitee.com' rel='dns-prefetch'>
+<link href='//files.gitee.com' rel='dns-prefetch'>
+<link href='//toscode.gitee.com' rel='dns-prefetch'>
+<link href='https://cn-assets.gitee.com' rel='dns-prefetch'>
+<link href='https://portrait.gitee.com' rel='dns-prefetch'>
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="https://cn-assets.gitee.com/assets/favicon-9007bd527d8a7851c8330e783151df58.ico" />
+<link rel="canonical" href="https://gitee.com/openharmony/xts_acts" />
+<meta content='gitee.com/openharmony/xts_acts git https://gitee.com/openharmony/xts_acts.git' name='go-import'>
+<meta charset='utf-8'>
+<meta content='always' name='referrer'>
+<meta content='Gitee' property='og:site_name'>
+<meta content='Object' property='og:type'>
+<meta content='https://gitee.com/openharmony/xts_acts/pulls/7445' property='og:url'>
+<meta content='https://gitee.com/static/images/logo_themecolor.png' itemprop='image' property='og:image'>
+<meta content='xts_acts——Surface Refactoring step 1：separate IConsumerSurface from Surface · Pull Request !7445 · OpenHarmony/xts_acts - Gitee.com' itemprop='name' property='og:title'>
+<meta content='https://gitee.com/openharmony/graphic_graphic_2d/issues/I6DEFQ' property='og:description'>
+<meta content='码云,Gitee,代码托管,Git,Git@OSC,Gitee.com,开源,内源,项目管理,版本控制,开源代码,代码分享,项目协作,开源项目托管,免费代码托管,Git代码托管,Git托管服务' name='Keywords'>
+<meta content='https://gitee.com/openharmony/graphic_graphic_2d/issues/I6DEFQ' itemprop='description' name='Description'>
+<meta content='pc,mobile' name='applicable-device'>
+
+<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="5HTLcFuXK1L1Ocn2jyV3BGJKUCiBbrP6r4T6Kz3nlJ5PkERPC6PjAmQUxUC0lhSm0d0HGPAltSlWJntZLBBvog==" />
+
+<link rel="stylesheet" media="all" href="https://cn-assets.gitee.com/assets/application-be2c923ad69d128fdecca4706934a58e.css" />
+<script>
+//<![CDATA[
+window.gon = {};gon.locale="zh-CN";gon.sentry_dsn=null;gon.baidu_register_hm_push=null;gon.sensor={"server_url":"https://haveaniceday.gitee.com:3443/sa?project=production","sdk_url":"https://cn-assets.gitee.com/assets/static/sensors-sdk-2f850fa5b654ad55ac0993fda2f37ba5.js","page_type":"其他"};gon.info={"controller_path":"pull_requests","action_name":"show","current_user":false};gon.tour_env={"current_user":null,"action_name":"show","original_url":"https://gitee.com/openharmony/xts_acts/pulls/7445","controller_path":"pull_requests"};gon.http_clone="https://gitee.com/openharmony/xts_acts.git";gon.user_project="openharmony/xts_acts";gon.manage_branch="管理分支";gon.manage_tag="管理标签";gon.enterprise_id=6511493;gon.create_reaction_path="/openharmony/xts_acts/reactions";gon.ipipe_base_url="https://go-api.gitee.com";gon.artifact_base_url="https://go-repo.gitee.com";gon.gitee_go_remote_url="https://go.gitee.com/assets";gon.gitee_go_active=false;gon.current_project_is_mirror=false;gon.show_repo_comment=false;gon.diagram_viewer_path="https://diagram-viewer.giteeusercontent.com";gon.project_name="openharmony/xts_acts";gon.project_id=11218621;gon.pull_request_author_id=10757942;gon.pull_request_comments_path="/openharmony/xts_acts/pulls/7445/conversations.json";gon.pull_request_commits_path="/openharmony/xts_acts/pulls/7445/commits.json";gon.pull_request_diffs_path="/openharmony/xts_acts/pulls/7445/files.json";gon.check_runs_path="/openharmony/xts_acts/runs?head_sha=b51ae9b5a96ffe8eed8d0b79a074a90626fd3a57\u0026pull_request_id=8020355";gon.check_annoatations_path="/openharmony/xts_acts/runs/annotations?head_sha=b51ae9b5a96ffe8eed8d0b79a074a90626fd3a57";gon.pull_request_labels_path="/openharmony/xts_acts/pulls/7445/labels";gon.project_resource_request_interval=null;gon.diff_position_context_path="/openharmony/xts_acts/pulls/7445/diff_position_context";gon.pull_request_path="/openharmony/xts_acts/pulls/7445";gon.project_path="/openharmony/xts_acts";gon.apply_suggestions_path="/api/v3/projects/openharmony/xts_acts/apply_suggestions";gon.enable_suggestion=false;gon.cla_sign_status="https://cla.gitee.com/pull_requests/8020355/sign_status";gon.use_scan_api=true;gon.scan_api_host="https://scan-api.gitee.com";gon.pull_request_default_options="merge";gon.current_user_assigns_stats={"role":[],"pass":[]};
+//]]>
+</script>
+<script src="https://cn-assets.gitee.com/assets/static/sensor-6269b9ad61bbcdaff20078e5dcff62d5.js"></script>
+<script src="https://cn-assets.gitee.com/assets/static/sentry-5.1.0-a823fb0be1b61c5d7ca4a89f0536cb0a.js"></script>
+<script src="https://cn-assets.gitee.com/assets/application-bd2a74541a7204a682192967e5592250.js"></script>
+<script src="https://cn-assets.gitee.com/assets/lib/jquery.timeago.zh-CN-4a4818e98c1978d2419ab19fabcba740.js"></script>
+
+<link rel="stylesheet" media="all" href="https://cn-assets.gitee.com/assets/projects/application-46b94c31ba11ae8c37eacce2bdb5603e.css" />
+<script src="https://cn-assets.gitee.com/assets/projects/app-2b3d989fcf407be52d8dfd35c2298749.js"></script>
+
+<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+  var title = document.title.replace(/( - Gitee| - 码云)$/, '')
+      imgUrl = '';
+  
+  document.addEventListener('DOMContentLoaded', function(event) {
+    var imgUrlEl = document.querySelector('.readme-box .markdown-body > img, .readme-box .markdown-body :not(a) > img');
+    imgUrl = imgUrlEl && imgUrlEl.getAttribute('src');
+  
+    if (!imgUrl) {
+      imgUrlEl = document.querySelector('meta[itemprop=image]');
+      imgUrl = imgUrlEl && imgUrlEl.getAttribute('content');
+      imgUrl = imgUrl || "https://gitee.com/static/images/logo_themecolor.png";
+    }
+  
+    wx.config({
+      debug: false,
+      appId: "wxff219d611a159737",
+      timestamp: "1675827555",
+      nonceStr: "dad3177da5c34c0f92e20213dbc9997c",
+      signature: "fda7f34b3a6f1dff7106b4d7ef2b445656e146f2",
+      jsApiList: [
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage'
+      ]
+    });
+  
+    wx.ready(function () {
+      wx.onMenuShareTimeline({
+        title: title, // 分享标题
+        link: "https://gitee.com/openharmony/xts_acts/pulls/7445", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        imgUrl: imgUrl // 分享图标
+      });
+      wx.onMenuShareAppMessage({
+        title: title, // 分享标题
+        link: "https://gitee.com/openharmony/xts_acts/pulls/7445", // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+        desc: document.querySelector('meta[name=Description]').getAttribute('content'),
+        imgUrl: imgUrl // 分享图标
+      });
+    });
+    wx.error(function(res){
+      console.error('err', res)
+    });
+  })
+</script>
+
+<script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [["$$","$$"],["\\[","\\]"]],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    ignoreClass: "container|files",
+    processClass: "markdown-body"
+  }
+});
+</script>
+<script src="https://cn-assets.gitee.com/uploads/resources/MathJax-2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script>
+  (function () {
+    var messages = {
+      'zh-CN': {
+        addResult: '增加 <b>{term}</b>',
+        count: '已选择 {count}',
+        maxSelections: '最多 {maxCount} 个选择',
+        noResults: '未找到结果',
+        serverError: '连接服务器时发生错误'
+      },
+      'zh-TW': {
+        addResult: '增加 <b>{term}</b>',
+        count: '已選擇 {count}',
+        maxSelections: '最多 {maxCount} 個選擇',
+        noResults: '未找到結果',
+        serverError: '連接服務器時發生錯誤'
+      }
+    }
+  
+    if (messages[gon.locale]) {
+      $.fn.dropdown.settings.message = messages[gon.locale]
+    }
+  }());
+</script>
+
+<script>
+  var userAgent = navigator.userAgent;
+  var isLessIE11 = userAgent.indexOf('compatible') > -1 && userAgent.indexOf('MSIE') > -1;
+  if(isLessIE11){
+    var can_access = ""
+    if (can_access != "true"){
+      window.location.href = "/incompatible.html";
+    }
+  }
+  document.addEventListener("error", function (ev) {
+    var elem = ev.target;
+    if (elem.tagName.toLowerCase() === 'img') {
+      elem.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAAAAACIM/FCAAACh0lEQVR4Ae3ch5W0OgyG4dt/mQJ2xgQPzJoM1m3AbALrxzrf28FzsoP0HykJEEAAAUQTBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEkKK0789+GK/I2ezfQB522PnS1qc8pGgXvr4tE4aY0XOUWlGImThWgyCk6DleixzE7qwBkg/MGiDPlVVAyp1VQGrPKiACDhFI6VkF5LmzCki+sg7IwDoglnVAil0IMkeG9CyUiwsxLFUVFzJJOQaKCjFCDN9RXMjIX7W6ztZXZDKKCyn8sWJvH+nca7WHDN9lROlAliPH9iRKCPI4cswFJQWxB46toLQgQ9jhn5QYZA9DOkoMUoQde5YapAxDWkoNYsOQR3KQd9CxUnIQF4S49CB9ENKlBxmDEKsFUgMCCCCAAHIrSF61f6153Ajy8nyiPr8L5MXnmm4CyT2fzN4DUvHZ+ntA2tOQBRBAAAEEEEAAAQQQ7ZBaC6TwSiDUaYHQ2yuB0MN+ft+43whyrs4rgVCjBUKTFshLC6TUAjGA3AxSaYFYLZBOC2RUAsk8h5qTg9QcbEoOsoQhQ2qQhsO5xCD5dgB5JQaZ+KBKGtKecvR81Ic0ZDjByKdDx0rSEDZ/djQbH+bkIdvfJFm98BfV8hD2zprfVdlu9PxVeyYAkciREohRAplJCaRSAplJCcQogTjSAdlyHRBvSAekJR0QRzogA+mADJkOiCPSAPEtqYBshlRAXC43hxix2QiOuEZkVERykGyNo9idIZKE0HO7XrG6OiMShlDWjstVzdPgXtUH9v0CEidAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQP4HgjZxTpdEii0AAAAASUVORK5CYII=";
+    }
+  }, true);
+</script>
+</head>
+
+<body class='git-project lang-zh-CN'>
+<header class='common-header fixed noborder' id='git-header-nav'>
+<div class='ui container'>
+<div class='ui menu header-menu header-container'>
+<div class='git-nav-expand-bar'>
+<i class='iconfont icon-mode-table'></i>
+</div>
+<div class='gitee-nav__sidebar'>
+<div class='gitee-nav__sidebar-container'>
+<div class='gitee-nav__sidebar-top'>
+<div class='gitee-nav__avatar-box'></div>
+<div class='gitee-nav__buttons-box'>
+<a class="ui button small fluid orange" href="/login">登录</a>
+<a class="ui button small fluid basic is-register" href="/signup">注册</a>
+</div>
+</div>
+<div class='gitee-nav__sidebar-middle'>
+<div class='gitee-nav__sidebar-list'>
+<ul>
+<li class='gitee-nav__sidebar-item'>
+<a href="/explore"><i class='iconfont icon-ic-discover'></i>
+<span class='gitee-nav__sidebar-name'>开源软件</span>
+</a></li>
+<li class='gitee-nav__sidebar-item'>
+<a href="/enterprises"><i class='iconfont icon-ic-enterprise'></i>
+<span class='gitee-nav__sidebar-name'>企业版</span>
+</a></li>
+<li class='gitee-nav__sidebar-item'>
+<a href="/education"><i class='iconfont icon-ic-education'></i>
+<span class='gitee-nav__sidebar-name'>高校版</span>
+</a></li>
+<li class='gitee-nav__sidebar-item split-line'></li>
+<li class='gitee-nav__sidebar-item'>
+<a href="/search"><i class='iconfont icon-ic-search'></i>
+<span class='gitee-nav__sidebar-name'>搜索</span>
+</a></li>
+<li class='gitee-nav__sidebar-item'>
+<a href="/help"><i class='iconfont icon-help-circle'></i>
+<span class='gitee-nav__sidebar-name'>帮助中心</span>
+</a></li>
+<li class='gitee-nav__sidebar-item'>
+<a href="/terms"><i class='iconfont icon-file'></i>
+<span class='gitee-nav__sidebar-name'>使用条款</span>
+</a></li>
+<li class='gitee-nav__sidebar-item'>
+<a href="/about_us"><i class='iconfont icon-issuepx'></i>
+<span class='gitee-nav__sidebar-name'>关于我们</span>
+</a></li>
+</ul>
+</div>
+</div>
+<div class='gitee-nav__sidebar-bottom'>
+<div class='gitee-nav__sidebar-close-button'>
+<i class='fa fa-angle-double-left'></i>
+</div>
+</div>
+</div>
+</div>
+
+<div class='item gitosc-logo'>
+<a href="https://gitee.com"><img alt='Gitee — 基于 Git 的代码托管和研发协作平台' class='ui inline image' height='28' src='/static/images/logo.svg?t=158106664' title='Gitee — 基于 Git 的代码托管和研发协作平台' width='95'>
+<img alt='Gitee — 基于 Git 的代码托管和研发协作平台' class='ui inline black image' height='28' src='/static/images/logo-black.svg?t=158106664' title='Gitee — 基于 Git 的代码托管和研发协作平台' width='95'>
+</a></div>
+<a title="开源软件" class="item " href="/explore">开源软件
+</a><a title="企业版" class="item " sa_evt="click_GiteeCommunity_tab_En" href="/enterprises">企业版
+<sup class='ui red label'>
+特惠
+</sup>
+</a><a title="高校版" class="item " href="/education">高校版
+</a><a title="私有云" class="item" target="_blank" href="https://gitee.cn?utm_source=giteecom">私有云
+</a><a title="博客" class="item" id="gitee-blog" target="_blank" href="https://blog.gitee.com/?utm_sources=site_nav">博客
+</a><div class='center responsive-logo'>
+<a href="https://gitee.com"><img alt='Gitee — 基于 Git 的代码托管和研发协作平台' class='ui inline image' height='24' src='/static/images/logo.svg?t=158106664' title='Gitee — 基于 Git 的代码托管和研发协作平台' width='85'>
+<img alt='Gitee — 基于 Git 的代码托管和研发协作平台' class='ui inline black image' height='24' src='/static/images/logo-black.svg?t=158106664' title='Gitee — 基于 Git 的代码托管和研发协作平台' width='85'>
+</a></div>
+<div class='right menu userbar right-header' id='git-nav-user-bar'>
+<form class="ui item" id="navbar-search-form" data-text-require="搜索关键字不能少于1个" data-text-filter="搜索格式不正确" action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+<input type="hidden" name="type" id="navbar-search-type" />
+<input type="hidden" name="fork_filter" id="fork_filter" value="on" />
+<div class='ui search header-search'>
+<input type="text" name="q" id="navbar-search-input" value="" class="prompt" placeholder="搜开源" />
+</div>
+</form>
+
+<script>
+  var can_search_in_repo = 1,
+      repo = "VFZSRmVVMVVaekpOYWtab1RucFplbHBuUFQxaE56WXpaZz09YTc2M2Y=",
+      reponame = "openharmony/xts_acts";
+  
+  $(function() {
+    var $search = $('#navbar-search-form .ui.search');
+    $search.search({
+      apiSettings: {
+        url: '/search/relative_project?q={query}',
+        onResponse: function (res) {
+          if (res && res.status === 200 && res.data) {
+            var query = htmlSafe($search.search('get value'));
+  
+            res.data.map(function (item) {
+              item.path_ns = '/' + item.path_ns;
+              item.icon = 'iconfont icon-project-public';
+            });
+            res.data.unshift({
+              name_ns: "在全站搜索 <b class='hl'>" + query +"</b> 相关项目",
+              path_ns: '/search?fork_filter=on&q=' + query,
+              icon: 'iconfont icon-search'
+            });
+            return res;
+          } else {
+            return { data: [] };
+          }
+        }
+      },
+      fields: {
+        results: 'data',
+        description: 'name_ns',
+        url: 'path_ns',
+        icon: 'icon'
+      },
+      minCharacters: 1,
+      maxResults: 10,
+      searchDelay: 250,
+      showNoResults: false,
+      transition: 'fade'
+    });
+  });
+</script>
+
+<div class='ui item' id='feature-update-notice'>
+<div class='notice-update-icon'>
+<a class="notice-update-popup click-knowed" title="" href="javascript:void(0)"><img alt="功能更新" title="" class="bubl_icon bubl-off-icon" src="https://cn-assets.gitee.com/assets/bulb_off-24ee940be20998aace89a3f040cbc704.svg" />
+<img alt="功能更新" title="" class="bubl_icon bubl-on-icon" src="https://cn-assets.gitee.com/assets/bulb_on-3986b1dc417285398e3d15671bd8f261.svg" />
+</a></div>
+<div class='feature-update-notice-panel menu'>
+<div class='notice-img'>
+<img alt="" title="" class="notice-img-show" src="" />
+</div>
+<div class='notice-update-title'></div>
+<div class='notice-update-des'></div>
+<div class='notice-btn-list d-flex-between'>
+<button name="button" type="button" class="ui basic orange button btn-notice btn-knowed click-knowed" style="margin-right: 0">我知道了</button>
+<a class="ui button orange btn-notice btn-details click-knowed" target="_blank" href="">查看详情</a>
+</div>
+</div>
+</div>
+
+<a class="item git-nav-user__login-item" sa_evt="login_show" sa_referrer_url="" sa_referrer_action="站导航右上角-登录按钮" sa_referrer_type="其他" href="/login">登录
+</a><a class="item git-nav-user__register-item" sa_evt="register_show" sa_referrer_url="" sa_referrer_action="站导航右上角-注册按钮" sa_referrer_type="其他" href="/signup">注册
+</a><script>
+  $('.destroy-user-session').on('click', function() {
+    $.cookie('access_token', null, { path: '/' });
+  })
+</script>
+
+</div>
+</div>
+</div>
+</header>
+<script>
+  Gitee.initNavbar()
+  Gitee.initRepoRemoteWay()
+  $.cookie('user_locale',null)
+</script>
+
+<script>
+  var userAgent = navigator.userAgent;
+  var isLessIE11 = userAgent.indexOf('compatible') > -1 && userAgent.indexOf('MSIE') > -1;
+  if(isLessIE11){
+    var can_access = ""
+    if (can_access != "true"){
+      window.location.href = "/incompatible.html";
+    }
+  }
+</script>
+
+<div class='fixed-notice-infos'>
+<div class='all-messages'>
+<div class='ui info message' id='git-bulletin'>
+<a href=https://gitee.com/report/china-open-source-2022/ target='_blank'>《2022 中国开源开发者报告》已正式发布，点此阅读 >>></a>
+<i class='icon remove' id='remove-bulletin'></i>
+</div>
+</div>
+<div class='ui container'>
+<div class='flash-messages' id='messages-container'></div>
+</div>
+<script>
+  (function() {
+    $(function() {
+      var $error_box, alertTip, notify_content, notify_options, template;
+      template = '<div data-notify="container" class="ui {0} message" role="alert">' + '<i data-notify="dismiss" class="close icon"></i>' + '<span data-notify="message">{2}</span>' + '</div>';
+      notify_content = null;
+      notify_options = {};
+      alertTip = '';
+      $error_box = $(".flash_error.flash_error_box");
+      if (notify_options.type === 'error' && $error_box.length > 0 && !$.isEmptyObject(notify_content.message)) {
+        if (notify_content.message === 'captcha_fail') {
+          alertTip = "验证码不正确";
+        } else if (notify_content.message === 'captcha_expired') {
+          alertTip = "验证码已过期，请点击刷新";
+        } else if (notify_content.message === 'not_found_in_database') {
+          alertTip = "帐号或者密码错误";
+        } else if (notify_content.message === 'not_found_and_show_captcha') {
+          alertTip = "帐号或者密码错误";
+        } else if (notify_content.message === 'phone_captcha_fail') {
+          alertTip = "手机验证码不通过";
+        } else {
+          alertTip = notify_content.message;
+        }
+        return $error_box.html(alertTip).show();
+      } else if (notify_content) {
+        if ("show" === 'third_party_binding') {
+          return $('#third_party_binding-message').html(notify_content.message).addClass('ui message red');
+        }
+        notify_options.delay = 3000;
+        notify_options.template = template;
+        notify_options.offset = {
+          x: 10,
+          y: 30
+        };
+        notify_options.element = '#messages-container';
+        return $.notify(notify_content, notify_options);
+      }
+    });
+  
+  }).call(this);
+</script>
+
+</div>
+<script>
+  (function() {
+    $(function() {
+      var setCookie;
+      setCookie = function(name, value) {
+        $.cookie(name, value, {
+          path: '/',
+          expires: 365
+        });
+      };
+      $('#remove-bulletin, #remove-bulletin-dashboard').on('click', function() {
+        setCookie('remove_bulletin', "gitee-maintain-1675665516");
+        $('#git-bulletin').hide();
+      });
+      $('#remove-member-bulletin').on('click', function() {
+        setCookie('remove_member_bulletin', "gitee_member_bulletin");
+        $(this).parent().hide();
+      });
+      return $('#remove-gift-bulletin').on('click', function() {
+        setCookie('remove_gift_bulletin', "gitee-gift-bulletin");
+        $(this).parent().hide();
+      });
+    });
+  
+  }).call(this);
+</script>
+<script>
+  function closeMessageBanner(pthis, type, val) {
+    var json = {}
+  
+    val = typeof val === 'undefined' ? null : val
+    $(pthis).parent().remove()
+    if (type === 'out_of_enterprise_member') {
+      json = {type: type, data: val}
+    } else if (type === 'enterprise_overdue') {
+      json = {type: type, data: val}
+    }
+    $.post('/profile/close_flash_tip', json)
+  }
+</script>
+
+<div class='site-content'>
+<div class='git-project-header'>
+<div class='fixed-notice-infos'>
+<div class='ui info icon floating message green' id='fetch-ok' style='display: none'>
+<div class='content'>
+<div class='header status-title'>
+<i class='info icon status-icon'></i>
+代码拉取完成，页面将自动刷新
+</div>
+</div>
+</div>
+<div class='ui info icon floating message error' id='fetch-error' style='display: none'>
+<div class='content'>
+<div class='header status-title'>
+<i class='info icon status-icon'></i>
+<span class='error_msg'></span>
+</div>
+</div>
+</div>
+</div>
+<div class='ui container'>
+<div class='git-project-categories'>
+<a href="/explore">开源项目</a>
+<span class='symbol'>></span>
+<a href="/explore/harmony">OpenHarmony</a>
+<span class='symbol'>&gt;</span>
+<a href="/explore/harmonyos-devtools">OpenHarmony工具集</a>
+<span class='symbol and-symbol'>&&</span>
+</div>
+
+<div class='git-project-header-details'>
+<div class='git-project-header-container'>
+<div class='git-project-header-actions'>
+<div class='ui tiny modal project-donate-modal' id='project-donate-modal'>
+<i class='iconfont icon-close close'></i>
+<div class='header'>捐赠</div>
+<div class='content'>
+捐赠前请先登录
+</div>
+<div class='actions'>
+<a class='ui blank button cancel'>取消</a>
+<a class='ui orange ok button' href='/login'>前往登录</a>
+</div>
+</div>
+<div class='ui small modal wepay-qrcode'>
+<i class='iconfont icon-close close'></i>
+<div class='header'>
+扫描微信二维码支付
+<span class='wepay-cash'></span>
+</div>
+<div class='content weqcode-center'>
+<img id='wepay-qrcode' src=''>
+</div>
+<div class='actions'>
+<div class='ui cancel blank button'>取消</div>
+<div class='ui ok orange button'>支付完成</div>
+</div>
+</div>
+<div class='ui mini modal' id='confirm-alipay-modal'>
+<div class='header'>支付提示</div>
+<div class='content'>
+将跳转至支付宝完成支付
+</div>
+<div class='actions'>
+<div class='ui approve orange button'>确定</div>
+<div class='ui blank cancel button'>取消</div>
+</div>
+</div>
+
+<span class='ui buttons basic watch-container'>
+<div class='ui dropdown button js-project-watch' data-watch-type='unwatch'>
+<input type='hidden' value=''>
+<i class='iconfont icon-watch'></i>
+<div class='text'>
+Watch
+</div>
+<i class='dropdown icon'></i>
+<div class='menu'>
+<a data-value="unwatch" class="item" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Watch" sa_referrer_type="其他" rel="nofollow" data-method="post" href="/openharmony/xts_acts/unwatch"><i class='iconfont icon-msg-read'></i>
+不关注
+</a><a data-value="watching" class="item" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Watch" sa_referrer_type="其他" rel="nofollow" data-method="post" href="/openharmony/xts_acts/watch"><i class='iconfont icon-msg-read'></i>
+关注所有动态
+</a><a data-value="releases_only" class="disabled item" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Watch" sa_referrer_type="其他" rel="nofollow" data-method="post" href="/openharmony/xts_acts/release_only_watch"><i class='iconfont icon-msg-read'></i>
+仅关注版本发行动态
+</a><a data-value="ignoring" class="item" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Watch" sa_referrer_type="其他" rel="nofollow" data-method="post" href="/openharmony/xts_acts/ignoring_watch"><i class='iconfont icon-msg-read'></i>
+关注但不提醒动态
+</a></div>
+</div>
+<style>
+  .js-project-watch .text .iconfont {
+    display: none; }
+  .js-project-watch a, .js-project-watch a:hover {
+    color: #000; }
+  .js-project-watch .item > .iconfont {
+    visibility: hidden;
+    margin-left: -10px; }
+  .js-project-watch .selected .iconfont {
+    visibility: visible; }
+  .js-project-watch .menu {
+    margin-top: 4px !important; }
+</style>
+<script>
+  $('.js-project-watch').dropdown({
+    action: 'select',
+    onChange: function(value, text, $selectedItem) {
+      var type = value === 'unwatch' ? 'Watch' : 'Watching';
+      $(this).children('.text').text(type);
+      $(this).dropdown('set selected', value)
+    }
+  });
+</script>
+
+<a class="ui button action-social-count" title="147" href="/openharmony/xts_acts/watchers">147
+</a></span>
+<span class='basic buttons star-container ui'>
+<a class="ui button star" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Star" sa_referrer_type="其他" href="/login"><i class='iconfont icon-star'></i>
+Star
+</a><a class="ui button action-social-count " title="215" href="/openharmony/xts_acts/stargazers">215
+</a></span>
+<span class='ui basic buttons fork-container' title='无权 Fork 此仓库'>
+<a class="ui button fork" title="你必须登录后才可以fork一个仓库" sa_evt="loginInform_show" sa_referrer_url="" sa_referrer_action="Fork" sa_referrer_type="其他" href="/login"><i class='iconfont icon-fork'></i>
+Fork
+</a><a class="ui button action-social-count disabled-style" title="1596" href="/openharmony/xts_acts/members">1.6K
+</a></span>
+</div>
+<h2 class='git-project-title mt-0 mb-0'>
+<span class="project-title"><a href='/open_harmony'><i class="iconfont icon-enterprise-badge" title="这是一个企业仓库"></i></a> <i class="project-icon iconfont icon-project-public" title="这是一个公开仓库"></i> <a title="OpenHarmony" class="author" href="/openharmony">OpenHarmony</a> / <a title="xts_acts" class="repository" target="" style="padding-bottom: 0px; margin-right: 4px" sa_evt="repoClick" sa_location="其他" sa_url="" sa_repo_id="11218621" href="/openharmony/xts_acts">xts_acts</a></span><span class="project-badges"><a title="已被推荐" class="git-project-recommend-badge" href="/explore"><i class='iconfont icon-recommended'></i>
+</a><style>
+  .gitee-modal {
+    width: 500px !important; }
+</style>
+</span>
+<input type="hidden" name="recomm_at" id="recomm_at" value="2021-07-20 19:08" />
+<input type="hidden" name="project_title" id="project_title" value="OpenHarmony/xts_acts" />
+</h2>
+</div>
+</div>
+</div>
+<script>
+  var title_import_url = "false";
+  var title_post_url = "/openharmony/xts_acts/update_import";
+  var title_fork_url = "/openharmony/xts_acts/sync_fork";
+  var title_project_path = "xts_acts";
+  var title_p_name = "xts_acts";
+  var title_p_id= "11218621";
+  var title_description = "Application compatibility test suite | acts应用兼容性测试套";
+  var title_form_authenticity_token = "FpRL+tpWA3De1rAdPgOJBFTaGqCBaX6jZZ4VMfdgeGC9cMTFimLLIE/7vKsFsOqm501NkPAieHCcPJRD5peDXA==";
+  var watch_type = "unwatch";
+  var checkFirst = false;
+  
+  $('.js-project-watch').dropdown('set selected', watch_type);
+  $('.checkbox.sync-wiki').checkbox();
+  $('.checkbox.team-member-checkbox').checkbox();
+</script>
+<style>
+  i.loading, .icon-sync.loading {
+    -webkit-animation: icon-loading 1.2s linear infinite;
+    animation: icon-loading 1.2s linear infinite;
+  }
+  .qrcode_cs {
+    float: left;
+  }
+  .check-sync-wiki {
+    float: left;
+    height: 28px;
+    line-height: 28px;
+  }
+  .sync-wiki-warn {
+    color: #e28560;
+  }
+</style>
+
+<div class='git-project-nav'>
+<div class='ui container'>
+<div class='ui secondary pointing menu'>
+<a class="item " href="/openharmony/xts_acts"><i class='iconfont icon-code'></i>
+代码
+</a><a class="item " href="/openharmony/xts_acts/issues"><i class='iconfont icon-task'></i>
+Issues
+<span class='ui mini circular label'>
+143
+</span>
+</a><a class="item active" href="/openharmony/xts_acts/pulls"><i class='iconfont icon-pull-request'></i>
+Pull Requests
+<span class='ui mini circular label'>
+213
+</span>
+</a><a class="item " href="/openharmony/xts_acts/wikis"><i class='iconfont icon-wiki'></i>
+Wiki
+</a><a class="item  " href="/openharmony/xts_acts/graph/master"><i class='iconfont icon-statistics'></i>
+统计
+</a><a class="item " href="/openharmony/xts_acts/gitee_go"><i class='iconfont icon-workflow'></i>
+流水线
+</a><div class='item'>
+<div class='ui pointing top right dropdown git-project-service'>
+<div>
+<i class='iconfont icon-service'></i>
+服务
+<i class='dropdown icon'></i>
+</div>
+<div class='menu' style='display:none'>
+<a class="item" href="/openharmony/xts_acts/pages"><img src="/static/images/logo-en.svg" alt="Logo en" />
+<div class='item-title'>
+Gitee Pages
+</div>
+</a><a class="item" href="/openharmony/xts_acts/quality_analyses?platform=sonar_qube"><img src="https://cn-assets.gitee.com/assets/sonar_mini-5e1b54bb9f6c951d97fb778ef623afea.png" alt="Sonar mini" />
+<div class='item-title'>
+质量分析
+</div>
+</a><a class="item" target="_blank" href="https://gitee.com/help/articles/4193"><img src="https://cn-assets.gitee.com/assets/jenkins_for_gitee-554ec65c490d0f1f18de632c48acc4e7.png" alt="Jenkins for gitee" />
+<div class='item-title'>
+Jenkins for Gitee
+</div>
+</a><a class="item" target="_blank" href="https://gitee.com/help/articles/4285"><img src="https://cn-assets.gitee.com/assets/baidu_efficiency_cloud-81a98c2eb67fac83b1453ca3d2feb326.svg" alt="Baidu efficiency cloud" />
+<div class='item-title'>
+百度效率云
+</div>
+</a><a class="item" target="_blank" href="https://gitee.com/help/articles/4318"><img src="https://cn-assets.gitee.com/assets/cloudbase-1197b95ea3398aff1df7fe17c65a6d42.png?20200925" alt="Cloudbase" />
+<div class='item-title'>
+腾讯云托管
+</div>
+</a><a class="item" target="_blank" href="https://gitee.com/help/articles/4330"><img src="https://cn-assets.gitee.com/assets/cloud_serverless-686cf926ced5d6d2f1d6e606d270b81e.png" alt="Cloud serverless" />
+<div class='item-title'>
+腾讯云 Serverless
+</div>
+</a><a class="item" href="/openharmony/xts_acts/open_sca"><img src="https://cn-assets.gitee.com/assets/open_sca/logo-9049ced662b2f9936b8001e6f9cc4952.png" alt="Logo" />
+<div class='item-title'>
+悬镜安全
+</div>
+</a><button class='ui orange basic button quit-button' id='quiting-button'>
+我知道了，不再自动展开
+</button>
+</div>
+</div>
+</div>
+<div class='item right mr-0 pr-0 apply_to_join'>
+<a href='/login?redirect_to_url=/openharmony/xts_acts?apply=1' class='ui button small basic orange apply-join-btn'>申请加入仓库</a>
+</div>
+</div>
+</div>
+</div>
+<script>
+  $('.git-project-nav .ui.dropdown').dropdown({ action: 'nothing' });
+  var gitee_reward_config = JSON.parse(localStorage.getItem('gitee_reward_config') || null) || false
+  var $settingText = $('.setting-text')
+  // 如果没有访问过
+  if(!gitee_reward_config) $settingText.addClass('red-dot')
+</script>
+<style>
+  .git-project-nav i.checkmark.icon {
+    color: green;
+  }
+  #quiting-button {
+    display: none;
+  }
+  
+  .git-project-nav .dropdown .menu.hidden:after {
+    visibility: hidden !important;
+  }
+</style>
+<script>
+  isSignIn = false
+  isClickGuide = false
+  $('#git-versions.dropdown').dropdown();
+  $.ajax({
+    url:"/openharmony/xts_acts/access/add_access_log",
+    type:"GET"
+  });
+  $('#quiting-button').on('click',function() {
+    $('.git-project-service').click();
+    if (isSignIn) {
+      $.post("/projects/set_service_guide")
+    }
+    $.cookie("Serve_State", true, { expires: 3650, path: '/'})
+    $('#quiting-button').hide();
+  });
+  if (!(isClickGuide || $.cookie("Serve_State") == 'true')) {
+    $('.git-project-service').click()
+    $('#quiting-button').show()
+  }
+</script>
+
+</div>
+<div class='ui container'>
+<link rel="stylesheet" media="all" href="https://cn-assets.gitee.com/assets/editor-44a51c1d9f3a36ad52fc1bbbd61822cc.css" />
+<script src="https://cn-assets.gitee.com/assets/editor-91a7fee54429bdb842fa07d9924719a5.js"></script>
+
+<link rel="stylesheet" media="all" href="https://cn-assets.gitee.com/assets/gitee_scan/application-c43d3e06a545fc683aaf49e10253ecea.css" />
+<link rel="stylesheet" media="all" href="https://cn-assets.gitee.com/webpacks/css/pr_details-b145f0bba60254a70559.css" />
+<div class='pull-request__container'>
+<div class='ui breadcrumb'>
+<a class="section" href="/openharmony/xts_acts/pulls">Pull Requests</a>
+<div class='divider'>/</div>
+<div class='active section'>详情</div>
+</div>
+<div class='ui grid'>
+<div class='eleven wide column'>
+<div class='pull-request__subject'>
+<div class='main-container'>
+<div class='ui header fs-24'>
+<span class='iid'>7445</span>
+<strong class='ml-1 js-pull-request-title wb-break-word'>
+xts_acts——Surface Refactoring step 1：separate IConsumerSurface from Surface
+</strong>
+</div>
+<div class='labels-group d-inline-flex mr-05'>
+<div class='label merge-state mr-0 pull-request ui'>
+<i class='iconfont icon-pull-request mr-05'></i>
+<span>开启的</span>
+</div>
+</div>
+<div class='base-link-target d-inline'>
+<a class="ui label branch" with_copy="true" href="/mingzhu_pearl/xts_acts/tree/lmz_remote"><span>MingZhu:lmz_remote</span><i class="iconfont icon-clone branch-copy" data-clipboard-text="lmz_remote"></i></a>
+<span class='arrow'></span>
+<a class="ui label branch" with_copy="true" href="/openharmony/xts_acts/tree/master"><span>OpenHarmony:master</span><i class="iconfont icon-clone branch-copy" data-clipboard-text="master"></i></a>
+</div>
+<div class='d-flex mt-2'>
+<div class='author'>
+<img class="ui avatar mini image" avatar="MingZhu-mingzhu_pearl" />
+<a class="author_link avatar mr-1 js-popover-card" target="_blank" data-username="mingzhu_pearl" href="/mingzhu_pearl"><span class="author" data-username="mingzhu_pearl">MingZhu</span></a>
+创建于
+2023-02-07 13:10
+</div>
+<div class='actions flex-grow-1 text-right'>
+<a class="ml-2 js-clone-or-download" href="javascript:;">克隆/下载
+<i class='icon dropdown'></i>
+</a><div class='ui popup text-left'>
+<div class='ui small secondary pointing menu mb-1'>
+<a class='item active' data-type='http' data-url='git fetch https://gitee.com/openharmony/xts_acts.git pull/7445/head:pr_7445'>HTTPS</a>
+<a class='item' data-type='ssh' data-url='git fetch git@gitee.com:openharmony/xts_acts.git pull/7445/head:pr_7445'>SSH</a>
+</div>
+<div class='ui small input'>
+<input type="text" name="project_clone_url" id="project_clone_url" value="git fetch https://gitee.com/openharmony/xts_acts.git pull/7445/head:pr_7445" onclick="focus();select();" readonly="readonly" />
+<div class='ui basic orange button mr-0 js-btn-copy-clone-url' data-clipboard-target='#project_clone_url'>
+复制
+</div>
+</div>
+<div class='download-btn-group'>
+<a href="/openharmony/xts_acts/pulls/7445.patch"><i class='icon download'></i>
+下载 Email Patch
+</a><a href="/openharmony/xts_acts/pulls/7445.diff"><i class='icon download'></i>
+下载 Diff 文件
+</a></div>
+</div>
+</div>
+</div>
+<div class='main-content mt-3 js-pull-request-body'>
+<div class='markdown-body' type-id='8020355' type='PullRequest' username='mingzhu_pearl'>
+<p><a href="https://gitee.com/openharmony/graphic_graphic_2d/issues/I6DEFQ" rel="nofollow noreferrer noopener" target="_blank"></a><a title="Issue: separate IConsumerSurface from Surface -- Surface Refactoring step 1" href="/open_harmony/dashboard?issue_id=I6DEFQ">#I6DEFQ:separate IConsumerSurface from Surface -- Surface Refactoring step 1</a></p></div>
+
+</div>
+
+</div>
+</div>
+<script>
+  if(window.gon.check_reopen && !window.gon.check_reopen.can_be_reopened){
+    $('.cant-reopen-tooltips').popup({
+      html: window.gon.check_reopen && window.gon.check_reopen.message,
+      position: "top center",
+      hoverable: true,
+      className: {
+        popup: 'ui popup dark reopen-tooltips'
+      }
+    })
+  }
+</script>
+
+<div class='pull-request__merge-widget'>
+<div class='js-merge-container'>
+<div class='merge-container'>
+<div class='header' onclick="this.classList.toggle('toggled')">
+<i class='icon dropdown'></i>
+此 Pull Request 需要通过一些审核项
+</div>
+<div class='main'>
+<table class='assigner-table'>
+<thead>
+<tr>
+<th>
+类型
+</th>
+<th>
+指派人员
+</th>
+<th width='190px'>状态</th>
+</tr>
+</thead>
+<tbody>
+<!-- /= render 'pull_requests/show/assigns_item', targets: assigners, title: t('pull_request.reviewer_short'), min_pass_num: @pull_request.pr_assign_num -->
+<tr>
+<td class='text-bold' rowspan=''>
+审查
+</td>
+<td>
+<span class='assigner-item-img' data-tooltip='jiyong'>
+<img class="ui avatar mini image" avatar="jiyong-jiyong_sd" />
+</span>
+<span class='assigner-item-img' data-tooltip='yexiangbin'>
+<img class="ui avatar mini image" avatar="yexiangbin-ye-xiangbin" />
+</span>
+</td>
+<td>
+<i class='iconfont icon-task-state-23 text-orange'></i>
+进行中
+<span class='status-progress'>(0/1)</span>
+</td>
+</tr>
+
+<tr>
+<td class='text-bold'>测试</td>
+<td>
+<span class='assigner-item-img' data-tooltip='openharmony_ci'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2462/7387629_openharmony_ci_1656582662.png!avatar30" alt="7387629 openharmony ci 1656582662" />
+</span>
+</td>
+<td>
+<i class='iconfont icon-task-state-23 text-orange'></i>
+进行中
+<span class='status-progress'>(0/1)</span>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+<script>
+  $('.merge-container .ui.dropdown').dropdown()
+</script>
+
+</div>
+<div class='js-accept-container'>
+<div class='js-merge-form'>
+<div class='merge-form'>
+<div class='ui message cannot-merge'>
+<div class='d-align-center'>
+<i class='iconfont icon-warning'></i>
+<strong>此 Pull Request 暂不能合并，一些审核尚未通过</strong>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    window.Gitee.initPullRequestMergeForm({
+      commitTitlesPath: '/openharmony/xts_acts/pulls/7445/commit_titles',
+      acceptMergePath: '/openharmony/xts_acts/pulls/7445/automerge',
+      defaultMergeOptions: 'merge',
+      prCheckedSquashMerge: false,
+      squashMergeDisable: false
+    });
+  
+  }).call(this);
+</script>
+
+</div>
+
+</div>
+<div class='ui small modal' id='modal-how-to-merge'>
+<i class='iconfont icon-close close'></i>
+<div class='header'>
+怎样手动合并此 Pull Request
+</div>
+<div class='content'>
+<div class='code-block'>
+<p>git checkout master</p>
+<p>git pull https://gitee.com/mingzhu_pearl/xts_acts.git lmz_remote</p>
+<p>git push origin master</p>
+</div>
+</div>
+</div>
+<style>
+  .code-block {
+    padding: 5px;
+    color: #FFF;
+    background: #444;
+  }
+  .code-block p {
+    margin: 0;
+  }
+  .code-block p:before {
+    content: '$ ';
+    color: #00D400;
+  }
+</style>
+<script>
+  (function() {
+    $('.pull-request__merge-widget').on('click', '.btn-how-to-merge', function() {
+      return $('#modal-how-to-merge').modal('show');
+    });
+  
+  }).call(this);
+</script>
+
+</div>
+<div class='sticky ui top attached pointing secondary menu' id='pull-request-tabs'>
+<a class="item active" data-tab="pull-request-details" data-nav="comments" href="/openharmony/xts_acts/pulls/7445">评论
+<span class='ui mini circular label pr_notes_count'>
+22
+</span>
+</a><a class="item " data-tab="pull-request-details" data-nav="commits" href="/openharmony/xts_acts/pulls/7445/commits">提交
+<span class='ui mini circular label'>2</span>
+</a><a class="item " data-tab="pull-request-details" data-nav="files" href="/openharmony/xts_acts/pulls/7445/files">文件
+<span class='ui mini circular label'>1</span>
+</a><a class='hidden item scans-total tab-item' data-tab='scans_total'>
+代码问题
+<span class='ui mini circular label pr_scan_count'>0</span>
+</a>
+</div>
+<div class='active pull-request-details tab ui' data-tab='pull-request-details'>
+<div id='el'></div>
+</div>
+<div class='pull-request-scans tab ui' data-tab='scans_total'>
+<link rel="stylesheet" media="all" href="https://cn-assets.gitee.com/webpacks/css/pr_scan-72c319ec9e2fd13c9f11.css" />
+<div id='pr_scan_total_view'></div>
+
+</div>
+</div>
+<div class='four wide column float-right'>
+<div class='toggle' onclick="this.classList.toggle('active')">
+<span class='expand'>展开设置</span>
+<span class='collapse'>折叠设置</span>
+<i class='iconfont icon-dropdown-arrow'></i>
+</div>
+<div class='clearfix'></div>
+<form class="ui custom form" id="edit_pull_request_8020355" action="/openharmony/xts_acts/pulls/7445" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="patch" /><input type="hidden" name="authenticity_token" value="CHlTFMLyPGIQMugd5irThPQ9ToB99zuBah+oLYIGzNmjndwrksb0MoEf5KvdmbAmR6oZsAy8PVKTvSlfk/E35Q==" /><div class='pull-request__sidebar'>
+<div class='field assigner-field'>
+<div class='label'>
+审查
+</div>
+<div class='label title'>
+<span data-position='right center' data-tooltip='除 Code Owner 外的代码审查人员'>
+审查人员
+</span>
+<div class='assigner-dropdown disabled dropdown multiple ui' data-accepts=''>
+<input value="7823266,8560410" type="hidden" name="pull_request[assignee_id]" id="pull_request_assignee_id" />
+<i class='iconfont icon-edit'></i>
+<div class='right menu'>
+<div class='ui right icon search input'>
+<i class='iconfont icon-search'></i>
+<input placeholder='搜索人员'>
+</div>
+<div class='scrolling menu'>
+<div class='item' data-value='9614585'>
+<img class="ui avatar mini image" avatar="lixu-osomatu" />
+<div class='name'>lixu</div>
+<div class='username hide'>osomatu</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10217759'>
+<img class="ui avatar mini image" avatar="段浩晨-dhc-123" />
+<div class='name'>段浩晨</div>
+<div class='username hide'>dhc-123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8053870'>
+<img class="ui avatar mini image" avatar="张立哲-zhang-lizhe" />
+<div class='name'>张立哲</div>
+<div class='username hide'>zhang-lizhe</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8191472'>
+<img class="ui avatar mini image" avatar="zhoulvwei-zhoulvwei" />
+<div class='name'>zhoulvwei</div>
+<div class='username hide'>zhoulvwei</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9036355'>
+<img class="ui avatar mini image" avatar="songda-songda123" />
+<div class='name'>songda</div>
+<div class='username hide'>songda123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9401194'>
+<img class="ui avatar mini image" avatar="wangbo-kdjbb" />
+<div class='name'>wangbo</div>
+<div class='username hide'>kdjbb</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10041473'>
+<img class="ui avatar mini image" avatar="杨田田-tianyang2021" />
+<div class='name'>杨田田</div>
+<div class='username hide'>tianyang2021</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10010726'>
+<img class="ui avatar mini image" avatar="qwerasdf123456789-qwerasdf123456789" />
+<div class='name'>qwerasdf123456789</div>
+<div class='username hide'>qwerasdf123456789</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8777518'>
+<img class="ui avatar mini image" avatar="雷丹-leid_1021" />
+<div class='name'>雷丹</div>
+<div class='username hide'>leid_1021</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='4925836'>
+<img class="ui avatar mini image" avatar="李猛-limeng151" />
+<div class='name'>李猛</div>
+<div class='username hide'>limeng151</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='6572487'>
+<img class="ui avatar mini image" avatar="huangshuai-huangshuai000" />
+<div class='name'>huangshuai</div>
+<div class='username hide'>huangshuai000</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9688722'>
+<img class="ui avatar mini image" avatar="伞木希美-harry-john" />
+<div class='name'>伞木希美</div>
+<div class='username hide'>harry-john</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7925091'>
+<img class="ui avatar mini image" avatar="白新成-bai_xincheng" />
+<div class='name'>白新成</div>
+<div class='username hide'>bai_xincheng</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10595462'>
+<img class="ui avatar mini image" avatar="Lei Gao-ohpi" />
+<div class='name'>Lei Gao</div>
+<div class='username hide'>ohpi</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11194502'>
+<img class="ui avatar mini image" avatar="LeiiYB-leiiyb" />
+<div class='name'>LeiiYB</div>
+<div class='username hide'>leiiyb</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9074159'>
+<img class="ui avatar mini image" avatar="lixiaogang30-lixiaogang30" />
+<div class='name'>lixiaogang30</div>
+<div class='username hide'>lixiaogang30</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11115400'>
+<img class="ui avatar mini image" avatar="寇雅楠-kou-yanan" />
+<div class='name'>寇雅楠</div>
+<div class='username hide'>kou-yanan</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10505680'>
+<img class="ui avatar mini image" avatar="华华小仙女-huahua-fairy" />
+<div class='name'>华华小仙女</div>
+<div class='username hide'>huahua-fairy</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='4814656'>
+<img class="ui avatar mini image" avatar="leiyuqian-leiyuqian" />
+<div class='name'>leiyuqian</div>
+<div class='username hide'>leiyuqian</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10038770'>
+<img class="ui avatar mini image" avatar="chengxingzhen-chengxingzhen" />
+<div class='name'>chengxingzhen</div>
+<div class='username hide'>chengxingzhen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10355866'>
+<img class="ui avatar mini image" avatar="xiangkejin-xiangkejin123" />
+<div class='name'>xiangkejin</div>
+<div class='username hide'>xiangkejin123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10531459'>
+<img class="ui avatar mini image" avatar="duwenbon-duwenbon" />
+<div class='name'>duwenbon</div>
+<div class='username hide'>duwenbon</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10067656'>
+<img class="ui avatar mini image" src="https://foruda.gitee.com/avatar/1664503837117739530/10067656_wangyi-lt_1664503835.png!avatar30" alt="10067656 wangyi lt 1664503835" />
+<div class='name'>wangyi</div>
+<div class='username hide'>wangyi-LT</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10030813'>
+<img class="ui avatar mini image" avatar="安宁-anning7" />
+<div class='name'>安宁</div>
+<div class='username hide'>anning7</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10483995'>
+<img class="ui avatar mini image" avatar="郭永强-gwx1146427" />
+<div class='name'>郭永强</div>
+<div class='username hide'>gwx1146427</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11552445'>
+<img class="ui avatar mini image" avatar="oliveoyl-oliveoyl" />
+<div class='name'>oliveoyl</div>
+<div class='username hide'>oliveoyl</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='959996'>
+<img class="ui avatar mini image" avatar="刘伟-lw19901203" />
+<div class='name'>刘伟</div>
+<div class='username hide'>lw19901203</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9354122'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3118/9354122_greada_1652237709.png!avatar30" alt="9354122 greada 1652237709" />
+<div class='name'>kangqiao</div>
+<div class='username hide'>greada</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10032579'>
+<img class="ui avatar mini image" avatar="张育帅-yu-shuai-zhang" />
+<div class='name'>张育帅</div>
+<div class='username hide'>yu-shuai-zhang</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10200096'>
+<img class="ui avatar mini image" avatar="yangxin-ywx1092311" />
+<div class='name'>yangxin</div>
+<div class='username hide'>ywx1092311</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10510686'>
+<img class="ui avatar mini image" avatar="zhaoxudong-xudongkh" />
+<div class='name'>zhaoxudong</div>
+<div class='username hide'>xudongkh</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11234142'>
+<img class="ui avatar mini image" avatar="zhuhongtao666-zhuhongtao66" />
+<div class='name'>zhuhongtao666</div>
+<div class='username hide'>zhuhongtao66</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9000837'>
+<img class="ui avatar mini image" avatar="ldy-Ldy_lidanyang" />
+<div class='name'>ldy</div>
+<div class='username hide'>Ldy_lidanyang</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10372777'>
+<img class="ui avatar mini image" avatar="p30024279-p30024279" />
+<div class='name'>p30024279</div>
+<div class='username hide'>p30024279</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10211176'>
+<img class="ui avatar mini image" avatar="lixin475-li-xin-lixin" />
+<div class='name'>lixin475</div>
+<div class='username hide'>li-xin-lixin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10222740'>
+<img class="ui avatar mini image" avatar="王德章-wangdzwhu1893" />
+<div class='name'>王德章</div>
+<div class='username hide'>wangdzwhu1893</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8049745'>
+<img class="ui avatar mini image" avatar="chensi10-chensi10" />
+<div class='name'>chensi10</div>
+<div class='username hide'>chensi10</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9480053'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3160/9480053_softeration_1629128202.png!avatar30" alt="9480053 softeration 1629128202" />
+<div class='name'>Nova-Q</div>
+<div class='username hide'>softeration</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8430272'>
+<img class="ui avatar mini image" avatar="guwenjin-moonwhite1985" />
+<div class='name'>guwenjin</div>
+<div class='username hide'>moonwhite1985</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9688718'>
+<img class="ui avatar mini image" avatar="wangyong-wangyong1995626wywz" />
+<div class='name'>wangyong</div>
+<div class='username hide'>wangyong1995626wywz</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7965379'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2655/7965379_a--bao_1607392629.png!avatar30" alt="7965379 a  bao 1607392629" />
+<div class='name'>肖倬汉</div>
+<div class='username hide'>a--bao</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='6502270'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2167/6502270_uhamc_1635147925.png!avatar30" alt="6502270 uhamc 1635147925" />
+<div class='name'>huangshan</div>
+<div class='username hide'>uhamc</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='5174332'>
+<img class="ui avatar mini image" avatar="影映孤鸿-yingyingguhong" />
+<div class='name'>影映孤鸿</div>
+<div class='username hide'>yingyingguhong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9344213'>
+<img class="ui avatar mini image" avatar="Xiaowei-xiaoweiyao" />
+<div class='name'>Xiaowei</div>
+<div class='username hide'>xiaoweiyao</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8728118'>
+<img class="ui avatar mini image" avatar="舒雄-shu-xiong" />
+<div class='name'>舒雄</div>
+<div class='username hide'>shu-xiong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8772516'>
+<img class="ui avatar mini image" avatar="土行孙-duanhaizhen" />
+<div class='name'>土行孙</div>
+<div class='username hide'>duanhaizhen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8837962'>
+<img class="ui avatar mini image" avatar="南先森-nan-xiansen" />
+<div class='name'>南先森</div>
+<div class='username hide'>nan-xiansen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8977729'>
+<img class="ui avatar mini image" avatar="liyulong11-liyulong11" />
+<div class='name'>liyulong11</div>
+<div class='username hide'>liyulong11</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7477697'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2492/7477697_XTStarry_1618454172.jpeg!avatar30" alt="7477697 xtstarry 1618454172" />
+<div class='name'>XTStarry</div>
+<div class='username hide'>XTStarry</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8048128'>
+<img class="ui avatar mini image" avatar="logic42-logic42" />
+<div class='name'>logic42</div>
+<div class='username hide'>logic42</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9136222'>
+<img class="ui avatar mini image" avatar="陈浩-haochen1234" />
+<div class='name'>陈浩</div>
+<div class='username hide'>haochen1234</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7812996'>
+<img class="ui avatar mini image" avatar="孟麟-mlinlmcc" />
+<div class='name'>孟麟</div>
+<div class='username hide'>mlinlmcc</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8977827'>
+<img class="ui avatar mini image" avatar="赵萌萌-zhao-siting" />
+<div class='name'>赵萌萌</div>
+<div class='username hide'>zhao-siting</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7813017'>
+<img class="ui avatar mini image" avatar="Jane-jane_lz" />
+<div class='name'>Jane</div>
+<div class='username hide'>jane_lz</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8771844'>
+<img class="ui avatar mini image" avatar="胡吉翔-hu-jixiang1" />
+<div class='name'>胡吉翔</div>
+<div class='username hide'>hu-jixiang1</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9574574'>
+<img class="ui avatar mini image" avatar="tianfenxia-tianfenxia" />
+<div class='name'>tianfenxia</div>
+<div class='username hide'>tianfenxia</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9592876'>
+<img class="ui avatar mini image" avatar="Charles Chang-charles-chang" />
+<div class='name'>Charles Chang</div>
+<div class='username hide'>charles-chang</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9137324'>
+<img class="ui avatar mini image" avatar="Max-mk-2" />
+<div class='name'>Max</div>
+<div class='username hide'>mk-2</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7989911'>
+<img class="ui avatar mini image" avatar="ericx089-ericx089" />
+<div class='name'>ericx089</div>
+<div class='username hide'>ericx089</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8682857'>
+<img class="ui avatar mini image" avatar="杨清-yangqing3" />
+<div class='name'>杨清</div>
+<div class='username hide'>yangqing3</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8047713'>
+<img class="ui avatar mini image" avatar="LeeTestNady-leetestnady" />
+<div class='name'>LeeTestNady</div>
+<div class='username hide'>leetestnady</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7812967'>
+<img class="ui avatar mini image" avatar="liusicheng2008-liusicheng2008" />
+<div class='name'>liusicheng2008</div>
+<div class='username hide'>liusicheng2008</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8772477'>
+<img class="ui avatar mini image" avatar="刘晓培-hongmeng-robot-1" />
+<div class='name'>刘晓培</div>
+<div class='username hide'>hongmeng-robot-1</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9344241'>
+<img class="ui avatar mini image" avatar="wkejing-w30013702" />
+<div class='name'>wkejing</div>
+<div class='username hide'>w30013702</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9433934'>
+<img class="ui avatar mini image" avatar="apperception-z_apperception" />
+<div class='name'>apperception</div>
+<div class='username hide'>z_apperception</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9111536'>
+<img class="ui avatar mini image" avatar="刘文武-liu-wenwu" />
+<div class='name'>刘文武</div>
+<div class='username hide'>liu-wenwu</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8405897'>
+<img class="ui avatar mini image" avatar="揣振中-chuaizhzh" />
+<div class='name'>揣振中</div>
+<div class='username hide'>chuaizhzh</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8777736'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2925/8777736_Catherine_MK_1653979798.png!avatar30" alt="8777736 catherine mk 1653979798" />
+<div class='name'>小猴纸</div>
+<div class='username hide'>Catherine_MK</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7808822'>
+<img class="ui avatar mini image" avatar="alex_hold-alex__hold" />
+<div class='name'>alex_hold</div>
+<div class='username hide'>alex__hold</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='1292554'>
+<img class="ui avatar mini image" avatar="爆旋陀螺-younger2_admin" />
+<div class='name'>爆旋陀螺</div>
+<div class='username hide'>younger2_admin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8789037'>
+<img class="ui avatar mini image" avatar="aaronwangjun-aaronwangjun" />
+<div class='name'>aaronwangjun</div>
+<div class='username hide'>aaronwangjun</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9996564'>
+<img class="ui avatar mini image" avatar="李伟-tongtongdad" />
+<div class='name'>李伟</div>
+<div class='username hide'>tongtongdad</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8047829'>
+<img class="ui avatar mini image" avatar="ry-inter515" />
+<div class='name'>ry</div>
+<div class='username hide'>inter515</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8047530'>
+<img class="ui avatar mini image" avatar="kirl75-kirl75" />
+<div class='name'>kirl75</div>
+<div class='username hide'>kirl75</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9993955'>
+<img class="ui avatar mini image" avatar="songdawei-song-dawei1" />
+<div class='name'>songdawei</div>
+<div class='username hide'>song-dawei1</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9401687'>
+<img class="ui avatar mini image" avatar="李西腾-li-xiteng" />
+<div class='name'>李西腾</div>
+<div class='username hide'>li-xiteng</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8494366'>
+<img class="ui avatar mini image" avatar="SKY-skytar" />
+<div class='name'>SKY</div>
+<div class='username hide'>skytar</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9538862'>
+<img class="ui avatar mini image" avatar="niebenkui-laonie666" />
+<div class='name'>niebenkui</div>
+<div class='username hide'>laonie666</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10066538'>
+<img class="ui avatar mini image" avatar="李昊-li-hao334" />
+<div class='name'>李昊</div>
+<div class='username hide'>li-hao334</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10313335'>
+<img class="ui avatar mini image" avatar="张跃-zhang-yue0" />
+<div class='name'>张跃</div>
+<div class='username hide'>zhang-yue0</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9186397'>
+<img class="ui avatar mini image" avatar="张杰-zjkin" />
+<div class='name'>张杰</div>
+<div class='username hide'>zjkin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9315627'>
+<img class="ui avatar mini image" avatar="NOBUGGERS-nobuggers" />
+<div class='name'>NOBUGGERS</div>
+<div class='username hide'>nobuggers</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8563197'>
+<img class="ui avatar mini image" avatar="zhongsicong-zhongsicong" />
+<div class='name'>zhongsicong</div>
+<div class='username hide'>zhongsicong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9190617'>
+<img class="ui avatar mini image" avatar="smagicyun-smagicyun" />
+<div class='name'>smagicyun</div>
+<div class='username hide'>smagicyun</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9015848'>
+<img class="ui avatar mini image" avatar="quxianfei-qu-xianfei" />
+<div class='name'>quxianfei</div>
+<div class='username hide'>qu-xianfei</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10318621'>
+<img class="ui avatar mini image" avatar="陈诚-chenchengak" />
+<div class='name'>陈诚</div>
+<div class='username hide'>chenchengak</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9035252'>
+<img class="ui avatar mini image" avatar="liziqiang-lzq142876" />
+<div class='name'>liziqiang</div>
+<div class='username hide'>lzq142876</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10030822'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3343/10030822_zhangmaowen_1637067732.png!avatar30" alt="10030822 zhangmaowen 1637067732" />
+<div class='name'>Maowen</div>
+<div class='username hide'>zhangmaowen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10260088'>
+<img class="ui avatar mini image" avatar="miaomeimei-miaomeimei" />
+<div class='name'>miaomeimei</div>
+<div class='username hide'>miaomeimei</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10234810'>
+<img class="ui avatar mini image" avatar="xxiaohong-xxiaohong" />
+<div class='name'>xxiaohong</div>
+<div class='username hide'>xxiaohong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10200993'>
+<img class="ui avatar mini image" avatar="zleoyu-zleoyu" />
+<div class='name'>zleoyu</div>
+<div class='username hide'>zleoyu</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10312908'>
+<img class="ui avatar mini image" avatar="王骏茗-wjm-123" />
+<div class='name'>王骏茗</div>
+<div class='username hide'>wjm-123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8784402'>
+<img class="ui avatar mini image" avatar="高曦-gaoxi785" />
+<div class='name'>高曦</div>
+<div class='username hide'>gaoxi785</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9861424'>
+<img class="ui avatar mini image" avatar="戴伟琦-currydavids" />
+<div class='name'>戴伟琦</div>
+<div class='username hide'>currydavids</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8509999'>
+<img class="ui avatar mini image" avatar="金海-jinhaihw" />
+<div class='name'>金海</div>
+<div class='username hide'>jinhaihw</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9243866'>
+<img class="ui avatar mini image" avatar="guoxiaoyu-soda-mi" />
+<div class='name'>guoxiaoyu</div>
+<div class='username hide'>soda-mi</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10157216'>
+<img class="ui avatar mini image" avatar="yueye-yue-ye2" />
+<div class='name'>yueye</div>
+<div class='username hide'>yue-ye2</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10384492'>
+<img class="ui avatar mini image" avatar="王韩洁-wang-hanjie2" />
+<div class='name'>王韩洁</div>
+<div class='username hide'>wang-hanjie2</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10373744'>
+<img class="ui avatar mini image" avatar="chenxuihui-chenxuihui" />
+<div class='name'>chenxuihui</div>
+<div class='username hide'>chenxuihui</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8342273'>
+<img class="ui avatar mini image" avatar="权力-quanli125" />
+<div class='name'>权力</div>
+<div class='username hide'>quanli125</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11442781'>
+<img class="ui avatar mini image" avatar="田文哲-tian-wenzhe411" />
+<div class='name'>田文哲</div>
+<div class='username hide'>tian-wenzhe411</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10923218'>
+<img class="ui avatar mini image" avatar="wshikh-wshikh" />
+<div class='name'>wshikh</div>
+<div class='username hide'>wshikh</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10038743'>
+<img class="ui avatar mini image" avatar="futurezhou-futurezhou" />
+<div class='name'>futurezhou</div>
+<div class='username hide'>futurezhou</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10905451'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3635/10905451_monissaJ_1659342092.png!avatar30" alt="10905451 monissaj 1659342092" />
+<div class='name'>monissa</div>
+<div class='username hide'>monissaJ</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11370192'>
+<img class="ui avatar mini image" avatar="王一卉-Armstrong15" />
+<div class='name'>王一卉</div>
+<div class='username hide'>Armstrong15</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10591605'>
+<img class="ui avatar mini image" avatar="viki_cm-viki-cm" />
+<div class='name'>viki_cm</div>
+<div class='username hide'>viki-cm</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9459941'>
+<img class="ui avatar mini image" avatar="kukixi-kukixi" />
+<div class='name'>kukixi</div>
+<div class='username hide'>kukixi</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8239851'>
+<img class="ui avatar mini image" avatar="AOL-magekkkk" />
+<div class='name'>AOL</div>
+<div class='username hide'>magekkkk</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7850629'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2616/7850629_aqxyjay_1602859273.png!avatar30" alt="7850629 aqxyjay 1602859273" />
+<div class='name'>Zhangchunxin</div>
+<div class='username hide'>aqxyjay</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7387629'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2462/7387629_openharmony_ci_1656582662.png!avatar30" alt="7387629 openharmony ci 1656582662" />
+<div class='name'>openharmony_ci</div>
+<div class='username hide'>openharmony_ci</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='626123'>
+<img class="ui avatar mini image" avatar="mamingshuai-landwind" />
+<div class='name'>mamingshuai</div>
+<div class='username hide'>landwind</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8560410'>
+<img class="ui avatar mini image" avatar="yexiangbin-ye-xiangbin" />
+<div class='name'>yexiangbin</div>
+<div class='username hide'>ye-xiangbin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7823266'>
+<img class="ui avatar mini image" avatar="jiyong-jiyong_sd" />
+<div class='name'>jiyong</div>
+<div class='username hide'>jiyong_sd</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='content d-flex-between'>
+<div class='text'>未设置</div>
+<div class='disabled dropdown floating min-reviewers-dropdown pointing right top ui'>
+<input value="1" type="hidden" name="pull_request[pr_assign_num]" id="pull_request_pr_assign_num" />
+最少人数
+<div class='text'>1</div>
+<i class='iconfont icon-return'></i>
+<div class='menu'></div>
+</div>
+</div>
+<div class='label title mt-1 pull-request__code-owners' style='display: none'>
+<span data-html='由目标分支 CODEOWNERS 文件指定，负责维护指定文件的人员' data-position='right center' id='codeowner-title-tip'>
+Code Owner
+</span>
+<div class='content'>
+<div class='codeowner-list d-flex'>
+</div>
+<script>
+  $('.js-codeowner').popup({ inline: true, hoverable: true, position: 'top left'});
+</script>
+
+</div>
+</div>
+</div>
+<div class='field assigner-field'>
+<div class='label'>
+<span data-position='right center' data-tooltip='指派负责测试的人员'>
+测试
+</span>
+<div class='assigner-dropdown disabled dropdown multiple ui' data-accepts=''>
+<input value="7387629" type="hidden" name="pull_request[tester_id]" id="pull_request_tester_id" />
+<i class='iconfont icon-edit'></i>
+<div class='right menu'>
+<div class='ui right icon search input'>
+<i class='iconfont icon-search'></i>
+<input placeholder='搜索人员'>
+</div>
+<div class='scrolling menu'>
+<div class='item' data-value='9614585'>
+<img class="ui avatar mini image" avatar="lixu-osomatu" />
+<div class='name'>lixu</div>
+<div class='username hide'>osomatu</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10217759'>
+<img class="ui avatar mini image" avatar="段浩晨-dhc-123" />
+<div class='name'>段浩晨</div>
+<div class='username hide'>dhc-123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8053870'>
+<img class="ui avatar mini image" avatar="张立哲-zhang-lizhe" />
+<div class='name'>张立哲</div>
+<div class='username hide'>zhang-lizhe</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8191472'>
+<img class="ui avatar mini image" avatar="zhoulvwei-zhoulvwei" />
+<div class='name'>zhoulvwei</div>
+<div class='username hide'>zhoulvwei</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9036355'>
+<img class="ui avatar mini image" avatar="songda-songda123" />
+<div class='name'>songda</div>
+<div class='username hide'>songda123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9401194'>
+<img class="ui avatar mini image" avatar="wangbo-kdjbb" />
+<div class='name'>wangbo</div>
+<div class='username hide'>kdjbb</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10041473'>
+<img class="ui avatar mini image" avatar="杨田田-tianyang2021" />
+<div class='name'>杨田田</div>
+<div class='username hide'>tianyang2021</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10010726'>
+<img class="ui avatar mini image" avatar="qwerasdf123456789-qwerasdf123456789" />
+<div class='name'>qwerasdf123456789</div>
+<div class='username hide'>qwerasdf123456789</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8777518'>
+<img class="ui avatar mini image" avatar="雷丹-leid_1021" />
+<div class='name'>雷丹</div>
+<div class='username hide'>leid_1021</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='4925836'>
+<img class="ui avatar mini image" avatar="李猛-limeng151" />
+<div class='name'>李猛</div>
+<div class='username hide'>limeng151</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='6572487'>
+<img class="ui avatar mini image" avatar="huangshuai-huangshuai000" />
+<div class='name'>huangshuai</div>
+<div class='username hide'>huangshuai000</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9688722'>
+<img class="ui avatar mini image" avatar="伞木希美-harry-john" />
+<div class='name'>伞木希美</div>
+<div class='username hide'>harry-john</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7925091'>
+<img class="ui avatar mini image" avatar="白新成-bai_xincheng" />
+<div class='name'>白新成</div>
+<div class='username hide'>bai_xincheng</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10595462'>
+<img class="ui avatar mini image" avatar="Lei Gao-ohpi" />
+<div class='name'>Lei Gao</div>
+<div class='username hide'>ohpi</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11194502'>
+<img class="ui avatar mini image" avatar="LeiiYB-leiiyb" />
+<div class='name'>LeiiYB</div>
+<div class='username hide'>leiiyb</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9074159'>
+<img class="ui avatar mini image" avatar="lixiaogang30-lixiaogang30" />
+<div class='name'>lixiaogang30</div>
+<div class='username hide'>lixiaogang30</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11115400'>
+<img class="ui avatar mini image" avatar="寇雅楠-kou-yanan" />
+<div class='name'>寇雅楠</div>
+<div class='username hide'>kou-yanan</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10505680'>
+<img class="ui avatar mini image" avatar="华华小仙女-huahua-fairy" />
+<div class='name'>华华小仙女</div>
+<div class='username hide'>huahua-fairy</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='4814656'>
+<img class="ui avatar mini image" avatar="leiyuqian-leiyuqian" />
+<div class='name'>leiyuqian</div>
+<div class='username hide'>leiyuqian</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10038770'>
+<img class="ui avatar mini image" avatar="chengxingzhen-chengxingzhen" />
+<div class='name'>chengxingzhen</div>
+<div class='username hide'>chengxingzhen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10355866'>
+<img class="ui avatar mini image" avatar="xiangkejin-xiangkejin123" />
+<div class='name'>xiangkejin</div>
+<div class='username hide'>xiangkejin123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10531459'>
+<img class="ui avatar mini image" avatar="duwenbon-duwenbon" />
+<div class='name'>duwenbon</div>
+<div class='username hide'>duwenbon</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10067656'>
+<img class="ui avatar mini image" src="https://foruda.gitee.com/avatar/1664503837117739530/10067656_wangyi-lt_1664503835.png!avatar30" alt="10067656 wangyi lt 1664503835" />
+<div class='name'>wangyi</div>
+<div class='username hide'>wangyi-LT</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10030813'>
+<img class="ui avatar mini image" avatar="安宁-anning7" />
+<div class='name'>安宁</div>
+<div class='username hide'>anning7</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10483995'>
+<img class="ui avatar mini image" avatar="郭永强-gwx1146427" />
+<div class='name'>郭永强</div>
+<div class='username hide'>gwx1146427</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11552445'>
+<img class="ui avatar mini image" avatar="oliveoyl-oliveoyl" />
+<div class='name'>oliveoyl</div>
+<div class='username hide'>oliveoyl</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='959996'>
+<img class="ui avatar mini image" avatar="刘伟-lw19901203" />
+<div class='name'>刘伟</div>
+<div class='username hide'>lw19901203</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9354122'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3118/9354122_greada_1652237709.png!avatar30" alt="9354122 greada 1652237709" />
+<div class='name'>kangqiao</div>
+<div class='username hide'>greada</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10032579'>
+<img class="ui avatar mini image" avatar="张育帅-yu-shuai-zhang" />
+<div class='name'>张育帅</div>
+<div class='username hide'>yu-shuai-zhang</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10200096'>
+<img class="ui avatar mini image" avatar="yangxin-ywx1092311" />
+<div class='name'>yangxin</div>
+<div class='username hide'>ywx1092311</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10510686'>
+<img class="ui avatar mini image" avatar="zhaoxudong-xudongkh" />
+<div class='name'>zhaoxudong</div>
+<div class='username hide'>xudongkh</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11234142'>
+<img class="ui avatar mini image" avatar="zhuhongtao666-zhuhongtao66" />
+<div class='name'>zhuhongtao666</div>
+<div class='username hide'>zhuhongtao66</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9000837'>
+<img class="ui avatar mini image" avatar="ldy-Ldy_lidanyang" />
+<div class='name'>ldy</div>
+<div class='username hide'>Ldy_lidanyang</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10372777'>
+<img class="ui avatar mini image" avatar="p30024279-p30024279" />
+<div class='name'>p30024279</div>
+<div class='username hide'>p30024279</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10211176'>
+<img class="ui avatar mini image" avatar="lixin475-li-xin-lixin" />
+<div class='name'>lixin475</div>
+<div class='username hide'>li-xin-lixin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10222740'>
+<img class="ui avatar mini image" avatar="王德章-wangdzwhu1893" />
+<div class='name'>王德章</div>
+<div class='username hide'>wangdzwhu1893</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8049745'>
+<img class="ui avatar mini image" avatar="chensi10-chensi10" />
+<div class='name'>chensi10</div>
+<div class='username hide'>chensi10</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9480053'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3160/9480053_softeration_1629128202.png!avatar30" alt="9480053 softeration 1629128202" />
+<div class='name'>Nova-Q</div>
+<div class='username hide'>softeration</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8430272'>
+<img class="ui avatar mini image" avatar="guwenjin-moonwhite1985" />
+<div class='name'>guwenjin</div>
+<div class='username hide'>moonwhite1985</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9688718'>
+<img class="ui avatar mini image" avatar="wangyong-wangyong1995626wywz" />
+<div class='name'>wangyong</div>
+<div class='username hide'>wangyong1995626wywz</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7965379'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2655/7965379_a--bao_1607392629.png!avatar30" alt="7965379 a  bao 1607392629" />
+<div class='name'>肖倬汉</div>
+<div class='username hide'>a--bao</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='6502270'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2167/6502270_uhamc_1635147925.png!avatar30" alt="6502270 uhamc 1635147925" />
+<div class='name'>huangshan</div>
+<div class='username hide'>uhamc</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='5174332'>
+<img class="ui avatar mini image" avatar="影映孤鸿-yingyingguhong" />
+<div class='name'>影映孤鸿</div>
+<div class='username hide'>yingyingguhong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9344213'>
+<img class="ui avatar mini image" avatar="Xiaowei-xiaoweiyao" />
+<div class='name'>Xiaowei</div>
+<div class='username hide'>xiaoweiyao</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8728118'>
+<img class="ui avatar mini image" avatar="舒雄-shu-xiong" />
+<div class='name'>舒雄</div>
+<div class='username hide'>shu-xiong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8772516'>
+<img class="ui avatar mini image" avatar="土行孙-duanhaizhen" />
+<div class='name'>土行孙</div>
+<div class='username hide'>duanhaizhen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8837962'>
+<img class="ui avatar mini image" avatar="南先森-nan-xiansen" />
+<div class='name'>南先森</div>
+<div class='username hide'>nan-xiansen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8977729'>
+<img class="ui avatar mini image" avatar="liyulong11-liyulong11" />
+<div class='name'>liyulong11</div>
+<div class='username hide'>liyulong11</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7477697'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2492/7477697_XTStarry_1618454172.jpeg!avatar30" alt="7477697 xtstarry 1618454172" />
+<div class='name'>XTStarry</div>
+<div class='username hide'>XTStarry</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8048128'>
+<img class="ui avatar mini image" avatar="logic42-logic42" />
+<div class='name'>logic42</div>
+<div class='username hide'>logic42</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9136222'>
+<img class="ui avatar mini image" avatar="陈浩-haochen1234" />
+<div class='name'>陈浩</div>
+<div class='username hide'>haochen1234</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7812996'>
+<img class="ui avatar mini image" avatar="孟麟-mlinlmcc" />
+<div class='name'>孟麟</div>
+<div class='username hide'>mlinlmcc</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8977827'>
+<img class="ui avatar mini image" avatar="赵萌萌-zhao-siting" />
+<div class='name'>赵萌萌</div>
+<div class='username hide'>zhao-siting</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7813017'>
+<img class="ui avatar mini image" avatar="Jane-jane_lz" />
+<div class='name'>Jane</div>
+<div class='username hide'>jane_lz</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8771844'>
+<img class="ui avatar mini image" avatar="胡吉翔-hu-jixiang1" />
+<div class='name'>胡吉翔</div>
+<div class='username hide'>hu-jixiang1</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9574574'>
+<img class="ui avatar mini image" avatar="tianfenxia-tianfenxia" />
+<div class='name'>tianfenxia</div>
+<div class='username hide'>tianfenxia</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9592876'>
+<img class="ui avatar mini image" avatar="Charles Chang-charles-chang" />
+<div class='name'>Charles Chang</div>
+<div class='username hide'>charles-chang</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9137324'>
+<img class="ui avatar mini image" avatar="Max-mk-2" />
+<div class='name'>Max</div>
+<div class='username hide'>mk-2</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7989911'>
+<img class="ui avatar mini image" avatar="ericx089-ericx089" />
+<div class='name'>ericx089</div>
+<div class='username hide'>ericx089</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8682857'>
+<img class="ui avatar mini image" avatar="杨清-yangqing3" />
+<div class='name'>杨清</div>
+<div class='username hide'>yangqing3</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8047713'>
+<img class="ui avatar mini image" avatar="LeeTestNady-leetestnady" />
+<div class='name'>LeeTestNady</div>
+<div class='username hide'>leetestnady</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7812967'>
+<img class="ui avatar mini image" avatar="liusicheng2008-liusicheng2008" />
+<div class='name'>liusicheng2008</div>
+<div class='username hide'>liusicheng2008</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8772477'>
+<img class="ui avatar mini image" avatar="刘晓培-hongmeng-robot-1" />
+<div class='name'>刘晓培</div>
+<div class='username hide'>hongmeng-robot-1</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9344241'>
+<img class="ui avatar mini image" avatar="wkejing-w30013702" />
+<div class='name'>wkejing</div>
+<div class='username hide'>w30013702</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9433934'>
+<img class="ui avatar mini image" avatar="apperception-z_apperception" />
+<div class='name'>apperception</div>
+<div class='username hide'>z_apperception</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9111536'>
+<img class="ui avatar mini image" avatar="刘文武-liu-wenwu" />
+<div class='name'>刘文武</div>
+<div class='username hide'>liu-wenwu</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8405897'>
+<img class="ui avatar mini image" avatar="揣振中-chuaizhzh" />
+<div class='name'>揣振中</div>
+<div class='username hide'>chuaizhzh</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8777736'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2925/8777736_Catherine_MK_1653979798.png!avatar30" alt="8777736 catherine mk 1653979798" />
+<div class='name'>小猴纸</div>
+<div class='username hide'>Catherine_MK</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7808822'>
+<img class="ui avatar mini image" avatar="alex_hold-alex__hold" />
+<div class='name'>alex_hold</div>
+<div class='username hide'>alex__hold</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='1292554'>
+<img class="ui avatar mini image" avatar="爆旋陀螺-younger2_admin" />
+<div class='name'>爆旋陀螺</div>
+<div class='username hide'>younger2_admin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8789037'>
+<img class="ui avatar mini image" avatar="aaronwangjun-aaronwangjun" />
+<div class='name'>aaronwangjun</div>
+<div class='username hide'>aaronwangjun</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9996564'>
+<img class="ui avatar mini image" avatar="李伟-tongtongdad" />
+<div class='name'>李伟</div>
+<div class='username hide'>tongtongdad</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8047829'>
+<img class="ui avatar mini image" avatar="ry-inter515" />
+<div class='name'>ry</div>
+<div class='username hide'>inter515</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8047530'>
+<img class="ui avatar mini image" avatar="kirl75-kirl75" />
+<div class='name'>kirl75</div>
+<div class='username hide'>kirl75</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9993955'>
+<img class="ui avatar mini image" avatar="songdawei-song-dawei1" />
+<div class='name'>songdawei</div>
+<div class='username hide'>song-dawei1</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9401687'>
+<img class="ui avatar mini image" avatar="李西腾-li-xiteng" />
+<div class='name'>李西腾</div>
+<div class='username hide'>li-xiteng</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8494366'>
+<img class="ui avatar mini image" avatar="SKY-skytar" />
+<div class='name'>SKY</div>
+<div class='username hide'>skytar</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9538862'>
+<img class="ui avatar mini image" avatar="niebenkui-laonie666" />
+<div class='name'>niebenkui</div>
+<div class='username hide'>laonie666</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10066538'>
+<img class="ui avatar mini image" avatar="李昊-li-hao334" />
+<div class='name'>李昊</div>
+<div class='username hide'>li-hao334</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10313335'>
+<img class="ui avatar mini image" avatar="张跃-zhang-yue0" />
+<div class='name'>张跃</div>
+<div class='username hide'>zhang-yue0</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9186397'>
+<img class="ui avatar mini image" avatar="张杰-zjkin" />
+<div class='name'>张杰</div>
+<div class='username hide'>zjkin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9315627'>
+<img class="ui avatar mini image" avatar="NOBUGGERS-nobuggers" />
+<div class='name'>NOBUGGERS</div>
+<div class='username hide'>nobuggers</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8563197'>
+<img class="ui avatar mini image" avatar="zhongsicong-zhongsicong" />
+<div class='name'>zhongsicong</div>
+<div class='username hide'>zhongsicong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9190617'>
+<img class="ui avatar mini image" avatar="smagicyun-smagicyun" />
+<div class='name'>smagicyun</div>
+<div class='username hide'>smagicyun</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9015848'>
+<img class="ui avatar mini image" avatar="quxianfei-qu-xianfei" />
+<div class='name'>quxianfei</div>
+<div class='username hide'>qu-xianfei</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10318621'>
+<img class="ui avatar mini image" avatar="陈诚-chenchengak" />
+<div class='name'>陈诚</div>
+<div class='username hide'>chenchengak</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9035252'>
+<img class="ui avatar mini image" avatar="liziqiang-lzq142876" />
+<div class='name'>liziqiang</div>
+<div class='username hide'>lzq142876</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10030822'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3343/10030822_zhangmaowen_1637067732.png!avatar30" alt="10030822 zhangmaowen 1637067732" />
+<div class='name'>Maowen</div>
+<div class='username hide'>zhangmaowen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10260088'>
+<img class="ui avatar mini image" avatar="miaomeimei-miaomeimei" />
+<div class='name'>miaomeimei</div>
+<div class='username hide'>miaomeimei</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10234810'>
+<img class="ui avatar mini image" avatar="xxiaohong-xxiaohong" />
+<div class='name'>xxiaohong</div>
+<div class='username hide'>xxiaohong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10200993'>
+<img class="ui avatar mini image" avatar="zleoyu-zleoyu" />
+<div class='name'>zleoyu</div>
+<div class='username hide'>zleoyu</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10312908'>
+<img class="ui avatar mini image" avatar="王骏茗-wjm-123" />
+<div class='name'>王骏茗</div>
+<div class='username hide'>wjm-123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8784402'>
+<img class="ui avatar mini image" avatar="高曦-gaoxi785" />
+<div class='name'>高曦</div>
+<div class='username hide'>gaoxi785</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9861424'>
+<img class="ui avatar mini image" avatar="戴伟琦-currydavids" />
+<div class='name'>戴伟琦</div>
+<div class='username hide'>currydavids</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8509999'>
+<img class="ui avatar mini image" avatar="金海-jinhaihw" />
+<div class='name'>金海</div>
+<div class='username hide'>jinhaihw</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9243866'>
+<img class="ui avatar mini image" avatar="guoxiaoyu-soda-mi" />
+<div class='name'>guoxiaoyu</div>
+<div class='username hide'>soda-mi</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10157216'>
+<img class="ui avatar mini image" avatar="yueye-yue-ye2" />
+<div class='name'>yueye</div>
+<div class='username hide'>yue-ye2</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10384492'>
+<img class="ui avatar mini image" avatar="王韩洁-wang-hanjie2" />
+<div class='name'>王韩洁</div>
+<div class='username hide'>wang-hanjie2</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10373744'>
+<img class="ui avatar mini image" avatar="chenxuihui-chenxuihui" />
+<div class='name'>chenxuihui</div>
+<div class='username hide'>chenxuihui</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8342273'>
+<img class="ui avatar mini image" avatar="权力-quanli125" />
+<div class='name'>权力</div>
+<div class='username hide'>quanli125</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11442781'>
+<img class="ui avatar mini image" avatar="田文哲-tian-wenzhe411" />
+<div class='name'>田文哲</div>
+<div class='username hide'>tian-wenzhe411</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10923218'>
+<img class="ui avatar mini image" avatar="wshikh-wshikh" />
+<div class='name'>wshikh</div>
+<div class='username hide'>wshikh</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10038743'>
+<img class="ui avatar mini image" avatar="futurezhou-futurezhou" />
+<div class='name'>futurezhou</div>
+<div class='username hide'>futurezhou</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10905451'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3635/10905451_monissaJ_1659342092.png!avatar30" alt="10905451 monissaj 1659342092" />
+<div class='name'>monissa</div>
+<div class='username hide'>monissaJ</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11370192'>
+<img class="ui avatar mini image" avatar="王一卉-Armstrong15" />
+<div class='name'>王一卉</div>
+<div class='username hide'>Armstrong15</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10591605'>
+<img class="ui avatar mini image" avatar="viki_cm-viki-cm" />
+<div class='name'>viki_cm</div>
+<div class='username hide'>viki-cm</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9459941'>
+<img class="ui avatar mini image" avatar="kukixi-kukixi" />
+<div class='name'>kukixi</div>
+<div class='username hide'>kukixi</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8239851'>
+<img class="ui avatar mini image" avatar="AOL-magekkkk" />
+<div class='name'>AOL</div>
+<div class='username hide'>magekkkk</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7850629'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2616/7850629_aqxyjay_1602859273.png!avatar30" alt="7850629 aqxyjay 1602859273" />
+<div class='name'>Zhangchunxin</div>
+<div class='username hide'>aqxyjay</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7387629'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2462/7387629_openharmony_ci_1656582662.png!avatar30" alt="7387629 openharmony ci 1656582662" />
+<div class='name'>openharmony_ci</div>
+<div class='username hide'>openharmony_ci</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='626123'>
+<img class="ui avatar mini image" avatar="mamingshuai-landwind" />
+<div class='name'>mamingshuai</div>
+<div class='username hide'>landwind</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8560410'>
+<img class="ui avatar mini image" avatar="yexiangbin-ye-xiangbin" />
+<div class='name'>yexiangbin</div>
+<div class='username hide'>ye-xiangbin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7823266'>
+<img class="ui avatar mini image" avatar="jiyong-jiyong_sd" />
+<div class='name'>jiyong</div>
+<div class='username hide'>jiyong_sd</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='content d-flex-between'>
+<div class='text'>未设置</div>
+<div class='disabled dropdown floating min-reviewers-dropdown pointing right top ui'>
+<input value="1" type="hidden" name="pull_request[pr_test_num]" id="pull_request_pr_test_num" />
+最少人数
+<div class='text'>1</div>
+<i class='iconfont icon-return'></i>
+<div class='menu'></div>
+</div>
+</div>
+</div>
+<div class='field assigner-field'>
+<div class='label'>
+<span data-position='right center' data-tooltip='当前 Pull Request 关联的 Issue'></span>
+API审核
+<div class='assigner-dropdown disabled dropdown multiple ui' data-accepts=''>
+<input value="" type="hidden" name="pull_request[api_reviewer_id]" id="pull_request_api_reviewer_id" />
+<i class='iconfont icon-edit'></i>
+<div class='right menu'>
+<div class='ui right icon search input'>
+<i class='iconfont icon-search'></i>
+<input placeholder='搜索人员'>
+</div>
+<div class='scrolling menu'>
+<div class='item' data-value='9614585'>
+<img class="ui avatar mini image" avatar="lixu-osomatu" />
+<div class='name'>lixu</div>
+<div class='username hide'>osomatu</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10217759'>
+<img class="ui avatar mini image" avatar="段浩晨-dhc-123" />
+<div class='name'>段浩晨</div>
+<div class='username hide'>dhc-123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8053870'>
+<img class="ui avatar mini image" avatar="张立哲-zhang-lizhe" />
+<div class='name'>张立哲</div>
+<div class='username hide'>zhang-lizhe</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8191472'>
+<img class="ui avatar mini image" avatar="zhoulvwei-zhoulvwei" />
+<div class='name'>zhoulvwei</div>
+<div class='username hide'>zhoulvwei</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9036355'>
+<img class="ui avatar mini image" avatar="songda-songda123" />
+<div class='name'>songda</div>
+<div class='username hide'>songda123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9401194'>
+<img class="ui avatar mini image" avatar="wangbo-kdjbb" />
+<div class='name'>wangbo</div>
+<div class='username hide'>kdjbb</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10041473'>
+<img class="ui avatar mini image" avatar="杨田田-tianyang2021" />
+<div class='name'>杨田田</div>
+<div class='username hide'>tianyang2021</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10010726'>
+<img class="ui avatar mini image" avatar="qwerasdf123456789-qwerasdf123456789" />
+<div class='name'>qwerasdf123456789</div>
+<div class='username hide'>qwerasdf123456789</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8777518'>
+<img class="ui avatar mini image" avatar="雷丹-leid_1021" />
+<div class='name'>雷丹</div>
+<div class='username hide'>leid_1021</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='4925836'>
+<img class="ui avatar mini image" avatar="李猛-limeng151" />
+<div class='name'>李猛</div>
+<div class='username hide'>limeng151</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='6572487'>
+<img class="ui avatar mini image" avatar="huangshuai-huangshuai000" />
+<div class='name'>huangshuai</div>
+<div class='username hide'>huangshuai000</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9688722'>
+<img class="ui avatar mini image" avatar="伞木希美-harry-john" />
+<div class='name'>伞木希美</div>
+<div class='username hide'>harry-john</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7925091'>
+<img class="ui avatar mini image" avatar="白新成-bai_xincheng" />
+<div class='name'>白新成</div>
+<div class='username hide'>bai_xincheng</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10595462'>
+<img class="ui avatar mini image" avatar="Lei Gao-ohpi" />
+<div class='name'>Lei Gao</div>
+<div class='username hide'>ohpi</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11194502'>
+<img class="ui avatar mini image" avatar="LeiiYB-leiiyb" />
+<div class='name'>LeiiYB</div>
+<div class='username hide'>leiiyb</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9074159'>
+<img class="ui avatar mini image" avatar="lixiaogang30-lixiaogang30" />
+<div class='name'>lixiaogang30</div>
+<div class='username hide'>lixiaogang30</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11115400'>
+<img class="ui avatar mini image" avatar="寇雅楠-kou-yanan" />
+<div class='name'>寇雅楠</div>
+<div class='username hide'>kou-yanan</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10505680'>
+<img class="ui avatar mini image" avatar="华华小仙女-huahua-fairy" />
+<div class='name'>华华小仙女</div>
+<div class='username hide'>huahua-fairy</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='4814656'>
+<img class="ui avatar mini image" avatar="leiyuqian-leiyuqian" />
+<div class='name'>leiyuqian</div>
+<div class='username hide'>leiyuqian</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10038770'>
+<img class="ui avatar mini image" avatar="chengxingzhen-chengxingzhen" />
+<div class='name'>chengxingzhen</div>
+<div class='username hide'>chengxingzhen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10355866'>
+<img class="ui avatar mini image" avatar="xiangkejin-xiangkejin123" />
+<div class='name'>xiangkejin</div>
+<div class='username hide'>xiangkejin123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10531459'>
+<img class="ui avatar mini image" avatar="duwenbon-duwenbon" />
+<div class='name'>duwenbon</div>
+<div class='username hide'>duwenbon</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10067656'>
+<img class="ui avatar mini image" src="https://foruda.gitee.com/avatar/1664503837117739530/10067656_wangyi-lt_1664503835.png!avatar30" alt="10067656 wangyi lt 1664503835" />
+<div class='name'>wangyi</div>
+<div class='username hide'>wangyi-LT</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10030813'>
+<img class="ui avatar mini image" avatar="安宁-anning7" />
+<div class='name'>安宁</div>
+<div class='username hide'>anning7</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10483995'>
+<img class="ui avatar mini image" avatar="郭永强-gwx1146427" />
+<div class='name'>郭永强</div>
+<div class='username hide'>gwx1146427</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11552445'>
+<img class="ui avatar mini image" avatar="oliveoyl-oliveoyl" />
+<div class='name'>oliveoyl</div>
+<div class='username hide'>oliveoyl</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='959996'>
+<img class="ui avatar mini image" avatar="刘伟-lw19901203" />
+<div class='name'>刘伟</div>
+<div class='username hide'>lw19901203</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9354122'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3118/9354122_greada_1652237709.png!avatar30" alt="9354122 greada 1652237709" />
+<div class='name'>kangqiao</div>
+<div class='username hide'>greada</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10032579'>
+<img class="ui avatar mini image" avatar="张育帅-yu-shuai-zhang" />
+<div class='name'>张育帅</div>
+<div class='username hide'>yu-shuai-zhang</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10200096'>
+<img class="ui avatar mini image" avatar="yangxin-ywx1092311" />
+<div class='name'>yangxin</div>
+<div class='username hide'>ywx1092311</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10510686'>
+<img class="ui avatar mini image" avatar="zhaoxudong-xudongkh" />
+<div class='name'>zhaoxudong</div>
+<div class='username hide'>xudongkh</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11234142'>
+<img class="ui avatar mini image" avatar="zhuhongtao666-zhuhongtao66" />
+<div class='name'>zhuhongtao666</div>
+<div class='username hide'>zhuhongtao66</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9000837'>
+<img class="ui avatar mini image" avatar="ldy-Ldy_lidanyang" />
+<div class='name'>ldy</div>
+<div class='username hide'>Ldy_lidanyang</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10372777'>
+<img class="ui avatar mini image" avatar="p30024279-p30024279" />
+<div class='name'>p30024279</div>
+<div class='username hide'>p30024279</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10211176'>
+<img class="ui avatar mini image" avatar="lixin475-li-xin-lixin" />
+<div class='name'>lixin475</div>
+<div class='username hide'>li-xin-lixin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10222740'>
+<img class="ui avatar mini image" avatar="王德章-wangdzwhu1893" />
+<div class='name'>王德章</div>
+<div class='username hide'>wangdzwhu1893</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8049745'>
+<img class="ui avatar mini image" avatar="chensi10-chensi10" />
+<div class='name'>chensi10</div>
+<div class='username hide'>chensi10</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9480053'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3160/9480053_softeration_1629128202.png!avatar30" alt="9480053 softeration 1629128202" />
+<div class='name'>Nova-Q</div>
+<div class='username hide'>softeration</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8430272'>
+<img class="ui avatar mini image" avatar="guwenjin-moonwhite1985" />
+<div class='name'>guwenjin</div>
+<div class='username hide'>moonwhite1985</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9688718'>
+<img class="ui avatar mini image" avatar="wangyong-wangyong1995626wywz" />
+<div class='name'>wangyong</div>
+<div class='username hide'>wangyong1995626wywz</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7965379'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2655/7965379_a--bao_1607392629.png!avatar30" alt="7965379 a  bao 1607392629" />
+<div class='name'>肖倬汉</div>
+<div class='username hide'>a--bao</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='6502270'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2167/6502270_uhamc_1635147925.png!avatar30" alt="6502270 uhamc 1635147925" />
+<div class='name'>huangshan</div>
+<div class='username hide'>uhamc</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='5174332'>
+<img class="ui avatar mini image" avatar="影映孤鸿-yingyingguhong" />
+<div class='name'>影映孤鸿</div>
+<div class='username hide'>yingyingguhong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9344213'>
+<img class="ui avatar mini image" avatar="Xiaowei-xiaoweiyao" />
+<div class='name'>Xiaowei</div>
+<div class='username hide'>xiaoweiyao</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8728118'>
+<img class="ui avatar mini image" avatar="舒雄-shu-xiong" />
+<div class='name'>舒雄</div>
+<div class='username hide'>shu-xiong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8772516'>
+<img class="ui avatar mini image" avatar="土行孙-duanhaizhen" />
+<div class='name'>土行孙</div>
+<div class='username hide'>duanhaizhen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8837962'>
+<img class="ui avatar mini image" avatar="南先森-nan-xiansen" />
+<div class='name'>南先森</div>
+<div class='username hide'>nan-xiansen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8977729'>
+<img class="ui avatar mini image" avatar="liyulong11-liyulong11" />
+<div class='name'>liyulong11</div>
+<div class='username hide'>liyulong11</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7477697'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2492/7477697_XTStarry_1618454172.jpeg!avatar30" alt="7477697 xtstarry 1618454172" />
+<div class='name'>XTStarry</div>
+<div class='username hide'>XTStarry</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8048128'>
+<img class="ui avatar mini image" avatar="logic42-logic42" />
+<div class='name'>logic42</div>
+<div class='username hide'>logic42</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9136222'>
+<img class="ui avatar mini image" avatar="陈浩-haochen1234" />
+<div class='name'>陈浩</div>
+<div class='username hide'>haochen1234</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7812996'>
+<img class="ui avatar mini image" avatar="孟麟-mlinlmcc" />
+<div class='name'>孟麟</div>
+<div class='username hide'>mlinlmcc</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8977827'>
+<img class="ui avatar mini image" avatar="赵萌萌-zhao-siting" />
+<div class='name'>赵萌萌</div>
+<div class='username hide'>zhao-siting</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7813017'>
+<img class="ui avatar mini image" avatar="Jane-jane_lz" />
+<div class='name'>Jane</div>
+<div class='username hide'>jane_lz</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8771844'>
+<img class="ui avatar mini image" avatar="胡吉翔-hu-jixiang1" />
+<div class='name'>胡吉翔</div>
+<div class='username hide'>hu-jixiang1</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9574574'>
+<img class="ui avatar mini image" avatar="tianfenxia-tianfenxia" />
+<div class='name'>tianfenxia</div>
+<div class='username hide'>tianfenxia</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9592876'>
+<img class="ui avatar mini image" avatar="Charles Chang-charles-chang" />
+<div class='name'>Charles Chang</div>
+<div class='username hide'>charles-chang</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9137324'>
+<img class="ui avatar mini image" avatar="Max-mk-2" />
+<div class='name'>Max</div>
+<div class='username hide'>mk-2</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7989911'>
+<img class="ui avatar mini image" avatar="ericx089-ericx089" />
+<div class='name'>ericx089</div>
+<div class='username hide'>ericx089</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8682857'>
+<img class="ui avatar mini image" avatar="杨清-yangqing3" />
+<div class='name'>杨清</div>
+<div class='username hide'>yangqing3</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8047713'>
+<img class="ui avatar mini image" avatar="LeeTestNady-leetestnady" />
+<div class='name'>LeeTestNady</div>
+<div class='username hide'>leetestnady</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7812967'>
+<img class="ui avatar mini image" avatar="liusicheng2008-liusicheng2008" />
+<div class='name'>liusicheng2008</div>
+<div class='username hide'>liusicheng2008</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8772477'>
+<img class="ui avatar mini image" avatar="刘晓培-hongmeng-robot-1" />
+<div class='name'>刘晓培</div>
+<div class='username hide'>hongmeng-robot-1</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9344241'>
+<img class="ui avatar mini image" avatar="wkejing-w30013702" />
+<div class='name'>wkejing</div>
+<div class='username hide'>w30013702</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9433934'>
+<img class="ui avatar mini image" avatar="apperception-z_apperception" />
+<div class='name'>apperception</div>
+<div class='username hide'>z_apperception</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9111536'>
+<img class="ui avatar mini image" avatar="刘文武-liu-wenwu" />
+<div class='name'>刘文武</div>
+<div class='username hide'>liu-wenwu</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8405897'>
+<img class="ui avatar mini image" avatar="揣振中-chuaizhzh" />
+<div class='name'>揣振中</div>
+<div class='username hide'>chuaizhzh</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8777736'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2925/8777736_Catherine_MK_1653979798.png!avatar30" alt="8777736 catherine mk 1653979798" />
+<div class='name'>小猴纸</div>
+<div class='username hide'>Catherine_MK</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7808822'>
+<img class="ui avatar mini image" avatar="alex_hold-alex__hold" />
+<div class='name'>alex_hold</div>
+<div class='username hide'>alex__hold</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='1292554'>
+<img class="ui avatar mini image" avatar="爆旋陀螺-younger2_admin" />
+<div class='name'>爆旋陀螺</div>
+<div class='username hide'>younger2_admin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8789037'>
+<img class="ui avatar mini image" avatar="aaronwangjun-aaronwangjun" />
+<div class='name'>aaronwangjun</div>
+<div class='username hide'>aaronwangjun</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9996564'>
+<img class="ui avatar mini image" avatar="李伟-tongtongdad" />
+<div class='name'>李伟</div>
+<div class='username hide'>tongtongdad</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8047829'>
+<img class="ui avatar mini image" avatar="ry-inter515" />
+<div class='name'>ry</div>
+<div class='username hide'>inter515</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8047530'>
+<img class="ui avatar mini image" avatar="kirl75-kirl75" />
+<div class='name'>kirl75</div>
+<div class='username hide'>kirl75</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9993955'>
+<img class="ui avatar mini image" avatar="songdawei-song-dawei1" />
+<div class='name'>songdawei</div>
+<div class='username hide'>song-dawei1</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9401687'>
+<img class="ui avatar mini image" avatar="李西腾-li-xiteng" />
+<div class='name'>李西腾</div>
+<div class='username hide'>li-xiteng</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8494366'>
+<img class="ui avatar mini image" avatar="SKY-skytar" />
+<div class='name'>SKY</div>
+<div class='username hide'>skytar</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9538862'>
+<img class="ui avatar mini image" avatar="niebenkui-laonie666" />
+<div class='name'>niebenkui</div>
+<div class='username hide'>laonie666</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10066538'>
+<img class="ui avatar mini image" avatar="李昊-li-hao334" />
+<div class='name'>李昊</div>
+<div class='username hide'>li-hao334</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10313335'>
+<img class="ui avatar mini image" avatar="张跃-zhang-yue0" />
+<div class='name'>张跃</div>
+<div class='username hide'>zhang-yue0</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9186397'>
+<img class="ui avatar mini image" avatar="张杰-zjkin" />
+<div class='name'>张杰</div>
+<div class='username hide'>zjkin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9315627'>
+<img class="ui avatar mini image" avatar="NOBUGGERS-nobuggers" />
+<div class='name'>NOBUGGERS</div>
+<div class='username hide'>nobuggers</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8563197'>
+<img class="ui avatar mini image" avatar="zhongsicong-zhongsicong" />
+<div class='name'>zhongsicong</div>
+<div class='username hide'>zhongsicong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9190617'>
+<img class="ui avatar mini image" avatar="smagicyun-smagicyun" />
+<div class='name'>smagicyun</div>
+<div class='username hide'>smagicyun</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9015848'>
+<img class="ui avatar mini image" avatar="quxianfei-qu-xianfei" />
+<div class='name'>quxianfei</div>
+<div class='username hide'>qu-xianfei</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10318621'>
+<img class="ui avatar mini image" avatar="陈诚-chenchengak" />
+<div class='name'>陈诚</div>
+<div class='username hide'>chenchengak</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9035252'>
+<img class="ui avatar mini image" avatar="liziqiang-lzq142876" />
+<div class='name'>liziqiang</div>
+<div class='username hide'>lzq142876</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10030822'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3343/10030822_zhangmaowen_1637067732.png!avatar30" alt="10030822 zhangmaowen 1637067732" />
+<div class='name'>Maowen</div>
+<div class='username hide'>zhangmaowen</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10260088'>
+<img class="ui avatar mini image" avatar="miaomeimei-miaomeimei" />
+<div class='name'>miaomeimei</div>
+<div class='username hide'>miaomeimei</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10234810'>
+<img class="ui avatar mini image" avatar="xxiaohong-xxiaohong" />
+<div class='name'>xxiaohong</div>
+<div class='username hide'>xxiaohong</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10200993'>
+<img class="ui avatar mini image" avatar="zleoyu-zleoyu" />
+<div class='name'>zleoyu</div>
+<div class='username hide'>zleoyu</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10312908'>
+<img class="ui avatar mini image" avatar="王骏茗-wjm-123" />
+<div class='name'>王骏茗</div>
+<div class='username hide'>wjm-123</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8784402'>
+<img class="ui avatar mini image" avatar="高曦-gaoxi785" />
+<div class='name'>高曦</div>
+<div class='username hide'>gaoxi785</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9861424'>
+<img class="ui avatar mini image" avatar="戴伟琦-currydavids" />
+<div class='name'>戴伟琦</div>
+<div class='username hide'>currydavids</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8509999'>
+<img class="ui avatar mini image" avatar="金海-jinhaihw" />
+<div class='name'>金海</div>
+<div class='username hide'>jinhaihw</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9243866'>
+<img class="ui avatar mini image" avatar="guoxiaoyu-soda-mi" />
+<div class='name'>guoxiaoyu</div>
+<div class='username hide'>soda-mi</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10157216'>
+<img class="ui avatar mini image" avatar="yueye-yue-ye2" />
+<div class='name'>yueye</div>
+<div class='username hide'>yue-ye2</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10384492'>
+<img class="ui avatar mini image" avatar="王韩洁-wang-hanjie2" />
+<div class='name'>王韩洁</div>
+<div class='username hide'>wang-hanjie2</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10373744'>
+<img class="ui avatar mini image" avatar="chenxuihui-chenxuihui" />
+<div class='name'>chenxuihui</div>
+<div class='username hide'>chenxuihui</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8342273'>
+<img class="ui avatar mini image" avatar="权力-quanli125" />
+<div class='name'>权力</div>
+<div class='username hide'>quanli125</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11442781'>
+<img class="ui avatar mini image" avatar="田文哲-tian-wenzhe411" />
+<div class='name'>田文哲</div>
+<div class='username hide'>tian-wenzhe411</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10923218'>
+<img class="ui avatar mini image" avatar="wshikh-wshikh" />
+<div class='name'>wshikh</div>
+<div class='username hide'>wshikh</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10038743'>
+<img class="ui avatar mini image" avatar="futurezhou-futurezhou" />
+<div class='name'>futurezhou</div>
+<div class='username hide'>futurezhou</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10905451'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/3635/10905451_monissaJ_1659342092.png!avatar30" alt="10905451 monissaj 1659342092" />
+<div class='name'>monissa</div>
+<div class='username hide'>monissaJ</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='11370192'>
+<img class="ui avatar mini image" avatar="王一卉-Armstrong15" />
+<div class='name'>王一卉</div>
+<div class='username hide'>Armstrong15</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='10591605'>
+<img class="ui avatar mini image" avatar="viki_cm-viki-cm" />
+<div class='name'>viki_cm</div>
+<div class='username hide'>viki-cm</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='9459941'>
+<img class="ui avatar mini image" avatar="kukixi-kukixi" />
+<div class='name'>kukixi</div>
+<div class='username hide'>kukixi</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8239851'>
+<img class="ui avatar mini image" avatar="AOL-magekkkk" />
+<div class='name'>AOL</div>
+<div class='username hide'>magekkkk</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7850629'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2616/7850629_aqxyjay_1602859273.png!avatar30" alt="7850629 aqxyjay 1602859273" />
+<div class='name'>Zhangchunxin</div>
+<div class='username hide'>aqxyjay</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7387629'>
+<img class="ui avatar mini image" src="https://portrait.gitee.com/uploads/avatars/user/2462/7387629_openharmony_ci_1656582662.png!avatar30" alt="7387629 openharmony ci 1656582662" />
+<div class='name'>openharmony_ci</div>
+<div class='username hide'>openharmony_ci</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='626123'>
+<img class="ui avatar mini image" avatar="mamingshuai-landwind" />
+<div class='name'>mamingshuai</div>
+<div class='username hide'>landwind</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='8560410'>
+<img class="ui avatar mini image" avatar="yexiangbin-ye-xiangbin" />
+<div class='name'>yexiangbin</div>
+<div class='username hide'>ye-xiangbin</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+<div class='item' data-value='7823266'>
+<img class="ui avatar mini image" avatar="jiyong-jiyong_sd" />
+<div class='name'>jiyong</div>
+<div class='username hide'>jiyong_sd</div>
+<div class='right floated ui remove button'>
+<i class='iconfont icon-close'></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='content d-flex-between'>
+<div class='text'>未设置</div>
+<div class='disabled dropdown floating min-reviewers-dropdown pointing right top ui'>
+<input value="0" type="hidden" name="pull_request[pr_api_review_num]" id="pull_request_pr_api_review_num" />
+最少人数
+<div class='text'>0</div>
+<i class='iconfont icon-return'></i>
+<div class='menu'></div>
+</div>
+</div>
+</div>
+<div class='field priority-field'>
+<div class='label'>
+<span data-position='right center' data-tooltip='可用于标识当前 Pull Request 的优先级'>
+优先级
+</span>
+<div class='disabled dropdown priority-dropdown ui'>
+<input type="hidden" value="0" name="pull_request[priority]" id="pull_request_priority" />
+<i class='iconfont icon-edit'></i>
+<div class='right menu'>
+<div class='item d-align-center d-flex' data-value='0'>
+<div class='ui empty circular label mr-1' style='background-color: #B0B0B0'></div>
+<div class='text'>不指定</div>
+</div>
+<div class='item d-align-center d-flex' data-value='4'>
+<div class='ui empty circular label mr-1' style='background-color: #EF0016'></div>
+<div class='text'>严重</div>
+</div>
+<div class='item d-align-center d-flex' data-value='3'>
+<div class='ui empty circular label mr-1' style='background-color: #FF8F00'></div>
+<div class='text'>主要</div>
+</div>
+<div class='item d-align-center d-flex' data-value='2'>
+<div class='ui empty circular label mr-1' style='background-color: #008AFF'></div>
+<div class='text'>次要</div>
+</div>
+<div class='item d-align-center d-flex' data-value='1'>
+<div class='ui empty circular label mr-1' style='background-color: #73E06F'></div>
+<div class='text'>不重要</div>
+</div>
+</div>
+</div>
+</div>
+<div class='content'></div>
+</div>
+<div class='field label-field'>
+<div class='label'>
+<span data-position='right center' data-tooltip='可用于标识当前 Pull Request 包含的内容或状态'>
+标签
+</span>
+<div class='disabled dropdown label-dropdown multiple ui'>
+<input value="95499688,113667295,119085125,130891955,131024541" type="hidden" name="pull_request[label_ids]" id="pull_request_label_ids" />
+<i class='iconfont icon-edit'></i>
+<div class='right menu'>
+<div class='ui right icon search input'>
+<i class='iconfont icon-search'></i>
+<input placeholder='搜索标签'>
+</div>
+<div class='scrolling menu'>
+<div class='item'></div>
+</div>
+<div class='manage'>
+</div>
+</div>
+</div>
+</div>
+<div class='content'>
+<div class='label d-inline-block' style='color: #ec0019;'>
+<i class='iconfont icon-tag'></i>
+静态检查失败
+</div>
+<div class='label d-inline-block' style='color: #20c22e;'>
+<i class='iconfont icon-tag'></i>
+dco检查成功
+</div>
+<div class='label d-inline-block' style='color: #20c22e;'>
+<i class='iconfont icon-tag'></i>
+编译成功
+</div>
+<div class='label d-inline-block' style='color: #20c22e;'>
+<i class='iconfont icon-tag'></i>
+冒烟测试成功
+</div>
+<div class='label d-inline-block' style='color: #20c22e;'>
+<i class='iconfont icon-tag'></i>
+格式化检查成功
+</div>
+</div>
+</div>
+<div class='field cared-issues-field'>
+<div class='label'>
+<span data-position='right center' data-tooltip='当前 Pull Request 关联的 Issue'>
+关联 Issue
+</span>
+<div class='cared-issues-dropdown disabled dropdown multiple ui'>
+<input value="10702934" type="hidden" name="pull_request[cared_issues]" id="pull_request_cared_issues" />
+<i class='iconfont icon-edit'></i>
+<div class='right menu'>
+<div class='ui right icon search input'>
+<i class='iconfont icon-search'></i>
+<input placeholder='搜索 Issue'>
+</div>
+<div class='scrolling menu'>
+<div class='item'></div>
+</div>
+</div>
+</div>
+</div>
+<div class='content'>
+<div class='text'>
+<a class="cared-issue label d-flex" target="_blank" href="/open_harmony/dashboard?issue_id=I6DEFQ"><div class='ui label'>I6DEFQ</div><span class='text' title='separate IConsumerSurface from Surface -- Surface Refactoring step 1'>separate IConsumerSurface from Surface -- Surface Refactoring step 1</span>
+</a></div>
+<div class='tip'>
+<i class='iconfont icon-warning'></i>
+Pull Request 合并后将关闭上述关联 Issue
+</div>
+</div>
+</div>
+<div class='field milestone-field'>
+<div class='label'>
+<span data-position='right center' data-tooltip='当前 Pull Request 关联的里程碑'>
+里程碑
+</span>
+<div class='disabled dropdown milestone-dropdown ui'>
+<input type="hidden" value="0" name="pull_request[milestone_id]" id="pull_request_milestone_id" />
+<i class='iconfont icon-edit'></i>
+<div class='right menu'>
+<div class='ui right icon search input'>
+<i class='iconfont icon-search'></i>
+<input placeholder='搜索里程碑'>
+</div>
+<div class='scrolling menu'>
+<div class='item' data-value='0'>
+未关联
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='content'></div>
+</div>
+<div class='field auto-processing'>
+<div class='label'>
+<span data-position='right center' data-tooltip='在 Pull Request 合并后触发的动作'>
+合并选项
+</span>
+</div>
+<div class='checkbox disabled mb-1 mr-3 prune-checkbox ui'>
+<input name="pull_request[prune_branch]" type="hidden" value="0" /><input type="checkbox" value="1" name="pull_request[prune_branch]" id="pull_request_prune_branch" />
+<label for="pull_request_prune_branch">合并后删除提交分支</label>
+</div>
+<div class='checkbox close-issue-checkbox disabled mb-1 ui'>
+<input name="pull_request[close_related_issue]" type="hidden" value="0" /><input type="checkbox" value="1" checked="checked" name="pull_request[close_related_issue]" id="pull_request_close_related_issue" />
+<label for="pull_request_close_related_issue">合并后关闭提到的 Issue</label>
+</div>
+<div class='ui checkbox accept_squash_merge'>
+<input name="pull_request[squash_merge_choose]" type="hidden" value="0" /><input type="checkbox" value="1" name="pull_request[squash_merge_choose]" id="pull_request_squash_merge_choose" />
+<label>
+接受 Pull Request 时使用扁平化（Squash）合并
+<i class='iconfont icon-task-state-27' id='accept_squash_merge_tip'>
+<div class='ui popup accept_squash_merge_popup'>
+勾选此选项后，将建议使用 Squash Merge 方式合并以精简提交历史记录
+</div>
+</i>
+</label>
+</div>
+</div>
+<div class='field'>
+<div class='label'>
+<span data-position='right center' data-tooltip='参与当前 Pull Request 讨论的相关用户'>
+参与者
+<span class='text-muted'>（2）</span>
+</span>
+</div>
+<div class='participates'>
+<a href="/mingzhu_pearl"><img class="ui avatar js-popover-card participant" data-username="mingzhu_pearl" avatar="MingZhu-mingzhu_pearl" /></a>
+<a href="/openharmony_ci"><img class="ui avatar js-popover-card participant" data-username="openharmony_ci" src="https://portrait.gitee.com/uploads/avatars/user/2462/7387629_openharmony_ci_1656582662.png!avatar30" alt="7387629 openharmony ci 1656582662" /></a>
+</div>
+</div>
+</div>
+<script>
+  window.gon.sidebar = {
+    isNewForm: false,
+    canModify: false,
+    isProtected: false,
+    sourceBranch: "lmz_remote",
+    pullRequestLabelsPath: "/openharmony/xts_acts/pulls/7445/labels",
+    projectLabelsPath: "/openharmony/xts_acts/labels/list",
+    caredIssuesPath: "/openharmony/xts_acts/cared_issues",
+    linkIssuePath: "/openharmony/xts_acts/pulls/7445/link_issue",
+    reloadMergePath: "/openharmony/xts_acts/pulls/7445/assigners_and_merged_temp"
+  }
+  $('#codeowner-title-tip').popup({
+    inline:true,
+    hoverable  : true,
+    className: {
+      popup: 'ui popup codeowner-title-tip'
+    },
+  })
+  
+  $('#accept_squash_merge_tip').popup({
+    hoverable: true,
+    popup: '.accept_squash_merge_popup',
+    position: 'bottom center'
+  });
+</script>
+<script src="https://cn-assets.gitee.com/webpacks/pull_request_sidebar-5d9c5350a675521d36c8.bundle.js"></script>
+
+</form>
+</div>
+</div>
+<div class='clearfix'></div>
+<div class='ui small modal' id='cherry-pick__modal'>
+<i class='icon close'></i>
+<div class='header'>
+Cherry Pick
+</div>
+<div class='content'>
+<div class='ui form'>
+<div class='field'>
+<label>选择 Cherry-Pick 代码的目标仓库</label>
+<div class='field'>
+<div class='ui search selection dropdown source-project-dropdown'>
+<input type="hidden" name="cherry_pick_path" id="cherry_pick_path" value="/openharmony/xts_acts/cherry_pick" />
+<div class='text'></div>
+<i class='dropdown icon'></i>
+<div class='menu'>
+<div class='item' data-value='/openharmony/xts_acts/cherry_pick'>
+openharmony/xts_acts
+</div>
+</div>
+</div>
+</div>
+<label>选择要提交 PR 的目标仓库和分支</label>
+<div class='two fields'>
+<div class='field'>
+<div class='ui search selection dropdown project-dropdown'>
+<input type="hidden" name="cp_target_project" id="cp_target_project" value="11218621" />
+<div class='text'></div>
+<i class='dropdown icon'></i>
+<div class='menu'>
+<div class='item' data-value='11218621'>
+openharmony/xts_acts
+</div>
+</div>
+</div>
+</div>
+<div class='field'>
+<div class='ui search selection dropdown branch-dropdown'>
+<input type="hidden" name="cp_target_branch" id="cp_target_branch" value="master" />
+<div class='text'></div>
+<i class='dropdown icon'></i>
+<div class='menu'>
+<div class='item' data-value='master'>
+master
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='actions'>
+<a class='ui cancel blank button'>
+取消
+</a>
+<div class='ui ok button orange'>
+Cherry-pick
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    $(function() {
+      var $cpBranchDropdown, $cpModal, $cpOk, $cpProjectDropdown, $sourceProjectDropdown, evtHub, filterXSS, initBranchDropdown, initProjectDropdown, initSourceProjectDropdown, storeCommits, submitting;
+      $cpModal = $('#cherry-pick__modal');
+      $sourceProjectDropdown = $cpModal.find('.source-project-dropdown');
+      $cpProjectDropdown = $cpModal.find('.project-dropdown');
+      $cpBranchDropdown = $cpModal.find('.branch-dropdown');
+      $cpOk = $cpModal.find('.ok');
+      filterXSS = window.filterXSS;
+      evtHub = window.eventHub || {
+        $on: $.noop,
+        $emit: $.noop
+      };
+      storeCommits = [];
+      submitting = false;
+      if (!$cpModal.length) {
+        return;
+      }
+      evtHub.$on('cherry-pick-submit', function(payload) {
+        storeCommits = payload.commits;
+        submitting = false;
+        $cpOk.removeClass('disabled loading');
+        return $cpModal.modal('show');
+      });
+      initSourceProjectDropdown = function() {
+        $sourceProjectDropdown.addClass('loading');
+        return $.get('/openharmony/xts_acts/cherry_pick_targets', function(data) {
+          $sourceProjectDropdown.removeClass('loading');
+          data = data.map(function(p) {
+            return {
+              value: p.cherry_pick_path,
+              name: filterXSS(p.path_with_namespace)
+            };
+          });
+          $sourceProjectDropdown.dropdown('setup menu', {
+            values: data
+          });
+          return $sourceProjectDropdown.removeClass('loading');
+        });
+      };
+      initProjectDropdown = function() {
+        $cpProjectDropdown.addClass('loading');
+        return $.get('/openharmony/xts_acts/pull_request_targets', function(data) {
+          $cpProjectDropdown.removeClass('loading');
+          data = data.projects.map(function(p) {
+            return {
+              value: p.id,
+              name: filterXSS(p.path_with_namespace)
+            };
+          });
+          $cpProjectDropdown.dropdown('setup menu', {
+            values: data
+          });
+          return $cpProjectDropdown.removeClass('loading');
+        });
+      };
+      initBranchDropdown = function() {
+        var path;
+        $cpBranchDropdown.addClass('loading');
+        path = $cpProjectDropdown.dropdown('get text');
+        return $.get("/" + path + "/pull_request_branches", function(data) {
+          var nVal, oVal;
+          $cpBranchDropdown.removeClass('loading');
+          oVal = $cpBranchDropdown.dropdown('get value');
+          nVal = '';
+          data = data.branches.map(function(b) {
+            if (oVal === b.name) {
+              nVal = oVal;
+            }
+            return {
+              value: filterXSS(b.name),
+              name: filterXSS(b.name)
+            };
+          });
+          return $cpBranchDropdown.dropdown('setup menu', {
+            values: data
+          }).dropdown('set selected', nVal || data[0].value);
+        });
+      };
+      $sourceProjectDropdown.one('click', initSourceProjectDropdown).dropdown({
+        forceSelection: false
+      });
+      $cpProjectDropdown.one('click', initProjectDropdown).dropdown({
+        forceSelection: false,
+        onChange: function() {
+          $cpBranchDropdown.off('click', initBranchDropdown);
+          return initBranchDropdown();
+        }
+      });
+      $cpBranchDropdown.one('click', initBranchDropdown).dropdown({
+        forceSelection: false
+      });
+      return $cpModal.modal({
+        closable: false,
+        autofocus: false,
+        onApprove: function() {
+          submitting = true;
+          $cpOk.addClass('disabled loading');
+          $.ajax({
+            url: $sourceProjectDropdown.dropdown('get value'),
+            method: 'POST',
+            data: {
+              pr_id: '8020355',
+              target_project_id: $cpProjectDropdown.dropdown('get value'),
+              target_branch_name: $cpBranchDropdown.dropdown('get value'),
+              cherry_pick_oids: storeCommits
+            }
+          }).done(function(res) {
+            var data;
+            data = res.data;
+            if (data && data.status === 'success') {
+              return window.location.href = data.new_pr_path;
+            }
+          }).fail(function(err) {
+            var data;
+            data = err.responseJSON;
+            if (data && data.data && data.data.message) {
+              return Flash.error(data.data.message);
+            }
+          }).always(function() {
+            submitting = false;
+            return $cpOk.removeClass('disabled loading');
+          });
+          return false;
+        },
+        onDeny: function() {
+          return !submitting;
+        },
+        onHide: function() {
+          return !submitting;
+        }
+      });
+    });
+  
+  }).call(this);
+</script>
+
+<script src="https://cn-assets.gitee.com/assets/gitee_scan/app-db6f6c7028e0609fae657e1fbc2ccf8f.js"></script>
+</div>
+<script>
+  var reportUrl = "/openharmony/xts_acts/pulls/7445/scan_reports";
+  var taskId = "";
+  var $tabs = $('#pull-request-tabs .item');
+  var $diffUrl = "/openharmony/xts_acts/pulls/7445/check_diff";
+  var $goReview = $('.js-go-review');
+  
+  function goScanTab(tab) {
+    var $item = $('.item[data-tab=' + tab + ']')
+    if (!$item.length) {
+      return;
+    }
+  
+    $tabs.tab('change tab', tab);
+    reqData(tab, function() {
+      $('.tab[data-tab=' + tab + ']').find('.loader-wrap').removeClass('active')
+      $('html, body').animate({
+        scrollTop: $item.offset().top
+      }, 500);
+    })
+  }
+  
+  function loop() {
+    $.get($diffUrl)
+      .done(function (res) {
+        if (res.calculate_diff === false) {
+          location.reload();
+        } else {
+          setTimeout(function () {
+            loop()
+          }, 3000)
+        }
+      });
+  }
+  
+  $(function() {
+    var searchParams = new URLSearchParams(window.location.search);
+    var tab = searchParams.get('tab');
+    if (false) {
+      loop()
+    }
+  
+    window.Gitee.initPullRequests();
+    new Gitee.PullRequest();
+    new Gitee.PullRequestCheckBoxes({
+      username: window.gon.username,
+      projectName: window.gon.project_name,
+      canModifyPullRequestMain: false
+    })
+    $('.general-evaluate').popup({ popup: '.scan-rate-popup', position: 'right center' });
+    $tabs.tab().on('click', function () {
+      var $this = $(this);
+      if ($this.data('tab') === 'pull-request-details') {
+        $this.addClass('active');
+        window.eventHub.$emit('switchNav', $this.data('nav'));
+      } else {
+        $('body').removeClass('fullscreen-checks');
+        $('.pull-request__container').addClass('hide-sidebox');
+      }
+    });
+    $goReview.on('click', function () {
+      window.eventHub.$emit('switchNav', 'comments');
+      $this = $(this);
+      let connent_id = $this.attr('data-value')
+      let offset = 100;
+      offset += document.getElementById('git-header-nav').offsetHeight
+      const $pullRequestTabs = document.getElementById('pull-request-tabs')
+      if ($pullRequestTabs) {
+        offset += $pullRequestTabs.offsetHeight
+      }
+      let $commentId = $("#comment-"+connent_id)
+      if($commentId){
+        setTimeout(function () {
+          $('body,html').animate({
+              scrollTop: $commentId.offset().top-offset
+            },500
+          );
+          $commentId.addClass('comment-focus')
+          },100)
+  
+        $(document).on('click', function () {
+          $commentId.removeClass('comment-focus');
+        });
+      }
+    });
+    if (tab) {
+      goScanTab(tab)
+    }
+  
+    $('#pull-request-tabs').on('click', '.tab-item', function () {
+      goScanTab($(this).data('tab'))
+    })
+  
+    $('.commit-select-wrap').dropdown({
+      onChange: function (value) {
+        var type = $(this).closest('.gitee-scan.tab').data('tab')
+        $('#' + type + '-scan-wrap .pagination-wrap').html('')
+        reqData(type, function () {
+          $('.tab[data-tab=' + type + ']').find('.loader-wrap').removeClass('active')
+        }, value)
+      }
+    })
+    if (window.gon.nps) {
+      var nps1 = getNps({ codeName: "1" });
+      document.body.addEventListener('click', function(e) {
+        if (e.target && e.target.closest('[data-handler=bootstrap-markdown-cmdSuggestion]')) {
+          nps1.addTick()
+        }
+      }, true);
+    }
+  });
+  
+  window._web_tips = {};
+  window._web_tips.fullscreenTips = '全屏查看';
+  window._web_tips.fullscreenExitTips = '退出全屏';
+  window._web_tips.diffCollapsedTips = '差异被折叠，点击展开';
+  window.gon.pullId = 8020355;
+  window.gon.diffsViewMode = null;
+  window.gon.viewedFilesPath = "/openharmony/xts_acts/pulls/7445/update_viewed_file";
+  window.gon.sourcesProjectPath = "/openharmony/xts_acts/autocomplete_sources";
+  window.gon.createCommentsPath = "/openharmony/xts_acts/notes";
+  window.gon.project_is_closed = false
+  window.gon.project_issue_readonly = false
+  window.gon.pullRequestPath = "/openharmony/xts_acts/pulls/7445";
+  window.gon.pull_request_review_path = "/openharmony/xts_acts/pulls/7445/pull_request_review";
+  window.gon.pull_request_review_recheck_path = "/openharmony/xts_acts/pulls/7445/pull_request_review/recheck";
+  window.gon.modify_pull_request = false
+  window.gon.readonly_pull_request = false
+  
+  $(function() {
+    // 只读模式 使用 jquery 禁用按钮
+    const i18_readonly_pull_request_tips = `当前仓库已关闭 Pull Request 新建、更新功能`
+    window.gon.i18_readonly_pull_request_tips = i18_readonly_pull_request_tips
+  
+    if(window.gon.readonly_pull_request){
+      const $PullRequestSubject = $('.pull-request__subject')
+  
+      // PR 操作 （编辑、取消草稿、关闭、回滚） 等按钮禁用
+      $PullRequestSubject.find('.pr-action').each(function() {
+         if($(this).hasClass('disabled')){
+          return
+         }
+        $(this).addClass("disabled").css("pointer-events", "none").attr("href", "javascript:;")
+        const tooltips = $(this).parent().attr("data-tooltip")
+        if(!tooltips){
+           $(this).wrap('<div class="d-inline-block" data-tooltip="' + i18_readonly_pull_request_tips + '"></div>')
+        }
+      });
+  
+      // PR 审查 合并 等按钮禁用
+      const $PullRequestContainer = $('.pull-request__subject, .pull-request__merge-widget')
+      $PullRequestContainer.find(".ui.button").each(function() {
+        if($(this).hasClass('js-note-reaction') || $(this).hasClass('js-btn-copy-clone-url')){
+          return
+        }
+        $(this).addClass("disabled")
+        const tooltips = $(this).parent().attr("data-tooltip")
+        if(!tooltips){
+           $(this).wrap('<div class="d-inline-block" data-tooltip="' + i18_readonly_pull_request_tips + '"></div>')
+        }
+      });
+  
+      // PR侧边栏 编辑按钮禁用
+      const $PullRequestSidebar = $(".pull-request__sidebar")
+      $PullRequestSidebar.find(('.field .label .ui.dropdown')).each(function() {
+         if($(this).hasClass('disabled')){
+          return
+         }
+         $(this).addClass('disabled')
+         $(this).find(".icon-edit").css('display', 'inline-block')
+         $(this).wrap('<div class="d-inline-block float-right" data-tooltip="' + i18_readonly_pull_request_tips + '"></div>')
+      });
+  
+      // PR侧边栏 自动化 checkbox 按钮禁用
+      $PullRequestSidebar.find('.auto-processing .checkbox').each(function() {
+         if($(this).hasClass('disabled')){
+          return
+         }
+         $(this).addClass('disabled')
+         $(this).wrap('<div class="d-inline-block" data-tooltip="' + i18_readonly_pull_request_tips + '"></div>')
+      });
+       // PR侧边栏 审查、测试人数 下拉按钮禁用
+      $PullRequestSidebar.find('.dropdown.min-reviewers-dropdown').each(function() {
+         if($(this).hasClass('disabled')){
+          return
+         }
+         $(this).addClass('disabled')
+         $(this).wrap('<div class="d-inline-block" data-tooltip="' + i18_readonly_pull_request_tips + '"></div>')
+         $(this).find('.icon-return').css("cssText", "display: inline-block!important")
+      });
+    }
+  });
+</script>
+<script src="https://cn-assets.gitee.com/webpacks/vendors_lib-7ff466a6da368d391eda.js"></script>
+<script src="https://cn-assets.gitee.com/webpacks/pr_details-fb31886ffb02467ce5fc.bundle.js"></script>
+<script src="https://cn-assets.gitee.com/webpacks/pr_scan-59e3b8c1987da2616b19.bundle.js"></script>
+
+
+</div>
+<script>
+  (function() {
+    var donateModal;
+  
+    Gitee.modalHelper = new GiteeModalHelper({
+      alertText: '提示',
+      okText: '确定'
+    });
+  
+    donateModal = new ProjectDonateModal({
+      el: '#project-donate-modal',
+      alipayUrl: '/openharmony/xts_acts/alipay',
+      wepayUrl: '/openharmony/xts_acts/wepay',
+      nameIsBlank: '名称不能为空',
+      nameTooLong: '名称过长（最多为 36 个字符）',
+      modalHelper: Gitee.modalHelper
+    });
+  
+    if (null === 'true') {
+      donateModal.show();
+    }
+  
+    $('#project-donate').on('click', function() {
+      return donateModal.show();
+    });
+  
+  }).call(this);
+</script>
+
+
+</div>
+<div class='gitee-project-extension'>
+<div class='extension lang'>C++</div>
+<div class='extension public'>1</div>
+<div class='extension https'>https://gitee.com/openharmony/xts_acts.git</div>
+<div class='extension ssh'>git@gitee.com:openharmony/xts_acts.git</div>
+<div class='extension namespace'>openharmony</div>
+<div class='extension repo'>xts_acts</div>
+<div class='extension name'>xts_acts</div>
+<div class='extension branch'></div>
+</div>
+
+<script>
+  $(function() {
+    GitLab.GfmAutoComplete.dataSource = "/openharmony/xts_acts/autocomplete_sources"
+    GitLab.GfmAutoComplete.Emoji.assetBase = '/assets/emoji'
+    GitLab.GfmAutoComplete.setup();
+  });
+</script>
+
+<footer id='git-footer-main'>
+<div class='ui container'>
+<div class='logo-row'>
+<a href="https://gitee.com"><img alt='Gitee — 基于 Git 的代码托管和研发协作平台' class='logo-img' src='/static/images/logo-black.svg?t=158106666'>
+</a></div>
+<div class='name-important'>
+深圳市奥思网络科技有限公司版权所有
+</div>
+<div class='ui two column grid d-flex-center'>
+<div class='nine wide column git-footer-left'>
+<div class='ui four column grid' id='footer-left'>
+<div class='column'>
+<div class='ui link list'>
+<div class='item'>
+<a class="item" href="/all-about-git">Git 大全</a>
+</div>
+<div class='item'>
+<a class="item" rel="nofollow" href="https://oschina.gitee.io/learn-git-branching/">Git 命令学习</a>
+</div>
+<div class='item'>
+<a class="item" rel="nofollow" href="https://copycat.gitee.com/">CopyCat 代码克隆检测</a>
+</div>
+<div class='item'>
+<a class="item" href="/appclient">APP与插件下载</a>
+</div>
+</div>
+</div>
+<div class='column'>
+<div class='ui link list'>
+<div class='item'>
+<a class="item" href="/gitee_reward">Gitee Reward</a>
+</div>
+<div class='item'>
+<a class="item" href="/gitee-stars">Gitee 封面人物</a>
+</div>
+<div class='item'>
+<a class="item" href="/gvp">GVP 项目</a>
+</div>
+<div class='item'>
+<a class="item" rel="nofollow" href="https://blog.gitee.com/">Gitee 博客</a>
+</div>
+<div class='item'>
+<a class="item" href="/enterprises#nonprofit-plan">Gitee 公益计划</a>
+</div>
+<div class='item'>
+<a class="item" href="https://gitee.com/features/gitee-go">Gitee 持续集成</a>
+</div>
+</div>
+</div>
+<div class='column'>
+<div class='ui link list'>
+<div class='item'>
+<a class="item" href="/api/v5/swagger">OpenAPI</a>
+</div>
+<div class='item'>
+<a class="item" href="https://help.gitee.com">帮助文档</a>
+</div>
+<div class='item'>
+<a class="item" href="/self_services">在线自助服务</a>
+</div>
+<div class='item'>
+<a class="item" href="/help/articles/4378">更新日志</a>
+</div>
+</div>
+</div>
+<div class='column'>
+<div class='ui link list'>
+<div class='item'>
+<a class="item" href="/about_us">关于我们</a>
+</div>
+<div class='item'>
+<a class="item" rel="nofollow" href="https://www.oschina.net/news/131099/oschina-hiring">加入我们</a>
+</div>
+<div class='item'>
+<a class="item" href="/terms">使用条款</a>
+</div>
+<div class='item'>
+<a class="item" href="/oschina/git-osc/issues">意见建议</a>
+</div>
+<div class='item'>
+<a class="item" href="/links.html">合作伙伴</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='seven wide column right aligned followus git-footer-right'>
+<div class='qrcode mini_app'>
+<img alt="微信小程序" src="https://cn-assets.gitee.com/assets/mini_app-e5eee5a21c552b69ae6bf2cf87406b59.jpg" />
+<p class='mini_app-text'>微信小程序</p>
+</div>
+<div class='qrcode weixin'>
+<img alt="微信服务号" src="https://cn-assets.gitee.com/assets/qrcode-weixin-9e7cfb27165143d2b8e8b268a52ea822.jpg" />
+<p class='weixin-text'>微信服务号</p>
+</div>
+<div class='phone-and-qq column'>
+<div class='ui list official-support-container'>
+<div class='item'>
+<a class="icon-popup" title="点击加入 Gitee 官方群" rel="nofollow" href="//qm.qq.com/cgi-bin/qm/qr?k=FOdoYurYb10aXeAiViAgsqWX0fsgykNZ"><i class='iconfont icon-logo-qq'></i>
+<span>官方技术交流QQ群：777320883</span>
+</a></div>
+<div class='item mail-and-zhihu'>
+<a rel="nofollow" href="mailto: git@oschina.cn"><i class='iconfont icon-msg-mail'></i>
+<span id='git-footer-email'>git#oschina.cn</span>
+</a></div>
+<div class='item mail-and-zhihu'>
+<a target="_blank" rel="nofollow" href="https://www.zhihu.com/org/ma-yun-osc/"><i class='iconfont icon-zhihu'></i>
+<span>Gitee</span>
+</a></div>
+<div class='item tel'>
+<a>
+<i class='iconfont icon-tel'></i>
+<span>售前及售后使用咨询：400-606-0201</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='bottombar'>
+<div class='ui container'>
+<div class='ui d-flex d-flex-between'>
+<div class='seven wide column partner d-flex'>
+<div class='open-atom d-flex-center'>
+<img class="logo-openatom mr-1" alt="开放原子开源基金会" src="https://cn-assets.gitee.com/assets/logo-openatom-d083391cc8a54e283529f3fc11cc38ca.svg" />
+<a target="_blank" rel="nofollow" href="https://www.openatom.org/">开放原子开源基金会</a>
+<div class='sub-title ml-1'>合作代码托管平台</div>
+</div>
+<div class='report-12377 d-flex-center ml-3'>
+<img class="report-12377__logo mr-1" alt="违法和不良信息举报中心" src="https://cn-assets.gitee.com/assets/12377@2x-1aa42ed2d2256f82a61ecf57be1ec244.png" />
+<a target="_blank" rel="nofollow" href="https://12377.cn">违法和不良信息举报中心</a>
+</div>
+<div class='copyright ml-3'>
+<a rel="nofollow" href="http://beian.miit.gov.cn/">粤ICP备12009483号</a>
+</div>
+</div>
+<div class='nine wide column right aligned'>
+<i class='icon world'></i>
+<a href="/language/zh-CN">简 体</a>
+/
+<a href="/language/zh-TW">繁 體</a>
+/
+<a href="/language/en">English</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+  var officialEmail = $('#git-footer-email').text()
+  $('#git-footer-main .icon-popup').popup({ position: 'bottom center' })
+  $('#git-footer-email').text(officialEmail.replace('#', '@'))
+  window.gon.popover_card_locale = {
+    follow:"关注",
+    unfollow:"已关注",
+    gvp_title: "GVP - Gitee 最有价值开源项目",
+    project: "项目",
+    org: "开源组织",
+    member: "",
+    author: "作者",
+    user_blocked: "该用户已被屏蔽或已注销",
+    net_error: "网络错误",
+    unknown_exception: "未知异常"
+  }
+  window.gon.select_message = {
+    placeholder: "请输入个人空间地址或完整的邮箱地址"
+  }
+</script>
+<script src="https://cn-assets.gitee.com/webpacks/popover_card-d30978018805efc377e9.bundle.js"></script>
+<link rel="stylesheet" media="all" href="https://cn-assets.gitee.com/webpacks/css/gitee_nps-69491f94919350b0258c.css" />
+<script src="https://cn-assets.gitee.com/webpacks/gitee_nps-548cf00696f895086765.bundle.js"></script>
+<script src="https://cn-assets.gitee.com/webpacks/gitee_icons-4c841b120ded010873f2.bundle.js"></script>
+
+
+<div class='side-toolbar'>
+<div class='button toolbar-help'>
+<i class='iconfont icon-help'></i>
+</div>
+<div class='ui popup left center dark'>点此查找更多帮助</div>
+<div class='toolbar-help-dialog'>
+<div class='toolbar-dialog-header'>
+<h3 class='toolbar-dialog-title'>搜索帮助</h3>
+<form class="toolbar-help-search-form" action="/help/load_keywords_data" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+<div class='ui icon input fluid toolbar-help-search'>
+<input name='keywords' placeholder='请输入产品名称或问题' type='text'>
+<i class='icon search'></i>
+</div>
+</form>
+
+<i class='iconfont icon-close toolbar-dialog-close-icon'></i>
+</div>
+<div class='toolbar-dialog-content'>
+<div class='toolbar-help-hot-search'>
+<div class='toolbar-roll'>
+<a class="init active" title="Git 命令在线学习" href="https://oschina.gitee.io/learn-git-branching/?utm_source==gitee-help-widget"><i class='Blue icon icon-command iconfont'></i>
+<span>Git 命令在线学习</span>
+</a><a class="init " title="如何在 Gitee 导入 GitHub 仓库" href="https://gitee.com/help/articles/4261?utm_source==gitee-help-widget"><i class='icon icon-clipboard iconfont orange'></i>
+<span>如何在 Gitee 导入 GitHub 仓库</span>
+</a></div>
+<div class='toolbar-list'>
+<div class='toolbar-list-item'>
+<a href="/help/articles/4114">Git 仓库基础操作</a>
+</div>
+<div class='toolbar-list-item'>
+<a href="/help/articles/4166">企业版和社区版功能对比</a>
+</div>
+<div class='toolbar-list-item'>
+<a href="/help/articles/4191">SSH 公钥设置</a>
+</div>
+<div class='toolbar-list-item'>
+<a href="/help/articles/4194">如何处理代码冲突</a>
+</div>
+<div class='toolbar-list-item'>
+<a href="/help/articles/4232">仓库体积过大，如何减小？</a>
+</div>
+<div class='toolbar-list-item'>
+<a href="/help/articles/4279">如何找回被删除的仓库数据</a>
+</div>
+<div class='toolbar-list-item'>
+<a href="/help/articles/4283">Gitee 产品配额说明</a>
+</div>
+<div class='toolbar-list-item'>
+<a href="/help/articles/4284">GitHub仓库快速导入Gitee及同步更新</a>
+</div>
+<div class='toolbar-list-item'>
+<a href="/help/articles/4328">什么是 Release（发行版）</a>
+</div>
+<div class='toolbar-list-item'>
+<a href="/help/articles/4354">将 PHP 项目自动发布到 packagist.org</a>
+</div>
+</div>
+</div>
+<div class='toolbar-help-search-reseult'></div>
+</div>
+</div>
+<script>
+  var opt = { position: 'left center'};
+  var $helpSideToolbar = $('.button.toolbar-help');
+  var $toolbarRoll = $('.toolbar-roll');
+  
+  $(function() {
+    if (false) {
+      $helpSideToolbar.popup(opt).popup({lastResort:'left center'})
+    } else {
+      $helpSideToolbar.popup({lastResort:'left center'}).popup('show', opt);
+      setTimeout(function() {
+        $helpSideToolbar.popup('hide', opt);
+      }, 3000);
+    }
+  
+    if ($toolbarRoll.length) {
+      setInterval(function() {
+        var $nextActiveLink = $toolbarRoll.find('a.active').next();
+        if (!$nextActiveLink.length) {
+          $nextActiveLink = $toolbarRoll.find('a:first-child');
+        }
+        $nextActiveLink.attr('class', 'active').siblings().removeClass('active init');
+      }, 5000);
+    }
+  })
+</script>
+
+<div class='button toggle-note-button'>
+<i class='iconfont icon-comment-diff'></i>
+</div>
+<div class='ui popup dark'></div>
+<script>
+  var notesVisible = true;
+  var $toggleNoteBtn = $('.toggle-note-button');
+  var $toggleNoteContent = $('.toggle-note-content');
+  
+  $toggleNoteBtn.popup({
+    position: 'left center',
+    hoverable: false,
+    onShow: function () {
+      var popup = this;
+      if ($('tr.notes_holder').is(':visible')) {
+        popup.html("关闭 Diff 评论");
+      } else {
+        popup.html("展开 Diff 评论");
+      }
+    }
+  });
+  
+  $toggleNoteBtn.on('click', function () {
+    notesVisible = !notesVisible
+    if (window.eventHub) {
+      window.eventHub.$emit('hide-comment-groups', notesVisible);
+    } else {
+      $('tr.notes_holder').each(function () {
+        if ($(this).is(':visible') !== notesVisible) {
+          Notes.toggleNotesVisible($(this));
+        }
+      });
+    }
+    $(this).popup('hide').popup('show');
+  });
+</script>
+
+<div class='popup button' id='home-comment'>
+<i class='iconfont icon-comment'></i>
+</div>
+<div class='ui popup dark'>评论</div>
+<div class='toolbar-appeal popup button'>
+<i class='iconfont icon-report'></i>
+</div>
+<div class='ui popup dark'>
+仓库举报
+</div>
+<script>
+  $('.toolbar-appeal').popup({ position: 'left center' });
+</script>
+
+<div class='button gotop popup' id='gotop'>
+<i class='iconfont icon-top'></i>
+</div>
+<div class='ui popup dark'>回到顶部</div>
+</div>
+<div class='form modal normal-modal tiny ui' id='unlanding-complaint-modal'>
+<i class='iconfont icon-close close'></i>
+<div class='header'>
+登录提示
+</div>
+<div class='container actions'>
+<div class='content'>
+该操作需登录 Gitee 帐号，请先登录后再操作。
+</div>
+<div class='ui orange icon large button ok'>
+立即登录
+</div>
+<div class='ui button blank cancel'>
+没有帐号，去注册
+</div>
+</div>
+</div>
+<script>
+  var $elm = $('.toolbar-appeal');
+  
+  $elm.on('click', function() {
+    var modals = $("#unlanding-complaint-modal.normal-modal");
+    if (modals.length > 1) {
+      modals.eq(0).modal('show');
+    } else {
+      modals.modal('show');
+    }
+  })
+  $("#unlanding-complaint-modal.normal-modal").modal({
+    onDeny: function() {
+      window.location.href = "/signup?from=";
+    },
+    onApprove: function() {
+      window.location.href = "/login?from=";
+    }
+  })
+</script>
+
+<style>
+  .side-toolbar .bdsharebuttonbox a {
+    font-size: 24px;
+    color: white !important;
+    opacity: 0.9;
+    margin: 6px 6px 0px 6px;
+    background-image: none;
+    text-indent: 0;
+    height: auto;
+    width: auto;
+  }
+</style>
+<style>
+  #udesk_btn a {
+    margin: 0px 20px 167px 0px !important;
+  }
+</style>
+<script>
+  (function() {
+    $('#project-user-message').popup({
+      position: 'left center'
+    });
+  
+  }).call(this);
+</script>
+<script>
+  Gitee.initSideToolbar({
+    hasComment: true,
+    commentUrl: '/openharmony/xts_acts#tree_comm_title'
+  })
+</script>
+
+
+
+
+
+<script>
+  (function() {
+    this.__gac = {
+      domain: 'www.oschina.net'
+    };
+  
+  }).call(this);
+</script>
+
+<script src="https://cn-assets.gitee.com/assets/bdstatic/app-070a9e339ac82bf2bf7ef20375cd4121.js"></script>
+<script src="https://cn-assets.gitee.com/webpacks/build_status-a3ee4cc8489b2defc1a8.bundle.js"></script>
+<script src="https://cn-assets.gitee.com/webpacks/scan_status-12043c7d32460905e204.bundle.js"></script>
+<script src="https://cn-assets.gitee.com/webpacks/mermaid_render-7a8ec62c3ce489559313.bundle.js"></script>
+</body>
+</html>

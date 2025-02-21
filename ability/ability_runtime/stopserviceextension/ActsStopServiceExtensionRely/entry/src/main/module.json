@@ -1,0 +1,53 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntrance": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "ServiceAbility",
+        "srcEntrance": "./ets/serviceability/ServiceAbility.ts",
+        "label": "$string:ServiceAbility_label",
+        "description": "$string:ServiceAbility_desc",
+        "type": "service"
+      },
+      {
+        "name": "ServiceAbilitySec",
+        "srcEntrance": "./ets/serviceabilitySec/ServiceAbilitySec.ts",
+        "label": "$string:ServiceAbilitySec_desc",
+        "description": "$string:ServiceAbilitySec_desc",
+        "type": "service"
+      }
+    ]
+  }
+}

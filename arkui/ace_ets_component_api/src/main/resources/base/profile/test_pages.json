@@ -1,0 +1,18 @@
+{
+  "src": [
+    "TestAbility/pages/Index",
+    "TestAbility/pages/ListDelete",
+    "TestAbility/pages/ListSwipe",
+    "TestAbility/pages/ListRebound",
+    "TestAbility/pages/TextAreaCallback",
+    "TestAbility/pages/BindMenu",
+    "TestAbility/pages/NavigationParam",
+    "TestAbility/pages/ImageText",
+    "TestAbility/pages/CanvasColor",
+    "TestAbility/pages/OffScreenCanvas",
+    "TestAbility/pages/CanvasAPIUnit",
+    "TestAbility/pages/CanvasAPICanvasRender",
+    "TestAbility/pages/CanvasAPI",
+    "TestAbility/pages/CanvasShader"
+  ]
+}

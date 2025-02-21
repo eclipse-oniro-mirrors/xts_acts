@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for device manager js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "160000",
+        "shell-timeout": "160000",
+        "bundle-name": "ohos.acts.device_manager.device_manager.function",
+        "package-name": "ohos.acts.device_manager.device_manager.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsManagerJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

@@ -1,0 +1,454 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
+import relationalStore from "@ohos.data.relationalStore";
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let context: Context;
+const delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+const TAG = "[RDB_JSKITS_TEST]";
+const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS backupTest (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)";
+let RdbStore = undefined;
+const STORE_CONFIG = {
+  name: "BackupResotreTest.db",
+  securityLevel: relationalStore.SecurityLevel.S1,
+};
+const DATABASE_BACKUP_NAME = "Backup.db";
+
+async function CreatRdbStore(context, STORE_CONFIG) {
+  let RdbStore = await relationalStore.getRdbStore(context, STORE_CONFIG);
+  await RdbStore.executeSql(CREATE_TABLE_TEST, null);
+  let u8 = new Uint8Array([1, 2, 3]);
+  {
+    const valueBucket = {
+      name: "zhangsan",
+      age: 18,
+      salary: 100.5,
+      blobType: u8,
+    };
+    await RdbStore.insert("backupTest", valueBucket);
+  }
+  {
+    const valueBucket = {
+      name: "lisi",
+      age: 28,
+      salary: 100.5,
+      blobType: u8,
+    };
+    await RdbStore.insert("backupTest", valueBucket);
+  }
+  {
+    const valueBucket = {
+      name: "wangwu",
+      age: 38,
+      salary: 90.0,
+      blobType: u8,
+    };
+    await RdbStore.insert("backupTest", valueBucket);
+  }
+  return RdbStore;
+}
+
+export default function RdbStoreBackupRestoreCallbackTest() {
+  describe("RdbStoreBackupRestoreCallbackTest", function () {
+    beforeAll(async function () {
+      console.info(TAG + "beforeAll");
+      let ability = await delegator.getCurrentTopAbility();
+      context = ability.context;
+      console.info(TAG + 'Get context successful. context=' + context);
+    });
+
+    beforeEach(async function () {
+      console.info(TAG + "beforeEach");
+      RdbStore = await CreatRdbStore(context, STORE_CONFIG);
+    });
+
+    afterEach(async function () {
+      console.info(TAG + "afterEach");
+      await relationalStore.deleteRdbStore(context, STORE_CONFIG.name);
+      await relationalStore.deleteRdbStore(context, DATABASE_BACKUP_NAME);
+      await relationalStore.deleteRdbStore(context, "BackupTest003.db");
+    });
+
+    afterAll(async function () {
+      console.info(TAG + "afterAll");
+    });
+
+    console.info(TAG + "*************Unit Test Begin*************");
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0280
+     * @tc.name   : testRdbStoreBackupRestore001
+     * @tc.desc   : RdbStore backup and restore callback test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreBackupRestore001", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreBackupRestore001 start *************");
+      RdbStore.backup(DATABASE_BACKUP_NAME, async (err) => {
+        if (err) {
+          console.info(TAG + "backup err ttt:  " + err);
+          expect(!err).assertTrue();
+        } else {
+          console.info(`Backup success.`);
+          let deleteData = new relationalStore.RdbPredicates("backupTest");
+          deleteData.equalTo("name", "zhangsan");
+          await RdbStore.delete(deleteData);
+          RdbStore.restore(DATABASE_BACKUP_NAME, async (err) => {
+            if (err) {
+              expect(!err).assertTrue();
+            } else {
+              let predicates = new relationalStore.RdbPredicates("backupTest");
+              predicates.equalTo("name", "zhangsan");
+              let resultSet = await RdbStore.query(predicates);
+              try {
+                console.info(TAG + "After restore resultSet query done");
+                expect(true).assertEqual(resultSet.goToFirstRow());
+                const id = resultSet.getLong(resultSet.getColumnIndex("id"));
+                const name = resultSet.getString(resultSet.getColumnIndex("name"));
+                const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"));
+                expect(1).assertEqual(id);
+                expect("zhangsan").assertEqual(name);
+                expect(1).assertEqual(blobType[0]);
+                resultSet.close();
+                done();
+              } catch (err) {
+                expect(!err).assertTrue();
+              }
+              resultSet = null;
+              RdbStore = null;
+            }
+            console.info(TAG + "************* testRdbStoreBackupRestore001 end *************");
+          });
+        }
+      });
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0270
+     * @tc.name   : testRdbStoreBackupRestore002
+     * @tc.desc   : RdbStore backup and restore promise test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreBackupRestore002", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreBackupRestore002 start *************");
+      let promiseBackup = RdbStore.backup(DATABASE_BACKUP_NAME);
+      promiseBackup
+        .then(async () => {
+          console.info(`Backup success.`);
+          let deleteData = new relationalStore.RdbPredicates("backupTest");
+          deleteData.equalTo("name", "zhangsan");
+          await RdbStore.delete(deleteData);
+          let promiseRestore = RdbStore.restore(DATABASE_BACKUP_NAME);
+          promiseRestore
+            .then(async () => {
+              console.info(`Restore success.`);
+              let predicates = new relationalStore.RdbPredicates("backupTest");
+              predicates.equalTo("name", "zhangsan");
+              let resultSet = await RdbStore.query(predicates);
+              try {
+                console.info(TAG + "After restore resultSet query done");
+                expect(true).assertEqual(resultSet.goToFirstRow());
+                const id = resultSet.getLong(resultSet.getColumnIndex("id"));
+                const name = resultSet.getString(resultSet.getColumnIndex("name"));
+                const blobType = resultSet.getBlob(resultSet.getColumnIndex("blobType"));
+                expect(1).assertEqual(id);
+                expect("zhangsan").assertEqual(name);
+                expect(1).assertEqual(blobType[0]);
+                resultSet.close();
+                done();
+              } catch (err) {
+                console.info(TAG + "testRdbStoreBackupRestore002 error: " + err);
+                expect(!err).assertTrue();
+              }
+              resultSet = null;
+              RdbStore = null;
+              console.info(TAG + "************* testRdbStoreBackupRestore002 end *************");
+            })
+            .catch((err) => {
+              console.info(TAG + "Restore error: " + err);
+              expect(!err).assertTrue();
+            });
+        })
+        .catch((err) => {
+          console.info(TAG + "Backup error: " + err);
+          expect(!err).assertTrue();
+        });
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0330
+     * @tc.name   : testRdbStoreBackup001
+     * @tc.desc   : RdbStore backup callback test: file name empty
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreBackup001", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreBackup001 start *************");
+      try {
+        RdbStore.backup("", async (err) => {
+          console.info(`Backup success.`);
+          expect(!err).assertTrue();
+          done();
+        });
+      } catch (errInfo) {
+        console.info(TAG + "testRdbStoreBackup001 error: " + errInfo);
+        expect(errInfo == "Error: Parameter error. The table must be not empty").assertTrue();
+        done();
+      }
+      console.info(TAG + "************* testRdbStoreBackup001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0310
+     * @tc.name   : testRdbStoreBackup002
+     * @tc.desc   : RdbStore backup callback test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreBackup002", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreBackup002 start *************");
+      try {
+        RdbStore.backup(STORE_CONFIG.name, async (err) => {
+          console.info(TAG + "backup err ttt:  " + err.message + "code:  " + err.code);
+          expect(err.code == 14800011).assertTrue();
+          done();
+        });
+      } catch (errInfo) {
+        console.info(TAG + "testRdbStoreBackup002 error: " + errInfo);
+        expect(!errInfo).assertFail();
+        done();
+      }
+      console.info(TAG + "************* testRdbStoreBackup002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0320
+     * @tc.name   : testRdbStoreBackup003
+     * @tc.desc   : RdbStore backup promise test: file name empty
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreBackup003", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreBackup003 start *************");
+      try {
+        await RdbStore.backup("");
+        done();
+      } catch (errInfo) {
+        console.info(TAG + "testRdbStoreBackup003 error: " + errInfo);
+        console.info(`Backup err: file name empty.`);
+        expect(errInfo == "Error: Parameter error. The table must be not empty").assertTrue();
+        done();
+      }
+      console.info(TAG + "************* testRdbStoreBackup003 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0300
+     * @tc.name   : testRdbStoreBackup004
+     * @tc.desc   : RdbStore backup promise test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreBackup004", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreBackup004 start *************");
+      try {
+        let promiseBackup = RdbStore.backup(STORE_CONFIG.name);
+        promiseBackup
+          .then(() => {
+            console.info(`Backup success.`);
+            expect(promiseBackup !== null).assertEqual(true);
+            done();
+          })
+          .catch((err) => {
+            console.info(TAG + "backup err ttt1:  " + err.message + "code:  " + err.code);
+            expect(err.code == 14800011).assertTrue();
+            done();
+          });
+      } catch (err) {
+        console.info(TAG + "testRdbStoreBackup004 error:  " + err.message + "code:  " + err.code);
+        expect(!err).assertFail();
+        done();
+      }
+      console.info(TAG + "************* testRdbStoreBackup004 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0290
+     * @tc.name   : testRdbStoreBackup005
+     * @tc.desc   : RdbStore backup promise test: param type error
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreBackup005", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreBackup005 start *************");
+      try {
+        let promiseBackup = RdbStore.backup(123);
+        promiseBackup
+          .then(() => {
+            console.info(`Backup success.`);
+            expect(promiseBackup !== null).assertEqual(true);
+            done();
+          })
+          .catch((err) => {
+            console.info(TAG + "backup err ttt1:  " + err.message + "code:  " + err.code);
+            expect(err.code == 14800011).assertTrue();
+            done();
+          });
+      } catch (err) {
+        console.info(TAG + "testRdbStoreBackup005 param type error:  " + err.message + "code:  " + err.code);
+        expect('401').assertEqual(err.code);
+        done();
+      }
+      console.info(TAG + "************* testRdbStoreBackup005 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0250
+     * @tc.name   : testRdbStoreRestore001
+     * @tc.desc   : RdbStore retore callback test: file name empty
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreRestore001", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreRestore001 start *************");
+      let backupName = "BackupTest003.db";
+      await RdbStore.backup(backupName);
+      try {
+        RdbStore.restore("", async (err) => {
+          console.info(`restore success.`);
+          expect(!err).assertTrue();
+          done();
+        });
+      } catch (errInfo) {
+        console.info(TAG + "testRdbStoreRestore001 error: " + errInfo);
+        expect(errInfo == "Error: Parameter error. The srcName must be not empty").assertTrue();
+        done();
+      }
+      console.info(TAG + "************* testRdbStoreRestore001 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0230
+     * @tc.name   : testRdbStoreRestore002
+     * @tc.desc   : RdbStore retore callback test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreRestore002", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreRestore002 start *************");
+      let backupName = "BackupTest003.db";
+      await RdbStore.backup(backupName);
+      try {
+        RdbStore.restore(STORE_CONFIG.name, async (err) => {
+          expect(err !== null).assertTrue();
+          console.info(TAG + "restore err ttt:  " + err);
+          console.info(`Restore err: file name wrong.`);
+          done();
+        });
+      } catch (errInfo) {
+        console.info(TAG + "testRdbStoreRestore002 error: " + errInfo);
+        expect(!errInfo).assertFail();
+      }
+      console.info(TAG + "************* testRdbStoreRestore002 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0240
+     * @tc.name   : testRdbStoreRestore003
+     * @tc.desc   : RdbStore retore promise test: file name empty
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreRestore003", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreRestore003 start *************");
+      let backupName = "BackupTest003.db";
+      await RdbStore.backup(backupName);
+      try {
+        await RdbStore.retore("");
+        expect(RdbStore !== null).assertEqual(true);
+        done();
+      } catch (errInfo) {
+        console.info(TAG + "testRdbStoreRestore003 error: " + errInfo);
+        console.info(`retore err: file name empty.`);
+        expect(errInfo == "TypeError: is not callable").assertTrue();
+        done();
+      }
+      console.info(TAG + "************* testRdbStoreRestore003 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0220
+     * @tc.name   : testRdbStoreRestore004
+     * @tc.desc   : RdbStore retore promise test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreRestore004", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreRestore004 start *************");
+      let backupName = "BackupTest003.db";
+      await RdbStore.backup(backupName);
+      try {
+        await RdbStore.retore(STORE_CONFIG.name);
+        expect(RdbStore !== null).assertEqual(true);
+        done();
+      } catch (errInfo) {
+        console.info(TAG + "testRdbStoreRestore004 error: " + errInfo);
+        console.info(`Restore err: file name wrong.`);
+        expect(errInfo == "TypeError: is not callable").assertTrue();
+        done();
+      }
+      console.info(TAG + "************* testRdbStoreRestore004 end *************");
+    });
+
+    /**
+     * @tc.number : SUB_DistributeData_CrossPlatform_SDK_RelationStore_RdbStoreJsAPITest_0260
+     * @tc.name   : testRdbStoreRestore005
+     * @tc.desc   : RdbStore retore promise test
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 2
+     */
+    it("testRdbStoreRestore005", 0, async function (done) {
+      console.info(TAG + "************* testRdbStoreRestore005 start *************");
+      let backupName = "BackupTest003.db";
+      await RdbStore.backup(backupName);
+      try {
+        let promise = await RdbStore.retore();
+        expect(promise === null).assertEqual(true);
+        done();
+      } catch (errInfo) {
+        console.info(TAG + "testRdbStoreRestore005 error: " + errInfo);
+        console.info(`Restore err: file name wrong.`);
+        expect(errInfo == "TypeError: is not callable").assertTrue();
+        done();
+      }
+      console.info(TAG + "************* testRdbStoreRestore005 end *************");
+    });
+  });
+}

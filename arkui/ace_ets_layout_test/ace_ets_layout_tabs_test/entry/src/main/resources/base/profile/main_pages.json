@@ -1,0 +1,14 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Tabs/tabs_index/Tabs_index",
+        "MainAbility/pages/Tabs/Tabs_ItemsChange/Tabs_itemPadMar",
+        "MainAbility/pages/Tabs/Tabs_ItemsChange/Tabs_itemSize",
+        "MainAbility/pages/Tabs/Tabs_ParmsChange/Tabs_barMode",
+        "MainAbility/pages/Tabs/Tabs_ParmsChange/Tabs_barPosition",
+        "MainAbility/pages/Tabs/Tabs_ParmsChange/Tabs_barWidHei",
+        "MainAbility/pages/Tabs/Tabs_ParmsChange/Tabs_PadMar",
+        "MainAbility/pages/Tabs/Tabs_ParmsChange/Tabs_scrollable",
+        "MainAbility/pages/Tabs/Tabs_ParmsChange/Tabs_WidHei"
+    ]
+}

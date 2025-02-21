@@ -1,0 +1,30 @@
+{
+  "description": "Configuration for startabilityforresultnotargetbundleliststagetest Tests",
+  "driver": {
+      "type": "OHJSUnitTest",
+      "test-timeout": "600000",
+      "bundle-name": "com.example.startAbilityForResult.hmservice",
+      "module-name": "entry",
+      "shell-timeout": "600000",
+      "testcase-timeout": "50000"
+  },
+  "kits": [
+      {
+          "test-file-name": [
+              "ActsStartAbilityForResultNoTargetBundleListStageTest.hap",
+              "AtomizationResultStageEntry.hap"
+          ],
+          "type": "AppInstallKit",
+          "cleanup-apps": true
+      },
+      {
+          "type": "ShellKit",
+          "run-command": [
+              "remount",
+              "power-shell wakeup",
+              "power-shell setmode 602",
+              "uinput -T -m 300 2700 280 200"
+          ]
+      }
+  ]
+}

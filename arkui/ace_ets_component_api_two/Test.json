@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.open.harmony.componentapi02",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 240000
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsAceComponentApi02Test.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

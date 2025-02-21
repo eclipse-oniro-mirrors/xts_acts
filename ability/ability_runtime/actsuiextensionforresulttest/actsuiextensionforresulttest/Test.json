@@ -1,0 +1,42 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.mainhap",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 25000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.sys.suspend_manager_enabled false",
+                "reboot",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ]
+        },
+		{
+            
+            "test-file-name": [
+                "ActsForResultTestRely.hap",
+                "ActsForResultTestNoPermissionRely.hap",
+                "ActsuiExtensionForResultRely.hap",
+                "ActsuiExtensionForResultTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "teardown-command": [
+                "param set persist.sys.suspend_manager_enabled true",
+                "power-shell setmode 601",
+                "reboot"
+            ]
+        }
+    ]
+}

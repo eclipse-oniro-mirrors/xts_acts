@@ -1,0 +1,448 @@
+{
+    "module": {
+        "name": "testModule",
+        "type": "entry",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:testModule_entry_dsc",
+        "mainElement": "ohos.acts.bundle.stage.test.MainAbility",
+        "deviceTypes": [
+            "default",
+            "tablet"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "fileContextMenu" : "$profile:main_pages",
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "abilities": [
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "singleton",
+                "orientation": "portrait",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities":[
+                            "entity.system.home"
+                        ]
+                    }
+                ],
+                "metadata": [
+                    {
+                        "name": "ohos.ability.form",
+                        "value": "",
+                        "resource": "$profile:shortcuts_config"
+                    },
+                    {
+                        "name": "ohos.ability.form1",
+                        "value": "",
+                        "resource": "$profile:form_config"
+                    },
+                    {
+                        "name": "ohos.ability.form2",
+                        "value": "",
+                        "resource": "@profile:form_config"
+                    },
+                    {
+                        "name": "ohos.ability.form3",
+                        "value": "",
+                        "resource": "$profile:form_config1"
+                    },
+                    {
+                        "name": "ohos.ability.form4",
+                        "value": "",
+                        "resource": "$profile:invalid"
+                    }
+                ]
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility1",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "standard",
+                "orientation": "landscape",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility2",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "landscape_inverted",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility3",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "portrait_inverted",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility4",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility5",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_landscape",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility6",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_portrait",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility7",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_restricted",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility8",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_landscape_restricted",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility9",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_portrait_restricted",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.bundle.stage.test.MainAbility10",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "locked",
+                "skills": []
+            }
+        ],
+        "extensionAbilities": [
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "value": "",
+                        "resource": "$profile:shortcuts_config"
+                    },
+                    {
+                        "name": "ohos.extension.form1",
+                        "value": "",
+                        "resource": "$profile:form_config"
+                    },
+                    {
+                        "name": "ohos.extension.form2",
+                        "value": "",
+                        "resource": "@profile:form_config"
+                    },
+                    {
+                        "name": "ohos.extension.form3",
+                        "value": "",
+                        "resource": "$profile:form_config1"
+                    },
+                    {
+                        "name": "ohos.extension.form4",
+                        "value": "",
+                        "resource": "$profile:invalid"
+                    }
+                ],
+                "name": "Form",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "form",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "Form1",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "form",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "workScheduler",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "workScheduler",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "inputMethod",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "inputMethod",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "accessibility",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "accessibility",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "fileShare",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "fileShare",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "staticSubscriber",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "staticSubscriber",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "wallpaper",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "wallpaper",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "backup",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "backup",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "window",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "window",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "enterpriseAdmin",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "enterpriseAdmin",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "thumbnail",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "thumbnail",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "preview",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "preview",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "driver",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "driver",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "appAccountAuthorization",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "appAccountAuthorization",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "push",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "push",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "action",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "action",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "share",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "share",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "adsService",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "adsService",
+                "visible": true
+            }
+        ],
+        "requestPermissions": [
+          {
+            "name": "ohos.permission.GET_BUNDLE_INFO",
+            "reason": "$string:permission_reason",
+            "usedScene": {
+              "abilities": ["MainAbility"],
+              "when": "always"
+            }
+          },
+          {
+            "name": "ohos.permission.READ_CALENDAR",
+            "reason": "$string:permission_reason",
+            "usedScene": {
+              "abilities": ["MainAbility"],
+              "when": "inuse"
+            }
+          },
+          {
+            "name": "ohos.permission.RUN_DYN_CODE",
+            "reason": "$string:permission_reason",
+            "usedScene": {
+              "abilities": ["MainAbility"],
+              "when": "always"
+            }
+          }
+        ],
+        "metadata": [
+          {
+            "name": "MetaData1",
+            "value": "MetaDataValue",
+            "resource": "$profile:shortcuts_config"
+          }
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "module": {
+        "name": "hap3",
+        "type": "feature",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:hap3_desc",
+        "mainElement": "MainAbility",
+        "deviceTypes": [
+            "default",
+            "tablet"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "abilities": [
+            {
+                "name": "com.example.lifecycletest.Hap3MainAbility1",
+                "srcEntrance": "./ets/Hap3MainAbility1/Hap3MainAbility1.ts",
+                "description": "$string:Hap3MainAbility1_desc",
+                "icon": "$media:icon",
+                "label": "$string:Hap3MainAbility1_label",
+                "visible": true,
+                "orientation": "portrait",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Hap3MainAbility2",
+                "srcEntrance": "./ets/Hap3MainAbility2/Hap3MainAbility2.ts",
+                "description": "$string:Hap3MainAbility2_desc",
+                "icon": "$media:icon",
+                "label": "$string:Hap3MainAbility2_label"
+            },
+            {
+                "name": "Hap3MainAbility3",
+                "srcEntrance": "./ets/Hap3MainAbility3/Hap3MainAbility3.ts",
+                "description": "$string:Hap3MainAbility3_desc",
+                "icon": "$media:icon",
+                "label": "$string:Hap3MainAbility3_label"
+            }
+        ],
+        "requestPermissions": [
+            {
+                "name": "ohos.permission.GET_BUNDLE_INFO"
+            }
+        ]
+    }
+}

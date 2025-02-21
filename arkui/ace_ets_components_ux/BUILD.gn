@@ -1,0 +1,52 @@
+# Copyright (c) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+group("componentUxTest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "ace_ets_component_advancedcounter:ActsAceAdvancedCounterTest",
+      "ace_ets_component_badge:ActsAcebadgeTest",
+      "ace_ets_component_button:ActsAceButtonTest",
+      "ace_ets_component_calendarpicker:ActsAceCalendarPickerTest",
+      "ace_ets_component_checkbox:ActsAceCheckboxTest",
+      "ace_ets_component_clickeffect:ActsAceClickEffectTest",
+      "ace_ets_component_datapanel:ActsAceDatapanelTest",
+      "ace_ets_component_datepicker:ActsAceDatePickerTest",
+      "ace_ets_component_gauge:ActsAceGaugeTest",
+      "ace_ets_component_grid:ActsAceGridTest",
+      "ace_ets_component_indexer:ActsAlphabetIndexerTest",
+      "ace_ets_component_list:ActsAceListTest",
+      "ace_ets_component_menu:ActsAceMenuTest",
+      "ace_ets_component_navigation:ActsAceNavigationTest",
+      "ace_ets_component_panel:ActsAcePanelTest",
+      "ace_ets_component_patternlock:ActsAcePatternLockTest",
+      "ace_ets_component_popup:ActsAcePopupTest",
+      "ace_ets_component_progress:ActsAceProgressTest",
+      "ace_ets_component_radio:ActsAceRadioTest",
+      "ace_ets_component_search:ActsAceSearchTest",
+      "ace_ets_component_segmentbutton:ActsAceSegmentButtonTest",
+      "ace_ets_component_select:ActsAceSelectTest",
+      "ace_ets_component_sidebar:ActsAceSideBarTest",
+      "ace_ets_component_slider:ActsAceSliderTest",
+      "ace_ets_component_swiper:ActsAceSwiperTest",
+      "ace_ets_component_tabs:ActsAceTabsTest",
+      "ace_ets_component_text:ActsAceTextTest",
+      "ace_ets_component_text_test:ActsAceArkUIUXTextTest",
+      "ace_ets_component_textarea:ActsAceTextAreaTest",
+      "ace_ets_component_textinput:ActsAceTextInputTest",
+      "ace_ets_component_textpicker:ActsAceTextPickerTest",
+      "ace_ets_component_timepicker:ActsAceTimePickerTest",
+    ]
+  }
+}

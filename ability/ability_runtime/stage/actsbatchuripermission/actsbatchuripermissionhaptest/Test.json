@@ -1,0 +1,46 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.batchuri",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": 150000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBatchUriPermissionHapTest.hap",
+                "ActsBatchUriPermissionRecvHap.hap",
+                "ActsBatchUriPermissionUiextHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [
+                "mount -o rw,remount /"
+            ],
+            "post-push" : [
+                "reboot"
+            ],
+            "push": [
+                "proxy_authorization_uri.json ->/system/etc/proxy_authorization_uri.json",
+                "proxy_authorization_uri.json ->/system/variant/phone/base/etc/proxy_authorization_uri.json",
+                "proxy_authorization_uri.json ->/system/variant/pc/base/etc/proxy_authorization_uri.json",
+                "proxy_authorization_uri.json ->/system/variant/tablet/base/etc/proxy_authorization_uri.json",
+                "proxy_authorization_uri.json ->/system/variant/watch/base/etc/proxy_authorization_uri.json"
+            ]
+        },
+        {
+          "type": "ShellKit",
+          "run-command": [
+              "power-shell wakeup",
+              "power-shell setmode 602",
+              "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100"
+          ]
+      }
+    ] 
+}

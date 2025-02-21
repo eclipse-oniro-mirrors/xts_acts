@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "testcase-timeout": 15000,
+        "bundle-name": "ohos.acts.request.crossplatform.request",
+        "module-name": "crossplatform_request_test_ets"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsRequestETSApiCrossplatformTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -m 300 720 300 360 200",
+                "uinput -T -m 650 2760 650 1380 200"
+            ]
+        }
+    ]
+}

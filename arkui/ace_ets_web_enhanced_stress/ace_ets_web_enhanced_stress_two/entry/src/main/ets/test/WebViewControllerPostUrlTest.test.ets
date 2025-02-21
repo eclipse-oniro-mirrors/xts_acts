@@ -1,0 +1,154 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { afterEach, beforeAll, beforeEach, describe, it } from '@ohos/hypium';
+import { Constants } from './Constants';
+import Utils from './Utils';
+import router from '@ohos.router';
+
+export default function webViewControllerPostUrlTest() {
+
+  describe('WebViewControllerPostUrlTest', () => {
+    let pageName = 'WebViewControllerPostUrlTest'
+    beforeAll(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/' + pageName,
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info(`get ${pageName} state success ` + JSON.stringify(pages));
+        if (!(pageName == pages.name)) {
+          console.info(`get ${pageName} state success ` + JSON.stringify(pages.name));
+          let result = await router.pushUrl(options);
+          await Utils.sleep(2000);
+          console.info(`push ${pageName} page success ` + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error(`push ${pageName} page error: ` + err);
+      }
+      done()
+    });
+
+    beforeEach(async (done: Function) => {
+      console.info(`${pageName} beforeEach start`);
+      done();
+    })
+
+    afterEach(async (done: Function) => {
+      console.info(`${pageName} afterEach start`);
+      await Utils.sleep(2000);
+      console.info(`${pageName} afterEach end`);
+      done();
+    })
+
+    /*
+    * @tc.number      : SUB_WEB_STRESS_WEBVIEWCONTROLLER_POSTURL_0100
+    * @tc.name        : testWebViewControllerPostUrl001
+    * @tc.desc        : test postUrl stress
+    * @tc.size        : MediumTest
+    * @tc.type        : Function
+    * @tc.level       : Level 1
+    */
+    it('testWebViewControllerPostUrl001', 0, async (done: Function) => {
+      Utils.doIt("testWebViewControllerPostUrl001", 120120, Constants.DEFAULT_STRESS_TIMES,
+        Constants.WEB_VIEW_CONTROLLER_POST_URL_BUTTON_KEY,
+        (testCaseName: string, callBackId: number) => {
+          Utils.registerEvent(testCaseName, true, callBackId, done);
+        })
+    });
+
+    /*
+    * @tc.number      : SUB_WEB_STRESS_WEBVIEWCONTROLLER_POSTURL_0200
+    * @tc.name        : testWebViewControllerPostUrl002
+    * @tc.desc        : test postUrl stress
+    * @tc.size        : MediumTest
+    * @tc.type        : Function
+    * @tc.level       : Level 1
+    */
+    it('testWebViewControllerPostUrl002', 0, async (done: Function) => {
+      Utils.doIt("testWebViewControllerPostUrl002", 120111, Constants.DEFAULT_STRESS_TIMES,
+        Constants.WEB_VIEW_CONTROLLER_POST_URL_BUTTON_KEY,
+        (testCaseName: string, callBackId: number) => {
+          Utils.registerEvent(testCaseName, true, callBackId, done);
+        })
+    });
+
+    /*
+    * @tc.number      : SUB_WEB_STRESS_WEBVIEWCONTROLLER_POSTURL_0300
+    * @tc.name        : testWebViewControllerPostUrl003
+    * @tc.desc        : test postUrl stress
+    * @tc.size        : MediumTest
+    * @tc.type        : Function
+    * @tc.level       : Level 1
+    */
+    it('testWebViewControllerPostUrl003', 0, async (done: Function) => {
+      Utils.doIt("testWebViewControllerPostUrl003", 120113, Constants.DEFAULT_STRESS_TIMES,
+        Constants.WEB_VIEW_CONTROLLER_POST_URL_BUTTON_KEY,
+        (testCaseName: string, callBackId: number) => {
+          Utils.registerEvent(testCaseName, true, callBackId, done);
+        })
+    });
+
+    /*
+    * @tc.number      : SUB_WEB_STRESS_WEBVIEWCONTROLLER_POSTURL_0400
+    * @tc.name        : testWebViewControllerPostUrl004
+    * @tc.desc        : test postUrl stress
+    * @tc.size        : MediumTest
+    * @tc.type        : Function
+    * @tc.level       : Level 1
+    */
+    it('testWebViewControllerPostUrl004', 0, async (done: Function) => {
+      Utils.doIt("testWebViewControllerPostUrl004", 120114, Constants.DEFAULT_STRESS_TIMES,
+        Constants.WEB_VIEW_CONTROLLER_POST_URL_BUTTON_KEY,
+        (testCaseName: string, callBackId: number) => {
+          Utils.registerEvent(testCaseName, true, callBackId, done);
+        })
+    });
+
+    /*
+    * @tc.number      : SUB_WEB_STRESS_WEBVIEWCONTROLLER_POSTURL_0500
+    * @tc.name        : testWebViewControllerPostUrl005
+    * @tc.desc        : test postUrl stress
+    * @tc.size        : MediumTest
+    * @tc.type        : Function
+    * @tc.level       : Level 1
+    */
+    it('testWebViewControllerPostUrl005', 0, async (done: Function) => {
+      Utils.doIt("testWebViewControllerPostUrl005", 120115, Constants.DEFAULT_STRESS_TIMES,
+        Constants.WEB_VIEW_CONTROLLER_POST_URL_BUTTON_KEY,
+        (testCaseName: string, callBackId: number) => {
+          Utils.registerEvent(testCaseName, true, callBackId, done);
+        })
+    });
+
+    /*
+    * @tc.number      : SUB_WEB_STRESS_WEBVIEWCONTROLLER_POSTURL_0600
+    * @tc.name        : testWebViewControllerPostUrl006
+    * @tc.desc        : test postUrl stress
+    * @tc.size        : MediumTest
+    * @tc.type        : Function
+    * @tc.level       : Level 1
+    */
+    it('testWebViewControllerPostUrl006', 0, async (done: Function) => {
+      Utils.doIt("testWebViewControllerPostUrl006", 120116, Constants.DEFAULT_STRESS_TIMES,
+        Constants.WEB_VIEW_CONTROLLER_POST_URL_BUTTON_KEY,
+        (testCaseName: string, callBackId: number) => {
+          Utils.registerEvent(testCaseName, true, callBackId, done);
+        })
+    });
+
+  })
+}

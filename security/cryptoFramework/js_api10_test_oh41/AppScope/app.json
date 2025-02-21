@@ -1,0 +1,16 @@
+{
+  "app": {
+    "bundleName": "com.openharmony.cryptoFramework41Api10",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "minAPIVersion": 10,
+    "targetAPIVersion": 11,
+    "car": {
+      "apiCompatibleVersion": 10,
+      "singleUser": false
+    }
+  }
+}

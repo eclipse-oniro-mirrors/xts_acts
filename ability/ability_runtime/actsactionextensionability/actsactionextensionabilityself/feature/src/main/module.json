@@ -1,0 +1,41 @@
+{
+  "module": {
+    "name": "feature",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "FeatureAbility",
+    "deviceTypes": [
+      "default"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "FeatureAbility",
+        "srcEntry": "./ets/featureability/FeatureAbility.ts",
+        "description": "$string:FeatureAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:FeatureAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "FeatureActionExtensionAbility",
+        "icon": "$media:icon",
+        "description": "FeatureActionExtensionAbility",
+        "type": "action",
+        "exported": true,
+        "srcEntrance": "./ets/actionextensionability/FeatureActionExtensionAbility.ts"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ]
+  }
+}

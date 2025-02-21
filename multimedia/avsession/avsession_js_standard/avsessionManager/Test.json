@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for avsession manager Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "shell-timeout": "900000",
+        "bundle-name": "com.example.myapplication",
+        "package-name": "com.example.myapplication",
+        "testcase-timeout": "20000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAvsessionFrameworkJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

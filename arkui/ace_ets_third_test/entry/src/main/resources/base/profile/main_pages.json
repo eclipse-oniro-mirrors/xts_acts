@@ -1,0 +1,13 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/second/second",
+        "MainAbility/pages/index",
+	"MainAbility/pages/TextArea",
+	"MainAbility/pages/TextInput",
+	"MainAbility/pages/Toggle",
+	"MainAbility/pages/ScrollBar",
+	"MainAbility/pages/Stepper",
+	"MainAbility/pages/Navigation"
+    ]
+}

@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/Index1",
+    "pages/uiPage",
+    "pages/uiPage1",
+    "pages/uiPage2",
+    "pages/uiPage3"
+  ]
+}

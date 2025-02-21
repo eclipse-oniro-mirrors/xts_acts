@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "colorPrimary",
+      "value": "#B3193F"
+    },
+    {
+      "name": "color_fff",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "color_333",
+      "value": "#333333"
+    },
+    {
+      "name": "color_666",
+      "value": "#666666"
+    }
+  ]
+}

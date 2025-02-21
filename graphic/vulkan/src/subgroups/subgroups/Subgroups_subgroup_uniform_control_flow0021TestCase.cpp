@@ -1,0 +1,92 @@
+/*
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <climits>
+#include <gtest/gtest.h>
+#include "../SubgroupsBaseFunc.h"
+#include "../ActsSubgroups0022TestSuite.h"
+#include "shrinkdefine.h"
+
+using namespace std;
+using namespace testing::ext;
+using namespace OHOS;
+
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullSmallsubgroupreconverge18, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full.small_subgroup_reconverge18*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullSmallsubgroupreconverge19, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full.small_subgroup_reconverge19*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullSmallsubgroupreconverge20, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full.small_subgroup_reconverge20*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial00, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial00*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial01, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial01*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial02, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial02*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial03, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial03*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial04, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial04*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial05, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial05*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial06, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial06*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial07, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial07*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial08, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial08*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial09, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial09*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial10, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial10*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial11, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial11*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial12, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial12*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial13, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial13*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial14, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial14*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial15, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial15*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial16, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial16*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial17, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial17*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial18, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial18*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial19, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial19*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialSmallsubgroupreconvergepartial20, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial.small_subgroup_reconverge_partial20*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge00, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge00*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge01, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge01*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge02, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge02*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge03, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge03*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge04, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge04*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge05, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge05*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge06, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge06*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge07, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge07*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge08, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge08*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge09, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge09*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge10, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge10*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge11, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge11*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge12, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge12*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge13, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge13*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge14, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge14*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge15, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge15*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge16, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge16*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge17, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge17*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge18, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge18*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge19, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge19*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallfullcontrolSmallsubgroupreconverge20, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_full_control.small_subgroup_reconverge20*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial00, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial00*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial01, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial01*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial02, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial02*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial03, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial03*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial04, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial04*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial05, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial05*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial06, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial06*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial07, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial07*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial08, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial08*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial09, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial09*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial10, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial10*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial11, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial11*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial12, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial12*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial13, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial13*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial14, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial14*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial15, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial15*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial16, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial16*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial17, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial17*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial18, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial18*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial19, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial19*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCSmallpartialcontrolSmallsubgroupreconvergepartial20, "dEQP-VK.subgroups.subgroup_uniform_control_flow.small_partial_control.small_subgroup_reconverge_partial20*");
+static SHRINK_HWTEST_F(ActsSubgroups0022TS, TCDiscardSubgroupreconvergediscard00, "dEQP-VK.subgroups.subgroup_uniform_control_flow.discard.subgroup_reconverge_discard00*");
