@@ -1,0 +1,147 @@
+{
+  "module": {
+    "name": "phone",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:phone_entry_dsc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "uiSyntax": "ets",
+    "pages": "$profile:main_pages",
+    "metadata": [
+        {
+          "name": "ArkTSPartialUpdate",
+          "value": "false"
+        }
+      ],
+    "abilities": [
+      {
+        "name": "com.example.windowstagelifecycle_xts.MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:phone_entry_main",
+        "icon": "$media:icon",
+        "label": "$string:entry_label",
+        "visible": true,
+        "orientation": "portrait",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility1",
+        "srcEntrance": "./ets/MainAbility1/MainAbility1.ts",
+        "description": "$string:MainAbility1_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility1_label"
+      },
+      {
+        "name": "MainAbility2",
+        "srcEntrance": "./ets/MainAbility2/MainAbility2.ts",
+        "description": "$string:MainAbility2_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility2_label"
+      },
+      {
+        "name": "MainAbility3",
+        "srcEntrance": "./ets/MainAbility3/MainAbility3.ts",
+        "description": "$string:MainAbility3_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility3_label"
+      },
+      {
+        "name": "MainAbility4",
+        "srcEntrance": "./ets/MainAbility4/MainAbility4.ts",
+        "description": "$string:MainAbility4_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility4_label"
+      },
+      {
+        "name": "MainAbility5",
+        "srcEntrance": "./ets/MainAbility5/MainAbility5.ts",
+        "description": "$string:MainAbility5_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility5_label"
+      },
+      {
+        "name": "MainAbility6",
+        "srcEntrance": "./ets/MainAbility6/MainAbility6.ts",
+        "description": "$string:MainAbility6_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility6_label"
+      },
+      {
+        "name": "MainAbility7",
+        "srcEntrance": "./ets/MainAbility7/MainAbility7.ts",
+        "description": "$string:MainAbility7_desc",
+        "launchType": "singleton",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility7_label"
+      },
+      {
+        "name": "MainAbility8",
+        "srcEntrance": "./ets/MainAbility8/MainAbility8.ts",
+        "description": "$string:MainAbility8_desc",
+        "launchType": "standard",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility8_label"
+      },
+      {
+        "name": "MainAbility9",
+        "srcEntrance": "./ets/MainAbility9/MainAbility9.ts",
+        "description": "$string:MainAbility9_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility9_label"
+      },
+      {
+        "name": "Hap1MainAbility1",
+        "srcEntrance": "./ets/Hap1MainAbility1/Hap1MainAbility1.ts",
+        "description": "$string:Hap1MainAbility1_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap1MainAbility1_label",
+        "launchType": "singleton"
+      },
+      {
+        "name": "Hap1MainAbility2",
+        "srcEntrance": "./ets/Hap1MainAbility2/Hap1MainAbility2.ts",
+        "description": "$string:Hap1MainAbility2_desc",
+        "icon": "$media:icon",
+        "label": "$string:Hap1MainAbility2_label",
+        "launchType": "standard"
+      },
+      {
+        "name": "MainAbility10",
+        "srcEntrance": "./ets/MainAbility10/MainAbility10.ts",
+        "description": "$string:MainAbility10_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility10_label"
+      },
+      {
+        "name": "MainAbility11",
+        "srcEntrance": "./ets/MainAbility11/MainAbility11.ts",
+        "description": "$string:MainAbility11_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility11_label",
+        "launchType": "standard"
+      },
+      {
+        "name": "MainAbility12",
+        "srcEntrance": "./ets/MainAbility12/MainAbility12.ts",
+        "description": "$string:MainAbility12_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility12_label"
+      }
+    ]
+  }
+}

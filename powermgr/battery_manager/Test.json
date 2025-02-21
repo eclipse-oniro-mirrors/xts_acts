@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for powermgr battery Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+	"test-timeout": "90000",
+        "shell-timeout": "90000",
+        "bundle-name": "com.example.mybatteryapp",
+        "package-name": "com.example.mybatteryapp",
+        "testcase-timeout": 10000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsPowerMgrBatteryTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

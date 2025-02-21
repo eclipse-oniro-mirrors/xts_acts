@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for aceEtsApiLack Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.open.harmony.aceEtsApiLack",
+        "package-name": "com.open.harmony.aceEtsApiLack",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAceEtsApiLackTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

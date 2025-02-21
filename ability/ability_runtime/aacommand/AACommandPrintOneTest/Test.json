@@ -1,0 +1,23 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.aacommandprintonetest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit"
+        },
+        {
+            "test-file-name": [
+                "ActsAACommandPrintOneTest.hap",
+                "AACommandRelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

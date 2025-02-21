@@ -1,0 +1,97 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0001") {
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends
+  external_deps = [
+    "hilog_native:libhilog",
+    "multimedia_image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3TestSuite0001") {
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
+  sources = [
+    "../ActsDeqpgles30001TestSuite.cpp",
+    "../functional/Deqpgles3copy_basicTestCase.cpp",
+    "../functional/Deqpgles3copy_single_bufferTestCase.cpp",
+    "../functional/Deqpgles3copy_subrangeTestCase.cpp",
+    "../functional/Deqpgles3functional_color_clearTestCase.cpp",
+    "../functional/Deqpgles3functional_depth_stencil_clearTestCase.cpp",
+    "../functional/Deqpgles3functional_implementation_limitsTestCase.cpp",
+    "../functional/Deqpgles3functional_prerequisiteTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_basicTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_commentsTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_conditional_inclusionTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_definitionsTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_function_definitionsTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_function_redefinitionsTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_invalid_definitionsTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_invalid_function_definitionsTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_invalid_opsTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_invalid_redefinitionsTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_line_continuationTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_object_redefinitionsTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_predefined_macrosTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_recursionTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_semanticTestCase.cpp",
+    "../functional/Deqpgles3preprocessor_undefined_identifiersTestCase.cpp",
+    "../functional/Deqpgles3read_map_writeTestCase.cpp",
+    "../functional/Deqpgles3read_sub_dataTestCase.cpp",
+    "../functional/Deqpgles3read_usage_hintsTestCase.cpp",
+    "../functional/Deqpgles3read_write_map_readTestCase.cpp",
+    "../functional/Deqpgles3read_write_render_as_index_arrayTestCase.cpp",
+    "../functional/Deqpgles3read_write_render_as_vertex_arrayTestCase.cpp",
+    "../functional/Deqpgles3read_write_usage_hintsTestCase.cpp",
+    "../functional/Deqpgles3write_basicTestCase.cpp",
+    "../functional/Deqpgles3write_basic_subdataTestCase.cpp",
+    "../functional/Deqpgles3write_explicit_flushTestCase.cpp",
+    "../functional/Deqpgles3write_invalidateTestCase.cpp",
+    "../functional/Deqpgles3write_map_readTestCase.cpp",
+    "../functional/Deqpgles3write_partial_invalidateTestCase.cpp",
+    "../functional/Deqpgles3write_partial_specifyTestCase.cpp",
+    "../functional/Deqpgles3write_randomTestCase.cpp",
+    "../functional/Deqpgles3write_recreate_storeTestCase.cpp",
+    "../functional/Deqpgles3write_render_as_index_arrayTestCase.cpp",
+    "../functional/Deqpgles3write_render_as_vertex_arrayTestCase.cpp",
+    "../functional/Deqpgles3write_unsynchronizedTestCase.cpp",
+    "../functional/Deqpgles3write_usage_hintsTestCase.cpp",
+    "../info/Deqpgles3dEQP-GLES3_infoTestCase.cpp",
+  ]
+
+  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
+
+  deps = [ ":libdeqpgles3func0001" ]
+
+  cflags = [ "-Wno-error" ]
+}

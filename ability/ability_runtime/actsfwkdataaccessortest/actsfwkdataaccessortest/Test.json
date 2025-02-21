@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.amsst.fwkdataaccessor",
+        "package-name": "com.amsst.fwkdataaccessor"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsFWKDataAccessorTest.hap",
+                "ActsDataAbilityRelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

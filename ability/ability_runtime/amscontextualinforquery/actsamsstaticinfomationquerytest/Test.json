@@ -1,0 +1,33 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "com.example.staticinfomationquery",
+        "module-name": "com.example.staticinfomationquery",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAmsStaticInfoMationQueryTest.hap",
+                "ActsAmsStaticQueryTestTwoRelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /data/*.hap"
+            ]
+        }
+    ]
+}

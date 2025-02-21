@@ -1,0 +1,99 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles31func0031") {
+  sources = common_src
+  sources += [ "../Deqpgles31BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends
+  external_deps = [
+    "hilog_native:libhilog",
+    "multimedia_image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles31TestSuite0031") {
+  subsystem_name = "graphic"
+  part_name = "graphic_standard"
+  sources = [
+    "../ActsDeqpgles310031TestSuite.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_r11f_g11f_b10fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_r32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_r32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_rg16fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_rg16iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_rg16uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_rgb10_a2TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_rgb10_a2uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_rgb9_e5TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_rgba8TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_rgba8_snormTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_rgba8iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_rgba8uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb10_a2_srgb8_alpha8TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb9_e5_r32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgb9_e5_r32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_r11f_g11f_b10fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_r32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_r32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_r32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_rg16fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_rg16iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_rg16uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_rgb10_a2TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_rgb10_a2uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_rgb9_e5TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_rgba8TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_rgba8_snormTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_rgba8iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_rgba8uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_rgba8_snorm_srgb8_alpha8TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_r11f_g11f_b10fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_r32fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_r32iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_r32uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_rg16fTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_rg16iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_rg16uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_rgb10_a2TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_rgb10_a2uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_rgb9_e5TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_rgba8TestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_rgba8_snormTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_rgba8iTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_rgba8uiTestCase.cpp",
+    "../functional/Deqpgles31viewclass_32_bits_srgb8_alpha8_srgb8_alpha8TestCase.cpp",
+  ]
+
+  include_dirs = [ "//test/xts/acts/graphic/vkgl/src" ]
+
+  deps = [ ":libdeqpgles31func0031" ]
+
+  cflags = [ "-Wno-error" ]
+}

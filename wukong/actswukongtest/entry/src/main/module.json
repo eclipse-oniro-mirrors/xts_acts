@@ -1,0 +1,59 @@
+{
+  "module": {
+    "name": "phone",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:entry_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "tablet",
+      "default",
+      "phone",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "metadata": [
+        {
+          "name": "ArkTSPartialUpdate",
+          "value": "false"
+        }
+      ],
+    "abilities": [
+      {
+        "name": "com.example.ActsWukongTest.MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.SET_ABILITY_CONTROLLER",
+        "reason": "need use ohos.permission.SET_ABILITY_CONTROLLER"
+      },
+      {
+        "name": "ohos.permission.CAPTURE_SCREEN",
+        "reason": "need use ohos.permission.CAPTURE_SCREEN"
+      },
+      {
+        "name": "ohos.permission.INPUT_MONITORING",
+        "reason": "need use ohos.permission.INPUT_MONITORING"
+      }
+    ]
+  }
+}

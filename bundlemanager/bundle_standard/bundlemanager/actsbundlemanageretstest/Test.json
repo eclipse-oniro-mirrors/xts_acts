@@ -1,0 +1,71 @@
+{
+    "description": "Configuration for actsbundleetsgetinfotest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.open.harmony.packagemag",
+        "package-name": "com.open.harmony.packagemag",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBundleManagerEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test/"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push":[
+                "bmsThirdBundleTest1.hap -> /data/bmsThirdBundleTest1.hap ",
+                "first_right.hap -> /data/test/first_right.hap",
+                "second_right.hap -> /data/second_right.hap",
+                "bmsStageDemo1.hap -> /data/test/bmsStageDemo1.hap",
+                "bmsStageDemo2.hap -> /data/test/bmsStageDemo2.hap",
+                "bmsJstest1.hap -> /data/test/bmsJstest1.hap",
+                "bmsJstest2.hap -> /data/test/bmsJstest2.hap",
+                "bmsJstest3.hap -> /data/test/bmsJstest3.hap",
+                "bmsJstest4.hap -> /data/test/bmsJstest4.hap",
+                "bmsJstest5.hap -> /data/test/bmsJstest5.hap",
+                "bmsJstest6.hap -> /data/test/bmsJstest6.hap",
+                "bmsThirdBundleTest7.hap->/data/test/bmsThirdBundleTest7.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "bm install -p /data/bmsThirdBundleTest1.hap",
+                "bm install -p /data/test/first_right.hap",
+                "bm install -p /data/second_right.hap",
+                "bm install -p /data/test/bmsStageDemo1.hap",
+                "bm install -p /data/test/bmsStageDemo2.hap",
+                "bm install -p /data/test/bmsJstest1.hap",
+                "bm install -p /data/test/bmsJstest2.hap",
+                "bm install -p /data/test/bmsJstest3.hap",
+                "bm install -p /data/test/bmsJstest4.hap",
+                "bm install -p /data/test/bmsJstest5.hap",
+                "bm install -p /data/test/bmsJstest6.hap",
+                "bm install -p /data/test/bmsThirdBundleTest7.hap"
+            ],
+            "teardown-command":[
+                "bm uninstall -n com.example.third1",
+                "bm uninstall -n com.example.l3jsdemo",
+                "bm uninstall -n com.example.myapplication1",
+                "bm uninstall -n com.example.myapplication2",
+                "bm uninstall -n com.example.myapplication4",
+                "bm uninstall -n com.example.myapplication5",
+                "bm uninstall -n com.example.myapplication6",
+                "bm uninstall -n com.example.third7",
+                "bm uninstall -n com.acts.bundle.stage"
+            ]
+        }
+    ]
+}

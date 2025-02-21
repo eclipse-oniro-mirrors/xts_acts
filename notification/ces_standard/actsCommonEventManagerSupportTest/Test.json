@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "260000",
+        "shell-timeout": "260000",
+        "bundle-name": "com.example.actscommoneventmanagersupport",
+        "package-name": "com.example.actscommoneventmanagersupport"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCommonEventManagerSupportTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

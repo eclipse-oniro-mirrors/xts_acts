@@ -1,0 +1,144 @@
+{
+  "app": {
+    "bundleName": "com.open.harmony.aceEtsAttrLack",
+    "vendor": "open",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 7,
+      "releaseType": "Release",
+      "target": 8
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.open.harmony.aceEtsAttrLack",
+    "name": ".MyApplication",
+    "mainAbility": "com.open.harmony.aceEtsAttrLack.MainAbility",
+    "deviceType": [
+      "tablet",
+      "default",
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "formsEnabled": false,
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "TestAbility",
+        "name": ".TestAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/page1",
+          "pages/page2",
+          "pages/alertDialog",
+          "pages/animate_play_mode",
+          "pages/animator",
+          "pages/app",
+          "pages/attr_animate",
+          "pages/canvas",
+          "pages/checkBox",
+          "pages/checkBoxGroup",
+          "pages/common",
+          "pages/curves",
+          "pages/datePicker",
+          "pages/edgeEffect",
+          "pages/enums",
+          "pages/featureAbility",
+          "pages/fill_mode",
+          "pages/gesture",
+          "pages/gridCol",
+          "pages/gridRow",
+          "pages/listtest",
+          "pages/list_item_group",
+          "pages/loadingProgress",
+          "pages/pluginComponent",
+          "pages/progress",
+          "pages/radio",
+          "pages/refresh",
+          "pages/remoteWindow",
+          "pages/router",
+          "pages/scroll_edge",
+          "pages/sidebar",
+          "pages/slider",
+          "pages/stateManagement",
+          "pages/stepperItem",
+          "pages/swiper",
+          "pages/text_input",
+          "pages/units",
+          "pages/web",
+          "pages/copyOption",
+          "pages/responseType",
+          "pages/hoverEffect",
+          "pages/hitTestMode",
+          "pages/color",
+          "pages/navigation_lack"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

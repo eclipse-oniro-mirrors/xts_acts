@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for  dev Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.open.harmony.acedevtest",
+        "package-name": "com.open.harmony.acedevtest",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAceDevTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

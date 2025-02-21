@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for powermgr power Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.mypowerapp",
+        "package-name": "com.example.mypowerapp",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsPowerMgrPowerTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "SingleUserModel1900_desc",
+      "value": "description"
+    },
+    {
+      "name": "SingleUserModel1900_label",
+      "value": "label"
+    }
+  ]
+}

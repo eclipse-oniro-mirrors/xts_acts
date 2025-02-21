@@ -1,0 +1,61 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos_var.gni")
+
+group("ability_runtime") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "aacommand:aacommand",
+      "abilitymanager:actsabilitymanagertest",
+      "abilitymontior:ActsAbilityMonitorTest",
+      "abilitymultiinstance:abilitymultiinstance",
+      "abilitystagemonitor:abilitystagemonitor",
+      "actsabilitydelegatorcase:ActsAbilityDelegatorCaseTest",
+      "actsabilitymanageretstest:ActsAbilityManagerEtsTest",
+      "actsabilityusertest:ActsAbilityuserTest",
+      "actscalldataabilitytest:ActsCallDataAbilityTest",
+      "actscalltest:actscalltest",
+      "actsdataabilityaccessdatasharetest:dataabilityaccessdatashare",
+      "actsfwkdataaccessortest:dataability",
+      "actsqueryfunctiontest:actsqueryfunctiontest",
+      "actsrequestdialogtest:actsrequestdialogtest",
+      "actsserviceabilityclienttest:serviceability",
+      "actsshellcommandfunctionalitytest:actsshellcommandfunctionalitytest",
+      "actssingleton:actssingleton",
+      "actsstartrunnertest:ActsStartRunnerTest",
+      "actsstserviceabilityclientcase:ActsStServiceAbilityClientCaseTest",
+      "actssupportfunction:actssupportfunction",
+      "actsusers:actsusers",
+      "amscontextualinforquery:amscontextualinforquery",
+      "amsdatauriutils:ActsAmsDataUriUtilsTest",
+      "amsdisplayIdtest:amsdisplayIdtest",
+      "amsgetabilityprocessinfo:amsgetabilityprocessinfo",
+      "apicover:apicover",
+      "apitest:ActsApiTest",
+      "context:context",
+      "fa:fa",
+      "faapicover:faapicover",
+      "featureability:featureability",
+      "formmanager:formmanager",
+      "freeinstalltest:freeinstalltest",
+      "killprocesswithaccountstage:killprocesswithaccountstage",
+      "newwant:newwant",
+      "non_concurrent:non_concurrent",
+      "stage:stage",
+      "want:want",
+      "workercontextcover:workercontextcover",
+    ]
+  }
+}

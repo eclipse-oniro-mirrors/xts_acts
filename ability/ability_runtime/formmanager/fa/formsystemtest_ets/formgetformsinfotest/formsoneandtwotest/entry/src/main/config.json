@@ -1,0 +1,127 @@
+{
+  "app": {
+    "bundleName": "com.ohos.st.formsoneandtwotest",
+    "vendor": "ohos",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 7,
+      "releaseType": "Release",
+      "target": 7
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.ohos.st.formsoneandtwotest",
+    "name": ".FormSTApp",
+    "mainAbility": ".MainAbility",
+    "deviceType": [
+      "default",
+      "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "visible": true,
+        "name": ".MainAbility",
+        "srcPath": "MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+          "orientation": "unspecified",
+          "formsEnabled": false,
+          "name": ".TestAbility",
+          "srcLanguage": "ets",
+          "srcPath": "TestAbility",
+          "icon": "$media:icon",
+          "description": "$string:TestAbility_desc",
+          "label": "$string:TestAbility_label",
+          "type": "page",
+          "visible": true,
+          "launchType": "singleton"
+      }
+    ],
+    "defPermissions": [
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormDelete_commonEvent"
+      },
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormOnAcquired_commonEvent"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "FMS_FormOnAcquired_commonEvent",
+        "reason": "need use onAcquired commonEvent"
+      },
+      {
+        "name": "FMS_FormDelete_commonEvent",
+        "reason": "need use delete commonEvent"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+        "reason": "need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

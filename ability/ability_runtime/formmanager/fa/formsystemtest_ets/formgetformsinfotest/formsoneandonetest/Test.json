@@ -1,0 +1,22 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "com.ohos.st.formsoneandonetest",
+        "package-name": "com.ohos.st.formsoneandonetest",
+        "shell-timeout": "600000",
+        "testcase-timeout":"30000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsFormsOneAndOneTest.hap",
+                "FormSystemProviderB.hap",
+                "FormSystemProviderC.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

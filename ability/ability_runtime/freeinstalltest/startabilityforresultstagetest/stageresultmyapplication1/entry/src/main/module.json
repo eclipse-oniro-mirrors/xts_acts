@@ -1,0 +1,43 @@
+{
+  "module": {
+    "name": "myapplication1",
+    "type": "feature",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:myapplication1_desc",
+    "mainElement": "MainAbility1",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": true,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "false"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "MainAbility1",
+        "srcEntrance": "./ets/MainAbility1/MainAbility1.ts",
+        "description": "$string:MainAbility1_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility1_label",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

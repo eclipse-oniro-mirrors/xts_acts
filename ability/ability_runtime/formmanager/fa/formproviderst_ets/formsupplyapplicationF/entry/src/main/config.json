@@ -1,0 +1,141 @@
+{
+  "app": {
+    "bundleName": "com.form.formsystemtestservicef.hmservice",
+    "vendor": "ohos",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 8,
+      "releaseType": "Release",
+      "target": 9
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.form.formsystemtestservicef.hmservice",
+    "name": ".FormSupplyAppF",
+    "mainAbility": ".MainAbility",
+    "srcPath": "",
+    "deviceType": [
+      "default",
+      "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "name": ".FormAbility",
+        "srcPath": "FormAbility",
+        "icon": "$media:icon",
+        "description": "$string:description_mainability",
+        "label": "$string:entry_MainAbility",
+        "type": "service",
+        "formsEnabled": true,
+        "forms": [
+          {
+            "jsComponentName": "Form_Js001",
+            "isDefault": true,
+            "formVisibleNotify": true,
+            "defaultDimension": "1*2",
+            "name": "Form_Js001",
+            "description": "This is a form widget",
+            "colorMode": "auto",
+            "type": "JS",
+            "supportDimensions": [
+              "1*2",
+              "2*2"
+            ],
+            "updateEnabled": true,
+            "updateDuration": 1
+          },
+          {
+            "jsComponentName": "Form_Js002",
+            "isDefault": false,
+            "scheduledUpdateTime": "10:30",
+            "formVisibleNotify": true,
+            "defaultDimension": "1*2",
+            "name": "Form_Js002",
+            "description": "This is a form widget",
+            "colorMode": "auto",
+            "type": "JS",
+            "supportDimensions": [
+              "1*2",
+              "2*2"
+            ],
+            "updateEnabled": true
+          }
+        ],
+        "srcLanguage": "ets"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "widget",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        },
+        "type": "form"
+      }
+    ],
+    "defPermissions": [
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormSupply_commonEvent"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "reason": "need use FormSupply commonEvent",
+        "name": "FMS_FormSupply_commonEvent"
+      }
+    ]
+  }
+}

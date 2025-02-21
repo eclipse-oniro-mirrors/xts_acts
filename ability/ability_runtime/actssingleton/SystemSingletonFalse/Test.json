@@ -1,0 +1,36 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.singleusermodel.actssingleusertest",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": "10000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "acm create -n 101 -t normal"
+            ],
+            "teardown-command":[
+                "acm delete -i 101"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsSystemSingletonFalseTest.hap->/system/ActsSystemSingletonFalseTest.hap"
+            ]
+        },
+		{
+            "test-file-name": [
+                "ActsSystemSingletonFalseTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+

@@ -1,0 +1,35 @@
+{
+    "description": "Configuration for uitest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "bundle-name": "com.uitest.acts",
+        "package-name": "com.uitest.acts",
+        "shell-timeout": "180000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "param set persist.sys.suspend_manager_enabled 0",
+                "reboot",
+                "power-shell wakeup",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "param set persist.sys.suspend_manager_enabled 1",
+                "reboot"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsUiTest.hap",
+                "ActsUiTestScene.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

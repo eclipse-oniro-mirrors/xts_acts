@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for startup uri js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "bundle-name": "com.example.uri",
+        "package-name": "com.example.uri",
+        "shell-timeout": "800000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsUriJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

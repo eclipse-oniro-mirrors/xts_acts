@@ -1,0 +1,96 @@
+{
+    "module": {
+        "name": "phone",
+        "type": "entry",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:phone_entry_dsc",
+        "mainElement": "MainAbility",
+        "deviceTypes": [
+        "default",
+        "tablet"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "metadata": [
+          {
+            "name": "ArkTSPartialUpdate",
+            "value": "false"
+          }
+        ],
+        "abilities": [
+            {
+                "name": "com.acts.actsinterfacemultiuserstest.MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "orientation": "portrait",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities":[
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            },
+			{
+                "name": "com.acts.actsinterfacemultiuserstest.MainAbility2",
+                "srcEntrance": "./ets/MainAbility2/MainAbility2.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "orientation": "portrait"
+            },
+			{
+                "name": "com.acts.actsinterfacemultiuserstest.MainAbility3",
+                "srcEntrance": "./ets/MainAbility3/MainAbility3.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "orientation": "portrait"
+            }
+        ],
+      "defPermissions": [
+        {
+          "availableScope": [],
+          "grantMode": "system_grant",
+          "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS"
+        },
+        {
+          "availableScope": [],
+          "grantMode": "system_grant",
+          "name": "ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION"
+        }
+      ],
+        "requestPermissions": [
+          {
+            "name": "ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+            "reason": "need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
+          },
+          {
+            "name": "ohos.permission.GET_BUNDLE_INFO",
+            "reason": "need use ohos.permission.GET_BUNDLE_INFO"
+          },
+          {
+            "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+            "reason": "need use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+          },
+          {
+            "name": "ohos.permission.GET_RUNNING_INFO",
+            "reason": "need use ohos.permission.GET_RUNNING_INFO"
+          },
+          {
+            "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+            "reason":"need use ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+          }
+        ]
+    }
+}

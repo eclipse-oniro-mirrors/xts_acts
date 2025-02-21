@@ -1,0 +1,612 @@
+<!--/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Promise animation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .ball {
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            margin-bottom: 2px;
+        }
+
+        .ball1 {
+            background: red;
+        }
+
+        .ball2 {
+            background: yellow;
+        }
+
+        .ball3 {
+            background: purple;
+        }
+
+        .ball4 {
+            background: pink;
+        }
+
+        .ball5 {
+            background: blue;
+        }
+
+        .ball6 {
+            background: green;
+        }
+
+        .ball21 {
+            background: red;
+        }
+
+        .ball22 {
+            background: yellow;
+        }
+
+        .ball23 {
+            background: purple;
+        }
+
+        .ball24 {
+            background: pink;
+        }
+
+        .ball25 {
+            background: blue;
+        }
+
+        .ball26 {
+            background: green;
+        }
+
+        .button {
+            margin: 10px;
+        }
+
+        .div {
+            background: black;
+            width: 100%;
+            height: 2px;
+            margin: 10px;
+        }
+
+        .container {
+            width: 100%;
+            height: 30%;
+            margin: 0;
+            padding: 0;
+        }
+.box{
+		   	width: 60px;
+		   	height: 60px;
+		   	border: 5px solid gray;
+		   	margin: 0 auto;
+		   	position: relative;
+		   	margin-top: 20px;
+		   	transform-style: preserve-3d; 
+		   	animation: run 5s linear infinite; 
+			 
+		   	
+	   }
+	   
+	   
+	   @keyframes run{  /* animation动画效果   */
+	   	 0%{
+	   	 	transform: rotateY(30deg) rotateX(90deg);
+	   	 }
+	   	 
+	   	 50%{
+	   	 	transform: rotateY(90deg) rotateX(360deg);
+	   	 }
+	   	 
+	   	 100%{
+	   	 	transform:rotateY(360deg) rotateX(90deg);
+	   	 }
+	   }
+	   
+	   .box:hover{
+	   	animation-play-state: paused;
+	   }
+	   
+	   .box div{
+		   	width: 20px;
+		   	height: 20px;
+		   	position: absolute;
+		   	left: 50%;
+		   	top: 50%;
+		   	margin-left: -10px;
+		   	text-align: center;
+		   	font-size: 5px;
+		   	line-height: 20px;
+		   	color: white;
+	
+		
+	  
+	   }
+	   
+	   .box div:nth-child(1){
+	   	   background: gray;
+	   	   transform: tranlateZ(100px);
+	   	  
+	   }
+	   
+	     .box div:nth-child(1){
+	    	background: gray;
+	    	transform: translateZ(100px);
+	    }
+	   
+		.box div:nth-child(2){
+		   	background: purple;
+		   	transform: translateX(-100px) rotateY(-90deg);  /* 位置加旋转  */
+		   
+	   }
+	   
+	   .box div:nth-child(3){
+		   	background: blue;
+		    transform: translateY(-100px) rotateX(90deg);  
+	   }
+	   
+	   .box div:nth-child(4){
+		   	background: yellow;
+		   	transform:translateY(100px) rotateX(-90deg);
+		   
+	   }
+	   
+	   .box div:nth-child(5){
+		   	background: pink;
+		   	transform: translateX(100px) rotateY(90deg);
+		   
+	   }
+	   
+	   .box div:nth-child(6){
+	   	   background: green;
+	       transform: translateZ(-100px);
+	   	
+	   }
+    </style>
+    <script>
+        var context;
+        var arr = new Array();
+        var rains = new Array();
+        var rainCount = 20;
+
+        function init() {
+            var stars = document.getElementById("stars");
+            var windowWidth = window.innerWidth;
+            stars.width = windowWidth / 2;
+            stars.height = window.innerHeight / 4;
+            context = stars.getContext("2d");
+        }
+
+        window.onload = function () {
+            init();
+            for (var i = 0; i < rainCount; i++) {
+                var rain = new MeteorRain();
+                rain.init();
+                rain.draw();
+                rains.push(rain);
+            }
+            playRains();
+        }
+        var MeteorRain = function () {
+            this.x = -1;
+            this.y = -1;
+            this.length = -1;
+            this.angle = 30;
+            this.width = -1;
+            this.height = -1;
+            this.speed = 1;
+            this.offset_x = -1;
+            this.offset_y = -1;
+            this.alpha = 1;
+            this.color1 = "";
+            this.color2 = "";
+
+            this.init = function () {
+                this.getPos();
+                this.alpha = 1;
+                this.getRandomColor();
+                var x = Math.random() * 80 + 150;
+                this.length = Math.ceil(x);
+                this.angle = 30;
+                x = Math.random() + 0.5;
+                this.speed = Math.ceil(x);
+                var cos = Math.cos(this.angle * 3.14 / 180);
+                var sin = Math.sin(this.angle * 3.14 / 180);
+                this.width = this.length * cos;
+                this.height = this.length * sin;
+                this.offset_x = this.speed * cos;
+                this.offset_y = this.speed * sin;
+            }
+            this.getRandomColor = function () {
+                var a = Math.ceil(255 - 240 * Math.random());
+                this.color1 = "rgba(" + a + "," + a + "," + a + ",1)";
+                this.color2 = "yellow";
+            }
+            this.countPos = function ()//
+            {
+                this.x = this.x - this.offset_x;
+                this.y = this.y + this.offset_y;
+            }
+            this.getPos = function () //
+            {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+            }
+            this.draw = function () {
+                context.save();
+                context.beginPath();
+                context.lineWidth = 1;
+                context.globalAlpha = this.alpha;
+                var line = context.createLinearGradient(this.x, this.y,
+                    this.x + this.width,
+                    this.y - this.height);
+                line.addColorStop(0, "white");
+                line.addColorStop(0.3, this.color1);
+                line.addColorStop(0.6, this.color2);
+                context.strokeStyle = line;
+                context.moveTo(this.x, this.y);
+                context.lineTo(this.x + this.width, this.y - this.height);
+                context.closePath();
+                context.stroke();
+                context.restore();
+            }
+            this.move = function () {
+                var x = this.x + this.width - this.offset_x;
+                var y = this.y - this.height;
+                context.clearRect(x - 3, y - 3, this.offset_x + 5, this.offset_y + 5);
+                this.countPos();
+                this.alpha -= 0.002;
+                this.draw();
+            }
+        }
+        function playRains() {
+
+            for (var n = 0; n < rainCount; n++) {
+                var rain = rains[n];
+                rain.move();
+                if (rain.y > window.innerHeight) {
+                    context.clearRect(rain.x, rain.y - rain.height, rain.width, rain.height);
+                    rains[n] = new MeteorRain();
+                    rains[n].init();
+                }
+            }
+            setTimeout("playRains()", 2);
+        }
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+</head>
+
+<body>
+    <canvas id="stars" style = "float:left;"></canvas>
+    <div class="ball ball1" style="margin-left: 100px;"></div>
+    <div class="ball ball2" style="margin-left: 100px;"></div>
+    <div class="ball ball3" style="margin-left: 100px;"></div>
+    <div class="ball ball4" style="margin-left: 100px;"></div>
+    <div class="ball ball5" style="margin-left: 100px;"></div>
+    <div class="ball ball6" style="margin-left: 100px;"></div>
+    <div class="ball ball21" style="margin-left: 700px;"></div>
+    <div class="ball ball22" style="margin-left: 700px;"></div>
+    <div class="ball ball23" style="margin-left: 700px;"></div>
+    <div class="ball ball24" style="margin-left: 700px;"></div>
+    <div class="ball ball25" style="margin-left: 700px;"></div>
+    <div class="ball ball26" style="margin-left: 700px;"></div>
+    <div class="box" >
+			<div></div>
+	     	<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+    <div id="jsi-heart-container" class="container"></div>
+    <script type="text/javascript">
+        var ball1 = document.querySelector('.ball1');
+        var ball2 = document.querySelector('.ball2');
+        var ball3 = document.querySelector('.ball3');
+        var ball4 = document.querySelector('.ball4');
+        var ball5 = document.querySelector('.ball5');
+        var ball6 = document.querySelector('.ball6');
+        var ball21 = document.querySelector('.ball21');
+        var ball22 = document.querySelector('.ball22');
+        var ball23 = document.querySelector('.ball23');
+        var ball24 = document.querySelector('.ball24');
+        var ball25 = document.querySelector('.ball25');
+        var ball26 = document.querySelector('.ball26');
+
+        function myMove(ball, delay) {
+            setTimeout(delayfunc, delay);
+            function delayfunc() {
+                var margin_left = parseInt(ball.style.marginLeft, 10);
+                var id = setInterval(frame, 10);
+                var to_right = true;
+                function frame() {
+                    if (to_right) {
+                        if (margin_left < 400) {
+                            margin_left++;
+                        } else {
+                            to_right = false;
+                        }
+                    } else {
+                        if (margin_left > 100) {
+                            margin_left--;
+                        } else {
+                            to_right = true;
+                        }
+                    }
+                    ball.style.marginLeft = margin_left + 'px';
+                }
+            }
+        }
+
+        function myMoveBack(ball, delay) {
+            setTimeout(delayfunc2, delay);
+            function delayfunc2() {
+                var margin_left = parseInt(ball.style.marginLeft, 10);
+                var id = setInterval(frame2, 10);
+                var to_left = true;
+                function frame2() {
+                    if (to_left) {
+                        if (margin_left > 400) {
+                            margin_left--;
+                        } else {
+                            to_left = false;
+                        }
+                    } else {
+                        if (margin_left < 700) {
+                            margin_left++;
+                        } else {
+                            to_left = true;
+                        }
+                    }
+                    ball.style.marginLeft = margin_left + 'px';
+                }
+            }
+        }
+        myMove(ball1, 0);
+        myMove(ball2, 1000);
+        myMove(ball3, 2000);
+        myMove(ball4, 3000);
+        myMove(ball5, 4000);
+        myMove(ball6, 5000);
+        myMoveBack(ball21, 0);
+        myMoveBack(ball22, 1000);
+        myMoveBack(ball23, 2000);
+        myMoveBack(ball24, 3000);
+        myMoveBack(ball25, 4000);
+        myMoveBack(ball26, 5000);
+
+    </script>
+    <script>
+        var RENDERER = {
+            INIT_HEART_BLOSSOM_COUNT: 30,
+            MAX_ADDING_INTERVAL: 10,
+
+            init: function () {
+                this.setParameters();
+                this.reconstructMethods();
+                this.createHearts();
+                this.render();
+            },
+            setParameters: function () {
+                this.$container = $('#jsi-heart-container');
+                this.width = this.$container.width();
+                this.height = this.$container.height();
+                this.context = $('<canvas />').attr({ width: this.width, height: this.height }).appendTo(this.$container).get(0).getContext('2d');
+                this.Hearts = [];
+                this.maxAddingInterval = Math.round(this.MAX_ADDING_INTERVAL * 1000 / this.width);
+                this.addingInterval = this.maxAddingInterval;
+            },
+            reconstructMethods: function () {
+                this.render = this.render.bind(this);
+            },
+            createHearts: function () {
+                for (var i = 0, length = Math.round(this.INIT_HEART_BLOSSOM_COUNT * this.width / 1000); i < length; i++) {
+                    this.Hearts.push(new HEART_BLOSSOM(this, true));
+                }
+            },
+            render: function () {
+                requestAnimationFrame(this.render);
+                this.context.clearRect(0, 0, this.width, this.height);
+
+                this.Hearts.sort(function (Heart1, Heart2) {
+                    return Heart1.z - Heart2.z;
+                });
+                for (var i = this.Hearts.length - 1; i >= 0; i--) {
+                    if (!this.Hearts[i].render(this.context)) {
+                        this.Hearts.splice(i, 1);
+                    }
+                }
+                if (--this.addingInterval == 0) {
+                    this.addingInterval = this.maxAddingInterval;
+                    this.Hearts.push(new HEART_BLOSSOM(this, false));
+                }
+            }
+        };
+        var HEART_BLOSSOM = function (renderer, isRandom) {
+            this.renderer = renderer;
+            this.init(isRandom);
+        };
+        HEART_BLOSSOM.prototype = {
+            FOCUS_POSITION: 300,
+            FAR_LIMIT: 600,
+            MAX_RIPPLE_COUNT: 600,
+            RIPPLE_RADIUS: 60,
+            SURFACE_RATE: 0.9,
+            SINK_OFFSET: 20,
+
+            init: function (isRandom) {
+                this.x = this.getRandomValue(-this.renderer.width, this.renderer.width);
+                this.y = isRandom ? this.getRandomValue(0, this.renderer.height) : this.renderer.height * 1.5;
+                this.z = this.getRandomValue(0, this.FAR_LIMIT);
+                this.vx = this.getRandomValue(-2, 2);
+                this.vy = -2;
+                this.theta = this.getRandomValue(0, Math.PI * 2);
+                this.phi = this.getRandomValue(0, Math.PI * 2);
+                this.psi = 0;
+                this.dpsi = this.getRandomValue(Math.PI / 600, Math.PI / 300);
+                this.opacity = 0;
+                this.endTheta = false;
+                this.endPhi = false;
+                this.rippleCount = 0;
+
+                var axis = this.getAxis(),
+                    theta = this.theta + Math.ceil(-(this.y + this.renderer.height * this.SURFACE_RATE) / this.vy) * Math.PI / 500;
+                theta %= Math.PI * 2;
+
+                this.offsetY = 40 * ((theta <= Math.PI / 2 || theta >= Math.PI * 3 / 2) ? -1 : 1);
+                this.thresholdY = this.renderer.height / 2 + this.renderer.height * this.SURFACE_RATE * axis.rate;
+                this.entityColor = this.renderer.context.createRadialGradient(0, 80, 20, 20, 40, 100);
+                this.entityColor.addColorStop(0, 'hsl(330, 70%, ' + 50 * (0.3 + axis.rate) + '%)');
+                this.entityColor.addColorStop(0.05, 'hsl(330, 40%,' + 55 * (0.3 + axis.rate) + '%)');
+                this.entityColor.addColorStop(1, 'hsl(330, 20%, ' + 70 * (0.3 + axis.rate) + '%)');
+                this.shadowColor = this.renderer.context.createRadialGradient(0, 40, 0, 0, 40, 80);
+                this.shadowColor.addColorStop(0, 'hsl(330, 40%, ' + 30 * (0.3 + axis.rate) + '%)');
+                this.shadowColor.addColorStop(0.05, 'hsl(330, 40%,' + 30 * (0.3 + axis.rate) + '%)');
+                this.shadowColor.addColorStop(1, 'hsl(330, 20%, ' + 40 * (0.3 + axis.rate) + '%)');
+            },
+            getRandomValue: function (min, max) {
+                return min + (max - min) * Math.random();
+            },
+            getAxis: function () {
+                var rate = this.FOCUS_POSITION / (this.z + this.FOCUS_POSITION),
+                    x = this.renderer.width / 2 + this.x * rate,
+                    y = this.renderer.height / 2 - this.y * rate;
+                return { rate: rate, x: x, y: y };
+            },
+            renderHeart: function (context, axis) {
+                context.beginPath();
+                context.moveTo(0, 40);
+                context.bezierCurveTo(-60, 20, -10, -60, 0, -20);
+                context.bezierCurveTo(10, -60, 60, 20, 0, 40);
+                context.fill();
+
+                for (var i = -4; i < 4; i++) {
+                    context.beginPath();
+                    context.moveTo(0, 40);
+                    context.quadraticCurveTo(i * 12, 10, i * 4, -24 + Math.abs(i) * 2);
+                    context.stroke();
+                }
+            },
+            render: function (context) {
+                var axis = this.getAxis();
+
+                if (axis.y == this.thresholdY && this.rippleCount < this.MAX_RIPPLE_COUNT) {
+                    context.save();
+                    context.lineWidth = 2;
+                    context.strokeStyle = 'hsla(0, 0%, 100%, ' + (this.MAX_RIPPLE_COUNT - this.rippleCount) / this.MAX_RIPPLE_COUNT + ')';
+                    context.translate(axis.x + this.offsetY * axis.rate * (this.theta <= Math.PI ? -1 : 1), axis.y);
+                    context.scale(1, 0.3);
+                    context.beginPath();
+                    context.arc(0, 0, this.rippleCount / this.MAX_RIPPLE_COUNT * this.RIPPLE_RADIUS * axis.rate, 0, Math.PI * 2, false);
+                    context.stroke();
+                    context.restore();
+                    this.rippleCount++;
+                }
+                if (axis.y < this.thresholdY || (!this.endTheta || !this.endPhi)) {
+                    if (this.y <= 0) {
+                        this.opacity = Math.min(this.opacity + 0.01, 1);
+                    }
+                    context.save();
+                    context.globalAlpha = this.opacity;
+                    context.fillStyle = this.shadowColor;
+                    context.strokeStyle = 'hsl(330, 30%,' + 40 * (0.3 + axis.rate) + '%)';
+                    context.translate(axis.x, Math.max(axis.y, this.thresholdY + this.thresholdY - axis.y));
+                    context.rotate(Math.PI - this.theta);
+                    context.scale(axis.rate * -Math.sin(this.phi), axis.rate);
+                    context.translate(0, this.offsetY);
+                    this.renderHeart(context, axis);
+                    context.restore();
+                }
+                context.save();
+                context.fillStyle = this.entityColor;
+                context.strokeStyle = 'hsl(330, 40%,' + 70 * (0.3 + axis.rate) + '%)';
+                context.translate(axis.x, axis.y + Math.abs(this.SINK_OFFSET * Math.sin(this.psi) * axis.rate));
+                context.rotate(this.theta);
+                context.scale(axis.rate * Math.sin(this.phi), axis.rate);
+                context.translate(0, this.offsetY);
+                this.renderHeart(context, axis);
+                context.restore();
+
+                if (this.y <= -this.renderer.height / 4) {
+                    if (!this.endTheta) {
+                        for (var theta = Math.PI / 2, end = Math.PI * 3 / 2; theta <= end; theta += Math.PI) {
+                            if (this.theta < theta && this.theta + Math.PI / 200 > theta) {
+                                this.theta = theta;
+                                this.endTheta = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!this.endPhi) {
+                        for (var phi = Math.PI / 8, end = Math.PI * 7 / 8; phi <= end; phi += Math.PI * 3 / 4) {
+                            if (this.phi < phi && this.phi + Math.PI / 200 > phi) {
+                                this.phi = Math.PI / 8;
+                                this.endPhi = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (!this.endTheta) {
+                    if (axis.y == this.thresholdY) {
+                        this.theta += Math.PI / 200 * ((this.theta < Math.PI / 2
+                            || (this.theta >= Math.PI && this.theta < Math.PI * 3 / 2)) ? 1 : -1);
+                    } else {
+                        this.theta += Math.PI / 500;
+                    }
+                    this.theta %= Math.PI * 2;
+                }
+                if (this.endPhi) {
+                    if (this.rippleCount == this.MAX_RIPPLE_COUNT) {
+                        this.psi += this.dpsi;
+                        this.psi %= Math.PI * 2;
+                    }
+                } else {
+                    this.phi += Math.PI / ((axis.y == this.thresholdY) ? 200 : 500);
+                    this.phi %= Math.PI;
+                }
+                if (this.y <= -this.renderer.height * this.SURFACE_RATE) {
+                    this.x += 2;
+                    this.y = -this.renderer.height * this.SURFACE_RATE;
+                } else {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                }
+                return this.z > -this.FOCUS_POSITION && this.z < this.FAR_LIMIT && this.x < this.renderer.width * 1.5;
+            }
+        };
+        $(function () {
+            RENDERER.init();
+        });
+    </script>
+</body>
+
+</html>

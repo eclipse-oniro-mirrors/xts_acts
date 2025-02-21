@@ -1,0 +1,36 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "JSUnitTest",
+        "test-timeout": "300000",
+        "package": "ohos.acts.multimedia.image.RGBA",
+		"shell-timeout": "120000"
+    },
+    "kits": [
+		{
+            "test-file-name": [
+                "ActsImageRGBAJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+            ]
+        },
+		{
+            "type": "PushKit",
+            "pre-push": [
+            ],
+            "push": [
+            ]
+        },
+   
+		{
+            "type": "ShellKit",
+            "run-command": []
+        }
+    ]
+    
+}

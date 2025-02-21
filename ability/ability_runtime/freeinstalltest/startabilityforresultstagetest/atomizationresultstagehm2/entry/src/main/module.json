@@ -1,0 +1,43 @@
+{
+  "module": {
+    "name": "hnm2",
+    "type": "feature",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:hnm2_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": true,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "false"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "com.example.hm2.MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.accounttstest",
+        "module-name": "phone",
+        "shell-timeout": "180000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAccountTsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "teardown-command":[
+                "bm uninstall -n com.example.accounttstest"
+            ]
+        }
+    ]
+}

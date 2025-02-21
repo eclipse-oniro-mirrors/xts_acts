@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for powermgr display Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "bundle-name": "com.example.mypowerdisplayapp",
+        "package-name": "com.example.mypowerdisplayapp",
+        "test-timeout": "90000",
+        "shell-timeout": "90000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsPowerMgrDisplayTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+

@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.multimedia.image.ModifyProperty",
+        "package-name": "ohos.acts.multimedia.image.ModifyProperty"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageModifyPropertyJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry/files/",
+                "chmod 777 /data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry/files/*"
+            ],
+            "teardown-command":[
+
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test_exif.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 /data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry/files/test_exif.jpg"
+            ],
+            "teardown-command": [
+                "rm -rf /data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry/files/*"
+            ]
+        }
+    ]
+}

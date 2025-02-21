@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "600000",
+        "testcase-timeout": 10000,
+        "bundle-name": "com.example.coverapi",
+        "package-name": "com.example.coverapi"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCoverApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

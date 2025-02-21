@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for startup util js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "com.example.containerRelation",
+        "package-name": "com.example.containerRelation"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsContainerRelationJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

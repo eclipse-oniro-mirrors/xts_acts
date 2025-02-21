@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for inputMethod Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.inputmethodtest",
+        "package-name": "com.acts.inputmethodtest",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsInputMethodEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

@@ -1,0 +1,90 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+group("multimedia") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "audio/audio_cpp_standard:ActsOpenslesNdkTest",
+      "audio/audio_js_standard/AudioCapturer:audio_capturer_js_hap",
+      "audio/audio_js_standard/AudioCapturerChangeInfo:audio_capturerchangeInfo_js_hap",
+      "audio/audio_js_standard/AudioEventManagement:audio_eventmanagement_js_hap",
+      "audio/audio_js_standard/AudioRendererChangeInfo:audio_rendererchangeInfo_js_hap",
+      "audio/audio_js_standard/audioInterrupt:audio_interrupt_js_hap",
+      "audio/audio_js_standard/audioInterruptRender:audioRenderInterrupt",
+      "audio/audio_js_standard/audioManager:audio_manager_js_hap",
+      "audio/audio_js_standard/audioRenderer:audio_renderer_js_hap",
+      "audio/audio_js_standard/audioVoip:audio_voip_js_hap",
+      "image/image_js_standard/image:image_js_hap",
+      "image/image_js_standard/imageColorspace:image_colorspace_js_hap",
+      "image/image_js_standard/imageCreator:image_creator_js_hap",
+      "image/image_js_standard/imageDecodeOptions:image_DecodeOptions_js_hap",
+      "image/image_js_standard/imageExif:image_exif_js_hap",
+      "image/image_js_standard/imageGetImageProperty:image_getProperty_js_hap",
+      "image/image_js_standard/imageModifyProperty:image_modifyProperty_js_hap",
+      "image/image_js_standard/imagePacking:image_packing_js_hap",
+      "image/image_js_standard/imagePixelMapFramework:image_pixelmapframework_js_hap",
+      "image/image_js_standard/imageRGBA:image_rgba_js_hap",
+      "image/image_js_standard/imageRaw:image_raw_js_hap",
+      "image/image_js_standard/imageReceiver:image_receiver_js_hap",
+      "image/image_js_standard/imageWebp:image_webp_js_hap",
+      "image/image_js_standard/imageYUV:image_yuv_js_hap",
+      "image/image_js_standard/image_ndk_test:image_pixelmap_ndk_hap",
+      "media/media_cpp_standard:ActsAvcodecNdkTest",
+      "media/media_js_standard/audioPlayer:audio_player_js_hap",
+      "media/media_js_standard/audioRecorder:audio_recorder_js_hap",
+      "media/media_js_standard/avRecorder:av_recorder_js_hap",
+      "media/media_js_standard/avPlayer:avplayer_js_hap",
+      "media/media_js_standard/recorderFormat:recorder_format_js_hap",
+      "media/media_js_standard/videoPlayer:video_player_js_hap",
+      "medialibrary/mediaLibrary_album:mediaLibrary_album_hap",
+      "medialibrary/mediaLibrary_base:mediaLibrary_base_hap",
+      "medialibrary/mediaLibrary_favorite:mediaLibrary_favorite_hap",
+      "medialibrary/mediaLibrary_file:mediaLibrary_file_hap",
+      "medialibrary/mediaLibrary_fileAsset:mediaLibrary_fileAsset_hap",
+      "medialibrary/mediaLibrary_fileKey:mediaLibrary_fileKey_hap",
+      "medialibrary/mediaLibrary_fileResult:mediaLibrary_fileResult_hap",
+      "medialibrary/mediaLibrary_getThumbnail:mediaLibrary_getThumbnail_hap",
+      "medialibrary/mediaLibrary_mediafetchoptions:mediaLibrary_mediafetchoptions_hap",
+      "medialibrary/mediaLibrary_trash:mediaLibrary_trash_js_hap",
+    ]
+  } else {
+    deps = [
+      #"audio/audio_hap_test:MediaAudio_test_hap",
+      #"audio/audiotubecore_hap_test:Audiotubecore_test_hap",
+      #"camera/camera_hap_test:camera_test_hap",
+      #"image/AVScannerKit_hap:avscanner_test_hap",
+      #"media/media_hap_test:media_test_hap",
+    ]
+  }
+}
+
+#car
+group("multimedia_ivi") {
+  testonly = true
+  deps = []
+}
+
+#tv
+group("multimedia_intellitv") {
+  testonly = true
+  deps = []
+}
+
+#watch
+group("multimedia_wearable") {
+  testonly = true
+  deps = []
+}

@@ -1,0 +1,69 @@
+{
+  "module": {
+    "name": "entry_test",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "description": "$string:entry_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "tablet",
+      "default",
+      "phone"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "false"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name":"ohos.permission.INTERNET",
+        "reason":"need use ohos.permission.INTERNET."
+      },
+      {"name": "ohos.permission.WRITE_MEDIA",
+        "reason": "need use ohos.permission.WRITE_MEDIA",
+        "usedScene": {
+          "ability": [
+            "com.acts.request.test.MainAbility"
+          ],
+          "when":"always"
+        }
+      },
+      {"name": "ohos.permission.READ_MEDIA",
+        "reason": "need use ohos.permission.WRITE_MEDIA",
+        "usedScene": {
+          "ability": [
+            "com.acts.request.test.MainAbility"
+          ],
+          "when":"always"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for sensor js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "160000",
+        "shell-timeout": "160000",
+        "bundle-name": "ohos.acts.sensors.sensor.function",
+        "package-name": "ohos.acts.sensors.sensor.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsSensorJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

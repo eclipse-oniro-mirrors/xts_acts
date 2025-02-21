@@ -1,0 +1,142 @@
+{
+  "app": {
+    "bundleName": "com.open.harmony.packagemag",
+    "vendor": "ohos",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 7,
+      "releaseType": "Release",
+      "target": 7
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.open.harmony.packagemag",
+    "name": ".MyApplication",
+    "srcPath": "",
+    "mainAbility": "com.open.harmony.packagemag.MainAbility",
+    "deviceType": [
+      "default",
+      "tablet"
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.USE_BLUETOOTH"
+      }
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "visible": true,
+        "orientation": "unspecified",
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "formsEnabled": false,
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "TestAbility",
+        "name": ".TestAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "srcPath": "ServiceAbility",
+        "name": ".ServiceAbility",
+        "srcLanguage": "ets",
+        "description": "$string:description_serviceability",
+        "type": "service"
+      },
+      {
+        "name": ".DataAbility",
+        "srcLanguage": "ets",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:DataAbility_desc",
+        "type": "data",
+        "uri": "dataability://com.open.harmony.packagemag.DataAbility"
+      },
+      {
+        "orientation": "followRecent",
+        "formsEnabled": false,
+        "name": ".FollowRecentAbility",
+        "srcLanguage": "ets",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:PageAbility1_desc",
+        "label": "$string:PageAbility1_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index",
+          "pages/second"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "description":"$string:entry_description"
+  }
+}

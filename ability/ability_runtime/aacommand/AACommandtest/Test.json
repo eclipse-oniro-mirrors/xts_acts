@@ -1,0 +1,33 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.aacommandtest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "push": [
+                "AACommand07.hap->/data/AACommand07.hap",
+                "AACommand08.hap->/data/AACommand08.hap",
+                "AACommandpackage.hap->/data/AACommandpackage.hap",
+                "AACommandRelyHap.hap->/data/AACommandRelyHap.hap"
+            ]
+        },
+		{
+            "test-file-name": [
+                "ActsAACommandTest.hap",
+                "AACommand07.hap",
+                "AACommand08.hap",
+                "AACommandpackage.hap",
+                "AACommandRelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+

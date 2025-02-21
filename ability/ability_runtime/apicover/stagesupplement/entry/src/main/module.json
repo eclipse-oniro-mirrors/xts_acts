@@ -1,0 +1,98 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:entry_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "false"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "launchType": "singleton",
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility3",
+        "srcEntrance": "./ets/MainAbility3/MainAbility3.ts",
+        "description": "$string:MainAbility3_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility3_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      {
+        "name": "MainAbility4",
+        "srcEntrance": "./ets/MainAbility4/MainAbility4.ts",
+        "description": "$string:MainAbility4_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility4_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      {
+        "name": "MainAbility5",
+        "srcEntrance": "./ets/MainAbility5/MainAbility5.ts",
+        "description": "$string:MainAbility5_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility5_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "launchType": "singleton"
+      },
+      {
+        "name": "MainAbility9",
+        "srcEntrance": "./ets/MainAbility9/MainAbility9.ts",
+        "description": "$string:MainAbility9_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility9_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "launchType": "singleton"
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      },
+      {
+        "name":"ohos.permission.GET_BUNDLE_INFO"
+      }
+    ]
+  }
+}

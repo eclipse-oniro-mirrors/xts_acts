@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "bundle-name": "com.ohos.netmanagerhttp",
+        "package-name": "com.ohos.netmanagerhttp",
+        "shell-timeout": "1800000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNetManagerHttpEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

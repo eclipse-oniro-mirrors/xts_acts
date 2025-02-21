@@ -1,0 +1,38 @@
+# Copyright (c) 2022 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+ohos_hap_assist_suite("audioRenderInterrupt") {
+  hap_name = "audioRenderInterrupt"
+  hap_profile = "./src/main/config.json"
+  testonly = true
+  deps = [
+    ":audioRenderInterrupt_resources",
+    ":audioRenderInterrupt_ts_assets",
+  ]
+  ets2abc = true
+  certificate_profile = "../signature/openharmony_sx.p7b"
+  hap_name = "audioRenderInterrupt"
+  subsystem_name = "multimedia"
+  part_name = "multimedia_audio_framework"
+}
+
+ohos_js_assets("audioRenderInterrupt_ts_assets") {
+  source_dir = "./src/main/ets/MainAbility"
+}
+
+ohos_resources("audioRenderInterrupt_resources") {
+  sources = [ "./src/main/resources" ]
+  hap_profile = "./src/main/config.json"
+}

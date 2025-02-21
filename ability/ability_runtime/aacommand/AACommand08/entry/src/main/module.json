@@ -1,0 +1,57 @@
+{
+  "module": {
+    "name": "entry_test",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:entry_test_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "metadata": [
+      {
+        "name": "ArkTSPartialUpdate",
+        "value": "false"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility2",
+        "srcEntrance": "./ets/MainAbility2/MainAbility2.ts",
+        "description": "$string:MainAbility2_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility2_label"
+      },
+      {
+        "name": "MainAbility3",
+        "srcEntrance": "./ets/MainAbility3/MainAbility3.ts",
+        "description": "$string:MainAbility3_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility3_label"
+      }
+    ]
+  }
+}

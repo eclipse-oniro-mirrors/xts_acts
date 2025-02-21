@@ -1,0 +1,72 @@
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:entry_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "visible": true,
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SingleUserModel1400",
+        "srcEntrance": "./ets/SingleUserModel1400/SingleUserModel1400.ts",
+        "description": "$string:SingleUserModel1400_desc",
+        "icon": "$media:icon",
+        "label": "$string:SingleUserModel1400_label"
+      },
+      {
+        "name": "SingleUserModel1500",
+        "srcEntrance": "./ets/SingleUserModel1500/SingleUserModel1500.ts",
+        "description": "$string:SingleUserModel1500_desc",
+        "icon": "$media:icon",
+        "label": "$string:SingleUserModel1500_label"
+      },
+      {
+        "name": "SingleUserModel1600",
+        "srcEntrance": "./ets/SingleUserModel1600/SingleUserModel1600.ts",
+        "description": "$string:SingleUserModel1600_desc",
+        "icon": "$media:icon",
+        "label": "$string:SingleUserModel1600_label"
+      },
+      {
+        "name": "SingleUserModel1700",
+        "srcEntrance": "./ets/SingleUserModel1700/SingleUserModel1700.ts",
+        "description": "$string:SingleUserModel1700_desc",
+        "icon": "$media:icon",
+        "label": "$string:SingleUserModel1700_label"
+      },
+      {
+        "name": "SingleUserModel1800",
+        "srcEntrance": "./ets/SingleUserModel1800/SingleUserModel1800.ts",
+        "description": "$string:SingleUserModel1800_desc",
+        "icon": "$media:icon",
+        "label": "$string:SingleUserModel1800_label"
+      }
+    ]
+  }
+}

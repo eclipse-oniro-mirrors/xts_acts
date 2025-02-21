@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for rpc Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "testcase-timeout": 60000,
+        "bundle-name":"com.ohos.rpctest",
+        "package-name": "com.ohos.rpctest"
+        
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsRpcHapTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+
+
+
+
+}
