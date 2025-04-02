@@ -1,0 +1,58 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.image.imagePicture",
+        "module-name": "entry_test",
+        "shell-timeout": "300000",
+        "testcase-timeout": "5000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImagePictureTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files/*",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/cache/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/*"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/HEIFISOMultiChannelBaseColor0512V12.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/0801_sdr2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/all_auxtype.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/AllAuxiliaryPictures.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/CUVAHdrMulti.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/HDRVividSingleLayer.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/JPEGISOSingle.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/AllAuxiliaryPictures_exclude_fragment.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/JpegFragmentMap.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/test.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/testExif.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/GainMap.dat ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/UnrefocusMap.dat ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files",
+                "./resource/image/FragmentMap.dat ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePicture/haps/entry_test/files/*",
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

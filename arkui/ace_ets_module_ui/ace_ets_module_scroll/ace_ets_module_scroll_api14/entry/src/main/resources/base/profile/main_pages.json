@@ -1,0 +1,14 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/ScrollBar/enableScroll",
+        "MainAbility/pages/List/getListVisible",
+        "MainAbility/pages/List/itemIndexList",
+        "MainAbility/pages/List/groupAnimation",
+        "MainAbility/pages/List/animationCallback",
+        "MainAbility/pages/Grid/nodeTypeGrid",
+        "MainAbility/pages/WaterFlow/clipContent",
+        "MainAbility/pages/Grid/gridNode",
+        "MainAbility/pages/GridItem/griditemNode"
+    ]
+}

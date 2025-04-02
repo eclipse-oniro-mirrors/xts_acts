@@ -1,0 +1,36 @@
+{
+    "string": [
+        {
+            "name": "phone_entry_dsc",
+            "value": "i am an entry for phone"
+        },
+        {
+            "name": "phone_entry_main",
+            "value": "the phone entry ability"
+        },
+        {
+            "name": "entry_label",
+            "value": "ActsBackupExtensionTest"
+        },
+        {
+            "name": "form_description",
+            "value": "backup"
+        },
+        {
+            "name": "serviceability_description",
+            "value": "backup"
+        },
+        {
+            "name": "description_application",
+            "value": "backup test"
+        },
+        {
+            "name": "app_name",
+            "value": "ActsBackupExtensionTest"
+        },
+        {
+            "name": "ServiceExtAbility",
+            "value": "service ext ability"
+        }
+    ]
+}

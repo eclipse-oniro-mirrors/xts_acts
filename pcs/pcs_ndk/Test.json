@@ -1,0 +1,21 @@
+{
+    "description": "Configuration for pcs ndk test",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "bundle-name": "com.acts.pcs.ndktest",
+        "module-name": "entry_test",
+        "shell-timeout": "180000",
+        "testcase-timeout": "20000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsPCSNdk.hap",
+                "ActsPCSNdkTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

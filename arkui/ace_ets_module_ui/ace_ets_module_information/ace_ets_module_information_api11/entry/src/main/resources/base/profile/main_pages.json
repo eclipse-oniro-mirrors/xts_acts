@@ -1,0 +1,30 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/gauge/gauge",
+        "MainAbility/pages/gauge/gaugeUx",
+        "MainAbility/pages/Counter/CounterEnable",
+        "MainAbility/pages/Progress/Progress",
+        "MainAbility/pages/Progress/ProgressSec",
+        "MainAbility/pages/Badge/Badge",
+        "MainAbility/pages/Counter/Counter",
+        "MainAbility/pages/DataPanel/DataPanel",
+        "MainAbility/pages/Progress/ProgressA",
+        "MainAbility/pages/Qrcode/Qrcode",
+        "MainAbility/pages/Badge/BadgeIndex",
+        "MainAbility/pages/DataPanel/DataPanel_001",
+        "MainAbility/pages/advancedCounter/advancedCounterIndex",
+        "MainAbility/pages/Qrcode/QRCodePage",
+	    "MainAbility/pages/patternLock/patternLock",
+        "MainAbility/pages/LoadingProgress/loadingProgress",
+        "MainAbility/pages/Progress/progress3",
+        "MainAbility/pages/gauge/gauge1",
+        "MainAbility/pages/Progress/progress2",
+	    "MainAbility/pages/Badge/badge3",
+        "MainAbility/pages/Qrcode/QrCode3",
+	    "MainAbility/pages/Search/search",
+        "MainAbility/pages/gauge/gauge3",
+        "MainAbility/pages/DataPanel/DatalPanelUI",
+        "MainAbility/pages/Counter/CounterApi/CounterApi"
+    ]
+}

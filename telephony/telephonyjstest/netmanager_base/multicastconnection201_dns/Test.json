@@ -1,0 +1,21 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "bundle-name": "com.acts.networkmanager",
+        "module-name": "entry_test",
+        "shell-timeout": "1800000",
+        "testcase-timeout": "70000"
+
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNetworkManagerMulDNS201Test.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

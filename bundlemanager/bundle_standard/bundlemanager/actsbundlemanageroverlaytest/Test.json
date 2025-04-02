@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "ohos.acts.bundle.overlay.test",
+        "module-name": "testModule",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+          "test-file-name": [
+            "ActsBundleMgrOverlayEtsTest.hap"
+          ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command":[
+                "remount",
+                "mkdir /data/test/"
+            ]
+        },
+        {
+            "type": "PushKit",
+          "push": [
+          ]
+        },
+        {
+            "type": "ShellKit",
+            "teardown-command":[
+                "rm -rf /data/test/"
+            ]
+        }
+    ] 
+}
+

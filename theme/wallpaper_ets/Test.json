@@ -1,0 +1,35 @@
+{
+    "description": "Configuration for wallpaper js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.theme.wallpapertest",
+        "package-name": "com.acts.theme.wallpapertest",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsWallpaperETSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "target mount"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [
+                "mount -o rw,remount /",
+                "mkdir -p /data/app/el2/100/base/com.acts.theme.wallpapertest/haps"
+            ],
+            "push": [
+                "./resource/wallpaper/wp.png ->/data/app/el2/100/base/com.acts.theme.wallpapertest/haps/wp.png"
+            ]
+        }
+    ]
+}

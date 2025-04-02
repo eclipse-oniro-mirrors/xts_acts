@@ -1,0 +1,64 @@
+/*
+ * Copyright (C) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License');
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, it, expect } from '@ohos/hypium'
+import userAuthNorth from '@ohos.userIAM.userAuth'
+
+export default function userauthTest_API12() {
+    describe('userauthTest_API12', function () {
+
+        /*
+            * @tc.number    : SUB_Security_IAM_Func_API12_0100
+            * @tc.name      : getEnrolledState parameter validity check
+            * @tc.desc      : GetEnrolledState parameter validity check
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level 1
+        */
+        it('SUB_Security_IAM_Func_API12_0100', 1, async function (done) {
+            console.info('testFace SUB_Security_IAM_Func_API12_0100 start');
+            let authType = [userAuthNorth.UserAuthType.FACE, userAuthNorth.UserAuthType.FINGERPRINT, userAuthNorth.UserAuthType.PIN]
+            let authTypeOne = [-1, 0, 3, 5]
+            for (let idx0 = 0; idx0 < authType.length; idx0++) {
+                try {
+                    console.info('SUB_Security_IAM_Func_API12_0100 authtype:' + authType[idx0])
+                    userAuthNorth.getEnrolledState(authType[idx0]);
+                } catch (e) {
+                    console.log("SUB_Security_IAM_Func_API12_0100 fail " + 'authType:' + authType[idx0] + 'e.code:' + e.code);
+                    expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.NOT_ENROLLED);
+                }
+            }
+            for (let idx0 = 0; idx0 < authTypeOne.length; idx0++) {
+                try {
+                    console.info('SUB_Security_IAM_Func_API12_0100 authtype:' + authType[idx0])
+                    userAuthNorth.getEnrolledState(authTypeOne[idx0]);
+                } catch (e) {
+                    console.log("SUB_Security_IAM_Func_API12_0100 fail " + 'authType:' + authType[idx0] + 'e.code:' + e.code);
+                    expect(e.code).assertEqual(userAuthNorth.UserAuthResultCode.TYPE_NOT_SUPPORT);
+                }
+            }
+            try {
+                userAuthNorth.getEnrolledState();
+            } catch (e) {
+                console.log("SUB_Security_IAM_Func_API12_0100 fail " + 'authType is null:' + 'e.code:' + e.code);
+                expect(e.code).assertEqual(401);
+            }
+            done();
+        })
+
+
+    })
+
+}

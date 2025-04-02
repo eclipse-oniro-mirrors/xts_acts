@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "myapplication1_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility1_label",
+      "value": "label"
+    }
+  ]
+}

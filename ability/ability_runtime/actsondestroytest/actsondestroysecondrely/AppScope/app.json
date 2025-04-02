@@ -1,0 +1,18 @@
+{
+  "app": {
+    "bundleName": "com.example.abilitystageondestroytest",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "distributedNotificationEnabled": true,
+    "singleUser": true,
+    "minAPIVersion": 12,
+    "targetAPIVersion": 12,
+    "car": {
+        "apiCompatibleVersion": 12,
+        "singleUser": false
+     }
+  }
+}

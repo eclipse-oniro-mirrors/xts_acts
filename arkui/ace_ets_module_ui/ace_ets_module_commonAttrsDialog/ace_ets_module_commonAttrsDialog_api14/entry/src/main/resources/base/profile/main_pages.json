@@ -1,0 +1,18 @@
+{
+    "src": [
+      "MainAbility/pages/index/index",
+      "MainAbility/pages/DatePickerDialog/lunarSwitchStyleTest",
+      "MainAbility/pages/bindSheetTest/bindSheetHoverMode",
+      "MainAbility/pages/bindSheetTest/bindSheetShowClose",
+      "MainAbility/pages/bindSheetTest/bindSheetType",
+      "MainAbility/pages/promptActionTest/showToastHoverMode",
+      "MainAbility/pages/promptActionTest/showDialogHoverMode",
+      "MainAbility/pages/dialog/popoverDialogTest",
+      "MainAbility/pages/TextPickerDialog/TextPickerDialogHoverMode",
+      "MainAbility/pages/TimePickerDialog/timePickerDialogHoverMode",
+      "MainAbility/pages/DatePickerDialog/datePickerDialogHoverMode",
+      "MainAbility/pages/CustomDialog/customDialogHoverMode",
+      "MainAbility/pages/AlertDialog/alertDialogHoverMode",
+      "MainAbility/pages/ActionSheet/actionSheetHoverMode"
+    ]
+}

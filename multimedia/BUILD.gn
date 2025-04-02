@@ -1,0 +1,128 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law  or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+group("multimedia") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "audio/audio_cpp_standard:ActsOpenslesNdkTest",
+      "audio/audio_js_standard/AudioCapturer:audio_capturer_js_hap",
+      "audio/audio_js_standard/AudioCapturerChangeInfo:audio_capturerchangeInfo_js_hap",
+      "audio/audio_js_standard/AudioCapturereEnhance:audio_capturer_enhance_ets_hap",
+      "audio/audio_js_standard/AudioEventManagement:audio_eventmanagement_js_hap",
+      "audio/audio_js_standard/AudioHaptic:audio_haptic_ets_hap",
+      "audio/audio_js_standard/AudioManagerEnhance:audio_manager_enhance_ets_hap",
+      "audio/audio_js_standard/AudioRendererChangeInfo:audio_rendererchangeInfo_js_hap",
+      "audio/audio_js_standard/AudioRendererEnhance:audio_render_enhance_ets_hap",
+      "audio/audio_js_standard/audioInterrupt:audio_interrupt_js_hap",
+      "audio/audio_js_standard/audioInterruptRender:audioRenderInterrupt",
+      "audio/audio_js_standard/audioManager:audio_manager_js_hap",
+      "audio/audio_js_standard/audioRenderer:audio_renderer_ets_hap",
+      "audio/audio_js_standard/audioVoip:audio_voip_js_hap",
+      "audio/audio_js_standard/audio_ndk_test:audioDemo_ndk_hap",
+      "audio/ohaudioNdktest:ActsOhaudioNdkTest",
+      "avsession/avsession_js_standard/avsessionManager:avsession_framework_js_hap",
+      "avsession/avsession_js_standard/avsessionVoiceCall:avsession_voicecall_js_hap",
+      "avsession/avsession_ndk_standard/avsession_ndk_stage:avsession_ndk_ohosTest",
+      "camera/camera_js_standard:camera_framework_ets_hap",
+      "camera/camera_ndk_test:camera_framework_ndk_hap",
+      "camera/camera_ndk_xts/OHCameraNdk:ActsMediaCameraNDKTest",
+      "camera/camera_picker_test:camera_picker_ets_hap",
+      "drm/AVCodecDrmNdk:AVcodecDrm_NDK_test",
+      "drm/avPlayerDrmNdk:AVPlayerDrm_NDK_test",
+      "drm/drm_js_standard/avPlayer:drm_avplayer_js_hap",
+      "drm/drm_ndk_test:Drm_Framework_NDK_test",
+      "image/image_ets_standard/image:image_hap",
+      "image/image_ets_standard/imageDecodeOptionsYuvRaw:image_decode_options_yuv_raw_hap",
+      "image/image_ets_standard/imageExifGetModify:image_exif_get_modify_hap",
+      "image/image_ets_standard/imageFormatTranscoding:image_formattranscoding_hap",
+      "image/image_ets_standard/imageNdk:image_ndk_hap",
+      "image/image_ets_standard/imagePackerExif:image_packer_exif_hap",
+      "image/image_ets_standard/imagePicture:image_picture_hap",
+      "image/image_ets_standard/imagePicturePack:image_picture_pack_hap",
+      "image/image_ets_standard/imagePixelMap:image_pixelmap_hap",
+      "image/image_ets_standard/imagePixelMapSupportYuv:image_pixelmap_supportyuv_hap",
+      "image/image_ets_standard/imageQualityEnhancement:image_quality_enhancement_hap",
+      "image/image_ets_standard/pictureNdk:picture_ndk_hap",
+      "image/image_js_standard/image:image_js_hap",
+      "image/image_js_standard/imageColorSpaceTransfer:image_colorspace_transfer_hap",
+      "image/image_js_standard/imageColorspace:image_colorspace_js_hap",
+      "image/image_js_standard/imageCreator:image_creator_js_hap",
+      "image/image_js_standard/imageDecodeOptions:image_DecodeOptions_js_hap",
+      "image/image_js_standard/imageExif:image_exif_js_hap",
+      "image/image_js_standard/imageGetImageProperty:image_getProperty_js_hap",
+      "image/image_js_standard/imageGif:image_gif_js_hap",
+      "image/image_js_standard/imageModifyProperty:image_modifyProperty_js_hap",
+      "image/image_js_standard/imagePackToFile:image_pack_to_file_js_hap",
+      "image/image_js_standard/imagePacking:image_packing_js_hap",
+      "image/image_js_standard/imagePackingNDK:image_packing_ndk_js_hap",
+      "image/image_js_standard/imagePixelMapFramework:image_pixelmapframework_js_hap",
+      "image/image_js_standard/imagePixelMapNDK:image_pixel_map_ndk_js_hap",
+      "image/image_js_standard/imageRGBA:image_rgba_js_hap",
+      "image/image_js_standard/imageRaw:image_raw_js_hap",
+      "image/image_js_standard/imageReceiver:image_receiver_js_hap",
+      "image/image_js_standard/imageReceiverMultiThread:image_receiver_multi_thread_hap",
+      "image/image_js_standard/imageReceiverNDK:image_receiver_ndk_js_hap",
+      "image/image_js_standard/imageSourceNDK:image_source_ndk_js_hap",
+      "image/image_js_standard/imageSvg:image_svg_js_hap",
+      "image/image_js_standard/imageWebp:image_webp_js_hap",
+      "image/image_js_standard/imageYUV:image_yuv_js_hap",
+      "image/image_js_standard/image_ndk_test:image_pixelmap_ndk_hap",
+      "image_effect/OHImageEffectNDK:ActsMediaImageEffectNDKTest",
+      "media/media_cpp_standard:ActsAvcodecNdkTest",
+      "media/media_js_standard/audioPlayer:audio_player_js_hap",
+      "media/media_js_standard/audioRecorder:audio_recorder_js_hap",
+      "media/media_js_standard/avImageGenerator:av_image_generator_ets_hap",
+      "media/media_js_standard/avPlayer:avplayer_js_hap",
+      "media/media_js_standard/avPlayerNdk:ActsAVPlayerNdkTest",
+      "media/media_js_standard/avRecorder:av_recorder_js_hap",
+      "media/media_js_standard/avScreenCaptureRecorder:av_screen_capture_recorder_js_hap",
+      "media/media_js_standard/avplayeraudiondk:avplayer_audio_ndk_ets_hap",
+      "media/media_js_standard/recorderFormat:recorder_format_js_hap",
+      "media/media_js_standard/screenCapture_ndk_test:ActsNativeAVScreenCaptureTest",
+      "media/media_js_standard/soundPool:soundpool_js_hap",
+      "media/media_js_standard/videoPlayer:video_player_js_hap",
+      "media/media_ndk_standard/AVPlayerNDK:OhAVPlayerNDK",
+      "photoAccess/photoAccess:photoAccess_js_hap",
+      "photoAccess/pickerView:TextPickerTest",
+    ]
+  } else {
+    deps = [
+      #"audio/audio_hap_test:MediaAudio_test_hap",
+      #"audio/audiotubecore_hap_test:Audiotubecore_test_hap",
+      #"camera/camera_hap_test:camera_test_hap",
+      #"image/AVScannerKit_hap:avscanner_test_hap",
+      #"media/media_hap_test:media_test_hap",
+    ]
+  }
+}
+
+#car
+group("multimedia_ivi") {
+  testonly = true
+  deps = []
+}
+
+#tv
+group("multimedia_intellitv") {
+  testonly = true
+  deps = []
+}
+
+#watch
+group("multimedia_wearable") {
+  testonly = true
+  deps = []
+}

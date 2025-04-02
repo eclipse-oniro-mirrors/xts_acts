@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/setKeyProcessingMode/setKeyProcessingMode01",
+    "MainAbility/pages/setKeyProcessingMode/setKeyProcessingMode02"
+
+  ]
+}

@@ -1,0 +1,108 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { beforeEach, describe, expect, it } from '@ohos/hypium';
+import Utils from '../common/Utils';
+import nativeFunc from 'libnativefunc.so'
+
+export default function toggleMarginTest() {
+
+  describe('ToggleMarginTest', () => {
+
+    beforeEach(async (done: Function) => {
+      await Utils.sleep(100);
+      done();
+    });
+
+    /*
+     * @tc.number     : SUB_ARKUI_CAPI_TOGGLE_MARGIN_0100
+     * @tc.name       : testToggleMargin001
+     * @tc.desc       : testing margin for toggle with normal value (positive number)
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testToggleMargin001', 0, async (done: Function) => {
+      expect(nativeFunc.testToggleMargin001()).assertEqual(0)
+      done()
+    })
+
+    /*
+     * @tc.number     : SUB_ARKUI_CAPI_TOGGLE_MARGIN_0200
+     * @tc.name       : testToggleMargin002
+     * @tc.desc       : testing margin for toggle with normal value (negative number)
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testToggleMargin002', 0, async (done: Function) => {
+      expect(nativeFunc.testToggleMargin002()).assertEqual(0)
+      done()
+    })
+
+    /*
+     * @tc.number     : SUB_ARKUI_CAPI_TOGGLE_MARGIN_0300
+     * @tc.name       : testToggleMargin003
+     * @tc.desc       : testing margin for toggle with normal value
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testToggleMargin003', 0, async (done: Function) => {
+      expect(nativeFunc.testToggleMargin003()).assertEqual(0)
+      done()
+    })
+
+    /*
+     * @tc.number     : SUB_ARKUI_CAPI_TOGGLE_MARGIN_0400
+     * @tc.name       : testToggleMargin004
+     * @tc.desc       : testing margin for toggle with normal value (positive number)
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testToggleMargin004', 0, async (done: Function) => {
+      expect(nativeFunc.testToggleMargin004()).assertEqual(0)
+      done()
+    })
+
+    /*
+     * @tc.number     : SUB_ARKUI_CAPI_TOGGLE_MARGIN_0500
+     * @tc.name       : testToggleMargin005
+     * @tc.desc       : testing margin for toggle with normal value (negative number)
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testToggleMargin005', 0, async (done: Function) => {
+      expect(nativeFunc.testToggleMargin005()).assertEqual(0)
+      done()
+    })
+
+    /*
+     * @tc.number     : SUB_ARKUI_CAPI_TOGGLE_MARGIN_0600
+     * @tc.name       : testToggleMargin006
+     * @tc.desc       : testing margin for toggle with normal value
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testToggleMargin006', 0, async (done: Function) => {
+      expect(nativeFunc.testToggleMargin006()).assertEqual(0)
+      done()
+    })
+
+  })
+}

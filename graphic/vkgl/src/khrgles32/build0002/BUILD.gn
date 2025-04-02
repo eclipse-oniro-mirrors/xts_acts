@@ -1,0 +1,70 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libkhrgles32func0002") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Khrgles32BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles32
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsKhrgles32TestSuite0002") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsKhrgles320002TestSuite.cpp",
+    "../core/Khrgles32compressed_format_apiTestCase.cpp",
+    "../core/Khrgles32compressed_format_formatTestCase.cpp",
+    "../core/Khrgles32core_copy_imageTestCase.cpp",
+    "../core/Khrgles32core_framebuffer_completenessTestCase.cpp",
+    "../core/Khrgles32core_nearest_edgeTestCase.cpp",
+    "../core/Khrgles32core_separable_programs_tfTestCase.cpp",
+    "../core/Khrgles32core_shader_macrosTestCase.cpp",
+    "../core/Khrgles32core_texture_compatibilityTestCase.cpp",
+    "../core/Khrgles32ext_texture_shadow_lod_textureTestCase.cpp",
+    "../core/Khrgles32ext_texture_shadow_lod_texturelodTestCase.cpp",
+    "../core/Khrgles32ext_texture_shadow_lod_texturelodoffsetTestCase.cpp",
+    "../core/Khrgles32ext_texture_shadow_lod_textureoffsetTestCase.cpp",
+    "../core/Khrgles32internalformat_copy_tex_imageTestCase.cpp",
+    "../core/Khrgles32internalformat_renderbufferTestCase.cpp",
+    "../core/Khrgles32internalformat_texture2dTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libkhrgles32func0002" ]
+
+  cflags = [ "-Wno-error" ]
+}

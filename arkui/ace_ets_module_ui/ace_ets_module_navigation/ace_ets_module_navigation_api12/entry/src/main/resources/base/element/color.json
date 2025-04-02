@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "color_hello",
+      "value": "#ffff0000"
+    },
+    {
+      "name": "color_world",
+      "value": "#ff0000ff"
+    },
+    {
+      "name": "Divider_color",
+      "value": "#000000"
+    }
+  ]
+}

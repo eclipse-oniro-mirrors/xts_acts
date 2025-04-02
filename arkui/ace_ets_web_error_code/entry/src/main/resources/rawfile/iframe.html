@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+<div><button onclick="createIframe()">Open Iframe</button></div>
+<div id="content" style="width: 500px; height: 300px"></div>
+<script>
+  const src = "https://Openharmony.cn";
+  function createIframe() {
+    const iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.id = "ifr";
+    iframe.width = "100%";
+    iframe.height = "100%";
+    document.getElementById("content").appendChild(iframe);
+  }
+</script>
+</body>
+</html>

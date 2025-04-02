@@ -1,0 +1,26 @@
+{
+    "src": [
+        "MainAbility/pages/web",
+        "MainAbility/pages/webTwo",
+        "MainAbility/pages/WebDefaultTextEncodingFormat",
+        "MainAbility/pages/webViewOnRequestStart",
+        "MainAbility/pages/webViewOnRequestStartTwo",
+        "MainAbility/pages/webViewOnRequestStop",
+        "MainAbility/pages/WebSchemeHandlerResponse",
+        "MainAbility/pages/WebHttpBodyStream",
+        "MainAbility/pages/setAndClearWebSchemeHandler",
+        "MainAbility/pages/setAndClearServiceWorkerWebSchemeHandler",
+        "MainAbility/pages/customizeSchemes",
+        "MainAbility/pages/WebOnFirstMeaningfulPaint",
+        "MainAbility/pages/WebOnLargestContentfulPaint",
+        "MainAbility/pages/WebViewControllerResumeAllTimers",
+        "MainAbility/pages/WebViewControllerVideoMedia",
+        "MainAbility/pages/WebNetError",
+        "MainAbility/pages/WebViewControllerAudioMedia",
+        "MainAbility/pages/WebCameraApiNoCrash",
+        "MainAbility/pages/webViewOnSslErrorEvent",
+        "MainAbility/pages/MetaViewport",
+        "MainAbility/pages/WebTextAutosizing",
+        "MainAbility/pages/webViewGetRequestResourceType"
+    ]
+}

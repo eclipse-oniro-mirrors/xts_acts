@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/Index",
+        "MainAbility/pages/webSetNetErrorCode2",
+        "MainAbility/pages/webSetNetErrorCode3",
+        "MainAbility/pages/webSetNetErrorCodeChen2"
+    ]
+}
+

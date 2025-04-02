@@ -1,0 +1,22 @@
+{
+  "src": [
+    "MainAbility/pages/WebInitTest",
+    "MainAbility/pages/WebAttributeTest",
+    "MainAbility/pages/webStorage",
+    "MainAbility/pages/WebJsGeolocationInvoke",
+    "MainAbility/pages/webMessageExt",
+    "MainAbility/pages/webCookieManager",
+    "MainAbility/pages/jsMessageExt",
+    "MainAbility/pages/geolocationPermissions",
+    "MainAbility/pages/webViewController",
+    "MainAbility/pages/webDataBase",
+    "MainAbility/pages/webController",
+    "MainAbility/pages/webAttribute",
+    "MainAbility/pages/webAttributeTwo",
+    "MainAbility/pages/sslErrorHandler",
+    "MainAbility/pages/httpAuthHandler",
+    "MainAbility/pages/WebViewControllerHitTest",
+    "MainAbility/pages/WebControllerHitTest"
+  ]
+}
+

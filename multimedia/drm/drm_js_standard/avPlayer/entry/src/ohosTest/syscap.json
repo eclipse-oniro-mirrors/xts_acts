@@ -1,0 +1,17 @@
+{
+    "devices": {
+        "general": [
+            "phone",
+            "wearable",
+            "tablet",
+            "2in1"
+        ],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Startup.SystemInfo"
+                ]
+            }
+        ]
+    }
+}

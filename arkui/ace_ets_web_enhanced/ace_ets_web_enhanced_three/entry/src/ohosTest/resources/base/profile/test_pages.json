@@ -1,0 +1,28 @@
+{
+  "src": [
+    "testability/pages/webResourceResponseGet",
+    "testability/pages/webResourceResponseSet",
+    "testability/pages/webResourceError",
+    "testability/pages/webViewControllerPart2",
+    "testability/pages/WebViewZoomRatio",
+    "testability/pages/WebViewControllerZoom",
+    "testability/pages/WebControllerZoom",
+    "testability/pages/WebViewMenuShowResult",
+    "testability/pages/ScreenCapture",
+    "testability/pages/WebViewMenuInputFieldType",
+    "testability/pages/WebViewMinLogicalFontSize",
+    "testability/pages/WebMessagePortIsExtentionTypeTest",
+    "testability/pages/WebCookieManagerFetchCookieSync",
+    "testability/pages/WebCookieManagerFetchCookie",
+    "testability/pages/WebCookieManagerExistCookie",
+    "testability/pages/WebNestedScrollOptionsScrollBackwardTest",
+    "testability/pages/WebNestedScrollOptionsScrollForwardTest",
+    "testability/pages/WebNestedScrollOptionsScrollBackwardHorizontalTest",
+    "testability/pages/WebNestedScrollOptionsScrollForwardHorizontalTest",
+    "testability/pages/WebViewControllerPostUrlTest",
+    "testability/pages/WebViewControllerSetConnectionTimeoutTest",
+    "testability/pages/WebJavaScriptOnDocumentStartTest",
+    "testability/pages/setPathAllowingUniversalAccess",
+    "testability/pages/EmbedVisibilityChange"
+  ]
+}

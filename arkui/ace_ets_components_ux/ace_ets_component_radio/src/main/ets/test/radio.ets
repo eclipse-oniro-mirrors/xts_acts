@@ -1,0 +1,1204 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
+
+let emitKey = "emitUserAgent";
+
+export default function radioTest() {
+  describe('ActsRadioTest', () => {
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_0100
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to "#FF000000"
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_0100', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0100 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_0100');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0100 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0100 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0100 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0100 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0100 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual("#FF000000");
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0100 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0100 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_0200
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to 0xffc0cb
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_0200', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0200 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_0200');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0200 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0200 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0200 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0200 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0200 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual("#FFFFC0CB");
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0200 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0200 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_0300
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to 'rgb(255,0,0)'
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_0300', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0300 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_0300');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0300 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0300 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0300 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0300 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0300 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual("#FFFF0000");
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0300 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0200 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_0400
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to Color.Green
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_0400', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0400 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_0400');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0400 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0400 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0400 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0400 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0400 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual("#FF008000");
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0400 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0400 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_0500
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to
+     *               $r("app.color.radio_BackgroundColor")
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_0500', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0500 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_0500');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0500 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0500 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0500 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0500 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0500 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual("#FFA67D3D");
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0500 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0500 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_0600
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to "rgb(138,43,226)",
+     *               and set the checkedBackgroundColor parameter to Color.Gray
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_0600', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0600 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_0600');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0600 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0600 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0600 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0600 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0600 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual("#FF808080");
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0600 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0600 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_0700
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to 0x00ff00,
+     *               set the general attribute backgroundColor parameter to Color.Pink
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_0700', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0700 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_0700');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0700 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0700 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0700 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0700 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0700 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual("#FFFFFF00");
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0700 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0600 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_0800
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to ''
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_0800', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0800 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_0800');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0800 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0800 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0800 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0800 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0800 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0800 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0600 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_0900
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to null
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_0900', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0900 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_0900');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0900 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0900 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0900 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0900 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_0900 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0900 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0900 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_1000
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to undefined
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_1000', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1000 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_1000');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1000 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1000 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1000 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1000 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1000 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1000 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_0700 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_1100
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to "rgb(138,43,226)",
+     *               and set the checkedBackgroundColor parameter to undefined
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_1100', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1100 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_1100');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1100 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1100 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1100 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1100 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1100 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1100 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1100 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_CheckedBackgroundColor_1200
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to 'bgr(138,43,226)'
+     */
+    it('ArkUX_Stage_Radio_CheckedBackgroundColor_1200', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1200 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_CheckedBackgroundColor_1200');
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1200 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1200 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1200 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1200 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_CheckedBackgroundColor_1200 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1200 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_CheckedBackgroundColor_1200 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_0100
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to "#FF00FF00"
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_0100', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0100 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_0100');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0100 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0100 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0100 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0100 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0100 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual("#FF00FF00");
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0100 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0100 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_0200
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to 0xffc0cb
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_0200', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0200 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_0200');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0200 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0200 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0200 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0200 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0200 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual("#FFFFC0CB");
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0200 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0200 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_0300
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to 'rgb(255,255,0)'
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_0300', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0300 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_0300');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0300 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0300 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0300 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0300 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0300 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual("#FFFFFF00");
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0300 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0300 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_0400
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to Color.Blue
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_0400', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0400 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_0400');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0400 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0400 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0400 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0400 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0400 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual("#FF0000FF");
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0400 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0400 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_0500
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to
+     *               $r("app.color.radio_UnBorderColor")
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_0500', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0500 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_0500');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0500 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0500 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0500 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0500 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0500 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual("#FFFF0000");
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0500 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0500 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_0600
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to "rgb(138,43,226)"
+     *               and set the uncheckedBorderColor parameter to Color.Black
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_0600', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0600 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_0600');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0600 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0600 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0600 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0600 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0600 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual("#FF000000");
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0600 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0600 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_0700
+     * @tc.name Tests the checkedBackgroundColor property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to 0xffa500,
+     *               set the general attribute backgroundColor parameter to Color.Pink
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_0700', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0700 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_0700');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0700 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0700 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0700 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0700 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0700 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual("#FFFFA500");
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0700 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0700 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_0800
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to ''
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_0800', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0800 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_0800');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0800 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0800 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0800 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0800 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0800 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0800 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0500 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_0900
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to null
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_0900', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0900 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_0900');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0900 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0900 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0900 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0900 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_0900 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0900 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_0900 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_1000
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to undefined
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_1000', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1000 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_1000');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1000 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1000 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1000 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1000 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1000 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1000 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1000 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_1100
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to "rgb(138,43,226)",
+     *               and set the uncheckedBorderColor parameter to undefined
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_1100', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1100 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_1100');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1100 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1100 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1100 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1100 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1100 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1100 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1100 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_UncheckedBorderColor_1200
+     * @tc.name Tests the uncheckedBorderColor property of the radio component
+     * @tc.desc Radio common components, set uncheckedBorderColor property parameter to 'bgr(138,43,226)'
+     */
+    it('ArkUX_Stage_Radio_UncheckedBorderColor_1200', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1200 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_UncheckedBorderColor_1200');
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1200 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1200 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1200 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1200 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_UncheckedBorderColor_1200 component radioStyle is: " +
+          JSON.stringify(radioStyle));
+          expect(radioStyle.uncheckedBorderColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1200 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_UncheckedBorderColor_1200 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_0100
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to "#FF00FFFF"
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_0100', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_0100 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_0100');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0100 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0100 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0100 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0100 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0100 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual("#FF00FFFF");
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0100 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0100 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_0200
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to 0xffc0cb
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_0200', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_0200 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_0200');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0200 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0200 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0200 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0200 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0200 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual("#FFFFC0CB");
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0200 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0200 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_0300
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to 'rgb(255,97,0)'
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_0300', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_0300 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_0300');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0300 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0300 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0300 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0300 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0300 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual("#FFFF6100");
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0300 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0300 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_0400
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to Color.Yellow
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_0400', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_0400 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_0400');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0400 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0400 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0400 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0400 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0400 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual("#FFFFFF00");
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0400 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0400 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_0500
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to
+     *               $r("app.color.radio_IndicatorColor")
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_0500', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_0500 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_0500');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0500 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0500 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0500 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0500 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0500 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual("#FF00FF00");
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0500 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0500 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_0600
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to "rgb(138,43,226)",
+     *               and set the indicatorColor parameter to Color.Black
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_0600', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_0600 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_0600');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0600 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0600 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0600 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0600 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0600 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual("#FF000000");
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0500 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0600 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_0700
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to "rgb(138,43,226)",
+     *               set the general attribute backgroundColor parameter to Color.Pink
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_0700', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_0700 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_0700');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0700 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0700 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0700 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0700 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0700 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual("#FFFFA500");
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0700 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0700 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_0800
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to ''
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_0800', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_0800 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_0800');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0800 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0800 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0800 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0800 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0800 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0800 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0800 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_0900
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to null
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_0900', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_0900 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_0900');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0900 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0900 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0900 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0900 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_0900 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0900 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_0900 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_1000
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to undefined
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_1000', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_1000 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_1000');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_1000 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1000 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1000 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1000 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1000 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_IndicatorColor_1000 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_1000 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_1100
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to "rgb(138,43,226)",
+     *               and set the indicatorColor parameter to undefined
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_1100', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_1100 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_1100');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_1100 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1100 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1100 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1100 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1100 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_IndicatorColor_1100 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_1100 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_IndicatorColor_1200
+     * @tc.name Tests the indicatorColor property of the radio component
+     * @tc.desc Radio common components, set indicatorColor property parameter to 'bgr(138,43,226)'
+     */
+    it('ArkUX_Stage_Radio_IndicatorColor_1200', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_IndicatorColor_1200 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_IndicatorColor_1200');
+          console.info('ArkUX_Stage_Radio_IndicatorColor_1200 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1200 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1200 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1200 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_IndicatorColor_1200 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.indicatorColor).assertEqual(obj.$attrs.borderColor);
+          console.info('ArkUX_Stage_Radio_IndicatorColor_1200 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_IndicatorColor_1200 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_Color_0100
+     * @tc.name Test all new attribute property of the radio component
+     * @tc.desc Radio common components, set checkedBackgroundColor property parameter to "#FFFF0000"
+     *                                        set uncheckedBorderColor property parameter to "#FFDB70DB"
+     *                                        set indicatorColor property parameter to "#FFFFFF00"
+     */
+    it('ArkUX_Stage_Radio_Color_0100', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_Color_0100 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_Color_0100');
+          console.info('ArkUX_Stage_Radio_Color_0100 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_Color_0100 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_Color_0100 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_Color_0100 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_Color_0100 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual("#FFFF0000");
+          expect(radioStyle.uncheckedBorderColor).assertEqual("#FFDB70DB");
+          expect(radioStyle.indicatorColor).assertEqual("#FFFFFF00");
+          console.info('ArkUX_Stage_Radio_Color_0100 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_Color_0100 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Radio_Color_0100
+     * @tc.name The test did not set the new attribute of the radio component
+     * @tc.desc The new attribute of radio component is not set, View the default value
+     */
+    it('ArkUX_Stage_Radio_0100', 0, async (done: Function) => {
+      console.info('ArkUX_Stage_Radio_0100 START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Radio_0100');
+          console.info('ArkUX_Stage_Radio_0100 START :' + JSON.stringify(strJson));
+          let obj: ESObject = JSON.parse(strJson);
+          console.info("ArkUX_Stage_Radio_0100 component obj is: " + JSON.stringify(obj));
+          console.info("ArkUX_Stage_Radio_0100 component obj.$attrs is: " +
+          JSON.stringify(obj.$attrs));
+          console.info("ArkUX_Stage_Radio_0100 component obj.$attrs.radioStyle is: " +
+          JSON.stringify(obj.$attrs.radioStyle));
+          let radioStyle: ESObject = JSON.parse(obj.$attrs.radioStyle);
+          console.info("ArkUX_Stage_Radio_0100 component radioStyle is: " + JSON.stringify(radioStyle));
+          expect(radioStyle.checkedBackgroundColor).assertEqual(obj.$attrs.borderColor);
+          expect(radioStyle.uncheckedBorderColor).assertEqual(obj.$attrs.backgroundColor);
+          expect(radioStyle.indicatorColor).assertEqual(obj.$attrs.foregroundColor);
+          console.info('ArkUX_Stage_Radio_0100 END ');
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Radio_0100 ERR ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    });
+  })
+}

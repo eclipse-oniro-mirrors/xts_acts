@@ -1,0 +1,13 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/onKeyEvent/unicode",
+		"MainAbility/pages/FocusView/defaultFocus",
+        "MainAbility/pages/tabStopApiTest/tabStopApiTest",
+        "MainAbility/pages/UIContext/FocusController/activeTest",
+        "MainAbility/pages/UIContext/FocusController/activeTest_true_true",
+        "MainAbility/pages/UIContext/FocusController/activeTest_false",
+        "MainAbility/pages/UIContext/FocusController/activeTest_false_true",
+        "MainAbility/pages/UIContext/FocusController/activeTest_false_false"
+    ]
+}

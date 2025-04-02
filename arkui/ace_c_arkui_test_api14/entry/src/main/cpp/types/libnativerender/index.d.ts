@@ -1,0 +1,60 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+export const customPropertyTest: (a: string) => void;
+
+export const testGetCustomProperty: (a: string) => void;
+
+export const testGetParentInPageTree: (a: string) => void;
+
+export const testGetActiveChildrenInfo: (a: string) => void;
+
+export const testGetCurrentPageRootNode: (a: string) => void;
+
+export const testIsCreatedByNDK: (a: string) => void;
+
+export const testGetNodeType: (a: string) => void;
+
+export const testCustomPropertyDestroy: (a: string) => void;
+
+export const testCustomPropertyGetStringValue: (a: string) => void;
+
+export const testActiveChildrenInfoDestroy: (a: string) => void;
+
+export const testActiveChildrenInfoGetNodeByIndex: (a: string) => void;
+
+export const testActiveChildrenInfoGetCount: (a: string) => void;
+
+export const KeyEventGetTypeTest_001: (a: string) => void;
+
+export const KeyEventGetKeyCodeTest_001: (a: string) => void;
+
+export const KeyEventGetKeyTextTest_001: (a: string) => void;
+
+export const KeyEventGetKeySourceTest_001: (a: string) => void;
+
+export const KeyEventGetGetDeviceIdTest_001: (a: string) => void;
+
+export const KeyEventStopPropagationTest_001: (a: string) => void;
+
+export const KeyEventGetPressedKeysTest_001: (a: string) => void;
+
+export const KeyEventGetKeyIntensionCodeTest_001: (a: string) => void;
+
+export const KeyEventGetUnicodeTest_001: (a: string) => void;
+
+export const KeyEventSetConsumedTest_001: (a: string) => void;
+
+export const testStyledString001: (a: Uint8Array) => number;

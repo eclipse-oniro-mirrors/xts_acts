@@ -1,0 +1,70 @@
+{
+  "strarray": [
+    {
+      "name": "arr_0",
+      "value": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "name": "arr_",
+      "value": [
+        {
+          "value": "1"
+        },
+        {
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "name": "arr_1",
+      "value": [
+        {
+          "value": "11"
+        },
+        {
+          "value": "22"
+        }
+      ]
+    },
+    {
+      "name": "arr_2",
+      "value": [
+        {
+          "value": "111"
+        },
+        {
+          "value": "222"
+        }
+      ]
+    },
+    {
+      "name": "arr_3",
+      "value": [
+        {
+          "value": "1111"
+        },
+        {
+          "value": "2222"
+        }
+      ]
+    },
+    {
+      "name": "arr_4",
+      "value": [
+        {
+          "value": "11111"
+        },
+        {
+          "value": "22222"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "ValidatorTest",
+        "bundle-name": "com.example.actsvalidator",
+        "package-name": "com.example.actsvalidator",
+        "xml_path": "/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/Test.xml"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "validator.hap",
+                "UninstallTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": false
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff"
+            ]
+        },
+        {
+            "type": "CommandKit",
+            "shell": [
+                {
+                    "name": "shell",
+                    "value": "\"SP_daemon &\""
+                },
+                {
+                    "name": "shell",
+                    "value": "aa start -a MainAbility -b com.example.actsvalidator"
+                },
+                {
+                    "name": "push",
+                    "value": "picture->/storage/media/100/local/files/Pictures"
+                },
+                {
+                    "name": "shell",
+                    "value": "mediatool send /storage/media/100/local/files/Pictures"
+                }
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "AAC160001.aac->/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/AAC160001.aac",
+                "AAC48000321.aac->/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/AAC48000321.aac",
+                "FLAC48000321.flac->/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/FLAC48000321.flac",
+                "MP348000321.mp3->/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/MP348000321.mp3",
+                "MPEG448000321.m4a->/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/MPEG448000321.m4a",
+                "OGG480001.ogg->/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/OGG480001.ogg",
+                "vorbis48000321.wav->/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/vorbis48000321.wav",
+                "h264Mp3.mkv->/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/h264Mp3.mkv",
+                "h264Mp3.mp4->/data/app/el2/100/base/com.example.actsvalidator/haps/entry/files/h264Mp3.mp4"
+            ],
+            "uninstall": false
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "scanner"
+            ]
+        }
+    ]
+}

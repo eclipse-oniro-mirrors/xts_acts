@@ -1,0 +1,22 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/UIContext/getOverlayManager",
+        "MainAbility/pages/UIContext/OverlayManager_001",
+        "MainAbility/pages/UIContext/OverlayManager_002",
+        "MainAbility/pages/UIContext/OverlayManager_003",
+        "MainAbility/pages/UIContext/OverlayManager_004",
+        "MainAbility/pages/UIContext/OverlayManager_005",
+        "MainAbility/pages/UIContext/OverlayManager_006",
+        "MainAbility/pages/UIContext/getContextMenuController",
+        "MainAbility/pages/customProperty/customProperty",
+        "MainAbility/pages/callback/callback",
+        "MainAbility/pages/Button/Button_API/Role",
+        "MainAbility/pages/UIContext/getPageInfoByUniqueId",
+        "MainAbility/pages/UIContext/setFrameRateRange",
+        "MainAbility/pages/AttributeUpdater/AttributeUpdater",
+	    "MainAbility/pages/componentSnapshot/componentSnapshot",
+        "MainAbility/pages/UIContext/postDelayedFrameCallback",
+        "MainAbility/pages/UIContext/postFrameCallback"
+    ]
+}

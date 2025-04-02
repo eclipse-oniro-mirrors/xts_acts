@@ -1,0 +1,25 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Text/textAreaInputTest",
+    "MainAbility/pages/TextInput/TextInputKeyboardAppearance",
+    "MainAbility/pages/TextArea/TextAreaKeyboardAppearance",
+    "MainAbility/pages/Search/SearchKeyboardAppearance",
+    "MainAbility/pages/RichEditor/RichEditorKeyboardAppearance",
+    "MainAbility/pages/TextInput/TextInputStopBackPress",
+    "MainAbility/pages/TextArea/TextAreaStopBackPress",
+    "MainAbility/pages/Search/SearchStopBackPress",
+    "MainAbility/pages/RichEditor/SelectionMenuOptions",
+    "MainAbility/pages/ImageAttachment/PixelMapColorFilter",
+    "MainAbility/pages/ImageAttachment/ResourceDefault",
+    "MainAbility/pages/ImageAttachment/VerticalAlign",
+    "MainAbility/pages/ImageAttachment/ObjectFit",
+    "MainAbility/pages/Text/editMenuOptions",
+    "MainAbility/pages/TextArea/addOrDelText",
+    "MainAbility/pages/TextChangeTest/TextOnChangeOptionsTest",
+    "MainAbility/pages/TextChangeTest/TextOnWillChangeOptionsTest",
+    "MainAbility/pages/SelectionMenuTest/bindSelectionMenuTest",
+    "MainAbility/pages/ImageSvgFillColor/ImageSvgFillColor",
+    "MainAbility/pages/imageMatrix/imageMatrix"
+  ]
+}

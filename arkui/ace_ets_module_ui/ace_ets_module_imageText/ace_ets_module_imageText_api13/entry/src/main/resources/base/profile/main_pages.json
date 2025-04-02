@@ -1,0 +1,10 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Text/textAreaInputTest",
+    "MainAbility/pages/Text/TextMenuType",
+    "MainAbility/pages/RichEditor/RichEditorMenuType",
+    "MainAbility/pages/Text/editMenuIdAIWriter",
+    "MainAbility/pages/MovingPhotoView/MovingPhotoView"
+  ]
+}

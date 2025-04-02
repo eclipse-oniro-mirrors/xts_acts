@@ -1,0 +1,28 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/customproperty/TestActiveChildrenInfoDestroy",
+    "MainAbility/pages/customproperty/TestActiveChildrenInfoGetCount",
+    "MainAbility/pages/customproperty/TestActiveChildrenInfoGetNodeByIndex",
+    "MainAbility/pages/customproperty/TestCustomPropertyDestroy",
+    "MainAbility/pages/customproperty/TestCustomPropertyGetStringValue",
+    "MainAbility/pages/customproperty/TestGetActiveChildrenInfo",
+    "MainAbility/pages/customproperty/TestGetCurrentPageRootNode",
+    "MainAbility/pages/customproperty/TestGetCustomProperty",
+    "MainAbility/pages/customproperty/TestGetNodeType",
+    "MainAbility/pages/customproperty/TestGetParentInPageTree",
+    "MainAbility/pages/customproperty/TestIsCreatedByNDK",
+    "MainAbility/pages/keyEvent/KeyEventGetGetDeviceIdTest",
+    "MainAbility/pages/keyEvent/KeyEventGetKeyCodeTest",
+    "MainAbility/pages/keyEvent/KeyEventGetKeyIntensionCodeTest",
+    "MainAbility/pages/keyEvent/KeyEventGetKeySourceTest",
+    "MainAbility/pages/keyEvent/KeyEventGetKeyTextTest",
+    "MainAbility/pages/keyEvent/KeyEventGetPressedKeysTest",
+    "MainAbility/pages/keyEvent/KeyEventGetTypeTest",
+    "MainAbility/pages/keyEvent/KeyEventGetUnicodeTest",
+    "MainAbility/pages/keyEvent/KeyEventSetConsumedTest",
+    "MainAbility/pages/keyEvent/KeyEventStopPropagationTest",
+    "MainAbility/pages/styledString/styledString"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.getallaccountsnoparameter",
+        "package-name": "com.example.getallaccountsnoparameter"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsGetAllAccountsNoParameterTest.hap",
+                "ActsAccountSceneAccessible.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

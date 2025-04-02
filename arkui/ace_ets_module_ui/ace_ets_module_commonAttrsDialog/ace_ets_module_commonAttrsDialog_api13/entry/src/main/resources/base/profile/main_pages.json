@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/bindContextMenuTest/bindContextMenuMargin",
+        "MainAbility/pages/bindSheetTest/bindSheetKeyboardAvoidMode",
+		"MainAbility/pages/Popup/followTransformOfTargetPopup",
+		"MainAbility/pages/Popup/followTransformOfTargetCustomPopup"
+    ]
+}

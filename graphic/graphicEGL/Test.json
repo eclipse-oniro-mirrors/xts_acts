@@ -1,0 +1,18 @@
+{
+    "description": "Configuration for graphic egl Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.graphicegl.napitest",
+        "module-name": "com.graphicegl.napitest",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsGraphicEglTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }]
+}

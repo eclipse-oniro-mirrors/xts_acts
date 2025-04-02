@@ -1,0 +1,10 @@
+{
+    "devices": {
+        "general": [
+            "wearable",
+            "default",
+            "tablet",
+            "2in1"
+        ]
+    }
+}

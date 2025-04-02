@@ -1,0 +1,17 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Swiper/interceptSwiper",
+        "MainAbility/pages/Tabs/tabBarModifier",
+        "MainAbility/pages/IndicatorComponent/getIndicator",
+        "MainAbility/pages/Swiper/swiperMode",
+        "MainAbility/pages/Tabs/tabsMode",
+        "MainAbility/pages/Swiper/swiperPageMode",
+        "MainAbility/pages/Tabs/tabsPageMode",
+        "MainAbility/pages/Scroll/getAttributeScroll",
+        "MainAbility/pages/WaterFlow/WaterFlowBackToTop",
+        "MainAbility/pages/List/ListBackToTop",
+        "MainAbility/pages/Grid/GridBackToTop",
+        "MainAbility/pages/Scroll/ScrollBackToTop"
+    ]
+}

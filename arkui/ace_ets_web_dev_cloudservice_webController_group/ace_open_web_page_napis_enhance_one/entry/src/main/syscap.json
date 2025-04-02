@@ -1,0 +1,18 @@
+{
+    "devices": {
+        "general": [
+            "car",
+            "wearable",
+            "tv",
+            "default",
+            "tablet"
+        ],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Startup.SystemInfo"
+                ]
+            }
+        ]
+    }
+}

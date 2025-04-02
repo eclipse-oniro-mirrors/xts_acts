@@ -1,0 +1,8 @@
+{
+  "src": [
+      "testability/pages/Index",
+      "testability/pages/WebRunJavaScriptOnDocumentStartTest",
+      "testability/pages/WebRunJavaScriptOnDocumentEndTest",
+      "testability/pages/WebRunJavaScriptOnHeadEndTest"
+  ]
+}

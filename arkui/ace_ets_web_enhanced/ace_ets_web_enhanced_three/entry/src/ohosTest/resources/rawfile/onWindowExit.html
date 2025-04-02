@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>allowWindowOpenMethodTest</title>
+    <style>
+
+::-webkit-scrollbar                         {   /*  1   */  }
+::-webkit-scrollbar-button                  {   /*  2   */  }
+::-webkit-scrollbar-track                   {   /*  3   */  }
+::-webkit-scrollbar-track-piece             {   /*  4   */  }
+::-webkit-scrollbar-thumb                   {   /*  5   */  }
+::-webkit-scrollbar-corner                  {   /*  6   */  }
+::-webkit-resizer                           {   /*  7   */  }
+    </style>
+
+</head>
+<body>
+<div>
+    <p id="baidu"><a href="https://www.bing.com/" target="_blank">新页面</a></p>
+</div>
+
+<script>
+    function OpenWindowAll(){
+        openwindowAll=window.open("https://www.baidu.com","_blank","height=400,width=600,top=100,scrollbars=yes")
+        setTimeout(function() {
+            window.close()
+        },30);
+
+    }
+</script>
+</body>
+</html>    

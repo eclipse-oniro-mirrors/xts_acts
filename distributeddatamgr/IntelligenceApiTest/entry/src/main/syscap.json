@@ -1,0 +1,17 @@
+{
+    "devices": {
+        "general": [
+            "wearable",
+            "default",
+            "tablet",
+            "2in1"
+        ],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.DistributedDataManager.DataIntelligence.Core"
+                ]
+            }
+        ]
+    }
+}

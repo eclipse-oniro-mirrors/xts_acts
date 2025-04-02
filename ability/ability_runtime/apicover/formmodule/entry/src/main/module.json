@@ -1,0 +1,56 @@
+{
+  "module": {
+    "name": "module1",
+    "type": "feature",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:module1_desc",
+    "mainElement": "ModuleAbility",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1",
+      "wearable"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "abilities": [
+      {
+        "name": "ModuleAbility",
+        "srcEntrance": "./ets/ModuleAbility/ModuleAbility.ts",
+        "description": "$string:ModuleAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:ModuleAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:white",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "FormAbility2",
+        "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+        "label": "$string:form_FormAbility_label",
+        "description": "$string:form_FormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
+      }
+    ]
+  }
+}

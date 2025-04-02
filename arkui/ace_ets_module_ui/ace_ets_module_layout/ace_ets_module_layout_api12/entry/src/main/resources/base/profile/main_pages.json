@@ -1,0 +1,16 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Column/APIaccessibilityTextHint",
+        "MainAbility/pages/Column/APIremoveGestureByTag",
+        "MainAbility/pages/Flex/SpaceMainNumber",
+        "MainAbility/pages/Flex/SpaceCross5AlignItems",
+        "MainAbility/pages/Flex/SpaceMain5JustifyContent",
+        "MainAbility/pages/RelativeContainer/RelativeContainerApi",
+        "MainAbility/pages/Chip/ChipApi1",
+        "MainAbility/pages/ChipGroup/ChipGroupApi1",
+        "MainAbility/pages/Flex/FlexSpaceTest",
+        "MainAbility/pages/FolderStack/FolderStackTest1",
+        "MainAbility/pages/FolderStack/FolderStackTest2"  
+    ]
+}

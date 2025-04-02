@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/textPicker/TextPickerTextStyle",
+        "MainAbility/pages/textPicker/TextStyleAnimation"
+    ]
+}

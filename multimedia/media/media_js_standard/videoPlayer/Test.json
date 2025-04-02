@@ -1,0 +1,38 @@
+{
+    "description": "Configuration for videoplayer Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "2000000",
+        "shell-timeout": "2000000",
+        "testcase-timeout": 60000,
+        "bundle-name": "ohos.acts.multimedia.video.videoplayer",
+        "package-name": "ohos.acts.multimedia.video.videoplayer"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsVideoPlayerJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+          "type": "ShellKit",
+          "run-command": [
+              "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.video.videoplayer/haps/entry/files",
+              "power-shell setmode 602"
+            ],
+          "teardown-command":[
+              "power-shell setmode 600"
+          ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/audio/H264_AAC.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.video.videoplayer/haps/entry/files/",
+                "./resource/audio/01.mp3 ->/data/app/el2/100/base/ohos.acts.multimedia.video.videoplayer/haps/entry/files/"
+            ]
+        }
+    ]
+}

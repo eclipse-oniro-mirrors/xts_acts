@@ -1,0 +1,61 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+@Entry
+@Component
+struct DismissReason1 {
+  @State handlePopup: boolean = false
+  @State flag: string = "start"
+  build() {
+    Column() {
+      Button(this.flag).id("DismissReason_Button")
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup
+        })
+        .bindPopup(this.handlePopup, {
+          message: 'This is a popup with PopupOptions',
+          messageOptions: {
+            textColor: Color.Red,
+            font: {
+              size: '14vp',
+              style: FontStyle.Italic,
+              weight: FontWeight.Bolder
+            }
+          },
+          placement: Placement.Bottom,
+          enableArrow: false,
+          targetSpace: '15vp',
+          onStateChange: (e) => {
+            if (!e.isVisible) {
+              this.handlePopup = false
+            }
+          },
+          onWillDismiss: (
+            (dismissPopupAction: DismissPopupAction) => {
+              console.info("dismissReason:" + JSON.stringify(dismissPopupAction.reason))
+              if (dismissPopupAction.reason == DismissReason.PRESS_BACK) {
+                dismissPopupAction.dismiss()
+                this.flag = "DismissReason succ"
+              } 
+              if (dismissPopupAction.reason == DismissReason.CLOSE_BUTTON){
+                this.flag = "CLOSE_BUTTON succ"
+              }
+            }
+          )
+        })
+    }.margin(20)
+  }
+}

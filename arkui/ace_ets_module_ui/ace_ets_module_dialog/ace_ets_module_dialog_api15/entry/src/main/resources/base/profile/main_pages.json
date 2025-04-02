@@ -1,0 +1,19 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/actionSheet/actionSheetMode",
+    "MainAbility/pages/actionSheet/showActionSheetMode",
+    "MainAbility/pages/actionSheet/index",
+    "MainAbility/pages/dialog/showAlertDialogMode",
+    "MainAbility/pages/dialog/showDialogMode",
+    "MainAbility/pages/prompt/openCustomDialogMode",
+    "MainAbility/pages/prompt/showActionMenuMode",
+    "MainAbility/pages/UIContext/overlayManager",
+    "MainAbility/pages/UIContext/index",
+    "MainAbility/pages/UIContext/uiOpenCustomDialogMode",
+    "MainAbility/pages/bindSheet/bindSheetRadius",
+    "MainAbility/pages/buttonType/buttonTypeTest",
+    "MainAbility/pages/customDialog/customDialogKeyboardAvoidDistance",
+    "MainAbility/pages/prompt/promptActionKeyboardAvoidDistance"
+  ]
+}

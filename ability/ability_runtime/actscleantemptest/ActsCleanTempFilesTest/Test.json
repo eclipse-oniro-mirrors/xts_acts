@@ -1,0 +1,34 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.cleancachefilestest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "9500"
+    },
+    "kits": [
+		{
+            "test-file-name": [
+                "ActsCleanCacheFilesRely.hap",
+                "ActsCleanTempFilesSecondRely.hap",
+                "ActsCleanCacheFilesTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "param set persist.sys.abilityms.support.ecologicalrulemgrservice false",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "param set persist.sys.abilityms.support.ecologicalrulemgrservice true",
+                "power-shell setmode 601"
+            ]
+        }
+    ]
+}

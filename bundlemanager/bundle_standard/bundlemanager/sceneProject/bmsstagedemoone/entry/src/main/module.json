@@ -1,0 +1,255 @@
+{
+    "module": {
+        "name": "phone",
+        "type": "entry",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:phone_entry_dsc",
+        "mainElement": "MainAbility",
+        "deviceTypes": [
+            "default",
+            "tablet",
+            "2in1",
+            "wearable"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "abilities": [
+            {
+                "name": "com.acts.bundle.stage.MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:phone_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "startWindowBackground": "#FFFFFF",
+                "startWindowIcon": "$media:icon",
+                "orientation": "portrait",
+                "visible": true,
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowBackground": "#FFFFFF",
+                "startWindowIcon": "$media:icon"
+            },
+            {
+                "name": "MainAbility1",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+                "startWindowBackground": "#FFFFFF",
+                "orientation": "unspecified",
+                "supportWindowMode": [
+                    "fullscreen"
+                ]
+            },
+            {
+                "name": "MainAbility2",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+                "startWindowBackground": "#FFFFFF",
+                "orientation": "landscape",
+                "supportWindowMode": [
+                    "split"
+                ]
+            },
+            {
+                "name": "MainAbility3",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "startWindowIcon": "$media:icon",
+                "startWindowBackground": "#FFFFFF",
+                "orientation": "portrait",
+                "supportWindowMode": [
+                    "floating"
+                ]
+            }
+        ],
+        "extensionAbilities": [
+            {
+                "name": "FormAbility",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "form",
+                "skills": [
+                    {
+                        "actions": [
+                            "actionZ"
+                        ]
+                    },
+                    {
+                        "actions": [
+                            "actionZ12"
+                        ],
+                        "uris": [
+                            {
+                                "scheme": "https",
+                                "host": "www.test.com",
+                                "pathStartWith": "query/teacher"
+                            }
+                        ]
+                    },
+                    {
+                        "actions": [
+                            "action_1"
+                        ],
+                        "uris": [
+                            {
+                                "scheme": "https",
+                                "host": "www.test.com",
+                                "path": "query/student/name"
+                            }
+                        ]
+                    },
+                    {
+                        "actions": [
+                            "actionZ14"
+                        ],
+                        "entities": [
+                            "entitiesZ14",
+                            "entitiesCommon",
+                            "entitiesZZ"
+                        ]
+                    }
+                ],
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
+            },
+            {
+                "name": "ExtensionAbility1",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "form",
+                "skills": [
+                    {
+                        "actions": [
+                            "actionY"
+                        ]
+                    },
+                    {
+                        "actions": [
+                            "actionY12"
+                        ],
+                        "uris": [
+                            {
+                                "scheme": "https",
+                                "host": "www.test.com",
+                                "path": "query/student/name"
+                            }
+                        ]
+                    },
+                    {
+                        "actions": [
+                            "action_2"
+                        ],
+                        "uris": [
+                            {
+                                "scheme": "https",
+                                "host": "www.test.com",
+                                "pathStartWith": "query/teacher"
+                            }
+                        ]
+                    },
+                    {
+                        "actions": [
+                            "actionY14"
+                        ],
+                        "entities": [
+                            "entitiesY14"
+                        ]
+                    }
+                ],
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "value": "testExtensionAbilities",
+                        "resource": "$profile:form_config"
+                    }
+                ],
+                "permissions": [
+                    "ohos.permission.GET_BUNDLE_INFO"
+                ]
+            },
+            {
+                "name": "ServiceAbility",
+                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "service",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
+            },
+            {
+                "name": "EnterpriseAdminAbility",
+                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "enterpriseAdmin",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
+            },
+            {
+                "name": "ThumbnailAbility",
+                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "thumbnail",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
+            },
+            {
+                "name": "PreviewAbility",
+                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "preview",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
+            },
+            {
+                "name": "DriverAbility",
+                "srcEntrance": "./ets/ServiceAbility/FormAbility.ts",
+                "label": "$string:form_FormAbility_label",
+                "description": "$string:form_FormAbility_desc",
+                "type": "driver",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "resource": "$profile:form_config"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for hjunit Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.moveabilitytobgtest",
+        "module-name": "entry",
+        "shell-timeout": "30000",
+        "testcase-timeout": 30000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsMoveAbilityToBackgroundTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -m 300 2700 280 200"
+            ]
+        }
+    ]
+}

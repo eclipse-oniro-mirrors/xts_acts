@@ -1,0 +1,9 @@
+{
+  "src": [
+    "TestAbility/pages/index",
+    "TestAbility/pages/p1",
+    "TestAbility/pages/p2",
+    "TestAbility/pages/p3",
+    "TestAbility/pages/p4"
+  ]
+}

@@ -1,0 +1,4 @@
+{
+    "name": "libfaultlogger_test_napi_xts.so",
+    "types": "./index.d.ts"
+}

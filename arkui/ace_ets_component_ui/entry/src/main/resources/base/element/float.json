@@ -1,0 +1,12 @@
+{
+  "float": [
+    {
+      "name": "prevMargin",
+      "value": "30"
+    },
+    {
+      "name": "nextMargin",
+      "value": "30"
+    }
+  ]
+}

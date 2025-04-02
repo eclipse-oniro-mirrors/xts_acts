@@ -1,0 +1,56 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+group("ActsAceEtsModuleUITest") {
+  testonly = true
+  deps = [
+    "ace_ets_module_RouteManagement:ActsAceEtsModuleRouteManagementTest",
+    "ace_ets_module_XNode:ActsAceEtsModuleXNodeTest",
+    "ace_ets_module_advancedComponents:ActsAceEtsModuleAdvancedComponentsTest",
+    "ace_ets_module_animation:ActsAceEtsModuleAnimationTest",
+    "ace_ets_module_commonAttrsDialog:ActsAceEtsModuleCommonAttrsDialogTest",
+    "ace_ets_module_commonAttrsEvents:ActsAceEtsModuleCommonAttrsEventsTest",
+    "ace_ets_module_commonAttrsLayout:ActsAceEtsModuleCommonAttrsLayoutTest",
+    "ace_ets_module_commonAttrsOther:ActsAceEtsModuleCommonAttrsOtherTest",
+    "ace_ets_module_commonAttrsVisual:ActsAceEtsModuleCommonAttrsVisualTest",
+    "ace_ets_module_commonEvents:ActsAceEtsModuleCommonEventsTest",
+    "ace_ets_module_dialog:ActsAceEtsModuleDialogTest",
+    "ace_ets_module_draw:ActsAceEtsModuleDrawTest",
+    "ace_ets_module_gauge_contentModifier:ActsAceEtsModuleGaugeContentModifierTest",
+    "ace_ets_module_imageText:ActsAceEtsModuleImageTextTest",
+    "ace_ets_module_information:ActsAceEtsModuleInformationTest",
+    "ace_ets_module_keyboardShortcut:ActsAceEtsModuleKeyboardShortcutTest",
+    "ace_ets_module_layout:ActsAceEtsModuleLayoutTest",
+    "ace_ets_module_loadingProgress:ActsAceEtsModuleLoadingProgressTest",
+    "ace_ets_module_modifier:ActsAceEtsModuleModifierTest",
+    "ace_ets_module_modifierSuite/ace_ets_module_modifier_api14:ActsAceEtsModuleModifier14Test",
+    "ace_ets_module_navigation:ActsAceEtsModuleNavigationTest",
+    "ace_ets_module_observer:ActsAceEtsModuleObserverTest",
+    "ace_ets_module_picker:ActsAceEtsModulePickerTest",
+    "ace_ets_module_platform:ActsAceEtsModulePlatformTest",
+    "ace_ets_module_scroll:ActsAceEtsModuleScrollTest",
+    "ace_ets_module_scrollEdge:ActsAceEtsModuleScrollEdgeTest",
+    "ace_ets_module_scroll_fling_widget:ActsAceEtsModuleScrollFlingWidgetTest",
+    "ace_ets_module_search:ActsAceEtsModuleSearchTest",
+    "ace_ets_module_search_widget:ActsAceEtsModuleSearchWidgetTest",
+    "ace_ets_module_select/ace_ets_module_select_api12:ActsAceBasicSelectTest",
+    "ace_ets_module_span_baselineOffset:ActsAceEtsModuleSpanBaselineOffsetTest",
+    "ace_ets_module_textArea:ActsAceEtsModuleTextAreaTest",
+    "ace_ets_module_textInput:ActsAceEtsModuleTextInputTest",
+    "ace_ets_module_theme:ActsAceEtsModuleThemeTest",
+    "ace_ets_module_uicontext/ace_ets_module_uicontext_api12:ActsAceBasicContextTest",
+    "ace_ets_module_uicontext/ace_ets_module_uicontext_api13:ActsAceBasicContext13Test",
+    "ace_ets_module_uicontext_widget:ActsAceEtsModuleUiContextWidgetTest",
+    "ace_ets_module_video:ActsAceEtsModuleVideoTest",
+  ]
+}

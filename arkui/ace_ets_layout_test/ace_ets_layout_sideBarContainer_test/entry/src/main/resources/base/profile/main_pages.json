@@ -1,0 +1,11 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/SideBarContainer/SideBarContainer_attribute/SideBarContainer_Attribute",
+        "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType",
+        "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType_DefaultValue1",
+        "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType_DefaultValue2",
+        "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType_DefaultValue3",
+        "MainAbility/pages/SideBarContainer/SideBarContainerDivider/SideBarContainerDivider"
+    ]
+}

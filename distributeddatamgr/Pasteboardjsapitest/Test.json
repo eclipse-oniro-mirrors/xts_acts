@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for PasteBoard js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.distributeddatamgr.pasteboardtest",
+        "package-name": "com.acts.distributeddatamgr.pasteboardtest",
+        "shell-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": ["ActsPasteBoardETSApiTest.hap"],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 594 2117 594 864 400",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

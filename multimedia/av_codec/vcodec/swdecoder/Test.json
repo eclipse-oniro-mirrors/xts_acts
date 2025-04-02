@@ -1,0 +1,32 @@
+{
+    "description": "Config for avcodec ndk test cases",
+    "driver": {
+        "module-name": "ActsSwDecodeTest",
+        "native-test-timeout": "300000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "1s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push" : [
+                "mount -o rw,remount /",
+                "mkdir -p /data/test/media",
+                "mkdir -p /data/local/tmp/"
+            ],
+            "push": [
+                "ActsSwDecodeTest->/data/local/tmp/ActsSwDecodeTest",
+                "./resource/media/codec/video_decoder/. ->/data/test/media/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff",
+                "chmod 777 -R /data/local/tmp",
+                "restorecon /data/test/media"
+            ]
+        }
+    ]
+}

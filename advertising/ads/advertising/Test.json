@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.cloud.ad.test",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 30000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCloudAdTest.hap",
+                "ActsAdsKitTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [
+                "mount -o rw,remount /"
+            ],
+            "push": [
+                "./resource/advertising/xts/ad_service_config.json ->/etc/advertising/ads_framework/ad_service_config.json",
+                "./resource/advertising/xts/ad_service_config_ext.json ->/etc/advertising/ads_framework/ad_service_config_ext.json"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": []
+        }
+  ]
+}
