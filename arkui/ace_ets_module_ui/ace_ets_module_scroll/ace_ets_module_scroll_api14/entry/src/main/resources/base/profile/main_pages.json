@@ -1,0 +1,31 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/ScrollBar/enableScroll",
+        "MainAbility/pages/List/getListVisible",
+        "MainAbility/pages/List/itemIndexList",
+        "MainAbility/pages/List/groupAnimation",
+        "MainAbility/pages/List/animationCallback",
+        "MainAbility/pages/List/listAniAdd",
+        "MainAbility/pages/List/listAniDel",
+        "MainAbility/pages/List/listAnVisible",
+        "MainAbility/pages/List/listHeight",
+        "MainAbility/pages/List/groupAnVisible",
+        "MainAbility/pages/List/groupHeight",
+        "MainAbility/pages/Scroll/scrollAniFalse",
+        "MainAbility/pages/Scroll/scrollAniUn",
+        "MainAbility/pages/Scroll/scrollAniTrue",
+        "MainAbility/pages/Grid/gridAniTrue",
+        "MainAbility/pages/Grid/irregularAniGrid",
+        "MainAbility/pages/Grid/repeatAniGrid",
+        "MainAbility/pages/Grid/gridNode",
+        "MainAbility/pages/GridItem/griditemNode",
+        "MainAbility/pages/Grid/nodeTypeGrid",
+        "MainAbility/pages/ScrollBar/listScrollerBar",
+        "MainAbility/pages/Grid/cachedShowGrid",
+        "MainAbility/pages/List/cachedShowList",
+        "MainAbility/pages/List/getItemError",
+        "MainAbility/pages/List/getVisibleListError",
+        "MainAbility/pages/List/itemInGroupError"
+    ]
+}

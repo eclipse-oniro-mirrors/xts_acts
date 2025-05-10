@@ -1,0 +1,35 @@
+{
+    "description": "Configuration for startabilityforresultnotargetfatest Tests",
+    "driver": {
+         "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+		"bundle-name": "com.open.harmony.startAbilityForResult",
+        "package-name": "com.open.harmony.startAbilityForResult",
+        "shell-timeout": "600000",
+        "testcase-timeout": "50000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStartAbilityForResultNoTargetFaTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test/"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push":[
+                "AtomizationResultFaEntry.hap -> /data/test/AtomizationResultFaEntry.hap",
+                "FaResultMyApplication1.hap -> /data/test/FaResultMyApplication1.hap",
+                "MockService.hap -> /data/test/MockService.hap"
+            ]
+        }
+    ]
+}

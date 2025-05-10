@@ -1,0 +1,22 @@
+{
+    "description": "Configuration for ecma_new_features Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "bundle-name": "com.example.worker_path_load",
+        "module-name": "entry_test",
+        "shell-timeout": "180000",
+        "compile-mode": "esmodule"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsArkTsWorkerPathLoadLibTest-hsp-default-signed.hsp",
+                "ActsArkTsWorkerPathLoadLibTest-entry-default-signed.hap",
+                "ActsArkTsWorkerPathLoadTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

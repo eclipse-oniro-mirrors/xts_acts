@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prompt</title>
+    <style>
+        body{
+                background-color:gray;
+            }
+        .box {
+            width: 200px;
+            height: 150px;
+            line-height: 150px;
+            text-align: center;
+            background-color: orange;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -100px;
+            margin-top: -75px;
+         }
+         a{
+            font-size:3em;
+         }
+
+
+
+    </style>
+</head>
+<body>
+<div id="error"></div>
+<video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+<canvas id="canvas" width="500px" height="500px"></canvas>
+<div class="box">
+    <input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()"/>
+</div>
+</body>
+<script>
+    function getMedia() {
+        let constraints = {
+            video: {width: 500, height: 500},
+            audio: true
+        };
+        //获取video摄像头区域
+        let video = document.getElementById('video');
+        //返回的Promise对象
+        let promise = navigator.mediaDevices.getUserMedia(constraints);
+        //then()异步，调用MediaStream对象作为参数
+        promise.catch( error => {
+            document.getElementById('error').innerHTML = 'deny';
+        }).then(function (MediaStream) {
+            console.info('then MediaStream is ' + MediaStream);
+            if(MediaStream){
+                video.srcObject = MediaStream;
+                video.play();
+                document.getElementById('error').innerHTML = 'grant';
+            }
+        });
+    }
+
+    function getResult() {
+        return document.getElementById('error').innerHTML;
+    }
+</script>
+</html>

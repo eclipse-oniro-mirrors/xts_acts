@@ -1,0 +1,42 @@
+# Copyright (C) 2025 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos.gni")
+
+group("ActsPCSSyscapMinSetTest") {
+  testonly = true
+  deps = [ ":SyscapMinSetTestCase" ]
+}
+
+ohos_copy("SyscapMinSetTestCase") {
+  subsystem_name = "xts"
+  part_name = "acts"
+  sources = [
+    "./ActsPCSSyscapMinSetTest.py",
+    "./ActsPCSSyscapMinSetTest.json",
+    "./testSyscapMinSetTest.py"
+  ]
+  deps = [ ":SyscapSource" ]
+  outputs =
+      [ root_out_dir + "/suites/acts/acts/testcases/{{source_file_part}}" ]
+}
+
+ohos_copy("SyscapSource") {
+  subsystem_name = "xts"
+  part_name = "acts"
+  sources = [
+    "${current_sdk_home}/js/api/device-define"
+  ]
+  outputs =
+      [ root_out_dir + "/suites/acts/acts/testcases/syscap" ]
+}

@@ -1,0 +1,93 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0044b") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+  testonly = true
+}
+
+ohos_moduletest_suite("ActsDeqpgles3Suite0044bTest") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles30044TestSuite.cpp",
+    "../functional/Deqpgles3clipping_lineTestCase.cpp",
+    "../functional/Deqpgles3clipping_pointTestCase.cpp",
+    "../functional/Deqpgles3clipping_polygonTestCase.cpp",
+    "../functional/Deqpgles3clipping_polygon_edgeTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_firstTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_instanced_firstTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_instanced_pointsTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_instanced_trianglesTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_line_loopTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_line_stripTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_linesTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_pointsTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_triangle_fanTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_triangle_stripTestCase.cpp",
+    "../functional/Deqpgles3draw_arrays_trianglesTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_line_loopTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_line_stripTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_linesTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_pointsTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_triangle_fanTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_triangle_stripTestCase.cpp",
+    "../functional/Deqpgles3draw_elements_trianglesTestCase.cpp",
+    "../functional/Deqpgles3functional_polygon_offsetTestCase.cpp",
+    "../functional/Deqpgles3indices_bufferTestCase.cpp",
+    "../functional/Deqpgles3indices_unaligned_user_ptrTestCase.cpp",
+    "../functional/Deqpgles3indices_user_ptrTestCase.cpp",
+    "../functional/Deqpgles3state_query_buffer_objectTestCase.cpp",
+    "../functional/Deqpgles3state_query_fboTestCase.cpp",
+    "../functional/Deqpgles3state_query_indexedTestCase.cpp",
+    "../functional/Deqpgles3state_query_internal_formatTestCase.cpp",
+    "../functional/Deqpgles3state_query_rboTestCase.cpp",
+    "../functional/Deqpgles3state_query_samplerTestCase.cpp",
+    "../functional/Deqpgles3state_query_shaderTestCase.cpp",
+    "../functional/Deqpgles3state_query_stringTestCase.cpp",
+    "../functional/Deqpgles3state_query_textureTestCase.cpp",
+    "../functional/Deqpgles3triangle_vertex_clip_oneTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles3func0044b" ]
+
+  cflags = [ "-Wno-error" ]
+}

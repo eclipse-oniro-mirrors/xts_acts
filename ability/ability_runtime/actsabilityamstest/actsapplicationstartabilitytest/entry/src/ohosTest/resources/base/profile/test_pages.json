@@ -1,0 +1,10 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "entryability1/pages/Index",
+    "entryability2/pages/Index",
+    "entryability3/pages/Index",
+    "entryability4/pages/Index",
+    "entryability5/pages/Index"
+  ]
+}

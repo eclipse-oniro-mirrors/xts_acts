@@ -1,0 +1,1080 @@
+{
+  "app": {
+    "vendor": "example",
+    "bundleName": "com.example.third7",
+    "version": {
+      "code": 1000000,
+      "name": "2.0.0"
+    }
+  },
+  "deviceConfig": {
+    "default": {
+      "process": "helloworld",
+      "keepAlive": true
+    }
+  },
+  "module": {
+    "mainAbility": ".MainAbility",
+    "deviceType": [],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".MainAbility",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "actions": []
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".actionEmpty",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "actionEmpty",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "actions": [
+              ""
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".actionStringLenZero",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "actionStringLenZero",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "actions": [
+              "action_a"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".actionSingleString",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "actionSingleString",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "actions": [
+              "action_b1",
+              "action_b2"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".actionDoubleString",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "actionDoubleString",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "actions": [
+              "action_c1",
+              "action_c2"
+            ]
+          },
+          {
+            "actions": [
+              "action_d1",
+              "action_d2"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".actionDoubleSkill",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "actionDoubleSkill",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "entities": [],
+            "actions": [
+              "entity_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".entityEmpty",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "entityEmpty",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity_a"
+            ],
+            "actions": [
+              "entity_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".entitySingleString",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "entitySingleString",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity_b1",
+              "entity_b2"
+            ],
+            "actions": [
+              "entity_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".entityDoubleString",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "entityDoubleString",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity_c1",
+              "entity_c2"
+            ],
+            "actions": [
+              "entity_reserved"
+            ]
+          },
+          {
+            "entities": [
+              "entity_d1",
+              "entity_d2"
+            ],
+            "actions": [
+              "entity_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".entityDoubleSkill",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "entityDoubleSkill",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriEmpty",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriEmpty",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "scheme": "content"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriScheme",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriScheme",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "scheme": "content",
+                "host": "www.test.com"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriSchemeHost",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriSchemeHost",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "scheme": "content",
+                "port": "8080",
+                "host": "www.test.com"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriSchemeHostPort",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriSchemeHostPort",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "path": "query/student/name",
+                "scheme": "content",
+                "port": "8080",
+                "host": "www.test.com"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriSchemeHostPortPath",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriSchemeHostPortPath",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "pathStartWith": "query/student",
+                "scheme": "content",
+                "port": "8080",
+                "host": "www.test.com"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriSchemeHostPortPathStartWith",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriSchemeHostPortPathStartWith",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "scheme": "content",
+                "port": "8080",
+                "host": "www.test.com",
+                "pathRegx": "query/.*/name"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriSchemeHostPortPathRegx",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriSchemeHostPortPathRegx",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "scheme": "",
+                "port": "8080",
+                "host": "www.test.com"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriSchemeEmpty",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriSchemeEmpty",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "scheme": "content",
+                "port": "8080",
+                "host": ""
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriHostEmpty",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriHostEmpty",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "path": "query/student/name",
+                "scheme": "content",
+                "host": "www.test.com"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriPortEmptyWithPath",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriPortEmptyWithPath",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "pathStartWith": "query/student",
+                "scheme": "content",
+                "host": "www.test.com"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriPortEmptyWithPathStartWith",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriPortEmptyWithPathStartWith",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "scheme": "content",
+                "host": "www.test.com",
+                "pathRegx": "query/.*/name"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriPortEmptyWithPathRegx",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriPortEmptyWithPathRegx",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "path": "query/student/name",
+                "pathStartWith": "query/teacher",
+                "scheme": "file",
+                "port": "8080",
+                "host": "www.test.com",
+                "pathRegx": "update/.*/name"
+              }
+            ],
+            "actions": [
+              "uri_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".uriMultiPath",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "uriMultiPath",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "type": "*/*"
+              }
+            ],
+            "actions": [
+              "type_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".TypeDoubleWildCard",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "TypeDoubleWildCard",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "type": "prefixType/*"
+              }
+            ],
+            "actions": [
+              "type_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".TypeSingleWildCard",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "TypeSingleWildCard",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "type": "prefixType/suffixType"
+              }
+            ],
+            "actions": [
+              "type_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".TypeString",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "TypeString",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "type": "prefixTypeExt/suffixTypeExt"
+              }
+            ],
+            "actions": [
+              "type_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".TypeStringExt",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "TypeStringExt",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "type": ""
+              }
+            ],
+            "actions": [
+              "type_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".TypeEmpty",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "TypeEmpty",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {}
+            ],
+            "actions": [
+              "type_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".TypeEmptyExt",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "TypeEmptyExt",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "entities": [
+              "all_entity_a"
+            ],
+            "actions": [
+              "all_action_a"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".allAE",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "allAE",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "entities": [
+              "all_entity_b1",
+              "all_entity_b2"
+            ],
+            "actions": [
+              "all_action_b"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".allAEs",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "allAEs",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "path": "query/student/name",
+                "pathStartWith": "query/teacher",
+                "scheme": "http",
+                "port": "8080",
+                "host": "www.test.com",
+                "pathRegx": "update/.*/name",
+                "type": "text/plain"
+              }
+            ],
+            "actions": [
+              "all_reserved"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".allUT",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "allUT",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "skills": [
+          {
+            "uris": [
+              {
+                "path": "query/student/name",
+                "scheme": "https",
+                "port": "8080",
+                "host": "www.test.com",
+                "type": "text/*"
+              }
+            ],
+            "entities": [
+              "all_entity_c1",
+              "all_entity_c2"
+            ],
+            "actions": [
+              "all_action_c"
+            ]
+          }
+        ],
+        "visible": true,
+        "srcPath": "default",
+        "name": ".allAEUT",
+        "srcLanguage": "js",
+        "icon": "$media:icon",
+        "description": "allAEUT",
+        "formsEnabled": false,
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "distro": {
+      "moduleType": "entry",
+      "installationFree": false,
+      "deliveryWithInstall": true,
+      "moduleName": "entry"
+    },
+    "package": "com.example.third7",
+    "name": ".MyApplication",
+    "shortcuts": [
+      {
+        "intents": [
+          {
+            "targetBundle": "com.hello.world",
+            "targetClass": "com.hello.world.MainAbility"
+          },
+          {
+            "targetBundle": "com.example.third7",
+            "targetClass": "com.example.third7.MainAbility"
+          }
+        ],
+        "icon": "$media:icon",
+        "label": "$string:app_name",
+        "shortcutId": "id001"
+      },
+      {
+        "intents": [
+          {
+            "targetBundle": "com.hello.world2",
+            "targetClass": "com.hello.world2.MainAbility"
+          },
+          {
+            "targetBundle": "com.example.third72",
+            "targetClass": "com.example.third72.MainAbility"
+          }
+        ],
+        "icon": "$media:icon",
+        "label": "$string:app_name",
+        "shortcutId": "id002"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".actionEmpty"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".actionStringLenZero"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".actionSingleString"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".actionDoubleString"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".actionDoubleSkill"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".entityEmpty"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".entitySingleString"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".entityDoubleString"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".entityDoubleSkill"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriEmpty"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriScheme"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriSchemeHost"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriSchemeHostPort"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriSchemeHostPortPath"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriSchemeHostPortPathStartWith"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriSchemeHostPortPathRegx"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriSchemeEmpty"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriHostEmpty"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriPortEmptyWithPath"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriPortEmptyWithPathStartWith"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriPortEmptyWithPathRegx"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".uriMultiPath"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TypeDoubleWildCard"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TypeSingleWildCard"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TypeString"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TypeStringExt"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TypeEmpty"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TypeEmptyExt"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".allAE"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".allAEs"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".allUT"
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".allAEUT"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO",
+        "reason": "use ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO_PRIVILEGED",
+        "reason": "use ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1000000",
+        "shell-timeout": "1000000",
+        "testcase-timeout": "20000",
+        "bundle-name": "ohos.acts.relationalstorejstest",
+        "package-name": "ohos.acts.relationalstorejstest"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsRelationalStoreJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -g 500 2200 500 1700",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

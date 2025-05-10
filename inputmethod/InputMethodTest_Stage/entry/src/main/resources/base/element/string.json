@@ -1,0 +1,36 @@
+{
+    "string":  [
+        {
+            "name": "phone_entry_dsc",
+            "value": "i am an entry for phone"
+        },
+        {
+            "name": "phone_entry_main",
+            "value": "the phone entry ability"
+        },
+        {
+            "name": "entry_label",
+            "value": "ActsImeAbilityTest"
+        },
+        {
+            "name": "ime_description",
+            "value": "input method extension ability."
+        },
+        {
+            "name": "ime_label",
+            "value": "inputMethod extension ability services."
+        },
+        {
+            "name": "ime_label_1",
+            "value": "inputMethod extension ability services_1."
+        },
+        {
+            "name": "description_application",
+            "value": "demo for test"
+        },
+        {
+            "name": "app_name",
+            "value": "Demo"
+        }
+    ]
+}

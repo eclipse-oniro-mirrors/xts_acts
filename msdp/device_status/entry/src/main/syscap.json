@@ -1,0 +1,14 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Msdp.DeviceStatus.Drag",
+                    "SystemCapability.Msdp.DeviceStatus.Cooperate",
+                    "SystemCapability.Msdp.DeviceStatus.Stationary"
+                ]
+            }
+        ]
+    }
+}

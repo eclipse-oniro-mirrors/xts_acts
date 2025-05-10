@@ -1,0 +1,17 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/onKeyEvent/unicode",
+		"MainAbility/pages/FocusView/defaultFocus",
+        "MainAbility/pages/tabStopApiTest/tabStopApiTest",
+		"MainAbility/pages/GestureAllowedTypes/LongPressGestureAllowedTypes",
+        "MainAbility/pages/GestureAllowedTypes/PanGestureAllowedTypes",
+        "MainAbility/pages/GestureAllowedTypes/PinchGestureAllowedTypes",
+        "MainAbility/pages/GestureAllowedTypes/RotationGestureAllowedTypes",
+        "MainAbility/pages/GestureAllowedTypes/SwipeGestureAllowedTypes",
+        "MainAbility/pages/GestureAllowedTypes/TapGestureAllowedTypes",
+        "MainAbility/pages/GestureHandlerAllowedTypes/LongPressGestureHandlerAllowedTypes",
+        "MainAbility/pages/GestureHandlerAllowedTypes/PinchGestureHandlerAllowedTypes",
+        "MainAbility/pages/GestureHandlerAllowedTypes/TapGestureHandlerAllowedTypes"
+    ]
+}

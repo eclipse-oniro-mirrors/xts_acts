@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for capi child process Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.capichildprocesstest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout":"30000",
+        "compile-mode":"esmodule"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCapiChildProcessMainTest.hap",
+                "ActsCapiChildProcessTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

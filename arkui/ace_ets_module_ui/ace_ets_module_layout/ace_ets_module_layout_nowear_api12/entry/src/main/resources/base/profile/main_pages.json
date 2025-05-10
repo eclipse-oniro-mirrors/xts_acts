@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Chip/ChipApi1",
+        "MainAbility/pages/ChipGroup/ChipGroupApi1",
+        "MainAbility/pages/FolderStack/FolderStackTest1",
+        "MainAbility/pages/FolderStack/FolderStackTest2"  
+    ]
+}

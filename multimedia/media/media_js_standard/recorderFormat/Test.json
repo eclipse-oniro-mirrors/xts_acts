@@ -1,0 +1,36 @@
+{
+    "description": "Configuration for audioRecorder Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "90000",
+        "shell-timeout": "90000",
+        "testcase-timeout": 90000,
+        "bundle-name": "ohos.acts.multimedia.audio.recorderformat",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600",
+                "sleep 5",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "kill -9 `pidof com.ohos.medialibrary.medialibrarydata`",
+                "scanner"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsRecorderFormatJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

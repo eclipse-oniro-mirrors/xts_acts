@@ -1,0 +1,65 @@
+<!Document>
+<html>
+<head>
+    <title>同层渲染测试html</title>
+    <meta name="viewport">
+</head>
+<body>
+<div>
+    <div id="bodyId">
+        <object id="cameraTest" type = "application/view" width="800" height = "800" src = "test" style = "background-color:red">
+            <param name="type" value="video">
+            <param name="id" value="playerId">
+            <param name="data" value="{'123'}">
+            <param name="uc_render_mode" value="3">
+            <param name="selfdraw" value="1">
+        </object>
+    </div>
+</div>
+
+<script>
+let nativeEmbed = {
+    touch:('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
+    nativeEmbed : document.getElementById('objectTest'),
+
+    events:{
+        nativeEmbed:document.getElementById('objectTest'),
+        handleEvent:function(event) {
+            console.log('object event');
+            var self = this;
+            if (event.type === 'touchstart') {
+                self.start(event);
+            } else if (event.type === 'touchmove') {
+                self.move(event);
+            } else if (event.type === 'touchend') {
+                self.end(event);
+            }
+        },
+        start:function(event) {
+            console.log('object start slide');
+            this.nativeEmbed.removeEventListener('touchmove', this, false);
+            this.nativeEmbed.removeEventListener('touchend', this, false);
+        },
+        move:function(event) {
+            console.log('object start move');
+        },
+        end:function(event) {
+            console.log('object end slide');
+            this.nativeEmbed.removeEventListener('touchmove', this, false);
+            this.nativeEmbed.removeEventListener('touchend', this, false);
+        }
+
+    },
+
+    //初始化
+    init:function() {
+        let self = this;
+        console.log('init:function');
+        self.nativeEmbed.addEventListener('touchstart', self.events, false);
+    }
+};
+
+nativeEmbed.init();
+</script>
+</body>
+</html>

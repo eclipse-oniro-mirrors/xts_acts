@@ -1,0 +1,37 @@
+{
+    "description": "Configuration for freeinstallstartabilityforresultstagetest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.startAbilityForResult.hmservice",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "50000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsFreeInstallStartAbilityForResultStageTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test/"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push":[
+                "AtomizationResultStageEntry.hap -> /data/test/AtomizationResultStageEntry.hap",
+                "AtomizationResultStageHm2.hap -> /data/test/AtomizationResultStageHm2.hap",
+                "AtomizationResultStageHnm2.hap -> /data/test/AtomizationResultStageHnm2.hap",
+                "StageResultMyApplication1.hap -> /data/test/StageResultMyApplication1.hap",
+                "MockService.hap -> /data/test/MockService.hap"
+            ]
+        }
+    ]
+}

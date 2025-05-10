@@ -1,0 +1,34 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+      "type": "OHJSUnitTest",
+      "test-timeout": "1200000",
+      "shell-timeout": "900000",
+      "testcase-timeout": "600000",
+      "bundle-name": "com.openharmony.certificateframework",
+      "package-name": "com.openharmony.certificateframework"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCertificateFrameworkJSNormalTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+          "type": "ShellKit",
+          "run-command": ["remount", "mkdir -p /data/local/tmp/xts-test"]
+        },
+        {
+          "type": "PushKit",
+          "push": [
+            "ActsCertificateFrameworkJSNormalTest.hap->/data/local/tmp/xts-test/ActsCertificateFrameworkJSNormalTest.hap"
+          ]
+        },
+        {
+          "type": "ShellKit",
+          "run-command": ["chmod 777 -R /data/local/tmp/xts-test"]
+        }
+    ]
+}

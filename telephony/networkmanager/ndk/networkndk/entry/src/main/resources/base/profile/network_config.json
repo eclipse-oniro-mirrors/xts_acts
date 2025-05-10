@@ -1,0 +1,108 @@
+{
+    "network-security-config": {
+      "base-config": {
+        "trust-anchors": [
+          {
+            "certificates": "/etc/security/certificates"
+          }
+        ]
+      },
+      "domain-config": [
+        {
+            "domains": [
+                {
+                "include-subdomains": true,
+                "name": "getonepin.com"
+                }
+            ],
+            "pin-set": {
+                "expiration": "2066-11-08",
+                "pin": [
+                    {
+                        "digest-algorithm": "sha256",
+                        "digest": "FEDCBA987654321"
+                    }
+                ]
+            }
+        },
+        {
+            "domains": [
+                {
+                "include-subdomains": true,
+                "name": "getmultipin.com"
+                }
+            ],
+            "pin-set": {
+                "expiration": "2066-11-08",
+                "pin": [
+                    {
+                        "digest-algorithm": "sha256",
+                        "digest": "FEDCBA987654321"
+                    },
+                    {
+                        "digest-algorithm": "sha256",
+                        "digest": "ABCDEF987654321"
+                    },
+                    {
+                        "digest-algorithm": "sha256",
+                        "digest": "FEDCBA123456789"
+                    }
+                ]
+            }
+        },
+        {
+            "domains": [
+                {
+                "include-subdomains": true,
+                "name": "getoverduepin.com"
+                }
+            ],
+            "pin-set": {
+                "expiration": "2015-11-08",
+                "pin": [
+                    {
+                        "digest-algorithm": "sha256",
+                        "digest": "FEDCBA987654321"
+                    },
+                    {
+                        "digest-algorithm": "sha256",
+                        "digest": "ABCDEF987654321"
+                    }
+                ]
+            }
+        },
+        {
+          "domains": [
+            {
+              "include-subdomains": true,
+              "name": "getonecert.com"
+            }
+          ],
+          "trust-anchors": [
+            {
+              "certificates": "/data/storage/el1/bundle/entry/resources/resfile/cert1"
+            }
+          ]
+        },
+        {
+            "domains": [
+              {
+                "include-subdomains": true,
+                "name": "getmulticert.com"
+              }
+            ],
+            "trust-anchors": [
+              {
+                "certificates": "/data/storage/el1/bundle/entry/resources/resfile/cert1"
+              },
+              {
+                "certificates": "/data/storage/el1/bundle/entry/resources/resfile/cert2"
+              },
+              {
+                "certificates": "/data/storage/el1/bundle/entry/resources/resfile/cert3"
+              }
+            ]
+          }
+      ]
+    }
+  }

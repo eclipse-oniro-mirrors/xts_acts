@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for nfc js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "testcase-timeout": "600000",
+        "bundle-name": "ohos.acts.communication.nfc.nfcdevice",
+        "package-name": "ohos.acts.communication.nfc.nfcdevice"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNFCErrorJSTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

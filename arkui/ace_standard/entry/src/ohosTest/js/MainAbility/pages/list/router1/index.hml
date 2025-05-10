@@ -1,0 +1,60 @@
+<!--/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+
+<div class="container">
+
+
+    <div style="background-color: #000000; width: 2px; height: 100%;">
+    </div>
+
+    <div class="sub-container">
+        <div class="prop-container">
+            <text class="title">
+                通用属性
+            </text>
+            <text class="sub-title">
+                list通用属性1
+            </text>
+            <list id="prop1" class="prop1"
+                 disabled = "true" focusable ="true"
+                 data-name ="prop1" click-effect="spring-medium"
+                 dir ="rtl">
+            </list>
+            <text  class="sub-title">
+                list特有属性1
+            </text>
+            <list ref ="prop2" class="list1" divider="true" scrollpage="false"
+                scrollbar="auto" scrolleffect="fade" indexer="true" data-name ="prop2"
+                shapemode="rect" updateeffect="true" scrollvibrate="true">
+                <list-item for="{{array}}" class="listItem">
+                    <text class="text">{{$item.value}}</text>
+                </list-item>
+            </list>
+            <text  class="sub-title">
+                list特有属性2
+            </text>
+            <list class="list" divider="true">
+                <list-item for="{{array}}" class="listItem">
+                    <text class="text">{{$item.value}}</text>
+                </list-item>
+            </list>
+        </div>
+
+
+    </div>
+
+
+
+</div>

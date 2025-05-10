@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <!-- 定义一个圆形 -->
+    <circle id="color-changing-circle" cx="100" cy="100" r="50">
+        <!-- 使用动画改变填充颜色 -->
+        <animate
+                attributeName="fill"
+                values="#ff0000;#00ff00;#0000ff;#ff0000"
+                dur="6s"
+                repeatCount="indefinite"
+        />
+    </circle>
+</svg>

@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.example.actsnotificationwantagent",
+        "package-name": "com.example.actsnotificationwantagent"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNotificationWantAgentTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
