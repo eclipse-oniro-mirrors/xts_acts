@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.open.harmony.webpagefonttest",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout": "70000"
+    },
+    "kits": [
+        {
+        "test-file-name": [
+            "ActsWebPageFontTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

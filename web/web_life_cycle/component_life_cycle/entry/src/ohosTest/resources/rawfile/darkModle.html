@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="author" content="Lovell Liu" />
+    <meta name="robots" content="follow, index" />
+    <meta name="generator" content={Astro.generator} />
+    <title></title>
+    <style lang="css">
+        @media (prefers-color-scheme: dark) {
+          body {
+            font-size: 20px;
+          }
+        }
+
+        @media (prefers-color-scheme: light) {
+          body {
+            font-size: 30px;
+          }
+        }
+  </style>
+</head>
+<body>
+    <p id="content">content</p>
+</body>
+<script>
+    function isDarkModel(){
+        return window.getComputedStyle(document.body).fontSize == '20px'
+    }
+</script>
+</html>

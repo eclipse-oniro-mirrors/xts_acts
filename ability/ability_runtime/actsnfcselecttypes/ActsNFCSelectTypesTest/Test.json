@@ -1,0 +1,47 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.myapplication",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 20000
+    },
+    "kits": [
+		{
+            "test-file-name": [
+                "ActsNFCSelectTypesTest.hap",
+                "ActsNFCSelectTypesTestRelyFifth.hap",
+                "ActsNFCSelectTypesTestRelyFirst.hap",
+                "ActsNFCSelectTypesTestRelyFourth.hap",
+                "ActsNFCSelectTypesTestRelyMultiAbility.hap",
+                "ActsNFCSelectTypesTestRelyMultiHapFirst.hap",
+                "ActsNFCSelectTypesTestRelyMultiHapFourth.hap",
+                "ActsNFCSelectTypesTestRelyMultiHapSecond.hap",
+                "ActsNFCSelectTypesTestRelyMultiHapThird.hap",
+                "ActsNFCSelectTypesTestRelySecond.hap",
+                "ActsNFCSelectTypesTestRelyThird.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -m 300 2700 280 200"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "setenforce 0"
+            ],
+            "teardown-command": [
+                "setenforce 1"
+            ]
+          }
+    ]
+}

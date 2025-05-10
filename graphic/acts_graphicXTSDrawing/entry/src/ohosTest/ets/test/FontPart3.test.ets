@@ -1,0 +1,565 @@
+/*
+ * Copyright (c) 2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { afterAll , afterEach , beforeAll , beforeEach , describe , expect , it } from '@ohos/hypium';
+import drawing from '@ohos.graphics.drawing';
+import { getEnumCount } from './utils';
+import FaultLogger from '@ohos.faultLogger';
+import { getRandomNumber } from './utils';
+import common2D from '@ohos.graphics.common2D';
+
+export default function fontPart3Test() {
+  describe('DrawingTsFontPart3Test' , () => {
+    const DEFAULT = 0;
+    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
+    beforeAll(async() => {
+
+    })
+    beforeEach(() => {
+      // Presets an action, which is performed before each unit test case starts.
+      // The number of execution times is the same as the number of test cases defined by **it**.
+      // This API supports only one parameter: preset action function.
+    })
+    afterEach(() => {
+      // Presets a clear action, which is performed after each unit test case ends.
+      // The number of execution times is the same as the number of test cases defined by **it**.
+      // This API supports only one parameter: clear action function.
+    })
+    afterAll(() => {
+      // Presets a clear action, which is performed after all test cases of the test suite end.
+      // This API supports only one parameter: clear action function.
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2000
+     * @tc.name      : testFontTextToGlyphsNormal
+     * @tc.desc      : Test for testFontTextToGlyphsNormal.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('testFontTextToGlyphsNormal' , DEFAULT , () => {
+      const msg = 'testFontTextToGlyphsNormal';
+      let font = new drawing.Font();
+
+      try {
+        let glyphs : number[] = font.textToGlyphs('奇8龍@Fly#龘2023!*你好');
+        expect(glyphs.length == 17).assertTrue();
+        console.info(msg + ' textToGlyphs1 successed,glyphs:' + glyphs.length);
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs1 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        let glyphs : number[] = font.textToGlyphs('奇8龍@Fly#龘2023!*你好',17);
+        expect(glyphs.length == 17).assertTrue();
+        console.info(msg + ' textToGlyphs2 successed,glyphs:' + glyphs.length);
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs2 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        let glyphs : number[] = font.textToGlyphs("", 0);
+        console.info(msg + ' textToGlyphs5 successed,glyphs:' + glyphs);
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs5 errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2001
+     * @tc.name      : testFontTextToGlyphsNull
+     * @tc.desc      : Test for testFontTextToGlyphsNull.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontTextToGlyphsNull' , DEFAULT , () => {
+      const msg = 'testFontTextToGlyphsNull';
+      let font = new drawing.Font();
+
+      try {
+        font.textToGlyphs(null, 2);
+        console.info(msg + ' textToGlyphs successed');
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.textToGlyphs('奇8龍@Fly#龘2023!*你好', null);
+        console.info(msg + ' textToGlyphs succeeded');
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.textToGlyphs(null, 2);
+        console.info(msg + ' textToGlyphs successed');
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.textToGlyphs('奇8龍@Fly#龘2023!*你好', undefined);
+        console.info(msg + ' textToGlyphs succeeded');
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2003
+     * @tc.name      : testFontTextToGlyphsMultipleCalls
+     * @tc.desc      : Test for testFontTextToGlyphsMultipleCalls.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontTextToGlyphsMultipleCalls' , DEFAULT , () => {
+      const msg = 'testFontTextToGlyphsMultipleCalls';
+      let font = new drawing.Font();
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {  
+        let randomString = ''
+        for(let j = 0; j < 10 ; j++){
+          randomString += characters.charAt(Math.floor(Math.random()*characters.length));
+        }
+        try {
+          let glyphs : number[] = font.textToGlyphs(randomString, 10);
+          expect(glyphs.length == 10).assertTrue();
+          console.info(msg + ' textToGlyphs successed,glyphs:' + glyphs.length);
+        } catch( e ) {
+          console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2004
+     * @tc.name      : testFontTextToGlyphsAbnormal
+     * @tc.desc      : Test for testFontTextToGlyphsAbnormal.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontTextToGlyphsAbnormal' , DEFAULT , () => {
+      const msg = 'testFontTextToGlyphsAbnormal';
+      let font = new drawing.Font();
+
+      try {
+        let glyphs : number[] = font.textToGlyphs('奇8龍@Fly#龘2023!*你好',15);
+        console.info(msg + ' textToGlyphs succeeded');
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let glyphs : number[] = font.textToGlyphs('奇8龍@Fly#龘2023!*你好',20);
+        console.info(msg + ' textToGlyphs succeeded');
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        let glyphs : number[] = font.textToGlyphs("", -1);
+        console.info(msg + ' textToGlyphs succeeded');
+      } catch( e ) {
+        console.info(msg + ` textToGlyphs errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2100
+     * @tc.name      : testFontGetWidthsNormal
+     * @tc.desc      : Test for testFontGetWidthsNormal.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('testFontGetWidthsNormal' , DEFAULT , () => {
+      const msg = 'testFontGetWidthsNormal';
+      let font = new drawing.Font();
+
+      try {
+        let widths : number[] = font.getWidths([0]);
+        expect(widths.length == 1).assertTrue();
+        console.info(msg + ' getWidths successed,widths:' + widths.length);
+      } catch( e ) {
+        console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        let widths : number[] = font.getWidths([]);
+        expect(widths == undefined).assertTrue();
+        console.info(msg + ' getWidths successed,widths:' + widths);
+      } catch( e ) {
+        console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2101
+     * @tc.name      : testFontGetWidthsNull
+     * @tc.desc      : Test for testFontGetWidthsNull.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontGetWidthsNull' , DEFAULT , () => {
+      const msg = 'testFontGetWidthsNull';
+      let font = new drawing.Font();
+
+      try {
+        font.getWidths(null);
+        console.info(msg + ' getWidths successed');
+      } catch( e ) {
+        console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.getWidths(undefined);
+        console.info(msg + ' getWidths succeeded');
+      } catch( e ) {
+        console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2103
+     * @tc.name      : testFontGetWidthsMultipleCalls
+     * @tc.desc      : Test for testFontGetWidthsMultipleCalls.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontGetWidthsMultipleCalls' , DEFAULT , () => {
+      const msg = 'testFontGetWidthsMultipleCalls';
+      let font = new drawing.Font();
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          font.getWidths([getRandomNumber(1, 100)]);
+          console.info(msg + ' getWidths successed');
+        } catch( e ) {
+          console.info(msg + ` getWidths errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2200
+     * @tc.name      : testFontGetBoundsNormal
+     * @tc.desc      : Test for testFontGetBoundsNormal.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('testFontGetBoundsNormal' , DEFAULT , () => {
+      const msg = 'testFontGetWidthsNormal';
+      let font = new drawing.Font();
+
+      try {
+        let bounds : common2D.Rect[] = font.getBounds([0]);
+        expect(bounds.length == 1).assertTrue();
+        console.info(msg + ' getBounds successed,bounds:' + bounds.length);
+      } catch( e ) {
+        console.info(msg + ` getBounds errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        let bounds : common2D.Rect[] = font.getBounds([Number.MAX_VALUE]);
+        expect(bounds.length == 1).assertTrue();
+        console.info(msg + ' getBounds successed,bounds:' + bounds.length);
+      } catch( e ) {
+        console.info(msg + ` getBounds errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        let bounds : common2D.Rect[] = font.getBounds([Number.MIN_VALUE]);
+        expect(bounds.length == 1).assertTrue();
+        console.info(msg + ' getBounds successed,bounds:' + bounds.length);
+      } catch( e ) {
+        console.info(msg + ` getBounds errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        let bounds : common2D.Rect[] = font.getBounds([]);
+      } catch( e ) {
+        console.info(msg + ` getBounds errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2201
+     * @tc.name      : testFontGetBoundsNull
+     * @tc.desc      : Test for testFontGetBoundsNull.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontGetBoundsNull' , DEFAULT , () => {
+      const msg = 'testFontGetBoundsNull';
+      let font = new drawing.Font();
+
+      try {
+        font.getBounds(null);
+        console.info(msg + ' getBounds successed');
+        expect().assertFail();
+      } catch( e ) {
+        console.info(msg + ` getBounds errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.getBounds(undefined);
+        console.info(msg + ' getBounds succeeded');
+        expect().assertFail();
+      } catch( e ) {
+        console.info(msg + ` getBounds errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2203
+     * @tc.name      : testFontGetBoundsMultipleCalls
+     * @tc.desc      : Test for testFontGetBoundsMultipleCalls.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontGetBoundsMultipleCalls' , DEFAULT , () => {
+      const msg = 'testFontGetBoundsMultipleCalls';
+      let font = new drawing.Font();
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          let bounds : common2D.Rect[] = font.getBounds([getRandomNumber(1, 100)]);
+          expect(bounds.length == 1).assertTrue();
+          console.info(msg + ' getBounds successed');
+        } catch( e ) {
+          console.info(msg + ` getBounds errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2300
+     * @tc.name      : testFontCreatePathForGlyphNormal
+     * @tc.desc      : Test for testFontCreatePathForGlyphNormal.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('testFontCreatePathForGlyphNormal' , DEFAULT , () => {
+      const msg = 'testFontCreatePathForGlyphNormal';
+      let font = new drawing.Font();
+
+      try {
+        let glyphs : number[] = font.textToGlyphs('hello');
+        let path : drawing.Path = font.createPathForGlyph(glyphs[0]);
+        expect(path.getLength(false) > 0).assertTrue();
+        console.info(msg + ' createPathForGlyph successed,path length:' + path.getLength(false));
+
+      } catch( e ) {
+        console.info(msg + ` createPathForGlyph errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        let glyphs : number[] = font.textToGlyphs(' ');
+        let path : drawing.Path = font.createPathForGlyph(glyphs[0]);
+        expect(path.getLength(false) == 0).assertTrue();
+        console.info(msg + ' createPathForGlyph successed,path length:' + path.getLength(false));
+      } catch( e ) {
+        console.info(msg + ` createPathForGlyph errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        let path : drawing.Path = font.createPathForGlyph(Number.MAX_VALUE);
+        expect(path != undefined).assertTrue();
+      } catch( e ) {
+        console.info(msg + ` createPathForGlyph errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        let path : drawing.Path = font.createPathForGlyph(Number.MIN_VALUE);
+        expect(path != undefined).assertTrue();
+      } catch( e ) {
+        console.info(msg + ` createPathForGlyph errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+
+      try {
+        let path : drawing.Path = font.createPathForGlyph(65535);
+        expect(path == undefined).assertTrue();
+      } catch( e ) {
+        console.info(msg + ` createPathForGlyph errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2301
+     * @tc.name      : testFontCreatePathForGlyphNull
+     * @tc.desc      : Test for testFontCreatePathForGlyphNull.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontCreatePathForGlyphNull' , DEFAULT , () => {
+      const msg = 'testFontCreatePathForGlyphNull';
+      let font = new drawing.Font();
+
+      try {
+        font.createPathForGlyph(null);
+        console.info(msg + ' createPathForGlyph successed');
+        expect().assertFail();
+      } catch( e ) {
+        console.info(msg + ` createPathForGlyph errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+
+      try {
+        font.createPathForGlyph(undefined);
+        console.info(msg + ' createPathForGlyph succeeded');
+        expect().assertFail();
+      } catch( e ) {
+        console.info(msg + ` createPathForGlyph errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+        expect(e.code).assertEqual(401);
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2303
+     * @tc.name      : testFontCreatePathForGlyphMultipleCalls
+     * @tc.desc      : Test for testFontCreatePathForGlyphMultipleCalls.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontCreatePathForGlyphMultipleCalls' , DEFAULT , () => {
+      const msg = 'testFontCreatePathForGlyphMultipleCalls';
+      let font = new drawing.Font();
+
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        try {
+          let path : drawing.Path = font.createPathForGlyph(getRandomNumber(1, 100));
+          expect(path != undefined).assertTrue();
+          console.info(msg + ' createPathForGlyph successed');
+        } catch( e ) {
+          console.info(msg + ` createPathForGlyph errorCode is:  ${ e.code } + errormsg is: ${ e.message }`);
+          expect().assertFail();
+        }
+      }
+    });
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2203
+     * @tc.name      : testFontSetAndIsThemeFontFollowedMultipleCalls
+     * @tc.desc      : Test for testFontSetAndIsThemeFontFollowedMultipleCalls.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsThemeFontFollowedMultipleCalls' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsThemeFontFollowedMultipleCalls';
+      let font = new drawing.Font();
+      let followed: boolean = false;
+      for ( let i = 0 ; i < 20 ; i ++ ) {
+        followed = !followed;
+        font.setThemeFontFollowed(followed);
+        let finallyFollowed: boolean = font.isThemeFontFollowed()
+        console.info(msg + "font is theme font followed: " + finallyFollowed);
+        expect(finallyFollowed).assertEqual(followed);
+      }
+    });
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2200
+     * @tc.name      : testFontSetAndIsThemeFontFollowedNormal
+     * @tc.desc      : Test for testFontSetAndIsThemeFontFollowedNormal.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsThemeFontFollowedNormal' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsThemeFontFollowedNormal';
+      let font = new drawing.Font();
+      let initialFollowed: boolean = font.isThemeFontFollowed()
+      console.info(msg + "Initial value font is theme font followed: " + initialFollowed);
+      expect(initialFollowed).assertEqual(false);
+      font.setThemeFontFollowed(true);
+      let followed: boolean = font.isThemeFontFollowed()
+      console.info(msg + "followed is: " + followed);
+      expect(followed).assertEqual(true);
+      font.setThemeFontFollowed(false);
+      let followed2: boolean = font.isThemeFontFollowed()
+      console.info(msg + "followed2 is: " + followed2);
+      expect(followed2).assertEqual(false);
+    });
+    /**
+     * @tc.number    : SUB_BASIC_GRAPHICS_SPECIAL_API_TS_DRAWING_FONT_2201
+     * @tc.name      : testFontSetAndIsThemeFontFollowedNull
+     * @tc.desc      : Test for testFontSetAndIsThemeFontFollowedNull.
+     * @tc.size      : SmallTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testFontSetAndIsThemeFontFollowedNull' , DEFAULT , () => {
+      const msg = 'testFontSetAndIsThemeFontFollowedNull';
+      let font = new drawing.Font();
+      try {
+        font.setThemeFontFollowed(null);
+        console.info(msg + 'setThemeFontFollowed successed');
+        expect().assertFail();
+      } catch (e) {
+        console.info(msg + `setThemeFontFollowed null errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401)
+      }
+      try {
+        font.setThemeFontFollowed(undefined);
+        console.info(msg + 'setThemeFontFollowed successed');
+        expect().assertFail();
+      } catch (e) {
+        console.info(msg + `setThemeFontFollowed undefined errorCode is:  ${e.code} + errormsg is: ${e.message}`);
+        expect(e.code).assertEqual(401)
+      }
+    });
+  });
+}

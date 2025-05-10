@@ -1,0 +1,17 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Popup/Maxwidth",
+    "MainAbility/pages/promptAction/openMenu",
+    "MainAbility/pages/promptAction/openPopup",
+    "MainAbility/pages/promptAction/subwindowDialog",
+    "MainAbility/pages/promptAction/updateMenu",
+    "MainAbility/pages/promptAction/updatePopup",
+    "MainAbility/pages/promptAction/closeMenu",
+    "MainAbility/pages/promptAction/closePopup",
+    "MainAbility/pages/Menu/menuFontsizeModifier",
+    "MainAbility/pages/Menu/menuitemOnChangeModifier",
+    "MainAbility/pages/Menu/menuBindMenuModifier",
+    "MainAbility/pages/promptAction/showToastOptions"
+  ]
+}

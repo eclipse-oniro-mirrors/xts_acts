@@ -1,0 +1,21 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.startuptest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "20000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStartUpTest.hap",
+                "StartupManualHelp1.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

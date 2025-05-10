@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "module1_desc",
+      "value": "description"
+    },
+    {
+      "name": "ModuleAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ModuleAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "form_FormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+  }
+  ]
+}

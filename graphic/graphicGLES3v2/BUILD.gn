@@ -1,0 +1,45 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/config/ohos/config.gni")
+import("//build/ohos.gni")
+import("//foundation/arkui/napi/napi.gni")
+import("//foundation/graphic/graphic_2d/graphic_config.gni")
+import("//test/xts/tools/build/suite.gni")
+import("$graphic_2d_root/rosen/modules/2d_engine/rosen_text/config.gni")
+
+ohos_app_assist_suite("ActsGraphicGles3v2Test_main") {
+  testonly = true
+  certificate_profile = "./signature/openharmony_sx.p7b"
+  hap_name = "ActsGraphicGles3v2TestMain"
+
+  # 部件名称，真实数据，需要子系统对应
+  part_name = "graphic_2d"
+
+  # 子系统名称，真实数据，需要部件对应
+  subsystem_name = "graphic"
+}
+
+ohos_js_app_suite("ActsGraphicGles3v2Test") {
+  test_hap = true
+  testonly = true
+  certificate_profile = "./signature/openharmony_sx.p7b"
+  hap_name = "ActsGraphicGles3v2Test"
+
+  # 部件名称，真实数据，需要子系统对应
+  part_name = "window_manager"
+
+  # 子系统名称，真实数据，需要部件对应
+  subsystem_name = "window"
+  deps = [ ":ActsGraphicGles3v2Test_main" ]
+}

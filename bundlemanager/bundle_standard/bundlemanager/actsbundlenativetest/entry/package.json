@@ -1,0 +1,6 @@
+{
+    "name": "entry",
+    "devDependencies": {
+        "libbundlendk.so": "file:./src/main/cpp/types/libbundlendk"
+    }
+}

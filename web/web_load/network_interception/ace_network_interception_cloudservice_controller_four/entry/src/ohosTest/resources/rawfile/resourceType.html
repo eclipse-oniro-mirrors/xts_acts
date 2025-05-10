@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ResourceType</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="resource.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="prefetch" href="resourceTypeIframe.html" />
+</head>
+<body>
+    <div>测试</div>
+    <div class="border"></div>
+    <div class="fontDemo">字体</div>
+    <img src="img.png" width="100px" height="100px">
+    <video src="./trailer.mp4" autoplay muted preload="metadata" controls></video>
+    <iframe src="resourceTypeIframe.html" width="100px" height="100px"></iframe>
+    <a href="" id='pingHref' ping="https://www.w3schools.com/trackpings">Ping</a>
+    <object width="400" height="500" type="image/png" data="https://www.example.com/helloworld.png">
+    </object>
+</body>
+</html>
+<style>
+@font-face {
+    font-family: roboto;
+    src: url('http://114.115.208.239:8070/colombo_test/webResourceType/test.woff2') /* EOT file for IE */
+}
+.fontDemo{
+    font-size: 16px;
+    font-family: roboto;
+}
+</style>
+<script>
+    function xhrRequest(url) {
+        var xHttp = new XMLHttpRequest();
+        xHttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+               document.getElementById('demo').innerHTML = xHttp.responseText;
+            }
+        };
+        xHttp.open('GET', url, true);
+        xHttp.send();
+    }
+    xhrRequest('https://www.baidu.com')
+
+    function triggerPingHref() {
+        document.getElementById('pingHref').click();
+    }
+</script>

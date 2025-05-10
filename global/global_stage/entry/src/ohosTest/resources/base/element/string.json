@@ -1,0 +1,164 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "phone_entry_dsc",
+      "value": "i am an entry for phone %d"
+    },
+    {
+      "name": "phone_entry_main",
+      "value": "the phone entry ability"
+    },
+    {
+      "name": "entry_label",
+      "value": "ActsMediaLibraryTest"
+    },
+    {
+      "name": "form_description",
+      "value": "mediaLibrary"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "mediaLibrary"
+    },
+    {
+      "name": "description_application",
+      "value": "mediaLibrary test"
+    },
+    {
+      "name": "app_name",
+      "value": "ActsMediaLibraryTest"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "test_stringOne",
+      "value": "%2$d %3$s"
+    },
+    {
+      "name": "test_stringTwo",
+      "value": "%2$d"
+    },
+    {
+      "name": "test_stringThree",
+      "value": "%2$d"
+    },
+    {
+      "name": "test_stringFour",
+      "value": "%2$d"
+    },
+    {
+      "name": "test_stringFive",
+      "value": "%3$s"
+    },
+    {
+      "name": "test_stringSix",
+      "value": "%3$s"
+    },
+    {
+      "name": "test_stringSeven",
+      "value": "%4$f"
+    },
+    {
+      "name": "test_stringEight",
+      "value": "%4$f"
+    },
+    {
+      "name": "test_stringNine",
+      "value": "%4$f"
+    },
+    {
+      "name": "test_stringTen",
+      "value": "%4$f"
+    },
+    {
+      "name": "test_stringEleven",
+      "value": "%%d"
+    },
+    {
+      "name": "test_stringTwelve",
+      "value": "%%%s"
+    },
+    {
+      "name": "test_stringThirteen",
+      "value": "%%%%f"
+    },
+    {
+      "name": "test_stringFourteen",
+      "value": "%2$d %3$s %4$f"
+    },
+    {
+      "name": "test_stringFifteen",
+      "value": "%2$d %3$s %4$f"
+    },
+    {
+      "name": "test_stringSixteen",
+      "value": "%2$d %3$s %4$f %%d"
+    },
+    {
+      "name": "test_stringSeventeen",
+      "value": "%d %1$d"
+    },
+    {
+      "name": "test_stringEighteen",
+      "value": "%2$d %3$s %4$f"
+    },
+    {
+      "name": "test_stringNineteen",
+      "value": "%d %1$d"
+    },
+    {
+      "name": "test_stringTwenty",
+      "value": "%%%d %1$d"
+    },
+    {
+      "name": "test_stringTwentyOne",
+      "value": "%d %d %s %s %f %f"
+    },
+    {
+      "name": "test_stringTwentyTwo",
+      "value": "%d %d %s %s %f %f"
+    },
+    {
+      "name": "test_stringTwentyThree",
+      "value": "%200$d %300$s %400$f"
+    },
+    {
+      "name": "test_stringTwentyFour",
+      "value": "%2$d %3$s %4$f"
+    },
+    {
+      "name": "test_stringTwentyFive",
+      "value": "%d %s %f"
+    },
+    {
+      "name": "test_stringLoopA",
+      "value": "$string:test_stringLoopB"
+    },
+    {
+      "name": "test_stringLoopB",
+      "value": "$string:test_stringLoopA"
+    }
+  ]
+}

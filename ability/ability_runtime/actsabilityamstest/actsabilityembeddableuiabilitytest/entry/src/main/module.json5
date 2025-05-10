@@ -1,0 +1,162 @@
+/*
+ * Copyright (C) 2024 HiHope Open Source Organization.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "SpecifedProcessAbility",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "embeddableUIAbility",
+        "srcEntry": "./ets/embeddableuiability/embeddableUIAbility.ets",
+        "description": "$string:embeddableUIAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:embeddableUIAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      },
+      {
+        "name": "moveabilitytobackground",
+        "srcEntry": "./ets/moveabilitytobackground/moveabilitytobackground.ets",
+        "description": "$string:moveabilitytobackground_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:moveabilitytobackground_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      },
+      {
+        "name": "reportDrawnCompleted",
+        "srcEntry": "./ets/reportdrawncompleted/reportDrawnCompleted.ets",
+        "description": "$string:reportDrawnCompleted_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:reportDrawnCompleted_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      },
+      {
+        "name": "restoreWindowStage",
+        "srcEntry": "./ets/restorewindowstage/restoreWindowStage.ets",
+        "description": "$string:restoreWindowStage_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:restoreWindowStage_label",
+        "startWindowIcon": "$media:startIcon",
+        "removeMissionAfterTerminate": true,
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "setMissionContinueState",
+        "srcEntry": "./ets/setmissioncontinuestate/setMissionContinueState.ets",
+        "description": "$string:setMissionContinueState_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:setMissionContinueState_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      },
+      {
+        "name": "setMissionLabel",
+        "srcEntry": "./ets/setmissionlabel/setMissionLabel.ets",
+        "description": "$string:setMissionLabel_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:setMissionLabel_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      },
+      {
+        "name": "startAbility",
+        "srcEntry": "./ets/startability/startAbility.ets",
+        "description": "$string:startability_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:startability_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      },
+      {
+        "name": "startAbilityForResult",
+        "srcEntry": "./ets/startabilityforresult/startAbilityForResult.ets",
+        "description": "$string:startAbilityForResult_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:startAbilityForResult_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      },
+      {
+        "name": "startAbilityByType",
+        "srcEntry": "./ets/startabilitybytype/startAbilityByType.ets",
+        "description": "$string:StartAbilityByType_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:StartAbilityByType_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      },
+      {
+        "name": "byTypeAbility",
+        "srcEntry": "./ets/bytypeability/byTypeAbility.ets",
+        "description": "$string:byTypeAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:byTypeAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      },
+      {
+        "name": "terminateSelfWithResult",
+        "srcEntry": "./ets/terminateselfwithresult/terminateSelfWithResult.ets",
+        "description": "$string:terminateSelfWithResult_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:terminateSelfWithResult_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      },
+      {
+        "name": "serviceExtensionAbility",
+        "srcEntry": "./ets/serviceextensionability/serviceExtensionAbility.ets",
+        "description": "$string:serviceExtensionAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:serviceExtensionAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "removeMissionAfterTerminate": true,
+        "exported": true
+      }
+    ],
+    "extensionAbilities": [
+    ]
+  }
+}

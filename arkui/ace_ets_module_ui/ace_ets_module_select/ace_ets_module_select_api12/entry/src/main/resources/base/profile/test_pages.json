@@ -1,0 +1,7 @@
+{
+  "src": [
+    "TestAbility/pages/Index",
+    "TestAbility/pages/SelectMenu",
+    "TestAbility/pages/select"
+  ]
+}

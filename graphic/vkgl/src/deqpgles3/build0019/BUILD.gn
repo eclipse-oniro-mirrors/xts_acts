@@ -1,0 +1,232 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0019") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3Suite0019Test") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles30019TestSuite.cpp",
+    "../functional/Deqpgles3abs_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3abs_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3abs_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3abs_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3abs_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3abs_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3acos_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3acos_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3acos_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3acos_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3acos_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3acosh_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3acosh_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3acosh_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3acosh_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3add_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3add_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3add_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3add_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3add_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3add_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3asin_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3asin_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3asin_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3asin_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3asin_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3asin_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3asinh_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3asinh_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3asinh_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3asinh_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3asinh_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3asinh_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3atan2_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3atan2_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3atan_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3atan_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3atanh_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3atanh_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3atanh_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3builtin_functions_pack_unpackTestCase.cpp",
+    "../functional/Deqpgles3common_ceilTestCase.cpp",
+    "../functional/Deqpgles3common_floatbitstointTestCase.cpp",
+    "../functional/Deqpgles3common_floatbitstouintTestCase.cpp",
+    "../functional/Deqpgles3common_floorTestCase.cpp",
+    "../functional/Deqpgles3common_fractTestCase.cpp",
+    "../functional/Deqpgles3common_intbitstofloatTestCase.cpp",
+    "../functional/Deqpgles3common_isinfTestCase.cpp",
+    "../functional/Deqpgles3common_isnanTestCase.cpp",
+    "../functional/Deqpgles3common_modfTestCase.cpp",
+    "../functional/Deqpgles3common_roundTestCase.cpp",
+    "../functional/Deqpgles3common_roundevenTestCase.cpp",
+    "../functional/Deqpgles3common_signTestCase.cpp",
+    "../functional/Deqpgles3common_truncTestCase.cpp",
+    "../functional/Deqpgles3common_uintbitstofloatTestCase.cpp",
+    "../functional/Deqpgles3cos_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3cos_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3cos_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3cos_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3cos_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3cos_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3cosh_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3cosh_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3cosh_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3cosh_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3cosh_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3cosh_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3degrees_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3degrees_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3degrees_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3degrees_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3degrees_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3degrees_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3div_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3div_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3div_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3div_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3div_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3div_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3exp2_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3exp2_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3exp2_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3exp2_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3exp2_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3exp2_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3exp_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3exp_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3exp_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3exp_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3exp_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3exp_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3floor_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3floor_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3floor_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3floor_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3floor_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3floor_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3inversesqrt_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3inversesqrt_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3inversesqrt_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3inversesqrt_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3inversesqrt_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3inversesqrt_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3log2_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3log2_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3log2_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3log2_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3log2_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3log2_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3log_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3log_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3log_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3log_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3log_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3log_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3mul_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3mul_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3mul_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3mul_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3mul_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3mul_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3pow_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3pow_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3pow_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3pow_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3pow_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3pow_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3radians_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3radians_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3radians_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3radians_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3radians_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3radians_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3sign_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sign_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3sign_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sign_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3sign_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sign_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3sin_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sin_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3sin_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sin_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3sin_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sin_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3sinh_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sinh_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3sinh_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sinh_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3sinh_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sinh_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3sqrt_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sqrt_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3sqrt_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sqrt_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3sqrt_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sqrt_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3sub_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sub_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3sub_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sub_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3sub_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3sub_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3tan_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3tan_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3tan_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3tan_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3tan_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3tan_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3tanh_highp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3tanh_highp_vertexTestCase.cpp",
+    "../functional/Deqpgles3tanh_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles3tanh_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles3tanh_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles3tanh_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles3trunc_lowp_vertexTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles3func0019" ]
+
+  cflags = [ "-Wno-error" ]
+}

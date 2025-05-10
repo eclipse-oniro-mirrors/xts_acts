@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for startup url js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "shell-timeout": "800000",
+        "bundle-name": "com.example.url",
+        "package-name": "com.example.url"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsUrlJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

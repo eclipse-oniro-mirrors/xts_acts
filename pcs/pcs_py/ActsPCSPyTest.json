@@ -1,0 +1,59 @@
+{
+    "description": "Configuration for pcs python test",
+    "environment": [
+        {
+            "type": "device"
+        }
+    ],
+    "driver": {
+        "type": "DeviceTestSuite",
+        "testsuite": "ActsPCSPyTest.py",
+        "suitecases": [
+            "./testAppSignatureVerify.py",
+            "./testBundleInstallVerify.py",
+            "./testCommandWukong.py",
+            "./testInstallSignedHap.py",
+            "./testJsConfiguration.py",
+            "./testMinimumComponentSet.py",
+            "./testPermissionsNotMissing.py",
+            "./testRealRandomGenerate.py",
+            "./testSDCardMount.py",
+            "./testSelinuxFileLable.py",
+            "./testSystemCoreInternetPermission.py",
+            "./testTrustedRootCaExist.py",
+            "./testSupportHdc.py",
+            "./testSysCapNameOnly.py",
+            "./testPowerShell.py",
+            "./testPowerWakeUp.py"
+        ]
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "push": [
+                "./resource/pcs/unsigned.hap -> /data/local/tmp/unsigned.hap",
+                "./resource/pcs/bundle_first.hap -> /data/local/tmp/bundle_first.hap",
+                "./resource/pcs/bundle_second.hap -> /data/local/tmp/bundle_second.hap",
+                "./resource/pcs/bundle_third.hap -> /data/local/tmp/bundle_third.hap",
+                "./resource/pcs/bundle_fourth.hap -> /data/local/tmp/bundle_fourth.hap",
+                "./resource/pcs/feature_first.hap -> /data/local/tmp/feature_first.hap",
+                "./resource/pcs/feature_second.hap -> /data/local/tmp/feature_second.hap",
+                "./resource/pcs/feature_third.hap -> /data/local/tmp/feature_third.hap",
+                "./resource/pcs/signed.hap -> /data/local/tmp/signed.hap",
+                "./resource/pcs/signed.hsp -> /data/local/tmp/signed.hsp",
+                "./resource/pcs/signed.hqf -> /data/local/tmp/signed.hqf",
+                "./resource/pcs/errorjs.hap -> /data/local/tmp/errorjs.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "teardown-command": [
+                "bm uninstall -n com.pcs.software.signedhap",
+                "bm uninstall -n com.pcs.software.bundle.first",
+                "bm uninstall -n com.pcs.software.bundle.fourth",
+                "bm uninstall -n com.pcs.software.signedhap",
+                "bm uninstall -n  com.pcs.software.signedhsp"
+            ]
+        }
+    ]
+}

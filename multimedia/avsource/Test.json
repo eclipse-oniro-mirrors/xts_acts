@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for ActsAVCodecTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.multimedia.napitest",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAVCodecTest.hap",
+                "ActsAVCodecMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+		{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/com.multimedia.napitest/haps/entry_test/files",
+                "chmod 777 -R /data/app/el2/100/base/com.multimedia.napitest/haps/entry_test"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/media/demo.mp4 ->/data/app/el2/100/base/com.multimedia.napitest/haps/entry_test/files/",
+                "./resource/media/demo1.mp4 ->/data/app/el2/100/base/com.multimedia.napitest/haps/entry_test/files/",
+                "./resource/media/codec/audio_decoder/aac_2c_44100hz_199k_lc.dat ->/data/app/el2/100/base/com.multimedia.napitest/haps/entry_test/files/"
+            ]
+        },
+		{
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/com.multimedia.napitest/haps/entry_test/files",
+                "chmod 777 -R /data/app/el2/100/base/com.multimedia.napitest/haps/entry_test"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "description": "Configuration for getgroupdir demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.acts.ability.setabilityinstanceinfo",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 15000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsSetAbilityInstanceInfoRely.hap",
+                "ActsSetAbilityInstanceInfoTest.hap",
+                "ActsSetAbilityInstanceInfoMain.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "description": "NAPI Tests",
+    "driver": {
+        "native-test-timeout":"6000000",
+        "type": "CppTest",
+        "module-name": "ActsCryptoFrameworkNAPITest",
+        "runtime-hint": "1s",
+        "native-test-device-path":"/data/local/tmp"
+    },
+    "kits": [
+        {
+            "push":[
+                "ActsCryptoFrameworkNAPITest->/data/local/tmp/ActsCryptoFrameworkNAPITest"
+            ],
+            "type": "PushKit"
+        }
+    ]
+}

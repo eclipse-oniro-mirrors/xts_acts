@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <circle id="animated-circle" cx="100" cy="100" r="50" fill="blue">
+        <!-- 设置动画开始时间为0秒，持续时间为5秒，不设置fill属性让动画自然结束 -->
+        <animate
+                attributeName="fill"
+                values="#ff0000;#00ff00;#0000ff"
+                dur="5s"
+                begin="0s"
+                keyTimes="0;0.5;1"
+        repeatCount="1"
+        />
+    </circle>
+</svg>

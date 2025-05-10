@@ -1,0 +1,33 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "1800000",
+    "shell-timeout": "900000",
+    "testcase-timeout": "600000",
+    "bundle-name": "com.openharmony.asset_xts_js",
+    "module-name": "entry_test"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsAssetJSFuncTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+          "power-shell wakeup",
+          "uinput -T -m 300 2700 280 200",
+          "wait 1",
+          "uinput -T -m 300 2700 280 200",
+          "power-shell setmode 602"
+      ],
+      "teardown-command": [
+          "power-shell setmode 600"
+      ]
+  }
+  ]
+}

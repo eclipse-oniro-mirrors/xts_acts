@@ -1,0 +1,21 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/buttonType/buttonTypeApi",
+
+    "MainAbility/pages/Menu/BlurStyleOptions",
+    "MainAbility/pages/Menu/EffectOptions",
+    "MainAbility/pages/bindMenu/bindMenuHapticFeedbackMode",
+    "MainAbility/pages/bindContextMenu/bindContextMenuHapticFeedback",
+    "MainAbility/pages/dialog/alertDialogLevelOrder",
+    "MainAbility/pages/promptAction/openMenu",
+    "MainAbility/pages/promptAction/updateMenu",
+    "MainAbility/pages/promptAction/closeMenu",
+    "MainAbility/pages/overlayManager/overlayManagerTest",
+    "MainAbility/pages/dialog/showDialogLevelOrder",
+    "MainAbility/pages/promptAction/closeToastTest",
+    "MainAbility/pages/popup/isVisible",
+    "MainAbility/pages/dialog/getDialogControllerTest",
+    "MainAbility/pages/promptAction/DialogOptions"
+  ]
+}

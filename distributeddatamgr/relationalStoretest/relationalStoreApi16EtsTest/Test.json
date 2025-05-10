@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.acts.distributeddatamgr.relationalstoreapi16etstest",
+        "module-name": "entry_test",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsRelationalStoreApi16EtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+				"uinput -T -g 100 100 500 500",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "description": "Configuration for ShellCommand Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.shellcommandcontroltest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "15000"
+    },
+    "kits": [
+		{
+            "test-file-name": [
+                "ActsShellCommandControlTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+

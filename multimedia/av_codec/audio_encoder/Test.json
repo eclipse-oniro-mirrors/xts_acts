@@ -1,0 +1,33 @@
+{
+    "description": "Config for avcodec ndk test cases",
+    "driver": {
+      "module-name": "ActsAvbufferEncoderTest",
+      "native-test-timeout": "300000",
+      "native-test-device-path": "/data/local/tmp",
+      "runtime-hint": "1s",
+      "type": "CppTest"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push" : [
+                "mount -o rw,remount /",
+                "mkdir -p /data/test/media/",
+                "mkdir -p /data/local/tmp/"
+            ],
+            "push": [
+              "ActsAvbufferEncoderTest->/data/local/tmp/ActsAvbufferEncoderTest",
+              "./resource/media/codec/audio_encoder/. ->/data/test/media/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff",
+                "restorecon /data/test/media",
+                "export LD_LIBRARY_PATH=/system/lib64/media/av_codec_plugins",
+                "chmod 777 -R /data/local/tmp"
+            ]
+        }
+    ]
+}

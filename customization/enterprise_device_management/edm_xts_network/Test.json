@@ -1,0 +1,36 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.myapplication",
+        "module-name": "entry_test",
+        "testcase-timeout": "20000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push":[
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsEdmNetworkTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

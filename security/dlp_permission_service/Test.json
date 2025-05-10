@@ -1,0 +1,38 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1200000",
+        "bundle-name": "com.ohos.dlp_xts",
+        "module-name": "phone",
+        "shell-timeout": "1200000",
+        "testcase-timeout": "6000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsDlpTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "param set persist.sys.suspend_manager_enbled 0",
+                "reboot",
+                "wait 5",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "uinput -K -d 2050 -u 2050",
+                "wait 5",
+                "uinput -T -m 300 2700 280 200",
+                "hidumper -s 3301 -a -t"
+            ],
+            "teardown-command": [
+                "power-shell setmode 601"
+            ]
+        }
+    ]
+}

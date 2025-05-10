@@ -1,0 +1,92 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "apiType": 'stageMode',
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        "./src/ohosTest/ets/workers/newworker.js",
+        "./src/ohosTest/ets/workers/newworker_002.js",
+        "./src/ohosTest/ets/workers/newworker_003.js",
+        "./src/ohosTest/ets/workers/newworker_004.js",
+        "./src/ohosTest/ets/workers/newworker_005.js",
+        "./src/ohosTest/ets/workers/newworker_006.js",
+        "./src/ohosTest/ets/workers/newworker_007.js",
+        "./src/ohosTest/ets/workers/newworker_008.js",
+        "./src/ohosTest/ets/workers/newworker_009.js",
+        "./src/ohosTest/ets/workers/newworker_010.js",
+        "./src/ohosTest/ets/workers/newworker_011.js",
+        "./src/ohosTest/ets/workers/newworker_012.js",
+        "./src/ohosTest/ets/workers/newworker_013.js",
+        "./src/ohosTest/ets/workers/newworker_014.js",
+        "./src/ohosTest/ets/workers/newworker_015.js",
+        "./src/ohosTest/ets/workers/newworker_016.js",
+        "./src/ohosTest/ets/workers/newworker_017.js",
+        "./src/ohosTest/ets/workers/newworker_018.js",
+        "./src/ohosTest/ets/workers/newworker_019.js",
+        "./src/ohosTest/ets/workers/newworker_020.js",
+        "./src/ohosTest/ets/workers/newworker_021.js",
+        "./src/ohosTest/ets/workers/newworker_022.js",
+        "./src/ohosTest/ets/workers/newworker_023.js",
+        "./src/ohosTest/ets/workers/newworker_024.js",
+        "./src/ohosTest/ets/workers/newworker_025.js",
+        "./src/ohosTest/ets/workers/newworker_026.js",
+        "./src/ohosTest/ets/workers/newworker_027.js",
+        "./src/ohosTest/ets/workers/newworker_028.js",
+        "./src/ohosTest/ets/workers/newworker_029.js",
+        "./src/ohosTest/ets/workers/newworker_030.js",
+        "./src/ohosTest/ets/workers/newworker_031.js",
+        "./src/ohosTest/ets/workers/newworker_032.js",
+        "./src/ohosTest/ets/workers/newworker_033.js",
+        "./src/ohosTest/ets/workers/newworker_034.js",
+        "./src/ohosTest/ets/workers/newworker_035.js",
+        "./src/ohosTest/ets/workers/newworker_036.js",
+        "./src/ohosTest/ets/workers/newworker_037.js",
+        "./src/ohosTest/ets/workers/newworker_038.js",
+        "./src/ohosTest/ets/workers/newworker_039.js",
+        "./src/ohosTest/ets/workers/newworker_040.js",
+        "./src/ohosTest/ets/workers/newworker_041.js",
+        "./src/ohosTest/ets/workers/newworker_042.js",
+        "./src/ohosTest/ets/workers/newworker_043.js",
+        "./src/ohosTest/ets/workers/newworker_044.js",
+        "./src/ohosTest/ets/workers/newworker_045.js",
+        "./src/ohosTest/ets/workers/newworker_046.js",
+        "./src/ohosTest/ets/workers/newworker_047.js",
+        "./src/ohosTest/ets/workers/newworker_048.js",
+        "./src/ohosTest/ets/workers/newworker_0091.js",
+        "./src/ohosTest/ets/workers/newworker_0101.js",
+        "./src/ohosTest/ets/workers/newworker_0111.js",
+        "./src/ohosTest/ets/workers/newworker_0121.js",
+        "./src/ohosTest/ets/workers/newworker_0122.js",
+        "./src/ohosTest/ets/workers/newworker_0131.js",
+        "./src/ohosTest/ets/workers/newworker_0141.js",
+        "./src/ohosTest/ets/workers/newworker_0151.js",
+        "./src/ohosTest/ets/workers/newworker_0152.js",
+        "./src/ohosTest/ets/workers/parentworker.js",
+        "./src/ohosTest/ets/workers/parentworker1.js",
+        "./src/ohosTest/ets/workers/childworker.js",
+        "./src/ohosTest/ets/workers/childworker1.js",
+      ]
+    }
+  },
+  "targets": [
+    {
+      "name": "default",
+    },
+    {
+      "name": "ohosTest",
+    }
+  ]
+}

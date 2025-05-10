@@ -1,0 +1,95 @@
+# Copyright (c) 2022 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//foundation/multimedia/av_codec/config.gni")
+import("//test/xts/tools/build/suite.gni")
+
+MEDIA_ROOT_DIR = "//foundation/multimedia/av_codec/"
+module_output_path = "acts/ActsDemuxerTest"
+
+demuxer_moduletest_native_include_dirs = [
+  "$MEDIA_ROOT_DIR/interfaces/inner_api/native",
+  "$MEDIA_ROOT_DIR/interfaces/kits/c",
+  "$MEDIA_ROOT_DIR/services/services/factory",
+  "$MEDIA_ROOT_DIR/services/utils",
+]
+
+demuxer_moduletest_cflags = [
+  "-std=c++17",
+  "-fno-rtti",
+  "-fno-exceptions",
+  "-Wall",
+  "-fno-common",
+  "-fstack-protector-strong",
+  "-Wshadow",
+  "-FPIC",
+  "-FS",
+  "-O2",
+  "-D_FORTIFY_SOURCE=2",
+  "-fvisibility=hidden",
+  "-Wformat=2",
+  "-Wdate-time",
+  "-Werror",
+  "-Wextra",
+  "-Wimplicit-fallthrough",
+  "-Wsign-compare",
+  "-Wunused-parameter",
+]
+
+##################################################################################################################
+ohos_moduletest_suite("ActsDemuxerTest") {
+  sanitize = av_codec_test_sanitize
+  module_out_path = module_output_path
+  include_dirs = demuxer_moduletest_native_include_dirs
+  include_dirs += [ "./" ]
+
+  cflags = demuxer_moduletest_cflags
+
+  if (av_codec_support_codec) {
+    sources = [
+      "./src/api_test.cpp",
+      "./src/func2_test.cpp",
+      "./src/func_test.cpp",
+      "./src/proc_test.cpp",
+    ]
+  }
+
+  external_deps = [
+    "c_utils:utils",
+    "graphic_2d:librender_service_client",
+    "graphic_surface:surface",
+    "media_foundation:media_foundation",
+    "media_foundation:native_media_core",
+    "window_manager:libwm",
+  ]
+
+  public_deps =
+      [ "$av_codec_root_dir/test/unittest/common:av_codec_inner_unit_test" ]
+
+  if (target_cpu == "arm64") {
+    av_codec_path = "\"/system/lib64\""
+  } else {
+    av_codec_path = "\"/system/lib\""
+  }
+  defines = [ "AV_CODEC_PATH=${av_codec_path}" ]
+
+  deps = [
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_avdemuxer",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_avsource",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_codecbase",
+    "$MEDIA_ROOT_DIR/services/services:av_codec_service",
+  ]
+
+  part_name = "av_codec"
+  subsystem_name = "multimedia"
+}

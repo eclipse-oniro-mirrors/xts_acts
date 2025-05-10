@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for MultimodalInput EventType Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "ohos.acts.multimodalinputets.input",
+        "package-name": "ohos.acts.multimodalinputets.input",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsMultimodalInputEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

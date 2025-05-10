@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for ActsBundleMgrOverlayEtsTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "ohos.acts.bundle.overlay.test",
+        "module-name": "entry_test",
+        "testcase-timeout": 240000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBundleMgrOverlayEtsTest.hap",
+                "ActsBundleMgrOverlayEtsDemo-entry-default-signed.hap",
+                "ActsBundleMgrOverlayEtsDemo-hsp-default-signed.hsp"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

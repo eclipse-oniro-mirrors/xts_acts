@@ -1,0 +1,57 @@
+<!Document>
+<html>
+<head>
+    <title>同层渲染测试html</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+</head>
+<body>
+<style>
+    html{
+        background-color:gray;
+    }
+    .edge{
+        position: absolute;
+        background-color: green;
+    }
+    .top{
+        width: 60%;
+        height: 30px;
+        top:0;
+        margin-left: 20%;
+        margin-top: env(safe-area-inset-top);
+    }
+    .bottom{
+        width: 60%;
+        height: 30px;
+        bottom:0;
+        margin-left: 20%;
+        margin-bottom: env(safe-area-inset-top);
+    }
+    .left{
+        width: 30px;
+        height: 60%;
+        left:0;
+        margin-top: 20%;
+        margin-left: env(safe-area-inset-top);
+    }
+    .right{
+        width: 30px;
+        height: 60%;
+        right:0;
+        margin-top: 20%;
+        margin-right: env(safe-area-inset-top);
+    }
+
+</style>
+<div>
+    <div class="edge top"></div>
+    <div class="edge bottom"></div>
+    <div class="edge left"></div>
+    <div class="edge right"></div>
+
+</div>
+
+<script>
+</script>
+</body>
+</html>

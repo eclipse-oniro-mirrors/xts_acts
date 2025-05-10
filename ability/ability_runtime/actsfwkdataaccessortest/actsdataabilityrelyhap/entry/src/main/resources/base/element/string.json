@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "ServiceExtAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "description_serviceextability",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "description_dataability",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "description_mainability2",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "entry_MainAbility2",
+      "value": "entry_MainAbility2"
+    },
+    {
+      "name": "description_testdataability",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "permreason_dataability",
+      "value": "request dataability premission"
+    }
+  ]
+}
