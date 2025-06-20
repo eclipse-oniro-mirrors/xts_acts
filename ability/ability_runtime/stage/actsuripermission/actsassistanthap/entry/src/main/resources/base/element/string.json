@@ -1,0 +1,52 @@
+{
+  "string":  [
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "hap2_desc",
+      "value": "description"
+    },
+    {
+      "name": "Hap2MainAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "Hap2MainAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "Hap2MainAbility2_desc",
+      "value": "description"
+    },
+    {
+      "name": "Hap2MainAbility2_label",
+      "value": "label"
+    },
+    {
+      "name": "Hap2MainAbility3_desc",
+      "value": "description"
+    },
+    {
+      "name": "Hap2MainAbility3_label",
+      "value": "label"
+    },
+    {
+      "name": "Hap2MainAbility4_desc",
+      "value": "description"
+    },
+    {
+      "name": "Hap2MainAbility4_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "service_description"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "service_label"
+    }
+  ]
+}

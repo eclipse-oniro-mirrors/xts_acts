@@ -1,0 +1,224 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAccessibilityExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAccessibilityExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility2_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility2_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility3_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility3_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility4_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility4_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility5_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility5_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility6_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility6_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility7_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility7_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility8_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility8_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility9_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility9_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility10_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility10_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility11_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility11_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility12_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility12_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbilityB_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbilityB_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility13_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility13_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility14_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility14_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility15_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility15_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility16_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility16_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility17_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility17_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility18_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility18_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility19_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility19_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility20_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility20_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility21_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility21_label",
+      "value": "label"
+    },
+    {
+      "name": "SecondAbility12b_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility12b_label",
+      "value": "label"
+    }
+  ]
+}

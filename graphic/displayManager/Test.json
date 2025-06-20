@@ -1,0 +1,32 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.displaymanager",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "70000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "wait 5",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "wait 5",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsDisplayManagerTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

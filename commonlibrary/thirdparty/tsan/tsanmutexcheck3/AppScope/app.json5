@@ -1,0 +1,33 @@
+/*
+ * Copyright (c) Huawei Technologies Co., Ltd. 2024-2025. All rights reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+{
+  "app": {
+    "bundleName": "com.thirdparty.tsanmutexcheck3.napitest",
+    "vendor": "example",
+    "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:app_icon",
+    "label": "$string:app_name",
+    "maxChildProcess": 0,
+    "tsanEnabled": true,
+    "appEnvironments": [
+      {
+        "name": "TSAN_OPTIONS",
+        "value": "abort_on_error=false halt_on_error=false check_log_path_on_init=false print_module_map=0 log_exe_name=true log_path=/data/storage/el2/log/tsanXtsLog"
+      },
+    ],
+  }
+}

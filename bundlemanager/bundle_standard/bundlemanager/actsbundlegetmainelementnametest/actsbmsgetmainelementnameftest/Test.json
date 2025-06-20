@@ -1,0 +1,29 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "600000",
+    "bundle-name": "com.example.bundlenativegetmainelementnametest",
+    "module-name": "entry_test",
+    "shell-timeout": "600000",
+    "testcase-timeout": 25000
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsBmsGetMainElementNameFmainTest-entry-default-signed.hap",
+        "ActsBmsGetMainElementNameFmainTest-feature-default-signed.hap",
+        "ActsBmsGetMainElementNameFTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "power-shell wakeup",
+        "power-shell setmode 602"
+      ]
+    }
+  ]
+}

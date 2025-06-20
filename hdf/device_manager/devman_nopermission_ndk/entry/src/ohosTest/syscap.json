@@ -1,0 +1,15 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Driver.HID.Extension",
+                    "SystemCapability.Driver.ExternalDevice",
+                    "SystemCapability.Driver.USB.Extension",
+                    "SystemCapability.Driver.DDK.Extension"
+                ]
+            }
+        ]
+    }
+}

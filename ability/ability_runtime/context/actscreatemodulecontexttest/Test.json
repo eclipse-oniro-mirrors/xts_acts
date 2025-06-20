@@ -1,0 +1,21 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.createmodulecontexttest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCreateModuleContextTest.hap",
+                "ActsCreateModuleContextAssist.hap",
+                "ActsCreateModuleContextAssistOne.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

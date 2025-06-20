@@ -1,0 +1,51 @@
+# Copyright (c) 2025 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos_var.gni")
+import("//drivers/external_device_manager/extdevmgr.gni")
+import("//test/xts/tools/build/suite.gni")
+
+module_output_path = "acts/ActsDeviceManagerTest"
+ohos_moduletest_suite("ActsDeviceManagerTest") {
+  module_out_path = module_output_path
+  sources = [ "device_manager_test.cpp" ]
+  include_dirs = [
+    "${ext_mgr_path}/frameworks/ddk/usb/",
+    "${ext_mgr_path}/services/native/driver_extension_manager/include/device_manager",
+    "${ext_mgr_path}/services/native/driver_extension_manager/include/bus_extension/usb",
+    "${ext_mgr_path}/services/native/driver_extension_manager/include/bus_extension/core",
+    "${ext_mgr_path}/services/native/driver_extension_manager/include/drivers_pkg_manager",
+    "${ext_mgr_path}/interfaces/ddk/usb/",
+    "${ext_mgr_path}/interfaces/innerkits/",
+  ]
+  deps = [
+    "${ext_mgr_path}/services/native/driver_extension_manager/src/bus_extension/core:driver_extension_bus_core",
+    "${ext_mgr_path}/services/native/driver_extension_manager/src/bus_extension/usb:driver_extension_usb_bus",
+    "${ext_mgr_path}/services/native/driver_extension_manager/src/device_manager:driver_extension_device_manager_test",
+    "${ext_mgr_path}/services/native/driver_extension_manager/src/drivers_pkg_manager:drivers_pkg_manager_test",
+  ]
+  external_deps = [
+    "bundle_framework:appexecfwk_core",
+    "bundle_framework:libappexecfwk_common",
+    "c_utils:utils",
+    "drivers_interface_usb:libusb_ddk_proxy_1.0",
+    "drivers_interface_usb:libusb_proxy_1.0",
+    "hilog:libhilog",
+    "ipc:ipc_core",
+    "samgr:samgr_proxy",
+  ]
+  configs = [ "${utils_path}:utils_config" ]
+
+  subsystem_name = "hdf"
+  part_name = "external_device_manager"
+}

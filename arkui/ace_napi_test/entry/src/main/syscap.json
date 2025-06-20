@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.ArkUI.ArkUI.Napi",
+                    "SystemCapability.ArkCompiler.JSVM"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,27 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/datePickerDialog/DatePickerDialogMode",
+    "MainAbility/pages/timePickerDialog/timePickerDialogEnableHapticFeedback",
+    "MainAbility/pages/datePickerDialog/datePickerDialogEnableHapticFeedback",
+    "MainAbility/pages/timePickerDialog/timePickerDialogSelectedArea",
+    "MainAbility/pages/textPickerDialog/textPickerDialogSelectedArea",
+    "MainAbility/pages/textPickerDialog/textPickerDialogDefaultTextStyle",
+    "MainAbility/pages/textPickerDialog/textPickerDialogDisableTextStyleAnimation",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogBGBlurStyle",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogBGColor",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogShadow",
+    "MainAbility/pages/datePickerDialog/datePickerDialogBGBlurStyle",
+    "MainAbility/pages/datePickerDialog/datePickerDialogBGColor",
+    "MainAbility/pages/datePickerDialog/datePickerDialogShadow",
+    "MainAbility/pages/textPickerDialog/textPickerDialogBGBlurStyle",
+    "MainAbility/pages/textPickerDialog/textPickerDialogBgColor",
+    "MainAbility/pages/textPickerDialog/textPickerDialogShadow",
+    "MainAbility/pages/timePickerDialog/timePickerDialogBGBlurStyle",
+    "MainAbility/pages/timePickerDialog/timePickerDialogBGColor",
+    "MainAbility/pages/timePickerDialog/timePickerDialogShadow",
+    "MainAbility/pages/textPickerDialog/textPickerDialogEnableHapticFeedback",
+    "MainAbility/pages/slider/SliderEnableHapticFeedbackTest",
+    "MainAbility/pages/textPicker/columnWidths"
+  ]
+}

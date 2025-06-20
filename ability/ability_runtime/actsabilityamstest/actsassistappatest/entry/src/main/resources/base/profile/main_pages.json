@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "EmbeddedUIExtAbility/Pages/BundlePage",
+    "entryembeddeduiextabilitydefault/pages/EntryEmbeddedUIExtAbilityDefaultPage",
+    "entryembeddeduiextabilityinstance/pages/EntryEmbeddedUIExtAbilityInstancePage",
+    "entryembeddeduiextabilitytype/pages/EntryEmbeddedUIExtAbilityTypePage"
+  ]
+}

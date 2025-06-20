@@ -1,0 +1,7 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/webViewSdkSchemeHandler",
+    "testability/pages/webViewSdkSchemeHandler2"
+  ]
+}

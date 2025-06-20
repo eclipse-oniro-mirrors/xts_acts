@@ -1,0 +1,90 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//foundation/multimedia/av_codec/config.gni")
+import("//test/xts/tools/build/suite.gni")
+
+MEDIA_ROOT_DIR = "//foundation/multimedia/av_codec/"
+THIRD_ROOT_DIR = "//third_party/"
+module_output_path = "acts/ActsCapabilityTest"
+
+ohos_moduletest_suite("ActsCapabilityTest") {
+  module_out_path = module_output_path
+  sources = [ "./src/cap_test.cpp" ]
+
+  include_dirs = [
+    "$MEDIA_ROOT_DIR/test/moduletest/vcodec/encoder/include",
+    "$MEDIA_ROOT_DIR/test/nativedemo/avmuxer",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c",
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/native",
+    "$MEDIA_ROOT_DIR/services/services/factory",
+    "$MEDIA_ROOT_DIR/services/engine/plugin/common",
+    "$MEDIA_ROOT_DIR/services/engine/plugin/core",
+    "$MEDIA_ROOT_DIR/services/engine/plugin/interface",
+    "$THIRD_ROOT_DIR/ffmpeg",
+    "$MEDIA_ROOT_DIR/frameworks/native/capi/common",
+    "$MEDIA_ROOT_DIR/services/dfx/include",
+    "$MEDIA_ROOT_DIR/services/engine/base/include",
+    "$MEDIA_ROOT_DIR/services/engine/codec/include/video",
+    "$MEDIA_ROOT_DIR/services/engine/common/include",
+    "$MEDIA_ROOT_DIR/services/engine/source/hst_releated",
+    "$MEDIA_ROOT_DIR/services/services/factory",
+    "$MEDIA_ROOT_DIR/services/utils/include",
+    "$MEDIA_ROOT_DIR/test/nativedemo/include",
+    "$MEDIA_ROOT_DIR/../../../third_party/openssl/ohos_lite/include",
+    "$MEDIA_ROOT_DIR/../../graphic/graphic_2d/interfaces/inner_api",
+  ]
+
+  cflags = [
+    "-std=c++17",
+    "-fno-rtti",
+    "-fno-exceptions",
+    "-Wall",
+    "-fno-common",
+    "-fstack-protector-strong",
+    "-Wshadow",
+    "-FPIC",
+    "-FS",
+    "-O2",
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-Wformat=2",
+    "-Wdate-time",
+    "-Werror",
+    "-Wextra",
+    "-Wimplicit-fallthrough",
+    "-Wsign-compare",
+    "-Wunused-parameter",
+  ]
+
+  deps = [
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/native:av_codec_client",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_codecbase",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_venc",
+  ]
+
+  external_deps = [
+    "c_utils:utils",
+    "graphic_2d:libgraphic_utils",
+    "graphic_2d:librender_service_client",
+    "graphic_surface:surface",
+    "hilog:libhilog",
+    "ipc:ipc_core",
+    "media_foundation:media_foundation",
+    "media_foundation:native_media_core",
+    "window_manager:libwm",
+  ]
+
+  part_name = "av_codec"
+  subsystem_name = "multimedia"
+}

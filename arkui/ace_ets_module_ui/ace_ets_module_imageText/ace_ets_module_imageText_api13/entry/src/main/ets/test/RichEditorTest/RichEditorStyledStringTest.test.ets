@@ -1,0 +1,97 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import CommonFunc from '../../MainAbility/common/Common';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import router from '@ohos.router';
+import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+
+export default function RichEditorStyledStringTest() {
+  describe('RichEditorStyledStringTest', () => {
+    beforeEach(async (done: Function) => {
+      console.info("RichEditorStyledStringTest beforeEach start");
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/RichEditor/RichEditorStyledStringTest',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get RichEditorStyledStringTest state pages:" + JSON.stringify(pages));
+        if (!("RichEditorStyledStringTest" == pages.name)) {
+          console.info("get RichEditorStyledStringTest pages.name:" + JSON.stringify(pages.name));
+          let result = await router.pushUrl(options);
+          await CommonFunc.sleep(2000);
+          console.info("push RichEditorStyledStringTest page result:" + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push RichEditorStyledStringTest page error:" + err);
+      }
+      console.info("RichEditorStyledStringTest beforeEach end");
+      done();
+    });
+
+    afterEach(async () => {
+      await CommonFunc.sleep(1000);
+      console.info("RichEditorStyledStringTest after each called");
+    });
+
+    /**
+     * @tc.number    RichEditorStyledStringTest_0100
+     * @tc.name      RichEditorStyledStringTest_0100
+     * @tc.desc      Test RichEditor StyledStringKey
+     * @tc.level     Level 2
+     */
+    it('RichEditorStyledStringTest_0100', 0, async (done: Function) => {
+      console.info('RichEditorStyledStringTest_0100 START');
+      let driver = Driver.create();
+      await CommonFunc.sleep(1000);
+      let button1 = await driver.findComponent(ON.id('searchStyle'));
+      await button1.click();
+      await CommonFunc.sleep(1000);
+
+      let text1 = getInspectorByKey('gestureId');
+      let Obj1: ESObject = JSON.parse(text1);
+      expect(Obj1.$attrs.content).assertEqual('100');
+      await CommonFunc.sleep(500);
+
+      let text2 = getInspectorByKey('decorationId');
+      let Obj2: ESObject = JSON.parse(text2);
+      expect(Obj2.$attrs.content).assertEqual('1');
+      await CommonFunc.sleep(500);
+
+      let text3 = getInspectorByKey('textShadowId');
+      let Obj3: ESObject = JSON.parse(text3);
+      expect(Obj3.$attrs.content).assertEqual('4');
+      await CommonFunc.sleep(500);
+
+      let text4 = getInspectorByKey('baselineOffsetId');
+      let Obj4: ESObject = JSON.parse(text4);
+      expect(Obj4.$attrs.content).assertEqual('2');
+      await CommonFunc.sleep(500);
+
+      let text5 = getInspectorByKey('letterSpacingId');
+      let Obj5: ESObject = JSON.parse(text5);
+      expect(Obj5.$attrs.content).assertEqual('3');
+      await CommonFunc.sleep(500);
+
+      let text6 = getInspectorByKey('urlId');
+      let Obj6: ESObject = JSON.parse(text6);
+      expect(Obj6.$attrs.content).assertEqual('7');
+      await CommonFunc.sleep(500);
+      console.info('RichEditorStyledStringTest_0100 END');    
+      done();
+    });
+  })
+}

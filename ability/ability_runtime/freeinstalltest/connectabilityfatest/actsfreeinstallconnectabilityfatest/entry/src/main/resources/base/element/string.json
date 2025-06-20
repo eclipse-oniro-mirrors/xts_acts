@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility2_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility2_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "ServiceAbility2_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "ServiceAbility3_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "ServiceAbility4_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "ServiceAbility5_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "ServiceAbility6_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "ServiceAbility7_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "ServiceAbility8_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "ServiceAbility9_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "ServiceAbility10_desc",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "ServiceAbility11_desc",
+      "value": "hap sample empty service"
+    }
+  ]
+}

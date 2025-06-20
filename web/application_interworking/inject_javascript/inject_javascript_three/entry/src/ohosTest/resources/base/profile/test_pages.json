@@ -1,0 +1,11 @@
+{
+  "src": [
+      "testability/pages/Index",
+      "testability/pages/WebRunJavaScriptOnDocumentStartTest",
+      "testability/pages/WebRunJavaScriptOnDocumentEndTest",
+      "testability/pages/WebRunJavaScriptOnHeadEndTest",
+      "testability/pages/WebJavaScriptOnDocumentStartTest",
+      "testability/pages/WebJavaScriptOnDocumentEndTest",
+      "testability/pages/WebviewRegisterJavaScriptProxyErrorCode"
+  ]
+}

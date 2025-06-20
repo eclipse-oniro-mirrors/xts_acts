@@ -1,0 +1,16 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Select/SelectAttr",
+        "MainAbility/pages/Select/selectoptionwith",
+        "MainAbility/pages/Select/Select",
+        "MainAbility/pages/Calendar/Calendar",
+        "MainAbility/pages/Select/select1",
+        "MainAbility/pages/Select/menuBackgroundBlurStyle",
+        "MainAbility/pages/Select/menuBackgroundColor",
+        "MainAbility/pages/Select/SelectIndex",
+        "MainAbility/pages/Select/SelectMenu",
+        "MainAbility/pages/CalendarPicker/CalendarPickerIndex",
+        "MainAbility/pages/Select/select3"
+    ]
+}

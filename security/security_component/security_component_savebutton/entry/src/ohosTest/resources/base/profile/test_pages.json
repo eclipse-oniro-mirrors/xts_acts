@@ -1,0 +1,8 @@
+{
+  "src": [
+    "testability/pages/index/index",
+    "testability/pages/saveButton",
+    "testability/pages/saveButton_1",
+    "testability/pages/saveButton_2"
+  ]
+}

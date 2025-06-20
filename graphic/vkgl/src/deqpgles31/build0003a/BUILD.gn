@@ -1,0 +1,157 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles31func0003a") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles31BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles31
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+  testonly = true
+}
+
+ohos_moduletest_suite("ActsDeqpgles31Suite0003aTest") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles310003TestSuite.cpp",
+    "../functional/Deqpgles31ldexp_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31ldexp_lowp_fragmentTestCase.cpp",
+    "../functional/Deqpgles31ldexp_lowp_vertexTestCase.cpp",
+    "../functional/Deqpgles31ldexp_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31ldexp_mediump_fragmentTestCase.cpp",
+    "../functional/Deqpgles31ldexp_mediump_vertexTestCase.cpp",
+    "../functional/Deqpgles31length_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31length_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31length_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31log2_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31log2_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31log2_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31log_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31log_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31log_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31matrixcompmult_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31matrixcompmult_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31matrixcompmult_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31max_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31max_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31min_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31min_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31mix_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31mix_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31mix_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31mod_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31mod_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31mod_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31mul_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31mul_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31mul_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31normalize_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31normalize_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31normalize_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31outerproduct_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31outerproduct_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31outerproduct_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31pow_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31pow_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31pow_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31precision_crossTestCase.cpp",
+    "../functional/Deqpgles31precision_modfTestCase.cpp",
+    "../functional/Deqpgles31radians_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31radians_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31radians_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31reflect_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31reflect_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31reflect_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31refract_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31refract_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31refract_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31round_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31round_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31round_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31roundeven_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31roundeven_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31roundeven_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31sample_mask_in_bit_count_per_pixelTestCase.cpp",
+    "../functional/Deqpgles31sample_mask_in_sample_maskTestCase.cpp",
+    "../functional/Deqpgles31sample_pos_correctnessTestCase.cpp",
+    "../functional/Deqpgles31sample_pos_distributionTestCase.cpp",
+    "../functional/Deqpgles31sample_variables_max_samplesTestCase.cpp",
+    "../functional/Deqpgles31sample_variables_num_samplesTestCase.cpp",
+    "../functional/Deqpgles31sample_variables_sample_idTestCase.cpp",
+    "../functional/Deqpgles31sign_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31sign_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31sign_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31sin_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31sin_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31sin_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31sinh_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31sinh_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31sinh_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31smoothstep_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31smoothstep_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31sqrt_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31sqrt_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31sqrt_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31step_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31step_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31step_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31sub_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31sub_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31sub_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31tan_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31tan_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31tan_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31tanh_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31tanh_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31tanh_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31transpose_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31transpose_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31transpose_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31trunc_highp_computeTestCase.cpp",
+    "../functional/Deqpgles31trunc_lowp_computeTestCase.cpp",
+    "../functional/Deqpgles31trunc_mediump_computeTestCase.cpp",
+    "../functional/Deqpgles31uniform_findLSBMinusOneTestCase.cpp",
+    "../functional/Deqpgles31uniform_findLSBZeroTestCase.cpp",
+    "../functional/Deqpgles31uniform_findMSBMinusOneTestCase.cpp",
+    "../functional/Deqpgles31uniform_findMSBZeroTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles31func0003a" ]
+
+  cflags = [ "-Wno-error" ]
+}

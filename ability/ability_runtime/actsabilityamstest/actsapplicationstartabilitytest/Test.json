@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.actsapplicationstartabilitytest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsApplicationStartAbilityTest.hap",
+                "ActsApplicationStartAbilityEntry.hap",
+                "ActsApplicationStartAbilityAuxiliary.hap",
+                "ActsApplicationStartAbilityAuxiliary_2.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,171 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "module": {
+    "name": "entry_test",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:test_pages",
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "srcEntry": "./ets/EnterpriseAdminAbility/EnterpriseAdminAbility.ts",
+        "name": "com.example.myapplication.EnterpriseAdminAbility",
+        "icon": "$media:icon",
+        "description": "",
+        "type": "enterpriseAdmin",
+        "exported": true
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.CAPTURE_SCREEN"
+      },
+      {
+        "name": "ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name": "ohos.permission.INSTALL_BUNDLE"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_SET_DATETIME"
+      },
+      {
+        "name": "ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN"
+      },
+      {
+        "name": "ohos.permission.SET_ENTERPRISE_INFO"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_SUBSCRIBE_MANAGED_EVENT"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_GET_DEVICE_INFO"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_RESET_DEVICE"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_SET_ACCOUNT_POLICY"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_SET_WIFI"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_GET_NETWORK_INFO"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_SET_NETWORK"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_GET_SETTINGS"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_INSTALL_BUNDLE"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_RESTRICT_POLICY"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_SET_BROWSER_POLICY"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_SYSTEM"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_NETWORK"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_SECURITY"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_USB"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME"
+      },
+      {
+        "name": "ohos.permission.MANAGE_LOCAL_ACCOUNTS"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_SETTINGS"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_LOCK_DEVICE"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_REBOOT"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_RESTRICTIONS"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_LOCATION"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_APPLICATION"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_WIFI"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_OPERATE_DEVICE"
+      },
+      {
+        "name": "ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY"
+      },
+      {
+        "name": "ohos.permission.PERSONAL_MANAGE_RESTRICTIONS"
+      }
+    ]
+  }
+}
