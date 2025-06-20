@@ -1,0 +1,50 @@
+{
+    "description": "Configuration for audio renderer enhance Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "3000000",
+        "bundle-name": "com.example.xts_test_case",
+        "shell-timeout": "600000",
+        "testcase-timeout": "100000",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioRendererEnhanceTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/com.example.xts_test_case/haps/entry/files",
+                "chmod 777 -R /data/app/el2/100/base/com.example.xts_test_case/haps/entry"
+            ],
+            "cleanup-apps": true
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/audio/audioManager/Believer.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/Believer60s.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-8000-2SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-16000-2SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-32000-1SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-44100-2SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-64000-3SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-96000-4SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-11025-1SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-12000-2SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-16000-3SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-22050-2SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-24000-3SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-48000-4SW.wav ->/data/app/el2/100/base/com.example.xts_test_case/haps/entry/files/"
+            ]
+        }
+    ]
+}

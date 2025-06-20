@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var request = indexedDB.open("mydb", 1);
+
+            request.onupgradeneeded = function(event) {
+                var db = event.target.result;
+                if (!db.objectStoreNames.contains("logs")) {
+                    var objectStore = db.createObjectStore("logs", { keyPath: "id" });
+                    // 添加一些初始数据
+                    var data = [
+                        {id: 1, log: "W3Cschool教程"},
+                        {id: 2, log: "www.w3cschool.cn"}
+                    ];
+                    data.forEach(function(item) {
+                        var request = objectStore.add(item);
+                        request.onerror = function(event) {
+                            console.error("Unable to add data: ", event.target.error);
+                        };
+                    });
+                }
+            };
+
+            request.onsuccess = function(event) {
+                var db = event.target.result;
+                var transaction = db.transaction(["logs"], "readonly");
+                var objectStore = transaction.objectStore("logs");
+
+                var request = objectStore.getAll();
+                request.onsuccess = function(event) {
+                    var logs = event.target.result;
+                    var msg = "<p>查询记录条数: " + logs.length + "</p>";
+                    document.querySelector('#status').innerHTML = msg;
+
+                    logs.forEach(function(log) {
+                        msg = "<p><b>" + log.log + "</b></p>";
+                        document.querySelector('#status').innerHTML += msg;
+                    });
+                };
+
+                request.onerror = function(event) {
+                    console.error("Unable to retrieve data: ", event.target.error);
+                };
+            };
+
+            request.onerror = function(event) {
+                console.error("Database error: ", event.target.error);
+            };
+        });
+
+    </script>
+</head>
+<body>
+<div id="status">状态信息</div>
+</body>
+</html>

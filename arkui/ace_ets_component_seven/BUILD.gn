@@ -1,0 +1,86 @@
+#Copyright (c) 2024 Huawei Device Co., Ltd.
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
+group("componentSevenAttrssTest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "ace_ets_component_common_seven_attrs_accessibilityDescription:ActsAceEtsComponentCommonSevenAttrsAccessibilityDescriptionTest",
+      "ace_ets_component_common_seven_attrs_accessibilityGroup:ActsAceEtsComponentCommonSevenAttrsAccessibilityGroupTest",
+      "ace_ets_component_common_seven_attrs_accessibilityLevel:ActsAceEtsComponentCommonSevenAttrsAccessibilityLevelTest",
+      "ace_ets_component_common_seven_attrs_accessibilityText:ActsAceEtsComponentCommonSevenAttrsAccessibilityTextTest",
+      "ace_ets_component_common_seven_attrs_align:ActsAceEtsComponentCommonSevenAttrsAlignTest",
+      "ace_ets_component_common_seven_attrs_backdropBlur:ActsAceEtsComponentCommonSevenAttrsBackdropBlurTest",
+      "ace_ets_component_common_seven_attrs_backgroundBlurStyle:ActsAceEtsComponentCommonSevenAttrsBackgroundBlurStyleTest",
+      "ace_ets_component_common_seven_attrs_backgroundColor:ActsAceEtsComponentCommonSevenAttrsBackgroundColorTest",
+      "ace_ets_component_common_seven_attrs_backgroundImage:ActsAceEtsComponentCommonSevenAttrsBackgroundImageTest",
+      "ace_ets_component_common_seven_attrs_backgroundImagePosition:ActsAceEtsComponentCommonSevenAttrsBackgroundImagePositionTest",
+      "ace_ets_component_common_seven_attrs_backgroundImageSize:ActsAceEtsComponentCommonSevenAttrsBackgroundImageSizeTest",
+      "ace_ets_component_common_seven_attrs_blur:ActsAceEtsComponentCommonSevenAttrsBlurTest",
+      "ace_ets_component_common_seven_attrs_border:ActsAceEtsComponentCommonSevenAttrsBorderTest",
+      "ace_ets_component_common_seven_attrs_borderColor:ActsAceEtsComponentCommonSevenAttrsBorderColorTest",
+      "ace_ets_component_common_seven_attrs_borderImage:ActsAceEtsComponentCommonSevenAttrsBorderImageTest",
+      "ace_ets_component_common_seven_attrs_borderRadius:ActsAceEtsComponentCommonSevenAttrsBorderRadiusTest",
+      "ace_ets_component_common_seven_attrs_borderStyle:ActsAceEtsComponentCommonSevenAttrsBorderStyleTest",
+      "ace_ets_component_common_seven_attrs_borderWidth:ActsAceEtsComponentCommonSevenAttrsBorderWidthTest",
+      "ace_ets_component_common_seven_attrs_brightness:ActsAceEtsComponentCommonSevenAttrsBrightnessTest",
+      "ace_ets_component_common_seven_attrs_clickEffect:ActsAceEtsComponentCommonSevenAttrsClickEffectTest",
+      "ace_ets_component_common_seven_attrs_clip:ActsAceEtsComponentCommonSevenAttrsClipTest",
+      "ace_ets_component_common_seven_attrs_colorBlend:ActsAceEtsComponentCommonSevenAttrsColorBlendTest",
+      "ace_ets_component_common_seven_attrs_contrast:ActsAceEtsComponentCommonSevenAttrsContrastTest",
+      "ace_ets_component_common_seven_attrs_defaultFocus:ActsAceEtsComponentCommonSevenAttrsDefaultFocusTest",
+      "ace_ets_component_common_seven_attrs_draggable:ActsAceEtsComponentCommonSevenAttrsDraggableTest",
+      "ace_ets_component_common_seven_attrs_enabled:ActsAceEtsComponentCommonSevenAttrsEnabledTest",
+      "ace_ets_component_common_seven_attrs_focusOnTouch:ActsAceEtsComponentCommonSevenAttrsFocusOnTouchTest",
+      "ace_ets_component_common_seven_attrs_focusable:ActsAceEtsComponentCommonSevenAttrsFocusableTest",
+      "ace_ets_component_common_seven_attrs_foregroundBlurStyle:ActsAceEtsComponentCommonSevenAttrsForegroundBlurStyleTest",
+      "ace_ets_component_common_seven_attrs_foregroundColor:ActsAceEtsComponentCommonSevenAttrsForegroundColorTest",
+      "ace_ets_component_common_seven_attrs_grayscale:ActsAceEtsComponentCommonSevenAttrsGrayscaleTest",
+      "ace_ets_component_common_seven_attrs_groupDefaultFocus:ActsAceEtsComponentCommonSevenAttrsGroupDefaultFocusTest",
+      "ace_ets_component_common_seven_attrs_height:ActsAceEtsComponentCommonSevenAttrsHeightTest",
+      "ace_ets_component_common_seven_attrs_hitTestBehavior:ActsAceEtsComponentCommonSevenAttrsHitTestBehaviorTest",
+      "ace_ets_component_common_seven_attrs_hoverEffect:ActsAceEtsComponentCommonSevenAttrsHoverEffectTest",
+      "ace_ets_component_common_seven_attrs_hueRotate:ActsAceEtsComponentCommonSevenAttrsHueRotateTest",
+      "ace_ets_component_common_seven_attrs_invert:ActsAceEtsComponentCommonSevenAttrsInvertTest",
+      "ace_ets_component_common_seven_attrs_lightUpEffect:ActsAceEtsComponentCommonSevenAttrsLightUpEffectTest",
+      "ace_ets_component_common_seven_attrs_linearGradient:ActsAceEtsComponentCommonSevenAttrsLinearGradientTest",
+      "ace_ets_component_common_seven_attrs_linearGradientBlur:ActsAceEtsComponentCommonSevenAttrsLinearGradientBlurTest",
+      "ace_ets_component_common_seven_attrs_mouseResponseRegion:ActsAceEtsComponentCommonSevenAttrsMouseResponseRegionTest",
+      "ace_ets_component_common_seven_attrs_obscured:ActsAceEtsComponentCommonSevenAttrsObscuredTest",
+      "ace_ets_component_common_seven_attrs_opacity:ActsAceEtsComponentCommonSevenAttrsOpacityTest",
+      "ace_ets_component_common_seven_attrs_overlay:ActsAceEtsComponentCommonSevenAttrsOverlayTest",
+      "ace_ets_component_common_seven_attrs_pixelStretchEffect:ActsAceEtsComponentCommonSevenAttrsPixelStretchEffectTest",
+      "ace_ets_component_common_seven_attrs_position:ActsAceEtsComponentCommonSevenAttrsPositionTest",
+      "ace_ets_component_common_seven_attrs_radialGradient:ActsAceEtsComponentCommonSevenAttrsRadialGradientTest",
+      "ace_ets_component_common_seven_attrs_renderFit:ActsAceEtsComponentCommonSevenAttrsRenderFitTest",
+      "ace_ets_component_common_seven_attrs_renderGroup:ActsAceEtsComponentCommonSevenAttrsRenderGroupTest",
+      "ace_ets_component_common_seven_attrs_responseRegion:ActsAceEtsComponentCommonSevenAttrsResponseRegionTest",
+      "ace_ets_component_common_seven_attrs_restoreId:ActsAceEtsComponentCommonSevenAttrsRestoreIdTest",
+      "ace_ets_component_common_seven_attrs_rotate:ActsAceEtsComponentCommonSevenAttrsRotateTest",
+      "ace_ets_component_common_seven_attrs_saturate:ActsAceEtsComponentCommonSevenAttrsSaturateTest",
+      "ace_ets_component_common_seven_attrs_scale:ActsAceEtsComponentCommonSevenAttrsScaleTest",
+      "ace_ets_component_common_seven_attrs_sepia:ActsAceEtsComponentCommonSevenAttrsSepiaTest",
+      "ace_ets_component_common_seven_attrs_shadow:ActsAceEtsComponentCommonSevenAttrsShadowTest",
+      "ace_ets_component_common_seven_attrs_sphericalEffect:ActsAceEtsComponentCommonSevenAttrsSphericalEffectTest",
+      "ace_ets_component_common_seven_attrs_sweepGradient:ActsAceEtsComponentCommonSevenAttrsSweepGradientTest",
+      "ace_ets_component_common_seven_attrs_tabIndex:ActsAceEtsComponentCommonSevenAttrsTabIndexTest",
+      "ace_ets_component_common_seven_attrs_touchable:ActsAceEtsComponentCommonSevenAttrsTouchableTest",
+      "ace_ets_component_common_seven_attrs_transform:ActsAceEtsComponentCommonSevenAttrsTransformTest",
+      "ace_ets_component_common_seven_attrs_translate:ActsAceEtsComponentCommonSevenAttrsTranslateTest",
+      "ace_ets_component_common_seven_attrs_useEffect:ActsAceEtsComponentCommonSevenAttrsUseEffectTest",
+      "ace_ets_component_common_seven_attrs_width:ActsAceEtsComponentCommonSevenAttrsWidthTest",
+      "ace_ets_component_common_seven_attrs_zIndex:ActsAceEtsComponentCommonSevenAttrsZIndexTest",
+      "ace_ets_component_seven_special:ActsAceEtsComponentSevenSpecialTest",
+    ]
+  }
+}

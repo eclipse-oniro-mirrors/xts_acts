@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "500000",
+        "shell-timeout": "500000",
+        "bundle-name": "com.example.actscontext",
+        "package-name": "com.example.actscontext"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "DefPermission.hap",
+                "ActsContextTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

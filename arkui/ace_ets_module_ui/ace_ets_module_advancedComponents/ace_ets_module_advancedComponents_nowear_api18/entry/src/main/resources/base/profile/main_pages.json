@@ -1,0 +1,13 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/Chip/ChipPage",
+    "MainAbility/pages/ChipGroup/ChipGroupIconItemOptionsPage",
+    "MainAbility/pages/ChipGroup/ChipGroupSymbolItemOptionsPage",
+    "MainAbility/pages/segmentButtonV2/SegmentButtonV20010",
+    "MainAbility/pages/segbtn/SegBtnItem0010",
+    "MainAbility/pages/capsuleSegmentButtonV2/SegmentButtonV2Test",
+    "MainAbility/pages/tabSegmentButtonV2/TabSegmentButtonV2Example",
+    "MainAbility/pages/multiCapsuleSegmentButtonV2/MultiSegmentButtonV2Page"
+  ]
+}

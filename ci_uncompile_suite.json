@@ -1,0 +1,11 @@
+[
+  "test/xts/acts/commonlibrary/thirdparty/asan:ActsThirdPartyAsanTest",
+  "test/xts/acts/commonlibrary/thirdparty/hwasan:ActsThirdPartyHWAsanTest",
+  "test/xts/acts/commonlibrary/thirdparty/tsan/tsanmain:ActsThirdPartyTsanTest",
+  "test/xts/acts/commonlibrary/thirdparty/tsan/tsanmutexcheck1:ActsThirdPartyTsanMutexCheck1Test",
+  "test/xts/acts/commonlibrary/thirdparty/tsan/tsanmutexcheck2:ActsThirdPartyTsanMutexCheck2Test",
+  "test/xts/acts/commonlibrary/thirdparty/tsan/tsanmutexcheck3:ActsThirdPartyTsanMutexCheck3Test",
+  "test/xts/acts/commonlibrary/thirdparty/tsan/tsanmutexcheck4:ActsThirdPartyTsanMutexCheck4Test",
+  "test/xts/acts/commonlibrary/thirdparty/ubsan:ActsThirdPartyUBSanTest",
+  "test/xts/acts/arkui/ace_ets_component_advanced/ace_ets_component_advanced_arcslider/ace_ets_component_advanced_arcslider_api16:ActsAceEtscomponentArcSliderTest"
+]

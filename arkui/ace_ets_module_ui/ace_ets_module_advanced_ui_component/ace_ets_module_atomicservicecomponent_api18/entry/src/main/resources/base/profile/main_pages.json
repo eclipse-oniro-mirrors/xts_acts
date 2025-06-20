@@ -1,0 +1,11 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/atomicservicenavigation/AtomicServiceNavigationTest",
+    "MainAbility/pages/atomicserviceweb/AtomicServiceWebTest",
+    "MainAbility/pages/atomicservicesearch/AtomicServiceSearchTest",
+    "MainAbility/pages/atomicservicetabs/AtomicServiceTabsTest",
+    "MainAbility/pages/halfscreenlaunchcomponent/HalfScreenLaunchComponentTest",
+    "MainAbility/pages/interstitialdialogaction/InterstitialDialogActionTest"
+  ]
+}

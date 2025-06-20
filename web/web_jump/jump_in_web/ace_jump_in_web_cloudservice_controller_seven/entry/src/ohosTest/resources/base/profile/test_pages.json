@@ -1,0 +1,7 @@
+{
+  "src": [
+      "testability/pages/Index",
+      "testability/pages/webViewIncognitoMode1",
+      "testability/pages/webViewIncognitoMode2"
+  ]
+}

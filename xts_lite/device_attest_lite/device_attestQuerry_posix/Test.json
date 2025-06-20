@@ -1,0 +1,26 @@
+
+{
+    "description": "Config for kernel_lite test cases",
+    "environment": [
+        {
+            "type": "device",
+            "label": "ipcamera"
+        }
+    ],
+    "kits": [
+        {
+            "type": "MountKit",
+            "server": "NfsServer",
+            "mount": [
+                {
+                    "source": "testcases/xts",
+                    "target": "/test_root/xts"
+                }
+            ]
+        }
+    ],
+    "driver": {
+        "type": "CppTestLite",
+        "execute": "/test_root/xts/ActsDeviceAttestQuerryTest.bin"
+    }
+}

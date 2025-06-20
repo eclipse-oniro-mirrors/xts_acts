@@ -1,0 +1,104 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libkhrgles31func0004") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Khrgles31BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles31
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsKhrgles31Suite0004Test") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsKhrgles310004TestSuite.cpp",
+    "../core/Khrgles31teximage3d_r11g11b10fTestCase.cpp",
+    "../core/Khrgles31teximage3d_r16fTestCase.cpp",
+    "../core/Khrgles31teximage3d_r16iTestCase.cpp",
+    "../core/Khrgles31teximage3d_r16uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_r32fTestCase.cpp",
+    "../core/Khrgles31teximage3d_r32iTestCase.cpp",
+    "../core/Khrgles31teximage3d_r32uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_r8iTestCase.cpp",
+    "../core/Khrgles31teximage3d_r8snormTestCase.cpp",
+    "../core/Khrgles31teximage3d_r8uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_rg16fTestCase.cpp",
+    "../core/Khrgles31teximage3d_rg16iTestCase.cpp",
+    "../core/Khrgles31teximage3d_rg16uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_rg32fTestCase.cpp",
+    "../core/Khrgles31teximage3d_rg32iTestCase.cpp",
+    "../core/Khrgles31teximage3d_rg32uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_rg8TestCase.cpp",
+    "../core/Khrgles31teximage3d_rg8iTestCase.cpp",
+    "../core/Khrgles31teximage3d_rg8snormTestCase.cpp",
+    "../core/Khrgles31teximage3d_rg8uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb10a2TestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb10a2uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb16fTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb16iTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb16uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb32fTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb32iTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb32uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb565TestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb5a1TestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb8TestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb8iTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb8snormTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgb8uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba16fTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba16iTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba16uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba32fTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba32iTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba32uiTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba4TestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba8TestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba8iTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba8snormTestCase.cpp",
+    "../core/Khrgles31teximage3d_rgba8uiTestCase.cpp",
+    "../shaders/Khrgles31shaders_aggressive_optimizationsTestCase.cpp",
+    "../shaders/Khrgles31shaders_layout_locationTestCase.cpp",
+    "../shaders/Khrgles31shaders_negativeTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libkhrgles31func0004" ]
+
+  cflags = [ "-Wno-error" ]
+}

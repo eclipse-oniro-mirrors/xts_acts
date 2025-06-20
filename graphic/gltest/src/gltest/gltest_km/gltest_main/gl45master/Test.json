@@ -1,0 +1,61 @@
+{
+    "description": "Config for ActsOpenGlMainGl45MasterTest test cases",
+    "driver": {
+        "module-name": "ActsOpenGlMainGl45MasterTest",
+        "native-test-timeout": "120000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "100s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "pre-push" : [
+            ],
+            "post-push" : [
+                "mount -o rw,remount /",
+                "chmod -R 777 /data/local/tmp/*",
+                "rm -rf /data/local/tmp/*.qpa",
+                "rm -rf /data/local/tmp/*.xml",
+                "mkdir -p /data/storage/shader_cache/local",
+                "mkdir /data/local/tmp/opengl",
+                "tar zxvf /data/local/tmp/opengldata.tar.gz -C /data/local/tmp/opengl",
+                "chmod -R 777 /data/local/tmp/opengl/mustpass/*",
+                "cp -r /data/local/tmp/opengl/data/* /data/local/tmp/opengl",
+                "cp /data/local/tmp/libdeqp* /system/lib",
+                "cp /data/local/tmp/librosen_context* /system/lib"
+            ],
+            
+            "push": [
+                "ActsOpenGlMainGl45MasterTest->/data/local/tmp/ActsOpenGlMainGl45MasterTest",
+                "opengldata/libdeqp_ohos_platform.z.so->/data/local/tmp/libdeqp_ohos_platform.z.so",
+                "opengldata/librosen_context.z.so->/data/local/tmp/librosen_context.z.so",
+                "opengldata/libdeqp_spirv.z.so->/data/local/tmp/libdeqp_spirv.z.so",
+                "opengldata/libdeqp_amber.z.so->/data/local/tmp/libdeqp_amber.z.so",
+                "opengldata/libdeqp_spvremapper.z.so->/data/local/tmp/libdeqp_spvremapper.z.so", 
+                "opengldata/opengldata.tar.gz->/data/local/tmp/opengldata.tar.gz"               
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "CommandKit",
+            "teardown": [
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl45MasterTest.qpa->ActsOpenGlMainGl45MasterTest.qpa"
+                }
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "cd /data/local/tmp"
+            ],
+            "teardown-localcommand": [
+                "python testcases/opengldata/genlocal.py ActsOpenGlMainGl45MasterTest gl/khronos_mustpass/main/gl45-master.txt"
+            ]
+        }
+
+    ]
+}

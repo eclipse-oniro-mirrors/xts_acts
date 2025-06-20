@@ -1,0 +1,17 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Communication.NetManager.Ethernet",
+                    "SystemCapability.Communication.NetManager.NetSharing",
+                    "SystemCapability.Communication.NetManager.MDNS",
+                    "SystemCapability.Communication.NetManager.Vpn",
+                    "SystemCapability.Communication.NetManager.NetFirewall",
+                    "SystemCapability.Communication.NetManager.WearableDistributedNet"
+                ]
+            }
+        ]
+    }
+}

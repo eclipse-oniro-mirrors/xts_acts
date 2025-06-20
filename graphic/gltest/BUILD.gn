@@ -1,0 +1,148 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+import("//test/xts/acts/graphic/vktest/comm.gni")
+
+action("cpOpenGL") {
+  testonly = true
+  script = "cpOpenGL.sh"
+  outputs = [ "${target_out_dir}/cpOpenGL.log" ]
+  root_opengl_path = rebase_path("//")
+  args = [ "$root_opengl_path" ]
+  deps = [
+    ":openGLTest",
+    "//third_party/vk-gl-cts/framework/platform:glcts",
+
+    # "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute",
+    # "//third_party/vk-gl-cts/external/openglcts/modules:deqp_glcts",
+  ]
+}
+
+group("openGLTest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "src/egltest/egltest_323x:ActsOpenGlEgl323xTest",
+      "src/egltest/egltest_324x:ActsOpenGlEgl324xTest",
+      "src/egltest/egltest_325x:ActsOpenGlEgl325xTest",
+      "src/egltest/egltest_326x:ActsOpenGlEgl326xTest",
+      "src/egltest/egltest_main:ActsOpenGlEglMainTest",
+      "src/egltest/egltest_master:ActsOpenGlEglMasterTest",
+
+      "src/gltest/gltest_am/gltest_461x/gl45es3master:ActsOpenGl461xGl45Es3MasterTest",
+      "src/gltest/gltest_am/gltest_461x/gl45es31master:ActsOpenGl461xGl45Es31MasterTest",
+      "src/gltest/gltest_am/gltest_461x/gl45master:ActsOpenGLAm461xGl45MasterTest",
+
+      "src/gltest/gltest_am/gltest_main/gl45es3master:ActsOpenGlMainGl45Es3MasterTest",
+      "src/gltest/gltest_am/gltest_main/gl45es31master:ActsOpenGlMainGl45Es31MasterTest",
+      "src/gltest/gltest_am/gltest_main/gl45master:ActsOpenGlAmMainGl45MasterTest",
+
+      "src/gltest/gltest_km/gltest_460x/gl30gtfmaster:ActsOpenGl460xGl30GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl30master:ActsOpenGl460xGl30MasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl31gtfmaster:ActsOpenGl460xGl31GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl31master:ActsOpenGl460xGl31MasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl32gtfmaster:ActsOpenGl460xGl32GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl32master:ActsOpenGl460xGl32MasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl33gtfmaster:ActsOpenGl460xGl33GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl33master:ActsOpenGl460xGl33MasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl40gtfmaster:ActsOpenGl460xGl40GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl40master:ActsOpenGl460xGl40MasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl41gtfmaster:ActsOpenGl460xGl41GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl41master:ActsOpenGl460xGl41MasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl42compatmaster:ActsOpenGl460xGl42CompatMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl42gtfmaster:ActsOpenGl460xGl42GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl42master:ActsOpenGl460xGl42MasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl43gtfmaster:ActsOpenGl460xGl43GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl43master:ActsOpenGl460xGl43MasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl44gtfmaster:ActsOpenGl460xGl44GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl44master:ActsOpenGl460xGl44MasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl45gtfmaster:ActsOpenGl460xGl45GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl45master:ActsOpenGl460xGl45MasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl46gtfmaster:ActsOpenGl460xGl46GtfMasterTest",
+      "src/gltest/gltest_km/gltest_460x/gl46master:ActsOpenGl460xGl46MasterTest",
+
+      "src/gltest/gltest_km/gltest_461x/gl30gtfmaster:ActsOpenGl461xGl30GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl30master:ActsOpenGl461xGl30MasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl31gtfmaster:ActsOpenGl461xGl31GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl31master:ActsOpenGl461xGl31MasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl32gtfmaster:ActsOpenGl461xGl32GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl32master:ActsOpenGl461xGl32MasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl33gtfmaster:ActsOpenGl461xGl33GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl33master:ActsOpenGl461xGl33MasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl40gtfmaster:ActsOpenGl461xGl40GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl40master:ActsOpenGl461xGl40MasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl41gtfmaster:ActsOpenGl461xGl41GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl41master:ActsOpenGl461xGl41MasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl42compatmaster:ActsOpenGl461xGl42CompatMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl42gtfmaster:ActsOpenGl461xGl42GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl42master:ActsOpenGl461xGl42MasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl43gtfmaster:ActsOpenGl461xGl43GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl43master:ActsOpenGl461xGl43MasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl44gtfmaster:ActsOpenGl461xGl44GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl44master:ActsOpenGl461xGl44MasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl45gtfmaster:ActsOpenGl461xGl45GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl45master:ActsOpenGl461xGl45MasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl46gtfmaster:ActsOpenGl461xGl46GtfMasterTest",
+      "src/gltest/gltest_km/gltest_461x/gl46master:ActsOpenGl461xGl46MasterTest",
+
+      "src/gltest/gltest_km/gltest_main/gl30gtfmaster:ActsOpenGlMainGl30GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl30master:ActsOpenGlMainGl30MasterTest",
+      "src/gltest/gltest_km/gltest_main/gl31gtfmaster:ActsOpenGlMainGl31GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl31master:ActsOpenGlMainGl31MasterTest",
+      "src/gltest/gltest_km/gltest_main/gl32gtfmaster:ActsOpenGlMainGl32GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl32master:ActsOpenGlMainGl32MasterTest",
+      "src/gltest/gltest_km/gltest_main/gl33gtfmaster:ActsOpenGlMainGl33GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl33master:ActsOpenGlMainGl33MasterTest",
+      "src/gltest/gltest_km/gltest_main/gl40gtfmaster:ActsOpenGlMainGl40GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl40master:ActsOpenGlMainGl40MasterTest",
+      "src/gltest/gltest_km/gltest_main/gl41gtfmaster:ActsOpenGlMainGl41GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl41master:ActsOpenGlMainGl41MasterTest",
+      "src/gltest/gltest_km/gltest_main/gl42compatmaster:ActsOpenGlMainGl42CompatMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl42gtfmaster:ActsOpenGlMainGl42GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl42master:ActsOpenGlMainGl42MasterTest",
+      "src/gltest/gltest_km/gltest_main/gl43gtfmaster:ActsOpenGlMainGl43GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl43master:ActsOpenGlMainGl43MasterTest",
+      "src/gltest/gltest_km/gltest_main/gl44gtfmaster:ActsOpenGlMainGl44GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl44master:ActsOpenGlMainGl44MasterTest",
+      "src/gltest/gltest_km/gltest_main/gl45gtfmaster:ActsOpenGlMainGl45GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl45master:ActsOpenGlMainGl45MasterTest",
+      "src/gltest/gltest_km/gltest_main/gl46gtfmaster:ActsOpenGlMainGl46GtfMasterTest",
+      "src/gltest/gltest_km/gltest_main/gl46master:ActsOpenGlMainGl46MasterTest",
+      
+      "src/gltest/gltest_kmn/gltest_455x:ActsOpenGl455xGl40KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_460x/gl30khrmaster:ActsOpenGl460xGl30KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_460x/gl40khrmaster:ActsOpenGl460xGl40KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_460x/gl43khrmaster:ActsOpenGl460xGl43KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_460x/gl45khrmaster:ActsOpenGl460xGl45KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_461x/gl30khrmaster:ActsOpenGl461xGl30KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_461x/gl40khrmaster:ActsOpenGl461xGl40KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_461x/gl43khrmaster:ActsOpenGl461xGl43KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_461x/gl45khrmaster:ActsOpenGl461xGl45KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_main/gl30khrmaster:ActsOpenGlMainGl30KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_main/gl40khrmaster:ActsOpenGlMainGl40KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_main/gl43khrmaster:ActsOpenGlMainGl43KhrMasterTest",
+      "src/gltest/gltest_kmn/gltest_main/gl45khrmaster:ActsOpenGlMainGl45KhrMasterTest",
+      
+      "src/gltest/gltest_kms/gltest_461x/gl43khrsingle:ActsOpenGl461xGl43KhrSingleTest",
+      "src/gltest/gltest_kms/gltest_461x/gl44khrsingle:ActsOpenGl461xGl44KhrSingleTest",
+      "src/gltest/gltest_kms/gltest_461x/gl45khrsingle:ActsOpenGl461xGl45KhrSingleTest",
+      "src/gltest/gltest_kms/gltest_461x/gl46khrsingle:ActsOpenGl461xGl46KhrSingleTest",
+      "src/gltest/gltest_kms/gltest_main/gl43khrsingle:ActsOpenGlMainGl43KhrSingleTest",
+      "src/gltest/gltest_kms/gltest_main/gl44khrsingle:ActsOpenGlMainGl44KhrSingleTest",
+      "src/gltest/gltest_kms/gltest_main/gl45khrsingle:ActsOpenGlMainGl45KhrSingleTest",
+      "src/gltest/gltest_kms/gltest_main/gl46khrsingle:ActsOpenGlMainGl46KhrSingleTest",
+    ]
+  }
+}

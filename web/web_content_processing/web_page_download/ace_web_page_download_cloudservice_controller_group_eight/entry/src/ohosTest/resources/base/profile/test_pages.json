@@ -1,0 +1,17 @@
+{
+  "src": [
+    "testability/pages/StartDownloadTest",
+    "testability/pages/StartDownloadTest1",
+    "testability/pages/PendingTest",
+    "testability/pages/Index",
+    "testability/pages/GetGuidTest",
+    "testability/pages/GetGuidTest1",
+    "testability/pages/GetGuidTest2",
+    "testability/pages/GetGuidTest3",
+    "testability/pages/GetGuidTest4",
+    "testability/pages/GetGuidTest5",
+    "testability/pages/GetGuidTest6",
+    "testability/pages/Download",
+    "testability/pages/LastErrorCode"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "src": [
+    "testability/pages/web",
+    "testability/pages/MetaViewport",
+    "testability/pages/WebOnFirstMeaningfulPaint",
+    "testability/pages/WebOnLargestContentfulPaint",
+    "testability/pages/webOnFirstCont",
+    "testability/pages/webOnFirstContFour",
+    "testability/pages/webOnFirstContThree",
+    "testability/pages/webOnFirstContTwo",
+    "testability/pages/webOnFullScreenEnter",
+    "testability/pages/webOnFullScreenExit",
+    "testability/pages/webviewTerminateRenderProcess",
+    "testability/pages/wholeWebPageDrawing",
+    "testability/pages/webViewOnFullScreenEnter",
+    "testability/pages/webViewOnFullScreenExit",
+    "testability/pages/getSurfaceId",
+    "testability/pages/webViewController"
+  ]
+}

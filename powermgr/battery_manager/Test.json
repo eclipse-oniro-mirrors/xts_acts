@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.example.mybatteryapp",
+        "package-name": "com.example.mybatteryapp"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsPowerMgrBatteryTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "hidumper -s 3301 -a -t"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{
+    "devices": {
+        "general": [
+            "default",
+            "tablet",
+            "2in1"
+        ],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.WindowManager.WindowManager.Core",
+                    "SystemCapability.Window.SessionManager"
+                ]
+            }
+        ]
+    }
+}

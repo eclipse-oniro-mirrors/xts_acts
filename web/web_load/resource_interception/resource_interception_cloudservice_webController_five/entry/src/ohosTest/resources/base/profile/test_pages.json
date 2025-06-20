@@ -1,0 +1,13 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/webOnSslError",
+    "testability/pages/webOnInterceptReqOne",
+    "testability/pages/webOnInterceptReqTwo",
+    "testability/pages/webOnInterceptReqThree",
+    "testability/pages/webONHttpErrorReceive",
+    "testability/pages/webONHttpErrorReceiveExample",
+    "testability/pages/webONHttpErrorRecvExampleIsReady",
+    "testability/pages/webONHttpErrorReceiveIframe"
+  ]
+}

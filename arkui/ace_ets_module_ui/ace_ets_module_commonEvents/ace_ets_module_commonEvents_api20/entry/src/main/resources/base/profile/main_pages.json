@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Drag/getDisplayId",
+        "MainAbility/pages/TapGesture/tapLocation",
+        "MainAbility/pages/PanGesture/observer",
+        "MainAbility/pages/Color/colorMetrics"
+    ]
+}

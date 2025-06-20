@@ -1,0 +1,80 @@
+
+{
+  "app": {
+    "bundleName": "com.examplemini.actsvalidator",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "deviceType": [
+      "liteWearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "name": ".MainAbility",
+        "srcLanguage": "js",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "label": "$string:MainAbility_label",
+        "type": "page"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index",
+          "pages/second-compent/index",
+          "pages/second-api/index",
+          "pages/help/index",
+          "pages/opacity/index",
+          "pages/event/longpress/index",
+          "pages/event/swipe/index",
+          "pages/transition/index",
+          "pages/list-item/item5/item5",
+          "pages/swiper/SwiperA10/index",
+          "pages/chart/line/index",
+          "pages/chart/bar/index",
+          "pages/image-animator/04/index",
+          "pages/input/CheckboxImage31/index",
+          "pages/marquee/marquee1/marquee1",
+          "pages/picker-view/time/index",
+          "pages/progress/index",
+          "pages/qrcode/index/index",
+          "pages/slider/index/index",
+          "pages/switch/index",
+          "pages/app/index",
+          "pages/configuration/index",
+          "pages/timer/setTimeout01/index",
+          "pages/timer/setInterval02/index",
+          "pages/storage/storage01/index",
+          "pages/file/index/index",
+          "pages/vibrator/index",
+          "pages/sensor/stepCounter/index",
+          "pages/sensor/barometer/index",
+          "pages/sensor/heartRate/index",
+          "pages/sensor/onBodyState/index",
+          "pages/sensor/accelerometer/index",
+          "pages/sensor/gyroscope/index",
+          "pages/location/info/index",
+          "pages/location/subscribe/index",
+          "pages/deviceInfo/index",
+          "pages/brightness/value/index",
+          "pages/brightness/mode/index",
+          "pages/battery/index",
+          "pages/nfc/index"
+        ],
+        "name": ".MainAbility"
+      }
+    ]
+  }
+}

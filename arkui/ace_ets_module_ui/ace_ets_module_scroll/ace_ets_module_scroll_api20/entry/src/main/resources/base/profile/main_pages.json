@@ -1,0 +1,15 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Swiper/maintainPosition",
+        "MainAbility/pages/Grid/barMarginGrid",
+        "MainAbility/pages/List/barMarginList",
+        "MainAbility/pages/Scroll/barMarginScroll",
+        "MainAbility/pages/Tabs/curvesTabs",
+        "MainAbility/pages/Refresh/maxDownRefresh",
+        "MainAbility/pages/ScrollBar/scrollBarColor",
+        "MainAbility/pages/Grid/canOverGrid",
+        "MainAbility/pages/List/canOverList",
+        "MainAbility/pages/Scroll/canOverScroll"
+    ]
+}

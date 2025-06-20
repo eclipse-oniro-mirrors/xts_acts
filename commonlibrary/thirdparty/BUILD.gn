@@ -1,0 +1,37 @@
+# Copyright (C) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//test/xts/tools/build/suite.gni")
+
+group("thirdparty") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "decimal:decimal",
+      "musl:ActsThirdPartyMuslTest",
+      "musl32:ActsThirdPartyMusl32Test",
+    ]
+
+    if (current_cpu == "arm64") {
+      deps += [
+        "asan:ActsThirdPartyAsanTest",
+        "hwasan:ActsThirdPartyHWAsanTest",
+        "tsan/tsanmain:ActsThirdPartyTsanTest",
+        "tsan/tsanmutexcheck1:ActsThirdPartyTsanMutexCheck1Test",
+        "tsan/tsanmutexcheck2:ActsThirdPartyTsanMutexCheck2Test",
+        "tsan/tsanmutexcheck3:ActsThirdPartyTsanMutexCheck3Test",
+        "tsan/tsanmutexcheck4:ActsThirdPartyTsanMutexCheck4Test",
+        "ubsan:ActsThirdPartyUBSanTest",
+      ]
+    }
+  }
+}

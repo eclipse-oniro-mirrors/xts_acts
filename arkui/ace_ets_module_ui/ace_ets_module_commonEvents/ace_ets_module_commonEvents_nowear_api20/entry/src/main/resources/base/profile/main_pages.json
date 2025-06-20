@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/DragEvent/DragModifier",
+        "MainAbility/pages/DragEvent/normalDrag",
+        "MainAbility/pages/DragEvent/dragSpringLoading",
+        "MainAbility/pages/frameNode/framenode"
+    ]
+}

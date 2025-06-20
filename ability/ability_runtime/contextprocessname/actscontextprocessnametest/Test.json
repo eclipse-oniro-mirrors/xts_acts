@@ -1,0 +1,33 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "180000",
+    "shell-timeout": "180000",
+    "testcase-timeout": "300000",
+    "bundle-name": "com.acts.contextprocessname",
+    "module-name": "entry_test"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsContextProcessNameTest.hap",
+        "ActsContextProcessNameAssist.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },{
+      "type": "ShellKit",
+      "run-command": [
+        "power-shell wakeup",
+        "uinput -T -m 300 2700 280 200",
+        "param set persist.sys.abilityms.support.ecologicalrulemgrservice false",
+        "power-shell setmode 602",
+        "power-shell timeout -o 864000000"
+      ],
+      "teardown-command": [
+          "param set persist.sys.abilityms.support.ecologicalrulemgrservice true"
+          ]
+    }
+  ]
+}

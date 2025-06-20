@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "StandardAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "StandardAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ProtectAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ProtectAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ShortAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ShortAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "AnotherAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AnotherAbility_label",
+      "value": "label"
+    }
+  ]
+}

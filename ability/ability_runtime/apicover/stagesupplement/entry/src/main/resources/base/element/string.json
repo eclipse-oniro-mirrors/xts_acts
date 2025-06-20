@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "StageSupplement"
+    },
+    {
+      "name": "MainAbility3_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility3_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility4_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility4_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility5_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility5_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility9_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility9_label",
+      "value": "label"
+    }
+  ]
+}

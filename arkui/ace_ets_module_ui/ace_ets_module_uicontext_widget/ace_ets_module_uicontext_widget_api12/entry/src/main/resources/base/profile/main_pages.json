@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/xts/PixelUnitsConversion",
+        "MainAbility/pages/xts/UIContextComponentSnapshot",
+        "MainAbility/pages/xts/UIContextCreateFromBuilder"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/ArcSlider/ArcSlider1",
+        "MainAbility/pages/ArcSlider/ArcSlider2"
+    ]
+}

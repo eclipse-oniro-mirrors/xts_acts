@@ -1,0 +1,19 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/APIParticleEmitter",
+        "MainAbility/pages/AnimatorResult/AnimatorResult",
+        "MainAbility/pages/AnimatorResult/animateToTest",
+        "MainAbility/pages/AnimatorResult/setExpectedFrameRateRange",
+        "MainAbility/pages/setPolyToPoly",
+        "MainAbility/pages/Particle/Particle",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyph",
+        "MainAbility/pages/Particle/particleAnimationTest",
+        "MainAbility/pages/Particle/particleAttributeTest",
+        "MainAbility/pages/CurvePage",
+        "MainAbility/pages/Particle",
+        "MainAbility/pages/SimpleAnimatorOptionsPage",
+        "MainAbility/pages/Blur"
+
+    ]
+}

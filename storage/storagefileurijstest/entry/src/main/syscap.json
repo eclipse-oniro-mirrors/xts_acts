@@ -1,0 +1,14 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.FileManagement.AppFileService",
+                    "SystemCapability.FileManagement.StorageService.Backup",
+                    "SystemCapability.FileManagement.AppFileService.FolderAuthorization"
+                ]
+            }
+        ]
+    }
+}

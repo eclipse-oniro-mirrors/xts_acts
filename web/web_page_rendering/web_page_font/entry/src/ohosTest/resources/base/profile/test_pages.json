@@ -1,0 +1,19 @@
+{
+    "src": [
+        "MainAbility/pages/WebTextAutosizing",
+        "MainAbility/pages/webDefaultFontSize",
+        "MainAbility/pages/webDefaultFontSizeNoAll",
+        "MainAbility/pages/webDefaultFontSizeNoMinFontSize",
+        "MainAbility/pages/webDefaultFontSizeWithMinLogical",
+        "MainAbility/pages/webViewDefaultFontSize",
+        "MainAbility/pages/webViewDefaultFontSizeNoAll",
+        "MainAbility/pages/webViewDefaultFontSizeNoMinFontSize",
+        "MainAbility/pages/webViewDefaultFontSizeWithMinLogical",
+        "MainAbility/pages/WebViewMinLogicalFontSize",
+        "MainAbility/pages/WebFontTest",
+        "MainAbility/pages/WebViewEnumAndFontLibrary",
+        "MainAbility/pages/WebViewJavaScriptProxyAndOnPageVisible",
+		"MainAbility/pages/enableFollowSystemFontWeight",
+		"MainAbility/pages/webFantasyFont"
+    ]
+}

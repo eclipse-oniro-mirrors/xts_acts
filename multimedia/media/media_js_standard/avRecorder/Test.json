@@ -1,0 +1,33 @@
+{
+    "description": "Configuration for avRecorder Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "6000000",
+        "shell-timeout": "6000000",
+        "testcase-timeout": 1100000,
+        "bundle-name": "ohos.acts.multimedia.audio.avrecorder",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsAvRecorderJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

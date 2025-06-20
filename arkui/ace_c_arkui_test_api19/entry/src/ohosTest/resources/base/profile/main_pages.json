@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/textPicker/testTextPickerRange",
+    "MainAbility/pages/customdialog/customDialogTest1"
+  ]
+}

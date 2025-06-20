@@ -1,0 +1,53 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,viewport-fit=cover">
+
+</head>
+<body>
+<div class="edge left"></div>
+<div class="edge top"></div>
+<div class="edge right"></div>
+<div class="edge bottom"></div>
+</div>
+</body>
+</html>
+<style>
+            html {
+                background-color: gray;
+            }
+			.edge {
+				background-color: green;
+				position: absolute;
+			}
+			.left {
+				width: 30px;
+				height: 60%;
+				left: 0;
+				margin-top: 20%;
+				margin-left: env(safe-area-inset-left);
+			}
+			.top {
+				width: 60%;
+				height: 30px;
+				top: 0;
+				margin-left: 20%;
+				margin-top: env(safe-area-inset-top);
+			}
+			.right {
+				right: 0;
+				width: 30px;
+				height: 60%;
+				margin-top: 20%;
+				margin-right: env(safe-area-inset-right);
+			}
+			.bottom {
+				width: 60%;
+				height: 30px;
+				bottom: 0;
+				margin-left: 20%;
+				margin-bottom: env(safe-area-inset-bottom);
+			}
+            .url {
+                margin-left: 50px;
+            }
+</style>

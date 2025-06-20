@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for httpplayer Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "2000000",
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.multimedia.http.httpplayer",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": []
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [],
+            "teardown-command": []
+        },
+        {
+            "test-file-name": [
+                "ActsHTTPPlayerJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

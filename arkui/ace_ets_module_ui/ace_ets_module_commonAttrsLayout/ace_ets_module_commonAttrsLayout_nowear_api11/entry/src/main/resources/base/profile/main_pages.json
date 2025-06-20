@@ -1,0 +1,18 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/comSizeAbility/comSizeAbilityTest_14",
+        "MainAbility/pages/comSizeAbility/comSizeAbilityTest_18",
+        "MainAbility/pages/comSizeAbility/comSizeAbilityTest_27",
+        "MainAbility/pages/comSizeAbility/comSizeAbilityTest_29",
+        "MainAbility/pages/getItemRect/waterFlow/getWaterFlowItemRect1",
+        "MainAbility/pages/getItemRect/waterFlow/getWaterFlowItemRect2",
+        "MainAbility/pages/getItemRect/waterFlow/getWaterFlowItemRect3",
+        "MainAbility/pages/getItemRect/waterFlow/getWaterFlowItemRect4",
+        "MainAbility/pages/getItemRect/waterFlow/getWaterFlowItemRect5",
+        "MainAbility/pages/Chip/ChipAction",
+        "MainAbility/pages/Chip/ChipOnClose",
+        "MainAbility/pages/Chip/ChipAction2",
+        "MainAbility/pages/Chip/ChipOnClose2"
+    ]
+}

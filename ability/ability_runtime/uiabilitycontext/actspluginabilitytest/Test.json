@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for hjunit Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.ability.plugintest",
+        "module-name": "entry",
+        "shell-timeout": "30000",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsPluginAbilityTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

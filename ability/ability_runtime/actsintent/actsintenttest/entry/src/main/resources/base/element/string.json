@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "shortcut1",
+      "value": "shortcut1"
+    },
+    {
+      "name": "shortcut2",
+      "value": "shortcut2"
+    },
+    {
+      "name": "shortcut3",
+      "value": "shortcut3"
+    },
+    {
+      "name": "shortcut4",
+      "value": "shortcut4"
+    },
+    {
+      "name": "SecondAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ThirdAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThirdAbility_label",
+      "value": "label"
+    }
+  ]
+}

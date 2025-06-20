@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "stage_app"
+    },
+    {
+      "name": "stage",
+      "value": "stage_name"
+    }
+  ]
+}

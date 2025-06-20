@@ -1,0 +1,58 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.multimedia.image.ModifyProperty",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageModifyPropertyJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files/",
+                "chmod 777 /data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test_exif.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/test.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/moving_test_loop1.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/test_exif_v3.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/test_exif.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/test_exif_v2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/test_dng.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/testExif.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/food.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/food_notHW.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/food_notHW2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/test.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/moving_test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/test.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files",
+                "./resource/image/test_large.svg ->/data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/*"
+            ],
+            "teardown-command": [
+                "rm -rf /data/app/el2/100/base/ohos.acts.multimedia.image.ModifyProperty/haps/entry_test/files/*"
+            ]
+        }
+    ]
+}

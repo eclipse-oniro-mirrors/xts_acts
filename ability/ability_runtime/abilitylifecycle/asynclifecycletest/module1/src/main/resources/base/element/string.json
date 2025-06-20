@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module1_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "module1_label"
+    },
+    {
+      "name": "SpecifiedAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SpecifiedAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MyUIAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MyUIAbility_label",
+      "value": "label"
+    }
+  ]
+}
