@@ -1,0 +1,28 @@
+{
+  "integer": [
+    {
+      "name": "integer_0",
+      "value": 10
+    },
+    {
+      "name": "integer_1",
+      "value": 10
+    },
+    {
+      "name": "integer_2",
+      "value": 20
+    },
+    {
+      "name": "integer_3",
+      "value": 30
+    },
+    {
+      "name": "integer_4",
+      "value": 40
+    },
+    {
+      "name": "integer_",
+      "value": 100
+    }
+  ]
+}

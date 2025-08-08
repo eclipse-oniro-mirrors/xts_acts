@@ -1,0 +1,1893 @@
+/*
+ * Copyright (C) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
+import { common } from '@kit.AbilityKit';
+import { camera } from '@kit.CameraKit';
+import {
+  cameraErrorCode,
+  cameraFocusMode,
+  cameraPreconfigRatio,
+  cameraPreconfigType,
+  checkBackCamera,
+  closeFd,
+  COMMON_WAIT_DURATION,
+  driveFn,
+  getFd,
+  getPermission,
+  isEmpty,
+  resourceName,
+  sceneMode,
+  sleep
+} from '../common';
+import { indexSurfaceId } from '../../testability/pages/Index';
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const TAG = "CameraXts.CameraSessionFocusBackTest";
+const abnormalValue = -1;
+let mCameraManager: camera.CameraManager;
+let mCameraDeviceArray: Array<camera.CameraDevice>;
+let mSupportedModes: Array<camera.SceneMode>;
+let mCameraInput: camera.CameraInput;
+let mCameraOutputCapModePhoto: camera.CameraOutputCapability;
+let mCameraOutputCapModeVideo: camera.CameraOutputCapability;
+let mPreviewProfilesArray: Array<camera.Profile>;
+let mPreviewProfile: camera.Profile | undefined;
+let mPreviewOutput: camera.PreviewOutput;
+let mPhotoOutput: camera.PhotoOutput;
+let mVideoOutput: camera.VideoOutput;
+let mPhotoSession: camera.PhotoSession;
+let mVideoSession: camera.VideoSession;
+let mVideoProfile: camera.VideoProfile;
+let mAVRecorder: media.AVRecorder;
+let fdNumber: number;
+let fdPath: string;
+let mVideoSurfaceId: string;
+let testContext: common.UIAbilityContext = AppStorage.get('testContext') as common.UIAbilityContext;
+
+let videoProfile: media.AVRecorderProfile = {
+  audioBitrate: 48000,
+  audioChannels: 2,
+  audioCodec: media.CodecMimeType.AUDIO_AAC,
+  audioSampleRate: 48000,
+  fileFormat: media.ContainerFormatType.CFT_MPEG_4,
+  videoBitrate: 2000000,
+  videoCodec: media.CodecMimeType.VIDEO_AVC,
+  videoFrameWidth: 640,
+  videoFrameHeight: 480,
+  videoFrameRate: 30
+};
+
+let videoConfig: media.AVRecorderConfig = {
+  videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
+  profile: videoProfile,
+  url: 'file://',
+  location: { latitude: 30, longitude: 130 } as camera.Location,
+  rotation: 0
+};
+
+function getCameraManager() {
+  console.info(TAG, 'getCameraManager.');
+  mCameraManager = camera.getCameraManager(testContext);
+  if (isEmpty(mCameraManager)) {
+    return false;
+  }
+  console.info(TAG, 'mCameraManager created successfully.');
+  return true;
+}
+
+function getSupportedCameraDeviceArray() {
+  console.info(TAG, 'getSupportedCameraDeviceArray.');
+  mCameraDeviceArray = mCameraManager.getSupportedCameras();
+  if (isEmpty(mCameraDeviceArray)) {
+    return false;
+  }
+  console.info(TAG, 'getSupportedCameraDeviceArray length: ' + mCameraDeviceArray.length);
+  return true;
+}
+
+function getCameraInput() {
+  console.info(TAG, 'getCameraInput.');
+  mCameraInput = mCameraManager.createCameraInput(mCameraDeviceArray[0]);
+  if (isEmpty(mCameraInput)) {
+    return false;
+  }
+  console.info(TAG, 'cameraInput created successfully.');
+  return true;
+}
+
+function getSupportedModes() {
+  console.info(TAG, 'getSupportedModes.');
+  for (let i = 0; i < mCameraDeviceArray.length; i++) {
+    mSupportedModes = mCameraManager.getSupportedSceneModes(mCameraDeviceArray[i]);
+    if (isEmpty(mSupportedModes)) {
+      return false;
+    }
+    console.info(TAG, 'mSupportedModes: ' + JSON.stringify(mSupportedModes));
+  }
+  return true;
+}
+
+async function getVideoSurfaceId() {
+  console.info(TAG, 'getVideoSurfaceId begin.');
+  let fileName: string = resourceName();
+  fdNumber = await getFd(fileName);
+  fdPath = "fd://" + fdNumber;
+  console.info(TAG, 'case fdPath is: ' + fdPath);
+  videoConfig.url = fdPath;
+  console.info(TAG, 'get videoConfig url.');
+  mAVRecorder = await media.createAVRecorder();
+  expect(isEmpty(mAVRecorder)).assertFalse();
+  console.info(TAG, 'createAVRecorder passed. state: ' + mAVRecorder.state);
+  await mAVRecorder.prepare(videoConfig).then(() => {
+    console.info('prepare success');
+  }).catch((error: BusinessError) => {
+    console.error(TAG, 'failed to prepare, err: ' + error.code + ', msg: ' + error.message);
+  });
+  console.info(TAG, 'AVRecorder state: ' + mAVRecorder.state);
+  mVideoSurfaceId = await mAVRecorder.getInputSurface();
+  console.info(TAG, 'mVideoSurfaceId: ' + mVideoSurfaceId);
+}
+
+function getOutputCapability() {
+  console.info(TAG, 'getOutputCapability.');
+  if (!checkBackCamera()) {
+    console.info(TAG, 'The current device does not have a rear camera.');
+    return;
+  }
+  mCameraOutputCapModePhoto = mCameraManager.getSupportedOutputCapability(mCameraDeviceArray[1], mSupportedModes[0]);
+  console.info(TAG, 'camera, output cap: ' + JSON.stringify(mCameraOutputCapModePhoto));
+  mCameraOutputCapModeVideo = mCameraManager.getSupportedOutputCapability(mCameraDeviceArray[1], mSupportedModes[1]);
+  console.info(TAG, 'camera, output cap: ' + JSON.stringify(mCameraOutputCapModeVideo));
+  mPreviewProfilesArray = mCameraOutputCapModeVideo.previewProfiles;
+  mVideoProfile = mCameraOutputCapModeVideo.videoProfiles[0];
+  expect(isEmpty(mVideoProfile)).assertFalse();
+  videoProfile.videoFrameWidth = mVideoProfile.size.width;
+  videoProfile.videoFrameHeight = mVideoProfile.size.height;
+}
+
+function getPreviewProfile() {
+  if (!checkBackCamera()) {
+    console.info(TAG, 'The current device does not have a rear camera.');
+    return;
+  }
+  mPreviewProfile = mPreviewProfilesArray.find((previewProfile: camera.Profile) => {
+    return Math.abs((previewProfile.size.width / previewProfile.size.height) -
+      (mVideoProfile.size.width / mVideoProfile.size.height)) < Number.EPSILON;
+  });
+}
+
+async function getCreatePhotoSession(previewOutput: camera.PreviewOutput, photoOutput: camera.PhotoOutput) {
+  console.info(TAG, 'getCreatePhotoSession.');
+  mPhotoSession = mCameraManager.createSession(mSupportedModes[0]);
+  mPhotoSession.beginConfig();
+  mPhotoSession.addInput(mCameraInput);
+  await mCameraInput.open();
+  mPhotoSession.addOutput(previewOutput);
+  mPhotoSession.addOutput(photoOutput);
+  await mPhotoSession.commitConfig();
+}
+
+async function getPreConfigPhotoSession(previewOutput: camera.PreviewOutput, photoOutput: camera.PhotoOutput) {
+  console.info(TAG, 'getPreConfigPhotoSession.');
+  mPhotoSession.beginConfig();
+  mPhotoSession.addInput(mCameraInput);
+  await mCameraInput.open();
+  mPhotoSession.addOutput(previewOutput);
+  mPhotoSession.addOutput(photoOutput);
+  await mPhotoSession.commitConfig();
+}
+
+async function getCreateVideoSession(testName: string, previewOutput: camera.PreviewOutput,
+  videoOutput: camera.VideoOutput) {
+  console.info(TAG, 'getCreateVideoSession.');
+  mVideoSession = mCameraManager.createSession(mSupportedModes[1]);
+  mVideoSession.beginConfig();
+  console.info(TAG, testName + ' beginConfig passed.');
+  mVideoSession.addInput(mCameraInput);
+  console.info(TAG, testName + ' addInput passed.');
+  await mCameraInput.open();
+  console.info(TAG, testName + ' camera open passed.');
+  mVideoSession.addOutput(previewOutput);
+  console.info(TAG, testName + ' addOutput previewOutput passed.');
+  mVideoSession.addOutput(videoOutput);
+  console.info(TAG, testName + ' addOutput videoOutput passed.');
+  await mVideoSession.commitConfig();
+  console.info(TAG, testName + ' session commitConfig successfully.');
+}
+
+async function getPreConfigVideoSession(testName: string, previewOutput: camera.PreviewOutput,
+  videoOutput: camera.VideoOutput) {
+  console.info(TAG, 'getPreConfigVideoSession.');
+  mVideoSession.beginConfig();
+  console.info(TAG, testName + ' beginConfig passed.');
+  mVideoSession.addInput(mCameraInput);
+  console.info(TAG, testName + ' addInput passed.');
+  await mCameraInput.open();
+  console.info(TAG, testName + ' camera open passed.');
+  mVideoSession.addOutput(previewOutput);
+  console.info(TAG, testName + ' addOutput previewOutput passed.');
+  mVideoSession.addOutput(videoOutput);
+  console.info(TAG, testName + ' addOutput videoOutput passed.');
+  await mVideoSession.commitConfig();
+  console.info(TAG, testName + ' session commitConfig successfully.');
+}
+
+async function releasePhotoSession() {
+  console.info(TAG, 'releasePhotoSession.');
+  await mPreviewOutput?.release();
+  await mPhotoOutput?.release();
+  await mPhotoSession?.release();
+}
+
+async function releaseVideoSession() {
+  console.info(TAG, 'releaseVideoSession.');
+  await mAVRecorder?.release();
+  await mPreviewOutput?.release();
+  await mVideoOutput?.release();
+  await mVideoSession?.release();
+}
+
+async function getFocusSupportedModeStatus(done: Function, testName: string, focusMode: camera.FocusMode) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      mPhotoOutput = mCameraManager.createPhotoOutput(mCameraOutputCapModePhoto.photoProfiles[0]);
+      mPreviewOutput = mCameraManager.createPreviewOutput(mCameraOutputCapModePhoto.previewProfiles[0], indexSurfaceId);
+      await getCreatePhotoSession(mPreviewOutput, mPhotoOutput);
+      let photoStatus = mPhotoSession.isFocusModeSupported(focusMode);
+      expect(isEmpty(photoStatus)).assertFalse();
+      console.info(TAG, testName + ' focus mode, status: ' + photoStatus);
+      await releasePhotoSession();
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session isFocusModeSupported failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await releasePhotoSession();
+    done();
+  }
+}
+
+async function getFocusSupportedModeStatusError(done: Function, testName: string, sMode: camera.SceneMode,
+  focusMode: camera.FocusMode) {
+  console.info(TAG, testName + ' begin.');
+  let testSession: camera.PhotoSession | camera.VideoSession | camera.SecureSession | undefined = undefined;
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      switch (sMode) {
+        case sceneMode.NORMAL_PHOTO:
+          testSession = mCameraManager.createSession(sceneMode.NORMAL_PHOTO) as camera.PhotoSession;
+          expect(isEmpty(testSession)).assertFalse();
+          let photoStatus = testSession.isFocusModeSupported(focusMode);
+          expect(isEmpty(photoStatus)).assertFalse();
+          console.info(TAG, testName + 'photo mode, status: ' + photoStatus);
+          break;
+        case sceneMode.NORMAL_VIDEO:
+          testSession = mCameraManager.createSession(sceneMode.NORMAL_VIDEO) as camera.VideoSession;
+          expect(isEmpty(testSession)).assertFalse();
+          let videoStatus = testSession.isFocusModeSupported(focusMode);
+          expect(isEmpty(videoStatus)).assertFalse();
+          console.info(TAG, testName + 'video mode, status: ' + videoStatus);
+          break;
+        case sceneMode.SECURE_PHOTO:
+          testSession = mCameraManager.createSession(sceneMode.SECURE_PHOTO) as camera.SecureSession;
+          expect(isEmpty(testSession)).assertFalse();
+          let secureStatus = testSession.isFocusModeSupported(focusMode);
+          expect(isEmpty(secureStatus)).assertFalse();
+          console.info(TAG, testName + 'secure_photo mode, status: ' + secureStatus);
+          break;
+        default:
+          console.info(TAG, testName + 'sceneMode invalid, failed.');
+          expect().assertFail();
+      }
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session isFocusModeSupported failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await testSession?.release();
+    done();
+  }
+}
+
+async function getFocusSupportedModeStatusVideo(done: Function, testName: string, focusMode: camera.FocusMode) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      if (isEmpty(mPreviewProfile)) {
+        console.info(TAG, testName + ' no same resolution preview.');
+        expect(isEmpty(mPreviewProfile)).assertTrue();
+      } else {
+        await getVideoSurfaceId();
+        mPreviewOutput = mCameraManager.createPreviewOutput(mPreviewProfile, indexSurfaceId);
+        mVideoOutput = mCameraManager.createVideoOutput(mVideoProfile, mVideoSurfaceId);
+        await getCreateVideoSession(testName, mPreviewOutput, mVideoOutput);
+        let videoStatus = mVideoSession.isFocusModeSupported(focusMode as camera.FocusMode);
+        expect(isEmpty(videoStatus)).assertFalse();
+        console.info(TAG, testName + ' focus mode, status: ' + videoStatus);
+        await releaseVideoSession();
+      }
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session isFocusModeSupported failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await releaseVideoSession();
+    done();
+  }
+}
+
+async function getFocusSupportedModeStatusAbnormal(done: Function, testName: string,
+  focusMode: camera.FocusMode | null | undefined) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      mPhotoOutput = mCameraManager.createPhotoOutput(mCameraOutputCapModePhoto.photoProfiles[0]);
+      mPreviewOutput = mCameraManager.createPreviewOutput(mCameraOutputCapModePhoto.previewProfiles[0], indexSurfaceId);
+      await getCreatePhotoSession(mPreviewOutput, mPhotoOutput);
+      let photoStatus = mPhotoSession.isFocusModeSupported(focusMode as camera.FocusMode);
+      if (isEmpty(focusMode)) {
+        expect(photoStatus).assertTrue();
+      } else {
+        expect(photoStatus).assertFalse();
+      }
+      console.info(TAG, testName + ' focus mode, status: ' + photoStatus);
+      await releasePhotoSession();
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session isFocusModeSupported failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await releasePhotoSession();
+    done();
+  }
+}
+
+async function getFocusSupportedModeStatusVideoAbnormal(done: Function, testName: string,
+  focusMode: camera.FocusMode | null | undefined) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      if (isEmpty(mPreviewProfile)) {
+        console.info(TAG, testName + ' no same resolution preview.');
+        expect(isEmpty(mPreviewProfile)).assertTrue();
+      } else {
+        await getVideoSurfaceId();
+        mPreviewOutput = mCameraManager.createPreviewOutput(mPreviewProfile, indexSurfaceId);
+        mVideoOutput = mCameraManager.createVideoOutput(mVideoProfile, mVideoSurfaceId);
+        await getCreateVideoSession(testName, mPreviewOutput, mVideoOutput);
+        let videoStatus = mVideoSession.isFocusModeSupported(focusMode);
+        if (isEmpty(focusMode)) {
+          expect(videoStatus).assertTrue();
+        } else {
+          expect(videoStatus).assertFalse();
+        }
+        console.info(TAG, testName + ' video focus mode, status: ' + videoStatus);
+        await releaseVideoSession();
+      }
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session isFocusModeSupported failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await releaseVideoSession();
+    done();
+  }
+}
+
+async function setFocusModePhotoSession(done: Function, testName: string, focusMode: camera.FocusMode) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      mPhotoOutput = mCameraManager.createPhotoOutput(mCameraOutputCapModePhoto.photoProfiles[0]);
+      mPreviewOutput = mCameraManager.createPreviewOutput(mCameraOutputCapModePhoto.previewProfiles[0], indexSurfaceId);
+      await getCreatePhotoSession(mPreviewOutput, mPhotoOutput);
+      console.info(TAG, testName + ' getPhotoSession pass.');
+      let photoStatus = mPhotoSession.isFocusModeSupported(focusMode);
+      console.info(TAG, testName + ' isFocusModeSupported pass. status: ' + photoStatus);
+      if (photoStatus) {
+        mPhotoSession.setFocusMode(focusMode);
+        console.info(TAG, testName + ' setFocusMode pass.');
+        let fMode = mPhotoSession.getFocusMode();
+        expect(fMode === focusMode).assertTrue();
+      } else {
+        console.info(TAG, testName + ' not supported focusMode: ' + focusMode);
+        expect(photoStatus).assertFalse();
+      }
+      await releasePhotoSession();
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session setFocusMode failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await releasePhotoSession();
+    done();
+  }
+}
+
+async function setFocusModePhotoSessionError(done: Function, testName: string, focusMode: camera.FocusMode) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      let photoSession = mCameraManager.createSession(sceneMode.NORMAL_PHOTO) as camera.PhotoSession;
+      expect(isEmpty(photoSession)).assertFalse();
+      let photoStatus = photoSession.isFocusModeSupported(focusMode);
+      expect(isEmpty(photoStatus)).assertFalse();
+      console.info(TAG, testName + ' photo mode, status: ' + photoStatus);
+      if (photoStatus) {
+        photoSession.setFocusMode(focusMode);
+        console.info(TAG, testName + ' setFocusMode pass.');
+        expect(true).assertTrue();
+      } else {
+        console.info(TAG, testName + ' not supported focusMode.');
+        expect().assertFail();
+      }
+    }
+  } catch (err) {
+    console.error(TAG, testName + ' session setFocusMode failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    done();
+  }
+}
+
+async function setFocusModeVideoSession(done: Function, testName: string, focusMode: camera.FocusMode) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      if (isEmpty(mPreviewProfile)) {
+        console.info(TAG, testName + ' no same resolution preview.');
+        expect(isEmpty(mPreviewProfile)).assertTrue();
+      } else {
+        await getVideoSurfaceId();
+        mPreviewOutput = mCameraManager.createPreviewOutput(mPreviewProfile, indexSurfaceId);
+        mVideoOutput = mCameraManager.createVideoOutput(mVideoProfile, mVideoSurfaceId);
+        await getCreateVideoSession(testName, mPreviewOutput, mVideoOutput);
+        console.info(TAG, testName + ' getVideoSession pass.');
+        let videoStatus = mVideoSession.isFocusModeSupported(focusMode);
+        console.info(TAG, testName + ' isFocusModeSupported pass. status: ' + videoStatus);
+        if (videoStatus) {
+          mVideoSession.setFocusMode(focusMode);
+          console.info(TAG, testName + ' setFocusMode pass.');
+          let fMode = mVideoSession.getFocusMode();
+          expect(fMode === focusMode).assertTrue();
+        } else {
+          console.info(TAG, testName + ' not supported focusMode: ' + focusMode);
+          expect(videoStatus).assertFalse();
+        }
+        await releaseVideoSession();
+      }
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session setFocusMode failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await releaseVideoSession();
+    done();
+  }
+}
+
+async function setFocusModeVideoSessionError(done: Function, testName: string, focusMode: camera.FocusMode) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      let videoSession = mCameraManager.createSession(sceneMode.NORMAL_VIDEO) as camera.VideoSession;
+      expect(isEmpty(videoSession)).assertFalse();
+      let videoStatus = videoSession.isFocusModeSupported(focusMode);
+      expect(isEmpty(videoStatus)).assertFalse();
+      console.info(TAG, testName + ' photo mode, status: ' + videoStatus);
+      if (videoStatus) {
+        videoSession.setFocusMode(focusMode);
+        console.info(TAG, testName + ' setFocusMode pass.');
+        expect(true).assertTrue();
+      } else {
+        console.info(TAG, testName + ' not supported focusMode.');
+        expect().assertFail();
+      }
+    }
+  } catch (err) {
+    console.error(TAG, testName + ' session setFocusMode failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    done();
+  }
+}
+
+async function setFocusModePhotoSessionAbnormal(done: Function, testName: string,
+  focusMode: camera.FocusMode | null | undefined) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      mPhotoOutput = mCameraManager.createPhotoOutput(mCameraOutputCapModePhoto.photoProfiles[0]);
+      mPreviewOutput = mCameraManager.createPreviewOutput(mCameraOutputCapModePhoto.previewProfiles[0], indexSurfaceId);
+      await getCreatePhotoSession(mPreviewOutput, mPhotoOutput);
+      console.info(TAG, testName + ' getPhotoSession pass.');
+      mPhotoSession.setFocusMode(focusMode as camera.FocusMode);
+      console.info(TAG, testName + ' setFocusMode pass.');
+      let fMode = mPhotoSession.getFocusMode();
+      expect(fMode).assertEqual(isEmpty(focusMode) ? cameraFocusMode.FOCUS_MODE_MANUAL : focusMode);
+      await releasePhotoSession();
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session setFocusMode failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.OPERATION_NOT_ALLOWED).assertTrue();
+    await releasePhotoSession();
+    done();
+  }
+}
+
+async function setFocusModeVideoSessionAbnormal(done: Function, testName: string,
+  focusMode: camera.FocusMode | null | undefined) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      if (isEmpty(mPreviewProfile)) {
+        console.info(TAG, testName + ' no same resolution preview.');
+        expect(isEmpty(mPreviewProfile)).assertTrue();
+      } else {
+        await getVideoSurfaceId();
+        mPreviewOutput = mCameraManager.createPreviewOutput(mPreviewProfile, indexSurfaceId);
+        mVideoOutput = mCameraManager.createVideoOutput(mVideoProfile, mVideoSurfaceId);
+        await getCreateVideoSession(testName, mPreviewOutput, mVideoOutput);
+        console.info(TAG, testName + ' getVideoSession pass.');
+        mVideoSession.setFocusMode(focusMode as camera.FocusMode);
+        console.info(TAG, testName + ' setFocusMode pass.');
+        let fMode = mVideoSession.getFocusMode();
+        expect(fMode).assertEqual(isEmpty(focusMode) ? cameraFocusMode.FOCUS_MODE_MANUAL : focusMode);
+        await releaseVideoSession();
+      }
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session setFocusMode failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.OPERATION_NOT_ALLOWED).assertTrue();
+    await releaseVideoSession();
+    done();
+  }
+}
+
+async function getFocusModeError(done: Function, testName: string, sMode: camera.SceneMode) {
+  console.info(TAG, testName + ' begin.');
+  let testSession: camera.PhotoSession | camera.VideoSession | camera.SecureSession | undefined = undefined;
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      switch (sMode) {
+        case sceneMode.NORMAL_PHOTO:
+          testSession = mCameraManager.createSession(sceneMode.NORMAL_PHOTO) as camera.PhotoSession;
+          expect(isEmpty(testSession)).assertFalse();
+          let photoStatus = testSession.getFocusMode();
+          expect(isEmpty(photoStatus)).assertFalse();
+          console.info(TAG, testName + 'photo mode, status: ' + photoStatus);
+          break;
+        case sceneMode.NORMAL_VIDEO:
+          testSession = mCameraManager.createSession(sceneMode.NORMAL_VIDEO) as camera.VideoSession;
+          expect(isEmpty(testSession)).assertFalse();
+          let videoStatus = testSession.getFocusMode();
+          expect(isEmpty(videoStatus)).assertFalse();
+          console.info(TAG, testName + 'video mode, status: ' + videoStatus);
+          break;
+        case sceneMode.SECURE_PHOTO:
+          testSession = mCameraManager.createSession(sceneMode.SECURE_PHOTO) as camera.SecureSession;
+          expect(isEmpty(testSession)).assertFalse();
+          let secureStatus = testSession.getFocusMode();
+          expect(isEmpty(secureStatus)).assertFalse();
+          console.info(TAG, testName + 'secure_photo mode, status: ' + secureStatus);
+          break;
+        default:
+          console.info(TAG, testName + 'sceneMode invalid, failed.');
+          expect().assertFail();
+      }
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session getFocusMode failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await testSession?.release();
+    done();
+  }
+}
+
+async function getFocusSupportedModeStatusPreConfig(done: Function, testName: string, focusMode: camera.FocusMode,
+  type: camera.PreconfigType, ratio: camera.PreconfigRatio) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      mPhotoSession = mCameraManager.createSession(mSupportedModes[0]);
+      let result = mPhotoSession.canPreconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      if (!result) {
+        console.info(TAG, testName + ' the camera of this device does not support pre configuration.');
+        done();
+        return;
+      }
+      mPhotoSession.preconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      mPhotoOutput = mCameraManager.createPhotoOutput(mCameraOutputCapModePhoto.photoProfiles[0]);
+      mPreviewOutput = mCameraManager.createPreviewOutput(indexSurfaceId);
+      await getPreConfigPhotoSession(mPreviewOutput, mPhotoOutput);
+      let photoStatus = mPhotoSession.isFocusModeSupported(focusMode);
+      expect(isEmpty(photoStatus)).assertFalse();
+      console.info(TAG, testName + ' focus mode, status: ' + photoStatus);
+      await releasePhotoSession();
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session isFocusModeSupported failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await releasePhotoSession();
+    done();
+  }
+}
+
+async function getFocusSupportedModeStatusVideoPreConfig(done: Function, testName: string,
+  focusMode: camera.FocusMode, type: camera.PreconfigType, ratio: camera.PreconfigRatio) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      mVideoSession = mCameraManager.createSession(mSupportedModes[1]);
+      let result = mVideoSession.canPreconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      if (!result) {
+        console.info(TAG, testName + ' the camera of this device does not support pre configuration.');
+        done();
+        return;
+      }
+      await getVideoSurfaceId();
+      mVideoSession.preconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      mPreviewOutput = mCameraManager.createPreviewOutput(indexSurfaceId);
+      mVideoOutput = mCameraManager.createVideoOutput(mVideoSurfaceId);
+      await getPreConfigVideoSession(testName, mPreviewOutput, mVideoOutput);
+      let videoStatus = mVideoSession.isFocusModeSupported(focusMode as camera.FocusMode);
+      expect(isEmpty(videoStatus)).assertFalse();
+      console.info(TAG, testName + ' focus mode, status: ' + videoStatus);
+      await releaseVideoSession();
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session isFocusModeSupported failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await releaseVideoSession();
+    done();
+  }
+}
+
+async function getFocusModePhotoPreConfig(done: Function, testName: string, type: camera.PreconfigType,
+  ratio: camera.PreconfigRatio) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      mPhotoSession = mCameraManager.createSession(mSupportedModes[0]);
+      let result = mPhotoSession.canPreconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      if (!result) {
+        console.info(TAG, testName + ' the camera of this device does not support pre configuration.');
+        done();
+        return;
+      }
+      mPhotoSession.preconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      mPhotoOutput = mCameraManager.createPhotoOutput(mCameraOutputCapModePhoto.photoProfiles[0]);
+      mPreviewOutput = mCameraManager.createPreviewOutput(indexSurfaceId);
+      await getPreConfigPhotoSession(mPreviewOutput, mPhotoOutput);
+      let focusMode = mPhotoSession.getFocusMode();
+      expect(isEmpty(focusMode)).assertFalse();
+      console.info(TAG, testName + ' photo focus mode, status: ' + focusMode);
+      await releasePhotoSession();
+    }
+    done();
+  } catch (error) {
+    console.error(TAG, testName + ' session getFocusMode failed. code: ' + error.code + ', msg: ' + error.message);
+    expect().assertFail();
+    await releasePhotoSession();
+    done();
+  }
+}
+
+async function getFocusModeVideoPreConfig(done: Function, testName: string, type: camera.PreconfigType,
+  ratio: camera.PreconfigRatio) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      mVideoSession = mCameraManager.createSession(mSupportedModes[1]);
+      let result = mVideoSession.canPreconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      if (!result) {
+        console.info(TAG, testName + ' the camera of this device does not support pre configuration.');
+        done();
+        return;
+      }
+      await getVideoSurfaceId();
+      mVideoSession.preconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      mPreviewOutput = mCameraManager.createPreviewOutput(indexSurfaceId);
+      mVideoOutput = mCameraManager.createVideoOutput(mVideoSurfaceId);
+      await getPreConfigVideoSession(testName, mPreviewOutput, mVideoOutput);
+      let focusMode = mVideoSession.getFocusMode();
+      expect(isEmpty(focusMode)).assertFalse();
+      console.info(TAG, testName + ' video focus mode, status: ' + focusMode);
+      await releaseVideoSession();
+    }
+    done();
+  } catch (error) {
+    console.error(TAG, testName + ' session getFocusMode failed. code: ' + error.code + ', msg: ' + error.message);
+    expect().assertFail();
+    await releaseVideoSession();
+    done();
+  }
+}
+
+async function setFocusModePhotoPreConfig(done: Function, testName: string, focusMode: camera.FocusMode,
+  type: camera.PreconfigType, ratio: camera.PreconfigRatio) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      mPhotoSession = mCameraManager.createSession(mSupportedModes[0]);
+      let result = mPhotoSession.canPreconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      if (!result) {
+        console.info(TAG, testName + ' the camera of this device does not support pre configuration.');
+        done();
+        return;
+      }
+      mPhotoSession.preconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      mPhotoOutput = mCameraManager.createPhotoOutput(mCameraOutputCapModePhoto.photoProfiles[0]);
+      mPreviewOutput = mCameraManager.createPreviewOutput(indexSurfaceId);
+      await getPreConfigPhotoSession(mPreviewOutput, mPhotoOutput);
+      console.info(TAG, testName + ' getPhotoSession pass.');
+      let photoStatus = mPhotoSession.isFocusModeSupported(focusMode);
+      console.info(TAG, testName + ' isFocusModeSupported pass. status: ' + photoStatus);
+      if (photoStatus) {
+        mPhotoSession.setFocusMode(focusMode);
+        console.info(TAG, testName + ' setFocusMode pass.');
+        let fMode = mPhotoSession.getFocusMode();
+        expect(fMode === focusMode).assertTrue();
+      } else {
+        console.info(TAG, testName + ' not supported focusMode: ' + focusMode);
+        expect(photoStatus).assertFalse();
+      }
+      await releasePhotoSession();
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session setFocusMode failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await releasePhotoSession();
+    done();
+  }
+}
+
+async function setFocusModeVideoPreConfig(done: Function, testName: string, focusMode: camera.FocusMode,
+  type: camera.PreconfigType, ratio: camera.PreconfigRatio) {
+  console.info(TAG, testName + ' begin.');
+  if (!checkBackCamera()) {
+    console.info(TAG, testName + ' the current device does not have a rear camera.');
+    done();
+    return;
+  }
+  try {
+    if (isEmpty(mCameraManager)) {
+      console.info(TAG, testName + ' cameraManager is null.');
+      expect().assertFail();
+    } else {
+      mVideoSession = mCameraManager.createSession(mSupportedModes[1]);
+      let result = mVideoSession.canPreconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      if (!result) {
+        console.info(TAG, testName + ' the camera of this device does not support pre configuration.');
+        done();
+        return;
+      }
+      await getVideoSurfaceId();
+      mVideoSession.preconfig(type as camera.PreconfigType, ratio as camera.PreconfigRatio);
+      mPreviewOutput = mCameraManager.createPreviewOutput(indexSurfaceId);
+      mVideoOutput = mCameraManager.createVideoOutput(mVideoSurfaceId);
+      await getPreConfigVideoSession(testName, mPreviewOutput, mVideoOutput);
+      console.info(TAG, testName + ' getVideoSession pass.');
+      let videoStatus = mVideoSession.isFocusModeSupported(focusMode);
+      console.info(TAG, testName + ' isFocusModeSupported pass. status: ' + videoStatus);
+      if (videoStatus) {
+        mVideoSession.setFocusMode(focusMode);
+        console.info(TAG, testName + ' setFocusMode pass.');
+        let fMode = mVideoSession.getFocusMode();
+        expect(fMode === focusMode).assertTrue();
+      } else {
+        console.info(TAG, testName + ' not supported focusMode: ' + focusMode);
+        expect(videoStatus).assertFalse();
+      }
+      await releaseVideoSession();
+    }
+    done();
+  } catch (err) {
+    console.error(TAG, testName + ' session setFocusMode failed. code: ' + err.code + ', msg: ' + err.message);
+    expect(err.code == cameraErrorCode.SESSION_NOT_CONFIG).assertTrue();
+    await releaseVideoSession();
+    done();
+  }
+}
+
+export default function CameraSessionFocusBackTest() {
+  describe('CameraSessionFocusBackTest', () => {
+    beforeAll(async () => {
+      console.info('beforeAll case');
+      getCameraManager();
+      getSupportedCameraDeviceArray();
+      getSupportedModes();
+      await getPermission();
+      await driveFn();
+      getCameraInput();
+      getOutputCapability();
+      getPreviewProfile();
+    });
+
+    beforeEach(() => {
+      console.info('afterEach case');
+    });
+
+    afterEach(async () => {
+      console.info('afterEach case');
+      await sleep(COMMON_WAIT_DURATION);
+    });
+
+    afterAll(async () => {
+      console.info('afterAll case');
+      await closeFd(fdNumber);
+    });
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_001
+     * @tc.name      : isFocusModeSupported_photo_abnormal_back_001
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_MANUAL
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_abnormal_back_001', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_abnormal_back_001';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.NORMAL_PHOTO, cameraFocusMode.FOCUS_MODE_MANUAL);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_002
+     * @tc.name      : isFocusModeSupported_photo_abnormal_back_002
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_CONTINUOUS_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_abnormal_back_002', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_abnormal_back_002';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.NORMAL_PHOTO,
+        cameraFocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_003
+     * @tc.name      : isFocusModeSupported_photo_abnormal_back_003
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_abnormal_back_003', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_abnormal_back_003';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.NORMAL_PHOTO, cameraFocusMode.FOCUS_MODE_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_004
+     * @tc.name      : isFocusModeSupported_photo_abnormal_back_004
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_LOCKED
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_abnormal_back_004', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_abnormal_back_004';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.NORMAL_PHOTO, cameraFocusMode.FOCUS_MODE_LOCKED);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_005
+     * @tc.name      : isFocusModeSupported_video_abnormal_back_001
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_MANUAL
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_abnormal_back_001', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_video_abnormal_back_001';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.NORMAL_VIDEO, cameraFocusMode.FOCUS_MODE_MANUAL);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_006
+     * @tc.name      : isFocusModeSupported_video_abnormal_back_002
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_CONTINUOUS_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_abnormal_back_002', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_video_abnormal_back_002';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.NORMAL_VIDEO,
+        cameraFocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_007
+     * @tc.name      : isFocusModeSupported_video_abnormal_back_003
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_abnormal_back_003', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_video_abnormal_back_003';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.NORMAL_VIDEO, cameraFocusMode.FOCUS_MODE_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_008
+     * @tc.name      : isFocusModeSupported_video_abnormal_back_004
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_LOCKED
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_abnormal_back_004', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_video_abnormal_back_004';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.NORMAL_VIDEO, cameraFocusMode.FOCUS_MODE_LOCKED);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_009
+     * @tc.name      : isFocusModeSupported_secure_photo_abnormal_back_001
+     * @tc.desc      : No config, only isFocusModeSupported()-mode->FOCUS_MODE_MANUAL -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_secure_photo_abnormal_back_001', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_secure_photo_abnormal_back_001';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.SECURE_PHOTO, cameraFocusMode.FOCUS_MODE_MANUAL);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_010
+     * @tc.name      : isFocusModeSupported_secure_photo_abnormal_back_002
+     * @tc.desc      : No config, only isFocusModeSupported()-mode->FOCUS_MODE_CONTINUOUS_AUTO -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_secure_photo_abnormal_back_002', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_secure_photo_abnormal_back_002';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.SECURE_PHOTO,
+        cameraFocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_011
+     * @tc.name      : isFocusModeSupported_secure_photo_abnormal_back_003
+     * @tc.desc      : No config, only isFocusModeSupported()-mode->FOCUS_MODE_AUTO -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_secure_photo_abnormal_back_003', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_secure_photo_abnormal_back_003';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.SECURE_PHOTO, cameraFocusMode.FOCUS_MODE_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_012
+     * @tc.name      : isFocusModeSupported_secure_photo_abnormal_back_004
+     * @tc.desc      : No config, only isFocusModeSupported()-mode->FOCUS_MODE_LOCKED -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_secure_photo_abnormal_back_004', Level.LEVEL0, (done: Function) => {
+      const testName = 'isFocusModeSupported_secure_photo_abnormal_back_004';
+      getFocusSupportedModeStatusError(done, testName, sceneMode.SECURE_PHOTO, cameraFocusMode.FOCUS_MODE_LOCKED);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_013
+     * @tc.name      : setFocusMode_photo_back_001
+     * @tc.desc      : setFocusMode-mode->FOCUS_MODE_MANUAL
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_back_001';
+      await setFocusModePhotoSession(done, testName, cameraFocusMode.FOCUS_MODE_MANUAL);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_014
+     * @tc.name      : setFocusMode_photo_back_002
+     * @tc.desc      : setFocusMode-mode->FOCUS_MODE_CONTINUOUS_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_back_002', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_back_002';
+      await setFocusModePhotoSession(done, testName, cameraFocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_015
+     * @tc.name      : setFocusMode_photo_back_003
+     * @tc.desc      : setFocusMode-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_back_003', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_back_003';
+      await setFocusModePhotoSession(done, testName, cameraFocusMode.FOCUS_MODE_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_016
+     * @tc.name      : setFocusMode_photo_back_004
+     * @tc.desc      : setFocusMode-mode->FOCUS_MODE_LOCKED
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_back_004', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_back_004';
+      await setFocusModePhotoSession(done, testName, cameraFocusMode.FOCUS_MODE_LOCKED);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_017
+     * @tc.name      : setFocusMode_video_back_001
+     * @tc.desc      : setFocusMode-mode->FOCUS_MODE_MANUAL
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_back_001';
+      await setFocusModeVideoSession(done, testName, cameraFocusMode.FOCUS_MODE_MANUAL);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_018
+     * @tc.name      : setFocusMode_video_back_002
+     * @tc.desc      : setFocusMode-mode->FOCUS_MODE_CONTINUOUS_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_back_002', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_back_002';
+      await setFocusModeVideoSession(done, testName, cameraFocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_019
+     * @tc.name      : setFocusMode_video_back_003
+     * @tc.desc      : setFocusMode-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_back_003', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_back_003';
+      await setFocusModeVideoSession(done, testName, cameraFocusMode.FOCUS_MODE_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_020
+     * @tc.name      : setFocusMode_video_back_004
+     * @tc.desc      : setFocusMode-mode->FOCUS_MODE_LOCKED
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_back_004', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_back_004';
+      await setFocusModeVideoSession(done, testName, cameraFocusMode.FOCUS_MODE_LOCKED);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_021
+     * @tc.name      : setFocusMode_photo_abnormal_back_001
+     * @tc.desc      : No config, only setFocusMode() -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_abnormal_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_abnormal_back_001';
+      await setFocusModePhotoSessionError(done, testName, cameraFocusMode.FOCUS_MODE_MANUAL);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_022
+     * @tc.name      : setFocusMode_photo_abnormal_back_002
+     * @tc.desc      : No config, only setFocusMode() -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_abnormal_back_002', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_abnormal_back_002';
+      await setFocusModePhotoSessionError(done, testName, cameraFocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_023
+     * @tc.name      : setFocusMode_photo_abnormal_back_003
+     * @tc.desc      : No config, only setFocusMode() -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_abnormal_back_003', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_abnormal_back_003';
+      await setFocusModePhotoSessionError(done, testName, cameraFocusMode.FOCUS_MODE_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_024
+     * @tc.name      : setFocusMode_photo_abnormal_back_004
+     * @tc.desc      : No config, only setFocusMode() -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_abnormal_back_004', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_abnormal_back_004';
+      await setFocusModePhotoSessionError(done, testName, cameraFocusMode.FOCUS_MODE_LOCKED);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_025
+     * @tc.name      : setFocusMode_video_abnormal_back_001
+     * @tc.desc      : No config, only setFocusMode() -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_abnormal_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_abnormal_back_001';
+      await setFocusModeVideoSessionError(done, testName, cameraFocusMode.FOCUS_MODE_MANUAL);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_026
+     * @tc.name      : setFocusMode_video_abnormal_back_002
+     * @tc.desc      : No config, only setFocusMode() -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_abnormal_back_002', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_abnormal_back_002';
+      await setFocusModeVideoSessionError(done, testName, cameraFocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_027
+     * @tc.name      : setFocusMode_video_abnormal_back_003
+     * @tc.desc      : No config, only setFocusMode() -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_abnormal_back_003', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_abnormal_back_003';
+      await setFocusModeVideoSessionError(done, testName, cameraFocusMode.FOCUS_MODE_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_028
+     * @tc.name      : setFocusMode_video_abnormal_back_004
+     * @tc.desc      : No config, only setFocusMode() -> error_code: 7400103
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_abnormal_back_004', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_abnormal_back_004';
+      await setFocusModeVideoSessionError(done, testName, cameraFocusMode.FOCUS_MODE_LOCKED);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_029
+     * @tc.name      : isFocusModeSupported_photo_back_001
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_MANUAL
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_back_001';
+      await getFocusSupportedModeStatus(done, testName, cameraFocusMode.FOCUS_MODE_MANUAL);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_030
+     * @tc.name      : isFocusModeSupported_photo_back_002
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_CONTINUOUS_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_back_002', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_back_002';
+      await getFocusSupportedModeStatus(done, testName, cameraFocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_031
+     * @tc.name      : isFocusModeSupported_photo_back_003
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_back_003', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_back_003';
+      await getFocusSupportedModeStatus(done, testName, cameraFocusMode.FOCUS_MODE_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_032
+     * @tc.name      : isFocusModeSupported_photo_back_004
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_LOCKED
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_back_004', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_back_004';
+      await getFocusSupportedModeStatus(done, testName, cameraFocusMode.FOCUS_MODE_LOCKED);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_033
+     * @tc.name      : isFocusModeSupported_video_back_001
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_MANUAL
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_back_001';
+      await getFocusSupportedModeStatusVideo(done, testName, cameraFocusMode.FOCUS_MODE_MANUAL);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_034
+     * @tc.name      : isFocusModeSupported_video_back_002
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_CONTINUOUS_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_back_002', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_back_002';
+      await getFocusSupportedModeStatusVideo(done, testName, cameraFocusMode.FOCUS_MODE_CONTINUOUS_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_035
+     * @tc.name      : isFocusModeSupported_video_back_003
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_back_003', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_back_003';
+      await getFocusSupportedModeStatusVideo(done, testName, cameraFocusMode.FOCUS_MODE_AUTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_036
+     * @tc.name      : isFocusModeSupported_video_back_004
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_LOCKED
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_back_004', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_back_004';
+      await getFocusSupportedModeStatusVideo(done, testName, cameraFocusMode.FOCUS_MODE_LOCKED);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_037
+     * @tc.name      : setFocusMode_photo_abnormal_back_005
+     * @tc.desc      : setFocusMode-mode->invalid
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_abnormal_back_005', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_abnormal_back_005';
+      await setFocusModePhotoSessionAbnormal(done, testName, abnormalValue);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_038
+     * @tc.name      : setFocusMode_photo_abnormal_back_006
+     * @tc.desc      : setFocusMode-mode->null
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_abnormal_back_006', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_abnormal_back_006';
+      await setFocusModePhotoSessionAbnormal(done, testName, null);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_039
+     * @tc.name      : setFocusMode_photo_abnormal_back_007
+     * @tc.desc      : setFocusMode-mode->undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_abnormal_back_007', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_abnormal_back_007';
+      await setFocusModePhotoSessionAbnormal(done, testName, undefined);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_040
+     * @tc.name      : setFocusMode_video_abnormal_back_005
+     * @tc.desc      : setFocusMode-mode->invalid
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_abnormal_back_005', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_abnormal_back_005';
+      await setFocusModeVideoSessionAbnormal(done, testName, abnormalValue);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_041
+     * @tc.name      : setFocusMode_video_abnormal_back_006
+     * @tc.desc      : setFocusMode-mode->null
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_abnormal_back_006', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_abnormal_back_006';
+      await setFocusModeVideoSessionAbnormal(done, testName, null);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_042
+     * @tc.name      : setFocusMode_video_abnormal_back_007
+     * @tc.desc      : setFocusMode-mode->undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_abnormal_back_007', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_abnormal_back_007';
+      await setFocusModeVideoSessionAbnormal(done, testName, undefined);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_043
+     * @tc.name      : isFocusModeSupported_photo_abnormal_back_005
+     * @tc.desc      : isFocusModeSupported-mode->invalid
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_abnormal_back_005', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_abnormal_back_005';
+      await getFocusSupportedModeStatusAbnormal(done, testName, abnormalValue);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_044
+     * @tc.name      : isFocusModeSupported_photo_abnormal_back_006
+     * @tc.desc      : isFocusModeSupported-mode->null
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_abnormal_back_006', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_abnormal_back_006';
+      await getFocusSupportedModeStatusAbnormal(done, testName, null);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_045
+     * @tc.name      : isFocusModeSupported_photo_abnormal_back_007
+     * @tc.desc      : isFocusModeSupported-mode->undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_abnormal_back_007', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_abnormal_back_007';
+      await getFocusSupportedModeStatusAbnormal(done, testName, undefined);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_046
+     * @tc.name      : isFocusModeSupported_video_abnormal_back_005
+     * @tc.desc      : isFocusModeSupported-mode->invalid
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_abnormal_back_005', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_abnormal_back_005';
+      await getFocusSupportedModeStatusVideoAbnormal(done, testName, abnormalValue);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_047
+     * @tc.name      : isFocusModeSupported_video_abnormal_back_006
+     * @tc.desc      : isFocusModeSupported-mode->null
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_abnormal_back_006', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_abnormal_back_006';
+      await getFocusSupportedModeStatusVideoAbnormal(done, testName, null);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_048
+     * @tc.name      : isFocusModeSupported_video_abnormal_back_007
+     * @tc.desc      : isFocusModeSupported-mode->undefined
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_abnormal_back_007', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_abnormal_back_007';
+      await getFocusSupportedModeStatusVideoAbnormal(done, testName, undefined);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_049
+     * @tc.name      : getFocusMode_photo_back_001
+     * @tc.desc      : getFocusMode
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('getFocusMode_photo_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'getFocusMode_photo_back_001';
+      console.info(TAG, testName + ' begin.');
+      if (!checkBackCamera()) {
+        console.info(TAG, testName + ' the current device does not have a rear camera.');
+        done();
+        return;
+      }
+      try {
+        if (isEmpty(mCameraManager)) {
+          console.info(TAG, testName + ' cameraManager is null.');
+          expect().assertFail();
+        } else {
+          mPhotoOutput = mCameraManager.createPhotoOutput(mCameraOutputCapModePhoto.photoProfiles[0]);
+          mPreviewOutput =
+            mCameraManager.createPreviewOutput(mCameraOutputCapModePhoto.previewProfiles[0], indexSurfaceId);
+          await getCreatePhotoSession(mPreviewOutput, mPhotoOutput);
+          let focusMode = mPhotoSession.getFocusMode();
+          expect(isEmpty(focusMode)).assertFalse();
+          console.info(TAG, testName + ' photo focus mode, status: ' + focusMode);
+          await releasePhotoSession();
+        }
+        done();
+      } catch (error) {
+        console.error(TAG, testName + ' session getFocusMode failed. code: ' + error.code + ', msg: ' + error.message);
+        expect().assertFail();
+        await releasePhotoSession();
+        done();
+      }
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_050
+     * @tc.name      : getFocusMode_video_back_001
+     * @tc.desc      : getFocusMode
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('getFocusMode_video_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'getFocusMode_video_back_001';
+      console.info(TAG, testName + ' begin.');
+      if (!checkBackCamera()) {
+        console.info(TAG, testName + ' the current device does not have a rear camera.');
+        done();
+        return;
+      }
+      try {
+        if (isEmpty(mCameraManager)) {
+          console.info(TAG, testName + ' cameraManager is null.');
+          expect().assertFail();
+        } else {
+          if (isEmpty(mPreviewProfile)) {
+            console.info(TAG, testName + ' no same resolution preview.');
+            expect(isEmpty(mPreviewProfile)).assertTrue();
+          } else {
+            await getVideoSurfaceId();
+            mPreviewOutput = mCameraManager.createPreviewOutput(mPreviewProfile, indexSurfaceId);
+            mVideoOutput = mCameraManager.createVideoOutput(mVideoProfile, mVideoSurfaceId);
+            await getCreateVideoSession(testName, mPreviewOutput, mVideoOutput);
+            let focusMode = mVideoSession.getFocusMode();
+            expect(isEmpty(focusMode)).assertFalse();
+            console.info(TAG, testName + ' video focus mode, status: ' + focusMode);
+            await releaseVideoSession();
+          }
+        }
+        done();
+      } catch (error) {
+        console.error(TAG, testName + ' session getFocusMode failed. code: ' + error.code + ', msg: ' + error.message);
+        expect().assertFail();
+        await releaseVideoSession();
+        done();
+      }
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_051
+     * @tc.name      : getFocusMode_photo_abnormal_back_001
+     * @tc.desc      : getFocusMode
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('getFocusMode_photo_abnormal_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'getFocusMode_photo_abnormal_back_001';
+      getFocusModeError(done, testName, sceneMode.NORMAL_PHOTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_052
+     * @tc.name      : getFocusMode_video_abnormal_back_001
+     * @tc.desc      : getFocusMode
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('getFocusMode_video_abnormal_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'getFocusMode_video_abnormal_back_001';
+      getFocusModeError(done, testName, sceneMode.NORMAL_VIDEO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_053
+     * @tc.name      : getFocusMode_secure_photo_abnormal_back_001
+     * @tc.desc      : getFocusMode
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('getFocusMode_secure_photo_abnormal_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'getFocusMode_secure_photo_abnormal_back_001';
+      getFocusModeError(done, testName, sceneMode.SECURE_PHOTO);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_054
+     * @tc.name      : isFocusModeSupported_photo_preconfig_back_001
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_preconfig_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_preconfig_back_001';
+      await getFocusSupportedModeStatusPreConfig(done, testName, cameraFocusMode.FOCUS_MODE_AUTO,
+        cameraPreconfigType.PRECONFIG_720P, cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_055
+     * @tc.name      : isFocusModeSupported_photo_preconfig_back_002
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_preconfig_back_002', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_preconfig_back_002';
+      await getFocusSupportedModeStatusPreConfig(done, testName, cameraFocusMode.FOCUS_MODE_AUTO,
+        cameraPreconfigType.PRECONFIG_1080P, cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_056
+     * @tc.name      : isFocusModeSupported_photo_preconfig_back_003
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_preconfig_back_003', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_preconfig_back_003';
+      await getFocusSupportedModeStatusPreConfig(done, testName, cameraFocusMode.FOCUS_MODE_AUTO,
+        cameraPreconfigType.PRECONFIG_4K, cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_057
+     * @tc.name      : isFocusModeSupported_photo_preconfig_back_004
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_photo_preconfig_back_004', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_photo_preconfig_back_004';
+      await getFocusSupportedModeStatusPreConfig(done, testName, cameraFocusMode.FOCUS_MODE_AUTO,
+        cameraPreconfigType.PRECONFIG_HIGH_QUALITY, cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_058
+     * @tc.name      : isFocusModeSupported_video_preconfig_back_001
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_preconfig_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_preconfig_back_001';
+      await getFocusSupportedModeStatusVideoPreConfig(done, testName, cameraFocusMode.FOCUS_MODE_AUTO,
+        cameraPreconfigType.PRECONFIG_720P, cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_059
+     * @tc.name      : isFocusModeSupported_video_preconfig_back_002
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_preconfig_back_002', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_preconfig_back_002';
+      await getFocusSupportedModeStatusVideoPreConfig(done, testName, cameraFocusMode.FOCUS_MODE_AUTO,
+        cameraPreconfigType.PRECONFIG_1080P, cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_060
+     * @tc.name      : isFocusModeSupported_video_preconfig_back_003
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_preconfig_back_003', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_preconfig_back_003';
+      await getFocusSupportedModeStatusVideoPreConfig(done, testName, cameraFocusMode.FOCUS_MODE_AUTO,
+        cameraPreconfigType.PRECONFIG_4K, cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_061
+     * @tc.name      : isFocusModeSupported_video_preconfig_back_004
+     * @tc.desc      : isFocusModeSupported-mode->FOCUS_MODE_AUTO
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('isFocusModeSupported_video_preconfig_back_004', Level.LEVEL0, async (done: Function) => {
+      const testName = 'isFocusModeSupported_video_preconfig_back_004';
+      await getFocusSupportedModeStatusVideoPreConfig(done, testName, cameraFocusMode.FOCUS_MODE_AUTO,
+        cameraPreconfigType.PRECONFIG_HIGH_QUALITY, cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_062
+     * @tc.name      : getFocusMode_photo_preconfig_back_001
+     * @tc.desc      : getFocusMode
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('getFocusMode_photo_preconfig_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'getFocusMode_photo_preconfig_back_001';
+      await getFocusModePhotoPreConfig(done, testName, cameraPreconfigType.PRECONFIG_720P,
+        cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_063
+     * @tc.name      : getFocusMode_video_preconfig_back_001
+     * @tc.desc      : getFocusMode
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('getFocusMode_video_preconfig_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'getFocusMode_video_preconfig_back_001';
+      await getFocusModeVideoPreConfig(done, testName, cameraPreconfigType.PRECONFIG_720P,
+        cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_064
+     * @tc.name      : setFocusMode_photo_preconfig_back_001
+     * @tc.desc      : setFocusMode-mode->FOCUS_MODE_MANUAL
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_photo_preconfig_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_photo_preconfig_back_001';
+      await setFocusModePhotoPreConfig(done, testName, cameraFocusMode.FOCUS_MODE_AUTO,
+        cameraPreconfigType.PRECONFIG_720P, cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+
+    /**
+     * @tc.number    : SESSION_FOCUS_BACK_065
+     * @tc.name      : setFocusMode_video_preconfig_back_001
+     * @tc.desc      : setFocusMode-mode->FOCUS_MODE_MANUAL
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('setFocusMode_video_preconfig_back_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'setFocusMode_video_preconfig_back_001';
+      await setFocusModeVideoPreConfig(done, testName, cameraFocusMode.FOCUS_MODE_AUTO,
+        cameraPreconfigType.PRECONFIG_720P, cameraPreconfigRatio.PRECONFIG_RATIO_16_9);
+    })
+  })
+}

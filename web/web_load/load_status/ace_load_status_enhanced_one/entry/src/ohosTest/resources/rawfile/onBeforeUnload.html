@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="10; URL=//rawfile/onBeforeUnloadTest.html">
+    <title>baidu</title>
+</head>
+<body onbeforeunload="return myFunction()">
+<a href="http://www.baidu.com">点击跳转到baidu</a>
+<img src="icon.png" alt="icon" id="imgs">
+</body>
+<script>
+    let ele = document.getElementById('imgs');
+    let loadImage;
+    ele.onload = function() {
+        loadImage = ele.click();
+    };
+    function myFunction() {
+        document.getElementById('imgs').click();
+        return '我在这写点东西...';
+    }
+    function myRefresh() {
+       window.location.reload();
+    }
+    function myNewPage() {
+        window.location.replace('http://www.baidu.com');
+    }
+    myFunction();
+</script>
+</html>

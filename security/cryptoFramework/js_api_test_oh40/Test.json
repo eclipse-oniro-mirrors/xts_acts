@@ -1,0 +1,34 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "shell-timeout": "1500000",
+        "testcase-timeout": "900000",
+        "bundle-name": "com.openharmony.cryptoFramework2",
+        "package-name": "com.openharmony.cryptoFramework2"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCryptoFrameworkTwoJSNormalTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+          "type": "ShellKit",
+          "run-command": [
+            "remount",
+            "mkdir -p /data/local/tmp/xts-test",
+            "chmod 777 -R /data/local/tmp/xts-test"
+          ]
+        },
+        {
+          "type": "PushKit",
+          "push": [
+            "ActsCryptoFrameworkTwoJSNormalTest.hap -> /data/local/tmp/xts-test/ActsCryptoFrameworkTwoJSNormalTest.hap"
+          ]
+        }
+    ]
+}

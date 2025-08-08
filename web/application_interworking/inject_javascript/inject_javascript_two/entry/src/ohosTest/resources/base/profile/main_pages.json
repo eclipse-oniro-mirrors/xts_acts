@@ -1,0 +1,7 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/webRegisterJavaScriptProxyJsunit",
+    "testability/pages/WebRegisterAsyncThreadJavaScriptProxy"
+  ]
+}

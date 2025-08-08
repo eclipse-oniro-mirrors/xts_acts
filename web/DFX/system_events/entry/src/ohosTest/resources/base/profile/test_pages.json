@@ -1,0 +1,6 @@
+{
+  "src": [
+    "testability/pages/WebOnDataResubmitted",
+    "testability/pages/WebOnFirstContentfulPaint"
+  ]
+}

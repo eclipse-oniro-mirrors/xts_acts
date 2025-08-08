@@ -1,0 +1,43 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.actsgetdisplayidtest",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout":"30000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAmsStartAbilityTest.hap",
+                "ActsAmsSpecifyTestRelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /data/test/*.hap",
+                "param set persist.sys.abilityms.support.ecologicalrulemgrservice false"
+            ],
+            "teardown-command": [
+                 "param set persist.sys.abilityms.support.ecologicalrulemgrservice true"
+          ]
+        }
+    ]
+}

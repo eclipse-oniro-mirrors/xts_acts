@@ -1,0 +1,86 @@
+{
+  "app": {
+    "bundleName": "ohos.acts.startup.js.function",
+    "vendor": "acts",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "ohos.acts.startup.js.function",
+    "name": ".entry_test",
+    "mainAbility": ".TestAbility",
+    "deviceType": [],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "reqPermissions": [
+      {
+          "name": "ohos.permission.sec.ACCESS_UDID",
+          "reason": "need use ohos.permission.sec.ACCESS_UDID",
+          "usedScene": {
+              "ability": [
+                  "FormAbility"
+              ],
+              "when": "inuse"
+          }
+      },
+      {
+        "name": "ohos.permission.ACCESS_DISK_PHY_INFO",
+        "reason": "need use ohos.permission.ACCESS_DISK_PHY_INFO",
+        "usedScene": {
+            "ability": [
+                "FormAbility"
+            ],
+            "when": "inuse"
+        }
+      }
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".TestAbility",
+        "srcLanguage": "js",
+        "srcPath": "TestAbility",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "testRunner": {
+      "name": "OpenHarmonyTestRunner",
+      "srcPath": "TestRunner"
+    }
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "app": {
+    "bundleName": "com.ohos.st.formsystemhost",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.ohos.st.formsystemhost",
+    "name": ".entry_test",
+    "mainAbility": ".TestAbility",
+    "deviceType": [],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "TestAbility",
+        "name": ".TestAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "defPermissions": [
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormDelete_commonEvent"
+      },
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormOnAcquired_commonEvent"
+      },
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormOnError_commonEvent"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "FMS_FormOnAcquired_commonEvent"
+      },
+      {
+        "name": "FMS_FormDelete_commonEvent",
+        "reason": "need use FMS_FormDelete_commonEvent"
+      },
+      {
+        "name": "FMS_FormOnError_commonEvent",
+        "reason": "need use delete commonEvent"
+      },
+      {
+        "name": "ohos.permission.REQUIRE_FORM"
+      }
+    ]
+  }
+}

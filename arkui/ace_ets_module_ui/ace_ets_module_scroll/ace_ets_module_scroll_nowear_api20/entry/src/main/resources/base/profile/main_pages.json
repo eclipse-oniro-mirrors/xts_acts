@@ -1,0 +1,10 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/WaterFlow/barMarginFlow",
+        "MainAbility/pages/List/focusWrapModeList",
+        "MainAbility/pages/List/focusWrapModeList2",
+        "MainAbility/pages/Grid/focusWrapDefault",
+        "MainAbility/pages/Grid/focusWrapWrap"
+    ]
+}

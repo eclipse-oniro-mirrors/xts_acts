@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "app_name",
+      "value": "ActsGetAppContextStagebTest"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+   }
+  ]
+}

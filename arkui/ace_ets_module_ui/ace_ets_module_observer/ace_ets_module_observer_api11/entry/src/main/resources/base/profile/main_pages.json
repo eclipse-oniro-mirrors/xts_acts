@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/observer/ObserverApi",
+        "MainAbility/pages/observer/ObserverApi2"
+    ]
+}

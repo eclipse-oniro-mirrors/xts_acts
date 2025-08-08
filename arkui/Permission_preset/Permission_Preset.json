@@ -1,0 +1,16 @@
+{
+  "description": "Config for OpenHarmony device test cases",
+  "environment": [
+    {
+      "type": "device",
+      "label": ""
+    }
+  ],
+  "driver": {
+    "type": "DeviceTestSuite",
+    "testsuite": "Permission_Preset.py",
+    "suitecases": [
+      "permission_preset/Permission_Preset.py"
+    ]
+  }
+}

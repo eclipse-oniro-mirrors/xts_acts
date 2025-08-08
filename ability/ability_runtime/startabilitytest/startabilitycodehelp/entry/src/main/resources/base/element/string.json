@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility2_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility2_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility3_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility3_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility4_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility4_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility5_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility5_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceExtAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceExtAbility2_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility2_label",
+      "value": "label"
+    },
+    {
+      "name": "UIServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "UIServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility6_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility6_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility7_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility7_label",
+      "value": "label"
+    },
+    {
+      "name": "UIExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "UIExtAbility_label",
+      "value": "label"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+    "insightIntents": [
+      {
+        "intentName": "PlayMusic",
+        "domain": "MusicDomain",
+        "intentVersion": "1.0.1",
+        "srcEntry": "./ets/InsightIntents/IntentExecutorImpl.ts",
+        "uiAbility": {
+          "ability": "EntryAbility",
+          "executeMode": [
+            "background",
+            "foreground"
+          ]
+        },
+        "serviceExtension": {
+          "ability": "serviceAbility"
+        },
+        "uiExtension": {
+          "ability": "PlayMusicUIExtension"
+        },
+        "form": {
+          "ability": "EntryFormAbility",
+          "formName": "widget"
+        }
+      }
+    ]
+  }

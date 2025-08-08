@@ -1,0 +1,26 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Multimedia.Media.AVPlayer",
+                    "SystemCapability.Multimedia.Media.AVRecorder",
+                    "SystemCapability.Multimedia.Media.AVTranscoder",
+                    "SystemCapability.Multimedia.Media.AVMetadataExtractor",
+                    "SystemCapability.Multimedia.Media.SoundPool",
+                    "SystemCapability.Multimedia.Media.AVScreenCapture",
+                    "SystemCapability.Multimedia.Media.Core",
+                    "SystemCapability.Multimedia.Media.VideoPlayer",
+                    "SystemCapability.Multimedia.Media.AVImageGenerator",
+                    "SystemCapability.Multimedia.MediaLibrary.Core",
+                    "SystemCapability.Multimedia.MediaLibrary.DistributedCore",
+                    "SystemCapability.FileManagement.UserFileManager.Core",
+                    "SystemCapability.FileManagement.UserFileManager.DistributedCore",
+                    "SystemCapability.FileManagement.PhotoAccessHelper.Core",
+                    "SystemCapability.Global.ResourceManager"
+                ]
+            }
+        ]
+    }
+}

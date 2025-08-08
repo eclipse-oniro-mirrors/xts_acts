@@ -1,0 +1,20 @@
+{
+  "description": "Configuration for aceceshi Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "600000",
+    "bundle-name": "com.acts.uiextensioncontexttest",
+    "module-name": "entry_test",
+    "shell-timeout": "600000"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsUIExtensionErrocodeTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}
+

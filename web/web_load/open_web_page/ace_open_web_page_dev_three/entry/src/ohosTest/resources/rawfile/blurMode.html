@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Focus Example</title>
+  <script>
+        function myFocus() {
+            const eventListener2 = document.getElementById('input-box')
+            eventListener2.addEventListener('focus',function() {
+              console.log('focus')
+            })
+        }
+
+        function onBlur() {
+            const eventListener3 = document.getElementById('input-box')
+            eventListener3.addEventListener('blur',function() {
+              console.log('blur')
+            })
+        }
+
+         window.onload = function() {
+          const eventListener = document.getElementById('input-box')
+           eventListener.addEventListener('focus',function() {
+              console.log('focus')
+            })
+           eventListener.addEventListener('blur',function() {
+              console.log('blur')
+            })
+        }
+
+
+    </script>
+</head>
+<body>
+<h1>Input Focus Example</h1>
+<input id="input-box" type="text" value="input" onfocus="myFocus()" onblur="onBlur()" title="输入"/>
+</body>
+</html>

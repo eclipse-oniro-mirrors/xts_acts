@@ -1,0 +1,24 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.actsbmshapmoduletest",
+        "package-name": "com.example.actsbmshapmoduletest"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBmsHapModuleTest.hap",
+                "bmsSystemBundleTest1.hap",
+                "bmsMainAbilityFirstScene.hap",
+                "bmsMainAbilitySecondScene.hap",
+                "bmsThirdBundleTest2.hap",
+                "bmsThirdBundleTest5.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

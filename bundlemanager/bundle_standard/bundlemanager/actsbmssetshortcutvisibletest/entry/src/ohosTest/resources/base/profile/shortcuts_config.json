@@ -1,0 +1,14 @@
+{
+  "shortcuts": [
+    {
+      "shortcutId": "id_test1",
+      "label": "$string:shortcut1",
+      "icon": "$media:startIcon",
+      "wants": [{
+        "bundleName": "ohos.acts.bms.setshortcutvisibletest",
+        "moduleName": "entry",
+        "abilityName": "SecondAbility"
+      }]
+    }
+  ]
+}

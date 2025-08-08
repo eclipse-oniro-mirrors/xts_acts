@@ -1,0 +1,15 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/onIdle/TestPostOnIdle",
+    "MainAbility/pages/customcomponent/CustomComponentOnDrawBehindTest",
+    "MainAbility/pages/customcomponent/CustomComponentOnDrawFrontTest",
+    "MainAbility/pages/EmbeddedComponentOption/TestEmbeddedComponentOption",
+    "MainAbility/pages/uiState/UiStatesTest",
+    "MainAbility/pages/touchTestDone/OntouchTestDoneTest",
+    "MainAbility/pages/nodeUtils/TestNodeUniqueId",
+    "MainAbility/pages/uiInput/UiInputErrorCodeTest",
+    "MainAbility/pages/scope/TestRunTaskInScope"
+  ]
+}

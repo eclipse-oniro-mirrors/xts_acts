@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum=1.0, user-scalable=0;">-->
+  <title>Input Types and Input Modes</title>
+  <style>
+
+    input {
+        width: 200px;
+        height: 30px;
+    }
+    .box {
+        height: 90000px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Input Types with id and maxlength=5</h2>
+  <input id="ex_input_text1" type="text" placeholder="Text" maxlength="5">
+  <button type="button">click me!</button> <button type="button" onclick="document.getElementById('ex_input_text1').focus();">click me to focus</button> <br>
+  <input id="ex_input_pw1" type="password" placeholder="Password" maxlength="5"><br>
+  <input id="ex_input_nnum1" type="number" placeholder="Number" maxlength="5"><br>
+  <input id="ex_input_email1" type="email" placeholder="Email" maxlength="5"><br>
+  <input id="ex_input_url1" type="url" placeholder="URL" maxlength="5"><br>
+  <input id="ex_input_tel1" type="tel" placeholder="Tel" maxlength="5"><br>
+  <input id="ex_input_search1" type="search" placeholder="Search" maxlength="5"><br>
+
+  <h2>Input Types</h2>
+  <input type="text" placeholder="Text">
+  <input type="password" placeholder="Password">
+  <input type="number" placeholder="Number">
+  <input type="email" placeholder="Email">
+  <input type="url" placeholder="URL">
+  <input type="tel" placeholder="Tel">
+  <input type="search" placeholder="Search">
+
+  <h2>type="text" Input Modes</h2>
+  <input type="text" inputmode="none" placeholder="None">
+  <input type="text" inputmode="text" placeholder="Text">
+  <input type="text" inputmode="tel" placeholder="Tel">
+  <input type="text" inputmode="url" placeholder="URL">
+  <input type="text" inputmode="email" placeholder="Email">
+  <input type="text" inputmode="numeric" placeholder="Numeric">
+  <input type="text" inputmode="decimal" placeholder="Decimal">
+  <input type="text" inputmode="search" placeholder="Search">
+
+  <h2>type="password" Input Modes</h2>
+  <input type="password" inputmode="none" placeholder="None">
+  <input type="password" inputmode="text" placeholder="Text">
+  <input type="password" inputmode="tel" placeholder="Tel">
+  <input type="password" inputmode="url" placeholder="URL">
+  <input type="password" inputmode="email" placeholder="Email">
+  <input type="password" inputmode="numeric" placeholder="Numeric">
+  <input type="password" inputmode="decimal" placeholder="Decimal">
+  <input type="password" inputmode="search" placeholder="Search">
+
+  <h2>type="number" Input Modes</h2>
+  <input type="number" inputmode="none" placeholder="None">
+  <input type="number" inputmode="text" placeholder="Text">
+  <input type="number" inputmode="tel" placeholder="Tel">
+  <input type="number" inputmode="url" placeholder="URL">
+  <input type="number" inputmode="email" placeholder="Email">
+  <input type="number" inputmode="numeric" placeholder="Numeric">
+  <input type="number" inputmode="decimal" placeholder="Decimal">
+  <input type="number" inputmode="search" placeholder="Search">
+
+  <h2>type="email" Input Modes</h2>
+  <input type="email" inputmode="none" placeholder="None">
+  <input type="email" inputmode="text" placeholder="Text">
+  <input type="email" inputmode="tel" placeholder="Tel">
+  <input type="email" inputmode="url" placeholder="URL">
+  <input type="email" inputmode="email" placeholder="Email">
+  <input type="email" inputmode="numeric" placeholder="Numeric">
+  <input type="email" inputmode="decimal" placeholder="Decimal">
+  <input type="email" inputmode="search" placeholder="Search">
+
+  <h2>type="url" Input Modes</h2>
+  <input type="url" inputmode="none" placeholder="None">
+  <input type="url" inputmode="text" placeholder="Text">
+  <input type="url" inputmode="tel" placeholder="Tel">
+  <input type="url" inputmode="url" placeholder="URL">
+  <input type="url" inputmode="email" placeholder="Email">
+  <input type="url" inputmode="numeric" placeholder="Numeric">
+  <input type="url" inputmode="decimal" placeholder="Decimal">
+  <input type="url" inputmode="search" placeholder="Search">
+
+  <h2>type="tel" Input Modes</h2>
+  <input type="tel" inputmode="none" placeholder="None">
+  <input type="tel" inputmode="text" placeholder="Text">
+  <input type="tel" inputmode="tel" placeholder="Tel">
+  <input type="tel" inputmode="url" placeholder="URL">
+  <input type="tel" inputmode="email" placeholder="Email">
+  <input type="tel" inputmode="numeric" placeholder="Numeric">
+  <input type="tel" inputmode="decimal" placeholder="Decimal">
+  <input type="tel" inputmode="search" placeholder="Search">
+
+  <h2>type="search" Input Modes</h2>
+  <input type="search" inputmode="none" placeholder="None">
+  <input type="search" inputmode="text" placeholder="Text">
+  <input type="search" inputmode="tel" placeholder="Tel">
+  <input type="search" inputmode="url" placeholder="URL">
+  <input type="search" inputmode="email" placeholder="Email">
+  <input type="search" inputmode="numeric" placeholder="Numeric">
+  <input type="search" inputmode="decimal" placeholder="Decimal">
+  <input type="search" inputmode="search" placeholder="Search">
+
+  <h2>Password Text trans</h2>
+  <div class="pwd-container">
+    <input type="text" id="pwdInput" class="pwd-input">
+    <i id="togglePassword" class="toggle-password">👁️</i>
+  </div>
+
+  <h2>Content Editable and Input Modes</h2>
+  <p contenteditable="true" inputmode="none">This is a contenteditable paragraph with inputmode "none".</p>
+  <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+  <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+  <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+  <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+  <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+  <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+  <p contenteditable="true" inputmode="search">This is a contenteditable paragraph with inputmode "search".</p>
+</div>
+
+<script>
+  const pwdInput = document.getElementById('pwdInput');
+  const togglePassword = document.getElementById('togglePassword');
+
+  togglePassword.addEventListener('click', function() {
+    if (pwdInput.type === 'password') {
+      pwdInput.type = 'text';
+      togglePassword.textContent = '👁️';
+      document.getElementById('pwdInput').focus();
+    } else {
+      pwdInput.type = 'password';
+      togglePassword.textContent = '👁️';
+      document.getElementById('pwdInput').focus();
+    }
+  });
+
+<!--    if ("virtualKeyboard" in navigator) {-->
+<!--      navigator.virtualKeyboard.overlaysContent = true;-->
+
+<!--      navigator.virtualKeyboard.addEventListener("geometrychange", (event) => {-->
+<!--        const { x, y, width, height } = event.target.boundingRect;-->
+<!--        console.log('zwqdemo|js x y = ' + x + " " + y + " " + width + " " + height);-->
+<!--      });-->
+<!--    }-->
+function onCopy() {
+      const testObj = { name: "zhansan", school: { level: 1 } };
+      const blob = new Blob(["text/plain", JSON.stringify(testObj)], {
+        type: "text/plain"
+      });
+      const data = [new ClipboardItem({ ["text/plain"]: blob })];
+      navigator.clipboard.write(data).then(
+        () => {
+          console.log("-----------写成功,下面是读取的内容---------");
+          /* success */
+          navigator.clipboard.readText().then(text => {
+            console.log("text :>> ", text);
+          });
+          navigator.clipboard.read().then(res => {
+            console.log("res :>> ", res);
+          });
+        },
+        () => {
+          /* failure */
+          console.log(
+            "-----------写失败,navigator.clipboard.write api 不支持---------"
+          );
+        }
+      );
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/UIExtensionContentSession/UIExtensionPage",
+    "testability/pages/UIExtensionContentSession/extension"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        
+        
+        
+        "MainAbility/pages/SwipeGesture/SwipeGestureExample01",
+        "MainAbility/pages/SwipeGesture/SwipeGestureExample03",
+	"MainAbility/pages/SwipeGesture/SwipeGestureExample02",
+        
+        "MainAbility/pages/GestureHandler/SwiperGestureHandler",
+        
+        
+	"MainAbility/pages/DragController/UIContextDragController",
+        "MainAbility/pages/tapGestureAddInterface/tapgestures",
+        "MainAbility/pages/customGestureTest/columnMonopolize",
+        "MainAbility/pages/customGestureTest/columnMonopolizeFalse",
+        "MainAbility/pages/customGestureTest/listMonopolize",
+        
+        "MainAbility/pages/customGestureTest/gestureParallel",
+        "MainAbility/pages/onKeyEvent/OnKeyPreIme",
+        "MainAbility/pages/SwipeGesture/SwipeGestureTemplate",
+        "MainAbility/pages/PanGesture/PanGestureUpdate",
+        "MainAbility/pages/PinchGesture/PinchGestureUpdate",
+        "MainAbility/pages/RotationGesture/RotationGestureUpdate"
+     
+    ]
+}

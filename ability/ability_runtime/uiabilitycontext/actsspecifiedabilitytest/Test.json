@@ -1,0 +1,32 @@
+{
+    "description": "Configuration for hjunit Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.ability.specifiedability",
+        "module-name": "entry",
+        "shell-timeout": "30000",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsSpecifiedAbilityRely1.hap",
+                "ActsSpecifiedAbilityRely2.hap",
+                "ActsSpecifiedAbilityRely3.hap",
+                "ActsSpecifiedAbilityTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.sys.abilityms.support.ecologicalrulemgrservice false"
+            ],
+            "teardown-command": [
+                "param set persist.sys.abilityms.support.ecologicalrulemgrservice true"
+          ]
+        }
+    ]
+}

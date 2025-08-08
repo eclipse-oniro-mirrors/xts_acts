@@ -1,0 +1,31 @@
+# Copyright (C) 2021-2022 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//build/ohos_var.gni")
+group("powermgr") {
+  testonly = true
+  deps = [
+    # xts1.1
+    "battery_manager:powermgr_battery_test",
+    "display_manager:powermgr_display_test",
+    "ndk:powermgr_ndk_test",
+    "permission:powermgr_permission_test",
+    "power_manager:powermgr_power_test",
+    "thermal_manager:powermgr_thermal_test",
+    # xts1.2
+    "battery_manager_static:powermgr_battery_static_test",
+    "display_manager_static:powermgr_display_static_test",
+    "permission_static:powermgr_permission_static_test",
+    "power_manager_static:powermgr_power_static_test",
+    "thermal_manager_static:powermgr_thermal_static_test",
+  ]
+}

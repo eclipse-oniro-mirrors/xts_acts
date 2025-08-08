@@ -1,0 +1,24 @@
+{
+  "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Context/IsAvailableTest",
+        "MainAbility/pages/BuilderNode/InheritFreezeOptionsTest",
+        "MainAbility/pages/ComponentContent/ComponentInheritFreezeOptionsTest",
+        "MainAbility/pages/Draw/DrawModifierOneTest",
+        "MainAbility/pages/Draw/DrawModifierTwoTest",
+        "MainAbility/pages/Draw/DrawForegroundTest",
+        "MainAbility/pages/LocalStorage/BuilderNodeOneTest",
+        "MainAbility/pages/LocalStorage/BuilderNodeTwoTest",
+        "MainAbility/pages/LocalStorage/BuilderNodeThreeTest",
+        "MainAbility/pages/FrameNode/bindControllerGrid",
+        "MainAbility/pages/FrameNode/bindControllerList",
+        "MainAbility/pages/FrameNode/bindControllerSwiper",
+        "MainAbility/pages/FrameNode/bindControllerWaterFlow",
+        "MainAbility/pages/FrameNode/GetGlobalPositionOnDisplayTest",
+        "MainAbility/pages/UIAppearance/DarkModeTest",
+        "MainAbility/pages/Context/IsDisposedTest",
+        "MainAbility/pages/BuilderNode/EnableProvideConsumeCrossingTest",
+        "MainAbility/pages/Theme/DarkColorsTest",
+        "MainAbility/pages/FrameNode/NodeAdapterDisposeTest"
+  ]
+}

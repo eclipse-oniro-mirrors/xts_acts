@@ -1,0 +1,94 @@
+/*
+ * Copyright (C) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import hilog from '@ohos.hilog';
+import { application, common } from '@kit.AbilityKit';
+import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
+
+const caseName: string = 'SUB_Ability_AbilityRuntime_setFontSizeAtApp_1000';
+
+@Entry
+@Component
+struct setFontSizeAbility010 {
+  aboutToAppear() {
+    hilog.info(0x0000, 'testTag', '%{public}s', caseName + 'setFontSizeAbility010 aboutToAppear');
+  }
+  private context = getContext(this) as common.UIAbilityContext;
+  @State message: string = 'Hello World';
+
+  build() {
+    Row() {
+      Column() {
+        Button() {
+          Text('show font')
+            .fontSize(20)
+            .fontWeight(FontWeight.Bold)
+        }
+        .id('show')
+        .type(ButtonType.Capsule)
+        .margin({
+          top: 20
+        })
+        .backgroundColor('#0D9FFB')
+        .width('1%')
+        .height('1%')
+        .onClick(() => {
+          try {
+            console.log(`${caseName} zhuhan font ` + this.context.config.fontSizeScale);
+            let options: commonEventManager.CommonEventPublishData = {
+              code: 0,
+              data: this.context.config.fontSizeScale!.toString()
+            };
+            commonEventManager.publish('setFontSize1000', options, (err: BusinessError) => {
+              if(err) {
+                hilog.error(0xFF00, 'testTag', caseName + 'PublishCallBack err = ' + JSON.stringify(err));
+              } else {
+                hilog.info(0xFF00, 'testTag', caseName + 'Publish success');
+              }
+            });
+          } catch(error) {
+            console.log(`${caseName} zhuhan err ` + error.code);
+          }
+        })
+        Button() {
+          Text('set font 9999999')
+            .fontSize(20)
+            .fontWeight(FontWeight.Bold)
+        }
+        .id('set')
+        .type(ButtonType.Capsule)
+        .margin({
+          top: 20
+        })
+        .backgroundColor('#0D9FFB')
+        .width('1%')
+        .height('1%')
+        .onClick(() => {
+          try {
+            let applicationContext = application.getApplicationContext();
+            applicationContext.setFontSizeScale(9999999);
+            console.log(`${caseName} Succeed to set size of font.`);
+          } catch(error) {
+            console.log(`${caseName} Failed to set size of font, error is ${JSON.stringify(error)}`);
+          }
+        })
+        Text(this.message)
+          .fontSize(50)
+          .fontWeight(FontWeight.Bold)
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}

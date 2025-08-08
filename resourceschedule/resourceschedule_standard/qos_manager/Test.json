@@ -1,0 +1,27 @@
+{
+    "description": "Config for ActsQoSCAPITest cases",
+    "driver": {
+        "module-name": "ActsQoSCAPITest",
+        "native-test-timeout": "300000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "1s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "post-push": [
+                "chmod -R 777 /data/local/tmp/*"
+            ],
+            "pre-push": [
+                "mount -o rw,remount /",
+                "mkdir -p /data/service/el1/public/gewu/Qwen2.5-0.5B-CPU-Q4/",
+                "mkdir -p /data/local/tmp/"
+            ],
+            "push": [
+                "./resource/qos/model/Qwen2.5-0.5B-CPU-Q4->/data/service/el1/public/gewu/Qwen2.5-0.5B-CPU-Q4",
+                "ActsQoSCAPITest->/data/local/tmp/ActsQoSCAPITest"
+            ],
+            "type": "PushKit"
+        }
+    ]
+}

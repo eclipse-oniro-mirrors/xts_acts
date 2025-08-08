@@ -1,0 +1,16 @@
+{
+  "float": [
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    },
+    {
+      "name": "float_loopA",
+      "value": "$float:float_loopB"
+    },
+    {
+      "name": "float_loopB",
+      "value": "$float:float_loopA"
+    }
+  ]
+}

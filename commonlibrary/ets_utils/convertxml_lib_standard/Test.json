@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for startup convertxml js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "shell-timeout": "800000",
+        "bundle-name": "com.example.convertxml",
+        "package-name": "com.example.convertxml"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsConvertxmlJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

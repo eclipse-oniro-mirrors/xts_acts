@@ -1,0 +1,72 @@
+{
+    "string":  [
+        {
+            "name": "module_desc",
+            "value": "module description"
+        },
+        {
+            "name": "phone_entry_dsc",
+            "value": "i am an entry for phone"
+        },
+        {
+            "name": "phone_entry_main",
+            "value": "the phone entry ability"
+        },
+        {
+            "name": "entry_label",
+            "value": "ActsContextTest"
+        },
+        {
+            "name": "form_description",
+            "value": "my form"
+        },
+        {
+            "name": "serviceability_description",
+            "value": "my whether"
+        },
+        {
+            "name": "description_application",
+            "value": "demo for test"
+        },
+        {
+            "name": "app_name",
+            "value": "Demo"
+        },
+        {
+          "name": "MenuItem2_labelInfo",
+          "value": "labelInfo2"
+        },
+        {
+          "name": "MenuItemGroup2_footer",
+          "value": "footer2"
+        },
+        {
+            "name": "nextMargin",
+            "value": "20"
+        },
+        {
+            "name": "prevMargin",
+            "value": "20"
+        },
+        {
+            "name": "nextMarginString",
+            "value": "20px"
+        },
+        {
+            "name": "prevMarginString",
+            "value": "20px"
+        },
+        {
+            "name": "gutter_10",
+            "value": "10"
+        },
+        {
+            "name": "number",
+            "value": "200"
+        },
+        {
+            "name": "color",
+            "value": "#FF008000"
+        }
+    ]
+}

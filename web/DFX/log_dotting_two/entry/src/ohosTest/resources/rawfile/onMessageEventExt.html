@@ -1,0 +1,22 @@
+<!--index.html-->
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <title>WebView MessagePort Demo</title>
+</head>
+
+<body>
+<h1>Html5 Send and Receive Message</h1>
+<h3 id="msg">Receive string:</h3>
+<h3 id="msg2">Receive arraybuffer:</h3>
+<div style="font-size: 10pt; text-align: center;">
+    <input type="button" value="Send String" onclick="postStringToApp();" /><br/>
+    <input type="button" value="Send Number" onclick="postNumberToApp();" /><br/>
+    <input type="button" value="Send Boolean" onclick="postBooleanToApp();" /><br/>
+    <input type="button" value="Send ArrayBuffer" onclick="postArrayBufferToApp();" /><br/>
+    <input type="button" value="Send Array" onclick="postArrayToApp();" /><br/>
+    <input type="button" value="Send Error" onclick="postErrorToApp();" /><br/>
+</div>
+</body>
+<script src="onMessageEventExt.js"></script>
+</html>

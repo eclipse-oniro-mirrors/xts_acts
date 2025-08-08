@@ -1,0 +1,19 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/index1",
+    "testability/pages/index2",
+    "testability/pages/index3",
+    "testability/pages/index4",
+    "testability/pages/index5",
+    "testability/pages/index6",
+    "testability/pages/index7",
+    "testability/pages/index8",
+    "testability/pages/index9",
+    "testability/pages/index10",
+    "testability/pages/index11",
+    "testability/pages/index12",
+    "testability/pages/indexh1a1",
+    "testability/pages/indexh1a2"
+  ]
+}

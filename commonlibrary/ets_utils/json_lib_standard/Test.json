@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for startup json js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "shell-timeout": "800000",
+        "bundle-name": "com.example.json",
+        "package-name": "com.example.json"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsJsonJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

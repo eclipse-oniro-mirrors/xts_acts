@@ -1,0 +1,465 @@
+{
+    "description": "Config for ActsOpenGLTest test cases",
+    "driver": {
+        "module-name": "ActsOpenGLTests",
+        "native-test-timeout": "120000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "100s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "pre-push" : [
+            ],
+            "post-push" : [
+                "mount -o rw,remount /",
+                "chmod -R 777 /data/local/tmp/*",
+                "rm -rf /data/local/tmp/*.qpa",
+                "rm -rf /data/local/tmp/*.xml",
+                "mkdir -p /data/storage/shader_cache/local",
+                "mkdir /data/local/tmp/opengl",
+                "tar zxvf /data/local/tmp/opengldata.tar.gz -C /data/local/tmp/opengl",
+                "chmod -R 777 /data/local/tmp/opengl/mustpass/*",
+                "cp -r /data/local/tmp/opengl/data/* /data/local/tmp/opengl",
+                "cp /data/local/tmp/libdeqp* /system/lib",
+                "cp /data/local/tmp/librosen_context* /system/lib"
+            ],
+            
+            "push": [
+                "ActsOpenGLTests->/data/local/tmp/ActsOpenGLTests",
+                "opengldata/libdeqp_ohos_platform.z.so->/data/local/tmp/libdeqp_ohos_platform.z.so",
+                "opengldata/librosen_context.z.so->/data/local/tmp/librosen_context.z.so",
+                "opengldata/libdeqp_spirv.z.so->/data/local/tmp/libdeqp_spirv.z.so",
+                "opengldata/libdeqp_amber.z.so->/data/local/tmp/libdeqp_amber.z.so",
+                "opengldata/libdeqp_spvremapper.z.so->/data/local/tmp/libdeqp_spvremapper.z.so",   
+                "opengldata/opengldata.tar.gz->/data/local/tmp/opengldata.tar.gz"               
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "cd /data/local/tmp"
+            ],
+            "teardown-localcommand": [
+                "python testcases/opengldata/genlocal.py"
+            ]
+        },
+        {
+            "type": "CommandKit",
+            "teardown": [
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlEgl323xTest.qpa->ActsOpenGlEgl323xTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlEgl324xTest.qpa->ActsOpenGlEgl324xTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlEgl325xTest.qpa->ActsOpenGlEgl325xTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlEgl326xTest.qpa->ActsOpenGlEgl326xTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlEglMainTest.qpa->ActsOpenGlEglMainTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlEglMasterTest.qpa->ActsOpenGlEglMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl45Es3MasterTest.qpa->ActsOpenGl461xGl45Es3MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl45Es31MasterTest.qpa->ActsOpenGl461xGl45Es31MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGLAm461xGl45MasterTest.qpa->ActsOpenGLAm461xGl45MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl45Es3MasterTest.qpa->ActsOpenGlMainGl45Es3MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl45Es31MasterTest.qpa->ActsOpenGlMainGl45Es31MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlAmMainGl45MasterTest.qpa->ActsOpenGlAmMainGl45MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl30GtfMasterTest.qpa->ActsOpenGl460xGl30GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl30MasterTest.qpa->ActsOpenGl460xGl30MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl31GtfMasterTest.qpa->ActsOpenGl460xGl31GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl31MasterTest.qpa->ActsOpenGl460xGl31MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl32GtfMasterTest.qpa->ActsOpenGl460xGl32GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl32MasterTest.qpa->ActsOpenGl460xGl32MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl33GtfMasterTest.qpa->ActsOpenGl460xGl33GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl33MasterTest.qpa->ActsOpenGl460xGl33MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl40GtfMasterTest.qpa->ActsOpenGl460xGl40GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl40MasterTest.qpa->ActsOpenGl460xGl40MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl41GtfMasterTest.qpa->ActsOpenGl460xGl41GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl41MasterTest.qpa->ActsOpenGl460xGl41MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl42CompatMasterTest.qpa->ActsOpenGl460xGl42CompatMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl42GtfMasterTest.qpa->ActsOpenGl460xGl42GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl42MasterTest.qpa->ActsOpenGl460xGl42MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl43GtfMasterTest.qpa->ActsOpenGl460xGl43GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl43MasterTest.qpa->ActsOpenGl460xGl43MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl44GtfMasterTest.qpa->ActsOpenGl460xGl44GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl44MasterTest.qpa->ActsOpenGl460xGl44MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl45GtfMasterTest.qpa->ActsOpenGl460xGl45GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl45MasterTest.qpa->ActsOpenGl460xGl45MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl46GtfMasterTest.qpa->ActsOpenGl460xGl46GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl46MasterTest.qpa->ActsOpenGl460xGl46MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl30GtfMasterTest.qpa->ActsOpenGl461xGl30GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl30MasterTest.qpa->ActsOpenGl461xGl30MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl31GtfMasterTest.qpa->ActsOpenGl461xGl31GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl31MasterTest.qpa->ActsOpenGl461xGl31MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl32GtfMasterTest.qpa->ActsOpenGl461xGl32GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl32MasterTest.qpa->ActsOpenGl461xGl32MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl33GtfMasterTest.qpa->ActsOpenGl461xGl33GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl33MasterTest.qpa->ActsOpenGl461xGl33MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl40GtfMasterTest.qpa->ActsOpenGl461xGl40GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl40MasterTest.qpa->ActsOpenGl461xGl40MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl41GtfMasterTest.qpa->ActsOpenGl461xGl41GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl41MasterTest.qpa->ActsOpenGl461xGl41MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl42CompatMasterTest.qpa->ActsOpenGl461xGl42CompatMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl42GtfMasterTest.qpa->ActsOpenGl461xGl42GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl42MasterTest.qpa->ActsOpenGl461xGl42MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl43GtfMasterTest.qpa->ActsOpenGl461xGl43GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl43MasterTest.qpa->ActsOpenGl461xGl43MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl44GtfMasterTest.qpa->ActsOpenGl461xGl44GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl44MasterTest.qpa->ActsOpenGl461xGl44MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl45GtfMasterTest.qpa->ActsOpenGl461xGl45GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl45MasterTest.qpa->ActsOpenGl461xGl45MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl46GtfMasterTest.qpa->ActsOpenGl461xGl46GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl46MasterTest.qpa->ActsOpenGl461xGl46MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl30GtfMasterTest.qpa->ActsOpenGlMainGl30GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl30MasterTest.qpa->ActsOpenGlMainGl30MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl31GtfMasterTest.qpa->ActsOpenGlMainGl31GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl31MasterTest.qpa->ActsOpenGlMainGl31MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl32GtfMasterTest.qpa->ActsOpenGlMainGl32GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl32MasterTest.qpa->ActsOpenGlMainGl32MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl33GtfMasterTest.qpa->ActsOpenGlMainGl33GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl33MasterTest.qpa->ActsOpenGlMainGl33MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl40GtfMasterTest.qpa->ActsOpenGlMainGl40GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl40MasterTest.qpa->ActsOpenGlMainGl40MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl41GtfMasterTest.qpa->ActsOpenGlMainGl41GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl41MasterTest.qpa->ActsOpenGlMainGl41MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl42CompatMasterTest.qpa->ActsOpenGlMainGl42CompatMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl42GtfMasterTest.qpa->ActsOpenGlMainGl42GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl42MasterTest.qpa->ActsOpenGlMainGl42MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl43GtfMasterTest.qpa->ActsOpenGlMainGl43GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl43MasterTest.qpa->ActsOpenGlMainGl43MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl44GtfMasterTest.qpa->ActsOpenGlMainGl44GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl44MasterTest.qpa->ActsOpenGlMainGl44MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl45GtfMasterTest.qpa->ActsOpenGlMainGl45GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl45MasterTest.qpa->ActsOpenGlMainGl45MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl46GtfMasterTest.qpa->ActsOpenGlMainGl46GtfMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl46MasterTest.qpa->ActsOpenGlMainGl46MasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl455xGl40KhrMasterTest.qpa->ActsOpenGl455xGl40KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl30KhrMasterTest.qpa->ActsOpenGl460xGl30KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl40KhrMasterTest.qpa->ActsOpenGl460xGl40KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl43KhrMasterTest.qpa->ActsOpenGl460xGl43KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl460xGl45KhrMasterTest.qpa->ActsOpenGl460xGl45KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl30KhrMasterTest.qpa->ActsOpenGl461xGl30KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl40KhrMasterTest.qpa->ActsOpenGl461xGl40KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl43KhrMasterTest.qpa->ActsOpenGl461xGl43KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl45KhrMasterTest.qpa->ActsOpenGl461xGl45KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl30KhrMasterTest.qpa->ActsOpenGlMainGl30KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl40KhrMasterTest.qpa->ActsOpenGlMainGl40KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl43KhrMasterTest.qpa->ActsOpenGlMainGl43KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl45KhrMasterTest.qpa->ActsOpenGlMainGl45KhrMasterTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl43KhrSingleTest.qpa->ActsOpenGl461xGl43KhrSingleTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl44KhrSingleTest.qpa->ActsOpenGl461xGl44KhrSingleTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl45KhrSingleTest.qpa->ActsOpenGl461xGl45KhrSingleTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGl461xGl46KhrSingleTest.qpa->ActsOpenGl461xGl46KhrSingleTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl43KhrSingleTest.qpa->ActsOpenGlMainGl43KhrSingleTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl44KhrSingleTest.qpa->ActsOpenGlMainGl44KhrSingleTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl45KhrSingleTest.qpa->ActsOpenGlMainGl45KhrSingleTest.qpa"
+                },
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl46KhrSingleTest.qpa->ActsOpenGlMainGl46KhrSingleTest.qpa"
+                }
+            ]
+        }
+
+    ]
+}

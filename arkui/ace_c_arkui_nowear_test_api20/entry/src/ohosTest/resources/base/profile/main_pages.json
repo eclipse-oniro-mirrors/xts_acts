@@ -1,0 +1,15 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/button/ButtonGetTypeTest",
+    "MainAbility/pages/grid/FocusWrapModeTest001",
+    "MainAbility/pages/grid/FocusWrapModeTest002",
+    "MainAbility/pages/grid/FocusWrapModeTest003",
+    "MainAbility/pages/dragEvent/dragEventGetDisplayId",
+    "MainAbility/pages/dragEvent/dragEventGetDragSource",
+    "MainAbility/pages/dragEvent/dragEventGetGlobalDisplay",
+    "MainAbility/pages/dropBadge/enableDropDisallowedBadge",
+    "MainAbility/pages/dialog/DialogGetStateTest"
+  ]
+}

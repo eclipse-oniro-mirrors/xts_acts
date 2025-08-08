@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Navigation/EnableSwipeBackPage",
+        "MainAbility/pages/router/EnableSwipeBackRouter",
+        "MainAbility/pages/router/EnableSwipeBackRouterPageOne"
+    ]
+}

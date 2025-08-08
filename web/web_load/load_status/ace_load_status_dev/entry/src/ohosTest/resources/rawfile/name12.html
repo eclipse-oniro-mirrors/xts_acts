@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>两次调用window.open示例</title>
+    <style>
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <button onclick="openWindow('https://www.baidu.com', 'name1')">第一次调用</button>
+</div>
+<div>
+    <button onclick="openWindow('https://www.baidu.com', 'name2')">第二次调用</button>
+</div>
+
+
+<script>
+    function openWindow(url, name) {
+        window.open(url, name);
+    }
+</script>
+</body>
+</html>

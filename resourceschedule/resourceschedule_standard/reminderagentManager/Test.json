@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "ohos.acts.resourceschedule.reminderagentMgr.js.function",
+        "package-name": "ohos.acts.resourceschedule.reminderagentMgr.js.function",
+        "testcase-timeout": 15000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsResourcescheduleReminderAgentMgrTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "mount -o rw,remount /",
+                "find /system -name notification_config.json | xargs sed -i 's/com.huawei.hmos.notepad/ohos.acts.resourceschedule.reminderagentMgr.js.function/'",
+                "reboot",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "wait 5",
+                "uinput -T -m 300 2700 280 200",
+                "uinput -K -d 2054 -u 2054",
+                "uinput -K -d 2050 -u 2050",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "mount -o rw,remount /",
+                "find /system -name notification_config.json | xargs sed -i 's/ohos.acts.resourceschedule.reminderagentMgr.js.function/com.huawei.hmos.notepad/'",
+                "reboot"
+            ]
+        }
+    ]
+}

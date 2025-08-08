@@ -1,0 +1,15 @@
+{
+    "src": [
+        "MainAbility/pages/index",
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/second/second",
+        "MainAbility/pages/calendarpicker",
+        "MainAbility/pages/columnSplit",
+        "MainAbility/pages/rowSplit",
+        "MainAbility/pages/select",
+        "MainAbility/pages/stepperItem",
+        "MainAbility/pages/sideBarContainer",
+        "MainAbility/pages/waterFlowView",
+        "MainAbility/pages/waterFlowNestedScroll"
+    ]
+}

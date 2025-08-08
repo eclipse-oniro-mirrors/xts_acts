@@ -1,0 +1,23 @@
+{
+  "devices": {
+    "general": [],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.DistributedSched.AppCollaboration",
+          "SystemCapability.ArkUI.ArkUI.Full",
+          "SystemCapability.Test.UiTest",
+          "SystemCapability.Security.AccessToken",
+          "SystemCapability.Communication.Bluetooth.Core",
+          "SystemCapability.Ability.AbilityRuntime.AbilityCore",
+          "SystemCapability.Ability.AbilityRuntime.Core",
+          "SystemCapability.HiviewDFX.HiLog",
+          "SystemCapability.Window.SessionManager",
+          "SystemCapability.WindowManager.WindowManager.Core",
+          "SystemCapability.Utils.Lang",
+          "SystemCapability.Ability.AbilityBase"
+        ]
+
+    }]
+  }
+}

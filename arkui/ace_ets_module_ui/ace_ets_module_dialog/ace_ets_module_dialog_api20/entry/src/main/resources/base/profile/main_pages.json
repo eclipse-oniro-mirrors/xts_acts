@@ -1,0 +1,23 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Menu/subMenuExpandSymbol",
+    "MainAbility/pages/customdialog/customdialog",
+    "MainAbility/pages/Rating/ratingStarStyle",
+    "MainAbility/pages/SheetType/sheetTypeSide",
+    "MainAbility/pages/SheetType/dismissSheetAction",
+    "MainAbility/pages/promptAction/closeToastTest",
+    "MainAbility/pages/BindContentCover/bindContentCover",
+    "MainAbility/pages/Menu/selectModalMode",
+    "MainAbility/pages/SheetType/enableFloatingDragBar",
+    "MainAbility/pages/Menu/PreviewScaleMode",
+    "MainAbility/pages/SheetType/keyboardAvoidMode",
+    "MainAbility/pages/Menu/AvailableLayoutArea",
+    "MainAbility/pages/bindMenu/mask",
+    "MainAbility/pages/bindMenu/maskColor",
+    "MainAbility/pages/bindMenu/maskBackgroundBlurStyle",
+    "MainAbility/pages/SheetType/sheetTypeContentCover",
+    "MainAbility/pages/SheetType/modalTransition",
+    "MainAbility/pages/Slider/slider"
+  ]
+}

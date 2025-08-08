@@ -1,0 +1,14 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Communication.NFC.Core",
+                    "SystemCapability.Communication.NFC.Tag",
+                    "SystemCapability.Communication.NFC.CardEmulation"
+                ]
+            }
+        ]
+    }
+}

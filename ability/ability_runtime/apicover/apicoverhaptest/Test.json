@@ -1,0 +1,34 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.apicoverhaptest",
+        "module-name": "entry_test",
+        "shell-timeout": "300000",
+        "testcase-timeout": 20000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsApiCoverhapTest.hap",
+                "ActsApiCoverhapMain.hap",
+                "FaSupplement.hap",
+                "StageSupplement.hap",
+                "FormModule.hap",
+                "ActsFACoverTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+          "type": "ShellKit",
+          "run-command": [
+              "uitest dumpLayout",
+              "param set persist.sys.abilityms.support.ecologicalrulemgrservice false"
+          ],
+          "teardown-command": [
+              "param set persist.sys.abilityms.support.ecologicalrulemgrservice true"
+          ]
+      }
+    ]
+}

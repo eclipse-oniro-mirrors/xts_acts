@@ -1,0 +1,10 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/KeyCodeTest/KeyCodeTest",
+    "MainAbility/pages/KeyCodeTest/KeyCodeTest1",
+    "MainAbility/pages/KeyCodeTest/KeyCodeTest2",
+    "MainAbility/pages/KeyCodeTest/KeyCodeTest3",
+    "MainAbility/pages/KeyCodeTest/KeyCodeTest4"
+  ]
+}
