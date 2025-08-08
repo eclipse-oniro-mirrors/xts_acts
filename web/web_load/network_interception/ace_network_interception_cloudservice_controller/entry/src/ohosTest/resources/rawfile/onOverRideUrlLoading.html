@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta id='viewport' name="viewport" content="initial-scale=1.0" />
+    <title>onOverRiderUrlLoading</title>
+</head>
+<body>
+    <h1>onOverrideUrlLoading Demo</h1>
+    <a id="jumpHref" href="https://www.baidu.com/">跳转</a>
+</body>
+</html>
+<script type="text/javascript">
+function jump() {
+    document.getElementById('jumpHref').click();
+}
+ function isOnOverrideUrlLoading() {
+    let hostname = document.location.hostname;
+    console.log('>>>hostname:'+hostname);
+    return hostname !== 'www.baidu.com';
+  }
+</script>
+<style>
+</style>

@@ -1,0 +1,31 @@
+{
+  "src": [
+  "MainAbility/pages/index/index",
+  "MainAbility/pages/TextArea/textAreaInputTest",
+  "MainAbility/pages/RichEditor/RichEditorApi5",
+  "MainAbility/pages/Search/searchTest",
+  "MainAbility/pages/Text/styledStringChange",
+  "MainAbility/pages/RichEditor/onSelectionChange1",
+  "MainAbility/pages/RichEditor/onSelectionChange4",
+  "MainAbility/pages/RichEditor/onSelectionChange6",
+  "MainAbility/pages/RichEditor/onSelectionChange5",
+  "MainAbility/pages/RichEditor/onSelectionChange7",
+  "MainAbility/pages/RichEditor/onSelectionChange8",
+  "MainAbility/pages/RichEditor/onSelectionChange10",
+  "MainAbility/pages/RichEditor/onSelectionChange15",
+  "MainAbility/pages/RichEditor/onSelectionChange18",
+  "MainAbility/pages/RichEditor/onSelectionChange19",
+  "MainAbility/pages/RichEditorEnhance01/RichEditorMenuPolicy",
+  "MainAbility/pages/RichEditorEnhance/RichEditor1",
+  "MainAbility/pages/RichEditorEnhance/RichEditor3",
+  "MainAbility/pages/RichEditorEnhance/RichEditor4",
+  "MainAbility/pages/RichEditorEnhance/RichEditor5",
+  "MainAbility/pages/RichEditorEnhance/RichEditor6",
+  "MainAbility/pages/RichEditorEnhance/RichEditor7",
+  "MainAbility/pages/RichEditorEnhance/RichEditor11",
+  "MainAbility/pages/Text/editMeunOptions",
+  "MainAbility/pages/RichEditor/RichEditorApi1",
+  "MainAbility/pages/RichEditor/onDidIMEInput",
+  "MainAbility/pages/TextArea/TextDeleteDirectionTest"
+  ]
+}

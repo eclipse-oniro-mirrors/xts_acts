@@ -1,0 +1,9 @@
+{
+  "src": [
+    "testability/pages/WebInitTest",
+    "testability/pages/OnRequestSelected",
+    "testability/pages/webController",
+	"testability/pages/blurMode"
+  ]
+}
+

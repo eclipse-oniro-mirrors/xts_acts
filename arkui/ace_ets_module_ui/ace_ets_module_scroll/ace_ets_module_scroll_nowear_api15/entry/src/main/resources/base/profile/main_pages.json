@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/WaterFlow/WaterFlowBackToTop",
+        "MainAbility/pages/List/ListBackToTop",
+        "MainAbility/pages/Grid/GridBackToTop",
+        "MainAbility/pages/Scroll/ScrollBackToTop"
+    ]
+}

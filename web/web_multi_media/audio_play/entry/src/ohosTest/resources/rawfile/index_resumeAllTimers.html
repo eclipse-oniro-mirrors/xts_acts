@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <button style="width:300px;height:150px;font-size:50px" onclick="startTimer()">start</button>
+    <button style="width:300px;height:150px;font-size:50px" onclick="resetTimer()">reset</button>
+    <button style="width:300px;height:150px;font-size:50px" onclick="jsAlert()">alert</button><br><br>
+    <button style="width:300px;height:150px;font-size:50px" onclick="changeTime()">changeTime</button><br><br>
+    <input style="width:300px;height:150px;font-size:50px" value="0" id="show_num">
+</body>
+
+</html>
+<script>
+    var timer = null;
+    var num = 0;
+
+    function startTimer() {
+        timer = setInterval(function () {
+            document.getElementById("show_num").value = ++num;
+        }, 1000);
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        document.getElementById("show_num").value = 0;
+        countdown = null;
+        num = 0;
+    }
+
+    function getNum() {
+        return num;
+    }
+
+    function changeTime() {
+        setTimeout(()=>{
+            num = 1;
+        }, 1000);
+    }
+
+</script>

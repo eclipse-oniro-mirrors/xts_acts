@@ -1,0 +1,45 @@
+<!--
+Copyright (c) 2024 Huawei Device Co., Ltd.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<div class="container">
+    <div class="content-title">
+        <text style="width:60%;height:50px;text-align: center;">屏幕亮度</text>
+        <input type="button" value="?" class="backBtnHelp" onclick="help" />
+    </div>
+
+    <div class="content">
+        <text class="content-info"> 当前亮度值: {{getValue}}</text>
+        <text class="content-info"> 调节屏幕亮度 </text>
+        <slider
+                class="sliderStyle"
+                min="0"
+                max="255"
+                value="{{value}}"
+                onclick="clickSlider"
+                onchange="valueChange"
+                />
+        <text class="content-info"> 滑动条当前值：{{value}} </text>
+    </div>
+
+    <div class="bottom-bt">
+        <input type="button" value="获取亮度" class="button-operate" onclick="getBrightnessValue" />
+    </div>
+
+    <div class="bottom-bt">
+        <input type="button" value="pass" class="button" onclick="changeResult(pass)" />
+        <input type="button" value="fail" class="button" onclick="changeResult(fail)" />
+        <input type="button" value="返回" class="button" onclick="back" />
+    </div>
+</div>

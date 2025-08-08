@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Tabs/iconTabs",
+        "MainAbility/pages/Tabs/onSelectedTabs",
+        "MainAbility/pages/Swiper/preloadSwiper",
+        "MainAbility/pages/Swiper/selectedSwiper"
+    ]
+}

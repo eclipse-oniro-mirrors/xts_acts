@@ -1,0 +1,160 @@
+<!--/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+
+<div class="container">
+    <div class="prop-container">
+        <text class="title">
+            camera通用属性
+        </text>
+
+        <text class="sub-title">
+            通用属性 -- id
+        </text>
+        <camera id="idProp">
+        </camera>
+
+        <text class="sub-title">
+            通用属性 -- class
+        </text>
+        <camera id="classProp"
+             class="classProp">
+        </camera>
+        <camera id="classPropNone"
+             class="">
+        </camera>
+
+        <text class="sub-title">
+            通用属性 -- style
+        </text>
+        <camera id="styleProp"
+             style="width:80%;height:20px;background-color:red">
+        </camera>
+
+        <text class="sub-title">
+            通用属性 -- ref
+        </text>
+        <camera id="refProp"
+             ref="refProp">
+        </camera>
+        <camera id="refPropNone"
+             ref="">
+        </camera>
+
+        <text class="sub-title">
+            通用属性 -- disabled
+        </text>
+        <camera id="disabledPropTrue"
+             disabled="true">
+        </camera>
+        <camera id="disabledPropFalse"
+             disabled="false">
+        </camera>
+        <camera id="disabledPropNone"
+             disabled="">
+        </camera>
+
+        <text class="sub-title">
+            通用属性 -- focusable
+        </text>
+        <camera id="focusablePropTrue"
+             focusable="true">
+        </camera>
+        <camera id="focusablePropFalse"
+             focusable="false">
+        </camera>
+        <camera id="focusablePropNone"
+             focusable="">
+        </camera>
+
+        <text class="sub-title">
+            通用属性 -- data-*
+        </text>
+        <camera id="dataProp"
+             data-camera="通用属性 -- data-camera">
+        </camera>
+        <camera id="dataPropNone"
+             data-camera="">
+        </camera>
+
+        <text class="sub-title">
+            通用属性 -- click-effect
+        </text>
+        <camera id="clickEffectPropSmall"
+             click-effect="spring-small">
+        </camera>
+        <camera id="clickEffectPropMedium"
+             click-effect="spring-medium">
+        </camera>
+        <camera id="clickEffectPropLarge"
+             click-effect="spring-large">
+        </camera>
+        <camera id="clickEffectPropNone"
+             click-effect="">
+        </camera>
+
+        <text class="sub-title">
+            通用属性 -- dir
+        </text>
+        <camera id="dirPropRtl"
+             dir="rtl">
+        </camera>
+        <camera id="dirPropAuto"
+             dir="auto">
+        </camera>
+        <camera id="dirPropLtr"
+             dir="ltr">
+        </camera>
+        <camera id="dirPropNone"
+             dir="">
+        </camera>
+    </div>
+
+    <div style="background-color: #000000; width: 2px; height: 100%;">
+    </div>
+    <div class="specific-container">
+        <text class="title">
+            camera特有属性
+        </text>
+
+        <text class="sub-title">
+            特有属性 -- flash
+        </text>
+        <camera id="flashOn"
+                flash="on">
+        </camera>
+        <camera id="flashOff"
+                flash="off">
+        </camera>
+        <camera id="flashTorch"
+                flash="torch">
+        </camera>
+        <camera id="flashNone"
+                flash="">
+        </camera>
+
+        <text class="sub-title">
+            特有属性 -- deviceposition
+        </text>
+        <camera id="devicePositionFront"
+                deviceposition="front">
+        </camera>
+        <camera id="devicePositionBack"
+                deviceposition="back">
+        </camera>
+        <camera id="devicePositionNone"
+                deviceposition="">
+        </camera>
+    </div>
+</div>

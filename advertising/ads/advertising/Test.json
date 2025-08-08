@@ -1,0 +1,53 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "600000",
+    "bundle-name": "com.acts.cloud.ad.test",
+    "module-name": "entry_test",
+    "shell-timeout": "600000",
+    "testcase-timeout": 30000
+  },
+  "kits": [
+    {
+      "type": "PushKit",
+      "pre-push": [
+        "mount -o rw,remount /",
+        "cp /system/etc/app/install_list_capability.json /etc/advertising/ads_framework/install_list_capability.json"
+      ],
+      "push": [
+        "./resource/advertising/xts/ad_service_config.json ->/etc/advertising/ads_framework/ad_service_config.json",
+        "./resource/advertising/xts/ad_service_config_ext.json ->/etc/advertising/ads_framework/ad_service_config_ext.json",
+        "./resource/advertising/xts/install_list_capability.json ->/system/etc/app/install_list_capability.json"
+      ],
+	  "post-push" : [
+		"mount -o rw,remount /",
+		"reboot"
+	  ],
+      "uninstall": false
+    },
+	{
+      "type": "AppInstallKit",
+      "test-file-name": [
+        "ActsCloudAdTest.hap",
+        "ActsAdsKitTest.hap"
+      ],
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "power-shell wakeup",
+        "power-shell setmode 602"
+      ],
+      "teardown-command": [
+        "rm -rf /system/etc/app/install_list_capability.json",
+	  	  "cp /etc/advertising/ads_framework/install_list_capability.json /system/etc/app/install_list_capability.json",
+        "rm -rf /etc/advertising/ads_framework/install_list_capability.json",
+        "bm uninstall -n com.acts.cloud.ad.test",
+        "bm uninstall -n com.acts.AdsServiceDemo",
+		    "reboot"
+      ]
+    }
+  ]
+}

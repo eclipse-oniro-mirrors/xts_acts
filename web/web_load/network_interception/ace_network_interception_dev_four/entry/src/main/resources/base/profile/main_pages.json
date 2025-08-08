@@ -1,0 +1,15 @@
+{
+    "src": [
+        "MainAbility/pages/Index",
+        "MainAbility/pages/webViewOnRequestStart",
+        "MainAbility/pages/webViewOnRequestStartTwo",
+        "MainAbility/pages/webViewOnRequestStop",
+        "MainAbility/pages/WebSchemeHandlerResponse",
+        "MainAbility/pages/WebHttpBodyStream",
+        "MainAbility/pages/setAndClearWebSchemeHandler",
+        "MainAbility/pages/setAndClearServiceWorkerWebSchemeHandler",
+        "MainAbility/pages/customizeSchemes",
+        "MainAbility/pages/WebNetError",
+        "MainAbility/pages/webViewGetRequestResourceType"
+    ]
+}

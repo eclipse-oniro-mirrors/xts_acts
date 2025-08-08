@@ -1,0 +1,10 @@
+{
+  "src": [
+    "testability/pages/WebInitTest",
+    "testability/pages/webviewSelectionMenuOptions",
+    "testability/pages/webViewMenuInputFieldType",
+    "testability/pages/WebViewControllerHitTest",
+    "testability/pages/WebControllerHitTest"
+  ]
+}
+

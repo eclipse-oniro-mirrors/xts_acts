@@ -1,0 +1,6 @@
+{
+  "src": [
+    "MainAbility/pages/InspectorLayoutCallback",
+    "MainAbility/pages/XTSIndex"
+  ]
+}

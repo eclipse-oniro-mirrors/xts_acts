@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <style>
+    #pageHeight{
+        height:1300px
+    }
+    </style>
+</head>
+<body>
+    <div id="container">首页</div>
+    
+    <p>scheme: custom</p>
+    <p>options: ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED</p>
+    <div id="isolated_test">isolated_script.js 被拦截</div>
+
+</body>
+<script src="custom://www.example.com/isolated_script.js"></script>
+</html>

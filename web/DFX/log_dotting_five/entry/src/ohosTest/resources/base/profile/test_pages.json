@@ -1,0 +1,16 @@
+{
+  "src": [
+    "testability/pages/web",
+    "testability/pages/WebAttributeTest",
+    "testability/pages/WebInitTest",
+    "testability/pages/webMessageExt",
+    "testability/pages/setPathAllowingUniversalAccess",
+    "testability/pages/webResourceError",
+    "testability/pages/WebDownloadEnumTest",
+    "testability/pages/webViewSdkSchemeHandler",
+    "testability/pages/precompileJavaScriptTest",
+    "testability/pages/WebDownloadEnumTest2",
+    "testability/pages/EnableBackForwardCache"
+  ]
+}
+

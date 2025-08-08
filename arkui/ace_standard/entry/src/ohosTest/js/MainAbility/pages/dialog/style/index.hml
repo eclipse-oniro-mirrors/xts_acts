@@ -1,0 +1,186 @@
+<!--/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+
+<div class="container">
+    <div class="style-container">
+        <text class="title">
+            dialog通用样式
+        </text>
+
+        <text class="sub-title">
+            通用样式 1-8
+        </text>
+        <button style="background-color: skyblue;width:90%;" @click="styleOne">
+        </button>
+        <dialog id="styleOne">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleTwo">
+        </button>
+        <dialog id="styleTwo">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleThree">
+        </button>
+        <dialog id="styleThree">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleFour">
+        </button>
+        <dialog id="styleFour">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleFive">
+        </button>
+        <dialog id="styleFive">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleSix">
+        </button>
+        <dialog id="styleSix">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleSeven">
+        </button>
+        <dialog id="styleSeven">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleEight">
+        </button>
+        <dialog id="styleEight">
+        </dialog>
+
+        <text class="sub-title">
+            通用样式9-20
+        </text>
+        <div id="styleNine">
+            <button style="background-color: skyblue;width:90%;" @click="styleTen">
+            </button>
+            <dialog id="styleTen">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleEleven">
+            </button>
+            <dialog id="styleEleven">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleTwelve">
+            </button>
+            <dialog id="styleTwelve">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleThirteen">
+            </button>
+            <dialog id="styleThirteen">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleFourteen">
+            </button>
+            <dialog id="styleFourteen">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleFifteen">
+            </button>
+            <dialog id="styleFifteen">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleSixteen">
+            </button>
+            <dialog id="styleSixteen">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleSeventeen">
+            </button>
+            <dialog id="styleSeventeen">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleEighteen">
+            </button>
+            <dialog id="styleEighteen">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleNineteen">
+            </button>
+            <dialog id="styleNineteen">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleTwenty">
+            </button>
+            <dialog id="styleTwenty">
+            </dialog>
+        </div>
+
+        <text class="sub-title">
+            通用样式21-23
+        </text>
+        <div style="width: 100%;flex-direction: row;">
+            <button style="background-color: skyblue;width:90%;" @click="styleTwentyOne">
+            </button>
+            <dialog id="styleTwentyOne">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleTwentyTwo">
+            </button>
+            <dialog id="styleTwentyTwo">
+            </dialog>
+            <button style="background-color: skyblue;width:90%;" @click="styleTwentyThree">
+            </button>
+            <dialog id="styleTwentyThree">
+            </dialog>
+        </div>
+
+        <text class="sub-title">
+            通用样式23-25
+        </text>
+        <button style="background-color: skyblue;width:90%;" @click="styleTwentyFour">
+        </button>
+        <dialog id="styleTwentyFour">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleTwentyFive">
+        </button>
+        <dialog id="styleTwentyFive">
+        </dialog>
+
+        <text class="sub-title">
+            通用样式26-31
+        </text>
+        <button style="background-color: skyblue;width:90%;" @click="styleTwentySix">
+        </button>
+        <dialog id="styleTwentySix">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleTwentySeven">
+        </button>
+        <dialog id="styleTwentySeven">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleTwentyNine">
+        </button>
+        <dialog id="styleTwentyNine">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleThirty">
+        </button>
+        <dialog id="styleThirty">
+        </dialog>
+        <button style="background-color: skyblue;width:90%;" @click="styleThirtyOne">
+        </button>
+        <dialog id="styleThirtyOne">
+        </dialog>
+
+        <text class="sub-title">
+            通用样式32
+        </text>
+        <button style="background-color: skyblue;width:90%;" @click="styleThirtyTwo">
+        </button>
+        <dialog id="styleThirtyTwo">
+        </dialog>
+
+        <text class="sub-title">
+            通用样式33
+        </text>
+        <button style="background-color: skyblue;width:90%;" @click="styleThirtyThree">
+        </button>
+        <dialog id="styleThirtyThree">
+        </dialog>
+    </div>
+    <div style="background-color: #000000; width: 2px; height: 100%;">
+    </div>
+    <div class="specific-container">
+        <text class="title">
+            dialog特有样式
+        </text>
+    </div>
+</div>
+

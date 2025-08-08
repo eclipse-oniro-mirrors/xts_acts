@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/PersistenceV2/PerGlobalConnect",
+        "MainAbility/pages/ReuseV2/ReuseV20030",
+        "MainAbility/pages/repeat/RepeatCloseReuse0110"
+    ]
+}

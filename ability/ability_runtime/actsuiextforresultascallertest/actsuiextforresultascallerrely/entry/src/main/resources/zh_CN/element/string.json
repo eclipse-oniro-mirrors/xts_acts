@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "UIExtension_desc",
+      "value": "description"
+    },
+    {
+      "name": "UIExtension_label",
+      "value": "label"
+    },
+    {
+      "name": "CalledAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "CalledAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "getContext_desc",
+      "value": "description"
+    },
+    {
+      "name": "getContext_label",
+      "value": "label"
+    },
+    {
+      "name": "ThirdAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThirdAbility_label",
+      "value": "label"
+    }
+  ]
+}

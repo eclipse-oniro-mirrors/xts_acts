@@ -1,0 +1,68 @@
+{
+  "app": {
+    "bundleName": "ohos.acts.hiviewdfx.hilogdomainoff.function",
+    "vendor": "example",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "ohos.acts.hiviewdfx.hilogdomainoff.function",
+    "name": ".entry_test",
+    "deviceType": [],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".TestAbility",
+        "srcLanguage": "js",
+        "srcPath": "TestAbility",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "testRunner": {
+      "name": "OpenHarmonyTestRunner",
+      "srcPath": "TestRunner"
+    },
+    "mainAbility": ".MainAbility",
+    "srcPath": "",
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "ceshi"
+      }
+    ],
+    "defPermissions": [
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      }
+    ]
+  }
+}

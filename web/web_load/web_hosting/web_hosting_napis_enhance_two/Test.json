@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for native image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.open.harmony.webhostingnapisenhancetwotest",
+        "module-name": "entry_test",
+        "testcase-timeout": 30000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsWebHostingNapisCPPEnhanceTwoTest.hap",
+                "ActsWebHostingNapisEnhanceTwoTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

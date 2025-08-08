@@ -1,0 +1,10 @@
+{
+  "src": [
+    "testability/pages/WebInitTest",
+    "testability/pages/WebAttributeTest",
+    "testability/pages/bindSelectionMenu",
+    "testability/pages/WebOnPermissionRequest",
+    "testability/pages/WebViewEnumAndFontLibrary"
+  ]
+}
+

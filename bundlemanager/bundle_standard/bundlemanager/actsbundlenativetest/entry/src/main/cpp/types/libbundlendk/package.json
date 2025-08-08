@@ -1,0 +1,4 @@
+{
+    "name": "libbundlendk.so",
+    "types": "./index.d.ts"
+}

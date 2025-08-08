@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Text/textAreaInputTest",
+    "MainAbility/pages/RichEditor/TextMenuItemId",
+    "MainAbility/pages/RichEditor/getCaretRect",
+    "MainAbility/pages/RichEditor/RichEditorMaxLengthTest"
+  ]
+}

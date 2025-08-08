@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.multimedia.image",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageGifJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry_test/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/moving_test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry_test/files",
+                "./resource/image/test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry_test/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 /data/app/el2/100/base/ohos.acts.multimedia.image/haps/entry_test/files/*"
+            ],
+            "teardown-command": [
+                "rm -rf /data/app/el2/100/base/ohos.acts.multimedia.image/*"
+            ]
+        }
+    ]
+}

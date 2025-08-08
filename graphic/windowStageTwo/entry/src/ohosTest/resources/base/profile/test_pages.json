@@ -1,0 +1,27 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/Index1",
+    "testability/pages/Index2",
+    "testability/pages/First/index",
+    "testability/pages/second/second",
+    "testability/pages/second/pageOne",
+    "testability/pages/second/pageTwo",
+    "testability/pages/First/index2",
+    "testability/pages/First/index3",
+    "testability/pages/First/index1",
+    "testability/pages/WindowTest/StartMoving",
+    "testability/pages/WindowTest/Modality",
+    "testability/pages/WindowTest/extension",
+    "testability/pages/WindowTest/EmbeddedComponentPage",
+    "testability/pages/WindowTest/extensionRect",
+    "testability/pages/WindowTest/EmbeddedComponentRectPage",
+    "testability/pages/WindowTest/extensionOccupy",
+    "testability/pages/WindowTest/EmbeddedComponentOccupyPage",
+    "testability/pages/WindowTest/extensionErrorCode",
+    "testability/pages/WindowTest/EmbeddedComponentErrorCodePage",
+    "testability/pages/shiftAppWindow/subWindow",
+    "testability/pages/shiftAppWindow/mainWindow",
+    "testability/pages/WindowTest/LoadContentByName"
+  ]
+}

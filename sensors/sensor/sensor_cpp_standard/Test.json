@@ -1,0 +1,27 @@
+{
+    "description": "Config for opensles ndk test cases",
+    "driver": {
+        "module-name": "ActsSensorNdkTest",
+        "native-test-timeout": "300000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "1s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push" : [
+                "mount -o rw,remount /"
+            ],
+            "push": [
+                "ActsSensorNdkTest->/data/local/tmp/ActsSensorNdkTest"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 -R /data/local/tmp"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.newwanttest",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAmsNewWantTest.hap",
+                "ActsAmsNewWantRelyHap.hap",
+                "ActsAmsNewWantBRelyHap.hap",
+                "ActsAmsNewWantARelyHap.hap",
+                "ActsAmsNewWantApi7RelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /data/*.hap",
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -m 300 1279 280 200",
+                "uinput -T -d 1070 1070 -u 1070 1070"
+            ]
+        }
+    ]
+}

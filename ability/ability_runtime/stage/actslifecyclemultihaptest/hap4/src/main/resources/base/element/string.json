@@ -1,0 +1,48 @@
+{
+  "string":  [
+      {
+          "name": "phone_entry_dsc",
+          "value": "i am an entry for phone"
+      },
+      {
+          "name": "phone_entry_main",
+          "value": "the phone entry ability"
+      },
+      {
+          "name": "entry_label",
+          "value": "ActsLifecycleMultihapTest"
+      },
+      {
+          "name": "form_description",
+          "value": "my form"
+      },
+      {
+        "name": "description_application",
+        "value": "demo for test"
+      },
+      {
+        "name": "entry_desc",
+        "value": "description"
+      },
+      {
+        "name": "MainAbility_desc",
+        "value": "description"
+      },
+      {
+        "name": "MainAbility_label",
+        "value": "label"
+      },
+      {
+        "name": "hap4_desc",
+        "value": "description"
+      },
+      {
+        "name": "Hap4MainAbility1_desc",
+        "value": "description"
+      },
+      {
+        "name": "Hap4MainAbility1_label",
+        "value": "label"
+      }
+  ]
+}

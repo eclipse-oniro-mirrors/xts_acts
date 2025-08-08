@@ -1,0 +1,14 @@
+{
+  "src": [
+    "testability/pages/webViewController",
+    "testability/pages/onWindowNew",
+    "testability/pages/webViewOnInterceptReqOne",
+    "testability/pages/webViewOnInterceptReqTwo",
+    "testability/pages/webViewOnInterceptReqThree",
+    "testability/pages/webViewOnFirstCont",
+    "testability/pages/webViewOnFirstContTwo",
+    "testability/pages/webViewOnFirstContThree",
+    "testability/pages/webViewOnFirstContFour"
+
+  ]
+}

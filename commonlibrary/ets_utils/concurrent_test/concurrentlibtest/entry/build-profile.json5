@@ -1,0 +1,111 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "apiType": 'stageMode',
+  "buildOption": {
+    "sourceOption": {
+      "workers": [
+        './src/main/ets/workers/Worker.ets',
+        './src/ohosTest/ets/workers/Worker.ets',
+        './src/ohosTest/ets/workers/WorkerClose.ets',
+        "./src/ohosTest/ets/workers/WorkerError.ets",
+        "./src/ohosTest/ets/workers/CompositeWorker.ets",
+        "./src/ohosTest/ets/workers/WorkerGlobalScope.ets",
+        "./src/ohosTest/ets/workers/WorkerGlobalCallObject.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessage.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageMap.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageSet.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageObj.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageDate.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageArray.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageRegExp.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageArrayBuffer.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageInt8Array.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageUint8Array.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageUint8ClampedArray.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageInt16Array.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageUint16Array.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageInt32Array.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageFunction.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageUint32Array.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageFloat32Array.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageFloat64Array.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageConcatArray.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageCollectionsArray.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageCollectionsMap.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageCollectionsSet.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageAson.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageSendableClass.ets",
+        "./src/ohosTest/ets/workers/postMessage/WorkerPostMessageImplSendableClass.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessage.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageMap.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageSet.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageObj.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageDate.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageArray.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageRegExp.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageArrayBuffer.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageInt8Array.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageUint8Array.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageUint8ClampedArray.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageInt16Array.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageUint16Array.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageInt32Array.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageFunction.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageUint32Array.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageClass.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageFloat32Array.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageFloat64Array.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageConcatArray.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageCollectionsArray.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageCollectionsMap.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageCollectionsSet.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageCollectionsBitVector.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageAsyncLock.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageAson.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageSendableClass.ets",
+        "./src/ohosTest/ets/workers/sharedSendable/WorkerPostMessageImplSendableClass.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerMessageEvent.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerClose.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerData.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerOnmessage1.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerOnmessage2.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerOnmessageError1.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerOnmessageError2.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerPostMessage1.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerPostMessage2.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerPostMessage3.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerPostMessage4.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerPostMessage5.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerPostMessage6.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerRegister1.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerRegister2.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerRegister3.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerRegister4.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerRegister5.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerDataWorker.ets",
+        "./src/ohosTest/ets/workers/ErrorCode/WorkerData1.ets"
+      ]
+    }
+  },
+  "targets": [
+    {
+      "name": "default",
+    },
+    {
+      "name": "ohosTest",
+    }
+  ]
+}

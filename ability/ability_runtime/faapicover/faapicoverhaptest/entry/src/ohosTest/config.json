@@ -1,0 +1,82 @@
+{
+  "app": {
+    "bundleName": "com.example.faapicoverhaptest",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.faapicoverhaptest",
+    "name": ".entry_test",
+    "mainAbility": ".TestAbility",
+    "deviceType": [],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "TestAbility",
+        "name": ".TestAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "launchType": "standard"
+      },
+      {
+        "srcPath": "ServiceAbility",
+        "name": ".ServiceAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:ServiceAbility_desc",
+        "type": "service",
+        "visible": true
+      },
+      {
+        "srcPath": "ServiceAbility2",
+        "name": ".ServiceAbility2",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:ServiceAbility2_desc",
+        "type": "service",
+        "visible": true
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

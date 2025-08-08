@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility2_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility2_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility3_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility3_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility4_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility4_label",
+      "value": "label"
+    },
+    {
+      "name": "app_name",
+      "value": "ActsGetAbilityStatestAgeTest"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+   }
+  ]
+}

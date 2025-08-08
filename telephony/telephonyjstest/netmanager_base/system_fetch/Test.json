@@ -1,0 +1,32 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+      "type": "OHJSUnitTest",
+      "test-timeout": "900000",
+      "bundle-name": "com.ohos.system_fetch",
+      "package-name": "com.ohos.system_fetch",
+      "shell-timeout": "900000",
+      "testcase-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+              "$module.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+          "type": "ShellKit",
+          "run-command": [
+              "chmod 777 -R /data/local/tmp/xts-test"
+          ]
+      }
+    ]
+}

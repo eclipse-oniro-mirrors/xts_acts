@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "TestAbility_desc",
+      "value": "entry ability test"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "entry ability test"
+    },
+    {
+      "name": "module_test_desc",
+      "value": "entry module test description"
+    },
+    {
+      "name": "module_desc",
+      "value": "entry module description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "entry description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "entry label"
+    },
+    {
+      "name": "Main2Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Main2Ability_label",
+      "value": "label"
+    },
+    {
+      "name": "Main3Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Main3Ability_label",
+      "value": "label"
+    },
+    {
+      "name": "Main4Ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Main4Ability_label",
+      "value": "label"
+    }
+  ]
+}

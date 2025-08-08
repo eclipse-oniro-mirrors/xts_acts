@@ -1,0 +1,52 @@
+# Copyright (C) 2022 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//test/xts/tools/build/suite.gni")
+
+group("ets_utils") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "arkts_ason_lib_standard:arkts_ason_js_test",
+      "arkts_collections_lib_standard:arkts_collections_js_test",
+      "atomics_lib_standard:atomics_js_hap",
+      "bitvector_lib_standard:ActsBitvectorTest",
+      "buffer_lib_standard:buffer_js_test",
+      "codeparsingtest:codeparsingtest",
+      "concurrency_base:concurrency_base_js_hap",
+      "concurrent_test:concurrent_test",
+      "conditionvariable_test:ActsConditionVariableTest",
+      "containerLine_lib_standard:containerLine_js_test",
+      "containerRelation_lib_standard:containerRelation_js_test",
+      "convertxml_lib_standard:convertxml_js_test",
+      "intl_lib_standard:intl_js_test",
+      "json_lib_standard:json_js_test",
+      "process_lib_standard:process_js_test",
+      "sendable_lib_collections:collections_js_test",
+      "sendable_lib_taskpool:sendableTaskpool_js_test",
+      "sendable_lib_worker:sendableWorker_js_test",
+      "stream_lib_standard:stream_js_test",
+      "taskpool_lib_standard:taskPool_js_test",
+      "taskpool_lib_standard2:ActsTaskPoolTest",
+      "threadWorker_lib_standard:threadWorker_js_hap",
+      "uri_lib_standard:uri_js_test",
+      "url_lib_standard:url_js_test",
+      "util2_lib_standard:util2_js_test",
+      "util_lib_standard:util_js_test",
+      "worker_lib_standard:worker_js_hap",
+      "worker_lib_standard2:ActsWorkerTest",
+      "worker_lib_standard3:ActsWorkerPriTest",
+      "worker_lib_standard4:ActsWorkerMixTest",
+      "xml_lib_standard:xml_js_test",
+    ]
+  }
+}

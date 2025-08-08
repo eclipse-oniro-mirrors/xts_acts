@@ -1,0 +1,229 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "SingleEntryAbility",
+        "srcEntry": "./ets/singleentryability/SingleEntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "singleton",
+        "skills": [
+          {
+            "actions": []
+          }
+        ]
+      },
+      {
+        "name": "MultipleEntryAbility",
+        "srcEntry": "./ets/multipleentryability/MultipleEntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": []
+          }
+        ]
+      },
+      {
+        "name": "SingleEntryAbility2",
+        "srcEntry": "./ets/singleentryability2/SingleEntryAbility2.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "singleton",
+        "skills": [
+          {
+            "actions": []
+          }
+        ]
+      },
+      {
+        "name": "SingleEntryAbility3",
+        "srcEntry": "./ets/singleentryability3/SingleEntryAbility3.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "singleton",
+        "skills": [
+          {
+            "actions": []
+          }
+        ]
+      },
+      {
+        "name": "SingleEntryAbility4",
+        "srcEntry": "./ets/singleentryability4/SingleEntryAbility4.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "singleton",
+        "skills": [
+          {
+            "uris": [{
+              "scheme": "actsapplicationstartabilitytest",
+              "host": "com.example.actsapplicationstartabilitytest",
+            }]
+          }
+        ]
+      },
+      {
+        "name": "SingleEntryAbility5",
+        "srcEntry": "./ets/singleentryability5/SingleEntryAbility5.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "singleton",
+        "skills": [
+          {
+          }
+        ]
+      },
+      {
+        "name": "SingleEntryAbility6",
+        "srcEntry": "./ets/singleentryability6/SingleEntryAbility6.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "singleton",
+        "skills": [
+          {
+          }
+        ]
+      },
+      {
+        "name": "EntryAbility1",
+        "srcEntry": "./ets/entryability1/EntryAbility1.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "singleton",
+        "skills": []
+      },
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entitiesability/EntitiesAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "standard",
+        "skills": [
+          {
+            "actions": [
+              "SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_5300"
+            ],
+            "entities": [
+              "SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_5400"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "EntitiesAbility",
+        "srcEntry": "./ets/entitiesability/EntitiesAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "standard",
+        "skills": [
+          {
+            "actions": [
+              "SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_5400"
+            ],
+            "entities": [
+              "SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_5400"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "EntitiesAbilityNull",
+        "srcEntry": "./ets/entitiesabilitynull/EntitiesAbilityNull.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "standard",
+        "skills": [
+          {
+            "actions": [
+              "SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbility_5900"
+            ],
+            "entities": []
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ]
+      }
+    ]
+  }
+}

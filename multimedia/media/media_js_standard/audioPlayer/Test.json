@@ -1,0 +1,60 @@
+{
+    "description": "Configuration for audioPlayer Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "2000000",
+        "shell-timeout": "2000000",
+        "testcase-timeout": 60000,
+        "bundle-name": "ohos.acts.multimedia.audio.audioplayer",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioPlayerJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/audio/01.mp3 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/02.mp3 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/03.mp3 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/04.mp3 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/47.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/49.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/50.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/51.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/54.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/55.m4a ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/57.m4a ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/58.m4a ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/59.m4a ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/62.m4a ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/64.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/65.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/66.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/67.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/92.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/93.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/94.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/96.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/97.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/",
+                "./resource/audio/98.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry_test/files/"
+            ]
+        }
+    ]
+}

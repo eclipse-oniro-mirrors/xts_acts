@@ -1,0 +1,32 @@
+{
+    "string": [
+        {
+            "name": "phone_entry_dsc",
+            "value": "i am an entry for phone"
+        },
+        {
+            "name": "phone_entry_main",
+            "value": "the phone entry ability"
+        },
+        {
+            "name": "entry_label",
+            "value": "ActsStoragePickerTest"
+        },
+        {
+            "name": "form_description",
+            "value": "picker"
+        },
+        {
+            "name": "serviceability_description",
+            "value": "picker"
+        },
+        {
+            "name": "description_application",
+            "value": "picker test"
+        },
+        {
+            "name": "app_name",
+            "value": "ActsStoragePickerTest"
+        }
+    ]
+}

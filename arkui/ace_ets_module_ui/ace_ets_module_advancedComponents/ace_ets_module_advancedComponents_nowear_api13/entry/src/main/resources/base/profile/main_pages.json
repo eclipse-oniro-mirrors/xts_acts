@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/segmentButton/SegmentButton003",
+    "MainAbility/pages/segmentButton/SegmentButton004",
+    "MainAbility/pages/segmentButton/SegmentButton005",
+    "MainAbility/pages/segmentButton/SegBtnItem0010"
+  ]
+}

@@ -1,0 +1,239 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import webView from '@ohos.web.webview';
+import Utils from '../../test/Utils';
+import events_emitter from '@ohos.events.emitter';
+import cert from '@ohos.security.cert';
+
+function Uint8ArrayToString(dataArray: Uint8Array) {
+  let dataString = ''
+  for (let i = 0; i < dataArray.length; i++) {
+    dataString += String.fromCharCode(dataArray[i])
+  }
+  return dataString
+}
+
+function ParseX509CertInfo(x509CertArray: Array<cert.X509Cert>) {
+  let res: string = 'getCertificate success: len = ' + x509CertArray.length;
+  for (let i = 0; i < x509CertArray.length; i++) {
+    res += ', index = ' + i + ', issuer name = '
+      + Uint8ArrayToString(x509CertArray[i].getIssuerName().data) + ', subject name = '
+      + Uint8ArrayToString(x509CertArray[i].getSubjectName().data) + ', valid start = '
+      + x509CertArray[i].getNotBeforeTime()
+      + ', valid end = ' + x509CertArray[i].getNotAfterTime()
+  }
+  return res
+}
+
+@Entry
+@Component
+struct WebAttributeTest {
+  controller: webView.WebviewController = new webView.WebviewController();
+  @State str: string = ""
+  @State initialScale: number = 100
+  @State newScale: number = 0
+  @State oldScale: number = 0
+  @State geolocationAccess: boolean = true
+  @State blockNetwork: boolean = false
+  @State progress: string = ""
+  @State geoShow: boolean = false
+  @State pageBegin: string = ""
+  @State pageEnd: string = ""
+  @State alert: string = ""
+  @State confirm: string = ""
+  @State prompt: string = ""
+  @State errorReceive: string = ""
+  @State isHttpErrorReceive: boolean = false
+  @State isLargeThan: boolean = false
+  @State httpErrorReceive: number = 0
+  @State isDownloadStart: boolean = false
+  @State newUrl: string = ""
+  @State isRefreshed: boolean = false
+  @State loadedUrl: string = ""
+  @State webInit: boolean = false
+  @State webCreated: boolean = false
+  @State searchResultCount: number = -1
+  @State onInterceptKeyEventCode: number = 0;
+  @State onFaviconReceivedCalled: boolean = false
+  @State outputStr: string = ''
+  @State handleCancel: boolean = false;
+  @State title: string = ''
+  @State onRequestSelectedCalled: boolean = false
+  @State testConsole: boolean = false
+
+  onPageShow() {
+    let valueChangeEvent: events_emitter.InnerEvent = {
+      eventId: 10,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(valueChangeEvent, this.valueChangeCallBack)
+  }
+
+  onPageHide() {
+    events_emitter.off(10)
+  }
+
+  private valueChangeCallBack = (eventData: events_emitter.EventData) => {
+    console.info("web page valueChangeCallBack");
+    if (eventData != null) {
+      console.info("valueChangeCallBack:" + JSON.stringify(eventData));
+      if (eventData.data != null && eventData.data.ACTION != null) {
+        this.str = eventData.data.ACTION;
+        try {
+          this.controller.loadUrl("resource://rawfile/index.html");
+        } catch (error) {
+          console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+        }
+        this.errorReceive = ''
+      }
+    }
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Button("web click")
+          .key('WebAttributeTestButton')
+          .focusable(true)
+          .onFocus(() => {
+            console.log("onFocus==>")
+          })
+          .onBlur(() => {
+            console.log("onBlur==>")
+          })
+          .onClick(async () => {
+            console.info("key==>" + this.str)
+            switch (this.str) {
+              case "emitBlockNetWork001": {
+                try {
+                  this.blockNetwork = true
+                  await Utils.sleep(1000)
+                  this.controller.loadUrl('https://openharmony.cn/')
+                  await Utils.sleep(2000)
+                  this.blockNetwork = false
+                  await Utils.sleep(1000)
+                  Utils.emitEvent(this.errorReceive, 60418)
+                  break;
+                } catch (error) {
+                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                }
+                break;
+              }
+              case "emitBlockNetWork002": {
+                try {
+                  this.blockNetwork = false;
+                  await Utils.sleep(1000)
+                  this.controller.loadUrl('https://openharmony.cn/');
+                  await Utils.sleep(4000)
+                  let testTitle = this.controller.getTitle();
+                  console.log(`testTitle is: ${testTitle}`);
+                  Utils.emitEvent(testTitle, 60420)
+                } catch (error) {
+                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                }
+                break;
+              }
+              case "emitBlockNetWork003": {
+                try {
+                  this.blockNetwork = true
+                  await Utils.sleep(1000)
+                  this.errorReceive = ''
+                  this.controller.loadUrl($rawfile('second.html'))
+                  await Utils.sleep(2000)
+                  this.blockNetwork = false
+                  await Utils.sleep(1000)
+                  Utils.emitEvent(this.errorReceive, 60800)
+                  break;
+                } catch (error) {
+                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                }
+                break;
+              }
+              case "emitBlockNetWork004": {
+                try {
+                  this.blockNetwork = true
+                  await Utils.sleep(1000)
+                  this.controller.loadUrl('resource://rawfile/index.html')
+                  await Utils.sleep(2000)
+                  this.blockNetwork = false
+                  await Utils.sleep(1000)
+                  Utils.emitEvent(this.errorReceive, 60802)
+                  break;
+                } catch (error) {
+                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                }
+                break;
+              }
+              case "emitBlockNetWork005": {
+                try {
+                  let sandboxPath = Utils.copyRawFileToSandbox('second.html')
+                  this.blockNetwork = true
+                  await Utils.sleep(1000)
+                  this.controller.loadUrl(`file://${sandboxPath}`)
+                  await Utils.sleep(2000)
+                  this.blockNetwork = false
+                  await Utils.sleep(1000)
+                  Utils.emitEvent(this.errorReceive, 60805)
+                  break;
+                } catch (error) {
+                  console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+                }
+                break;
+              }
+            }
+          })
+
+        Web({ src: $rawfile('index.html'), controller: this.controller })
+          .key('webView')
+          .height('50%')
+          .fileAccess(true)
+          .width('100%')
+          .javaScriptAccess(true)
+          .horizontalScrollBarAccess(true)
+          .verticalScrollBarAccess(true)
+          .initialScale(this.initialScale)
+          .geolocationAccess(this.geolocationAccess)
+          .databaseAccess(true)
+          .blockNetwork(this.blockNetwork)
+          .userAgent('Mozilla/5.0 (Windows NT 10.0; WOW64)')
+          .onErrorReceive((event) => {
+            console.log("onErrorReceive==>")
+            if (event) {
+              this.errorReceive = event.request.getRequestUrl()
+              console.log('getErrorInfo:' + event.error.getErrorInfo())
+              console.log('getErrorCode:' + event.error.getErrorCode())
+              console.log('url:' + event.request.getRequestUrl())
+              console.log('isMainFrame:' + event.request.isMainFrame())
+              console.log('isRedirect:' + event.request.isRedirect())
+              console.log('isRequestGesture:' + event.request.isRequestGesture())
+              console.log('getRequestHeader_headerKey:' + event.request.getRequestHeader().toString())
+              let result = event.request.getRequestHeader()
+              console.log('The request header result size is ' + result.length)
+              for (let i of result) {
+                console.log('The request header key is : ' + i.headerKey + ', value is : ' + i.headerValue)
+                if (i.headerKey == 'customHeaderKey' && i.headerValue == 'customHeaderValue') {
+                  Utils.emitEvent(true, 412);
+                }
+              }
+            }
+          })
+      }
+      .width('100%')
+    }
+
+    .height('100%')
+  }
+}
