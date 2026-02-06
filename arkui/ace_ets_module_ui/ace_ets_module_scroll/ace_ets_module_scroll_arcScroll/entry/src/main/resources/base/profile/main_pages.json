@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/ArcScrollBar/arcScrollBar",
+        "MainAbility/pages/ArcList/ArcList",
+        "MainAbility/pages/ArcList/childrenSizeArcList",
+        "MainAbility/pages/ArcList/swipeActionArcList"
+    ]
+}

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单个播放源：preload-metadata</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+<div class="btnGroup">
+    <button onclick="deleteDom('bodyId')">删除</button>
+    <button onclick="moveElementRight()">moveRight</button>
+    <button onclick="moveElementDown()">moveDown</button>
+    <button onclick="moveElementUp()">moveUp</button>
+    <button onclick="resize()">resize</button>
+    <button onclick="fullScreenDom('bodyId')">全屏</button>
+</div>
+<div>
+    <button onclick="buttonLoad()">load()</button>
+    <button id="playButton" onclick="getVideo('bodyId').play()">play()</button>
+    <button onclick="getVideo('bodyId').pause()">pause()</button>
+    <button onclick="getVideo('bodyId').currentTime+=10">currentTime+=10</button>
+    <button onclick="getVideo('bodyId').currentTime-=10">currentTime-=10</button>
+    <button onclick="getVideo('bodyId').currentTime=50">currentTime=50</button>
+    <button onclick="getVideo('bodyId').playbackRate++">playbackRate++</button>
+    <button onclick="getVideo('bodyId').playbackRate--">playbackRate--</button>
+    <button onclick="getVideo('bodyId').playbackRate+=0.1">playbackRate+=0.1</button>
+    <button onclick="getVideo('bodyId').playbackRate-=0.1">playbackRate-=0.1</button>
+    <button onclick="getVideo('bodyId').volume+=0.1">volume+=0.1</button>
+    <button onclick="getVideo('bodyId').volume-=0.1">volume-=0.1</button>
+    <button onclick="getVideo('bodyId').muted=true">muted=true</button>
+    <button onclick="getVideo('bodyId').muted=false">muted=false</button>
+    <button onclick="showProps('props')">显示属性</button>
+    <button onclick="hideProps('props')">隐藏属性</button>
+
+</div>
+<video  id="bodyId" controls preload="metadata" muted
+        controlslist="noremoteplayback">
+    <source id='mp4'
+            src="xxx"
+            type='video/mp4'>
+</video>
+<div id="props">
+    <table>
+        <caption>Media Events</caption>
+        <tbody id='events'>
+        </tbody>
+    </table>
+    <table id='tracks'>
+        <caption>Tracks</caption>
+        <tbody>
+        <tr>
+            <th>Audio</th>
+            <th>Video</th>
+            <th>Text</th>
+        </tr>
+        <tr>
+            <td id='m_audiotracks' class='false'>?</td>
+            <td id='m_videotracks' class='false'>?</td>
+            <td id='m_texttracks' class='false'>?</td>
+        </tr>
+        </tbody>
+    </table>
+    <table>
+        <caption>Media Properties</caption>
+        <tbody id='properties'>
+        </tbody>
+    </table>
+
+    <table id='canPlayType'>
+        <caption>canPlayType</caption>
+        <tbody id='m_video'>
+        </tbody>
+    </table>
+</div>
+
+
+
+</body>
+</html>
+<script>
+
+    function myFunction() {
+    var element = document.getElementById("bodyId");
+    element.remove();
+    }
+    function resize() {
+        resizeDom("bodyId");
+    }
+    function resizeDom(id){
+        var element = document.getElementById(id);
+        element.style.width = "180px";
+        element.style.height = "190px";
+    }
+
+    function deleteDom(id){
+        var element = document.getElementById(id);
+        element.remove();
+    }
+    function moveElementRight(){
+        moveElementRightDom("bodyId")
+    }
+    function moveElementRightDom(id){
+        var element = document.getElementById(id);
+        element.style.marginLeft =  computeNum(element.style.marginLeft) + 10 + 'px'
+    }
+    function moveElementDown(){
+        var element = document.getElementById("bodyId");
+        element.style.marginTop =  computeNum(element.style.marginTop) + 10 + 'px'
+    }
+    function moveElementUp(){
+        var element = document.getElementById("bodyId");
+        element.style.marginTop =  computeNum(element.style.marginTop) - 10 + 'px'
+    }
+    function computeNum(value){
+
+        if(!value || value  === ''){
+        return 0
+        } else {
+        return parseFloat(value)
+        }
+    }
+    function myFunction4() {
+    fullScreenDom("cameraTest")
+    }
+    function fullScreenDom(id){
+        const cameraTest = document.getElementById(id)
+        cameraTest.requestFullscreen()
+    }
+
+</script>
+<script>
+    // the following was extracted from the spec in October 2014
+
+    var media_events = new Array();
+    media_events.loadstart = 0;
+    media_events.progress = 0;
+    media_events.suspend = 0;
+    media_events.abort = 0;
+    media_events.error = 0;
+    media_events.emptied = 0;
+    media_events.stalled = 0;
+    media_events.loadedmetadata = 0;
+    media_events.loadeddata = 0;
+    media_events.canplay = 0;
+    media_events.canplaythrough = 0;
+    media_events.playing = 0;
+    media_events.waiting = 0;
+    media_events.seeking = 0;
+    media_events.seeked = 0;
+    media_events.ended = 0;
+    media_events.durationchange = 0;
+    media_events.timeupdate = 0;
+    media_events.play = 0;
+    media_events.pause = 0;
+    media_events.ratechange = 0;
+    media_events.resize = 0;
+    media_events.volumechange = 0;
+
+    var media_properties = [ "error", "src", "srcObject", "currentSrc", "crossOrigin", "networkState", "preload", "buffered", "readyState", "seeking", "currentTime", "duration",
+        "paused", "defaultPlaybackRate", "playbackRate", "played", "seekable", "ended", "autoplay", "loop", "controls", "volume",
+        "muted", "defaultMuted", "audioTracks", "videoTracks", "textTracks", "width", "height", "videoWidth", "videoHeight", "poster" ];
+
+    // CODE START HERE
+
+    var media_properties_elts = null;
+
+    var webm = null;
+
+    function init() {
+        document._video = getVideo('bodyId')
+
+
+        webm = document.getElementById("webm");
+
+        media_properties_elts = new Array(media_properties.length);
+
+        init_events("events", media_events);
+        init_properties("properties", media_properties, media_properties_elts);
+        init_mediatypes();
+        // properties are updated even if no event was triggered
+        setInterval(update_properties, 250);
+    }
+    document.addEventListener("DOMContentLoaded", init, false);
+
+    function init_events(id, arrayEventDef) {
+        var f;
+        for (key in arrayEventDef) {
+            document._video.addEventListener(key, capture, false);
+        }
+
+        var tbody = document.getElementById(id);
+        var i = 1;
+        var tr = null;
+        for (key in arrayEventDef) {
+            if (tr  === null) tr = document.createElement("tr");
+            var th = document.createElement("th");
+            th.textContent = key;
+            var td = document.createElement("td");
+            td.setAttribute("id", "e_" + key);
+            td.textContent = "0";
+            td.className = "false";
+            tr.appendChild(th);
+            tr.appendChild(td);
+
+            if ((i++ % 2)  === 0) {
+                tbody.appendChild(tr);
+                tr = null;
+            }
+        }
+        if (tr !== null) tbody.appendChild(tr);
+    }
+    function init_properties(id, arrayPropDef, arrayProp) {
+        var tbody = document.getElementById(id);
+        var i = 0;
+        var tr = null;
+        do {
+            if (tr  === null) tr    = document.createElement("tr");
+            var th = document.createElement("th");
+            th.textContent = arrayPropDef[i];
+            var td = document.createElement("td");
+            var r;
+            td.setAttribute("id", "p_" + arrayPropDef[i]);
+            r = "document._video." + arrayPropDef[i];
+            td.textContent = r;
+            if (typeof(r) !== "undefined") {
+                td.className = "true";
+            } else {
+                td.className = "false";
+            }
+            tr.appendChild(th);
+            tr.appendChild(td);
+            arrayProp[i] = td;
+            if ((++i % 1)  === 0) {
+                tbody.appendChild(tr);
+                tr = null;
+            }
+        } while (i < arrayPropDef.length);
+        if (tr !== null) tbody.appendChild(tr);
+    }
+
+    function init_mediatypes() {
+        var tbody = document.getElementById("m_video");
+        var i = 0;
+        var tr = document.createElement("tr");
+        var videoTypes = [ "video/mp4", "video/webm" ];
+        i = 0;
+        tr = document.createElement("tr");
+        do {
+            var td = document.createElement("th");
+            td.textContent = videoTypes[i];
+            tr.appendChild(td);
+        } while (++i < videoTypes.length);
+        tbody.appendChild(tr);
+
+        i = 0;
+        tr = document.createElement("tr");
+
+        if (!!document._video.canPlayType) {
+            do {
+                var td = document.createElement("td");
+                var support = document._video.canPlayType(videoTypes[i]);
+                td.textContent = '"' + support + '"';
+                if (support === "maybe") {
+                    td.className = "true";
+                } else if (support === "") {
+                    td.className = "false";
+                }
+                tr.appendChild(td);
+            } while (++i < videoTypes.length);
+            tbody.appendChild(tr);
+        }
+    }
+
+    function capture(event) {
+        media_events[event.type]++;
+    }
+
+    function update_properties() {
+        var i = 0;
+        for (key in media_events) {
+            var e = document.getElementById("e_" + key);
+            if (e) {
+                e.textContent = media_events[key];
+                if (media_events[key] > 0) e.className = "true";
+            }
+        }
+        for (key in media_properties) {
+            var val = "document._video." + media_properties[key];
+            media_properties_elts[i++].textContent = val;
+        }
+        if (document._video.audioTracks !== undefined) {
+            try {
+                var td = document.getElementById("m_audiotracks");
+                td.textContent = document._video.audioTracks.length;
+                td.className = "true";
+            } catch (e) {}
+        }
+        if (document._video.videoTracks !== undefined) {
+            try {
+                var td = document.getElementById("m_videotracks");
+                td.textContent = document._video.videoTracks.length;
+                td.className = "true";
+            } catch (e) {}
+        }
+        if (document._video.textTracks !== undefined) {
+            try {
+                var td = document.getElementById("m_texttracks");
+                td.textContent = document._video.textTracks.length;
+                td.className = "true";
+            } catch (e) {}
+        }
+    }
+
+    var videos =
+        [
+            [
+                "http://media.w3.org/2010/05/sintel/poster.png",
+                "http://media.w3.org/2010/05/sintel/trailer.mp4",
+                "http://media.w3.org/2010/05/sintel/trailer.webm"
+            ],
+            [
+                "http://media.w3.org/2010/05/bunny/poster.png",
+                "http://media.w3.org/2010/05/bunny/trailer.mp4"
+            ],
+            [
+                "http://media.w3.org/2010/05/bunny/poster.png",
+                "http://media.w3.org/2010/05/bunny/movie.mp4"
+            ],
+            [
+                "http://media.w3.org/2010/05/video/poster.png",
+                "http://media.w3.org/2010/05/video/movie_300.mp4",
+                "http://media.w3.org/2010/05/video/movie_300.webm"
+            ]
+        ];
+
+    function resize() {
+        document._video.width = document._video.videoWidth + 10;
+        document._video.height = document._video.videoHeight + 10;
+    }
+
+    function getVideo(id){
+        return document.getElementById(id)
+    }
+    function buttonLoad(){
+        getVideo('bodyId').load()
+        return true
+    }
+     function buttonPlay(){
+      document.getElementById('playButton').click()
+        return 'play'
+    }
+    function setVolume(){
+    // getVideo('bodyId').volume+=0.5
+    getVideo('bodyId').muted = false
+    getVideo('bodyId').volume = 0.5
+        return 'volume h5'
+    }
+    function setMutedFalse(){
+        getVideo('bodyId').muted = false
+        getVideo('bodyId').volume = 0.5
+        getVideo('bodyId').muted = true
+        return 'setMuted'
+    }
+     function setSeek(){
+        getVideo('bodyId').currentTime=50
+        return 'setSeek'
+    }
+
+    function switchVideo(n) {
+        if (n >= videos.length) n = 0;
+
+        var mp4 = document.getElementById("mp4");
+        var parent = mp4.parentNode;
+
+        document._video.setAttribute("poster", videos[n][0]);
+        mp4.setAttribute("src", videos[n][1]);
+
+        if (videos[n][2]) {
+            if (webm.parentNode === null) {
+                parent.insertBefore(webm, mp4);
+            }
+            webm.setAttribute("src", videos[n][2]);
+        } else {
+            if (webm.parentNode !== null) {
+                parent.removeChild(webm);
+            }
+        }
+        document._video.width = 0;
+        document._video.height = 0;
+        document._video.load();
+    }
+    function showProps(id){
+        document.getElementById(id).style.display = 'initial'
+    }
+    function hideProps(id) {
+        document.getElementById(id).style.display = 'none'
+    }
+
+</script>
+
+<style>
+    .btnGroup{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .object-container{
+        margin-bottom: 10px;
+    }
+</style>
+<style>
+
+    a { color: #ffffe0;}
+   video {
+      border: 1px solid black;
+      padding: 0; margin: 0;
+      width: 427px;
+      height: 240px;
+      background-color: black;
+      margin: auto;
+    }
+    table { border: none;  margin-top: 1ex;}
+    th {  text-align: right; }
+    caption { background-color: #ffffe0; color: black;}
+    thead th {  background-color: #ffffe0; color: black;}
+    #events td { text-align: right; width: 4ex;}
+    #properties td { }
+    hr { clear: both; margin-top: 2em;}
+    .true { background-color: #360; color: #ffffe0; }
+    .false { background-color: #603; color: #ffffe0; }
+
+</style>

@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for ActsBundleMgrStageEtsTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.cleanbundlexts.static",
+        "module-name": "entry",
+        "testcase-timeout": 240000,
+        "compile-mode":"esmodule"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBmsCleanBundleCacheFilesForSelfStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/TextArea/textAreaInputTest",
+        "MainAbility/pages/Search/search_center",
+        "MainAbility/pages/TextArea/textArea_center",
+        "MainAbility/pages/TextInput/TextinputSec",
+        "MainAbility/pages/text/TextDrag",
+        "MainAbility/pages/text/positionSetting",
+        "MainAbility/pages/text/TextState",
+        "MainAbility/pages/RichEditor/RichEditor01",
+        "MainAbility/pages/RichEditor/RichEditorApi2",
+        "MainAbility/pages/RichEditor/richEditorApi/richEditorApi1",
+        "MainAbility/pages/TextArea/textAreaUI",
+        "MainAbility/pages/TextArea/textAreaBC1",
+        "MainAbility/pages/TextInput/TextInputPage",
+        "MainAbility/pages/Search/SearchGesture",
+        "MainAbility/pages/Search/SearchPage",
+        "MainAbility/pages/button/getcomponentadd",
+        "MainAbility/pages/SegmentButton/SegmentButtonIndex",
+        "MainAbility/pages/select/SelectPage"
+    ]
+}

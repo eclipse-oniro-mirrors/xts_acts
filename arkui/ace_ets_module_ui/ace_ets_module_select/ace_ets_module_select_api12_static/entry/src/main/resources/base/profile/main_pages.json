@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/Index",
+    "MainAbility/pages/select",
+    "MainAbility/pages/SelectMenu"
+  ]
+}

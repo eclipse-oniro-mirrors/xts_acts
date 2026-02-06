@@ -1,0 +1,136 @@
+'use static';
+/**
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import {
+  Entry,
+  Component,
+  Row,
+  List,
+  ListItem,
+  Text,
+  Stack,
+  Alignment,
+  ForEach,
+  AlphabetIndexer,
+  TextAlign,
+  FontWeight,
+  IndexerAlign,
+  BlurStyle,
+  FontStyle
+} from '@ohos.arkui.component'
+
+@Entry
+@Component
+struct AlphabetIndexerSampleA1 {
+  private arrayA: string[] = ['安']
+  private arrayB: string[] = ['卜', '白', '包', '毕', '丙']
+  private arrayC: string[] = ['曹', '成', '陈', '催']
+  private arrayL: string[] = ['刘', '李', '楼', '梁', '雷', '吕', '柳', '卢']
+  private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
+    'H', 'I', 'J', 'K', 'L', 'M', 'N',
+    'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+    'V', 'W', 'X', 'Y', 'Z']
+
+  build() {
+    Stack({ alignContent: Alignment.Start }) {
+      Row() {
+        List({ space: 20, initialIndex: 0 }) {
+          ForEach(this.arrayA, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+
+          ForEach(this.arrayB, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+
+          ForEach(this.arrayC, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+
+          ForEach(this.arrayL, (item: string) => {
+            ListItem() {
+              Text(item)
+                .width('80%')
+                .height('5%')
+                .fontSize(30)
+                .textAlign(TextAlign.Center)
+            }
+          }, (item: string) => item)
+        }
+        .width('50%')
+        .height('100%')
+
+        AlphabetIndexer({ arrayValue: this.value, selected: 0 })
+          .id('PopupAlpha_1')
+          .selectedColor(0xFFFFFF) // 选中项文本颜色
+          .popupColor(0xFFFAF0) // 弹出框文本颜色
+          .selectedBackgroundColor(0xCCCCCC) // 选中项背景颜色
+          .popupBackground(0xD2B48C) // 弹出框背景颜色
+          .usingPopup(true) // 是否显示弹出框
+          .selectedFont({ size: 16, weight: FontWeight.Bolder }) // 选中项字体样式
+          .popupFont({ size: 30, weight: FontWeight.Bolder }) // 弹出框内容的字体样式
+          .itemSize(28) // 每一项的尺寸大小
+          .alignStyle(IndexerAlign.Left) // 弹出框在索引条右侧弹出
+          .popupItemBorderRadius(24) // 设置提示弹窗索引项背板圆角半径
+          .itemBorderRadius(14) // 设置索引项背板圆角半径
+          .popupBackgroundBlurStyle(BlurStyle.NONE) // 设置提示弹窗的背景模糊材质
+          .popupTitleBackground(0xCCCCCC) // 设置提示弹窗首个索引项背板颜色
+          .popupSelectedColor(0x00FF00)
+          .popupUnselectedColor(0x0000FF)
+          .popupItemFont({ size: 30, style: FontStyle.Normal })
+          .popupItemBackgroundColor(0xCCCCCC)
+          .onSelect((index: int): void => {
+            console.info(this.value[index.toInt()] + ' Selected!')
+          })
+          .onRequestPopupData((index: int): string[] => {
+            if (this.value[index.toInt()] == 'A') {
+              return this.arrayA // 当选中A时，弹出框里面的提示文本列表显示A对应的列表arrayA，选中B、C、L时也同样
+            } else if (this.value[index.toInt()] == 'B') {
+              return this.arrayB
+            } else if (this.value[index.toInt()] == 'C') {
+              return this.arrayC
+            } else if (this.value[index.toInt()] == 'L') {
+              return this.arrayL
+            } else {
+              return [''] // 选中其余子母项时，提示文本列表为空
+            }
+          })
+          .onPopupSelect((index: int): void => {
+            console.info('onPopupSelected:' + index)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+}

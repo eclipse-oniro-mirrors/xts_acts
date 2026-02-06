@@ -1,0 +1,45 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "300000",
+    "bundle-name": "ohos.acts.multimedia.image.10bitPixelmap.Static",
+    "module-name": "entry",
+    "shell-timeout": "300000",
+    "testcase-timeout": "180000"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsImage10bitPixelmapStaticTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+        "type": "ShellKit",
+        "run-command": [
+            "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.10bitPixelmap.Static/haps/entry/files/",
+            "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.10bitPixelmap.Static/haps/entry/files/*",
+            "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.10bitPixelmap.Static/haps/entry/cache/",
+            "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.10bitPixelmap.Static/haps/entry/cache/*",
+            "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.10bitPixelmap.Static/haps/entry/*"
+        ]
+    },
+    {
+        "type": "PushKit",
+        "pre-push": [],
+        "push": [
+            "./resource/image/HDRVividSingleLayer.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.10bitPixelmap.Static/haps/entry/files",
+            "./resource/image/CUVAHdrMulti.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.10bitPixelmap.Static/haps/entry/files"
+        ]
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+          "power-shell wakeup",
+          "power-shell setmode 602"
+      ]
+    }
+  ]
+}

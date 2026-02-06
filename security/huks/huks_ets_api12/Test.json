@@ -1,0 +1,27 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "1800000",
+    "shell-timeout": "900000",
+    "testcase-timeout": "600000",
+    "bundle-name": "com.acts.huks.etsapi12",
+    "module-name": "entry_test"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsHuksEtsApi12FuncTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "hidumper -s 3301 -a -t",
+        "power-shell wakeup"
+      ]
+    }
+  ]
+}

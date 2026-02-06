@@ -1,0 +1,96 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "module_test_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DataShareExtensionAbility_desc",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "EntryAbilityTest_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbilityTest_label",
+      "value": "label"
+    },
+    {
+      "name": "uiability_desc",
+      "value": "description"
+    },
+    {
+      "name": "uiability_label",
+      "value": "label"
+    },
+    {
+      "name": "UIAbilityTest_desc",
+      "value": "description"
+    },
+    {
+      "name": "UIAbilityTest_label",
+      "value": "label"
+    },
+    {
+      "name": "insert",
+      "value": "insert"
+    },
+    {
+      "name": "query",
+      "value": "query"
+    },
+    {
+      "name": "linshiAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "linshiAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "UIAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "UIAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "DataShareExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "DataShareExtAbility_label",
+      "value": "label"
+    }
+  ]
+}

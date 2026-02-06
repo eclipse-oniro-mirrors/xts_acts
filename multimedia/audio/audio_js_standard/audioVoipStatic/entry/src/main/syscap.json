@@ -1,0 +1,21 @@
+{
+  "devices": {
+    "general": [],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.Multimedia.Audio.Core",
+          "SystemCapability.Multimedia.Audio.Renderer",
+          "SystemCapability.Multimedia.Audio.Capturer",
+          "SystemCapability.Multimedia.Audio.Device",
+          "SystemCapability.Multimedia.Audio.Volume",
+          "SystemCapability.Multimedia.Audio.Communication",
+          "SystemCapability.Multimedia.Audio.Tone",
+          "SystemCapability.Multimedia.Audio.Interrupt",
+          "SystemCapability.Multimedia.Audio.PlaybackCapture",
+          "SystemCapability.Multimedia.Audio.Spatialization"
+        ]
+      }
+    ]
+  }
+}

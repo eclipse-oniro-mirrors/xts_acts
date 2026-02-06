@@ -1,0 +1,7 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "entryembeddeduiextability/pages/EntryEmbeddedUIExtAbilityPage",
+    "testability/pages/Index2"
+  ]
+}

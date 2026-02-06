@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Menu/MinKeyboardAvoidDistance",
+    "MainAbility/pages/Menu/KeyboardAvoidModeNone"
+  ]
+}

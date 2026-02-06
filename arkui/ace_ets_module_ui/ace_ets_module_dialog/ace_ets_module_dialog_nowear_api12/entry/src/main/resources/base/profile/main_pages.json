@@ -1,0 +1,23 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/TextPickerDialog/TextPickerDialog",
+    "MainAbility/pages/TimePickerDialog/TimePickerDialog",
+    "MainAbility/pages/CalendarPickerDialog/CalendarPickerDialog",
+    "MainAbility/pages/DatePickerDialog/DatePickerDialog",
+    "MainAbility/pages/CalendarPickerDialog/CalendarDialogCallback",
+    "MainAbility/pages/DatePickerDialog/DatePickerDialogCallback",
+    "MainAbility/pages/TextPickerDialog/TextPickerDialogCallback",
+    "MainAbility/pages/TimePickerDialog/TimePickerDialogCallback",
+    "MainAbility/pages/TextPickerDialog/ButtonStyle/Text_accept",
+    "MainAbility/pages/TextPickerDialog/ButtonStyle/Text_cancel",
+    "MainAbility/pages/TimePickerDialog/ButtonStyle/Time_accept",
+    "MainAbility/pages/TimePickerDialog/ButtonStyle/Time_cancel",
+    "MainAbility/pages/CalendarPickerDialog/ButtonStyle",
+    "MainAbility/pages/DatePickerDialog/DateButtonStyle",
+    "MainAbility/pages/Popup/PopupApi/PopupApi",
+    "MainAbility/pages/Popup/DismissReason",
+    "MainAbility/pages/TimePickerDialog/DateTimeOptions",
+    "MainAbility/pages/AlertDialog/primary"
+  ]
+}

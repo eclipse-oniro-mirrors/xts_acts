@@ -1,0 +1,106 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { NodeRenderState } from '@ohos.arkui.UIContext';
+
+@Entry
+@Component
+struct Index {
+  @State fontColor: string = '#182431'
+  @State selectedFontColor: string = '#007DFF'
+  @State currentIndex: number = 0
+  @State selectedIndex: number = 0
+  @State notice: string = ''
+  private controller: TabsController = new TabsController()
+
+  @Builder
+  tabBuilder(index: number, name: string) {
+    Column() {
+      Text(name)
+        .fontColor(this.selectedIndex === index ? this.selectedFontColor : this.fontColor)
+        .fontSize(16)
+        .fontWeight(this.selectedIndex === index ? 500 : 400)
+        .lineHeight(22)
+        .margin({ top: 17, bottom: 7 })
+      Divider()
+        .strokeWidth(2)
+        .color('#007DFF')
+        .opacity(this.selectedIndex === index ? 1 : 0)
+    }.width('100%')
+  }
+
+  build() {
+    Column() {
+      Tabs({ barPosition: BarPosition.Start, index: this.currentIndex, controller: this.controller }) {
+        TabContent() {
+          Column() {
+            Column() {
+              Button('被监听节点').margin({ top: 5 }).id('button_1')
+              Button('添加监听').margin({ top: 5 }).id('addButton').onClick(() => {
+                let node: FrameNode | null = this.getUIContext().getFrameNodeById('button_1');
+                if (node) {
+                  let observer = this.getUIContext().getUIObserver();
+                  observer.on('nodeRenderState', node?.getUniqueId(), (state: NodeRenderState, node?: FrameNode) => {
+                    if (state === NodeRenderState.ABOUT_TO_RENDER_IN) {
+                      this.notice = 'RENDER_IN';
+                    } else if (state === NodeRenderState.ABOUT_TO_RENDER_OUT) {
+                      this.notice = 'RENDER_OUT';
+                    }
+                    console.log('节点状态发生改变，当前状态：', state)
+                  })
+                }
+              })
+              Button('取消监听').margin({ top: 5 }).id('removeButton').onClick(() => {
+                let node: FrameNode | null = this.getUIContext().getFrameNodeById('button_1');
+                if (node) {
+                  let observer = this.getUIContext().getUIObserver();
+                  observer.off('nodeRenderState', node?.getUniqueId())
+                }
+                this.notice = '';
+              })
+            }
+          }.width('100%').height('100%').backgroundColor('#00CB87')
+        }.tabBar(this.tabBuilder(0, 'green'))
+
+        TabContent() {
+          Column().width('100%').height('100%').backgroundColor('#FFBF00')
+        }.tabBar(this.tabBuilder(1, 'blue'))
+      }
+      .vertical(false)
+      .barMode(BarMode.Fixed)
+      .barWidth(360)
+      .barHeight(56)
+      .animationDuration(400)
+      .onChange((index: number) => {
+        this.currentIndex = index
+        this.selectedIndex = index
+      })
+      .onAnimationStart((index: number, targetIndex: number, event: TabsAnimationEvent) => {
+        if (index === targetIndex) {
+          return
+        }
+        this.selectedIndex = targetIndex
+      })
+      .width(360)
+      .height(296)
+      .margin({ top: 52 })
+      .backgroundColor('#F1F3F5')
+
+      Text(`收到的通知: ${this.notice}`)
+        .id('renderText')
+        .fontSize(20)
+        .margin(10)
+    }.width('100%')
+  }
+}

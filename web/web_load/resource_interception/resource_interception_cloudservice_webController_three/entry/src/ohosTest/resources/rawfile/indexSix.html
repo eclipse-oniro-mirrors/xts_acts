@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>index</title>
+    <style>
+        #pageHeight {
+            height: 350px
+        }
+
+        #pageHeight1 {
+            height: 350px
+        }
+    </style>
+</head>
+
+<body>
+    <iframe src='http://1.1.1.123/index.html'></iframe>
+    <div id='container'>首页</div>
+    <div id='pageHeight'></div>
+    <div id='contenttext' style='font-size: 9px;'>内容</div>
+    <div id='pageHeight1'></div>
+    <div id='ending'>末尾</div>
+    <a href='second.html' id='fileAccess'>打开rawfile文件</a>
+    <img src='icon.png' alt='icon' id='imgs'>
+    <input type='button' onclick='handleFullScreen()' value='全屏显示ʾ' />
+    <input type='button' onclick='exitFullscreen()' value='退出全屏' />
+</body>
+<script>
+    let ele = document.getElementById('imgs');
+    let loadImage;
+    ele.onload = function () {
+        loadImage = 'load complete';
+    };
+    function getUserAgent() {
+        return navigator.userAgent;
+    }
+    function test() {
+        backToEts.test('backToEts');
+    }
+    function testRunJavaScript() {
+        return 'testRunJavaScript';
+    }
+    function getPageHeight() {
+        let height = document.body.scrollHeight;
+        return height;
+    }
+    function proxy() {
+        objName.register('backToEts');
+    }
+    function registerTest() {
+        let str = objName.register();
+        console.log(str);
+        return str;
+    }
+    function jsAccess() {
+        console.log('web111');
+    }
+    function consoleTest() {
+        console.log('console test');
+    }
+    function alertTest() {
+        alert('alert test');
+    }
+    function confirmTest() {
+        confirm('confirm test');
+    }
+    function getImgResult() {
+        return loadImage;
+    }
+    function toPrompt() {
+        let result = prompt('age', '20');
+        console.log('result:' + result);
+    }
+    function openRawFile() {
+        document.getElementById('fileAccess').click();
+    }
+    function gettitle() {
+        return document.title;
+    }
+    function getNavigatorOnLine() {
+        let onlineResult = navigator.onLine;
+        return onlineResult;
+    }
+</script>
+
+</html>

@@ -1,0 +1,44 @@
+# Copyright (c) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+group("builtin_static") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "array_standard_test_static:ActsArrayStaticTest",
+      "builtin001_standard_test_static:ActsBuiltin1StaticTest",
+      "builtin002_standard_test_static:ActsBuiltin2StaticTest",
+      "builtin003_standard_test_static:ActsBuiltin3StaticTest",
+      "builtin004_standard_test_static:ActsBuiltin4StaticTest",
+      "builtin005_standard_test_static:ActsBuiltin5StaticTest",
+      "builtin006_standard_test_static:ActsBuiltin6StaticTest",
+      "builtin007_standard_test_static:ActsBuiltin7StaticTest",
+      "builtin008_standard_test_static:ActsBuiltin8StaticTest",
+      "date_standard_test_static:ActsDateStaticTest",
+      "intl_standard_test_static:ActsIntlStaticTest",
+      "number_standard_test_static:ActsNumberStaticTest",
+      "json_standard_test_static:ActsJsonStaticTest",
+      "esbuiltin001_standard_test_static:ActsEsBuiltin1StaticTest",
+      "esbuiltin002_standard_test_static:ActsEsBuiltin2StaticTest",
+      "regexp_standard_test_static:ActsRegExpStaticTest",
+      "typeArray_standard_test_static:ActsTypeArrayStaticTest",
+      "base_standard_test_static:ActsBaseStaticTest",
+      "dataview_standard_test_static:ActsDataviewStaticTest",
+      "builtinsupply_standard_test_static:ActsBuiltinsupplyStaticTest",
+      "map_standard_test_static:ActsMapStaticTest",
+      "set_standard_test_static:ActsSetStaticTest",
+    ]
+  }
+}

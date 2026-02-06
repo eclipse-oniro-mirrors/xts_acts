@@ -1,0 +1,18 @@
+{
+    "aipp_op":{
+        "input0":{
+            "n":1,
+            "channels":3,
+            "w":640,
+            "h":640,
+            "shape_format":"nchw"
+        },
+        "input1":{
+            "n":1,
+            "channels":3,
+            "w":640,
+            "h":640,
+            "shape_format":"nchw"
+        }
+    }
+}

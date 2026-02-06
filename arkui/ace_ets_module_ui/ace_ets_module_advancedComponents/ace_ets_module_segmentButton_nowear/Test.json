@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "10800000",
+        "bundle-name": "com.acts.arkui.segmentButton.nowear.test",
+        "module-name": "entry_test",
+        "shell-timeout": "10800000",
+        "testcase-timeout": 300000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAceEtsModuleSegmentButtonNoWearTest.hap",
+                "ActsAceEtsModuleSegmentButtonNoWearTestMain.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "power-shell timeout -o 864000000"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Security.AccessToken",
+                    "SystemCapability.Security.ScreenLockFileManager",
+                    "SystemCapability.FileManagement.AppFileService",
+                    "SystemCapability.FileManagement.AppFileService.FolderAuthorization",
+                    "SystemCapability.BundleManager.BundleFramework.Core",
+                    "SystemCapability.BundleManager.BundleFramework.Resource",
+                    "SystemCapability.Ability.AbilityRuntime.Core"
+                ]
+            }
+        ]
+    }
+}

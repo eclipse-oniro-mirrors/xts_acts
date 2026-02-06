@@ -1,0 +1,10 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/datePicker/datePickerEnableHapticFeedbackModifier",
+    "MainAbility/pages/datePicker/DatePickerMode",
+    "MainAbility/pages/textPicker/enableHapticFeedback",
+    "MainAbility/pages/timePicker/timePickerStartAndEnd",
+    "MainAbility/pages/timePicker/timePickerLoop"
+  ]
+}

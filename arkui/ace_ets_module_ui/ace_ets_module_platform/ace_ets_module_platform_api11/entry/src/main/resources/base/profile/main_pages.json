@@ -1,0 +1,14 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/XComponent/XComponentNodeChage",
+        "MainAbility/pages/video/Video",
+        "MainAbility/pages/XComponent/Xcomponent",
+        "MainAbility/pages/video/video1",
+        
+        "MainAbility/pages/video/video2",
+        "MainAbility/pages/video/videoApI",
+        "MainAbility/pages/XComponent/Xcomponent2",
+        "MainAbility/pages/XComponentNode/XComponentNodePage"
+    ]
+}

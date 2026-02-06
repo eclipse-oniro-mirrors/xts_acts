@@ -1,0 +1,7 @@
+{
+  "name": "libgraphic_vulkan_napi_test.so",
+  "types": "./index.d.ts",
+  "version": "",
+  "description": "Please describe the basic information."
+}
+

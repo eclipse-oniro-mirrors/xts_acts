@@ -1,0 +1,18 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/actionSheet/index",
+    "MainAbility/pages/actionSheet/stageActionSheet",
+    "MainAbility/pages/actionSheet/ActionSheet",
+    "MainAbility/pages/actionSheet/ActionSheetFalse",
+    "MainAbility/pages/actionSheet/ActionSheetTrue",
+    "MainAbility/pages/actionSheet/ActionsheetDialog",
+    "MainAbility/pages/actionSheet/ActionSheetOptions",
+    "MainAbility/pages/actionSheet/ActionSheet1",
+    "MainAbility/pages/actionSheet/ActionSheet2",
+    "MainAbility/pages/actionSheet/ActionSheet3",
+    "MainAbility/pages/actionSheet/actionSheetMode",
+    "MainAbility/pages/actionSheet/showActionSheetMode",
+    "MainAbility/pages/dialogLife/ActionSheetLife"
+  ]
+}

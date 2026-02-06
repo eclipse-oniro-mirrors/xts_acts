@@ -1,0 +1,32 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//foundation/arkui/ace_engine/ace_config.gni")
+
+group("ActsAceEtsModuleStateMangagementTest") {
+  testonly = true
+  deps = [
+    "ace_ets_module_StateMgmtMix:ActsAceEtsModuleStateMgmtMixTest",
+    "ace_ets_module_StateMgmtUI:ActsAceEtsModuleStateMgmtUITest",
+    "ace_ets_module_StateMgmtV2:ActsAceEtsModuleStateMgmtV2Test",
+    "ace_ets_module_StateMgmtV102:ActsAceEtsModuleStateMgmtV102Test",
+    "ace_ets_module_StateMgmtV103:ActsAceEtsModuleStateMgmtV103Test",
+    "ace_ets_module_StateMgmtV101:ActsAceEtsModuleStateMgmtV101Test",
+    "ace_ets_module_StateMangagement_api18_static:ActsAceEtsModuleStateMangagementApi18StaticTest",
+    "ace_ets_module_StateMangagement_nowear_api11_static:ActsAceEtsModuleStateMangagementNoWearApi11Static1Test",
+    "ace_ets_module_StateMangagement_nowear_api12_static:ActsAceEtsModuleStateMangagementNoWearApi12StaticTest",
+    "ace_ets_module_StateMangagement01_api11_static:ActsAceEtsModuleStateMangagement01Api11StaticTest",
+    "ace_ets_module_StateMangagement02_api11_static:ActsAceEtsModuleStateMangagement02Api11StaticTest",
+    "ace_ets_module_StateMangagement_api12_static:ActsAceEtsModuleStateMangagementApi12StaticTest",
+  ]
+}

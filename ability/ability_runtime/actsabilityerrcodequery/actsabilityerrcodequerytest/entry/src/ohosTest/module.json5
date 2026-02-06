@@ -1,0 +1,261 @@
+/**
+ * Copyright (c) 2025 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "module": {
+    "name": "entry_test",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:test_pages",
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility1",
+        "srcEntry": "./ets/test/MainAbility/MainAbility1.ts",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example.com"
+              }
+            ]
+          }
+        ],
+      },
+      {
+        "name": "MainAbility2",
+        "srcEntry": "./ets/test/MainAbility/MainAbility2.ts",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": false,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ],
+          }
+        ],
+        "permissions": [
+          "ohos.permission.ACCESS_BBOX_DIR",
+          "ohos.permission.READ_HEALTH_DATA"
+        ]
+      },
+      {
+        "name": "applicationContext01",
+        "srcEntry": "./ets/test/applicationContext/applicationContext01.ts",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.applicationContext01.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "applicationContext02",
+        "srcEntry": "./ets/test/applicationContext/applicationContext02.ts",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.applicationContext02.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "applicationContext03",
+        "srcEntry": "./ets/test/applicationContext/applicationContext03.ts",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.applicationContext03.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "applicationContext04",
+        "srcEntry": "./ets/test/applicationContext/applicationContext04.ts",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.applicationContext04.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "applicationContext05",
+        "srcEntry": "./ets/test/applicationContext/applicationContext05.ts",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.applicationContext05.com"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "UIExtensionProvider",
+        "srcEntry": "./ets/test/UIExtensionContentSession/UIExtensionContentSession.ts",
+        "description": "UIExtensionAbility",
+        "type": "embeddedUI",
+        "exported": true
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name":"ohos.permission.PRIVACY_WINDOW"
+      },
+      {
+        "name":"ohos.permission.DISTRIBUTED_DATASYNC"
+      },
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+    "description": "Configuration for graphic Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.acts.actsgraphics2dapi20test",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 60000
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsGraphics2DApi20Test.hap",
+            "ActsGraphics2DApi20MainTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }, {
+        "type": "ShellKit",
+        "run-command": [
+            "param set persist.ace.testmode.enabled 1",
+            "wait 5",
+            "power-shell wakeup",
+            "uinput -T -m 300 2700 280 200",
+            "wait 5",
+            "uinput -T -m 300 2700 280 200",
+            "power-shell setmode 602"
+        ]
+
+    }]
+}

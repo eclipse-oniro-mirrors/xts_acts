@@ -1,0 +1,15 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Flex/FlexLayoutPolicyPage",
+    "MainAbility/pages/GridRow/GridRowNoColumnsPage",
+    "MainAbility/pages/BoxAlign/ButtonAlign",
+    "MainAbility/pages/Column/ColumnMatchParent",
+    "MainAbility/pages/Flex/FlexMatchParentPage",
+    "MainAbility/pages/Row/RowMatchParent",
+    "MainAbility/pages/Stack/StackChildAlignment",
+    "MainAbility/pages/Stack/StackMatchParent",
+    "MainAbility/pages/Stack/StackSafeArea",
+    "MainAbility/pages/inspector/layoutInspector"
+  ]
+}

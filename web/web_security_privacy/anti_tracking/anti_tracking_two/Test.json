@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.open.harmony.antitrackingtwotest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 30000
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsWebAntiTrackingTwoTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "power-shell timeout -o 864000000"
+            ]
+        }
+    ]
+}

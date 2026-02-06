@@ -1,0 +1,14 @@
+{
+  "devices": {
+    "general": [],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.Multimedia.Image.Core",
+         "SystemCapability.Multimedia.VideoProcessingEngine",
+          "SystemCapability.FileManagement.File.FileIO"
+        ]
+      }
+    ]
+  }
+}

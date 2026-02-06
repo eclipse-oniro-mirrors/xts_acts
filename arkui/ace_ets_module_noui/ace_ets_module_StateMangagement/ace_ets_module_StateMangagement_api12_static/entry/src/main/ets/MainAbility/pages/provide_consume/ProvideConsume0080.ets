@@ -1,0 +1,68 @@
+'use static';
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {
+  Entry,
+  Column,
+  Component,
+  Button,
+  ClickEvent,
+  ForEach,
+  Text,
+  Row,
+  List,
+  ListItem
+} from '@ohos.arkui.component'
+import {
+  State,
+  Watch,
+  Link,
+  StorageLink,
+  Consume,
+  Provide
+} from '@ohos.arkui.stateManagement'
+
+@Component
+struct ChildProvideConsume0080 {
+  @Consume('numberValue') numberValueOne: string
+  @Consume('numberValue') numberValueTwo: string
+  @Consume('numberValue') numberValueThree: string
+
+  build() {
+    Column() {
+      Button('Change')
+        .id('btnProvideConsume0080Change')
+        .onClick(():void=>{
+          this.numberValueOne = 'nihao'
+          this.numberValueTwo = 'hello'
+          this.numberValueThree = 'Hello'
+        })
+    }
+  }
+}
+
+@Entry
+@Component
+struct ProvideConsume0080 {
+  @Provide({ alias :'numberValue' }) numberValue: string = 'arkui'
+
+  build() {
+    Column() {
+      Text(this.numberValue).id('tvParentProvideConsume0080')
+      ChildProvideConsume0080()
+    }
+  }
+}

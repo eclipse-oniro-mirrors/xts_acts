@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "form_ServiceAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "form_ServiceAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "test",
+      "value": "test"
+    }
+  ]
+}

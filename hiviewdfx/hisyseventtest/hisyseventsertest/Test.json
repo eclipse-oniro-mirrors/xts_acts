@@ -1,0 +1,31 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "270000",
+        "shell-timeout": "270000",
+        "bundle-name": "ohos.acts.hiviewdfx.hisysevent.ser.function",
+        "package-name": "ohos.acts.hiviewdfx.hisysevent.ser.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHiSysEventSerTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "service_control stop hiview"
+            ],
+            "teardown-command": [
+                "service_control start hiview",
+                "sleep 60"
+            ]
+        }
+    ]
+}

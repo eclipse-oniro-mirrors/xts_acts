@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仅触摸可选中的文本</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .instructions {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        #specialText {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            color: #444;
+            line-height: 1.8;
+            transition: background-color 0.2s ease;
+        }
+
+        #specialText p {
+            margin-bottom: 15px;
+        }
+
+        #specialText p:last-child {
+            margin-bottom: 0;
+        }
+
+        .hint {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #888;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* 选择样式控制 */
+        .no-mouse-select {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .allow-select {
+            user-select: text;
+            -webkit-user-select: text;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>特殊选择行为演示</h1>
+
+    <div class="instructions">
+        <p>这段文本具有特殊的选择行为：</p>
+        <ul>
+            <li>在桌面设备上，<strong>无法通过鼠标选中</strong>下方的文本</li>
+            <li>在移动设备上，<strong>可以通过触摸长按选中</strong>下方的文本</li>
+        </ul>
+    </div>
+
+    <div id="specialText" class="no-mouse-select">
+        <p>这是一段特殊的文本。在桌面设备上，您尝试用鼠标选中我是不会成功的。但是在触摸屏设备上，您可以通过长按然后拖动来选中文本。这种行为是通过结合CSS和JavaScript实现的，用于演示如何根据不同的输入设备类型提供不同的交互体验。</p>
+        <p>这种技术可以应用于需要区分桌面和移动设备交互的场景，比如电子书阅读器、特殊文档查看器等，为不同设备用户提供更合适的操作方式。</p>
+    </div>
+
+    <div class="hint">
+        提示：在移动设备上测试此功能以体验完整效果
+    </div>
+</div>
+
+<script>
+    // 获取特殊文本元素
+    const specialText = document.getElementById('specialText');
+
+    // 检测是否为触摸设备
+    function isTouchDevice() {
+        return ('ontouchstart' in window) ||
+               (navigator.maxTouchPoints > 0) ||
+               (navigator.msMaxTouchPoints > 0);
+    }
+
+    // 初始设置：如果是触摸设备，允许选择
+    if (isTouchDevice()) {
+        specialText.classList.remove('no-mouse-select');
+        specialText.classList.add('allow-select');
+    }
+
+    // 触摸开始事件：确保允许选择
+    specialText.addEventListener('touchstart', function() {
+        specialText.classList.remove('no-mouse-select');
+        specialText.classList.add('allow-select');
+    }, { passive: true });
+
+    // 鼠标事件：阻止选择
+    specialText.addEventListener('mousedown', function(e) {
+        // 只有非触摸设备才阻止选择
+        if (!isTouchDevice()) {
+            e.preventDefault();
+            // 视觉反馈：短暂改变背景色
+            specialText.style.backgroundColor = '#e8e8e8';
+            setTimeout(() => {
+                specialText.style.backgroundColor = '#f0f0f0';
+            }, 200);
+        }
+    });
+</script>
+</body>
+</html>

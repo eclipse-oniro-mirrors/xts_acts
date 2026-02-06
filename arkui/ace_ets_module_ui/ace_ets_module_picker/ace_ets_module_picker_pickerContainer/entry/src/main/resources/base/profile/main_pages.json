@@ -1,0 +1,15 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/picker/pickerCanLoop",
+        "MainAbility/pages/picker/pickerCanLoopModifier",
+        "MainAbility/pages/picker/pickerEnableHapticFeedback",
+        "MainAbility/pages/picker/pickerEnableHapticFeedbackModifier",
+        "MainAbility/pages/picker/pickerOnChangeTest",
+        "MainAbility/pages/picker/pickerOnChangeModifierTest",
+        "MainAbility/pages/picker/pickerOnScrollStopTest",
+        "MainAbility/pages/picker/pickerOnScrollStopModifierTest",
+        "MainAbility/pages/picker/pickerIndicator",
+        "MainAbility/pages/picker/pickerIndicatorModifier"
+    ]
+}

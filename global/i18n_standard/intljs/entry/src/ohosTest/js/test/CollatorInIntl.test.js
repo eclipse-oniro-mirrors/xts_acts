@@ -1,0 +1,263 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import I18n from '@ohos.i18n'
+import Intl from '@ohos.intl'
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level} from '@ohos/hypium'
+
+export default function CollatorInIntlTest() {
+describe('CollatorInIntlTest', function () {
+    console.log('*************start CollatorInIntlTest*************');
+
+    let hour = I18n.System.is24HourClock();
+    console.log('init 24 hour clock value ' + hour);
+
+    /* *
+    * execute this step before all testcases
+    */
+    beforeAll(function(){
+        console.log('step before all cases in I18n.'
+        + ' 24hour: ' + I18n.System.is24HourClock()
+        + ' prelang: ' + I18n.System.getPreferredLanguageList()
+        + ' syslocale: ' + I18n.System.getSystemLocale());
+    })
+
+    /* *
+    * execute this step before every testcase
+    */
+    beforeEach(function(){
+        console.log('step before every case in I18n.');
+    })
+
+    /* *
+    * execute this step after every testcase
+    */
+    afterEach(function(){
+        console.log('step after every case in I18n.');
+    })
+
+    /* *
+    * execute this step after all testcases
+    */
+    afterAll(function(){
+        console.log('step after all cases in I18n.'
+        + ' 24hour: ' + I18n.System.is24HourClock()
+        + ' prelang: ' + I18n.System.getPreferredLanguageList()
+        + ' syslocale: ' + I18n.System.getSystemLocale());
+    })
+
+    /**
+     * @tc.name   collator_test_3500
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_3500
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('collator_test_3500', Level.LEVEL0, function () {
+        let coll = new Intl.Collator();
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_3500 ' + value);
+        expect(value).assertEqual(-1);
+    })
+
+    /**
+     * @tc.name   collator_test_3510
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_3510
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_3510', Level.LEVEL2, function () {
+        let coll = new Intl.Collator();
+        let value = coll.compare('a', 'a');
+        console.log('collator_test_3100 ' + value);
+        expect(value).assertEqual(0);
+    })
+
+    /**
+     * @tc.name   collator_test_3520
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_3520
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_3520', Level.LEVEL2, function () {
+        let coll = new Intl.Collator();
+        let value = coll.compare('b', 'a');
+        console.log('collator_test_3200 ' + value);
+        expect(value).assertEqual(1);
+    })
+
+    /**
+     * @tc.name   collator_test_3600
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_3600
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_3600', Level.LEVEL2, function () {
+        let coll = new Intl.Collator('zh');
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_3600 ' + value);
+        expect(value).assertEqual(-1);
+    })
+
+    /**
+     * @tc.name   collator_test_3620
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_3620
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_3620', Level.LEVEL2, function () {
+        let coll = new Intl.Collator('zh', undefined);
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_3620 ' + value);
+        expect(value).assertEqual(-1);
+    })
+
+    /**
+     * @tc.name   collator_test_3640
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_3640
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_3640', Level.LEVEL2, function () {
+        let coll = new Intl.Collator('zh', null);
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_3640 ' + value);
+        expect(value).assertEqual(-1);
+    })
+
+    /**
+     * @tc.name   collator_test_3700
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_3700
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_3700', Level.LEVEL2, function () {
+        let coll = new Intl.Collator('zh', {'collation': 'eor'});
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_3700 ' + value);
+        expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().collation).assertEqual('eor');
+    })
+
+    /**
+     * @tc.name   collator_test_3800
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_3800
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_3800', Level.LEVEL2, function () {
+        let coll = new Intl.Collator('zh', {'sensitivity': 'base'});
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_3800 ' + value);
+        expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().sensitivity).assertEqual('base');
+    })
+
+    /**
+     * @tc.name   collator_test_3900
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_3900
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_3900', Level.LEVEL2, function () {
+        let coll = new Intl.Collator('zh', {'caseFirst': 'upper'});
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_3900 ' + value);
+        expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().caseFirst).assertEqual('upper');
+    })
+
+    /**
+     * @tc.name   collator_test_4000
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_4000
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_4000', Level.LEVEL2, function () {
+        let coll = new Intl.Collator('zh', {'numeric': true});
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_4000 ' + value);
+        expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().numeric).assertTrue();
+    })
+
+    /**
+     * @tc.name   collator_test_4100
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_4100
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_4100', Level.LEVEL2, function () {
+        let coll = new Intl.Collator('zh', {'ignorePunctuation': true});
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_4100 ' + value);
+        expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().ignorePunctuation).assertTrue();
+    })
+
+    /**
+     * @tc.name   collator_test_4200
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_4200
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_4200', Level.LEVEL2, function () {
+        let coll = new Intl.Collator('zh', {'usage': 'sort'});
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_4200 ' + value);
+        expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().usage).assertEqual('sort');
+    })
+
+    /**
+     * @tc.name   collator_test_4300
+     * @tc.number SUB_GLOBAL_INTL_JS_COLLATOR_4300
+     * @tc.desc   check the compare result
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('collator_test_4300', Level.LEVEL2, function () {
+        let coll = new Intl.Collator('zh', {'localeMatcher': 'lookup'});
+        let value = coll.compare('a', 'b');
+        console.log('collator_test_4300 ' + value);
+        expect(value).assertEqual(-1);
+        expect(coll.resolvedOptions().localeMatcher).assertEqual('lookup');
+    })
+
+    console.log('*************end CollatorInIntlTest*************');
+})}

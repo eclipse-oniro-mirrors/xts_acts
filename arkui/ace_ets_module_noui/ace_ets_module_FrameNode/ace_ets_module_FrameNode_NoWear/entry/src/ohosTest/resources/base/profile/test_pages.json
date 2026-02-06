@@ -1,0 +1,10 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+	    "MainAbility/pages/frameNode/nodeWaterFlow",
+        "MainAbility/pages/frameNode/convertPoint",
+        "MainAbility/pages/frameNode/convertPointError24",
+        "MainAbility/pages/frameNode/convertPointError25",
+        "MainAbility/pages/FrameNodeMethod/NodeAdoptErrorCodeTest"
+    ]
+}

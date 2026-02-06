@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.acts.inputmethodauthority.test.static",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": 10000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -m 300 720 300 360 200",
+                "uinput -T -m 650 2760 650 1380 200"
+            ]
+        },
+        {
+        "test-file-name": [
+            "ActsInputMethodAuthorityStaticTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }]
+}

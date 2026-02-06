@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单个播放源：preload-metadata</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+<div class="btnGroup">
+    <button onclick="deleteDom('bodyId')">删除</button>
+    <button onclick="moveElementRight()">moveRight</button>
+    <button onclick="moveElementDown()">moveDown</button>
+    <button onclick="moveElementUp()">moveUp</button>
+    <button onclick="resize()">resize</button>
+    <button onclick="fullScreenDom('bodyId')">全屏</button>
+</div>
+<div>
+    <button onclick="buttonLoad()">load()</button>
+    <button id="playButton" onclick="getVideo('bodyId').play()">play()</button>
+    <button onclick="getVideo('bodyId').pause()">pause()</button>
+    <button onclick="getVideo('bodyId').currentTime+=10">currentTime+=10</button>
+    <button onclick="getVideo('bodyId').currentTime-=10">currentTime-=10</button>
+    <button onclick="getVideo('bodyId').currentTime=50">currentTime=50</button>
+    <button onclick="getVideo('bodyId').playbackRate++">playbackRate++</button>
+    <button onclick="getVideo('bodyId').playbackRate--">playbackRate--</button>
+    <button onclick="getVideo('bodyId').playbackRate+=0.1">playbackRate+=0.1</button>
+    <button onclick="getVideo('bodyId').playbackRate-=0.1">playbackRate-=0.1</button>
+    <button onclick="getVideo('bodyId').volume+=0.1">volume+=0.1</button>
+    <button onclick="getVideo('bodyId').volume-=0.1">volume-=0.1</button>
+    <button onclick="getVideo('bodyId').muted=true">muted=true</button>
+    <button onclick="getVideo('bodyId').muted=false">muted=false</button>
+    <button onclick="showProps('props')">显示属性</button>
+    <button onclick="hideProps('props')">隐藏属性</button>
+
+</div>
+<video  id="bodyId" controls preload="metadata" muted
+        controlslist="noremoteplayback">
+    <source id='mp4'
+            src="https://www-file.huawei.com/-/media/corp2020/videos/giv/2030/1/intelligent-2030-cn-720.mp4"
+            type='video/mp4'>
+    <source  src="https://www-file.huawei.com/-/media/corp2020/videos/giv/2030/green-ict/green-ict-cn-1080p.mp4" >
+</video>
+<div id="props">
+    <table>
+        <caption>Media Events</caption>
+        <tbody id='events'>
+        </tbody>
+    </table>
+    <table id='tracks'>
+        <caption>Tracks</caption>
+        <tbody>
+        <tr>
+            <th>Audio</th>
+            <th>Video</th>
+            <th>Text</th>
+        </tr>
+        <tr>
+            <td id='m_audiotracks' class='false'>?</td>
+            <td id='m_videotracks' class='false'>?</td>
+            <td id='m_texttracks' class='false'>?</td>
+        </tr>
+        </tbody>
+    </table>
+    <table>
+        <caption>Media Properties</caption>
+        <tbody id='properties'>
+        </tbody>
+    </table>
+
+    <table id='canPlayType'>
+        <caption>canPlayType</caption>
+        <tbody id='m_video'>
+        </tbody>
+    </table>
+</div>
+
+
+
+</body>
+</html>
+<script>
+
+function myFunction() {
+    let element = document.getElementById('bodyId');
+element.remove();
+}
+function resize() {
+    resizeDom('bodyId');
+    console.log('resizeDom');
+    return 'resizeDom';
+}
+function resizeDom(id) {
+    let element = document.getElementById(id);
+    element.style.width = '180px';
+    element.style.height = '190px';
+}
+
+function deleteDom(id) {
+    let element = document.getElementById(id);
+    element.remove();
+}
+function moveElementRight() {
+    moveElementRightDom('bodyId');
+}
+function moveElementRightDom(id) {
+    let element = document.getElementById(id);
+    element.style.marginLeft = computeNum(element.style.marginLeft) + 10 + 'px';
+}
+function moveElementDown() {
+    let element = document.getElementById('bodyId');
+    element.style.marginTop = computeNum(element.style.marginTop) + 10 + 'px';
+}
+function moveElementUp() {
+    let element = document.getElementById('bodyId');
+    element.style.marginTop = computeNum(element.style.marginTop) - 10 + 'px';
+}
+function computeNum(value) {
+    if (!value) {
+        return 0;
+    } else if (value === '') {
+        return 0;
+    } else {
+        return parseFloat(value);
+    }
+}
+function myFunction4() {
+fullScreenDom('cameraTest');
+}
+function fullScreenDom(id) {
+    const cameraTest = document.getElementById(id);
+    cameraTest.requestFullscreen();
+}
+
+</script>
+<script>
+    // the following was extracted from the spec in October 2014
+
+    let mediaEvents = new Array();
+    mediaEvents.loadstart = 0;
+    mediaEvents.progress = 0;
+    mediaEvents.suspend = 0;
+    mediaEvents.abort = 0;
+    mediaEvents.error = 0;
+    mediaEvents.emptied = 0;
+    mediaEvents.stalled = 0;
+    mediaEvents.loadedmetadata = 0;
+    mediaEvents.loadeddata = 0;
+    mediaEvents.canplay = 0;
+    mediaEvents.canplaythrough = 0;
+    mediaEvents.playing = 0;
+    mediaEvents.waiting = 0;
+    mediaEvents.seeking = 0;
+    mediaEvents.seeked = 0;
+    mediaEvents.ended = 0;
+    mediaEvents.durationchange = 0;
+    mediaEvents.timeupdate = 0;
+    mediaEvents.play = 0;
+    mediaEvents.pause = 0;
+    mediaEvents.ratechange = 0;
+    mediaEvents.resize = 0;
+    mediaEvents.volumechange = 0;
+
+    let mediaProperties = ['error', 'src', 'srcObject', 'currentSrc', 'crossOrigin', 'networkState', 'preload', 'buffered', 'readyState', 'seeking', 'currentTime', 'duration',
+        'paused', 'defaultPlaybackRate', 'playbackRate', 'played', 'seekable', 'ended', 'autoplay', 'loop', 'controls', 'volume',
+        'muted', 'defaultMuted', 'audioTracks', 'videoTracks', 'textTracks', 'width', 'height', 'videoWidth', 'videoHeight', 'poster'];
+
+    // CODE START HERE
+
+    let mediaPropertiesElts = null;
+
+    let webm = null;
+
+    function init() {
+        document._video = getVideo('bodyId');
+
+
+        webm = document.getElementById('webm');
+
+        mediaPropertiesElts = new Array(mediaProperties.length);
+
+        initEvents('events', mediaEvents);
+        initProperties('properties', mediaProperties, mediaPropertiesElts);
+        initMediatypes();
+        // properties are updated even if no event was triggered
+        setInterval(updateProperties, 250);
+    }
+    document.addEventListener('DOMContentLoaded', init, false);
+
+    function initEvents(id, arrayEventDef) {
+        let f;
+        for (key in arrayEventDef) {
+            document._video.addEventListener(key, capture, false);
+        }
+
+        let tbody = document.getElementById(id);
+        let i = 1;
+        let tr = null;
+        for (key in arrayEventDef) {
+            if (tr === null) {
+                tr = document.createElement('tr');
+            }
+            let th = document.createElement('th');
+            th.textContent = key;
+            let td = document.createElement('td');
+            td.setAttribute('id', 'e_' + key);
+            td.textContent = '0';
+            td.className = 'false';
+            tr.appendChild(th);
+            tr.appendChild(td);
+
+            if ((i++ % 2) === 0) {
+                tbody.appendChild(tr);
+                tr = null;
+            }
+        }
+        if (tr !== null) {
+            tbody.appendChild(tr);
+        }
+    }
+    function initProperties(id, arrayPropDef, arrayProp) {
+        let tbody = document.getElementById(id);
+        let i = 0;
+        let tr = null;
+        do {
+            if (tr === null) {
+                tr = document.createElement('tr');
+            }
+            let th = document.createElement('th');
+            th.textContent = arrayPropDef[i];
+            let td = document.createElement('td');
+            let r;
+            td.setAttribute('id', 'p_' + arrayPropDef[i]);
+            r = 'document._video.' + arrayPropDef[i];
+            td.textContent = r;
+            if (typeof(r) !== 'undefined') {
+                td.className = 'true';
+            } else {
+                td.className = 'false';
+            }
+            tr.appendChild(th);
+            tr.appendChild(td);
+            arrayProp[i] = td;
+            if ((++i % 1) === 0) {
+                tbody.appendChild(tr);
+                tr = null;
+            }
+        } while (i < arrayPropDef.length);
+        if (tr !== null) {
+            tbody.appendChild(tr);
+        }
+    }
+
+    function initMediatypes() {
+        let tbody = document.getElementById('m_video');
+        let i = 0;
+        let tr = document.createElement('tr');
+        let videoTypes = ['video/mp4', 'video/webm'];
+        i = 0;
+        tr = document.createElement('tr');
+        do {
+            let td = document.createElement('th');
+            td.textContent = videoTypes[i];
+            tr.appendChild(td);
+        } while (++i < videoTypes.length);
+        tbody.appendChild(tr);
+
+        i = 0;
+        tr = document.createElement('tr');
+
+        if (!!document._video.canPlayType) {
+            do {
+                let td = document.createElement('td');
+                let support = document._video.canPlayType(videoTypes[i]);
+                td.textContent = '"' + support + '"';
+                if (support === 'maybe') {
+                    td.className = 'true';
+                } else if (support === '') {
+                    td.className = 'false';
+                }
+                tr.appendChild(td);
+            } while (++i < videoTypes.length);
+            tbody.appendChild(tr);
+        }
+    }
+
+    function capture(event) {
+        mediaEvents[event.type]++;
+    }
+
+    function updateProperties() {
+        let i = 0;
+        for (const key of mediaEvents) {
+            let e = document.getElementById('e_' + key);
+            if (e) {
+                e.textContent = mediaEvents[key];
+                if (mediaEvents[key] > 0) {
+                    e.className = 'true';
+                }
+            }
+        }
+
+        for (const key of mediaProperties) {
+            let val = 'document._video.' + mediaProperties[key];
+            mediaPropertiesElts[i++].textContent = val;
+        }
+        if (document._video.audioTracks !== undefined) {
+            try {
+                let td = document.getElementById('m_audiotracks');
+                td.textContent = document._video.audioTracks.length;
+                td.className = 'true';
+            } catch (e) {}
+        }
+        if (document._video.videoTracks !== undefined) {
+            try {
+                let td = document.getElementById('m_videotracks');
+                td.textContent = document._video.videoTracks.length;
+                td.className = 'true';
+            } catch (e) {}
+        }
+        if (document._video.textTracks !== undefined) {
+            try {
+                let td = document.getElementById('m_texttracks');
+                td.textContent = document._video.textTracks.length;
+                td.className = 'true';
+            } catch (e) {}
+        }
+    }
+
+    let videos =
+        [
+            [
+                'http://media.w3.org/2010/05/sintel/poster.png',
+                'http://media.w3.org/2010/05/sintel/trailer.mp4',
+                'http://media.w3.org/2010/05/sintel/trailer.webm'
+            ],
+            [
+                'http://media.w3.org/2010/05/bunny/poster.png',
+                'http://media.w3.org/2010/05/bunny/trailer.mp4'
+            ],
+            [
+                'http://media.w3.org/2010/05/bunny/poster.png',
+                'http://media.w3.org/2010/05/bunny/movie.mp4'
+            ],
+            [
+                'http://media.w3.org/2010/05/video/poster.png',
+                'http://media.w3.org/2010/05/video/movie_300.mp4',
+                'http://media.w3.org/2010/05/video/movie_300.webm'
+            ]
+        ];
+
+    function resizeDemo() {
+           console.log('document resize' + document._video);
+        document._video.width = document._video.videoWidth + 10;
+        document._video.height = document._video.videoHeight + 10;
+
+    }
+
+    function getVideo(id) {
+        return document.getElementById(id);
+    }
+    function buttonLoad() {
+        getVideo('bodyId').load();
+        return true;
+    }
+     function buttonPlay() {
+      document.getElementById('playButton').click();
+        return 'play';
+    }
+     function buttonPause() {
+        getVideo('bodyId').pause();
+        return 'pause';
+    }
+    function setVolume() {
+        // getVideo('bodyId').volume+=0.5
+        getVideo('bodyId').muted = false;
+        getVideo('bodyId').volume = 0.5;
+        return 'volume h5';
+    }
+
+    function jumpToEnd() {
+        let durationTime = getVideo('bodyId').duration;
+        if (durationTime > 0) {
+            console.log('durationTime:' + durationTime);
+            console.log('durationTime:' + (durationTime - 2));
+            getVideo('bodyId').currentTime = durationTime - 2;
+        }
+
+    }
+    function setMutedFalse() {
+        getVideo('bodyId').muted = false;
+        getVideo('bodyId').volume = 0.5;
+        getVideo('bodyId').muted = true;
+        return 'setMuted';
+    }
+     function setSeek() {
+        getVideo('bodyId').currentTime = 50;
+        return 'setSeek';
+    }
+     function setPlayBackRate() {
+        getVideo('bodyId').playbackRate = 2;
+        return 'setPlayBackRate';
+    }
+
+    function switchVideo(n) {
+        if (n >= videos.length) {
+            n = 0;
+        }
+
+        let mp4 = document.getElementById('mp4');
+        let parent = mp4.parentNode;
+
+        document._video.setAttribute('poster', videos[n][0]);
+        mp4.setAttribute('src', videos[n][1]);
+
+        if (videos[n][2]) {
+            if (webm.parentNode === null) {
+                parent.insertBefore(webm, mp4);
+            }
+            webm.setAttribute('src', videos[n][2]);
+        } else {
+            if (webm.parentNode !== null) {
+                parent.removeChild(webm);
+            }
+        }
+        document._video.width = 0;
+        document._video.height = 0;
+        document._video.load();
+    }
+    function showProps(id) {
+        document.getElementById(id).style.display = 'initial';
+    }
+    function hideProps(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+</script>
+
+<style>
+    .btnGroup{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .object-container{
+        margin-bottom: 10px;
+    }
+</style>
+<style>
+
+    a { color: #ffffe0;}
+   video {
+      border: 1px solid black;
+      padding: 0; margin: 0;
+      width: 427px;
+      height: 240px;
+      background-color: black;
+      margin: auto;
+    }
+    table { border: none;  margin-top: 1ex;}
+    th {  text-align: right; }
+    caption { background-color: #ffffe0; color: black;}
+    thead th {  background-color: #ffffe0; color: black;}
+    #events td { text-align: right; width: 4ex;}
+    #properties td { }
+    hr { clear: both; margin-top: 2em;}
+    .true { background-color: #360; color: #ffffe0; }
+    .false { background-color: #603; color: #ffffe0; }
+
+</style>

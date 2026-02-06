@@ -1,0 +1,11 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/SetDownloadDelegate1",
+    "testability/pages/SetDownloadDelegate2",
+    "testability/pages/SetDownloadDelegate3",
+    "testability/pages/SetDownloadDelegate4",
+    "testability/pages/SetDownloadDelegate5",
+    "testability/pages/SetDownloadDelegate6"
+  ]
+}

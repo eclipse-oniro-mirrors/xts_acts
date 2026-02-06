@@ -1,0 +1,2017 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, beforeAll, it, expect, TestType, Size, Level } from "@ohos/hypium"
+import ohosWindow from '@ohos.window';
+import display from '@ohos.display';
+import { BusinessError } from '@ohos.base';
+import { Context } from '@ohos.abilityAccessCtrl';
+import common from '@ohos.app.ability.common';
+import settings from '@ohos.settings';
+import image from '@ohos.multimedia.image';
+
+function expectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: string, apiName: string, done: Function, code: number) {
+  let msgStr: string = 'jsUnittest ' + caseName + ' ' + apiName + ' failed, err: ';
+  console.log(msgStr + JSON.stringify(error));
+  try {
+    expect(TRUE_FLAG).assertTrue();
+    expect(error.code === code).assertTrue();
+  } catch (error) {
+    console.info(`ohosWindow.on ${JSON.stringify(error)}`)
+  }
+  done();
+}
+
+function unexpectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: string, apiName: string, done: Function,) {
+  let msgStr: string = 'jsUnittest ' + caseName + ' ' + apiName + ' failed, err: ';
+  console.log(msgStr + JSON.stringify(error));
+  try {
+    expect(TRUE_FLAG).assertFail();
+  } catch (error) {
+    console.info(`ohosWindow.on ${JSON.stringify(error)}`)
+  }
+  done();
+}
+
+async function sleep(time: number) {
+  let timeoutId: number = 0;
+  let promise = new Promise<string>(resolve => {
+    timeoutId = setTimeout(() => {
+      resolve('sleep finished');
+    }, time);
+  })
+  await promise;
+  clearTimeout(timeoutId)
+}
+
+export default function windowCallbackTest(context: common.UIAbilityContext, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
+  describe('windowCallback_test', () => {
+    console.log('describe testets start!!')
+    const TRUE_FLAG = true;
+    console.log('describe window_api_test start!!!');
+    let isPCStatus:string = settings.getValueSync(context,'isStatusBarExist','',settings.domainName.USER_PROPERTY);
+    console.info(`beforeAll isPCStatus: ${isPCStatus}`);
+    let commonRGBColorArr: Array<string> = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)', 'rgb(249,0,230)', 'rgb(102,102,102)', 'rgb(255,247,0)'];
+    let commonNUMBERColorArr: Array<string> = ['#00FF0000', '#0000FF00', '#000000FF', '#00FFFFFF', '#00000000', '#00F900E6', '#00666666', '#00FFF700'];
+    let commonKEYColorArr: Array<string> = ['red', 'green', 'blue', 'white', 'black', 'pink', 'grey', 'yellow'];
+    let avoidArea1: ohosWindow.AvoidArea;
+    
+    beforeAll(async () => {
+      let windowClass = windowStage.getMainWindowSync();
+        await windowClass.setWindowLayoutFullScreen(false);
+        await windowClass.setWindowSystemBarEnable(['status']);
+        let type:ohosWindow.AvoidAreaType = ohosWindow.AvoidAreaType.TYPE_SYSTEM;
+        avoidArea1 = windowClass.getWindowAvoidArea(type);
+        console.info(` Succeeded in getWindowAvoidArea1. Data: ${JSON.stringify(avoidArea1)}`);
+    })
+    /**
+     * @tc.name   testSetSystemBarEnable_ShowStatusBar_HideNavBar_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1300
+     * @tc.desc   Test ohosWindow.setSystemBarEnable API function test1.
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetSystemBarEnable_ShowStatusBar_HideNavBar_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_ShowStatusBar_HideNavBar_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let getMainWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          windowStage.getMainWindow((err: BusinessError, data: ohosWindow.Window) => {
+            console.log(msgStr + 'getMainWindow data' + JSON.stringify(data));
+            if (err && err.code) {
+              console.log(msgStr + 'windowStage  getMainWindow failed');
+              reject(null)
+            } else {
+              resolve(data);
+              console.log(msgStr + 'windowStage getMainWindow successed');
+            }
+          })
+        })
+      }
+
+      let show: Function = (win: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          win.show((err: BusinessError) => {
+            if (err && err.code) {
+              console.log(msgStr + 'mainWnd.show failed');
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.show success');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setFullScreen: Function = (win: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          win.setFullScreen(true, (err, data) => {
+            console.log(msgStr + 'mainWnd.setFullScreen data:' + JSON.stringify(data));
+            if (err && err.code) {
+              console.log(msgStr + 'mainWnd.setFullScreen failed');
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.setFullScreen success');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setSystemBarEnableNavigation: Function = (win: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          win.setSystemBarEnable(['navigation'], (err, data) => {
+            console.log(msgStr + 'mainWnd.setSystemBarEnable navigation JSON.stringify(data)==' + JSON.stringify(data));
+            if (err && err.code) {
+              console.log(msgStr + 'mainWnd.setSystemBarEnable failed');
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.setSystemBarEnable success');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setSystemBarEnableStatus: Function = (win: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          win.setSystemBarEnable(['status'], (err, data) => {
+            console.log(msgStr + 'mainWnd.setSystemBarEnable status JSON.stringify(data)===' + JSON.stringify(data));
+            if (err && err.code) {
+              console.log(msgStr + 'mainWnd.setSystemBarEnable status JSON.stringify(err)===' + JSON.stringify(err));
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.setSystemBarEnable status successed');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let mainWnd: ohosWindow.Window | void;
+      mainWnd = await getMainWindow().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      expect(!!mainWnd).assertTrue();
+      await show(mainWnd).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await setFullScreen(mainWnd).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await setSystemBarEnableNavigation(mainWnd).catch((err: BusinessError) => {
+        console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      await setSystemBarEnableStatus(mainWnd).catch((err: BusinessError) => {
+        console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      console.log(msgStr + 'finished!!');
+      done();
+    });
+    /**
+     * @tc.name   testSetSystemBarEnable_HideStatusBar_ShowNavBar_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1230
+     * @tc.desc   Verify that the scene hides the status bar and displays the navigation bar.
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetSystemBarEnable_HideStatusBar_ShowNavBar_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_HideStatusBar_ShowNavBar_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+
+      let getMainWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          windowStage.getMainWindow((err: BusinessError, data: ohosWindow.Window) => {
+            console.log(msgStr + 'getMainWindow data:' + JSON.stringify(data));
+            if (err && err.code) {
+              console.log(msgStr + 'mainWnd getMainWindow success');
+              reject(null)
+            } else {
+              resolve(data);
+              console.log(msgStr + 'windowStage  JSON.stringify(mainWnd)===' + JSON.stringify(mainWnd));
+            }
+          })
+        })
+      }
+
+      let show: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.show((err) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.show success');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setFullScreen: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.setFullScreen(true, (err, data) => {
+            console.log(msgStr + 'mainWnd.setFullScreen' + JSON.stringify(data));
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.setFullScreen successed');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setSystemBarEnableStatus: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.setSystemBarEnable(['status'], (err, data) => {
+            console.log(msgStr + 'mainWnd.setSystemBarEnable status JSON.stringify(data)==' + JSON.stringify(data));
+            if (err && err.code) {
+              reject(null)
+            } else {
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setSystemBarEnableNavigation: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.setSystemBarEnable(['navigation'], (err, data) => {
+            console.log(msgStr + 'mainWnd.setSystemBarEnable status JSON.stringify(data)==' + JSON.stringify(data));
+            if (err && err.code) {
+              reject(null)
+            } else {
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let mainWnd: ohosWindow.Window;
+      mainWnd = await getMainWindow().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      expect(!!mainWnd).assertTrue();
+      await show(mainWnd).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await setFullScreen(mainWnd).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await setSystemBarEnableStatus(mainWnd).catch((err: BusinessError) => {
+        console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      await setSystemBarEnableNavigation(mainWnd).catch((err: BusinessError) => {
+        console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      done();
+    });
+    /**
+     * @tc.name   testSetSystemBarEnable_Show_StatusBarAndNavBar_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1320
+     * @tc.desc   Verify that the scene displays both the status bar and the navigation bar.
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetSystemBarEnable_Show_StatusBarAndNavBar_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_Show_StatusBarAndNavBar_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+
+      let getMainWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          windowStage.getMainWindow((err, data) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'windowStage  JSON.stringify(mainWnd)===' + JSON.stringify(data));
+              resolve(data)
+            }
+          })
+        })
+      }
+
+      let show: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.show((err) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.show success');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setFullScreen: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.setFullScreen(true, (err, data) => {
+            console.log(msgStr + 'mainWnd.setFullScreen' + JSON.stringify(data));
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.setFullScreen successed');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setSystemBarEnableT: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.setSystemBarEnable(['status', 'navigation'], (err, data) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              resolve(true)
+              console.log(msgStr + 'mainWnd.setSystemBarEnable [status, navigation] data==' + JSON.stringify(data));
+            }
+          })
+        })
+      }
+
+      let mainWnd: ohosWindow.Window;
+      mainWnd = await getMainWindow().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      expect(!!mainWnd).assertTrue();
+      await show(mainWnd).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await setFullScreen(mainWnd).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await setSystemBarEnableT(mainWnd).catch((err: BusinessError) => {
+        console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      done();
+    });
+    /**
+     * @tc.name   testSetSystemBarEnable_Hide_StatusBarAndNavBar_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1250
+     * @tc.desc   Verify that the scene hides both the status bar and the navigation bar.
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetSystemBarEnable_Hide_StatusBarAndNavBar_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_Hide_StatusBarAndNavBar_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+
+      let getMainWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          windowStage.getMainWindow((err, data) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'windowStage  JSON.stringify(mainWnd)===' + JSON.stringify(data));
+              resolve(data)
+            }
+          })
+        })
+      }
+
+      let show: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.show((err) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.show success');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setFullScreen: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.setFullScreen(true, (err, data) => {
+            console.log(msgStr + 'mainWnd.setFullScreen' + JSON.stringify(data));
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.setFullScreen successed');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setSystemBarEnable: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.setSystemBarEnable([], (err) => {
+            console.log(msgStr + 'mainWnd.setSystemBarEnable [] JSON.stringify(data)==' + JSON.stringify(err));
+            if (err && err.code) {
+              reject(null)
+            } else {
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setSystemBarEnableT: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.setSystemBarEnable(['status', 'navigation'], (err, data) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let mainWnd: ohosWindow.Window;
+      mainWnd = await getMainWindow().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      expect(!!mainWnd).assertTrue();
+      await show(mainWnd).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await setFullScreen(mainWnd).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+
+      await setSystemBarEnableT(mainWnd).catch((err: BusinessError) => {
+        console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      await setSystemBarEnable(mainWnd).catch((err: BusinessError) => {
+        console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      done();
+    });
+    /**
+     * @tc.name   testSetSystemBarEnable_Invalid_Parameter_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1270
+     * @tc.desc   Verify the scene where illegal values are entered when the navigation bar and status bar are displayed or hidden
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetSystemBarEnable_Invalid_Parameter_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_Invalid_Parameter_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+
+      let getMainWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          windowStage.getMainWindow((err, data) => {
+            console.log(msgStr + 'getMainWindow data:' + JSON.stringify(data));
+            if (err && err.code) {
+              reject(null)
+            } else {
+              resolve(data);
+              console.log(msgStr + 'windowStage  JSON.stringify(mainWnd)===' + JSON.stringify(mainWnd));
+            }
+          })
+        })
+      }
+
+      let show: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.show((err) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.show success');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let setFullScreen: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.setFullScreen(true, (err, data) => {
+            console.log(msgStr + 'mainWnd.setFullScreen' + JSON.stringify(data));
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'mainWnd.setFullScreen successed');
+              resolve(true)
+            }
+          })
+        })
+      }
+
+
+      let setSystemBarEnable: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          mainWnd.setSystemBarEnable([], (err) => {
+            console.log(msgStr + 'mainWnd.setSystemBarEnable [] JSON.stringify(data)==' + JSON.stringify(err));
+            if (err && err.code) {
+              reject(null)
+            } else {
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let mainWnd: ohosWindow.Window;
+      mainWnd = await getMainWindow().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      expect(!!mainWnd).assertTrue();
+      await show(mainWnd).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await setFullScreen(mainWnd).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await setSystemBarEnable(mainWnd).catch((err: BusinessError) => {
+        console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      mainWnd.setSystemBarEnable([null, undefined], (err, data) => {
+        console.log(msgStr + 'mainWnd.setSystemBarEnable [null,undefined] JSON.stringify(data)==' + JSON.stringify(data));
+        console.log(msgStr + 'mainWnd.setSystemBarEnable [null,undefined] JSON.stringify(err)==' + JSON.stringify(err));
+        if (err && err.code) {
+          try {
+            console.log(msgStr + 'mainWnd.setSystemBarEnable  JSON.stringify(err.code)===' + JSON.stringify(err.code));
+            expect(err.code === 1003).assertTrue();
+          } catch (error) {
+            console.info(`mainWnd.setSystemBarEnable catch error: ${JSON.stringify(error)}`)
+          }
+          done();
+        } else {
+          unexpectedError(TRUE_FLAG, err, caseName, 'mainWnd.setSystemBarEnable [null,undefined]', done);
+        }
+      })
+    });
+    /**
+     * @tc.name   testSetSystemBarEnable_RGB_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1380
+     * @tc.desc   TVerify the scene where the colors of the status bar and navigation bar are set in RGB
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetSystemBarEnable_RGB_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_RGB_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+
+      let setSystemBarPropertiesFun: Function = (tempWnd: ohosWindow.Window, systemBarProperties: ohosWindow.SystemBarProperties) => {
+        return new Promise<boolean>((resolve, reject) => {
+          tempWnd.setSystemBarProperties(systemBarProperties, (err, data) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              console.log(msgStr + 'tempWnd.setSystemBarProperties ' + JSON.stringify(systemBarProperties) + ' success');
+              resolve(true)
+            }
+
+          })
+        })
+      }
+
+      let tempWnd: ohosWindow.Window | void;
+      tempWnd = await windowStage.getMainWindow().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      expect(!!tempWnd).assertTrue();
+      let loopCount = commonRGBColorArr.length
+      for (let i = 0; i < loopCount; i++) {
+        let tempColor: string = commonRGBColorArr[i];
+        let systemBarProperties: ohosWindow.SystemBarProperties = {
+          statusBarColor: tempColor,
+          isStatusBarLightIcon: true,
+          statusBarContentColor: tempColor,
+          navigationBarColor: tempColor,
+          isNavigationBarLightIcon: false,
+          navigationBarContentColor: tempColor,
+        };
+        await setSystemBarPropertiesFun(tempWnd, systemBarProperties).catch((err: BusinessError) => {
+          console.info(msgStr + 'setSystemBarProperties error : ' + JSON.stringify(err));
+          expect().assertFail();
+          done();
+        });
+      }
+      done();
+    })
+    /**
+     * @tc.name   testSetSystemBarEnable_Hexadecimal_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1340
+     * @tc.desc   Verify the scene where the status bar and navigation bar colors are set in hexadecimal form
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetSystemBarEnable_Hexadecimal_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_Hexadecimal_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let tempWnd: ohosWindow.Window | void;
+      tempWnd = await windowStage.getMainWindow().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      expect(!!tempWnd).assertTrue();
+      await (tempWnd as ohosWindow.Window).show().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await (tempWnd as ohosWindow.Window).setFullScreen(true).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await (tempWnd as ohosWindow.Window).setSystemBarEnable(['status', 'navigation']).catch((err: BusinessError) => {
+        console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      let loopCount: number = commonNUMBERColorArr.length
+      for (let i = 0; i < loopCount; i++) {
+        console.log(msgStr + 'tempWnd.setSystemBarEnable i:' + i);
+        let tempColor = commonNUMBERColorArr[i];
+        let systemBarProperties: ohosWindow.SystemBarProperties = {
+          statusBarColor: tempColor,
+          isStatusBarLightIcon: true,
+          statusBarContentColor: tempColor,
+          navigationBarColor: tempColor,
+          isNavigationBarLightIcon: true,
+          navigationBarContentColor: tempColor,
+        };
+        (tempWnd as ohosWindow.Window).setSystemBarProperties(systemBarProperties, (err, data) => {
+          console.log(msgStr + 'tempWnd.setSystemBarProperties err' + JSON.stringify(err));
+          if (err && err.code) {
+            try {
+              expect(TRUE_FLAG).assertFail();
+            } catch (error) {
+              console.info(`tempWnd.setSystemBarProperties catch error: ${JSON.stringify(error)}`)
+            }
+            done();
+            return;
+          }
+          if (i == commonNUMBERColorArr.length - 1) {
+            console.info(msgStr + 'setSystemBarPropertiesTest5 finished step:' + i);
+            done();
+          }
+        })
+      }
+    })
+    /**
+     * @tc.name   testSetSystemBarEnable_KeywordForm_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1360
+     * @tc.desc   TVerify the scene where the status bar and navigation bar colors are set as keywords
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetSystemBarEnable_KeywordForm_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_KeywordForm_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let tempWnd: ohosWindow.Window | void;
+      tempWnd = await windowStage.getMainWindow().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      expect(!!tempWnd).assertTrue();
+      await (tempWnd as ohosWindow.Window).show().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await (tempWnd as ohosWindow.Window).setFullScreen(true).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+        done();
+      });
+      await (tempWnd as ohosWindow.Window).setSystemBarEnable(['status', 'navigation']).catch((err: BusinessError) => {
+        console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      let loopCount: number = commonRGBColorArr.length
+      for (let i = 0; i < loopCount; i++) {
+        let tempColor: string = commonKEYColorArr[i];
+        let systemBarProperties: ohosWindow.SystemBarProperties = {
+          statusBarColor: tempColor,
+          isStatusBarLightIcon: true,
+          statusBarContentColor: tempColor,
+          navigationBarColor: tempColor,
+          isNavigationBarLightIcon: false,
+          navigationBarContentColor: tempColor,
+        };
+        (tempWnd as ohosWindow.Window).setSystemBarProperties(systemBarProperties, (err, data) => {
+          console.log(msgStr + 'tempWnd.setSystemBarProperties data' + JSON.stringify(data));
+          if (err && err.code) {
+            try {
+              expect(TRUE_FLAG).assertFail();
+            } catch (error) {
+              console.info(`tempWnd.setSystemBarProperties catch error: ${JSON.stringify(error)}`)
+            }
+            done();
+          }
+          if (i == commonRGBColorArr.length - 1) {
+            console.info(msgStr + 'setSystemBarPropertiesTest5 finished step:' + i);
+            done();
+          }
+        })
+      }
+    })
+    /**
+     * @tc.name   testCreate_Not_Exist_Win_Type_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0210
+     * @tc.desc   Verify the scenario of creating a window of a type that does not exist
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testCreate_Not_Exist_Win_Type_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testCreate_Not_Exist_Win_Type_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let tempType = 5000;
+      let windId = 'createTest7';
+      console.log(msgStr + 'ohosWindow.create ' + tempType + ' start');
+      ohosWindow.create(context, windId, tempType, (err, data) => {
+        console.log(msgStr + 'ohosWindow.create  data' + JSON.stringify(data));
+        if (err && err.code) {
+          try {
+            expect(err.code === 1003).assertTrue();
+          } catch (error) {
+            console.info(`ohosWindow.create catch error: ${JSON.stringify(error)}`)
+          }
+          done();
+          return;
+        }
+        unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.create', done);
+      })
+    })
+    /**
+     * @tc.name   testListener_Sys_AvoidAreaChange_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0750
+     * @tc.desc   Verify whether the change of avoidance area and change monitoring can be turned on normally
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testListener_Sys_AvoidAreaChange_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      await sleep(800)
+      let caseName: string = 'testListener_Sys_AvoidAreaChange_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      let listenerOnFlag = false;
+      console.log(msgStr + 'begin');
+      let tempWnd: ohosWindow.Window | void;
+      if((avoidArea1.topRect.width != 0 && avoidArea1.topRect.height != 0) && (isPCStatus == ''|| isPCStatus == '1')){
+          tempWnd = await windowStage.getMainWindow().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        expect().assertFail()
+      });
+      expect(!!tempWnd).assertTrue();
+      await (tempWnd as ohosWindow.Window).setWindowLayoutFullScreen(true).catch((err: BusinessError) => {
+        console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      (tempWnd as ohosWindow.Window).on('systemAvoidAreaChange', (avoidAreaData) => {
+        if (listenerOnFlag == true) {
+          console.log(msgStr + 'tempWnd.on systemAvoidAreaChange, listenerOnFlag : ' + listenerOnFlag);
+          try {
+            expect(!!avoidAreaData).assertTrue();
+          } catch (error) {
+            console.info(msgStr + `tempWnd.on catch error: ${JSON.stringify(error)}`)
+          }
+          (tempWnd as ohosWindow.Window).off('systemAvoidAreaChange')
+          done();
+        }
+      })
+      listenerOnFlag = true;
+      await sleep(800)
+      await (tempWnd as ohosWindow.Window).setWindowLayoutFullScreen(false).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      console.log(msgStr + 'tempWnd.setWindowLayoutFullScreen(false) success');
+      await sleep(800)
+      await (tempWnd as ohosWindow.Window).setSystemBarEnable([], (err: BusinessError) => {
+        if (err.code) {
+          console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+          expect().assertFail();
+          done();
+        } else {
+          console.log(msgStr + 'tempWnd.setSystemBarEnable([]) success');
+        }
+      })
+      await sleep(800)
+      await (tempWnd as ohosWindow.Window).setWindowLayoutFullScreen(true).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      console.log(msgStr + 'tempWnd.setWindowLayoutFullScreen(true) success');
+      await sleep(800)
+      await (tempWnd as ohosWindow.Window).setSystemBarEnable(['status', 'navigation'], (err: BusinessError) => {
+        if (err.code) {
+          console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
+          expect().assertFail();
+          done();
+        } else {
+          console.log(msgStr + 'tempWnd.setSystemBarEnable([status, navigation]) success');
+        }
+      })
+        }
+        else{
+          console.info(`${caseName} not support, isPCStatus: ${isPCStatus}`);
+          done();
+        }
+      
+    })
+    /**
+     * @tc.name   testLoadContent_Exist_Create_SysWin_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0790
+     * @tc.desc   Verify the scenario of loading an existing page
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testLoadContent_Exist_Create_SysWin_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Exist_Create_SysWin_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let tempWnd: ohosWindow.Window | void;
+      tempWnd = await windowStage.createSubWindow('testLoadContent_Exist_Create_SysWin_Callback').catch((err: BusinessError) => {
+        console.log(msgStr + 'windowStage.createSubWindow failed error: ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      console.log(msgStr + 'windowStage.createSubWindow success');
+      expect(!!tempWnd).assertTrue();
+
+      (tempWnd as ohosWindow.Window).loadContent('pages/index', async (err: BusinessError, data: void) => {
+        if (err && err.code) {
+          await (tempWnd as ohosWindow.Window).destroy();
+          expect(err.code).assertEqual(401);
+          done();
+        } else {
+          await (tempWnd as ohosWindow.Window).destroy();
+          expect().assertFail();
+          done();
+        }
+      })
+    })
+    /**
+     * @tc.name   testLoadContent_Para_Is_Null_Create_SysWin_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0870
+     * @tc.desc   Verify the scenario of loading a page that does not exist
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testLoadContent_Para_Is_Null_Create_SysWin_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Para_Is_Null_Create_SysWin_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let tempWnd: ohosWindow.Window | void;
+      tempWnd = await windowStage.createSubWindow('testLoadContent_Para_Is_Null_Create_SysWin_Callback').catch((err: BusinessError) => {
+        console.log(msgStr + 'windowStage.createSubWindow failed error: ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      console.log(msgStr + 'windowStage.createSubWindow success');
+      expect(!!tempWnd).assertTrue();
+      (tempWnd as ohosWindow.Window).loadContent(null, async (err: BusinessError, data: void) => {
+        if (err && err.code) {
+          try {
+            expect(err.code === 1003).assertTrue();
+          } catch (error) {
+            console.info(`tempWnd.loadContent catch error: ${JSON.stringify(error)}`)
+          }
+          await (tempWnd as ohosWindow.Window).destroy();
+          done()
+        } else {
+          await (tempWnd as ohosWindow.Window).destroy();
+          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.loadContent', done);
+        }
+      })
+    })
+    /**
+     * @tc.name   testLoadContent_Exist_Input_Para_Path_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0830
+     * @tc.desc   Verify the scenario of loading an existing page
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testLoadContent_Exist_Input_Para_Path_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Exist_Input_Para_Path_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      windowStage.loadContent('testability/pages/second/second', (err: BusinessError, data: void) => {
+        if (err && err.code) {
+          unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.loadContent', done);
+          console.log(msgStr + 'windowStage loadContent testability/pages/second/second' + JSON.stringify(err));
+        } else {
+          try {
+            expect(!Boolean(data)).assertTrue();
+          } catch (error) {
+            console.info(`windowStage.loadContent catch error: ${JSON.stringify(error)}`)
+          }
+          console.log(msgStr + 'windowStage.loadContent end data=' + JSON.stringify(data));
+          done();
+        }
+      })
+    })
+    /**
+     * @tc.name   testLoadContent_Input_Para_Is_Null_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0850
+     * @tc.desc   Verify the scenario of loading an existing page
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testLoadContent_Input_Para_Is_Null_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Input_Para_Is_Null_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+
+      try {
+        windowStage.loadContent(null, (err, data) => {
+          console.log(msgStr + 'windowStage loadContent null' + JSON.stringify(err));
+          try {
+            expect(false).assertTrue();
+          } catch (error) {
+            console.info(`windowStage.loadContent catch error: ${JSON.stringify(error)}`)
+          }
+          done();
+        });
+      } catch (err) {
+        console.log(msgStr + 'windowStage loadContent null catch err' + JSON.stringify(err));
+        try {
+          expect(err.code == 401).assertTrue();
+        } catch (error) {
+          console.info(`windowStage.loadContent catch error: ${JSON.stringify(error)}`)
+        }
+        done();
+      }
+      console.log(msgStr + 'end');
+    })
+    /**
+     * @tc.name   testLoadContent_Exist_Input_Para_PathAndStorage_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0810
+     * @tc.desc   Verify the scenario of loading an existing page
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testLoadContent_Exist_Input_Para_PathAndStorage_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Exist_Input_Para_PathAndStorage_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+
+      windowStage.loadContent('testability/pages/second/second', abilityStorage, (err: BusinessError, data: void) => {
+        if (err && err.code) {
+          unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.loadContent', done);
+          console.log(msgStr + 'windowStage loadContent testability/pages/second/second' + JSON.stringify(err));
+        } else {
+          try {
+            expect(!Boolean(data)).assertTrue();
+          } catch (error) {
+            console.info(`windowStage.loadContent catch error: ${JSON.stringify(error)}`)
+          }
+          done();
+          console.log(msgStr + 'windowStage.loadContent end data=' + JSON.stringify(data));
+        }
+      })
+    })
+    /**
+     * @tc.name   testLoadContent_Para_PathAndStorage_Is_Null_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0890
+     * @tc.desc   Verify the scenario of loading an existing page
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testLoadContent_Para_PathAndStorage_Is_Null_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Para_PathAndStorage_Is_Null_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+
+      try {
+        windowStage.loadContent(null, abilityStorage, (err, data) => {
+          console.log(msgStr + 'windowStage loadContent null ' + JSON.stringify(err));
+          try {
+            expect(false).assertTrue();
+          } catch (error) {
+            console.info(`windowStage.loadContent catch error: ${JSON.stringify(error)}`)
+          }
+          done();
+        });
+      } catch (err) {
+        console.log(msgStr + 'windowStage loadContent null catch err ' + JSON.stringify(err));
+        try {
+          expect(err.code === 401).assertTrue();
+        } catch (error) {
+          console.info(`windowStage.loadContent catch error: ${JSON.stringify(error)}`)
+        }
+        done();
+      }
+    })
+    /**
+     * @tc.name   testCreateSubWindow_WinName_IsNot_Empty_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0040
+     * @tc.desc   Verify the scenario of creating an auxiliary window
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testCreateSubWindow_WinName_IsNot_Empty_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testCreateSubWindow_WinName_IsNot_Empty_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let subWnd: ohosWindow.Window
+
+      let createSubWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          windowStage.createSubWindow('createSubWindowTest3', (err, data) => {
+            if (err && err.code) {
+              reject(null)
+              console.log(msgStr + 'windowStage.createSubWindow(createSubWindowTest3) err=' + JSON.stringify(err));
+            } else {
+              resolve(data)
+            }
+
+          })
+        })
+      }
+
+      let findWin: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          ohosWindow.find('createSubWindowTest3', (err, data) => {
+            if (err && err.code) {
+              reject(false)
+            } else {
+              resolve(data)
+            }
+          })
+        })
+      }
+
+      let destroyWin: Function = (win: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          win.destroy((err, data) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      subWnd = await createSubWindow().catch((err: BusinessError) => {
+        console.info(`ohosWindow.create failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      expect(!!subWnd).assertTrue();
+
+      let subWindow: ohosWindow.Window;
+      subWindow = await findWin().catch((err: BusinessError) => {
+        console.info(`ohosWindow.find failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+
+      await destroyWin(subWindow).catch((err: BusinessError) => {
+        console.info(`ohosWindow.destroy failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      let subWindowLast: ohosWindow.Window;
+      subWindowLast = await findWin().catch((err: BusinessError) => {
+        console.info(`ohosWindow.find failed  error: ${JSON.stringify(err)}`)
+        expect(!err).assertTrue();
+        done()
+      })
+    })
+    /**
+     * @tc.name   testCreateSubWindow_WinName_Is_Null_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0060
+     * @tc.desc   Verify the scene of entering illegal values to create an auxiliary window
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testCreateSubWindow_WinName_Is_Null_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testCreateSubWindow_WinName_Is_Null_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      try {
+        windowStage.createSubWindow(null, (err, data) => {
+          console.log(msgStr + 'windowStage.createSubWindow(null) err=' + JSON.stringify(err));
+          try {
+            expect(false).assertTrue();
+          } catch (error) {
+            console.info(`windowStage.createSubWindow catch error: ${JSON.stringify(error)}`)
+          }
+          done();
+        });
+      } catch (err) {
+        try {
+          expect(err.code === 401).assertTrue();
+        } catch (error) {
+          console.info(`tempWnd.show catch error: ${JSON.stringify(error)}`)
+        }
+        done();
+        console.log(msgStr + 'windowStage.createSubWindow(null) catch err=' + JSON.stringify(err));
+      }
+    })
+    /**
+     * @tc.name   testGetSubWindow_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0570
+     * @tc.desc   Verify the scene of obtaining all auxiliary sub windows
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testGetSubWindow_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testGetSubWindow_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+
+      windowStage.getSubWindow((err, data) => {
+        if (err && err.code) {
+          unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.getSubWindow', done);
+          console.log(msgStr + 'windowStage.getSubWindow(null) err=' + JSON.stringify(err));
+        } else {
+          try {
+            expect(!!data).assertTrue();
+          } catch (error) {
+            console.info(`windowStage.getSubWindow catch error: ${JSON.stringify(error)}`)
+          }
+          done();
+          console.log(msgStr + 'windowStage.getSubWindow end data=' + JSON.stringify(data));
+        }
+      })
+    })
+    /**
+     * @tc.name   testSetPrivacyMode_AppSubWin_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1190
+     * @tc.desc   Verify the scene where the application sub window is set as a security layer
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetPrivacyMode_AppSubWin_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetPrivacyMode_AppSubWin_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      let tempWnd: ohosWindow.Window | void;
+
+      let getWinProperties: Function = (win: ohosWindow.Window) => {
+        return new Promise<ohosWindow.WindowProperties>((resolve, reject) => {
+          win.getProperties((err: BusinessError, data: ohosWindow.WindowProperties) => {
+            if (err.code != 0) {
+              reject(null)
+            } else {
+              resolve(data)
+            }
+          })
+        })
+      }
+
+      let setPrivacyModeWin: Function = (win: ohosWindow.Window, boolean: boolean) => {
+        return new Promise<boolean>((resolve, reject) => {
+          win.setPrivacyMode(boolean, (err) => {
+            if (err && err.code) {
+              console.log(msgStr + 'mainWnd.setPrivacyMode(true) err=' + JSON.stringify(err));
+              reject(null)
+            } else {
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      tempWnd = await windowStage.createSubWindow('testSetPrivacyMode_AppSubWin_Callback').catch((err: BusinessError) => {
+        console.log(msgStr + 'windowStage.createSubWindow failed error: ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      console.log(msgStr + 'windowStage.createSubWindow success');
+      expect(!!tempWnd).assertTrue();
+      await setPrivacyModeWin(tempWnd, true).catch((err: BusinessError) => {
+        console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      let windowProperties_true: ohosWindow.WindowProperties;
+      windowProperties_true = await getWinProperties(tempWnd).catch((err: BusinessError) => {
+        console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      console.info(msgStr + `ohosWindow.windowProperties_true : ${JSON.stringify(windowProperties_true)}`)
+      expect(windowProperties_true.isPrivacyMode).assertTrue();
+
+      await setPrivacyModeWin(tempWnd, false).catch((err: BusinessError) => {
+        console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      let windowProperties_false: ohosWindow.WindowProperties;
+      windowProperties_false = await getWinProperties(tempWnd).catch((err: BusinessError) => {
+        console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      console.info(msgStr + `ohosWindow.windowProperties_false : ${JSON.stringify(windowProperties_false)}`)
+      expect(!windowProperties_false.isPrivacyMode).assertTrue();
+      await (tempWnd as ohosWindow.Window).destroy();
+      done();
+    })
+    /**
+     * @tc.name   testSetPrivacyMode_createSubWindow_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1210
+     * @tc.desc   Verify that the auxiliary window is set as the security layer
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetPrivacyMode_createSubWindow_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetPrivacyMode_createSubWindow_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin ohosWindow =' + JSON.stringify("ohosWindow"));
+
+      let createSubWindowFun: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          windowStage.createSubWindow('setPrivacyModeTest3', (err, data) => {
+            if (err && err.code) {
+              console.log(msgStr + 'windowStage.createSubWindow fail err:' + JSON.stringify(err));
+              reject(null)
+            } else {
+              resolve(data)
+            }
+          })
+        })
+      }
+
+      let getPropertiesFun: Function = (win: ohosWindow.Window) => {
+        return new Promise<ohosWindow.WindowProperties>((resolve, reject) => {
+          win.getProperties((err, data) => {
+            if (err.code != 0) {
+              reject(null)
+            } else {
+              resolve(data)
+            }
+          })
+        })
+      }
+
+      let setPrivacyModeFun: Function = (win: ohosWindow.Window, boolean: boolean) => {
+        return new Promise<boolean>((resolve, reject) => {
+          win.setPrivacyMode(boolean, (err, data) => {
+            if (err && err.code) {
+              reject(null)
+            } else {
+              resolve(true)
+            }
+          })
+        })
+      }
+
+      let tempWnd: ohosWindow.Window = await createSubWindowFun().catch((err: BusinessError) => {
+        console.info(msgStr + `ohosWindow.create failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      expect(!!tempWnd).assertTrue();
+      await setPrivacyModeFun(tempWnd, true).catch((err: BusinessError) => {
+        console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      let windowProperties_true: ohosWindow.WindowProperties;
+      windowProperties_true = await getPropertiesFun(tempWnd).catch((err: BusinessError) => {
+        console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      console.info(msgStr + `ohosWindow.windowProperties_true : ${JSON.stringify(windowProperties_true)}`)
+      expect(windowProperties_true.isPrivacyMode).assertTrue();
+
+      await setPrivacyModeFun(tempWnd, false).catch((err: BusinessError) => {
+        console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      let windowProperties_false: ohosWindow.WindowProperties;
+      windowProperties_false = await getPropertiesFun(tempWnd).catch((err: BusinessError) => {
+        console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
+        expect().assertFail();
+        done();
+      })
+      console.info(msgStr + `ohosWindow.windowProperties_false : ${JSON.stringify(windowProperties_false)}`)
+      expect(!windowProperties_false.isPrivacyMode).assertTrue();
+      await tempWnd.destroy();
+      done();
+    })
+    /**
+     * @tc.name   testSetPreferredOrientation_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1170
+     * @tc.desc   Sets the display direction property of the window
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetPreferredOrientation_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetPreferredOrientation_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let mainWin: ohosWindow.Window | void;
+      let orientationItem = ['UNSPECIFIED', 'PORTRAIT', 'LANDSCAPE', 'PORTRAIT_INVERTED',
+        'LANDSCAPE_INVERTED', 'AUTO_ROTATION', 'AUTO_ROTATION_PORTRAIT', 'AUTO_ROTATION_LANDSCAPE',
+        'AUTO_ROTATION_RESTRICTED', 'AUTO_ROTATION_PORTRAIT_RESTRICTED', 'AUTO_ROTATION_LANDSCAPE_RESTRICTED', 'LOCKED','AUTO_ROTATION_UNSPECIFIED',
+        'USER_ROTATION_PORTRAIT', 'USER_ROTATION_LANDSCAPE','USER_ROTATION_PORTRAIT_INVERTED','USER_ROTATION_LANDSCAPE_INVERTED','FOLLOW_DESKTOP','UNSPECIFIED'];
+
+      let setPreferredOrientationFun: Function = (win: ohosWindow.Window, orientation: ohosWindow.Orientation) => {
+        return new Promise<boolean>((resolve, reject) => {
+          try {
+            win.setPreferredOrientation(orientation, (err) => {
+              if (err.code) {
+                console.error(msgStr + 'Failed to set window orientation. Cause: ' + JSON.stringify(err));
+                reject(null)
+              } else {
+                console.info(msgStr + 'Succeeded in setting window orientation.');
+                resolve(true)
+              }
+            });
+          } catch (exception) {
+            console.error(msgStr + 'Failed to set window orientation. Cause: ' + JSON.stringify(exception));
+            reject(null)
+          }
+        })
+      }
+
+      mainWin = await windowStage.getMainWindow().catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      });
+      expect(!!mainWin).assertTrue();
+      for (let i = 0; i < orientationItem.length; i++) {
+        await sleep(900)
+        await sleep(900)
+        let orientation: ohosWindow.Orientation = ohosWindow.Orientation[orientationItem[i]]
+        await setPreferredOrientationFun(mainWin, orientation).catch((err: BusinessError) => {
+          console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+          expect().assertFail();
+          done();
+        });
+        await sleep(900)
+        await sleep(300)
+        console.info(msgStr + 'Succeeded in setting window orientation. orientation: ' + orientation + "step: " + i);
+      }
+      done()
+    })
+    /**
+     * @tc.name   testSnapshotTest_Callback_Form
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_2150
+     * @tc.desc   Scenario of screenshot of verification window
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSnapshotTest_Callback_Form', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSnapshotTest_Callback_Form';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let mainWin: ohosWindow.Window | void
+      mainWin = await windowStage.getMainWindow().catch((err: BusinessError) => {
+        unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.getMainWindow', done);
+      });
+      console.log(msgStr + 'windowStage.getMainWindow' + JSON.stringify(mainWin));
+
+      expect(!!mainWin).assertTrue();
+      let properties = (mainWin as ohosWindow.Window).getWindowProperties();
+      let windowWidth:number = properties.windowRect.width;
+      let windowHeight:number = properties.windowRect.height;
+      console.log(msgStr + 'mainWin.getWindowProperties' + JSON.stringify(properties));
+      (mainWin as ohosWindow.Window).snapshot(async (err, pixelMap: image.PixelMap) => {
+        if (err && err.code) {
+          console.log(msgStr + 'snapshot err.code:' + JSON.stringify(err.code));
+          try {
+            expect().assertFail();
+          } catch (error) {
+            console.info(`expected catch error: ${JSON.stringify(error)}`)
+          }
+          done();
+          return;
+        }
+        console.info(msgStr + 'Succeeded in snapshotting window.');
+        await pixelMap.getImageInfo().then((imageInfo: image.ImageInfo) => {
+          console.log(msgStr + 'pixelMap imageInfo' + JSON.stringify(imageInfo));
+          let imageWidth:number = imageInfo.size.width;
+          let imageHeight:number = imageInfo.size.height;
+          expect(imageWidth).assertEqual(windowWidth);
+          expect(imageHeight).assertEqual(windowHeight);
+          done();
+        })
+      })
+    })
+    /**
+     * @tc.name   testDialogTargetTouch_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0320
+     * @tc.desc   Verify the scenario of opening modal window
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testDialogTargetTouch_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testDialogTargetTouch_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      let tempType = ohosWindow.WindowType.TYPE_DIALOG
+      let dialogTargetTouchTest2Win: ohosWindow.Window
+      ohosWindow.create(context, 'dialogTargetTouchTest2', tempType, async (err, data) => {
+        if (err && err.code) {
+          unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.create', done);
+        } else {
+          dialogTargetTouchTest2Win = data
+          try {
+            expect(!!dialogTargetTouchTest2Win).assertTrue();
+          } catch (error) {
+            console.info(`tempWnd.show catch error: ${JSON.stringify(error)}`)
+          }
+          await dialogTargetTouchTest2Win.destroy()
+          done();
+        }
+      })
+    })
+    /**
+     * @tc.name   testSetAspectRatio_Cancel_Upon_Success_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1070
+     * @tc.desc   Validate the scenario cancelled after setting the proportion of the content layout of the main window
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetAspectRatio_Cancel_Upon_Success_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetAspectRatio_Cancel_Upon_Success_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let mainWnd: ohosWindow.Window;
+      await windowStage.getMainWindow().then((data) => {
+        mainWnd = data;
+        console.info(msgStr + 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+      });
+
+      let setAspectRatio: Function = () => {
+        return new Promise<boolean>((resolve, reject) => {
+          try {
+            let ratio = 1.0;
+            mainWnd.setAspectRatio(ratio, (err) => {
+              if (err.code) {
+                console.error(msgStr + 'Failed to set the aspect ratio of window. err.code:' + JSON.stringify(err.code));
+              }
+              try {
+                expect(err.code == 0).assertTrue();
+              } catch (error) {
+                console.info(`expected catch error: ${JSON.stringify(error)}`)
+              }
+              resolve(true)
+            });
+          } catch (exception) {
+            console.error(msgStr + 'Failed to set the aspect ratio of window. Cause : ' + JSON.stringify(exception));
+          }
+        })
+      }
+
+      let resetAspectRatio: Function = () => {
+        return new Promise<void>((resolve, reject) => {
+          console.info(msgStr + 'Succeeded start');
+          try {
+            mainWnd.resetAspectRatio((err) => {
+              if (err.code) {
+                console.error(msgStr + 'Failed to reset the aspect ratio of window. err:' + JSON.stringify(err));
+                try {
+                  expect().assertFail();
+                } catch (error) {
+                  console.info(`expected catch error: ${JSON.stringify(error)}`)
+                }
+                done();
+                return;
+              }
+              console.info(msgStr + 'Succeeded in resetting aspect ratio of window.');
+              done();
+            });
+          } catch (exception) {
+            console.error(msgStr + 'Failed to reset the aspect ratio of window. Cause: ' + JSON.stringify(exception));
+          }
+        })
+      }
+
+      await setAspectRatio()
+      await resetAspectRatio()
+    })
+    /**
+     * @tc.name   testSetAspectRatio_Invalid_Params_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_2330
+     * @tc.desc   Validate the scenario where the content layout proportion of the main window is abnormal
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testSetAspectRatio_Invalid_Params_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let caseName: string = 'testSetAspectRatio_Invalid_Params_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let mainWnd: ohosWindow.Window;
+      await windowStage.getMainWindow().then((data) => {
+        mainWnd = data;
+        console.info(msgStr + 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
+        console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+      });
+
+      let setAspectRatio: Function = () => {
+        return new Promise<void>((resolve, reject) => {
+          try {
+            let ratio = 0;
+            mainWnd.setAspectRatio(ratio, (err) => {
+              if (err.code) {
+                console.error(msgStr + 'Failed to set the aspect ratio of window. err.code:' + JSON.stringify(err.code));
+                try {
+                  expect().assertFail();
+                } catch (error) {
+                  console.info(`expected catch error: ${JSON.stringify(error)}`)
+                }
+                done();
+                return;
+              }
+            });
+          } catch (exception) {
+            console.error(msgStr + 'Failed to set the aspect ratio of window. Cause : ' + JSON.stringify(exception));
+            expectedError(TRUE_FLAG, exception, caseName, 'mainWnd.setAspectRatio', done, 401);
+          }
+        })
+      }
+
+      await setAspectRatio()
+    })
+
+    /**
+     * @tc.name   test_loadContentByName_callback_withstorage
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_LOADCONTENTBYNAME_JS_API_2340
+     * @tc.desc   Test the function of loadContentByName withstorage callback
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('test_loadContentByName_callback_withstorage', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let msg = "test_loadContentByName_callback_withstorage"
+      try {
+        windowStage.loadContentByName("Index1", abilityStorage, (err: BusinessError) => {
+          const errCode = err.code;
+          if (errCode) {
+            console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(err));
+            expect().assertFail()
+            done()
+          } else {
+            console.info(msg + 'Succeeded in loading the content.');
+            expect(true).assertTrue()
+            done()
+          }
+        });
+      } catch (exception) {
+        console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(exception));
+        expect().assertFail()
+        done()
+      }
+    });
+    /**
+     * @tc.name   test_loadContentByName_callback_withoutstorage
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_LOADCONTENTBYNAME_JS_API_2350
+     * @tc.desc   Test the function of loadContentByName withoutstorage callback
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('test_loadContentByName_callback_withoutstorage', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let msg = "test_loadContentByName_callback_withoutstorage"
+      try {
+        windowStage.loadContentByName("Index1", (err: BusinessError) => {
+          const errCode = err.code;
+          if (errCode) {
+            console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(err));
+            expect().assertFail()
+            done()
+          } else {
+            console.info(msg + 'Succeeded in loading the content.');
+            expect(true).assertTrue()
+            done()
+          }
+        });
+      } catch (exception) {
+        console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(exception));
+        expect().assertFail()
+        done()
+      }
+    });
+    /**
+     * @tc.name   test_loadContentByName_Promise
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_LOADCONTENTBYNAME_JS_API_2360
+     * @tc.desc   Test the function of loadContentByName Promise
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('test_loadContentByName_Promise', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let msg = "test_loadContentByName_Promise"
+      try {
+        let promise = windowStage.loadContentByName("Index1", abilityStorage);
+        promise.then(() => {
+          console.info(msg + 'Succeeded in loading the content.');
+          expect(true).assertTrue()
+          done()
+        }).catch((err: BusinessError) => {
+          console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(err));
+          expect().assertFail()
+          done()
+        });
+      } catch (exception) {
+        console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(exception));
+        expect().assertFail()
+        done()
+      }
+    });
+    /**
+     * @tc.name   testGetTitleButtonRect
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0100
+     * @tc.desc   Test the function of getTitleButtonRect
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testGetTitleButtonRect', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let msgStr: string = 'testGetTitleButtonRect';
+      console.log(msgStr + 'begin');
+      let windowClass: ohosWindow.Window = await ohosWindow.getLastWindow(context);
+      try {
+        let TitleButtonRect = windowClass.getTitleButtonRect();
+        console.log(msgStr + 'Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(TitleButtonRect));
+        expect(TitleButtonRect.right !== null).assertTrue();
+        expect(TitleButtonRect.top !== null).assertTrue();
+        expect(TitleButtonRect.height !== null).assertTrue();
+        expect(TitleButtonRect.width !== null).assertTrue();
+        done();
+      } catch (error) {
+        console.log(msgStr + 'Failed to get the area of title buttons. Cause: ' + JSON.stringify(error));
+        if (error.code == 801) {
+          expect(true).assertTrue()
+          done()
+        } else {
+          expect().assertFail();
+          done();
+        }
+      }
+    });
+
+    /**
+     * @tc.name   testWindowTitleButtonRectChange_on_Function_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0200
+     * @tc.desc   Test the function of windowTitleButtonRectChange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testWindowTitleButtonRectChange_on_Function_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let msgStr: string = 'testWindowTitleButtonRectChange_on';
+      console.log(msgStr + "begin on")
+      try {
+        let windowClass: ohosWindow.Window = await ohosWindow.getLastWindow(context);
+        windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
+          console.log(msgStr + 'Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
+          expect(true).assertTrue();
+          done();
+        });
+        expect(true).assertTrue();
+        done();
+      } catch (err) {
+        console.log(msgStr + 'Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(err));
+        if (err.code == 801) {
+          expect(true).assertTrue()
+          done()
+        } else {
+          expect().assertFail();
+          done();
+        }
+      }
+    });
+
+
+    /**
+     * @tc.name   testWindowTitleButtonRectChange_off_Function_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0300
+     * @tc.desc   Test the function of windowTitleButtonRectChange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testWindowTitleButtonRectChange_off_Function_Callback', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let msgStr: string = 'testWindowTitleButtonRectChange_off';
+      console.log(msgStr + 'begin off');
+      try {
+        let windowClass: ohosWindow.Window = await ohosWindow.getLastWindow(context);
+        windowClass.off('windowTitleButtonRectChange');
+        console.log(msgStr + 'Succeeded in enabling the listener for window title buttons area changes');
+        expect(true).assertTrue();
+        done();
+      } catch (error) {
+        console.log(msgStr + 'Failed to disable the listener for window title buttons area changes. Cause: ' + JSON.stringify(error));
+        if (error.code == 1300002) {
+          expect(true).assertTrue()
+          done()
+        } else {
+          expect().assertFail();
+          done();
+        }
+      }
+    });
+
+
+    /**
+     * @tc.name   testEnumWindow_windowType
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_2630
+     * @tc.desc   window type enumeration
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('testEnumWindow_windowType', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async () => {
+      console.info('testEnumWindow_windowType test the enum value of windowType begin');
+      console.info('testEnumWindow_windowType' + JSON.stringify(ohosWindow.WindowType.TYPE_FLOAT));
+      try {
+        expect(1).assertEqual(ohosWindow.WindowType.TYPE_SYSTEM_ALERT);
+        expect(2).assertEqual(ohosWindow.WindowType.TYPE_INPUT_METHOD);
+        expect(3).assertEqual(ohosWindow.WindowType.TYPE_STATUS_BAR);
+        expect(4).assertEqual(ohosWindow.WindowType.TYPE_PANEL);
+        expect(5).assertEqual(ohosWindow.WindowType.TYPE_KEYGUARD);
+        expect(6).assertEqual(ohosWindow.WindowType.TYPE_VOLUME_OVERLAY);
+        expect(7).assertEqual(ohosWindow.WindowType.TYPE_NAVIGATION_BAR);
+        expect(8).assertEqual(ohosWindow.WindowType.TYPE_FLOAT);
+        expect(9).assertEqual(ohosWindow.WindowType.TYPE_WALLPAPER);
+        expect(10).assertEqual(ohosWindow.WindowType.TYPE_DESKTOP);
+        expect(11).assertEqual(ohosWindow.WindowType.TYPE_LAUNCHER_RECENT);
+        expect(12).assertEqual(ohosWindow.WindowType.TYPE_LAUNCHER_DOCK);
+        expect(13).assertEqual(ohosWindow.WindowType.TYPE_VOICE_INTERACTION);
+        expect(14).assertEqual(ohosWindow.WindowType.TYPE_POINTER);
+        expect(15).assertEqual(ohosWindow.WindowType.TYPE_FLOAT_CAMERA);
+        expect(16).assertEqual(ohosWindow.WindowType.TYPE_DIALOG);
+        expect(17).assertEqual(ohosWindow.WindowType.TYPE_SCREENSHOT);
+      } catch (error) {
+        console.info('test Enum value of windowType error ' + JSON.stringify(error));
+        expect().assertFail();
+      }
+    });
+    /**
+     * @tc.name   test_windowClassLoadContentByName_callback_withstorage
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_LOADCONTENTBYNAME_JS_API_3880
+     * @tc.desc   Test the function of windowClass windowClassLoadContentByName withstorage callback
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('test_windowClassLoadContentByName_callback_withstorage', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let msg = "test_windowClassLoadContentByName_callback_withstorage"
+      let windowClass: ohosWindow.Window = windowStage.getMainWindowSync()
+      let storage: LocalStorage = new LocalStorage()
+      storage.setOrCreate('storageSimpleProp', 121)
+      console.log(msg + ' begin')
+
+      try {
+        windowClass.loadContentByName("Index1", storage, (err: BusinessError) => {
+          const errCode: number = err.code;
+          if (errCode) {
+            console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(err));
+            expect().assertFail()
+            done()
+          } else {
+            console.info(msg + 'Succeeded in loading the content.');
+            expect(true).assertTrue()
+            done()
+          }
+
+        });
+      } catch (exception) {
+        console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(exception));
+        expect().assertFail()
+        done()
+      }
+    });
+
+    /**
+     * @tc.name   test_windowClassLoadContentByName_callback_withoutstorage
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_LOADCONTENTBYNAME_JS_API_3890
+     * @tc.desc   Test the function of windowClassLoadContentByName withoutstorage callback
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('test_windowClassLoadContentByName_callback_withoutstorage', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+      let msg = "test_windowClassLoadContentByName_callback_withoutstorage"
+      let windowClass: ohosWindow.Window = windowStage.getMainWindowSync()
+      console.log(msg + ' begin')
+
+      try {
+        windowClass.loadContentByName("Index1", (err: BusinessError) => {
+          const errCode = err.code;
+          if (errCode) {
+            console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(err));
+            expect().assertFail()
+            done()
+          } else {
+            console.info(msg + 'Succeeded in loading the content.');
+            expect(true).assertTrue()
+            done()
+          }
+        });
+
+      } catch (exception) {
+        console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(exception));
+        expect().assertFail()
+        done()
+      }
+    });
+
+
+    /**
+     * @tc.name   test_windowClassLoadContentByName_Promise
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_LOADCONTENTBYNAME_JS_API_3900
+     * @tc.desc   Test the function of windowClassLoadContentByName Promise
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it('test_windowClassLoadContentByName_Promise', TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) => {
+
+      let msg = "test_windowClassLoadContentByName_Promise"
+      let windowClass: ohosWindow.Window = windowStage.getMainWindowSync();
+      let storage: LocalStorage = new LocalStorage();
+      console.log(msg + ' begin')
+      try {
+        let promise = windowClass.loadContentByName("Index1", storage);
+        promise.then(() => {
+          console.info(msg + 'Succeeded in loading the content.');
+          expect(true).assertTrue()
+          done()
+        }).catch((err: BusinessError) => {
+          console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(err));
+          expect().assertFail()
+          done()
+        });
+      } catch (exception) {
+        console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(exception));
+        expect().assertFail()
+        done()
+      }
+    })
+
+
+    
+
+    /**
+     * @tc.name   testNoInteractionDetected_on_Function_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3980
+     * @tc.desc   window type noInteractionDetected
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it("testNoInteractionDetected_on_Function_Callback", TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) =>{
+      let msgStr = "testNoInteractionDetected_on_Function_Callback";
+      console.log(msgStr + "begin");
+      try{
+        console.log(msgStr + "try begin")
+        let windowClass: ohosWindow.Window = await ohosWindow.getLastWindow(context);
+        windowClass.on('noInteractionDetected', 60, () => {
+          console.log(msgStr + 'no interaction in 60s');
+        });
+        expect(true).assertTrue();
+        done();
+      } catch (error) {
+        console.log(msgStr + 'Failed to register callback. Cause: ' + JSON.stringify(error));
+        if (error.code != 801) {
+          console.log(msgStr + 'Failed to register callback. Cause: ' + JSON.stringify(error));
+          expect().assertFail();
+          done();
+        } else {
+          console.log(msgStr + '当前设备类型不支持系统能力SystemCapability.Window.SessionManager');
+          expect(error.code).assertEqual(801);
+          done();
+        }
+      }
+    })
+
+    /**
+     * @tc.name   testNoInteractionDetected_off_Function_Callback
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3990
+     * @tc.desc   window type noInteractionDetected
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL3
+     */
+    it("testNoInteractionDetected_off_Function_Callback", TestType.FUNCTION|Size.MEDIUMTEST|Level.LEVEL3, async (done: Function) =>{
+      let msgStr = "tetestNoInteractionDetected_off_Function_Callback";
+      console.log(msgStr + "begin");
+      try{
+        console.log(msgStr + "try begin");
+        let windowClass: ohosWindow.Window = await ohosWindow.getLastWindow(context);
+        windowClass.off('noInteractionDetected');
+        console.log(msgStr + "noInteractionDetected");
+        expect(true).assertTrue();
+        done();
+      } catch (error) {
+        console.log(msgStr + 'Failed to unregister callback. Cause: ' + JSON.stringify(error));
+        if (error.code != 801) {
+          console.log(msgStr + 'Failed to unregister callback. Cause: ' + JSON.stringify(error));
+          expect().assertFail();
+          done();
+        } else {
+          console.log(msgStr + '当前设备类型不支持系统能力SystemCapability.Window.SessionManager');
+          expect(error.code).assertEqual(801);
+          done();
+        }
+      }
+    })
+
+  })
+}

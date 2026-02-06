@@ -1,0 +1,28 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "1200000",
+    "shell-timeout": "900000",
+    "testcase-timeout": "600000",
+    "bundle-name": "com.openharmony.certificate_manager_func",
+    "module-name": "entry_test"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsCertificateManagerJsFuncTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },{
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "uinput -T -m 300 2700 280 200",
+            "power-shell timeout -o 86400000",
+            "power-shell setmode 602"
+        ]
+    }
+  ]
+}

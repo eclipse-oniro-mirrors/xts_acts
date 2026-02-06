@@ -1,0 +1,14 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/api12/composeListItemIconType",
+    "MainAbility/pages/api12/composeListItemOperateItemArrow",
+    "MainAbility/pages/api12/composeListItemOperateItemButton",
+    "MainAbility/pages/api12/composeListItemOperateItemCheckbox",
+    "MainAbility/pages/api12/composeListItemOperateItemImage",
+    "MainAbility/pages/api12/composeListItemOperateItemRadio",
+    "MainAbility/pages/api12/composeListItemOperateItemSubIcon",
+    "MainAbility/pages/api12/composeListItemOperateItemSwitch",
+    "MainAbility/pages/api12/composeListItemPageTest"
+  ]
+}

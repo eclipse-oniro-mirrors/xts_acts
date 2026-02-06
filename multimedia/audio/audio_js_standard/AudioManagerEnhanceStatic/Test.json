@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for audio manager enhance Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "3000000",
+        "bundle-name":"com.example.xts_audiomanager.static",
+        "shell-timeout": "600000",
+        "testcase-timeout": 100000,
+        "module-name": "entry"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioManagerEnhanceStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ],
+            "teardown-command":[
+                "power-shell setmode 600"
+            ]
+        }
+    ]
+}

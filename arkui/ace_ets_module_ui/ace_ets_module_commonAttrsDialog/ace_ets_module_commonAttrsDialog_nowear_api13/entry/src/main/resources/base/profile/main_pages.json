@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/bindSheetTest/bindSheetKeyboardAvoidMode",
+        "MainAbility/pages/menuControl/bindContextMenuAnchorPosition",
+        "MainAbility/pages/menuControl/bindMenuAnchorPosition"
+    ]
+}

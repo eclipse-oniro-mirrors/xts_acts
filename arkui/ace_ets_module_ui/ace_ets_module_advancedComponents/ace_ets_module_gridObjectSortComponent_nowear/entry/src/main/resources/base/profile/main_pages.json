@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/gridObjectSortComponent/gridObjectSortComponentTest",
+    "MainAbility/pages/gridObjectSortComponent/gridObjectSortComponentTextTest",
+    "MainAbility/pages/gridObjectSortComponent/GridObjectSortComponentSymbolTest"
+  ]
+}

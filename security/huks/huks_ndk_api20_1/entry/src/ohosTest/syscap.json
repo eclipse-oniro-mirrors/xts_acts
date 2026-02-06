@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Security.Huks.Core",
+                    "SystemCapability.Security.Huks.Extension"
+                ]
+            }
+        ]
+    }
+}

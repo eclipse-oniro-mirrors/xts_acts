@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "AI Neural Network Runtime Interface Test Module"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "AI NNRT Interface Test Entry Ability"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "NNRT Interface Test"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include "common/common.h"
+#include <arkui/native_gesture.h>
+#include <arkui/native_node_napi.h>
+#include <arkui/native_interface.h>
+#include <arkui/native_type.h>
+#include <arkui/native_node.h>
+#include <ace/xcomponent/native_interface_xcomponent.h>
+#include "ani/ani.h"
+
+namespace ArkUIAniTest {
+
+static ani_double native_001(ani_env* env, ani_object info)
+{
+    auto result = OH_ArkUI_GetContextByNode(nullptr);
+    ASSERT_OBJ(result,nullptr);
+    NAPI_END;
+}
+static ani_double native_002(ani_env* env, ani_object info)
+{
+    char buffer[50];
+    constexpr int32_t SMALL_BUFFER_LEN = 1;
+    constexpr int32_t INIT_VAL = -10;
+    int32_t resLen = INIT_VAL;
+    auto result = OH_ArkUI_GetNavigationId(nullptr,buffer,SMALL_BUFFER_LEN,&resLen);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+static ani_double native_003(ani_env* env, ani_object info)
+{
+    char buffer[50];
+    constexpr int32_t SMALL_BUFFER_LEN = 1;
+    constexpr int32_t INIT_VAL = -10;
+    int32_t resLen = INIT_VAL;
+    auto result = OH_ArkUI_GetNavDestinationName(nullptr,buffer,SMALL_BUFFER_LEN,&resLen);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+static ani_double native_005(ani_env* env, ani_object info)
+{
+    char buffer[50];
+    constexpr int32_t SMALL_BUFFER_LEN = 1;
+    constexpr int32_t INIT_VAL = -10;
+    int32_t resLen = INIT_VAL;
+    auto result1 = OH_ArkUI_GetNavStackLength(nullptr,nullptr);
+    auto result = OH_ArkUI_GetNavDestinationNameByIndex(nullptr,10000,buffer,SMALL_BUFFER_LEN,&resLen);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+static ani_double native_006(ani_env* env, ani_object info)
+{
+     char buffer[50];
+    constexpr int32_t SMALL_BUFFER_LEN = 1;
+    constexpr int32_t INIT_VAL = -10;
+    int32_t resLen = INIT_VAL;
+    auto result = OH_ArkUI_GetNavDestinationId(nullptr,buffer,SMALL_BUFFER_LEN,&resLen);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+static ani_double native_007(ani_env* env, ani_object info)
+{
+    auto result = OH_ArkUI_GetNavDestinationState(nullptr,nullptr);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+
+static ani_double native_008(ani_env* env, ani_object info)
+{
+    auto result = OH_ArkUI_GetNavDestinationIndex(nullptr,nullptr);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+
+static ani_double native_009(ani_env* env, ani_object info)
+{
+    auto result = OH_ArkUI_GetNavDestinationParam(nullptr);
+    ASSERT_OBJ(result, nullptr);
+    NAPI_END;
+}
+static ani_double native_010(ani_env* env, ani_object info)
+{
+    auto result = OH_ArkUI_GetRouterPageIndex(nullptr,nullptr);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+
+static ani_double native_011(ani_env* env, ani_object info)
+{
+    char buffer[50];
+    constexpr int32_t SMALL_BUFFER_LEN = 1;
+    constexpr int32_t INIT_VAL = -10;
+    int32_t resLen = INIT_VAL;
+    auto result = OH_ArkUI_GetRouterPageName(nullptr,buffer,SMALL_BUFFER_LEN,&resLen);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+static ani_double native_012(ani_env* env, ani_object info)
+{
+    char buffer[50];
+    constexpr int32_t SMALL_BUFFER_LEN = 1;
+    constexpr int32_t INIT_VAL = -10;
+    int32_t resLen = INIT_VAL;
+    auto result = OH_ArkUI_GetRouterPagePath(nullptr,buffer,SMALL_BUFFER_LEN,&resLen);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+static ani_double native_013(ani_env* env, ani_object info)
+{
+    auto result = OH_ArkUI_GetRouterPageState(nullptr,nullptr);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+static ani_double native_014(ani_env* env, ani_object info)
+{
+    char buffer[50];
+    constexpr int32_t SMALL_BUFFER_LEN = 1;
+    constexpr int32_t INIT_VAL = -10;
+    int32_t resLen = INIT_VAL;
+    auto result = OH_ArkUI_GetRouterPageId(nullptr,buffer,SMALL_BUFFER_LEN,&resLen);
+    ASSERT_EQ(result, 401);
+    NAPI_END;
+}
+
+} 

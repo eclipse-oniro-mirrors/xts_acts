@@ -1,0 +1,28 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/UIContext/getDragController",
+        "MainAbility/pages/DragController/createDragAction",
+        "MainAbility/pages/DragController/setForegroundColor",
+        "MainAbility/pages/DragController/touchPoint_Auto",
+        "MainAbility/pages/DragController/touchPoint_Disable",
+        "MainAbility/pages/DragController/DragAction",
+        "MainAbility/pages/DragController/dragPreview",
+        "MainAbility/pages/DragController/dragPreviewOptions",
+        "MainAbility/pages/DragController/dragEvent",
+        "MainAbility/pages/DragController/dragEvent2",
+        "MainAbility/pages/DragController/DragEventUI",
+        "MainAbility/pages/DragController/DragController",
+        "MainAbility/pages/DragController/dragAdaptation",
+        "MainAbility/pages/DragController/APIPreDragStatus",
+        "MainAbility/pages/DragController/DragInteractionOptions",
+        "MainAbility/pages/DragController/UIContextDragController",
+        "MainAbility/pages/DragPreviewOptions/DragPreviewOptions",
+        "MainAbility/pages/startDataLoading/dataLoading",
+        "MainAbility/pages/Drag/PreDrag",
+        "MainAbility/pages/DragInteractionOptions/enableEdgeAutoScroll_false",
+        "MainAbility/pages/DragInteractionOptions/enableEdgeAutoScroll_true",
+        "MainAbility/pages/DragInteractionOptions/enableEdgeAutoScroll",
+        "MainAbility/pages/Drag/notifyDragStartRequest"
+    ]
+}

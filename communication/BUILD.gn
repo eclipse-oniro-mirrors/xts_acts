@@ -1,0 +1,71 @@
+# Copyright (C) 2022 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos_var.gni")
+group("communication") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "bluetooth_ble:ActsBluetoothBleJsTest",
+      "bluetooth_ble_static:ActsBluetoothBleJsStaticTest",
+      "bluetooth_bp:ActsBluetoothBpJsTest",
+      "bluetooth_bp_static:ActsBluetoothBpJsStaticTest",
+      "bluetooth_br:ActsBluetoothBrJsTest",
+      "bluetooth_br_static:ActsBluetoothBrJsStaticTest",
+      "bluetooth_capi:ActsBluetoothCApiTest",
+      "bluetooth_nop:ActsBlutoothNopTest",
+      "bluetooth_nop_static:ActsBlutoothNopStaticTest",
+      "btmanager_errorcode401:ActsBtManagerErrorCode401JsTest",
+      "btmanager_switchoff:ActsBtManagerSwitchOff003JsTest",
+      "btmanager_switchoff_static:ActsBtManagerSwitchOff003JsStaticTest",
+      "fusion:ActsFusionJsTest",
+      "fusion_nop:ActsFusionNopTest",
+      "dsoftbus/IPCTaiheTestStatic:ActsIPCTaiheStaticTest",
+      "dsoftbus/capi_ipc:ActsCAPIIPCTest",
+      "dsoftbus/ipc_Static/IPCTaiheServerTestStatic:ActsIPCTaiheServerStaticTest",
+      "dsoftbus/capi20_ipc:ActsCAPI20IPCTest",
+      "dsoftbus/ipc_stage/ipc_stageserver:ActsIPCEtsServer",
+      "dsoftbus/ipc_stage/ipc_stagetest:ActsIPCEtsTest",
+      "dsoftbus/linkEnhance:ActslinkEnhanceTest",
+      "dsoftbus/linkEnhanceStatic:ActslinkEnhanceStaticTest",
+      "dsoftbus/linkEnhanceNoPermission:ActslinkEnhanceNoPermissionTest",
+      "dsoftbus/proxyChannelManager:ActsProxyChannelMgrTest",
+      "dsoftbus/proxyChannelManagerStatic:ActsProxyChannelManagerStaticTest",
+      "dsoftbus/rpc:ActsRpcJsTest",
+      "dsoftbus/rpc_request:ActsRpcRequestJsTest",
+      "netmanager_base/wifi_eap:ActsWifiEapTest",
+      "netstack_http_nop:ActsHttpNopStageTest",
+      "netstack_socket_nop:ActsSocketNoPermissionTest",
+      "nfc_Controller:ActsNFCJSTest",
+      "nfc_ControllerStatic:ActsNFCJSStaticTest",
+      "nfc_ErrorCode:ActsNFCErrorJSTest",
+      "nfc_SecureElement:ActsnfcSEServiceTest",
+      "nfc_SecureElement_2:ActsnfcSEServiceTest2",
+      "nfc_connectedtag:ActsNFCConnectedTagJSTest",
+      "wifi_ErrorCode201:ActsErrorcode201Test",
+      "wifi_ErrorCode401:ActsErrorcode401Test",
+      "wifi_capi:ActsWifiCApiTest",
+      "wifi_enterprise:ActsWifiEnterpriseTest",
+      "wifi_error_ok:ActsWifiCApiOkTest",
+      "wifi_ets_standard:ActsEtsWifiTest",
+      "wifi_manager_nop:ActsManagerNopStageOhosTest",
+      "wifi_manager_nop_static:ActsManagerNopStageOhosStaticTest",
+      "wifi_p2p:ActsP2PJSTest",
+      "wifi_standard:ActsWifiJSTest",
+      "wifi_standard_static:ActsWifiJSStaticTest",
+      "wifimanager_switchoff_static:ActsManagerDisableStaticTest",
+    ]
+  } else {
+    deps = [ "wifi_standard:ActsWifiJSTest" ]
+  }
+}

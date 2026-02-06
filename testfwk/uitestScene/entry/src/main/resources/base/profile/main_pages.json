@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/second",
+    "pages/third",
+    "pages/fourth",
+    "pages/pinch",
+    "pages/drag",
+    "pages/scroll",
+    "pages/wearList",
+    "pages/five"
+  ]
+}

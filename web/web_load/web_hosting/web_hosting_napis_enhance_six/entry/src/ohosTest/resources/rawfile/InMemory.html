@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>InMemory</title>
+</head>
+<script>
+    function testInMemory() {
+        const userData = {
+            id: 123,
+            name: 'Alice',
+            active: true
+        };
+        fetch('https://www.baidu.com/api/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
+    };
+</script>
+<body>
+InMemory
+<button onclick="testInMemory()">testInMemory</button>
+
+</body>
+</html>

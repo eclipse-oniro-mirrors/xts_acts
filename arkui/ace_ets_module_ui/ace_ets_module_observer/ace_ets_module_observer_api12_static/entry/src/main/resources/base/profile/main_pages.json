@@ -1,0 +1,19 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/observer/DensityInfo",
+    "MainAbility/pages/observer/idScrollEvent",
+    "MainAbility/pages/observer/indexTabs",
+    "MainAbility/pages/observer/ObserverApi1",
+    "MainAbility/pages/observer/ObserverNavDestinationId",
+    "MainAbility/pages/observer/ObserverNavDestinationState",
+    "MainAbility/pages/observer/ObserverPageId",
+    "MainAbility/pages/observer/observerScroll",
+    "MainAbility/pages/observer/observeTab",
+    "MainAbility/pages/observer/onTabUpdate",
+    "MainAbility/pages/observer/tabContentState",
+    "MainAbility/pages/observer/uiIdUpdate",
+    "MainAbility/pages/observer/uiScrollEvent",
+    "MainAbility/pages/observer/uiTabUpdate"
+  ]
+}

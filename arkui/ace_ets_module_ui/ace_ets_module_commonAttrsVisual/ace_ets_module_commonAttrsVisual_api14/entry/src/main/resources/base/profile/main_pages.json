@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/background/backgroundBlurStyle",
+        "MainAbility/pages/background/backgroundEffect",
+        "MainAbility/pages/background/backgroundImageOption"
+    ]
+}

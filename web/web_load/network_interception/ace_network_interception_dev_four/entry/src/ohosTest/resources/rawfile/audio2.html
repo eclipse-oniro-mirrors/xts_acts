@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Audio Pause Test</title>
+</head>
+
+<body>
+<audio controls id="myAudio1">
+    <source src="https://freetyst.nf.migu.cn/public/product7th/productB25/2020/08/1013/2012年12月05日海蝶唱片内容准入8首/歌曲下载/MP3_40_16_Stero/60058623031134052.mp3?Key=70af7c02a4856b85&Tim=1705634075498&channelid=00&msisdn=8700c70cf0e44da784421de296a1eb9f&CI=600586230312600902000009525658&F=000009" type="audio/mpeg">
+</audio>
+
+<audio controls id="myAudio2">
+    <source src="https://freetyst.nf.migu.cn/public/product7th/productB25/2020/08/1013/2012年12月05日海蝶唱片内容准入8首/歌曲下载/MP3_40_16_Stero/60058623031134052.mp3?Key=70af7c02a4856b85&Tim=1705634075498&channelid=00&msisdn=8700c70cf0e44da784421de296a1eb9f&CI=600586230312600902000009525658&F=000009" type="audio/mpeg">
+</audio>
+
+<button onclick="pauseAudio1()">Pause Audio 1</button>
+<button onclick="playAudio1()">Play Audio 1</button>
+
+<button onclick="pauseAudio2()">Pause Audio 2</button>
+<button onclick="playAudio2()">Play Audio 2</button>
+
+<script>
+        function pauseAudio1() {
+            let audioElement = document.getElementById('myAudio1');
+            audioElement.pause();
+        }
+
+        function playAudio1() {
+            let audioElement = document.getElementById('myAudio1');
+            audioElement.play();
+        }
+
+        function pauseAudio2() {
+            let audioElement = document.getElementById('myAudio2');
+            audioElement.pause();
+        }
+
+        function playAudio2() {
+            let audioElement = document.getElementById('myAudio2');
+            audioElement.play();
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Swiper/BasicDataSource",
+    "MainAbility/pages/Swiper/maintainPosition",
+    "MainAbility/pages/Grid/barMarginGrid",
+    "MainAbility/pages/Grid/canOverGrid",
+    "MainAbility/pages/List/barMarginList",
+    "MainAbility/pages/List/canOverList",
+    "MainAbility/pages/Refresh/maxDownRefresh",
+    "MainAbility/pages/Scroll/barMarginScroll",
+    "MainAbility/pages/Scroll/canOverScroll",
+    "MainAbility/pages/ScrollBar/scrollBarColor",
+    "MainAbility/pages/Tabs/barHeightNoMinHeightLimit",
+    "MainAbility/pages/Tabs/curvesTabs"
+  ]
+}

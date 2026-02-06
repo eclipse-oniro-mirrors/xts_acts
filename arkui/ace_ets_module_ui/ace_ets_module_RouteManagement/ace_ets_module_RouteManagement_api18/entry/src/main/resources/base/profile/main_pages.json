@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/router/OnNewParamRouter",
+        "MainAbility/pages/router/PageOne",
+        "MainAbility/pages/router/RouterReplaceUrl401"
+    ]
+}

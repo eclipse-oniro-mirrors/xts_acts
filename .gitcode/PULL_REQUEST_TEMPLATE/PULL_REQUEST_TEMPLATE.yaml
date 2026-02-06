@@ -1,0 +1,208 @@
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # 新增用例检查项
+        请自我检视，并确认以下项目
+
+  - type: dropdown
+    id: add_tc_check_0
+    attributes:
+      label: 覆盖定义的所有入参、返回值的所有可能取值
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: add_tc_check_0_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: dropdown
+    id: add_tc_check_1
+    attributes:
+      label: 覆盖可选参数的默认取值
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: add_tc_check_1_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: dropdown
+    id: add_tc_check_2
+    attributes:
+      label: 覆盖有权限和无权限场景
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: add_tc_check_2_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: dropdown
+    id: add_tc_check_3
+    attributes:
+      label: 覆盖所有错误码定义场景
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: add_tc_check_3_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: dropdown
+    id: add_tc_check_4
+    attributes:
+      label: 不能仅检查返回结果是否有误，需检查返回内容
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: add_tc_check_4_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: dropdown
+    id: add_tc_check_5
+    attributes:
+      label: 用例中禁止虚假断言、恒真断言
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: add_tc_check_5_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: dropdown
+    id: add_tc_check_6
+    attributes:
+      label: 用例声明中填写用例级别字段
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: add_tc_check_6_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: dropdown
+    id: add_tc_check_7
+    attributes:
+      label: 测试流程执行完成进行环境恢复
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: add_tc_check_7_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: dropdown
+    id: add_tc_check_8
+    attributes:
+      label: 需附新增用例所在测试套完整测试报告
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: add_tc_check_8_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: markdown
+    attributes:
+      value: |
+        # 修改用例检查项
+        请自我检视，并确认以下项目
+
+  - type: dropdown
+    id: alter_tc_check_0
+    attributes:
+      label: 规格不兼容变更导致用例修改需附评审结论
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: alter_tc_check_0_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: dropdown
+    id: alter_tc_check_1
+    attributes:
+      label: 涉及版本隔离需验证版本隔离结果
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: alter_tc_check_1_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: dropdown
+    id: alter_tc_check_2
+    attributes:
+      label: 需附修改用例所在测试套完整测试报告
+      options:
+        - 满足
+        - 不涉及
+    validations:
+      required: true
+
+  - type: input
+    id: alter_tc_check_2_notes
+    attributes:
+      placeholder: 备注（不涉及需说明原因）
+
+  - type: markdown
+    attributes:
+      value: "# 附录"
+
+  - type: textarea
+    id: attachments
+    attributes:
+      placeholder: 请在此附上测试报告、评审结论或其余备注信息
+
+  - type: markdown
+    attributes:
+      value: |
+        # Review 工具辅助
+        - **任务**：基于 Review 工具完成 PR 自检
+        - **详细操作**：https://gitcode.com/openharmony/xts_acts/wiki/AI_Review_%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C.md

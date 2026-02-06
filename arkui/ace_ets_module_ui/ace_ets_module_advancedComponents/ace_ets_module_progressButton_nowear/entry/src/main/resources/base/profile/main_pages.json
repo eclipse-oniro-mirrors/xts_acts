@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/api12/progressButtonTest",
+	  "MainAbility/pages/api18/progressButton18Test"
+  ]
+}

@@ -1,0 +1,396 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "description": "$string:entry_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "uiSyntax": "ets",
+    "appStartup": "$profile:startup_config",
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "visible": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "SingleStartAbility",
+        "srcEntry": "./ets/MainAbility/SingleStartAbility.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility2",
+        "srcEntry": "./ets/MainAbility/PageAbility2.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility3",
+        "srcEntry": "./ets/MainAbility/PageAbility3.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility4",
+        "srcEntry": "./ets/MainAbility/PageAbility4.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility5",
+        "srcEntry": "./ets/MainAbility/PageAbility5.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility6",
+        "srcEntry": "./ets/MainAbility/PageAbility6.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility7",
+        "srcEntry": "./ets/MainAbility/PageAbility7.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "SingleStartAbility2",
+        "srcEntry": "./ets/MainAbility/SingleStartAbility2.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility8",
+        "srcEntry": "./ets/MainAbility/PageAbility8.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility9",
+        "srcEntry": "./ets/MainAbility/PageAbility9.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility10",
+        "srcEntry": "./ets/MainAbility/PageAbility10.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility11",
+        "srcEntry": "./ets/MainAbility/PageAbility11.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility100",
+        "srcEntry": "./ets/MainAbility/PageAbility100.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility102",
+        "srcEntry": "./ets/MainAbility/PageAbility102.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      },
+      {
+        "name": "PageAbility103",
+        "srcEntry": "./ets/MainAbility/PageAbility103.ets",
+        "description": "$string:MainAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "visible": true,
+        "startWindowBackground": "$color:start_window_background",
+      }
+      
+    ],
+    "extensionAbilities": [
+      {
+        "name": "Sample_001",
+        "srcEntry": "./ets/startup/Sample_001.ets",
+        "description": "Sample_001",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_002",
+        "srcEntry": "./ets/startup/Sample_002.ets",
+        "description": "Sample_002",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_003",
+        "srcEntry": "./ets/startup/Sample_003.ets",
+        "description": "Sample_003",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_004",
+        "srcEntry": "./ets/startup/Sample_004.ets",
+        "description": "Sample_004",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_005",
+        "srcEntry": "./ets/startup/Sample_005.ets",
+        "description": "Sample_005",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_006",
+        "srcEntry": "./ets/startup/Sample_006.ets",
+        "description": "Sample_006",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_007",
+        "srcEntry": "./ets/startup/Sample_007.ets",
+        "description": "Sample_007",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_008",
+        "srcEntry": "./ets/startup/Sample_008.ets",
+        "description": "Sample_008",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_009",
+        "srcEntry": "./ets/startup/Sample_009.ets",
+        "description": "Sample_009",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_010",
+        "srcEntry": "./ets/startup/Sample_010.ets",
+        "description": "Sample_010",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_011",
+        "srcEntry": "./ets/startup/Sample_011.ets",
+        "description": "Sample_011",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_012",
+        "srcEntry": "./ets/startup/Sample_012.ets",
+        "description": "Sample_012",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_013",
+        "srcEntry": "./ets/startup/Sample_013.ets",
+        "description": "Sample_013",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_014",
+        "srcEntry": "./ets/startup/Sample_014.ets",
+        "description": "Sample_014",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_015",
+        "srcEntry": "./ets/startup/Sample_015.ets",
+        "description": "Sample_015",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_016",
+        "srcEntry": "./ets/startup/Sample_016.ets",
+        "description": "Sample_016",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_017",
+        "srcEntry": "./ets/startup/Sample_017.ets",
+        "description": "Sample_017",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_018",
+        "srcEntry": "./ets/startup/Sample_018.ets",
+        "description": "Sample_018",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_019",
+        "srcEntry": "./ets/startup/Sample_019.ets",
+        "description": "Sample_019",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_100",
+        "srcEntry": "./ets/startup/Sample_100.ets",
+        "description": "Sample_100",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_101",
+        "srcEntry": "./ets/startup/Sample_101.ets",
+        "description": "Sample_101",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+       {
+        "name": "Sample_102",
+        "srcEntry": "./ets/startup/Sample_102.ets",
+        "description": "Sample_102",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "Sample_103",
+        "srcEntry": "./ets/startup/Sample_103.ets",
+        "description": "Sample_103",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      },
+      {
+        "name": "StartupConfig",
+        "srcEntry": "./ets/startup/StartupConfig.ets",
+        "description": "StartupConfig",
+        "type": "embeddedUI",
+        "label": "$string:MainAbility_label",
+        "exported": true
+      }
+    ]
+  }
+}

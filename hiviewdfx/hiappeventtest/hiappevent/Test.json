@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for ActsPerformanceAnalysis20Test Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.acts.performanceanalysis20Test",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 60000
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsPerformanceAnalysis20Test.hap",
+            "ActsPerformanceAnalysis20MainTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }, {
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "power-shell setmode 602"
+        ]
+    }]
+}

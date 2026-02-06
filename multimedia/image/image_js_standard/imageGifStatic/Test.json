@@ -1,0 +1,51 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.multimedia.image.Static",
+        "module-name": "entry"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageGifJsStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/incomplete_test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files",
+                "./resource/image/0801_sdr2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files",
+                "./resource/image/test_dng.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files",
+                "./resource/image/test.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files",
+                "./resource/image/test.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files",
+                "./resource/image/fake_large_size_test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files",
+                "./resource/image/moving_test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files",
+                "./resource/image/test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/*"
+            ],
+            "teardown-command": [
+                "rm -rf /data/app/el2/100/base/ohos.acts.multimedia.image.Static/*"
+            ]
+        }
+    ]
+}

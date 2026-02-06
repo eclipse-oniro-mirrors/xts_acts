@@ -1,0 +1,63 @@
+{
+    "description": "Configuration for avplayer Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.avplayer.napitest",
+        "module-name": "com.avplayer.napitest",
+        "testcase-timeout": 30000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAVPlayerNdkTest.hap",
+                "ActsAVPlayerMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir -p /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files",
+                "chmod 777 -R /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "./resource/media/vp8_720x480_60.webm -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/mpeg2video_320x240_60.mkv -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/medialibrary/test_hdr_1.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/codec/demuxer/mpeg2.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/MPEG4_AAC.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/AVPlayer/h263_aac.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/hevc_720x480_60.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/mpeg4_320x240_60.mkv -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/AVPlayer/H263_AAC.ts -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/codec/demuxer/avc_mp3.flv -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/medialibrary/01.mpeg -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/1vp9_320x240_30.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/audio_2video.avi -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/output_8k.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/output_160x120.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/test_highBit_v46Mbps_a295kbps.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/test_lowBit_v134kbps_akbps.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/H264_AAC.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/codec/demuxer/h264_mp3_3mevx_fmp4.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/output_mpeg2.mpg -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/output_hdr10.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/",
+                "./resource/media/output_hlg.mp4 -> /data/app/el2/100/base/com.avplayer.napitest/haps/com.avplayer.napitest/files/"
+            ]
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

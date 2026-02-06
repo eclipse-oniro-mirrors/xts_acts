@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for resourceschedule filefs Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.acts.actsbackgroundprocessmanagertest.static",
+        "module-name": "entry",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command":[
+               "power-shell wakeup",
+               "uinput -T -m 300 2700 280 200",
+               "power-shell setmode 602"
+            ]
+        },
+        {
+            "test-file-name": ["ActsResourcescheduleBackgroundProcessMgrStaticTest.hap"],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

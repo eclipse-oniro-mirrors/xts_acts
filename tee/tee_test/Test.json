@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.example.tee_test",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsTEEtestMainTest.hap",
+                "ActsTEEtestTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+		{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+				"mkdir -p /data/app/el2/100/base/com.example.tee_test/haps/entry_test/files",
+                "chmod 777 -R /data/app/el2/100/base/com.example.tee_test/haps/entry_test"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/tee/test_client_api/534d4152-542d-4353-b919-d3016a171fc5.sec ->/data/app/el2/100/base/com.example.tee_test/haps/entry_test/files",
+                "./resource/tee/test_client_api/634d4152-542d-4353-b919-d3016a171fc5.sec ->/data/app/el2/100/base/com.example.tee_test/haps/entry_test/files"
+            ]
+        },
+		{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "chmod 777 /data/app/el2/100/base/com.example.tee_test/haps/entry_test/files/*"
+            ]
+        }
+    ]
+}

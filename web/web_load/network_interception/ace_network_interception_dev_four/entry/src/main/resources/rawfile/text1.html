@@ -1,0 +1,158 @@
+3!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Font families</title>
+    <style>
+        h2 {
+            color: green;
+        }
+
+        #p1 {
+            font-family: Times, "Times New Roman", serif;
+        }
+
+        #p2 {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        #p3 {
+            font-family: serif;
+        }
+
+        #p4 {
+            font-family: sans-serif;
+        }
+
+        #p5 {
+            font-family: monospace;
+        }
+
+        #p6 {
+            font-family: cursive;
+        }
+
+        #p7 {
+            font-family: fantasy;
+        }
+
+        .s1 {
+            font-style: italic;
+        }
+
+        .s2 {
+            font-style: oblique;
+        }
+
+        .s3 {
+            font-weight: bold;
+        }
+
+        .s4 {
+            font-weight: 100;
+        }
+    </style>
+</head>
+
+<body>
+<p id="mes">此处显示默认字体大小</p>
+<button onclick="getSize()">获取默认字体大小</button>
+
+<p id="mess">此处显示等宽字体大小</p>
+<button onclick="getValue()">获取等宽字体大小</button>
+<script type="text/javascript">
+        var html = document.getElementById('mes');
+        var htm = document.getElementById('mess');
+        var num = 0;
+        var text1 = '';
+
+        function getSize() {
+            var m = document.getElementById('p1');
+            html.innerHTML = window.getComputedStyle(m).fontSize;
+            text1 = html.innerHTML.slice(0, -2);
+            num = parseFloat(text1);
+            return num;
+        }
+
+        function getValue() {
+            var n = document.getElementById('p5');
+            htm.innerHTML = window.getComputedStyle(n).fontSize;
+        }
+        function getGet() {
+            return document.getElementById('mess').innerHTML;
+        }
+        function getGetSize() {
+            return document.getElementById('mes').innerHTML;
+        }
+    </script>
+<h1>Font Families</h1>
+<p>Used with CSS. Two common font combination lists and the five generic fallback font families.</p>
+
+<h2>font-family: Times, "Times New Roman", serif</h2>
+
+<p id="p1" style="font-size:8px;">
+    Behold! A serif font family list!
+    <span class="s1">It swooshes with an italic font-style!</span>
+    <span class="s2">It leans with an oblique font-style!</span>
+    <span class="s3">It puffs out with a bold font-weight!</span>
+    <span class="s4">It sucks in with a 100 font-weight!</span>
+</p>
+
+<h2>font-family: Helvetica, Arial, sans-serif</h2>
+<p id="p2">
+    Behold! A sans-serif font family list!
+    <span class="s1">It swooshes with an italic font-style!</span>
+    <span class="s2">It leans with an oblique font-style!</span>
+    <span class="s3">It puffs out with a bold font-weight!</span>
+    <span class="s4">It sucks in with a 100 font-weight!</span>
+</p>
+
+<h2>font-family: serif</h2>
+<p id="p3">
+    Behold! The serif generic font family!
+    <span class="s1">It swooshes with an italic font-style!</span>
+    <span class="s2">It leans with an oblique font-style!</span>
+    <span class="s3">It puffs out with a bold font-weight!</span>
+    <span class="s4">It sucks in with a 100 font-weight!</span>
+</p>
+
+<h2>font-family: sans-serif</h2>
+<p id="p4">
+    Behold! The sans-serif generic font family!
+    <span class="s1">It swooshes with an italic font-style!</span>
+    <span class="s2">It leans with an oblique font-style!</span>
+    <span class="s3">It puffs out with a bold font-weight!</span>
+    <span class="s4">It sucks in with a 100 font-weight!</span>
+</p>
+
+<h2>font-family: monospace</h2>
+<p id="p5" style="font-size:14px;">
+    Behold! The monospace generic font family!
+    <span class="s1">It swooshes with an italic font-style!</span>
+    <span class="s2">It leans with an oblique font-style!</span>
+    <span class="s3">It puffs out with a bold font-weight!</span>
+    <span class="s4">It sucks in with a 100 font-weight!</span>
+</p>
+
+<h2>font-family: cursive</h2>
+<p id="p6">
+    Behold! The cursive font family!
+    <span class="s1">It swooshes with an italic font-style!</span>
+    <span class="s2">It leans with an oblique font-style!</span>
+    <span class="s3">It puffs out with a bold font-weight!</span>
+    <span class="s4">It sucks in with a 100 font-weight!</span>
+</p>
+
+<h2>font-family: fantasy</h2>
+<p id="p7">
+    Behold! The fantasy generic font family!
+    <span class="s1">It swooshes with an italic font-style!</span>
+    <span class="s2">It leans with an oblique font-style!</span>
+    <span class="s3">It puffs out with a bold font-weight!</span>
+    <span class="s4">It sucks in with a 100 font-weight!</span>
+</p>
+
+<!-- Link back to HTML Dog: -->
+<p><a href="http://www.htmldog.com/examples/"><img src="http://www.htmldog.com/badge1.gif" alt="HTML Dog"></a></p>
+</body>

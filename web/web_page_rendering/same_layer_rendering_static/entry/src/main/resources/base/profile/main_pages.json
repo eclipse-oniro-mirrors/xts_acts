@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/EmbedVisibilityChange",
+    "pages/webViewControllerPart2",
+    "pages/webViewObjectEmbed",
+    "pages/webViewRegisterNativeEmbedRule"
+  ]
+}

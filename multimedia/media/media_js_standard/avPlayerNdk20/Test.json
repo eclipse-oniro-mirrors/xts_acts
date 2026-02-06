@@ -1,0 +1,45 @@
+{
+  "description": "Configuration for avplayer Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "600000",
+    "shell-timeout": "600000",
+    "bundle-name": "com.avplayer.napi20test",
+    "module-name": "com.avplayer.napi20test",
+    "testcase-timeout": 30000
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsAVPlayerNdk20Test.hap",
+        "ActsAVPlayerMain20Test.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "remount",
+        "mkdir -p /data/app/el2/100/base/com.avplayer.napi20test/haps/com.avplayer.napi20test/files",
+        "chmod 777 -R /data/app/el2/100/base/com.avplayer.napi20test/haps/com.avplayer.napi20test"
+      ]
+    },
+    {
+      "type": "PushKit",
+      "push": [
+        "./resource/media/AAC_48000_32_1.aac -> /data/app/el2/100/base/com.avplayer.napi20test/haps/com.avplayer.napi20test/files/",
+        "./resource/media/H264_AAC.mp4 -> /data/app/el2/100/base/com.avplayer.napi20test/haps/com.avplayer.napi20test/files/",
+        "./resource/media/AVPlayer/H264_AAC.mkv -> /data/app/el2/100/base/com.avplayer.napi20test/haps/com.avplayer.napi20test/files/"
+      ]
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "power-shell wakeup",
+        "power-shell timeout -o 2147483647",
+        "power-shell setmode 602"
+      ]
+    }
+  ]
+}

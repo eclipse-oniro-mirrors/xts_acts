@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homework</title>
+    <style>
+        html{
+            width:15000px;
+        }
+		#kuan{
+			height:220px;
+			white-space:nowrap;
+		}
+		img{
+			border-radius:5px;
+			margin-top:10px;
+			width:1000px;
+			height:200px;
+			display:inline
+		}
+		#centerHeight{
+		    height:15000px;
+		}
+	</style>
+</head>
+<body>
+<div >
+    <div id="kuan">
+        <img src="icon.png" id ="leftImg">
+        <img src="icon.png" id ="centerImg">
+        <img src="icon.png" id ="rightImg">
+    </div>
+    <div id="gao">
+        <div id="centerHeight"></div>
+        <img src="icon.png" alt="icon" id="bottomImg">
+    </div>
+</div>
+</body>
+</html>
+<script>
+    let ele=document.getElementById("leftImg");
+    let loadImage;
+    document.getElementById("imgs").click()
+    ele.onload=function(){
+        loadImage="load complete"
+    }
+    function myRefresh() {
+        return window.location.reload();
+    }
+</script>
+</html>
+

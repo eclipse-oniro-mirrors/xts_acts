@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/editableTitleBar/editableTitleBarSafeAreaEdges",
+    "MainAbility/pages/editableTitleBar/editableTitleBarSafeAreaTypes"
+    
+  ]
+}

@@ -1,0 +1,143 @@
+<!--/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+
+<div class="container">
+    <div class="style-container">
+        <text class="title">
+            search通用样式
+        </text>
+
+        <text class="sub-title">
+            通用样式 1-8 \n width height padding margin border opacity align-self
+        </text>
+        <search id="styleOne">
+        </search>
+        <search id="styleTwo">
+        </search>
+        <search id="styleThree">
+        </search>
+        <search id="styleFour">
+        </search>
+        <search id="styleFive">
+        </search>
+        <search id="styleSix">
+        </search>
+        <search id="styleSeven">
+        </search>
+        <search id="styleEight">
+        </search>
+
+        <text class="sub-title">
+            通用样式9-20 \n display flex z-index position
+        </text>
+        <div id="styleNine">
+            <search id="styleTen">
+            </search>
+            <search id="styleEleven">
+            </search>
+            <search id="styleTwelve">
+            </search>
+            <search id="styleThirteen">
+            </search>
+            <search id="styleFourteen">
+            </search>
+            <search id="styleFifteen">
+            </search>
+            <search id="styleSixteen">
+            </search>
+            <search id="styleSeventeen">
+            </search>
+            <search id="styleEighteen">
+            </search>
+            <search id="styleNineteen">
+            </search>
+            <search id="styleTwenty">
+            </search>
+        </div>
+
+        <text class="sub-title">
+            通用样式21-23 box-shadow
+        </text>
+        <div style="width: 100%;flex-direction: row;">
+            <search id="styleTwentyOne">
+            </search>
+            <search id="styleTwentyTwo">
+            </search>
+            <search id="styleTwentyThree">
+            </search>
+        </div>
+
+        <text class="sub-title">
+            通用样式23-25 visibility clip-path
+        </text>
+        <search id="styleTwentyFour">
+        </search>
+        <search id="styleTwentyFive">
+        </search>
+
+        <text class="sub-title">
+            通用样式26-31 background
+        </text>
+        <search id="styleTwentySix">
+        </search>
+        <search id="styleTwentySeven">
+        </search>
+        <search id="styleTwentyNine">
+        </search>
+        <search id="styleThirty">
+        </search>
+        <search id="styleThirtyOne">
+        </search>
+
+        <text class="sub-title">
+            通用样式32 clip-path image-fill mask-image
+        </text>
+        <search id="styleThirtyTwo">
+        </search>
+    </div>
+    <div style="background-color: #000000; width: 2px; height: 100%;">
+    </div>
+    <div class="specific-container">
+        <text class="title">
+            search特有样式
+        </text>
+
+        <text class="sub-title">
+            特有样式 color font-size allow-scale placeholder-color
+        </text>
+        <search id="specificOne" hint="提示">
+        </search>
+        <search id="specificTwo" hint="提示">
+        </search>
+        <search id="specificThree" hint="提示">
+        </search>
+        <search id="specificFour" hint="提示">
+        </search>
+        <search id="specificFive" hint="提示">
+        </search>
+        <text class="sub-title">
+            特有样式 font-weight font-family caret-color
+        </text>
+        <search id="specificSix" hint="提示">
+        </search>
+        <search id="specificSeven" hint="提示">
+        </search>
+        <search id="specificEight" hint="提示">
+        </search>
+        <search id="specificNine" hint="提示">
+        </search>
+    </div>
+</div>
+

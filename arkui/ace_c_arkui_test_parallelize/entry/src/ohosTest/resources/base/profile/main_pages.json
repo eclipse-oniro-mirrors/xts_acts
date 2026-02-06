@@ -1,0 +1,15 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/swiper/testSwiperWithReset",
+    "MainAbility/pages/publicAttribute/PublicAttributeTest",
+    "MainAbility/pages/xcomponent/xcomponent_multithread",
+    "MainAbility/pages/xcomponent/xcomponent_texture_multithread",
+    "MainAbility/pages/button/buttonTest",
+    "MainAbility/pages/checkBox/checkBoxTest",
+    "MainAbility/pages/checkBoxGroup/checkBoxGroupTest",
+    "MainAbility/pages/radio/radioTest",
+    "MainAbility/pages/slider/sliderTest",
+    "MainAbility/pages/toggle/toggleTest"
+  ]
+}

@@ -1,0 +1,25 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body style="font-size: 30px;" onload='bodyOnLoadLocalStorage()'>
+Hello world!
+<div id="result"></div>
+</body>
+<script type="text/javascript">
+    function bodyOnLoadLocalStorage() {
+      if (typeof(Storage) !== 'undefined') {
+        document.getElementById('result').innerHTML = localStorage.getItem('color');
+        localStorage.removeItem('color');
+      } else {
+        document.getElementById('result').innerHTML = 'Your browser does not support localStorage.';
+      }
+    }
+    function getResult() {
+        return document.getElementById('result').innerHTML;
+    }
+
+  </script>
+</html>

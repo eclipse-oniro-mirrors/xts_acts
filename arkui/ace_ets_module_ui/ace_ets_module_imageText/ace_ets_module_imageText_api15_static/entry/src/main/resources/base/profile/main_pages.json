@@ -1,0 +1,16 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/ImageAttachment/ResourceDefault",
+    "MainAbility/pages/ImageAttachment/ObjectFit",
+    "MainAbility/pages/ImageAttachment/PixelMapColorFilter",
+    "MainAbility/pages/ImageAttachment/VerticalAlign",
+    "MainAbility/pages/Search/SearchKeyboardAppearance",
+    "MainAbility/pages/Text/textAreaInputTest",
+    "MainAbility/pages/TextArea/TextAreaKeyboardAppearance",
+    "MainAbility/pages/TextInput/TextInputKeyboardAppearance",
+    "MainAbility/pages/RichEditor/RichEditorKeyboardAppearance",
+    "MainAbility/pages/RichEditor/RichEditorStopBackPress",
+    "MainAbility/pages/RichEditor/SelectionMenuOptions"
+  ]
+}

@@ -1,0 +1,222 @@
+/*
+ * Copyright (C) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { image } from '@kit.ImageKit';
+import common from '@ohos.app.ability.common';
+import { describe, it, expect, Level, beforeAll, beforeEach, afterEach, afterAll } from '@ohos/hypium';
+import { LOG_TAG, copyImageToSandbox } from '../../common';
+import { ErrorCode } from '../../CommonErrorCode';
+
+const TAG = LOG_TAG + 'getDisposalTypeList';
+
+async function getDisposalTypeListPromiseTest(done: Function, testName: string, pathUri: string) {
+  try {
+    let testContext: common.UIAbilityContext = AppStorage.get('testContext') as common.UIAbilityContext;
+    const path = 'file://' + testContext.filesDir + "/" + pathUri;
+    const imageSourceApi: image.ImageSource = await image.createImageSource(path);
+    let disposalTypes: Array<number> = await imageSourceApi.getDisposalTypeList();
+    imageSourceApi.release();
+    done();
+  } catch (error) {
+    console.info(TAG, `failed; error: ${error},${error.code}`, testName);
+    expect().assertFail();
+    done();
+  }
+}
+
+async function getDisposalTypeListPromiseAbnormalTest(done: Function, testName: string, pathUri: string) {
+  try {
+    let testContext: common.UIAbilityContext = AppStorage.get('testContext') as common.UIAbilityContext;
+    const path = 'file://' + testContext.filesDir + "/" + pathUri;
+    const imageSourceApi: image.ImageSource = await image.createImageSource(path);
+    let disposalTypes: Array<number> = await imageSourceApi.getDisposalTypeList();
+    imageSourceApi.release();
+    done();
+  } catch (error) {
+    console.info(TAG, `failed; error: ${error},${error.code}`, testName);
+    if (error && error.code) {
+      expect(error.code == ErrorCode.Invalid_Image_Source || error.code == ErrorCode.Invalid_Media_operation)
+        .assertTrue();
+    } else {
+      expect(error == ErrorCode.Invalid_Image_Source || error == ErrorCode.Invalid_Media_operation).assertTrue();
+    }
+    done();
+  }
+}
+
+export default function imageSourceGetDisposalTypeListTest() {
+  describe('imageSourceGetDisposalTypeListTest', () => {
+
+    beforeAll(async () => {
+      console.info(TAG, 'beforeAll case.');
+    });
+
+    beforeEach(() => {
+      console.info(TAG, 'beforeEach case.');
+    });
+
+    afterEach(() => {
+      console.info(TAG, 'afterEach case.');
+    });
+
+    afterAll(() => {
+      console.info(TAG, 'afterAll case.');
+    });
+
+    /**
+     * @tc.name   imageSource_getDisposalTypeList_promise_001
+     * @tc.number IMAGE_SOURCE_GET_DISPOSAL_TYPE_LIST_001
+     * @tc.desc   imageSource_getDisposalTypeList
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('imageSource_getDisposalTypeList_promise_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'imageSource_getDisposalTypeList_promise_001';
+      const fileName = 'test6.gif';
+      const path = new Date().getTime() + 'test6.gif';
+      await copyImageToSandbox(fileName, path);
+      await getDisposalTypeListPromiseTest(done, testName, path);
+    })
+
+    /**
+     * @tc.name   imageSource_getDisposalTypeList_promise_abnormal_001
+     * @tc.number IMAGE_SOURCE_GET_DISPOSAL_TYPE_LIST_002
+     * @tc.desc   imageSource_getDisposalTypeList
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('imageSource_getDisposalTypeList_promise_abnormal_001', Level.LEVEL0, async (done: Function) => {
+      const testName = 'imageSource_getDisposalTypeList_promise_abnormal_001';
+      const fileName = 'test.jpg';
+      const path =  new Date().getTime() +'test.jpg';
+      await copyImageToSandbox(fileName, path);
+      await getDisposalTypeListPromiseAbnormalTest(done, testName, path);
+    })
+
+    /**
+     * @tc.name   imageSource_getDisposalTypeList_promise_abnormal_002
+     * @tc.number IMAGE_SOURCE_GET_DISPOSAL_TYPE_LIST_003
+     * @tc.desc   imageSource_getDisposalTypeList
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('imageSource_getDisposalTypeList_promise_abnormal_002', Level.LEVEL0, async (done: Function) => {
+      const testName = 'imageSource_getDisposalTypeList_promise_abnormal_002';
+      const fileName = 'test.svg';
+      const path = new Date().getTime() + 'test.svg';
+      await copyImageToSandbox(fileName, path);
+      await getDisposalTypeListPromiseAbnormalTest(done, testName, path);
+    })
+
+    /**
+     * @tc.name   imageSource_getDisposalTypeList_promise_abnormal_003
+     * @tc.number IMAGE_SOURCE_GET_DISPOSAL_TYPE_LIST_004
+     * @tc.desc   imageSource_getDisposalTypeList
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('imageSource_getDisposalTypeList_promise_abnormal_003', Level.LEVEL0, async (done: Function) => {
+      const testName = 'imageSource_getDisposalTypeList_promise_abnormal_003';
+      const fileName = 'test7.png';
+      const path = new Date().getTime() + 'test7.png';
+      await copyImageToSandbox(fileName, path);
+      await getDisposalTypeListPromiseAbnormalTest(done, testName, path);
+    })
+
+    /**
+     * @tc.name   imageSource_getDisposalTypeList_promise_abnormal_004
+     * @tc.number IMAGE_SOURCE_GET_DISPOSAL_TYPE_LIST_005
+     * @tc.desc   imageSource_getDisposalTypeList
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('imageSource_getDisposalTypeList_promise_abnormal_004', Level.LEVEL0, async (done: Function) => {
+      const testName = 'imageSource_getDisposalTypeList_promise_abnormal_004';
+      const fileName = 'test8.bmp';
+      const path = new Date().getTime() + 'test8.bmp';
+      await copyImageToSandbox(fileName, path);
+      await getDisposalTypeListPromiseAbnormalTest(done, testName, path);
+    })
+
+    /**
+     * @tc.name   imageSource_getDisposalTypeList_promise_abnormal_005
+     * @tc.number IMAGE_SOURCE_GET_DISPOSAL_TYPE_LIST_006
+     * @tc.desc   imageSource_getDisposalTypeList
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('imageSource_getDisposalTypeList_promise_abnormal_005', Level.LEVEL0, async (done: Function) => {
+      const testName = 'imageSource_getDisposalTypeList_promise_abnormal_005';
+      const fileName = 'test_aisr.dng';
+      const path = new Date().getTime() + 'test_aisr.dng';
+      await copyImageToSandbox(fileName, path);
+      await getDisposalTypeListPromiseAbnormalTest(done, testName, path);
+    })
+
+    /**
+     * @tc.name   imageSource_getDisposalTypeList_promise_abnormal_006
+     * @tc.number IMAGE_SOURCE_GET_DISPOSAL_TYPE_LIST_007
+     * @tc.desc   imageSource_getDisposalTypeList
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('imageSource_getDisposalTypeList_promise_abnormal_006', Level.LEVEL0, async (done: Function) => {
+      const testName = 'imageSource_getDisposalTypeList_promise_abnormal_006';
+      const fileName = 'test_aisr.ico';
+      const path = new Date().getTime() + 'test_aisr.ico';
+      await copyImageToSandbox(fileName, path);
+      await getDisposalTypeListPromiseAbnormalTest(done, testName, path);
+    })
+
+    /**
+     * @tc.name   imageSource_getDisposalTypeList_promise_abnormal_007
+     * @tc.number IMAGE_SOURCE_GET_DISPOSAL_TYPE_LIST_008
+     * @tc.desc   imageSource_getDisposalTypeList
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('imageSource_getDisposalTypeList_promise_abnormal_007', Level.LEVEL0, async (done: Function) => {
+      const testName = 'imageSource_getDisposalTypeList_promise_abnormal_007';
+      const fileName = 'test_aisr.dng';
+      const path = new Date().getTime() + 'test_aisr.dng';
+      await copyImageToSandbox(fileName, path);
+      await getDisposalTypeListPromiseAbnormalTest(done, testName, path);
+    })
+
+    /**
+     * @tc.name   imageSource_getDisposalTypeList_promise_abnormal_008
+     * @tc.number IMAGE_SOURCE_GET_DISPOSAL_TYPE_LIST_009
+     * @tc.desc   imageSource_getDisposalTypeList
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('imageSource_getDisposalTypeList_promise_abnormal_008', Level.LEVEL0, async (done: Function) => {
+      const testName = 'imageSource_getDisposalTypeList_promise_abnormal_008';
+      const fileName = 'test_exif_empty2.webp';
+      const path = new Date().getTime() + 'test_exif_empty2.dng';
+      await copyImageToSandbox(fileName, path);
+      await getDisposalTypeListPromiseAbnormalTest(done, testName, path);
+    })
+  })
+}

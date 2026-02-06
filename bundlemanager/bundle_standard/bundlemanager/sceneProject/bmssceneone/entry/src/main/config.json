@@ -1,0 +1,112 @@
+{
+  "app": {
+    "vendor": "example",
+    "bundleName": "com.example.myapplication1",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    }
+  },
+  "deviceConfig": {
+    "default": {}
+  },
+  "module": {
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "icon": "$media:icon",
+        "name": ".MainAbility",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard",
+        "orientation": "unspecified",
+        "permissions": [
+          "com.permission.BMS_PERMISSION_CAMERA"
+        ],
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "originWidgetName",
+              "value": "com.weather.testWidget",
+              "extra": "$string:mainability_description"
+            }
+          ]
+        },
+        "srcPath": "MainAbility",
+        "srcLanguage": "js"
+      }
+    ],
+    "deviceType": [],
+    "mainAbility": "com.example.myapplication1.MainAbility",
+    "distro": {
+      "moduleType": "entry",
+      "installationFree": false,
+      "deliveryWithInstall": true,
+      "moduleName": "entry"
+    },
+    "package": "com.example.myapplication1",
+    "name": ".MyApplication1",
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
+      }
+    ],
+    "defPermissions": [
+      {
+        "availableScope": [
+          "signature"
+        ],
+        "grantMode": "system_grant",
+        "name": "com.permission.BMS_PERMISSION_CAMERA",
+        "description": "BMS_PERMISSION_CAMERA permission in detail",
+        "label": "BMS_PERMISSION_CAMERA permission"
+      },
+      {
+        "name": "com.permission.PERMISSION_A",
+        "grantMode": "system_grant",
+        "availableScope": [
+          "signature"
+        ]
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "com.permission.PERMISSION_A",
+        "reason": "Need PERMISSION_A",
+        "usedScene": {
+          "ability": [
+            "com.example.myapplication1.MainAbility"
+          ],
+          "when": "always"
+        }
+      }
+    ],
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "metaDataName",
+          "value": "metaDataValue",
+          "extra": "$string:app_name"
+        }
+      ]
+    },
+    "description": "$string:entry_description"
+  }
+}

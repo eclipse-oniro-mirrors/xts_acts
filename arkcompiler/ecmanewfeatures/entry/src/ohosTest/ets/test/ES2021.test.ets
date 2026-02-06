@@ -1,0 +1,131 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+import { describe, it, expect, Level, Size, TestType } from '@ohos/hypium';
+import { test2021_05_ans } from './test2021_05'
+
+export default function es2021Test() {
+  describe('ES2021Test', () => {
+    /**
+     * @tc.name   testReplaceAll
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_ES2021NewFeatures_0001
+     * @tc.desc   add name of task for taskpool
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testReplaceAll', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, () => {
+      expect('abbbaab'.replaceAll('b', 'x')).assertEqual("axxxaax");
+      expect('abbbaab'.replaceAll(/b/g, 'x')).assertEqual("axxxaax");
+    })
+    /**
+     * @tc.name   testPromise.any Success
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_ES2021NewFeatures_0002
+     * @tc.desc   add name of task for taskpool
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testPromise.any Success', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, () => {
+      const Promise1: Promise<string> = new Promise((resolve, reject) => {
+        setTimeout(() => resolve('Promise 1'), 100)
+      });
+      const Promise2: Promise<string> = new Promise((resolve, reject) => {
+        setTimeout(() => reject('Promise 2 error'), 200)
+      });
+      const Promise3: Promise<string> = new Promise((resolve, reject) => {
+        setTimeout(() => reject('Promise 3 error'), 300)
+      });
+
+      Promise.any([Promise1, Promise2, Promise3])
+        .then((value: string) => {
+          expect(value).assertEqual("Promise 1")
+        })
+        .catch((error: string) => {
+        })
+    })
+    /**
+     * @tc.name   testPromise.any Error
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_ES2021NewFeatures_0003
+     * @tc.desc   add name of task for taskpool
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testPromise.any Error', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, () => {
+      const Promise1: Promise<string> = new Promise((resolve, reject) => {
+        setTimeout(() => reject('Promise 1 error'), 100)
+      });
+      const Promise2: Promise<string> = new Promise((resolve, reject) => {
+        setTimeout(() => reject('Promise 2 error'), 200)
+      });
+      const Promise3: Promise<string> = new Promise((resolve, reject) => {
+        setTimeout(() => reject('Promise 3 error'), 300)
+      });
+
+      Promise.any([Promise1, Promise2, Promise3])
+        .then((value: string) => {
+          expect(value).assertEqual("Promise 1")
+        })
+        .catch((error: AggregateError) => {
+          expect(error.errors).assertDeepEquals(["Promise 1 error", "Promise 2 error", "Promise 3 error"])
+        })
+    })
+    /**
+     * @tc.name   testLogicalAssignment
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_ES2021NewFeatures_0004
+     * @tc.desc   add name of task for taskpool
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testLogicalAssignment', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, () => {
+      let a = 0;
+      let b = 10;
+      a &&= b;
+      expect(a).assertEqual(0);
+      a ||= b;
+      expect(a).assertEqual(10);
+      let c: string | null = null;
+      let d = "hello";
+      c ??= d;
+      expect(c).assertEqual("hello")
+    })
+    /**
+     * @tc.name   testNumberSeparator
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_ES2021NewFeatures_0005
+     * @tc.desc   add name of task for taskpool
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testNumberSeparator', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, () => {
+      expect(1_1).assertEqual(11)
+      expect(1_1n).assertEqual(11n)
+    })
+    /**
+     * @tc.name   testWeakRef
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_ES2021NewFeatures_0006
+     * @tc.desc   add name of task for taskpool
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testWeakRef', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, () => {
+      expect(test2021_05_ans).assertEqual("21")
+    })
+  })
+}

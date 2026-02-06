@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "Dynamic Style XTS Test"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Dynamic Style XTS Test"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Dynamic Style XTS Test"
+    },
+    {
+      "name": "font_family_regular",
+      "value": "HarmonyOS Sans SC-Regular"
+    },
+    {
+        "name": "entry_label",
+        "value": "ActsContextTest"
+    },
+    {
+        "name": "description_application",
+        "value": "demo for test"
+    },
+    {
+        "name": "download",
+        "value": "下载"
+    }
+  ]
+}

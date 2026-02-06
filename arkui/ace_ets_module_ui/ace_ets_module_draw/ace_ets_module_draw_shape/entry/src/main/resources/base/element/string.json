@@ -1,0 +1,129 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name":"string_hello",
+      "value":"Hello"
+    },
+    {
+      "name":"string_world",
+      "value":"World"
+    },
+    {
+      "name":"message_arrive",
+      "value":"We will arrive at %s."
+    },
+    {
+      "name": "phone_entry_dsc",
+      "value": "i am an entry for phone"
+    },
+    {
+      "name": "phone_entry_main",
+      "value": "the phone entry ability"
+    },
+    {
+      "name": "entry_label",
+      "value": "ActsContextTest"
+    },
+    {
+      "name": "form_description",
+      "value": "my form"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "my whether"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "app_name",
+      "value": "Demo"
+    },
+    {
+      "name": "Width_100",
+      "value": "100"
+    },
+    {
+      "name": "Height_50",
+      "value": "50"
+    },
+    {
+      "name": "Width_90",
+      "value": "90"
+    },
+    {
+      "name": "Height_80",
+      "value": "80"
+    },
+    {
+      "name": "Width_50",
+      "value": "50"
+    },
+    {
+      "name": "Height_100",
+      "value": "100"
+    },
+    {
+      "name": "Width_200",
+      "value": "200"
+    },
+
+    {
+      "name": "Rect_Radius_20",
+      "value": "20"
+    },
+    {
+      "name": "Rect_Radius_40",
+      "value": "40"
+    },
+    {
+      "name": "x_20",
+      "value": "-20"
+    },
+    {
+      "name": "y_5",
+      "value": "-5"
+    },
+    {
+      "name": "w_100",
+      "value": "100"
+    },
+    {
+      "name": "h_90",
+      "value": "90"
+    },
+    {
+      "name": "sw_10",
+      "value": "10"
+    },
+    {
+      "name": "sml_5",
+      "value": "5"
+    },
+    {
+      "name": "Path_commands",
+      "value": "M0 300 S100 0 240 300 Z"
+    }
+  ]
+}

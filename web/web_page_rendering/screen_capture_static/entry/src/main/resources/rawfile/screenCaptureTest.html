@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>screenCaptureTest</title>
+    <style>
+        body{
+                background-color:lightblue;
+            }
+        .box {
+            width: 350px;
+            height: 200px;
+            line-height: 150px;
+            text-align: center;
+            background-color: orange;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -175px;
+            margin-top: -100px;
+         }
+.box input {
+    width: 320px;    /* 更大！ */
+    height: 160px;   /* 更高！ */
+    font-size: 28px; /* 文字更大！ */
+    margin-left: -20px; /* 调整居中 */
+    margin-top: -20px;
+    font-weight: bold; /* 加粗更醒目 */
+}
+         a{
+            font-size:3em;
+         }
+    </style>
+</head>
+<body>
+<div id="error"></div>
+<video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+<canvas id="canvas" width="500px" height="500px"></canvas>
+<div class="box">
+    <input id="btn" type="button" title="申请共享屏幕" value="申请共享屏幕" onclick="getScreenStream()"/>
+</div>
+</body>
+<script>
+    function getScreenStream() {
+          console.log("getScreenStream in")
+        navigator.mediaDevices.getDisplayMedia({ video: true })
+          .then((stream) => {
+            document.getElementById("error").innerHTML = "grant"
+          })
+          .catch((error) => {
+            document.getElementById("error").innerHTML = "deny"
+          });
+    }
+
+    function getResult(){
+        return document.getElementById("error").innerHTML
+    }
+</script>
+</html>

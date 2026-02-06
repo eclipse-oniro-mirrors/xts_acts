@@ -1,0 +1,43 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "100000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.multimedia.image.Webp.Static",
+        "testcase-timeout": 60000,
+        "module-name": "entry"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageWebpJsStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.Webp.Static/haps/entry/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.Webp.Static/haps/entry/files/*",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.Webp.Static/haps/entry/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "./resource/image/test_large.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.Webp.Static/haps/entry/files",
+                "./resource/image/moving_test.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.Webp.Static/haps/entry/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.Webp.Static/haps/entry/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.Webp.Static/haps/entry/*"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/PanGesture/PanGesture1",
+        "MainAbility/pages/PanGesture/PanGesture2",
+        "MainAbility/pages/PanGesture/PanGesture3",
+        "MainAbility/pages/PanGesture/panDirection",
+        "MainAbility/pages/PanGesture/gesture",
+        "MainAbility/pages/PanGesture/PanGestureEvent",
+        "MainAbility/pages/PanGesture/gestureEnabled",
+        "MainAbility/pages/PanGesture/PanGesture",
+        "MainAbility/pages/PanGesture/PanGestureExampleTemplate",
+        "MainAbility/pages/PanGesture/PanGestureExample01",
+        "MainAbility/pages/PanGesture/PanGestureExample02",
+        "MainAbility/pages/PanGesture/PanGestureExample03",
+        "MainAbility/pages/PanGesture/Gesture1",
+        "MainAbility/pages/PanGesture/panGestureOnOff",
+        "MainAbility/pages/PanGesture/panGestureDistance",
+        "MainAbility/pages/PanGesture/observer",
+        "MainAbility/pages/PanGesture/setDistance"
+    ]
+}

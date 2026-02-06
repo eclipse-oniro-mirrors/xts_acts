@@ -1,0 +1,39 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        
+        "MainAbility/pages/Ellipse/ellipse",
+        "MainAbility/pages/Shape/shape3",
+        "MainAbility/pages/Circle/circle3",
+        "MainAbility/pages/Line/line3",
+        "MainAbility/pages/Path/path",
+        "MainAbility/pages/Polygon/polygon",
+        "MainAbility/pages/Polyline/polyline",
+        "MainAbility/pages/Ellipse/ellipse1",
+        "MainAbility/pages/Line/line",
+        "MainAbility/pages/Path/path2",
+        "MainAbility/pages/Polygon/polygon2",
+        "MainAbility/pages/Polyline/polyLine3",
+        "MainAbility/pages/Rect/rect",
+        "MainAbility/pages/Rect/RectPage",
+        "MainAbility/pages/Rect/RectCommonShapeMethodPage",
+        "MainAbility/pages/Shape/shape",
+       
+        "MainAbility/pages/Circle/circleNew",
+        "MainAbility/pages/Ellipse/ellipseNew",
+        "MainAbility/pages/Line/lineNew",
+        "MainAbility/pages/Path/pathNew",
+        "MainAbility/pages/Polygon/polygonNew",
+        "MainAbility/pages/Polyline/polyLineNew",
+        "MainAbility/pages/Rect/rectNew",
+        
+        "MainAbility/pages/Circle/CircleResource",
+        "MainAbility/pages/Ellipse/EllipseResource",
+        "MainAbility/pages/Line/LineResource",
+        "MainAbility/pages/Path/PathResource",
+        "MainAbility/pages/Polygon/PolygonResource",
+        "MainAbility/pages/Polyline/PolylineResource",
+        "MainAbility/pages/Rect/RectResource",
+        "MainAbility/pages/Shape/ShapeResource"
+    ]
+}

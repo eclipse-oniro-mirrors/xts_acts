@@ -1,0 +1,19 @@
+{
+  "src": [
+  "MainAbility/pages/index/index",
+  "MainAbility/pages/Preset",
+  "MainAbility/pages/SearchApi11/search_center",
+  "MainAbility/pages/SearchApi11/SearchGesture",
+  "MainAbility/pages/SearchApi11/SearchPage",
+  "MainAbility/pages/SearchApi12/searchTest",
+
+  "MainAbility/pages/TextAreaApi11/textArea_center",
+  "MainAbility/pages/TextAreaApi11/textAreaUI",
+  "MainAbility/pages/TextAreaApi11/textAreaBC1",
+  "MainAbility/pages/TextAreaApi12/setTextSelectionApi12",
+  "MainAbility/pages/TextAreaApi12/TextDeleteDirectionTest",
+
+  "MainAbility/pages/TextInputApi11/TextinputSec",
+  "MainAbility/pages/TextInputApi11/TextInputPage"
+  ]
+}

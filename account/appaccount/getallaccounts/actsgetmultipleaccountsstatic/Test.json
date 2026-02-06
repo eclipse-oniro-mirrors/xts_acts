@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.getmultipleaccountstest.static",
+        "module-name": "entry",
+        "testcase-timeout": "10000"
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsGetMultipleAccountsStaticTest.hap",
+            "ActsAccountAccessibleFirst.hap",
+            "ActsAccountAccessibleSecond.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    },{
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "uinput -T -m 300 2700 280 200",
+            "power-shell setmode 602",
+            "power-shell timeout -o 86400000",
+            "hidumper -s 3301 -a -t",
+            "param set persist.sys.abilityms.support.ecologicalrulemgrservice false"
+        ]
+    }]
+}

@@ -1,0 +1,72 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//build/config/ohos/config.gni")
+import("//test/xts/tools/build/suite.gni")
+import("//foundation/arkui/napi/napi.gni")
+comPath =
+    "../../../../../../../../../foundation/arkui/ace_engine/interfaces/native"
+compath2 = "../../../../../../../../../foundation/graphic/graphic_2d/frameworks/opengl_wrapper"
+compath3 = "../../../../../../../../../base/hiviewdfx/hilog"
+config("config") {
+  visibility = [ ":*" ]
+
+  cflags = [
+    "-Wall",
+    "-Werror",
+    "-g3",
+    "-Wunused-variable",
+  ]
+}
+
+config("public_config") {
+}
+
+ohos_xts_shared_library("nativerender") {
+  testonly = true
+  sources = [
+    "./napi/napi_init.cpp",
+    "./plugin_manager.cpp",
+    "./render/egl_core.cpp",
+    "./render/plugin_render.cpp",
+  ]
+  subsystem_name = "arkui"
+  part_name = "ace_engine"
+  if (use_musl) {
+    stl = "c++_shared"
+  }
+  include_dirs = [
+    ".",
+    "./common",
+    "./napi",
+    "./render",
+    "$comPath",
+    "$compath3/interfaces/native/kits/include",
+  ]
+  configs = [
+    ":config",
+    "//third_party/EGL:libEGL_public_config",
+    "//third_party/openGLES:libGLES_public_config",
+  ]
+  external_deps = [
+    "hilog:hilog_ndk",
+    "napi:ace_napi",
+  ]
+  deps = [
+    "$comPath:ace_ndk",
+    "$compath2:EGL",
+    "$compath2:GLESv3",
+    "$compath3/frameworks/hilog_ndk:hilog_ndk",
+  ]
+
+  output_extension = "so"
+}

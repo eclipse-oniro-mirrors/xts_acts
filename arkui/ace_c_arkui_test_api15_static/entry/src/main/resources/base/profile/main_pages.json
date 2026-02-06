@@ -1,0 +1,31 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/checkboxgroup/CheckboxGroupGroupTest",
+    "pages/checkboxgroup/CheckboxGroupSelectAllTest",
+    "pages/checkbox/CheckboxGroupTest",
+    "pages/node/TestNodeHandleById",
+    "pages/window/TestGetWindowInfo",
+    "pages/window/TestHostWindowInfoGetName",
+    "pages/window/TestHostWindowInfoDestroy",
+    "pages/progress/TestProgressLinearStyle",
+    "pages/lazyForEach/TestLazyForEachExpandMode001",
+    "pages/lazyForEach/TestLazyForEachExpandMode002",
+    "pages/lazyForEach/TestLazyForEachExpandMode003",
+    "pages/lazyForEach/TestLazyForEachExpandMode004",
+    "pages/lazyForEach/TestLazyForEachExpandMode005",
+    "pages/lazyForEach/TestLazyForEachExpandMode006",
+    "pages/lazyForEach/TestLazyForEachExpandMode007",
+    "pages/lazyForEach/TestLazyForEachExpandMode008",
+    "pages/lazyForEach/TestLazyForEachExpandMode009",
+    "pages/focuscontrol/focuscontrol",
+    "pages/focuscontrol/focuscontrol2",
+    "pages/list/ListCaseTest",
+    "pages/listScrollTo/ListScrollToTest",
+    "pages/gestureCancel/gestureCancel",
+    "pages/gestureRecognizer/GestureRecognizerTest",
+    "pages/eventInfo/EventInfoCaseTest1",
+    "pages/snapShot/snapShotTest",
+    "pages/swiper/SwiperChangeIndex"
+  ]
+}

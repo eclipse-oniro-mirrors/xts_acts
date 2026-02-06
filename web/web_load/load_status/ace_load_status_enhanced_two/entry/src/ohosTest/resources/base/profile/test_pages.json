@@ -1,0 +1,9 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/WebViewEnumAndSetWebController",
+    "testability/pages/WebViewJavaScriptProxyAndOnPageVisible",
+    "testability/pages/WebOnHttpErrorReceive",
+    "testability/pages/WebConsoleMessageSource"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/menuControl/bindContextMenu/aboutToAppearFalse",
+    "MainAbility/pages/menuControl/bindContextMenu/aboutToDisappearFalse",
+    "MainAbility/pages/menuControl/bindContextMenu/CloseContextMenu",
+    "MainAbility/pages/menuControl/bindContextMenu/CloseEsc",
+    "MainAbility/pages/menuControl/bindContextMenu/CloseFalse",
+    "MainAbility/pages/menuControl/bindContextMenu/CloseMask",
+    "MainAbility/pages/menuControl/bindContextMenu/CloseMenu",
+    "MainAbility/pages/menuControl/bindContextMenu/IsShowFalse",
+    "MainAbility/pages/menuControl/bindContextMenu/preview",
+    "MainAbility/pages/bindSheet/SheetMode",
+    "MainAbility/pages/bindSheet/springBack",
+    "MainAbility/pages/bindSheet/DetentsChange",
+    "MainAbility/pages/bindSheet/SheetTransition",
+    "MainAbility/pages/menuControl/symbolIcon",
+    "MainAbility/pages/Common/Menu/Menu_API/HoverScale",
+    "MainAbility/pages/Common/BindSheet/BindSheet_API/ScrollSizeMode",
+    "MainAbility/pages/slider/sliderInteractionModeTest"
+  ]
+}

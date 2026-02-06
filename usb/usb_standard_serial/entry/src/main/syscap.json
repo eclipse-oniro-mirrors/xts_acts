@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.USB.USBManager.Serial",
+                    "SystemCapability.USB.USBManager"
+                ]
+            }
+        ]
+    }
+}

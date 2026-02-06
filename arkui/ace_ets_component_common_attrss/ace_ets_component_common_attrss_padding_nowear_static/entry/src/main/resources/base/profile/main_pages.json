@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/padding/PaddingBasePage",
+    "MainAbility/pages/padding/PaddingBasePageLength",
+    "MainAbility/pages/padding/PaddingContainerPage",
+    "MainAbility/pages/padding/PaddingContainerPageLength"
+  ]
+}

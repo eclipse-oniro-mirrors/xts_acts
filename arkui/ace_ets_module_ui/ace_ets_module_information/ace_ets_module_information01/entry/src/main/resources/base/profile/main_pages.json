@@ -1,0 +1,36 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+
+        "MainAbility/pages/Badge/ActsBadgeTest",
+        "MainAbility/pages/Badge/Badge3Jsunit",
+        "MainAbility/pages/Badge/BadgeJsunitTest",
+        "MainAbility/pages/Badge/BadgeNodeTest",
+        "MainAbility/pages/Badge/BadgeResourceTest",
+        "MainAbility/pages/Badge/BadgeStyleTest",
+
+        "MainAbility/pages/DataPanel/ActsDataPanelTest",
+        "MainAbility/pages/DataPanel/DatalPanelUIJsunit",
+        "MainAbility/pages/DataPanel/DataPanelContentModifier",
+        "MainAbility/pages/DataPanel/DataPanelTest",
+        "MainAbility/pages/DataPanel/DataPanelCloseEffect",
+
+        "MainAbility/pages/Gauge/Gauge3Jsunit",
+        "MainAbility/pages/Gauge/GaugeColorsTest",
+        "MainAbility/pages/Gauge/GaugeJsunitTest",
+        "MainAbility/pages/Gauge/GaugePrivacySensitive",
+        "MainAbility/pages/Gauge/GaugeUxTest",
+        "MainAbility/pages/Gauge/GaugeContentModifier",
+
+        "MainAbility/pages/PatternLock/PatternLock11Jsunit",
+        "MainAbility/pages/PatternLock/PatternLockActivateCircleStyle1",
+        "MainAbility/pages/PatternLock/PatternLockPage",
+
+        "MainAbility/pages/QRCode/QRCodeApiTest",
+        "MainAbility/pages/QRCode/QRCodeAttrTest",
+        "MainAbility/pages/QRCode/QRCodeJsunitTest",
+        "MainAbility/pages/QRCode/QRCodeNodeTest",
+        "MainAbility/pages/QRCode/QRCodeResourceStrTest",
+        "MainAbility/pages/QRCode/QRCodeUIJsunit"
+    ]
+}

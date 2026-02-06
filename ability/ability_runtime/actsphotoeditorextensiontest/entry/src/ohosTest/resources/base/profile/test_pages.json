@@ -1,0 +1,7 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/p1",
+    "testability/pages/PhotoEditor"
+  ]
+}

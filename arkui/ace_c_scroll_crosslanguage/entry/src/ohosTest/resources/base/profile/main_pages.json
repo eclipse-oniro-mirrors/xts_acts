@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/ScrollCrossAttribute",
+    "MainAbility/pages/ScrollCrossAttribute_TS_False",
+    "MainAbility/pages/ScrollCrossAttribute_TS_True"
+  ]
+}

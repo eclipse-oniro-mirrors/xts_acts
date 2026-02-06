@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/ArcSwiper/ArcSwiper1",
+        "MainAbility/pages/ArcSwiper/ArcSwiper2",
+        "MainAbility/pages/ArcSwiper/ArcSwiper3"
+    ]
+}

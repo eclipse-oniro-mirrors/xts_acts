@@ -1,0 +1,97 @@
+'use static';
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { Entry, Text, TextAttribute, Column, Component, Button, Search,  TextAlign, ImageFit, Callback, InsertValue, DeleteValue, ClickEvent } from '@ohos.arkui.component'
+import {
+  State,
+  AppStorage
+} from '@ohos.arkui.stateManagement'
+
+@Entry
+@Component
+struct SearchEvent {
+  @State insertValue: string = ''
+  @State insertValue2: string = ''
+  @State insertValue3: string = ''
+  @State insertValue4: string = ''
+  @State insertValue5: string = ''
+  @State insertValue6: string = ''
+  @State text: string = ''
+
+  build() {
+    Column() {
+      Text(this.insertValue).key('SearchEventText').fontSize(10).width('100%').textAlign(TextAlign.Center).height('5%')
+      Text(this.insertValue2).key('SearchEventText2').fontSize(10).width('100%').textAlign(TextAlign.Center).height('5%')
+      Text(this.insertValue3).key('SearchEventText3').fontSize(10).width('100%').textAlign(TextAlign.Center).height('5%')
+      Text(this.insertValue4).key('SearchEventText4').fontSize(10).width('100%').textAlign(TextAlign.Center).height('5%')
+      Text(this.insertValue5).key('SearchEventText5').fontSize(10).width('100%').textAlign(TextAlign.Center).height('5%')
+      Text(this.insertValue6).key('SearchEventText6').fontSize(10).width('100%').textAlign(TextAlign.Center).height('5%')
+
+      Search({ value: this.text })
+        .height('5%')
+        .onWillInsert((info: InsertValue): boolean => {
+          console.log('this.text',this.text)
+          console.log('info.insertOffset',info.insertOffset,info.insertValue)
+          this.insertValue = info.insertOffset + ''
+          this.insertValue2 = info.insertValue
+          return true;
+        })
+        .onDidInsert((info: InsertValue): void => {
+          this.insertValue3 = info.insertOffset + ''
+          this.insertValue4 = info.insertValue
+        })
+        .onWillDelete((info: DeleteValue): boolean => {
+          this.insertValue5 = info.deleteOffset + ''
+          this.insertValue6 = info.deleteValue
+          return true;
+        })
+        .onChange((value: string) => {
+          this.text = value
+        })
+        .key('SearchEvent')
+
+      Search({ value: '0' })
+        .height('5%')
+        .onWillInsert((info: InsertValue): boolean => {
+          console.log('info.insertOffset',info.insertOffset,info.insertValue)
+          this.insertValue = info.insertOffset + ''
+          this.insertValue2 = info.insertValue
+          return false;
+        })
+        .onDidInsert((info: InsertValue): void => {
+          this.insertValue3 = info.insertOffset + ''
+          this.insertValue4 = info.insertValue
+        })
+        .key('SearchEvent2')
+
+      Search({ value: '0' })
+        .height('5%')
+        .onWillDelete((info: DeleteValue): boolean => {
+          this.insertValue5 = info.deleteOffset + ''
+          this.insertValue6 = info.deleteValue
+          return false;
+        })
+        .key('SearchEvent3')
+
+      Button('change')
+        .key('SearchEventBt')
+        .onClick((event: ClickEvent) => {
+          this.text = ''
+        })
+        .height('5%')
+    }
+    .height('100%')
+  }
+}

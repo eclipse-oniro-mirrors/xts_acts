@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="prefetch" href="https://www.example.com/test.js" as="script">
+  <link rel="prefetch" href="https://www.example.com/data.json" as="fetch">
+  <title>Video</title>
+</head>
+<body>
+Hello world!
+  <video id="video" controls preload="none" muted autoplay controlslist="noremoteplayback">
+    <source id="mp4" type="video/mp4" src="https://www.w3cschool.cn/statics/demosource/movie.mp4">
+  </video>
+<object data="https://www.example.com/api/example.jpg" type="image/jpeg">您的浏览器不支持图片显示。</object>
+</body>
+<script type="text/javascript">
+  window.onload = function() {
+    navigator.sendBeacon('https://www.example.com/ping');
+  };
+</script>
+
+</html>

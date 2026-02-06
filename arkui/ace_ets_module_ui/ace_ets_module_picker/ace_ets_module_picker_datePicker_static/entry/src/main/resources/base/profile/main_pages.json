@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/datePicker/DataPickerCanLoop",
+    "MainAbility/pages/datePicker/DataPickerCanLoopModifier"
+  ]
+}

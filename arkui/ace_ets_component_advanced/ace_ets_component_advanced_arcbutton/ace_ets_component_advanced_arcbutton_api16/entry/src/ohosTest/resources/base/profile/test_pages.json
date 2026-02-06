@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/ArcButton/ArcButtonClick",
+        "MainAbility/pages/ArcButton/acrButtonProgressTest"
+    ]
+}

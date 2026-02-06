@@ -1,0 +1,16 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "entryability1/pages/Index",
+    "entryability2/pages/Index",
+    "entryability3/pages/Index",
+    "entryability4/pages/Index",
+    "entryability5/pages/Index",
+    "entryability6/pages/Index",
+    "entryability7/pages/Index",
+    "entryability8/pages/Index",
+    "entryability9/pages/Index",
+    "entryability10/pages/Index",
+    "entryability11/pages/Index"
+  ]
+}

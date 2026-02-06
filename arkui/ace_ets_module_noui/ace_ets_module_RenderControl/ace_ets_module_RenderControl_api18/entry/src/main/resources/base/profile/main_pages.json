@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/repeat/RepeatCloseReuse0110",
+        "MainAbility/pages/repeat/RepeatLazy0150"
+    ]
+}

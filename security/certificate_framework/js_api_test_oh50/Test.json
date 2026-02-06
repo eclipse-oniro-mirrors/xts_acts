@@ -1,0 +1,32 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "1200000",
+    "shell-timeout": "900000",
+    "testcase-timeout": "600000",
+    "bundle-name": "com.openharmony.certframework",
+    "module-name": "entry_test"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsCertFrameworkExtJSFuncTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "remount",
+        "cat > /etc/security/certificates/aefc3878.0 << EOF\n-----BEGIN CERTIFICATE-----\nMIIBgzCCASqgAwIBAgIUeWln0fIsaUBsYjr7iVYc9E8EZLQwCgYIKoZIzj0EAwIw\nNjELMAkGA1UEBhMCQ04xFTATBgNVBAoMDFJvb3QgQ0EgQ29ycDEQMA4GA1UEAwwH\nUm9vdCBDQTAeFw0yNTA3MDkwMjU3MzFaFw0zNTA3MDcwMjU3MzFaMDYxCzAJBgNV\nBAYTAkNOMRUwEwYDVQQKDAxSb290IENBIENvcnAxEDAOBgNVBAMMB1Jvb3QgQ0Ew\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATBGJF/0Q92U/lKky5REBxi4gfzdCRm\nvM9slQllInC7rSTZ82aHQS3I+aM/AHxuASG0/ngJ6gDrh08bqiSrrcVMoxYwFDAS\nBgNVHRMBAf8ECDAGAQH/AgECMAoGCCqGSM49BAMCA0cAMEQCIGZOS2JreLWL8C3D\natcJO21la1FHJq/xhXl43KeWh3NzAiBd7VlaZz/MgvJuOmb2aAJ7h6qDnRi9lnov\nd3QUTjhPxQ==\n-----END CERTIFICATE-----\nEOF",
+        "cat > /etc/security/certificates/c4bcda47.0 << EOF\n-----BEGIN CERTIFICATE-----\nMIIBlDCCATqgAwIBAgIUA99aBUhGq2qEwcUuWQEXw0xAxg0wCgYIKoZIzj0EAwIw\nNjELMAkGA1UEBhMCQ04xFTATBgNVBAoMDFJvb3QgQ0EgQ29ycDEQMA4GA1UEAwwH\nUm9vdCBDQTAeFw0yNTA3MDkwMjU3MzFaFw0zMDA3MDgwMjU3MzFaMEYxCzAJBgNV\nBAYTAkNOMR0wGwYDVQQKDBRJbnRlcm1lZGlhdGUgQ0EgQ29ycDEYMBYGA1UEAwwP\nSW50ZXJtZWRpYXRlIENBMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEScG4sRlO\npdbudXHxmVxf2Y3NrcOHOCKzVSfB1w5ICq8/rpVhgmNv0WZMtWG30LU3CLhAvjwW\nzDcQObDH+goU/KMWMBQwEgYDVR0TAQH/BAgwBgEB/wIBATAKBggqhkjOPQQDAgNI\nADBFAiEAhzce8B/FAcAb4vj6oRzNGFg9scZxRHZOb8sd/Tpqt0ACIEG9FpD7G8YM\nX26xrcJ3IaTLm6GaqTVb102ioI/tHWjg\n-----END CERTIFICATE-----\nEOF"
+      ],
+      "teardown-command": [
+        "rm -rf /etc/security/certificates/aefc3878.0",
+        "rm -rf /etc/security/certificates/c4bcda47.0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "float":[
+    {
+      "name":"font_hello",
+      "value":"28.0fp"
+    },
+    {
+      "name":"font_world",
+      "value":"20.0fp"
+    },
+    {
+      "name": "textShadowRadius",
+      "value": "5.0"
+    },
+    {
+      "name": "textShadowOffset",
+      "value": "5.0"
+    },
+    {
+      "name": "Caretwidth",
+      "value": "10.0"
+    },
+    {
+      "name": "page_text_font_size",
+      "value": "50fp"
+    }
+  ]
+}

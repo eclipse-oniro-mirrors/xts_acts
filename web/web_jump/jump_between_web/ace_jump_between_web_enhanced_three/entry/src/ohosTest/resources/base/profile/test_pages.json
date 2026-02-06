@@ -1,0 +1,7 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/webViewControllerPart2",
+    "testability/pages/webControllerBackOrForward"
+  ]
+}

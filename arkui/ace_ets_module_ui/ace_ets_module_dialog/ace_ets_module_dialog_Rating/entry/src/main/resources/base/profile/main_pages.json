@@ -1,0 +1,34 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Rating/ratingStarStyle",
+    "MainAbility/pages/Rating/Rating",
+    "MainAbility/pages/Rating/RatingPage",
+    "MainAbility/pages/Rating/rating3",
+    "MainAbility/pages/Rating/ratingAdvanced/ratingFocus01",
+    "MainAbility/pages/Rating/ratingAdvanced/ratingFocus02",
+    "MainAbility/pages/Rating/ratingAdvanced/ratingFocus03",
+    "MainAbility/pages/Rating/ratingAdvanced/ratingFocus04",
+    "MainAbility/pages/Rating/ratingAdvanced/ratingFocus05",
+    "MainAbility/pages/Rating/ratingAdvanced/ratingFocus06",
+    "MainAbility/pages/Rating/ratingAdvanced12/ratings01",
+    "MainAbility/pages/Rating/ratingAdvanced12/ratings02",
+    "MainAbility/pages/Rating/ratingAdvanced12/ratings03",
+    "MainAbility/pages/Rating/ratingAdvanced12/ratings04",
+    "MainAbility/pages/Rating/ratingAdvanced12/ratings05",
+    "MainAbility/pages/Rating/ratingAdvanced12/ratings06",
+    "MainAbility/pages/Rating/ratingAdvanced12/ratings07",
+    "MainAbility/pages/Rating/ratingAdvanced12/ratings08",
+    "MainAbility/pages/Rating/ratingAdvanced12/ratings10",
+    "MainAbility/pages/Rating/ratingAdvanced12/ratings11",
+    "MainAbility/pages/Rating/ratingAdvanced/rating01",
+    "MainAbility/pages/Rating/ratingAdvanced/rating02",
+    "MainAbility/pages/Rating/ratingAdvanced/rating03",
+    "MainAbility/pages/Rating/ratingAdvanced/rating04",
+    "MainAbility/pages/Rating/ratingAdvanced/rating05",
+    "MainAbility/pages/Rating/RatingContentModifier",
+    "MainAbility/pages/Rating/ratingNode",
+    "MainAbility/pages/Rating/ratingOnChangeModifier"
+    
+  ]
+}

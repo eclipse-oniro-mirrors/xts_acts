@@ -1,0 +1,11 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/UIContext/arkuinode/arkui_node",
+        "MainAbility/pages/UIContext/getUIObserver",
+        "MainAbility/pages/UIContext/getDragController",
+        "MainAbility/pages/mediaquery/mediaQuery",
+        "MainAbility/pages/pluginComponent/PluginProviderExample",
+        "MainAbility/pages/pluginComponent/pluginComponent"
+    ]
+}

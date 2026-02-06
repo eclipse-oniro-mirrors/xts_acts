@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas功能完整示例</title>
+</head>
+<style>
+    body {
+      display: flex;
+      justify-content: center; /* 水平居中 */
+      align-items: center;     /* 垂直居中 */
+      min-height: 100vh;      /* 确保页面高度至少为视口高度 */
+      margin: 0;
+}
+</style>
+<body>
+<canvas id="blankCanvas" width="800" height="800"></canvas>
+<script>
+    // 1. 空白Canvas
+    const blankCanvas = document.getElementById('blankCanvas');
+    const blankCtx = blankCanvas.getContext('2d');
+    blankCtx.fillStyle = '#f0f0f0';
+    blankCtx.fillRect(0, 0, blankCanvas.width, blankCanvas.height);
+    blankCtx.font = '14px Arial';
+    blankCtx.fillStyle = '#999';
+    blankCtx.fillText('空白Canvas - 可用作绘图区域', 10, 20);
+
+    // 2. 基本形状绘制
+    const basicCanvas = document.getElementById('blankCanvas');
+    const basicCtx = basicCanvas.getContext('2d');
+
+    function drawBasicShapes() {
+        // 绘制矩形
+        basicCtx.fillStyle = 'red';
+        basicCtx.fillRect(20, 20, 800, 800);
+
+    }
+
+    drawBasicShapes();
+
+    // 3. 绘制文本
+    const textCanvas = document.getElementById('textCanvas');
+    const textCtx = textCanvas.getContext('2d');
+
+    textCtx.font = '30px Arial';
+    textCtx.fillStyle = 'navy';
+    textCtx.fillText('Canvas文本绘制示例', 10, 50);
+
+    textCtx.font = '20px Arial';
+    textCtx.strokeStyle = 'purple';
+    textCtx.strokeText('描边文本效果', 10, 80);
+
+    // 4. 动画效果
+    const animationCanvas = document.getElementById('animationCanvas');
+    const animationCtx = animationCanvas.getContext('2d');
+    let animationId = null;
+    let angle = 0;
+    let xPos = 0;
+    let direction = 1;
+
+    function drawAnimation() {
+        animationCtx.clearRect(0, 0, animationCanvas.width, animationCanvas.height);
+
+        // 绘制背景
+        animationCtx.fillStyle = '#f8f9fa';
+        animationCtx.fillRect(0, 0, animationCanvas.width, animationCanvas.height);
+
+        // 绘制旋转的矩形
+        animationCtx.save();
+        animationCtx.translate(animationCanvas.width/2, animationCanvas.height/2);
+        animationCtx.rotate(angle);
+        animationCtx.fillStyle = '#9b59b6';
+        animationCtx.fillRect(-30, -30, 60, 60);
+        animationCtx.restore();
+
+        // 绘制 bouncing ball
+        const ballX = xPos;
+        const ballY = animationCanvas.height/2 + Math.cos(angle * 3) * 50;
+
+        animationCtx.beginPath();
+        animationCtx.fillStyle = '#e91e63';
+        animationCtx.arc(ballX, ballY, 15, 0, Math.PI * 2);
+        animationCtx.fill();
+
+        // 更新角度和位置
+        angle += 0.05;
+        xPos += 2 * direction;
+
+        // 边界检测
+        if (xPos > animationCanvas.width || xPos < 0) {
+            direction *= -1;
+        }
+
+        // 继续动画
+        animationId = requestAnimationFrame(drawAnimation);
+    }
+
+    function startAnimation() {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+        }
+        drawAnimation();
+    }
+
+    function stopAnimation() {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+    }
+
+    // 5. 交互式绘图
+    const interactiveCanvas = document.getElementById('interactiveCanvas');
+    const interactiveCtx = interactiveCanvas.getContext('2d');
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+    let drawColor = '#3498db';
+    const colorDisplay = document.getElementById('currentColor');
+
+    // 初始化画布
+    interactiveCtx.fillStyle = '#ffffff';
+    interactiveCtx.fillRect(0, 0, interactiveCanvas.width, interactiveCanvas.height);
+    interactiveCtx.lineWidth = 5;
+    interactiveCtx.lineCap = 'round';
+    interactiveCtx.strokeStyle = drawColor;
+
+    // 鼠标事件监听
+    interactiveCanvas.addEventListener('mousedown', startDrawing);
+    interactiveCanvas.addEventListener('mousemove', draw);
+    interactiveCanvas.addEventListener('mouseup', stopDrawing);
+    interactiveCanvas.addEventListener('mouseout', stopDrawing);
+
+    // 触摸事件支持
+    interactiveCanvas.addEventListener('touchstart', handleTouchStart);
+    interactiveCanvas.addEventListener('touchmove', handleTouchMove);
+    interactiveCanvas.addEventListener('touchend', stopDrawing);
+
+    function startDrawing(e) {
+        isDrawing = true;
+        const pos = getMousePos(interactiveCanvas, e);
+        [lastX, lastY] = [pos.x, pos.y];
+    }
+
+    function draw(e) {
+        if (!isDrawing) return;
+
+        const pos = getMousePos(interactiveCanvas, e);
+
+        interactiveCtx.beginPath();
+        interactiveCtx.moveTo(lastX, lastY);
+        interactiveCtx.lineTo(pos.x, pos.y);
+        interactiveCtx.stroke();
+        [lastX, lastY] = [pos.x, pos.y];
+
+        e.preventDefault();
+    }
+
+    function handleTouchStart(e) {
+        if (e.touches.length === 1) {
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousedown', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            interactiveCanvas.dispatchEvent(mouseEvent);
+        }
+    }
+
+    function handleTouchMove(e) {
+        if (e.touches.length === 1) {
+            const touch = e.touches[0];
+            const mouseEvent = new MouseEvent('mousemove', {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            interactiveCanvas.dispatchEvent(mouseEvent);
+        }
+    }
+
+    function getMousePos(canvas, evt) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    }
+
+    function stopDrawing() {
+        isDrawing = false;
+    }
+
+    function changeColor() {
+        const colors = [
+            {name: "蓝色", value: '#3498db'},
+            {name: "红色", value: '#e74c3c'},
+            {name: "绿色", value: '#2ecc71'},
+            {name: "黄色", value: '#f39c12'},
+            {name: "紫色", value: '#9b59b6'},
+            {name: "粉色", value: '#e91e63'}
+        ];
+
+        const currentIndex = colors.findIndex(c => c.value === drawColor);
+        const nextIndex = (currentIndex + 1) % colors.length;
+        const nextColor = colors[nextIndex];
+
+       drawColor = nextColor.value;
+        interactiveCtx.strokeStyle = drawColor;
+        colorDisplay.textContent = nextColor.name;
+        colorDisplay.style.color = nextColor.value;
+    }
+
+    function clearInteractiveCanvas() {
+        interactiveCtx.fillStyle = '#ffffff';
+        interactiveCtx.fillRect(0, 0, interactiveCanvas.width, interactiveCanvas.height);
+        interactiveCtx.strokeStyle = drawColor;
+    }
+
+    // 6. 图像处理
+    const imageCanvas = document.getElementById('imageCanvas');
+    const imageCtx = imageCanvas.getContext('2d');
+    let originalImageData = null;
+
+    function loadImage() {
+        const img = new Image();
+        img.onload = function() {
+            drawImageToCanvas(img, imageCanvas, imageCtx);
+            originalImageData = imageCtx.getImageData(0, 0, imageCanvas.width, imageCanvas.height);
+        };
+        // img.onerror = function() {
+        //     alert('图片加载失败，请重试');
+        // };
+        // 使用稳定的图片URL
+        img.src = 'image.jpg';
+    }
+
+    function drawImageToCanvas(img, canvas, ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // 计算缩放比例，保持图片比例
+        const scale = Math.min(
+            canvas.width / img.width,
+            canvas.height / img.height
+        );
+
+        const width = img.width * scale;
+        const height = img.height * scale;
+        const x = (canvas.width - width) / 2;
+        const y = (canvas.height - height) / 2;
+
+        ctx.drawImage(img, x, y, width, height);
+    }
+
+    function applyGrayscale() {
+        if (!originalImageData) {
+            alert('请先加载图片');
+            return;
+        }
+
+        const imageData = imageCtx.getImageData(0, 0, imageCanvas.width, imageCanvas.height);
+        const data = imageData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+            const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+            data[i] = avg;     // Red
+            data[i + 1] = avg; // Green
+            data[i + 2] = avg; // Blue
+        }
+
+        imageCtx.putImageData(imageData, 0, 0);
+    }
+
+    function applyInvert() {
+        if (!originalImageData) {
+            alert('请先加载图片');
+            return;
+        }
+
+        const imageData = imageCtx.getImageData(0, 0, imageCanvas.width, imageCanvas.height);
+        const data = imageData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+            data[i] = 255 - data[i];       // Red
+            data[i + 1] = 255 - data[i + 1]; // Green
+            data[i + 2] = 255 - data[i + 2]; // Blue
+        }
+
+        imageCtx.putImageData(imageData, 0, 0);
+    }
+
+    function applySepia() {
+        if (!originalImageData) {
+            alert('请先加载图片');
+            return;
+        }
+
+        const imageData = imageCtx.getImageData(0, 0, imageCanvas.width, imageCanvas.height);
+        const data = imageData.data;
+
+        for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+
+            data[i] = Math.min(255, (r * 0.393) + (g * 0.769) + (b * 0.189));
+            data[i + 1] = Math.min(255, (r * 0.349) + (g * 0.686) + (b * 0.168));
+            data[i + 2] = Math.min(255, (r * 0.272) + (g * 0.534) + (b * 0.131));
+        }
+
+        imageCtx.putImageData(imageData, 0, 0);
+    }
+
+    function resetImage() {
+        if (originalImageData) {
+            imageCtx.putImageData(originalImageData, 0, 0);
+        } else {
+            alert('没有可重置的图片');
+        }
+    }
+
+    // 7. 加载外部图片
+    const externalImageCanvas = document.getElementById('externalImageCanvas');
+    const externalImageCtx = externalImageCanvas.getContext('2d');
+
+    function loadExternalImage() {
+        const img = new Image();
+        img.onload = function() {
+            drawImageToCanvas(img, externalImageCanvas, externalImageCtx);
+        };
+        // img.onerror = function() {
+        //     alert('外部图片加载失败，请重试');
+        // };
+        // 使用稳定的图片URL
+        img.src = 'https://picsum.photos/id/' + (Math.floor(Math.random() * 100) + 100) + '/800/600';
+    }
+
+    function handleImageUpload(files) {
+        if (!files || !files.length) return;
+
+        const file = files[0];
+        if (!file.type.match('image.*')) {
+            alert('请选择图片文件');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                drawImageToCanvas(img, externalImageCanvas, externalImageCtx);
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // 初始加载图片
+    loadImage();
+    loadExternalImage();
+</script>
+</body>
+</html>

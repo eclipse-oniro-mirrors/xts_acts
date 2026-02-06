@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/KeyCodeTest/KeyCodeTest",
+    "MainAbility/pages/ArkUIKeyCodeTest/ArkUIKeyCodeTest"
+  ]
+}

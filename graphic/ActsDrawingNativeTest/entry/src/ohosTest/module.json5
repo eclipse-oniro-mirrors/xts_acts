@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "drawing_native_test",
+    "type": "feature",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false
+  }
+}

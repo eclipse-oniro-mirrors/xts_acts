@@ -1,0 +1,19 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/promptAction/openPopup",
+    "MainAbility/pages/promptAction/updatePopup",
+    "MainAbility/pages/promptAction/closePopup",
+    "MainAbility/pages/promptAction/openDialogTransition",
+    "MainAbility/pages/Menu/menuFontsizeModifier",
+    "MainAbility/pages/Menu/menuitemOnChangeModifier",
+    "MainAbility/pages/Menu/menuBindMenuModifier",
+    "MainAbility/pages/Menu/BlurStyleOptions",
+    "MainAbility/pages/Menu/EffectOptions",
+    "MainAbility/pages/dialogLife/ActionSheetLife",
+    "MainAbility/pages/dialogLife/AlertDialogLife",
+    "MainAbility/pages/dialogLife/CustomDialogLife",
+    "MainAbility/pages/bindSheet/showInSubWindowBindSheet",
+    "MainAbility/pages/promptAction/showToastOptions"
+  ]
+}

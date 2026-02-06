@@ -1,0 +1,19 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Common/OnPreDrag/OnpreDrag_API/ACTION_CANCELED_BEFORE_DRAG",
+    "MainAbility/pages/Drag/getDisplayId",
+    "MainAbility/pages/GlobalDisplay/axisEvent",
+    "MainAbility/pages/GlobalDisplay/clickEvent",
+    "MainAbility/pages/GlobalDisplay/dragEvent",
+    "MainAbility/pages/GlobalDisplay/fingerInfo",
+    "MainAbility/pages/GlobalDisplay/hoverEvent",
+    "MainAbility/pages/GlobalDisplay/mouseEvent",
+    "MainAbility/pages/GlobalDisplay/touchEvent",
+    "MainAbility/pages/DragEvent/getResult",
+    "MainAbility/pages/DragEvent/DragModifier",
+    "MainAbility/pages/DragEvent/dragSpringLoading",
+    "MainAbility/pages/DragEvent/normalDrag",
+    "MainAbility/pages/DragEvent/enableInternalDropAnimation"
+  ]
+}

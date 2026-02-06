@@ -1,0 +1,13 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/api12/subHeaderButton",
+    "MainAbility/pages/api12/subHeaderIconGroup",
+    "MainAbility/pages/api12/subHeaderSelect",
+    "MainAbility/pages/api12/subHeaderTextArrow",
+    "MainAbility/pages/api12/subHeaderTitleBuilder",
+    "MainAbility/pages/api12/subHeaderTitleModifier",
+    "MainAbility/pages/api18/subHeaderSelect18",
+    "MainAbility/pages/api23/subHeader23"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "ActsWebZoomAccessTest Test Module"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "ActsWebZoomAccessTest TestAbility"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "ActsWebZoomAccessTest"
+    }
+  ]
+}

@@ -1,0 +1,387 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium'
+import appManager from '@ohos.application.appManager';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { BusinessError } from '@ohos.base';
+
+export default function abilityTest() {
+    describe('ACTS_ExecuteShellCommandTest', () => {
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Callback_0100
+         * @tc.number ACTS_ExecuteShellCommand_Callback_0100
+         * @tc.desc   Verify that the interface executes the Shell command successfully.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Callback_0100', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Callback_0100 --- start")
+            let cmd = 'aa help'
+            let escresult = 'usage: aa <command> <options>'
+            globalThis.abilityDelegator.executeShellCommand(cmd, (err:BusinessError, data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Callback_0100 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Callback_0100 stdResult = ' + data.stdResult)
+                let i:number = data.stdResult.indexOf(escresult);
+                console.log('ACTS_ExecuteShellCommand_Callback_0100 query string i = ' + i);
+                expect(i == -1).assertEqual(false);
+                console.log('ACTS_ExecuteShellCommand_Callback_0100 exitCode = ' + data.exitCode)
+                expect(data.exitCode).assertEqual(0);
+                console.log('ACTS_ExecuteShellCommand_Callback_0100 - executeShellCommand: end')
+                done()
+            })
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Callback_0200
+         * @tc.number ACTS_ExecuteShellCommand_Callback_0200
+         * @tc.desc   Verify that the interface executes the Shell command successfully.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Callback_0200', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Callback_0200 --- start")
+            let cmd = 'aa start -a MainAbility -b com.example.actskillprocesswithaccountclosetest'
+            globalThis.abilityDelegator.executeShellCommand(cmd, 1,(err:BusinessError, data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Callback_0200 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Callback_0200 stdResult = ' + data.stdResult)
+                let i = data.stdResult.indexOf('start ability successfully.');
+                console.log('ACTS_ExecuteShellCommand_Callback_0200 query string i = ' + i);
+                expect(i == -1).assertEqual(false);
+                console.log('ACTS_ExecuteShellCommand_Callback_0200 exitCode = ' + data.exitCode)
+                expect(data.exitCode).assertEqual(0);
+                console.log('ACTS_ExecuteShellCommand_Callback_0200 - executeShellCommand: end')
+                done()
+            })
+            setTimeout(async() => {
+                appManager.killProcessWithAccount('com.example.actskillProcessWithAccountclosetest', 100).then(() => {
+                    console.log('ACTS_ExecuteShellCommand_Callback_0200 killProcess ======> start');
+                })
+            }, 3000 )
+        })
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Callback_0300
+         * @tc.number ACTS_ExecuteShellCommand_Callback_0300
+         * @tc.desc   Failed to execute shell command on authentication interface.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Callback_0300', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Callback_0300 --- start")
+            let cmd = 'ppwd -L'
+            globalThis.abilityDelegator.executeShellCommand(cmd, 1,(err:BusinessError, data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Callback_0300 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Callback_0300 stdResult = ' + data.stdResult)
+                let i = data.stdResult.length
+                console.log('ACTS_ExecuteShellCommand_Callback_0300 query string i = ' + i);
+                expect(i == 0).assertEqual(true);
+                console.log('ACTS_ExecuteShellCommand_Callback_0300 exitCode = ' + data.exitCode)
+                expect(data.exitCode == 0).assertEqual(false);
+                console.log('ACTS_ExecuteShellCommand_Callback_0300 - executeShellCommand: end')
+                done();
+            })
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Callback_0400
+         * @tc.number ACTS_ExecuteShellCommand_Callback_0400
+         * @tc.desc   The authentication interface executes the shell command timed out.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Callback_0400', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Callback_0400 --- start")
+            let cmd = 'aa help'
+            let escresult = 'usage: aa <command> <options>'
+            globalThis.abilityDelegator.executeShellCommand(cmd,0, (err:BusinessError, data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Callback_0400 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Callback_0400 stdResult = ' + data.stdResult)
+                let i = data.stdResult.indexOf(escresult);
+                console.log('ACTS_ExecuteShellCommand_Callback_0400 query string i = ' + i);
+                expect(i == -1).assertEqual(false);
+                console.log('ACTS_ExecuteShellCommand_Callback_0100 exitCode = ' + data.exitCode)
+                expect(data.exitCode).assertEqual(0);
+                console.log('ACTS_ExecuteShellCommand_Callback_0400 - executeShellCommand: end')
+                done();
+            })
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Callback_0500
+         * @tc.number ACTS_ExecuteShellCommand_Callback_0500
+         * @tc.desc   The timeout parameter for executing shell commands on the authentication interface is invalid.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Callback_0500', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Callback_0500 --- start")
+            let cmd = 'aa help'
+            let escresult = 'usage: aa <command> <options>'
+            globalThis.abilityDelegator.executeShellCommand(cmd,-1, (err:BusinessError, data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Callback_0500 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Callback_0500 stdResult = ' + data.stdResult)
+                let i = data.stdResult.indexOf(escresult);
+                console.log('ACTS_ExecuteShellCommand_Callback_0500 query string i = ' + i);
+                expect(i == -1).assertEqual(false);
+                console.log('ACTS_ExecuteShellCommand_Callback_0500 exitCode = ' + data.exitCode)
+                expect(data.exitCode).assertEqual(0);
+                console.log('ACTS_ExecuteShellCommand_Callback_0500 - executeShellCommand: end')
+                done();
+            })
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Callback_0600
+         * @tc.number ACTS_ExecuteShellCommand_Callback_0600
+         * @tc.desc   Failed to execute shell command on authentication interface.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Callback_0600', Level.LEVEL0, async (done:Function) => {
+            let flag=true;
+            console.log("ACTS_ExecuteShellCommand_Callback_0600 --- start")
+            globalThis.abilityDelegator.executeShellCommand("",1,(err:BusinessError, data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Callback_0600 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Callback_0600 - executeShellCommand:data'+JSON.stringify(data))
+                expect(data).assertEqual(undefined);
+                console.log('ACTS_ExecuteShellCommand_Callback_0600 - executeShellCommand: end')
+                flag=false;
+                done();
+            })
+            setTimeout(()=>{
+                if(flag==true){
+                    console.log('ACTS_ExecuteShellCommand_Callback_0600 timeout')
+                    expect().assertFail();
+                    done();
+                }
+            },5000)
+        })
+
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Callback_0700
+         * @tc.number ACTS_ExecuteShellCommand_Callback_0700
+         * @tc.desc   Verify that the interface executes the Shell command successfully.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Callback_0700', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_0700 --- start")
+            let cmd = 'aa help'
+            let code = null
+            setTimeout(() => {
+                console.log('ACTS_ExecuteShellCommand_Callback_0700 code:'+JSON.stringify(code))
+                if(code!=undefined){
+                    expect().assertFail();
+                }
+                done();
+            }, 3000)
+            code = globalThis.abilityDelegator.executeShellCommand(cmd,null,() => {
+                console.log('ACTS_ExecuteShellCommand_Callback_0700 fail:')
+                expect().assertFail();
+            })
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Promise_0100
+         * @tc.number ACTS_ExecuteShellCommand_Promise_0100
+         * @tc.desc   Verify that the interface executes the Shell command successfully.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Promise_0100', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Promise_0100 --- start")
+            let cmd = 'aa help'
+            let escresult = 'usage: aa <command> <options>'
+            globalThis.abilityDelegator.executeShellCommand(cmd, 1).then((data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Promise_0100 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Promise_0100 stdResult = ' + data.stdResult)
+                let i:number = data.stdResult.indexOf(escresult);
+                console.log('ACTS_ExecuteShellCommand_Promise_0100 query string i = ' + i);
+                expect(i == -1).assertEqual(false);
+                console.log('ACTS_ExecuteShellCommand_Promise_0100 exitCode = ' + data.exitCode)
+                expect(data.exitCode).assertEqual(0);
+                done();
+            })
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Promise_0200
+         * @tc.number ACTS_ExecuteShellCommand_Promise_0200
+         * @tc.desc   Verify that the interface executes the Shell command successfully.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Promise_0200', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Promise_0200 --- start")
+            let cmd = 'aa start -d 0 -a MainAbility -b com.example.actskillprocesswithaccountclosetest'
+            globalThis.abilityDelegator.executeShellCommand(cmd, 1).then((data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Promise_0200 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Promise_0200 stdResult = ' + data.stdResult)
+                let i:number = data.stdResult.indexOf('start ability successfully.');
+                console.log('ACTS_ExecuteShellCommand_Promise_0200 query string i = ' + i);
+                expect(i == -1).assertEqual(false);
+                console.log('ACTS_ExecuteShellCommand_Promise_0200 exitCode = ' + data.exitCode)
+                expect(data.exitCode).assertEqual(0);
+                console.log('ACTS_ExecuteShellCommand_Promise_0200 - executeShellCommand: end')
+                done()
+            })
+            setTimeout(async() => {
+                appManager.killProcessWithAccount('com.example.actskillProcessWithAccountclosetest', 100).then(() => {
+                    console.log('ACTS_ExecuteShellCommand_Promise_0200 killProcess ======> start');
+                })
+            }, 3000 )
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Promise_0300
+         * @tc.number ACTS_ExecuteShellCommand_Promise_0300
+         * @tc.desc   Failed to execute shell command on authentication interface.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Promise_0300', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Promise_0300 --- start")
+            let cmd = 'ppwd -L'
+            globalThis.abilityDelegator.executeShellCommand(cmd, 1).then((data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Promise_0300 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Promise_0300 stdResult = ' + data.stdResult)
+                let i:number = data.stdResult.length
+                console.log('ACTS_ExecuteShellCommand_Promise_0300 query string i = ' + i);
+                expect(i == 0).assertEqual(true);
+                console.log('ACTS_ExecuteShellCommand_Promise_0300 exitCode = ' + data.exitCode)
+                expect(data.exitCode == 0).assertEqual(false);
+                console.log('ACTS_ExecuteShellCommand_Promise_0300 - executeShellCommand: end')
+                done();
+            })
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Promise_0400
+         * @tc.number ACTS_ExecuteShellCommand_Promise_0400
+         * @tc.desc   The authentication interface executes the shell command timed out.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Promise_0400', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Promise_0400 --- start")
+            let cmd = 'aa help'
+            let escresult = 'usage: aa <command> <options>'
+            globalThis.abilityDelegator.executeShellCommand(cmd, 0).then((data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Promise_0400 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Promise_0400 stdResult = ' + data.stdResult)
+                let i:number = data.stdResult.indexOf(escresult);
+                console.log('ACTS_ExecuteShellCommand_Promise_0400 query string i = ' + i);
+                expect(data.exitCode).assertEqual(0);
+                console.log('ACTS_ExecuteShellCommand_Promise_0400 - executeShellCommand: end')
+                done();
+            })
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Promise_0500
+         * @tc.number ACTS_ExecuteShellCommand_Promise_0500
+         * @tc.desc   The timeout parameter for executing shell commands on the authentication interface is invalid.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Promise_0500', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Promise_0500 --- start")
+            let cmd = 'aa help'
+            let escresult = 'usage: aa <command> <options>'
+            globalThis.abilityDelegator.executeShellCommand(cmd, -1).then((data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Promise_0500 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Promise_0500 stdResult = ' + data.stdResult)
+                let i:number = data.stdResult.indexOf(escresult);
+                console.log('ACTS_ExecuteShellCommand_Promise_0500 query string i = ' + i);
+                expect(data.exitCode).assertEqual(0);
+                console.log('ACTS_ExecuteShellCommand_Promise_0500 - executeShellCommand: end')
+                done();
+            })
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Promise_0600
+         * @tc.number ACTS_ExecuteShellCommand_Promise_0600
+         * @tc.desc   Failed to execute shell command on authentication interface.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Promise_0600', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Promise_0600 --- start")
+            let flag = true;
+            globalThis.abilityDelegator.executeShellCommand("",1).then((data:AbilityDelegatorRegistry.ShellCmdResult) => {
+                console.log('ACTS_ExecuteShellCommand_Promise_0600 - executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Promise_0600 - executeShellCommand:data'+JSON.stringify(data))
+                expect(data).assertEqual(undefined);
+                console.log('ACTS_ExecuteShellCommand_Callback_0600 - executeShellCommand: end')
+                flag=false;
+                done();
+            },(data:BusinessError) => {
+                console.log('ACTS_ExecuteShellCommand_Promise_0600 -2 executeShellCommand: start ')
+                console.log('ACTS_ExecuteShellCommand_Promise_0600 -2 executeShellCommand:data'+JSON.stringify(data))
+                expect(data.code).assertEqual(-1);
+                console.log('ACTS_ExecuteShellCommand_Callback_0600 -2 executeShellCommand: end')
+                flag=false;
+                done();
+            }).catch((err:BusinessError) => {
+                console.log('ACTS_ExecuteShellCommand_Promise_0600 -2 executeShellCommand:err'+JSON.stringify(err))
+            })
+            setTimeout(()=>{
+                if(flag==true){
+                    console.log('ACTS_ExecuteShellCommand_Callback_0600 timeout')
+                    expect().assertFail();
+                    done();
+                }
+            },5000)
+        })
+
+        /**
+         * @tc.name   ACTS_ExecuteShellCommand_Promise_0700
+         * @tc.number ACTS_ExecuteShellCommand_Promise_0700
+         * @tc.desc   Verify that the interface executes the Shell command successfully.
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('ACTS_ExecuteShellCommand_Promise_0700', Level.LEVEL0, async (done:Function) => {
+            console.log("ACTS_ExecuteShellCommand_Promise_0700 --- start")
+            let cmd = 'aa help'
+            let code = null
+            code = globalThis.abilityDelegator.executeShellCommand(cmd, null)
+            setTimeout(() => {
+                console.log('ACTS_ExecuteShellCommand_Callback_0700 code:'+JSON.stringify(code))
+                if(code!=undefined){
+                    expect().assertFail();
+                }
+                done();
+            }, 3000)
+        })
+    })
+};

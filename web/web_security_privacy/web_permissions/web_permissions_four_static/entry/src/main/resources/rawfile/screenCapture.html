@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #video {
+        width: 200px;
+        height: 400px;
+        border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+<script>
+    function share() {
+    <!-- let str = testObjName.test();-->
+    navigator.mediaDevices.getDisplayMedia({video: true}).then(stream => {
+
+    // 创建一个video元素
+    var video = document.getElementById('video');
+
+    // 设置video元素的srcObject为获取到的流
+    video.srcObject = stream;
+
+    console.log(stream, video)
+    // 播放视频
+    video.play();
+    }).catch(res => {
+    document.getElementById('res').innerText = res
+    })
+    }
+    var script = document.createElement("script")
+    script.src = "https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.1/vconsole.min.js"
+    script.onload = function(){
+    window.vconsole = new VConsole()
+    }
+    document.body.appendChild(script)
+</script>
+<button onclick="share()">投屏</button>
+<video id="video"></video>
+<span id="res"></span>
+</body>
+</html>

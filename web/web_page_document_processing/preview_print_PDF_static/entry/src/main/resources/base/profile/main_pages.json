@@ -1,0 +1,6 @@
+{
+  "src": [
+    "pages/WebInitTest",
+    "pages/createPdf"
+  ]
+}

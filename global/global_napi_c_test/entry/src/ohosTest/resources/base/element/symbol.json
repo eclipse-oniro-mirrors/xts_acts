@@ -1,0 +1,28 @@
+{
+  "symbol": [
+    {
+      "name": "symbol_test",
+      "value": "0xF0000"
+    },
+    {
+      "name": "symbolTestA",
+      "value": "$symbol:symbolTestB"
+    },
+    {
+      "name": "symbolTestB",
+      "value": "$symbol:symbolTestA"
+    },
+    {
+      "name": "symbolTest1",
+      "value": "0xF0003"
+    },
+    {
+      "name": "symbolTestReference",
+      "value": "$symbol:symbolTest1"
+    },
+    {
+      "name": "symbolTest2",
+      "value": "0xF0001"
+    }
+  ]
+}

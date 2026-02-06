@@ -1,0 +1,30 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/alertDialog/alertDialogBlurStyleOptions",
+    "MainAbility/pages/alertDialog/alertDialogBackgroundEffect",
+    "MainAbility/pages/customDialog/customDialogBlurStyleOptions",
+    "MainAbility/pages/customDialog/customDialogBackgroundEffect",
+    "MainAbility/pages/promptAction/closeMenu",
+    "MainAbility/pages/promptAction/openCustomDialogBlurStyleOptions",
+    "MainAbility/pages/promptAction/openCustomDialogBackgroundEffect",
+    "MainAbility/pages/promptAction/openMenu",
+    "MainAbility/pages/promptAction/showDialogBlurStyleOptions1",
+    "MainAbility/pages/promptAction/showDialogBackgroundEffect1",
+    "MainAbility/pages/promptAction/showDialogBlurStyleOptions2",
+    "MainAbility/pages/promptAction/showDialogBackgroundEffect2",
+    "MainAbility/pages/promptAction/updateMenu",
+    "MainAbility/pages/UIContext/openCustomDialogBlurStyleOptions",
+    "MainAbility/pages/UIContext/openCustomDialogBackgroundEffect",
+    "MainAbility/pages/UIContext/presentCustomDialogBlurStyleOptions",
+    "MainAbility/pages/UIContext/presentCustomDialogBackgroundEffect",
+    "MainAbility/pages/UIContext/showAlertDialogBlurStyleOptions",
+    "MainAbility/pages/UIContext/showAlertDialogBackgroundEffect",
+    "MainAbility/pages/UIContext/showDialogBlurStyleOptions1",
+    "MainAbility/pages/UIContext/showDialogBackgroundEffect1",
+    "MainAbility/pages/UIContext/showDialogBlurStyleOptions2",
+    "MainAbility/pages/UIContext/showDialogBackgroundEffect2",
+    "MainAbility/pages/promptAction/openMenuAnchorPosition",
+    "MainAbility/pages/promptAction/updateMenuAnchorPosition"
+  ]
+}

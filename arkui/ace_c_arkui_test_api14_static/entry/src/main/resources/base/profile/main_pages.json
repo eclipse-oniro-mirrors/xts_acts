@@ -1,0 +1,29 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/componet/CommonView",
+    "pages/customproperty/TestActiveChildrenInfoDestroy",
+    "pages/customproperty/TestActiveChildrenInfoGetCount",
+    "pages/customproperty/TestActiveChildrenInfoGetNodeByIndex",
+    "pages/customproperty/TestCustomPropertyDestroy",
+    "pages/customproperty/TestCustomPropertyGetStringValue",
+    "pages/customproperty/TestGetActiveChildrenInfo",
+    "pages/customproperty/TestGetCurrentPageRootNode",
+    "pages/customproperty/TestGetCustomProperty",
+    "pages/customproperty/TestGetNodeType",
+    "pages/customproperty/TestGetParentInPageTree",
+    "pages/customproperty/TestIsCreatedByNDK",
+    "pages/keyEvent/KeyEventGetGetDeviceIdTest",
+    "pages/keyEvent/KeyEventGetKeyCodeTest",
+    "pages/keyEvent/KeyEventGetKeyIntensionCodeTest",
+    "pages/keyEvent/KeyEventGetKeySourceTest",
+    "pages/keyEvent/KeyEventGetKeyTextTest",
+    "pages/keyEvent/KeyEventGetPressedKeysTest",
+    "pages/keyEvent/KeyEventGetTypeTest",
+    "pages/keyEvent/KeyEventGetUnicodeTest",
+    "pages/keyEvent/KeyEventSetConsumedTest",
+    "pages/keyEvent/KeyEventStopPropagationTest",
+    "pages/LibUtil",
+    "pages/scrollSize/ScrollSizeTest"
+  ]
+}

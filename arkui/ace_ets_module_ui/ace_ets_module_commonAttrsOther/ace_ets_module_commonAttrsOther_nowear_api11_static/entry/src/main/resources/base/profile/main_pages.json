@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/attributeModifier/AttributeModifierDemoAPI02",
+    "MainAbility/pages/noBarrierComponents"
+  ]
+}

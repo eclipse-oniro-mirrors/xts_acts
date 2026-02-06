@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+	"MainAbility/pages/frameNode/frameNode",
+	"MainAbility/pages/frameNode/nodeContainer",
+	"MainAbility/pages/frameNode/frameNodeTestGetInterface"
+	]
+}

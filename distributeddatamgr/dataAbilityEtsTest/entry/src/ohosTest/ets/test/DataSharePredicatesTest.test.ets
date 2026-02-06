@@ -1,0 +1,386 @@
+/*
+ * Copyright (C) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level, Size, TestType } from "@ohos/hypium";
+import data_relationalStore from '@ohos.data.relationalStore';
+import data_dataSharePredicates from '@ohos.data.dataSharePredicates';
+import common from "@ohos.app.ability.common";
+import { ValuesBucket } from '@kit.ArkData';
+
+
+const TAG = '[ttt]'
+const CREATE_TABLE_ALL_DATA_TYPE_SQL = "CREATE TABLE IF NOT EXISTS test "
+    + "(id INTEGER PRIMARY KEY AUTOINCREMENT, "
+    + "name TEXT NOT NULL  , age INTEGER , salary REAL , blobType BLOB ) ;";
+
+const STORE_CONFIG: data_relationalStore.StoreConfig = {
+    name: "DataSharePredicates.db",
+    securityLevel: data_relationalStore.SecurityLevel.S1,
+}
+let rdbStore: data_relationalStore.RdbStore | undefined = undefined;
+let context: common.UIAbilityContext;
+
+export default function dataSharePredicatesTest() {
+describe('dataSharePredicatesTest', () => {
+    beforeAll(async () => {
+        console.info(TAG + 'beforeAll')
+        context = AppStorage.get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
+        rdbStore = await data_relationalStore.getRdbStore(context,STORE_CONFIG);
+        await  rdbStore!.executeSql(CREATE_TABLE_ALL_DATA_TYPE_SQL);
+        let u8 = new Uint8Array([4, 5, 6]);
+        let valueBucket: ValuesBucket = {
+            "name": "zhangSan",
+            "age": 18,
+            "salary": 100.5,
+            "blobType": u8,
+        }
+        await rdbStore?.insert("test",valueBucket);
+    })
+
+    beforeEach(() => {
+        console.info(TAG + 'beforeEach');
+    })
+
+    afterEach(() => {
+        console.info(TAG + 'afterEach');
+    })
+
+    afterAll(async () => {
+        console.info(TAG + 'afterAll');
+        rdbStore = undefined;
+        await data_relationalStore.deleteRdbStore(context, STORE_CONFIG);
+    })
+
+    console.info(TAG + "*************Unit Test Begin*************");
+
+    /**
+     * @tc.name   testOrderByAsc0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_0010
+     * @tc.desc   predicates orderByAsc normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+     it('testOrderByAsc0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.equalTo("name","zhangSan");
+            predicates.orderByAsc("id");
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testOrderByAsc0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testOrderByDesc0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_0020
+     * @tc.desc   predicates orderByDesc normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+     it('testOrderByDesc0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.equalTo("name","zhangSan");
+            predicates.orderByDesc("id");
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testOrderByDesc0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+
+    /**
+     * @tc.name   testAnd0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_0030
+     * @tc.desc   predicates and normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+     it('testAnd0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.equalTo("name","zhangSan");
+            predicates.and();
+            predicates.equalTo("age",18);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testAnd0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testIn0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_0040
+     * @tc.desc   predicates in normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+     it('testIn0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.in("age",[18,19]);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testIn0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+
+    /**
+     * @tc.name   testLimit0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_0050
+     * @tc.desc   predicates limit normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testLimit0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.equalTo("name", "zhangSan").limit(10, 3);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testLimit0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testGreaterThan0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1300
+     * @tc.desc   predicates greaterThan normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testGreaterThan0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.greaterThan("age", 18);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testGreaterThan0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testGreaterThanOrEqualTo0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1310
+     * @tc.desc   predicates greaterThanOrEqualTo normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testGreaterThanOrEqualTo0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.greaterThanOrEqualTo("age", 18);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testGreaterThanOrEqualTo0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testLessThan0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1320
+     * @tc.desc   predicates lessThan normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testLessThan0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.lessThan("age", 18);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testLessThan0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testLessThanOrEqualTo0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1330
+     * @tc.desc   predicates lessThanOrEqualTo normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testLessThanOrEqualTo0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.lessThanOrEqualTo("age", 18);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testLessThanOrEqualTo0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testNotEqualTo0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1340
+     * @tc.desc   predicates notEqualTo normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testNotEqualTo0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.notEqualTo("age", 18);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testNotEqualTo0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testNotBetwween0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1350
+     * @tc.desc   predicates notBetwween normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testNotBetwween0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.notBetween("age", 2,4);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testNotBetwween0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+
+    /**
+     * @tc.name   testBetwween0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1360
+     * @tc.desc   predicates betwween normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testBetwween0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.between("age", 2,4);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testBetwween0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testNotIn0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1370
+     * @tc.desc   predicates notIn normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testNotIn0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.notIn("age", [2,4]);
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testNotIn0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testOr0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1380
+     * @tc.desc   predicates or normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testOr0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.equalTo("age",18);
+            predicates.or();
+            predicates.equalTo("name","lisi");
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testOr0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testBeginWrap0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1390
+     * @tc.desc   predicates beginWrap normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testBeginWrap0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.equalTo("age",18);
+            predicates.or();
+            predicates.beginWrap();
+            predicates.equalTo("name","lisi");
+            predicates.endWrap();
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testBeginWrap0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    /**
+     * @tc.name   testLike0001
+     * @tc.number SUB_DistributedData_DataShare_SDK_DataSharePredicatesAPITest_1400
+     * @tc.desc   predicates like normal test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testLike0001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async () => {
+        try{
+            let predicates = new data_dataSharePredicates.DataSharePredicates();
+            predicates.like("name","li%");
+            expect(predicates != null).assertTrue();
+        }catch (e) {
+            console.info(TAG + "testLike0001 fail err.code is " + e.code + "err.message is " +e.message);
+            expect().assertFail();
+        }
+    })
+
+    console.info(TAG + "*************Unit Test End*************");
+})
+}

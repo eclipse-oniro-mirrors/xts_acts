@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/shotCutKeyTest/globalShortcutKeyTest",
+        "MainAbility/pages/shotCutKeyTest/globalShortcutKeyTest2",
+        "MainAbility/pages/shotCutKeyTest/globalShortcutKeyTest3",
+        "MainAbility/pages/keyboardShortcut/ShortcutKey"
+    ]
+}

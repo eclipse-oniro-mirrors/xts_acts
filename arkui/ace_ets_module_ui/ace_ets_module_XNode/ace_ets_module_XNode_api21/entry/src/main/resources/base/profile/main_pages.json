@@ -1,0 +1,12 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Invalidate/InvalidateAttributesTest",
+    "MainAbility/pages/CacheMaxCount/CacheMaxCountForHSPTest",
+    "MainAbility/pages/ImageLoader/ImageLoader",
+    "MainAbility/pages/Context/GetNodeByIdNullTest",
+    "MainAbility/pages/FrameNode/GetFrameNodeNullTest",
+    "MainAbility/pages/Context/UIContextUndefinedTest",
+    "MainAbility/pages/FrameNode/GetFrameNodeMethodNullTest"
+  ]
+}

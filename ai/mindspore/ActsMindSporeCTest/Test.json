@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for ActsMindSporeCTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.acts_mindsprore_ctest",
+        "module-name": "mind_spore_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsMindSporeCTest.hap",
+                "ActsMindSporeCMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

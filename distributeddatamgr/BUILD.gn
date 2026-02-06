@@ -1,0 +1,67 @@
+# Copyright (C) 2023-2025 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//test/xts/tools/build/suite.gni")
+
+group("distributeddatamgr") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "DataObjectNoPermissionstest:DataObjectNoPermissionstest",
+      "IntelligenceApiTest:ActsIntelligenceTest",
+      "KvStoreEtsTestStatic:ActsKvStoreEtsStaticTest",
+      "PasteboardJSWithPermissionTest:ActsPasteBoardJSApiWithPermissionTest",
+      "PasteboardNdkWithPermissionsTest:ActsPasteboardNapiWithPermissionTest",
+      "PasteboardNoPermissionstest:PasteboardNoPermissionstest",
+      "PasteboardPermissionTestTaiheStatic:ActsPasteBoardPermissionsStatic",
+      "PasteboardTaiheTestStatic:ActsPasteboardTaiheStaticTest",
+      "PasteboardTestStatic:ActsPasteboardStaticTest",
+      "Pasteboardjsapitest:ActsPasteBoardETSApiTest",
+      "Pasteboardnapitest:ActsPasteboardNapiEtsTest",
+      "RelationalStoreEtsTestStatic:ActsRelationalStoreEtsStaticTest",
+      "UDMFtest:UDMFtest",
+      "crossplatform/preferencesetstest:ActsCrossplatformPreferencesTest",
+      "crossplatform/relationalstoreetstest:ActsCrossplatformRelationalStoreTest",
+      "dataAbilityEtsTest:ActsDataAbilityTest",
+      "dataObjecttest:dataObjecttest",
+      "dataShareEts_static:ActsDataShareStaticTest",
+      "dataShareTest:dataShareTest",
+      "dataShare_Static:dataShare_Static",
+      "dataSharejstest:dataShare_js_test",
+      "distributedKVStoretest:distributedKVStoretest",
+      "intelligenceTest_static:ActsIntelligenceStaticTest",
+      "kvStoretest:kvStoretest",
+      "pasteboard_errorcode:ActsPasteboardErrorTest",
+      "preferenceEts_static:ActsPreferenceStaticTest",
+      "preferencesEtstest:ActsPreferencesEtsTest",
+      "preferencesNdktestHvigor:ActsPreferencesNdkTest",
+      "preferencesSendabletest:preferencesSendable_ets_test",
+      "preferencesTestApi20:ActsPreferencesTest",
+      "preferencesdatagroupidtest:ActsPreferencesDataGroupIdTest",
+      "preferencesjstest:preferences_js_test",
+      "relationalStoretest:relationalStoretest",
+      "relationalstoredatagroupidtest:ActsRelationalstoreDataGroupIdTest",
+    ]
+  } else {
+    deps = [
+      "dataShare_Static:dataShare_Static",
+      "kvStorejstest/hap:distributeddatamgrfunctest_hap",
+      "relationalStorejstest/hap:appdatamgrfunctest_hap",
+      "searchtest/hap:searchfunctest_hap",
+    ]
+  }
+}
+
+group("pasteboard") {
+  testonly = true
+  deps = []
+}

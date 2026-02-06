@@ -1,0 +1,25 @@
+{
+  "strarray": [
+    {
+      "name": "size",
+      "value": [
+        {
+          "value": "small"
+        },
+        {
+          "value": "big"
+        }
+      ]
+    },
+    {
+      "name": "array1",
+      "value": [
+        {
+          "id": "item1",
+          "example": "item1",
+          "value": "$string:symbol_A_ref"
+        }
+      ]
+    }
+  ]
+}

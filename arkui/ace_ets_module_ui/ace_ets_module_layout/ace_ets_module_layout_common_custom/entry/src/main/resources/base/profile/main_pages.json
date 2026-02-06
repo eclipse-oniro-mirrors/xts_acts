@@ -1,0 +1,16 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/CommonCustom/Calc01",
+        "MainAbility/pages/CommonCustom/Calc02",
+        "MainAbility/pages/CommonCustom/ChainWeight",
+        "MainAbility/pages/CommonCustom/CustomLayoutUniqueidPage",
+        "MainAbility/pages/CommonCustom/ButtonAlign",
+        "MainAbility/pages/CommonCustom/mediaQuery",
+        "MainAbility/pages/CommonAttrs/backgroundAndSizeSetting",
+        "MainAbility/pages/CommonAttrs/border",
+        "MainAbility/pages/CommonAttrs/BorderRadiusRenderStrategy",
+        "MainAbility/pages/CommonAttrs/FlexFourBoundary",
+        "MainAbility/pages/CommonCustom/LayoutFourReturn"
+    ]
+}

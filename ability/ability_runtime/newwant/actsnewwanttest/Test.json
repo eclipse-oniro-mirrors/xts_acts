@@ -1,0 +1,50 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.newwanttest",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAmsNewWantTest.hap",
+                "ActsAmsNewWantRelyHap.hap",
+                "ActsAmsNewWantBRelyHap.hap",
+                "ActsAmsNewWantARelyHap.hap",
+                "ActsAmsNewWantApi7RelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 1279 280 200",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "power-shell timeout -o 86400000",
+                "power-shell setmode 602",
+                "param set persist.sys.abilityms.support.ecologicalrulemgrservice false"
+            ],
+            "teardown-command": [
+              "param set persist.sys.abilityms.support.ecologicalrulemgrservice true"
+          ]
+        }
+    ]
+}

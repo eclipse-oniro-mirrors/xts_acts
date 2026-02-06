@@ -1,0 +1,11 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/FrameNodeAnimation",
+        "MainAbility/pages/ParticleEmitter",
+        "MainAbility/pages/Vector2TTest",
+        "MainAbility/pages/FrameNodeAnimationPage",
+        "MainAbility/pages/TestSweepGradientOptions",
+        "MainAbility/pages/TransitionEdgeTest"
+    ]
+}

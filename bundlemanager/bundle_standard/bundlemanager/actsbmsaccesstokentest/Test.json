@@ -1,0 +1,24 @@
+{
+    "description": "Configuration for Actsbmsaccesstoken Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "120000",
+        "shell-timeout": "120000",
+        "bundle-name": "com.example.actsbmsaccesstokentest",
+        "package-name": "com.example.actsbmsaccesstokentest"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBmsAccessTokenTest.hap",
+                "bmsAccessTokenTest1.hap",
+                "bmsAccessTokenTest4.hap",
+                "bmsAccessTokenTest3.hap",
+                "bmsAccessTokenTest2.hap",
+                "bmsAccessTokenTest5.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

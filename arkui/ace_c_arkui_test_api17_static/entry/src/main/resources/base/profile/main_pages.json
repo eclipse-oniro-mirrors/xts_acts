@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/button/ButtonAxisEventTest",
+    "pages/button/ButtonOnHoverEventTest",
+    "pages/button/ButtonRollAngleTest"
+  ]
+}

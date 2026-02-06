@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/Window/Window",
+    "MainAbility/pages/Window/SubWindow",
+    "MainAbility/pages/display/Display"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/DrawModifier/DrawModifier",
+    "MainAbility/pages/Canvas/CanvasApiTest/RestoreLayer",
+    "MainAbility/pages/Canvas/CanvasApiTest/SaveLayer",
+    "MainAbility/pages/Canvas/APICanvasSize"
+  ]
+}

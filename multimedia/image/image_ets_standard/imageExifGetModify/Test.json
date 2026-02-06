@@ -1,0 +1,105 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.image.imageExifGetModify",
+        "module-name": "entry_test",
+        "shell-timeout": "300000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageExifGetModifyTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test_exif_empty.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v3.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v4.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v5.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v6.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_empty_2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_empty.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v2.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v3.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v4.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v5.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v6.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_empty_2.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_empty.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v3.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v4.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v5.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v6.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_empty_2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v2.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v3.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v5.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_empty2.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_empty.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v3.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v4.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v5.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v6.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_empty2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_webp_exif.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_getsync_webp.webp",
+                "./resource/image/test_exif_v2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_matedata_webp.webp",
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_readOnly_jpg_v2.jpg",
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_readWrite_jpg_v2.jpg",
+                "./resource/image/test_exif_v2.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_readOnly_png_v2.png",
+                "./resource/image/test_exif_v2.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_readWrite_png_v2.png",
+                "./resource/image/test_exif_v2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_readOnly_heic_v2.heic",
+                "./resource/image/test_exif_v2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_readWrite_heic_v2.heic",
+                "./resource/image/test_exif_v2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_readOnly_webp_v2.webp",
+                "./resource/image/test_exif_v2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_readWrite_webp_v2.webp",
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_modify_jpg_v2.jpg",
+                "./resource/image/test_exif_v2.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_modify_png_v2.png",
+                "./resource/image/test_exif_v2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_modify_heic_v2.heic",
+                "./resource/image/test_exif_v2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_modify_webp_v2.webp",
+                "./resource/image/test_exif_empty_2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_modify_empty_jpg_v2.jpg",
+                "./resource/image/test_exif_empty_2.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_modify_empty_png_v2.png",
+                "./resource/image/test_exif_empty_2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_modify_empty_heic_v2.heic",
+                "./resource/image/test_exif_empty2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_modify_empty_webp_v2.webp",
+                "./resource/image/3072_4096.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_empty_jpg_v1.jpg",
+                "./resource/image/test_exif_empty_2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_empty_jpg_v2.jpg",
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_arraybuffer_jpg_v3.jpg",
+                "./resource/image/test_exif_empty_2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_exif_empty_jpg_v4.jpg",
+                "./resource/image/test_exif_empty_2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_packtofile_modify_empty_jpg_v2.jpg",
+                "./resource/image/test_exif_empty_2.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_packtofile_modify_empty_png_v2.png",
+                "./resource/image/test_exif_empty_2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_packtofile_modify_empty_heic_v2.heic",
+                "./resource/image/test_exif_empty2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_packtofile_modify_empty_webp_v2.webp",
+                "./resource/image/test.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/food.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/1206_1.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/C027.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/heif.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files",
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_blob_v1.jpg",
+                "./resource/image/heif.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/files/test_blob_v1.heic"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imageExifGetModify/haps/entry_test/*"
+            ]
+        }
+    ]
+}

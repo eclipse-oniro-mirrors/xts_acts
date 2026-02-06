@@ -1,0 +1,91 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//foundation/arkui/ace_engine/ace_config.gni")
+
+group("ActsAceEtsModuleLayoutTest") {
+  testonly = true
+  if (ace_engine_feature_wearable) {
+    deps = [
+      "ace_ets_module_layout_api11/ace_ets_module_layout_01_api11:ActsAceEtsModuleLayoutApi11Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_02_api11:ActsAceEtsModuleLayout02Api11Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_03_api11:ActsAceEtsModuleLayout03Api11Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_04_api11:ActsAceEtsModuleLayout04Api11Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_05_api11:ActsAceEtsModuleLayout05Api11Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_06_api11:ActsAceEtsModuleLayout06Api11Test",
+      "ace_ets_module_layout_api12:ActsAceEtsModuleLayoutApi12Test",
+      "ace_ets_module_layout_api14:ActsAceEtsModuleLayoutApi14Test",
+      "ace_ets_module_layout_api18:ActsAceEtsModuleLayoutApi18Test",
+      "ace_ets_module_layout_api20:ActsAceEtsModuleLayoutApi20Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_01_api11_static:ActsAceEtsModuleLayoutApi11StaticTest",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_02_api11_static:ActsAceEtsModuleLayout02Api11StaticTest",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_03_api11_static:ActsAceEtsModuleLayout03Api11StaticTest",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_04_api11_static:ActsAceEtsModuleLayout04Api11StaticTest",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_05_api11_static:ActsAceEtsModuleLayout05Api11StaticTest",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_06_api11_static:ActsAceEtsModuleLayout06Api11StaticTest",
+      "ace_ets_module_layout_column:ActsAceEtsModuleLayoutColumnTest",
+      "ace_ets_module_layout_row:ActsAceEtsModuleLayoutRowTest",
+      "ace_ets_module_layout_stack:ActsAceEtsModuleLayoutStackTest",
+      "ace_ets_module_layout_flex01:ActsAceEtsModuleLayoutFlex01Test",
+      "ace_ets_module_layout_flex02:ActsAceEtsModuleLayoutFlex02Test",
+      "ace_ets_module_layout_flex03:ActsAceEtsModuleLayoutFlex03Test",
+      "ace_ets_module_layout_relativecontainer:ActsAceEtsModuleLayoutRelativeContainerTest",
+      "ace_ets_module_layout_gridrow_gridcol:ActsAceEtsModuleLayoutGridRowGridColTest",
+      "ace_ets_module_layout_blank:ActsAceEtsModuleLayoutBlankTest",
+      "ace_ets_module_layout_divider:ActsAceEtsModuleLayoutDividerTest",
+      "ace_ets_module_layout_common_custom:ActsAceEtsModuleLayoutCommonCustomTest",
+      "ace_ets_module_layout_api12_static:ActsAceEtsModuleLayoutApi12StaticTest",
+      "ace_ets_module_layout_api14_static:ActsAceEtsModuleLayoutApi14StaticTest",
+      "ace_ets_module_layout_api18_static:ActsAceEtsModuleLayoutApi18StaticTest",
+    ]
+  } else {
+    deps = [
+      "ace_ets_module_layout_api11/ace_ets_module_layout_01_api11:ActsAceEtsModuleLayoutApi11Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_02_api11:ActsAceEtsModuleLayout02Api11Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_03_api11:ActsAceEtsModuleLayout03Api11Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_04_api11:ActsAceEtsModuleLayout04Api11Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_05_api11:ActsAceEtsModuleLayout05Api11Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_06_api11:ActsAceEtsModuleLayout06Api11Test",
+      "ace_ets_module_layout_api12:ActsAceEtsModuleLayoutApi12Test",
+      "ace_ets_module_layout_api14:ActsAceEtsModuleLayoutApi14Test",
+      "ace_ets_module_layout_api18:ActsAceEtsModuleLayoutApi18Test",
+      "ace_ets_module_layout_api20:ActsAceEtsModuleLayoutApi20Test",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_01_api11_static:ActsAceEtsModuleLayoutApi11StaticTest",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_02_api11_static:ActsAceEtsModuleLayout02Api11StaticTest",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_03_api11_static:ActsAceEtsModuleLayout03Api11StaticTest",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_04_api11_static:ActsAceEtsModuleLayout04Api11StaticTest",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_05_api11_static:ActsAceEtsModuleLayout05Api11StaticTest",
+      "ace_ets_module_layout_api11/ace_ets_module_layout_06_api11_static:ActsAceEtsModuleLayout06Api11StaticTest",
+      "ace_ets_module_layout_nowear_api11:ActsAceEtsModuleLayoutNowearApi11Test",
+      "ace_ets_module_layout_nowear_api12:ActsAceEtsModuleLayoutNowearApi12Test",
+      "ace_ets_module_layout_column:ActsAceEtsModuleLayoutColumnTest",
+      "ace_ets_module_layout_row:ActsAceEtsModuleLayoutRowTest",
+      "ace_ets_module_layout_stack:ActsAceEtsModuleLayoutStackTest",
+      "ace_ets_module_layout_flex01:ActsAceEtsModuleLayoutFlex01Test",
+      "ace_ets_module_layout_flex02:ActsAceEtsModuleLayoutFlex02Test",
+      "ace_ets_module_layout_flex03:ActsAceEtsModuleLayoutFlex03Test",
+      "ace_ets_module_layout_relativecontainer:ActsAceEtsModuleLayoutRelativeContainerTest",
+      "ace_ets_module_layout_gridrow_gridcol:ActsAceEtsModuleLayoutGridRowGridColTest",
+      "ace_ets_module_layout_blank:ActsAceEtsModuleLayoutBlankTest",
+      "ace_ets_module_layout_divider:ActsAceEtsModuleLayoutDividerTest",
+      "ace_ets_module_layout_nowear_folderStack:ActsAceEtsModuleLayoutNowearFolderStackTest",
+      "ace_ets_module_layout_nowear_columnSplit_rowSplit:ActsAceEtsModuleLayoutNowearColumnSplitRowSplitTest",
+      "ace_ets_module_layout_common_custom:ActsAceEtsModuleLayoutCommonCustomTest",
+      "ace_ets_module_layout_api12_static:ActsAceEtsModuleLayoutApi12StaticTest",
+      "ace_ets_module_layout_api14_static:ActsAceEtsModuleLayoutApi14StaticTest",
+      "ace_ets_module_layout_api18_static:ActsAceEtsModuleLayoutApi18StaticTest",
+      "ace_ets_module_layout_nowear_api11_static:ActsAceEtsModuleLayoutNowearApi11StaticTest",
+      "ace_ets_module_layout_nowear_api12_static:ActsAceEtsModuleLayoutNowearApi12StaticTest",
+    ]
+  }
+}

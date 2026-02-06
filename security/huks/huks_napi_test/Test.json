@@ -1,0 +1,25 @@
+{
+    "description": "NAPI Tests",
+    "driver": {
+        "native-test-timeout": "60000",
+        "type": "CppTest",
+        "module-name": "ActsHuksNapiTest",
+        "runtime-hint": "1s",
+        "native-test-device-path": "/data/local/tmp"
+    },
+    "kits": [
+        {
+            "push": [
+                "ActsHuksNapiTest->/data/local/tmp/ActsHuksNapiTest"
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hidumper -s 3301 -a -t",
+                "power-shell wakeup"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,88 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EmbeddedUIExtAbility2_desc",
+      "value": "description"
+    },
+    {
+      "name": "EmbeddedUIExtAbility2_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbilityB_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbilityB_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbilityC_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbilityC_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility3_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility3_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility4_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility4_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility5_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility5_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility6_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility6_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbilityd_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbilityd_label",
+      "value": "label"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/WebCookieManagerFetchCookieSyncOne",
+    "testability/pages/WebCookieManagerFetchCookieSyncTwo",
+    "testability/pages/WebCookieManagerFetchCookieOne",
+    "testability/pages/WebCookieManagerFetchCookieTwo",
+    "testability/pages/WebCookieManagerFetchCookieThree",
+    "testability/pages/WebCookieManagerExistCookie",
+    "testability/pages/WebCookieManagerFetchCookieIncognito",
+    "testability/pages/WebCookieManagerConfigCookie"
+  ]
+}

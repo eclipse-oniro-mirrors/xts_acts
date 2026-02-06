@@ -1,0 +1,11 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "libgraphic_gles_extension_test.so": "file:./src/main/cpp/types/libgraphic_gles_extension_test"
+  }
+}

@@ -1,0 +1,55 @@
+{
+    "description": "Configuration for audio manager Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1500000",
+        "bundle-name": "com.example.audiorenderer.static",
+        "shell-timeout": "60000",
+        "testcase-timeout": "100000",
+        "module-name": "entry"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioRendererJsStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files",
+                "chmod 777 -R /data/app/el2/100/base/com.example.audiorenderer.static/haps/entry"
+            ],
+            "teardown-command":[
+                "power-shell setmode 600"
+            ],
+            "cleanup-apps": true
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/audio/audioManager/Believer.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/Believer60s.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-8000-2SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-16000-2SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-32000-1SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-44100-2SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-64000-3SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-1C-96000-4SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-11025-1SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-12000-2SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-16000-3SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-22050-2SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-24000-3SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/audio/audioManager/StarWars10s-2C-48000-4SW.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/",
+                "./resource/media/audioplayer/wav/pcm_48ksr_32kbr_2ch.wav ->/data/app/el2/100/base/com.example.audiorenderer.static/haps/entry/files/"
+            ]
+        }
+    ]
+}

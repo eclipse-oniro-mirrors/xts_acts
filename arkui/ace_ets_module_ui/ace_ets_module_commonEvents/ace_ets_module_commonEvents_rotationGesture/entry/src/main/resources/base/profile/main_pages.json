@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/RotationGesture/RotationGestureBasic01",
+        "MainAbility/pages/RotationGesture/RotationGestureBasic02"
+    ]
+}

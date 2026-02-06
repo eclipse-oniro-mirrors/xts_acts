@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hitType</title>
+    <style>
+        body{
+            background-color:gray;
+        }
+        .box {
+            width: 200px;
+            height: 150px;
+            line-height: 150px;
+            text-align: center;
+            background-color: orange;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -100px;
+            margin-top: -75px;
+         }
+         a{
+            font-size:3em;
+         }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="number" id="EditText"/><br/>
+    </div>
+</body>
+<script type="text/javascript">
+    function clickById(id){
+        console.log("clickById")
+        document.getElementById("Img").click();
+        return id;
+    }
+
+    function clickImg(){
+        console.log("clickImg")
+        window.location.href = "custom_scheme://test.com"
+    }
+</script>
+</html>

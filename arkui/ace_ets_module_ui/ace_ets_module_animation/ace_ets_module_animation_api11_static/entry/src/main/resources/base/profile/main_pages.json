@@ -1,0 +1,20 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/geometryTransition/geometryTransition",
+    "MainAbility/pages/RouteType/RouteType1",
+    "MainAbility/pages/RouteType/RouteType2",
+    "MainAbility/pages/Animateto",
+    "MainAbility/pages/animationCurve",
+    "MainAbility/pages/geometryTransition/geometryTransition2",
+    "MainAbility/pages/Animation/animate_play_mode",
+    "MainAbility/pages/Animation/animator",
+    "MainAbility/pages/RemoteWindow/remoteWindow",
+    "MainAbility/pages/Animation/Animation",
+    "MainAbility/pages/Animation/animationAdd",
+    "MainAbility/pages/Animation/animate",
+    "MainAbility/pages/Animation/animationStatus",
+    "MainAbility/pages/Animation/pageTransition",
+    "MainAbility/pages/WorkerUseCurves"
+  ]
+}

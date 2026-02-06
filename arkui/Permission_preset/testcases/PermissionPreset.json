@@ -1,0 +1,15 @@
+{
+  "description": "Config for OpenHarmony ArkUI test cases",
+  "environment": [
+    {
+      "type": "device",
+      "label": "phone"
+    }
+  ],
+  "driver": {
+    "type": "DeviceTest",
+    "py_file": [
+      "PermissionPreset.py"
+    ]
+  }
+}

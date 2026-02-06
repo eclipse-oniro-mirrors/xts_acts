@@ -1,0 +1,104 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, afterAll, it, expect, TestType, Level, Size } from '@ohos/hypium'
+import {
+    setDelayRequestAndCloseWorkerInstantlyTest,
+    gcAfterLockAsyncTest,
+    doubleExitSharedLockTest,
+    pendingSharedRequestAfterGC,
+    checkDeadlock,
+} from './LockTest';
+
+
+export default function AsyncLockTest() {
+  let printLog = 'AsyncLockTest:';
+  describe('AsyncLockTest', () => {
+
+    afterAll(() => {
+      console.info(printLog + 'total case over');
+    })
+
+    /**
+     * @tc.name   setDelayRequestAndCloseWorkerInstantlyTest
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_CONCURRENCYBASE_ASYNCLOCK_001
+     * @tc.desc   checks the request in worker should be skipped and the request in main thread should be executed
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('setDelayRequestAndCloseWorkerInstantlyTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: Object = await setDelayRequestAndCloseWorkerInstantlyTest();
+      expect(result).assertEqual('PASSED');
+      done();
+    });
+
+    /**
+     * @tc.name   gcAfterLockAsyncTest0
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_CONCURRENCYBASE_ASYNCLOCK_002
+     * @tc.desc   checks that trigger gc immediately after call lockAsync
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('gcAfterLockAsyncTest0', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL2, async (done: Function) => {
+      let result: Object = await gcAfterLockAsyncTest();
+      expect(result).assertEqual("PASSED");
+      done();
+    })
+
+    /**
+     * @tc.name   timeoutLockWithEnvDestroyedTest
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_CONCURRENCYBASE_ASYNCLOCK_003
+     * @tc.desc   checks that timeout callback and env destroyed are handled properly
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('timeoutLockWithEnvDestroyedTest', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL2, async (done: Function) => {
+      let result: Object = await doubleExitSharedLockTest();
+      expect(result).assertEqual("PASSED");
+      done();
+    })
+
+    /**
+     * @tc.name   pendingSharedRequestAfterGC
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_CONCURRENCYBASE_ASYNCLOCK_004
+     * @tc.desc   checks that destruction of shared lock after gc
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('pendingSharedRequestAfterGC', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL2, async (done: Function) => {
+      let result: Object = await pendingSharedRequestAfterGC();
+      expect(result).assertEqual("PASSED");
+      done();
+    })
+
+    /**
+     * @tc.name   checkDeadlock
+     * @tc.number SUB_COMMONLIBRARY_ETSUTILS_ASYNCLOCK_005
+     * @tc.desc   checks that deadlock is detected
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('checkDeadlock', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL2, async (done: Function) => {
+      let result: Object = await checkDeadlock();
+      expect(result).assertEqual("PASSED");
+      done();
+    })
+  })
+}

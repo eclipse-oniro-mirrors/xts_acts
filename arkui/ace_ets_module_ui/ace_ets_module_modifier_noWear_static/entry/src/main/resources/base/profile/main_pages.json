@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/calendarpicker",
+    "MainAbility/pages/rowSplit",
+    "MainAbility/pages/select",
+    "MainAbility/pages/sideBarContainer"
+  ]
+}

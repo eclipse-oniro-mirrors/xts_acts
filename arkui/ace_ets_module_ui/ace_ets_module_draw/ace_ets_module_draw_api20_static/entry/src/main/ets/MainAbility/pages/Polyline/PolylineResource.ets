@@ -1,0 +1,54 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ import {
+  Entry, Component,
+  Column, ColumnOptions, Polyline, $r,
+  Flex, FlexDirection, ItemAlign, FlexAlign, ImageAIOptions, LineJoinStyle, LineCapStyle,
+  Text, Button, FontWeight, ClickEvent, Margin, Color, Row, RenderingContextSettings, CanvasRenderingContext2D, Canvas,
+} from '@ohos.arkui.component'
+@Entry
+@Component
+struct PolylineResource {
+  build() {
+    Column({ space: 10 } as ColumnOptions) {
+
+      Polyline({ width: 100, height: 50 })
+        .points([[0, 0], [20, 50], [50, 50]])
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .strokeWidth(3)
+        .id('PolylineResource1')
+
+      // Polyline({ width: $r('app.string.Width_100'), height: $r('app.string.Height_50') })
+      Polyline({ width: 100, height: 50 })
+        .points([[0, 0], [20, 50], [50, 50]])
+        .fillOpacity(0)
+        .stroke(Color.Blue)
+        .strokeWidth(3)
+        .id('PolylineResource2')
+
+      Polyline()
+        .width($r('app.string.Width_100'))
+        .height($r('app.string.Height_50'))
+        .fillOpacity(0)
+        .stroke(Color.Red)
+        .strokeWidth(8)
+        .points([[0, 0], [20, 50], [50, 50]])
+        .strokeLineJoin(LineJoinStyle.Round)
+        .strokeLineCap(LineCapStyle.Round)
+        .id('PolylineResource3')
+    }.width('100%')
+  }
+}

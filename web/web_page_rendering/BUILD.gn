@@ -1,0 +1,38 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//foundation/multimedia/player_framework/config.gni")
+import("//test/xts/tools/build/suite.gni")
+group("webPageRenderingTest") {
+  testonly = true
+  deps = []
+  if (player_framework_support_screen_capture) {
+    deps += [ "screen_capture:ActsWebScreenCaptureTest" ]
+  }
+  if (is_standard_system) {
+    deps += [
+      "basic_rendering:ActsWebBasicRenderingTest",
+      "basic_rendering_static:ActsWebBasicRenderingStaticTest",
+      "dark_color_mode:ActsWebDarkColorModeTest",
+      "same_layer_rendering:ActsWebSameLayerRenderingTest",
+      "same_layer_rendering_static:ActsWebSameLayerRenderingStaticTest",
+      "viewport_processing:ActsWebViewportProcessingTest",
+      "viewport_processing_static:ActsWebViewportProcessingStaticTest",
+      "web_page_font:ActsWebPageFontTest",
+      "web_page_font_static:ActsWebPageFontStaticTest",
+      "web_page_zoom_rotate:ActsWebPageZoomRotateTest",
+      "web_page_zoom_rotate_static:ActsWebPageZoomRotateStaticTest",
+      "web_page_size_static:ActsWebPageSizeStaticTest",
+      "screen_capture_static:ActsWebScreenCaptureStaticTest",
+    ]
+  }
+}

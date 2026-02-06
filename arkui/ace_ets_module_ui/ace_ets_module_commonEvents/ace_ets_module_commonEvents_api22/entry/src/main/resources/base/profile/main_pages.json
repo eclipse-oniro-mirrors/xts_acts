@@ -1,0 +1,13 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/HasAxisTest/HasAxisTest",
+        "MainAbility/pages/responseRegion/responseRegionList",
+        "MainAbility/pages/PanGesture/setDistance",
+        "MainAbility/pages/componentSnapshotCreateFromBuilder/createFromBuilderCallback",
+        "MainAbility/pages/componentSnapshotCreateFromBuilder/createFromBuilder",
+        "MainAbility/pages/componentSnapshotCreateFromBuilder/createFromComponent",
+        "MainAbility/pages/componentSnapshotCreateFromBuilder/errorCreateFromBuilder",
+        "MainAbility/pages/LongPress/allowableMovement"
+    ]
+}

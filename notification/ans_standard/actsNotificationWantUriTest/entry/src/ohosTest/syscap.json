@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Notification.Notification",
+                    "SystemCapability.Ability.AbilityRuntime.Core"
+                ]
+            }
+        ]
+    }
+}

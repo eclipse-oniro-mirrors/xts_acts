@@ -1,0 +1,94 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { beforeEach, describe, expect, it , TestType, Size, Level } from "@ohos/hypium"
+import Utils from './Utils'
+import waitndk from 'libwaitndk.so'
+
+
+export default function muslWaitNdkTest() {
+  describe('MuslWaitTest', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
+
+    /**
+     * @tc.name   testMuslWaitWait001
+     * @tc.number SUB_THIRDPARTY_MUSL_WAIT_WAIT_0100
+     * @tc.desc   test wait
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslWaitWait001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      let data: number= waitndk.wait();
+      expect(data).assertEqual(1);
+      done()
+    });
+    /**
+     * @tc.name   testMuslWaitWait3001
+     * @tc.number SUB_THIRDPARTY_MUSL_WAIT_WAIT3_0100
+     * @tc.desc   test wait3
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslWaitWait3001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      let data: number = waitndk.wait3();
+      expect(data).assertEqual(1);
+      done()
+    });
+    /**
+     * @tc.name   testMuslWaitWait4001
+     * @tc.number SUB_THIRDPARTY_MUSL_WAIT_WAIT4_0100
+     * @tc.desc   test wait4
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslWaitWait4001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      let data: number = waitndk.wait4();
+      expect(data).assertEqual(1);
+      done()
+    });
+    /**
+     * @tc.name   testMuslWaitWaitid001
+     * @tc.number SUB_THIRDPARTY_MUSL_WAIT_WAITID_0100
+     * @tc.desc   test waitid
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslWaitWaitid001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      let data: number = waitndk.waitid();
+      expect(data).assertEqual(1);
+      done()
+    });
+    /**
+     * @tc.name   testMuslWaitWaitpid001
+     * @tc.number SUB_THIRDPARTY_MUSL_WAIT_WAITPID_0100
+     * @tc.desc   test waitpid
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslWaitWaitpid001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      let data: number = waitndk.waitpid();
+      expect(data).assertEqual(1);
+      done()
+    });
+  })
+}

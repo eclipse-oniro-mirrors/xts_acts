@@ -1,0 +1,10 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/Index2",
+    "testability/pages/WebViewBFCacheResumeAndSuspendPlayer",
+    "testability/pages/WebViewOnMicrophoneCaptureStateChange",
+    "testability/pages/WebViewBFCacheSuspendPlayer",
+    "testability/pages/WebViewOnCameraCaptureStateChange"
+  ]
+}

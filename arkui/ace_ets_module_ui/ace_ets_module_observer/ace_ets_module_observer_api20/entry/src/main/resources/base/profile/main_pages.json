@@ -1,0 +1,10 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/observer/axisVertical",
+        "MainAbility/pages/observer/axisHorizontal",
+        "MainAbility/pages/observer/UIObserverDensityUpdateTest",
+        "MainAbility/pages/observer/UIObserverWillDrawTest",
+        "MainAbility/pages/observer/UIObserverDidLayoutTest"
+    ]
+}

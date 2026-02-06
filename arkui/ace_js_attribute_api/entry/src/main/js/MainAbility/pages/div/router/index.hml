@@ -1,0 +1,58 @@
+<!--/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+
+<div id = "div1" class="container">
+    <div class="group">
+        <text id="function1" class="title" onclick="functionTest1">linear</text>
+        <text id="function2" class="title" onclick="functionTest2">ease</text>
+        <text id="function3" class="title" onclick="functionTest3">ease-in</text>
+    </div>
+    <div class="group">
+        <text id="function4" class="title" onclick="functionTest4">ease-out</text>
+        <text id="function5" class="title" onclick="functionTest5">ease-in-out</text>
+        <text id="function6" class="title" onclick="functionTest6">friction</text>
+    </div>
+    <div class="group">
+        <text id="function7" class="title" onclick="functionTest7">extreme-deceleration</text>
+        <text id="function8" class="title" onclick="functionTest8">sharp</text>
+        <text id="function9" class="title" onclick="functionTest9">rhythm</text>
+    </div>
+    <div class="group">
+        <text id="function10" class="title" onclick="functionTest10">smooth</text>
+        <text id="function11" class="title" onclick="functionTest11">cubic-bezier</text>
+        <text id="function12" class="title" onclick="functionTest12">steps</text>
+    </div>
+    <text id = "text1" class="text">列表文本1</text>
+    <text id = "text2" class="text">列表文本2</text>
+    <text id = "text3" class="text">列表文本3</text>
+    <text id = "text4" class="text">列表文本4</text>
+    <text id = "text5" class="text">列表文本5</text>
+    <text id = "text6" class="text">列表文本6</text>
+    <text id = "text7" class="text">列表文本7</text>
+    <text id = "text8" class="text">列表文本8</text>
+    <text id = "text9" class="text">列表文本9</text>
+    <text id = "text10" class="text">列表文本10</text>
+    <text id = "text11" class="text">列表文本11</text>
+    <text id = "text12" class="text">列表文本12</text>
+    <text id = "text13" class="text">列表文本13</text>
+    <text id = "text14" class="text">列表文本14</text>
+    <text id = "text15" class="text">列表文本15</text>
+    <text id = "text16" class="text">列表文本16</text>
+    <text id = "text17" class="text">列表文本17</text>
+    <text id = "text18" class="text">列表文本18</text>
+    <text id = "text19" class="text">列表文本19</text>
+    <text id = "text20" class="text">列表文本20</text>
+    <text id = "text21" class="text">列表文本21</text>
+</div>

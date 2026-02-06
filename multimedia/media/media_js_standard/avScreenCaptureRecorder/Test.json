@@ -1,0 +1,42 @@
+{
+    "description": "Configuration for avScreenCaptureRecorder Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "90000",
+        "shell-timeout": "90000",
+        "testcase-timeout": 90000,
+        "bundle-name": "ohos.acts.multimedia.avscreencapturerecorder",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAvScreenCaptureRecorderJsTest.hap",
+                "ActsAvScreenCaptureRecorderJsMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "param set persist.ace.testmode.enabled 1",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.avscreencapturerecorder/haps/entry_test/files",
+                "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.avscreencapturerecorder/haps/entry_test"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "./resource/media/codec/audio_encoder/f32le_44100_2_dayuhaitang.pcm -> /data/app/el2/100/base/ohos.acts.multimedia.avscreencapturerecorder/haps/entry_test/files/"
+            ]
+        }
+    ]
+}

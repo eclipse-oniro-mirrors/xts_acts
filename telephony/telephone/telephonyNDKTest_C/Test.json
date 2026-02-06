@@ -1,0 +1,24 @@
+{
+    "description": "Configuration for ActsTelephonyNdk20Test Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.acts.telephonyndk20test",
+        "module-name": "entry_test"
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsTelephonyNdk20Test.hap",
+            "ActsTelephonyNDK20MainTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }, {
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "power-shell setmode 602"
+        ]
+    }]
+}

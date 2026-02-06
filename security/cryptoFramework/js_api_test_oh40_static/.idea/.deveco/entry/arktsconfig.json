@@ -1,0 +1,1801 @@
+{
+  "compilerOptions": {
+    "package": "entry",
+    "baseUrl": "D:\\xts\\idl\\0702\\xts_acts\\security\\cryptoFramework\\js_api_test_oh40_static\\entry",
+    "paths": {
+      "std": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\build-tools\\ets2panda\\lib\\stdlib\\std"
+      ],
+      "escompat": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\build-tools\\ets2panda\\lib\\stdlib\\escompat"
+      ],
+      "@internal.full.global": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@internal\\full\\global"
+      ],
+      "@ohos.ability.errorCode": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.ability.errorCode"
+      ],
+      "@ohos.abilityAccessCtrl": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.abilityAccessCtrl"
+      ],
+      "@ohos.accessibility.config": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.accessibility.config"
+      ],
+      "@ohos.accessibility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.accessibility"
+      ],
+      "@ohos.account.distributedAccount": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.account.distributedAccount"
+      ],
+      "@ohos.account.osAccount": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.account.osAccount"
+      ],
+      "@ohos.animation.windowAnimationManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.animation.windowAnimationManager"
+      ],
+      "@ohos.animator": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.animator"
+      ],
+      "@ohos.app.ability.Ability": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.Ability"
+      ],
+      "@ohos.app.ability.AbilityConstant": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.AbilityConstant"
+      ],
+      "@ohos.app.ability.abilityDelegatorRegistry": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.abilityDelegatorRegistry"
+      ],
+      "@ohos.app.ability.AbilityLifecycleCallback": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.AbilityLifecycleCallback"
+      ],
+      "@ohos.app.ability.abilityManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.abilityManager"
+      ],
+      "@ohos.app.ability.AbilityStage": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.AbilityStage"
+      ],
+      "@ohos.app.ability.application": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.application"
+      ],
+      "@ohos.app.ability.ApplicationStateChangeCallback": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.ApplicationStateChangeCallback"
+      ],
+      "@ohos.app.ability.appManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.appManager"
+      ],
+      "@ohos.app.ability.appRecovery": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.appRecovery"
+      ],
+      "@ohos.app.ability.AtomicServiceOptions": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.AtomicServiceOptions"
+      ],
+      "@ohos.app.ability.common": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.common"
+      ],
+      "@ohos.app.ability.Configuration": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.Configuration"
+      ],
+      "@ohos.app.ability.ConfigurationConstant": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.ConfigurationConstant"
+      ],
+      "@ohos.app.ability.contextConstant": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.contextConstant"
+      ],
+      "@ohos.app.ability.dataUriUtils": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.dataUriUtils"
+      ],
+      "@ohos.app.ability.dialogRequest": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.dialogRequest"
+      ],
+      "@ohos.app.ability.DriverExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.DriverExtensionAbility"
+      ],
+      "@ohos.app.ability.EnvironmentCallback": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.EnvironmentCallback"
+      ],
+      "@ohos.app.ability.ExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.ExtensionAbility"
+      ],
+      "@ohos.app.ability.insightIntent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.insightIntent"
+      ],
+      "@ohos.app.ability.InsightIntentContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.InsightIntentContext"
+      ],
+      "@ohos.app.ability.insightIntentDriver": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.insightIntentDriver"
+      ],
+      "@ohos.app.ability.InsightIntentExecutor": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.InsightIntentExecutor"
+      ],
+      "@ohos.app.ability.MediaControlExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.MediaControlExtensionAbility"
+      ],
+      "@ohos.app.ability.missionManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.missionManager"
+      ],
+      "@ohos.app.ability.OpenLinkOptions": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.OpenLinkOptions"
+      ],
+      "@ohos.app.ability.PrintExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.PrintExtensionAbility"
+      ],
+      "@ohos.app.ability.ServiceExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.ServiceExtensionAbility"
+      ],
+      "@ohos.app.ability.StartOptions": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.StartOptions"
+      ],
+      "@ohos.app.ability.UIAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.UIAbility"
+      ],
+      "@ohos.app.ability.UIExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.UIExtensionAbility"
+      ],
+      "@ohos.app.ability.UIExtensionContentSession": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.UIExtensionContentSession"
+      ],
+      "@ohos.app.ability.UserAuthExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.UserAuthExtensionAbility"
+      ],
+      "@ohos.app.ability.Want": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.Want"
+      ],
+      "@ohos.app.ability.wantAgent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.wantAgent"
+      ],
+      "@ohos.app.ability.wantConstant": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.ability.wantConstant"
+      ],
+      "@ohos.app.form.formBindingData": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.form.formBindingData"
+      ],
+      "@ohos.app.form.FormExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.form.FormExtensionAbility"
+      ],
+      "@ohos.app.form.formInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.form.formInfo"
+      ],
+      "@ohos.app.form.formProvider": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.app.form.formProvider"
+      ],
+      "@ohos.application.BackupExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.application.BackupExtensionAbility"
+      ],
+      "@ohos.application.DataShareExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.application.DataShareExtensionAbility"
+      ],
+      "@ohos.application.formError": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.application.formError"
+      ],
+      "@ohos.application.StaticSubscriberExtensionAbility": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.application.StaticSubscriberExtensionAbility"
+      ],
+      "@ohos.application.StaticSubscriberExtensionContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.application.StaticSubscriberExtensionContext"
+      ],
+      "@ohos.application.testRunner": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.application.testRunner"
+      ],
+      "@ohos.application.uriPermissionManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.application.uriPermissionManager"
+      ],
+      "@ohos.arkui.advanced.ComposeListItem": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.ComposeListItem"
+      ],
+      "@ohos.arkui.advanced.ComposeTitleBar": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.ComposeTitleBar"
+      ],
+      "@ohos.arkui.advanced.Dialog": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.Dialog"
+      ],
+      "@ohos.arkui.advanced.EditableTitleBar": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.EditableTitleBar"
+      ],
+      "@ohos.arkui.advanced.ExceptionPrompt": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.ExceptionPrompt"
+      ],
+      "@ohos.arkui.advanced.Filter": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.Filter"
+      ],
+      "@ohos.arkui.advanced.FullScreenLaunchComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.FullScreenLaunchComponent"
+      ],
+      "@ohos.arkui.advanced.GridObjectSortComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.GridObjectSortComponent"
+      ],
+      "@ohos.arkui.advanced.ProgressButton": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.ProgressButton"
+      ],
+      "@ohos.arkui.advanced.SplitLayout": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.SplitLayout"
+      ],
+      "@ohos.arkui.advanced.SubHeader": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.SubHeader"
+      ],
+      "@ohos.arkui.advanced.SwipeRefresher": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.SwipeRefresher"
+      ],
+      "@ohos.arkui.advanced.TabTitleBar": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.TabTitleBar"
+      ],
+      "@ohos.arkui.advanced.ToolBar": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.ToolBar"
+      ],
+      "@ohos.arkui.advanced.TreeView": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.advanced.TreeView"
+      ],
+      "@ohos.arkui.component": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.component"
+      ],
+      "@ohos.arkui.componentSnapshot": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.componentSnapshot"
+      ],
+      "@ohos.arkui.componentUtils": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.componentUtils"
+      ],
+      "@ohos.arkui.dragController": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.dragController"
+      ],
+      "@ohos.arkui.drawableDescriptor": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.drawableDescriptor"
+      ],
+      "@ohos.arkui.inspector": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.inspector"
+      ],
+      "@ohos.arkui.modifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.modifier"
+      ],
+      "@ohos.arkui.node": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.node"
+      ],
+      "@ohos.arkui.observer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.observer"
+      ],
+      "@ohos.arkui.Parallelize": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.Parallelize"
+      ],
+      "@ohos.arkui.performanceMonitor": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.performanceMonitor"
+      ],
+      "@ohos.arkui.shape": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.shape"
+      ],
+      "@ohos.arkui.stateManagement": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.stateManagement"
+      ],
+      "@ohos.arkui.theme": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.theme"
+      ],
+      "@ohos.arkui.UIContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.arkui.UIContext"
+      ],
+      "@ohos.base": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.base"
+      ],
+      "@ohos.batteryInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.batteryInfo"
+      ],
+      "@ohos.batteryStatistics": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.batteryStatistics"
+      ],
+      "@ohos.bluetooth.a2dp": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bluetooth.a2dp"
+      ],
+      "@ohos.bluetooth.access": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bluetooth.access"
+      ],
+      "@ohos.bluetooth.baseProfile": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bluetooth.baseProfile"
+      ],
+      "@ohos.bluetooth.ble": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bluetooth.ble"
+      ],
+      "@ohos.bluetooth.connection": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bluetooth.connection"
+      ],
+      "@ohos.bluetooth.constant": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bluetooth.constant"
+      ],
+      "@ohos.bluetooth.hfp": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bluetooth.hfp"
+      ],
+      "@ohos.bluetooth.hid": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bluetooth.hid"
+      ],
+      "@ohos.brightness": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.brightness"
+      ],
+      "@ohos.buffer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.buffer"
+      ],
+      "@ohos.bundle.appControl": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.appControl"
+      ],
+      "@ohos.bundle.bundleManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.bundleManager"
+      ],
+      "@ohos.bundle.bundleMonitor": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.bundleMonitor"
+      ],
+      "@ohos.bundle.bundleResourceManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.bundleResourceManager"
+      ],
+      "@ohos.bundle.defaultAppManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.defaultAppManager"
+      ],
+      "@ohos.bundle.distributedBundleManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.distributedBundleManager"
+      ],
+      "@ohos.bundle.freeInstall": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.freeInstall"
+      ],
+      "@ohos.bundle.installer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.installer"
+      ],
+      "@ohos.bundle.launcherBundleManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.launcherBundleManager"
+      ],
+      "@ohos.bundle.overlay": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.overlay"
+      ],
+      "@ohos.bundle.shortcutManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.bundle.shortcutManager"
+      ],
+      "@ohos.charger": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.charger"
+      ],
+      "@ohos.commonEventManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.commonEventManager"
+      ],
+      "@ohos.configPolicy": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.configPolicy"
+      ],
+      "@ohos.curves": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.curves"
+      ],
+      "@ohos.customization.customConfig": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.customization.customConfig"
+      ],
+      "@ohos.data.dataShare": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.data.dataShare"
+      ],
+      "@ohos.data.dataSharePredicates": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.data.dataSharePredicates"
+      ],
+      "@ohos.data.DataShareResultSet": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.data.DataShareResultSet"
+      ],
+      "@ohos.data.preferences": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.data.preferences"
+      ],
+      "@ohos.data.relationalStore": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.data.relationalStore"
+      ],
+      "@ohos.data.unifiedDataChannel": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.data.unifiedDataChannel"
+      ],
+      "@ohos.data.uniformTypeDescriptor": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.data.uniformTypeDescriptor"
+      ],
+      "@ohos.data.ValuesBucket": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.data.ValuesBucket"
+      ],
+      "@ohos.deviceInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.deviceInfo"
+      ],
+      "@ohos.deviceStatus.dragInteraction": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.deviceStatus.dragInteraction"
+      ],
+      "@ohos.display": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.display"
+      ],
+      "@ohos.distributedHardware.mechanicManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.distributedHardware.mechanicManager"
+      ],
+      "@ohos.driver.deviceManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.driver.deviceManager"
+      ],
+      "@ohos.effectKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.effectKit"
+      ],
+      "@ohos.enterprise.adminManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.enterprise.adminManager"
+      ],
+      "@ohos.enterprise.securityManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.enterprise.securityManager"
+      ],
+      "@ohos.events.emitter": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.events.emitter"
+      ],
+      "@ohos.file.cloudSync": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.file.cloudSync"
+      ],
+      "@ohos.file.cloudSyncManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.file.cloudSyncManager"
+      ],
+      "@ohos.file.environment": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.file.environment"
+      ],
+      "@ohos.file.fileuri": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.file.fileuri"
+      ],
+      "@ohos.file.fs": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.file.fs"
+      ],
+      "@ohos.file.hash": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.file.hash"
+      ],
+      "@ohos.file.photoAccessHelper": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.file.photoAccessHelper"
+      ],
+      "@ohos.file.securityLabel": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.file.securityLabel"
+      ],
+      "@ohos.file.statvfs": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.file.statvfs"
+      ],
+      "@ohos.fileshare": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.fileshare"
+      ],
+      "@ohos.font": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.font"
+      ],
+      "@ohos.fontManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.fontManager"
+      ],
+      "@ohos.geoLocationManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.geoLocationManager"
+      ],
+      "@ohos.graphics.colorSpaceManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.graphics.colorSpaceManager"
+      ],
+      "@ohos.graphics.common2D": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.graphics.common2D"
+      ],
+      "@ohos.graphics.displaySync": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.graphics.displaySync"
+      ],
+      "@ohos.graphics.drawing": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.graphics.drawing"
+      ],
+      "@ohos.graphics.hdrCapability": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.graphics.hdrCapability"
+      ],
+      "@ohos.graphics.scene": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.graphics.scene"
+      ],
+      "@ohos.graphics.text": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.graphics.text"
+      ],
+      "@ohos.graphics.uiEffect": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.graphics.uiEffect"
+      ],
+      "@ohos.hichecker": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.hichecker"
+      ],
+      "@ohos.hidebug": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.hidebug"
+      ],
+      "@ohos.hilog": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.hilog"
+      ],
+      "@ohos.hiSysEvent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.hiSysEvent"
+      ],
+      "@ohos.hiTraceChain": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.hiTraceChain"
+      ],
+      "@ohos.hiTraceMeter": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.hiTraceMeter"
+      ],
+      "@ohos.hiviewdfx.hiAppEvent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.hiviewdfx.hiAppEvent"
+      ],
+      "@ohos.i18n": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.i18n"
+      ],
+      "@ohos.inputMethod": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.inputMethod"
+      ],
+      "@ohos.inputMethod.Panel": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.inputMethod.Panel"
+      ],
+      "@ohos.InputMethodSubtype": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.InputMethodSubtype"
+      ],
+      "@ohos.intl": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.intl"
+      ],
+      "@ohos.logLibrary": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.logLibrary"
+      ],
+      "@ohos.matrix4": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.matrix4"
+      ],
+      "@ohos.measure": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.measure"
+      ],
+      "@ohos.mediaquery": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.mediaquery"
+      ],
+      "@ohos.multimedia.audio": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimedia.audio"
+      ],
+      "@ohos.multimedia.audioHaptic": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimedia.audioHaptic"
+      ],
+      "@ohos.multimedia.avCastPickerParam": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimedia.avCastPickerParam"
+      ],
+      "@ohos.multimedia.avsession": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimedia.avsession"
+      ],
+      "@ohos.multimedia.camera": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimedia.camera"
+      ],
+      "@ohos.multimedia.cameraPicker": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimedia.cameraPicker"
+      ],
+      "@ohos.multimedia.drm": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimedia.drm"
+      ],
+      "@ohos.multimedia.image": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimedia.image"
+      ],
+      "@ohos.multimedia.media": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimedia.media"
+      ],
+      "@ohos.multimedia.systemSoundManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimedia.systemSoundManager"
+      ],
+      "@ohos.multimodalInput.gestureEvent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.gestureEvent"
+      ],
+      "@ohos.multimodalInput.inputConsumer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.inputConsumer"
+      ],
+      "@ohos.multimodalInput.inputDevice": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.inputDevice"
+      ],
+      "@ohos.multimodalInput.inputEvent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.inputEvent"
+      ],
+      "@ohos.multimodalInput.intentionCode": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.intentionCode"
+      ],
+      "@ohos.multimodalInput.keyCode": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.keyCode"
+      ],
+      "@ohos.multimodalInput.keyEvent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.keyEvent"
+      ],
+      "@ohos.multimodalInput.mouseEvent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.mouseEvent"
+      ],
+      "@ohos.multimodalInput.pointer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.pointer"
+      ],
+      "@ohos.multimodalInput.shortKey": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.shortKey"
+      ],
+      "@ohos.multimodalInput.touchEvent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.multimodalInput.touchEvent"
+      ],
+      "@ohos.net.connection": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.net.connection"
+      ],
+      "@ohos.net.http": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.net.http"
+      ],
+      "@ohos.net.networkSecurity": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.net.networkSecurity"
+      ],
+      "@ohos.net.sharing": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.net.sharing"
+      ],
+      "@ohos.net.statistics": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.net.statistics"
+      ],
+      "@ohos.net.webSocket": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.net.webSocket"
+      ],
+      "@ohos.nfc.controller": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.nfc.controller"
+      ],
+      "@ohos.nfc.tag": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.nfc.tag"
+      ],
+      "@ohos.notificationManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.notificationManager"
+      ],
+      "@ohos.notificationSubscribe": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.notificationSubscribe"
+      ],
+      "@ohos.pasteboard": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.pasteboard"
+      ],
+      "@ohos.pluginComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.pluginComponent"
+      ],
+      "@ohos.power": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.power"
+      ],
+      "@ohos.print": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.print"
+      ],
+      "@ohos.privacyManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.privacyManager"
+      ],
+      "@ohos.prompt": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.prompt"
+      ],
+      "@ohos.promptAction": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.promptAction"
+      ],
+      "@ohos.reminderAgentManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.reminderAgentManager"
+      ],
+      "@ohos.request": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.request"
+      ],
+      "@ohos.resourceManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.resourceManager"
+      ],
+      "@ohos.resourceschedule.backgroundTaskManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.resourceschedule.backgroundTaskManager"
+      ],
+      "@ohos.resourceschedule.deviceStandby": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.resourceschedule.deviceStandby"
+      ],
+      "@ohos.resourceschedule.systemload": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.resourceschedule.systemload"
+      ],
+      "@ohos.resourceschedule.usageStatistics": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.resourceschedule.usageStatistics"
+      ],
+      "@ohos.router": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.router"
+      ],
+      "@ohos.rpc": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.rpc"
+      ],
+      "@ohos.runningLock": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.runningLock"
+      ],
+      "@ohos.screen": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.screen"
+      ],
+      "@ohos.screenLock": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.screenLock"
+      ],
+      "@ohos.screenshot": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.screenshot"
+      ],
+      "@ohos.security.cert": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.security.cert"
+      ],
+      "@ohos.security.cryptoFramework": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.security.cryptoFramework"
+      ],
+      "@ohos.sensor": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.sensor"
+      ],
+      "@ohos.systemCapability": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.systemCapability"
+      ],
+      "@ohos.systemDateTime": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.systemDateTime"
+      ],
+      "@ohos.systemParameterEnhance": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.systemParameterEnhance"
+      ],
+      "@ohos.telephony.call": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.telephony.call"
+      ],
+      "@ohos.telephony.data": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.telephony.data"
+      ],
+      "@ohos.telephony.esim": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.telephony.esim"
+      ],
+      "@ohos.telephony.observer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.telephony.observer"
+      ],
+      "@ohos.telephony.radio": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.telephony.radio"
+      ],
+      "@ohos.telephony.sim": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.telephony.sim"
+      ],
+      "@ohos.telephony.sms": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.telephony.sms"
+      ],
+      "@ohos.thermal": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.thermal"
+      ],
+      "@ohos.transfer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.transfer"
+      ],
+      "@ohos.uiAppearance": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.uiAppearance"
+      ],
+      "@ohos.uiExtensionHost": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.uiExtensionHost"
+      ],
+      "@ohos.UiTest": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.UiTest"
+      ],
+      "@ohos.update": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.update"
+      ],
+      "@ohos.uri": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.uri"
+      ],
+      "@ohos.url": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.url"
+      ],
+      "@ohos.usbManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.usbManager"
+      ],
+      "@ohos.usbManager.serial": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.usbManager.serial"
+      ],
+      "@ohos.userIAM.faceAuth": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.userIAM.faceAuth"
+      ],
+      "@ohos.userIAM.userAccessCtrl": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.userIAM.userAccessCtrl"
+      ],
+      "@ohos.userIAM.userAuth": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.userIAM.userAuth"
+      ],
+      "@ohos.util.ArrayList": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.ArrayList"
+      ],
+      "@ohos.util": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util"
+      ],
+      "@ohos.util.Deque": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.Deque"
+      ],
+      "@ohos.util.HashMap": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.HashMap"
+      ],
+      "@ohos.util.HashSet": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.HashSet"
+      ],
+      "@ohos.util.LightWeightMap": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.LightWeightMap"
+      ],
+      "@ohos.util.LightWeightSet": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.LightWeightSet"
+      ],
+      "@ohos.util.LinkedList": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.LinkedList"
+      ],
+      "@ohos.util.List": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.List"
+      ],
+      "@ohos.util.PlainArray": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.PlainArray"
+      ],
+      "@ohos.util.Queue": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.Queue"
+      ],
+      "@ohos.util.Stack": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.Stack"
+      ],
+      "@ohos.util.stream": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.stream"
+      ],
+      "@ohos.util.TreeMap": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.TreeMap"
+      ],
+      "@ohos.util.TreeSet": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.util.TreeSet"
+      ],
+      "@ohos.vibrator": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.vibrator"
+      ],
+      "@ohos.web.webview": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.web.webview"
+      ],
+      "@ohos.wifi": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.wifi"
+      ],
+      "@ohos.wifiManager": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.wifiManager"
+      ],
+      "@ohos.window": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.window"
+      ],
+      "@ohos.xml": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.xml"
+      ],
+      "@ohos.zlib": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@ohos.zlib"
+      ],
+      "@system.app": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@system.app"
+      ],
+      "@system.mediaquery": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@system.mediaquery"
+      ],
+      "@system.prompt": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@system.prompt"
+      ],
+      "@system.router": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\@system.router"
+      ],
+      "ability.abilityResult": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\ability\\abilityResult"
+      ],
+      "ability.connectOptions": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\ability\\connectOptions"
+      ],
+      "ability.dataAbilityHelper": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\ability\\dataAbilityHelper"
+      ],
+      "application.AbilityDelegator": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AbilityDelegator"
+      ],
+      "application.abilityDelegatorArgs": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\abilityDelegatorArgs"
+      ],
+      "application.AbilityFirstFrameStateData": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AbilityFirstFrameStateData"
+      ],
+      "application.AbilityFirstFrameStateObserver": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AbilityFirstFrameStateObserver"
+      ],
+      "application.AbilityForegroundStateObserver": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AbilityForegroundStateObserver"
+      ],
+      "application.AbilityMonitor": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AbilityMonitor"
+      ],
+      "application.AbilityRunningInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AbilityRunningInfo"
+      ],
+      "application.AbilityStageContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AbilityStageContext"
+      ],
+      "application.AbilityStageMonitor": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AbilityStageMonitor"
+      ],
+      "application.AbilityStartCallback": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AbilityStartCallback"
+      ],
+      "application.AbilityStateData": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AbilityStateData"
+      ],
+      "application.AppForegroundStateObserver": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AppForegroundStateObserver"
+      ],
+      "application.ApplicationContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\ApplicationContext"
+      ],
+      "application.ApplicationStateObserver": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\ApplicationStateObserver"
+      ],
+      "application.AppStateData": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\AppStateData"
+      ],
+      "application.BaseContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\BaseContext"
+      ],
+      "application.Context": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\Context"
+      ],
+      "application.DriverExtensionContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\DriverExtensionContext"
+      ],
+      "application.EventHub": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\EventHub"
+      ],
+      "application.ExtensionContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\ExtensionContext"
+      ],
+      "application.ExtensionRunningInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\ExtensionRunningInfo"
+      ],
+      "application.FormExtensionContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\FormExtensionContext"
+      ],
+      "application.MediaControlExtensionContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\MediaControlExtensionContext"
+      ],
+      "application.MissionInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\MissionInfo"
+      ],
+      "application.MultiAppMode": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\MultiAppMode"
+      ],
+      "application.ProcessData": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\ProcessData"
+      ],
+      "application.ProcessInformation": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\ProcessInformation"
+      ],
+      "application.RunningAppClone": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\RunningAppClone"
+      ],
+      "application.RunningMultiAppInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\RunningMultiAppInfo"
+      ],
+      "application.RunningMultiInstanceInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\RunningMultiInstanceInfo"
+      ],
+      "application.ServiceExtensionContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\ServiceExtensionContext"
+      ],
+      "application.shellCmdResult": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\shellCmdResult"
+      ],
+      "application.UIAbilityContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\UIAbilityContext"
+      ],
+      "application.UIExtensionContext": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\application\\UIExtensionContext"
+      ],
+      "arkui.AttributeUpdater": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\AttributeUpdater"
+      ],
+      "arkui.BlankModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\BlankModifier"
+      ],
+      "arkui.BuilderNode": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\BuilderNode"
+      ],
+      "arkui.ButtonModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ButtonModifier"
+      ],
+      "arkui.CheckboxModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\CheckboxModifier"
+      ],
+      "arkui.ColumnModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ColumnModifier"
+      ],
+      "arkui.ColumnSplitModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ColumnSplitModifier"
+      ],
+      "arkui.CommonModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\CommonModifier"
+      ],
+      "arkui.component.actionSheet": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\actionSheet"
+      ],
+      "arkui.component.alertDialog": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\alertDialog"
+      ],
+      "arkui.component.alphabetIndexer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\alphabetIndexer"
+      ],
+      "arkui.component.animation": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\animation"
+      ],
+      "arkui.component.animator": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\animator"
+      ],
+      "arkui.component.badge": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\badge"
+      ],
+      "arkui.component.blank": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\blank"
+      ],
+      "arkui.component.builder": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\builder"
+      ],
+      "arkui.component.button": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\button"
+      ],
+      "arkui.component.calendarPicker": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\calendarPicker"
+      ],
+      "arkui.component.canvas": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\canvas"
+      ],
+      "arkui.component.checkbox": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\checkbox"
+      ],
+      "arkui.component.checkboxgroup": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\checkboxgroup"
+      ],
+      "arkui.component.circle": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\circle"
+      ],
+      "arkui.component.column": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\column"
+      ],
+      "arkui.component.columnSplit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\columnSplit"
+      ],
+      "arkui.component.common": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\common"
+      ],
+      "arkui.component.containerSpan": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\containerSpan"
+      ],
+      "arkui.component.contentSlot": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\contentSlot"
+      ],
+      "arkui.component.counter": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\counter"
+      ],
+      "arkui.component.customComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\customComponent"
+      ],
+      "arkui.component.customDialogController": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\customDialogController"
+      ],
+      "arkui.component.dataPanel": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\dataPanel"
+      ],
+      "arkui.component.datePicker": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\datePicker"
+      ],
+      "arkui.component.divider": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\divider"
+      ],
+      "arkui.component.effectComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\effectComponent"
+      ],
+      "arkui.component.ellipse": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\ellipse"
+      ],
+      "arkui.component.embeddedComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\embeddedComponent"
+      ],
+      "arkui.component.enums": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\enums"
+      ],
+      "arkui.component.extendableComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\extendableComponent"
+      ],
+      "arkui.component.flex": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\flex"
+      ],
+      "arkui.component.flowItem": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\flowItem"
+      ],
+      "arkui.component.focus": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\focus"
+      ],
+      "arkui.component.folderStack": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\folderStack"
+      ],
+      "arkui.component.forEach": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\forEach"
+      ],
+      "arkui.component.formComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\formComponent"
+      ],
+      "arkui.component.formLink": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\formLink"
+      ],
+      "arkui.component.gauge": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\gauge"
+      ],
+      "arkui.component.gesture": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\gesture"
+      ],
+      "arkui.component.grid": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\grid"
+      ],
+      "arkui.component.gridCol": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\gridCol"
+      ],
+      "arkui.component.gridItem": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\gridItem"
+      ],
+      "arkui.component.gridRow": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\gridRow"
+      ],
+      "arkui.component.hyperlink": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\hyperlink"
+      ],
+      "arkui.component.image": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\image"
+      ],
+      "arkui.component.imageAnimator": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\imageAnimator"
+      ],
+      "arkui.component.imageCommon": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\imageCommon"
+      ],
+      "arkui.component.imageSpan": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\imageSpan"
+      ],
+      "arkui.component.indicatorcomponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\indicatorcomponent"
+      ],
+      "arkui.component.inspector": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\inspector"
+      ],
+      "arkui.component.interop": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\interop"
+      ],
+      "arkui.component.lazyForEach": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\lazyForEach"
+      ],
+      "arkui.component.lazyGridLayout": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\lazyGridLayout"
+      ],
+      "arkui.component.line": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\line"
+      ],
+      "arkui.component.list": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\list"
+      ],
+      "arkui.component.listItem": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\listItem"
+      ],
+      "arkui.component.listItemGroup": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\listItemGroup"
+      ],
+      "arkui.component.loadingProgress": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\loadingProgress"
+      ],
+      "arkui.component.marquee": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\marquee"
+      ],
+      "arkui.component.matrix2d": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\matrix2d"
+      ],
+      "arkui.component.mediaCachedImage": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\mediaCachedImage"
+      ],
+      "arkui.component.menu": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\menu"
+      ],
+      "arkui.component.menuItem": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\menuItem"
+      ],
+      "arkui.component.menuItemGroup": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\menuItemGroup"
+      ],
+      "arkui.component.navDestination": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\navDestination"
+      ],
+      "arkui.component.navigation": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\navigation"
+      ],
+      "arkui.component.nodeContainer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\nodeContainer"
+      ],
+      "arkui.component.pageTransition": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\pageTransition"
+      ],
+      "arkui.component.particle": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\particle"
+      ],
+      "arkui.component.pasteButton": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\pasteButton"
+      ],
+      "arkui.component.path": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\path"
+      ],
+      "arkui.component.patternLock": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\patternLock"
+      ],
+      "arkui.component.pluginComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\pluginComponent"
+      ],
+      "arkui.component.polygon": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\polygon"
+      ],
+      "arkui.component.polyline": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\polyline"
+      ],
+      "arkui.component.progress": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\progress"
+      ],
+      "arkui.component.qrcode": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\qrcode"
+      ],
+      "arkui.component.radio": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\radio"
+      ],
+      "arkui.component.rating": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\rating"
+      ],
+      "arkui.component.rect": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\rect"
+      ],
+      "arkui.component.refresh": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\refresh"
+      ],
+      "arkui.component.relativeContainer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\relativeContainer"
+      ],
+      "arkui.component.remoteWindow": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\remoteWindow"
+      ],
+      "arkui.component.repeat": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\repeat"
+      ],
+      "arkui.component.resources": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\resources"
+      ],
+      "arkui.component.richEditor": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\richEditor"
+      ],
+      "arkui.component.richText": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\richText"
+      ],
+      "arkui.component.rootScene": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\rootScene"
+      ],
+      "arkui.component.row": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\row"
+      ],
+      "arkui.component.rowSplit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\rowSplit"
+      ],
+      "arkui.component.saveButton": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\saveButton"
+      ],
+      "arkui.component.screen": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\screen"
+      ],
+      "arkui.component.scroll": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\scroll"
+      ],
+      "arkui.component.scrollBar": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\scrollBar"
+      ],
+      "arkui.component.search": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\search"
+      ],
+      "arkui.component.securityComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\securityComponent"
+      ],
+      "arkui.component.select": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\select"
+      ],
+      "arkui.component.shape": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\shape"
+      ],
+      "arkui.component.sidebar": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\sidebar"
+      ],
+      "arkui.component.slider": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\slider"
+      ],
+      "arkui.component.span": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\span"
+      ],
+      "arkui.component.stack": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\stack"
+      ],
+      "arkui.component.stepper": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\stepper"
+      ],
+      "arkui.component.stepperItem": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\stepperItem"
+      ],
+      "arkui.component.styledString": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\styledString"
+      ],
+      "arkui.component.swiper": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\swiper"
+      ],
+      "arkui.component.symbolglyph": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\symbolglyph"
+      ],
+      "arkui.component.symbolSpan": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\symbolSpan"
+      ],
+      "arkui.component.tabContent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\tabContent"
+      ],
+      "arkui.component.tabs": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\tabs"
+      ],
+      "arkui.component.text": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\text"
+      ],
+      "arkui.component.textArea": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\textArea"
+      ],
+      "arkui.component.textClock": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\textClock"
+      ],
+      "arkui.component.textCommon": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\textCommon"
+      ],
+      "arkui.component.textInput": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\textInput"
+      ],
+      "arkui.component.textPicker": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\textPicker"
+      ],
+      "arkui.component.textTimer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\textTimer"
+      ],
+      "arkui.component.timePicker": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\timePicker"
+      ],
+      "arkui.component.toggle": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\toggle"
+      ],
+      "arkui.component.toolbar": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\toolbar"
+      ],
+      "arkui.component.uiExtensionComponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\uiExtensionComponent"
+      ],
+      "arkui.component.units": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\units"
+      ],
+      "arkui.component.video": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\video"
+      ],
+      "arkui.component.waterFlow": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\waterFlow"
+      ],
+      "arkui.component.web": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\web"
+      ],
+      "arkui.component.windowScene": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\windowScene"
+      ],
+      "arkui.component.withTheme": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\withTheme"
+      ],
+      "arkui.component.xcomponent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\component\\xcomponent"
+      ],
+      "arkui.ComponentContent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ComponentContent"
+      ],
+      "arkui.ContainerSpanModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ContainerSpanModifier"
+      ],
+      "arkui.Content": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\Content"
+      ],
+      "arkui.DividerModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\DividerModifier"
+      ],
+      "arkui.external.resource": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\external\\resource"
+      ],
+      "arkui.FlexModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\FlexModifier"
+      ],
+      "arkui.FolderStackModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\FolderStackModifier"
+      ],
+      "arkui.FrameNode": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\FrameNode"
+      ],
+      "arkui.Graphics": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\Graphics"
+      ],
+      "arkui.GridColModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\GridColModifier"
+      ],
+      "arkui.GridItemModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\GridItemModifier"
+      ],
+      "arkui.GridModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\GridModifier"
+      ],
+      "arkui.GridRowModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\GridRowModifier"
+      ],
+      "arkui.HyperlinkModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\HyperlinkModifier"
+      ],
+      "arkui.ImageSpanModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ImageSpanModifier"
+      ],
+      "arkui.LineModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\LineModifier"
+      ],
+      "arkui.ListItemGroupModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ListItemGroupModifier"
+      ],
+      "arkui.ListItemModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ListItemModifier"
+      ],
+      "arkui.ListModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ListModifier"
+      ],
+      "arkui.MenuItemModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\MenuItemModifier"
+      ],
+      "arkui.MenuModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\MenuModifier"
+      ],
+      "arkui.NavDestinationModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\NavDestinationModifier"
+      ],
+      "arkui.NavigationModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\NavigationModifier"
+      ],
+      "arkui.NodeContent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\NodeContent"
+      ],
+      "arkui.NodeController": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\NodeController"
+      ],
+      "arkui.ParticleModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ParticleModifier"
+      ],
+      "arkui.PathModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\PathModifier"
+      ],
+      "arkui.PolygonModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\PolygonModifier"
+      ],
+      "arkui.PolylineModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\PolylineModifier"
+      ],
+      "arkui.RectModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\RectModifier"
+      ],
+      "arkui.RefreshModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\RefreshModifier"
+      ],
+      "arkui.RelativeContainerModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\RelativeContainerModifier"
+      ],
+      "arkui.RenderNode": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\RenderNode"
+      ],
+      "arkui.RichEditorModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\RichEditorModifier"
+      ],
+      "arkui.RowModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\RowModifier"
+      ],
+      "arkui.RowSplitModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\RowSplitModifier"
+      ],
+      "@koalaui.runtime.common": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\runtime-api\\@koalaui.runtime.common"
+      ],
+      "@koalaui.runtime.states.Disposable": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\runtime-api\\@koalaui.runtime.states.Disposable"
+      ],
+      "@koalaui.runtime.states.State": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\runtime-api\\@koalaui.runtime.states.State"
+      ],
+      "@koalaui.runtime.tree.IncrementalNode": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\runtime-api\\@koalaui.runtime.tree.IncrementalNode"
+      ],
+      "@koalaui.runtime.tree.ReadonlyTreeNode": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\runtime-api\\@koalaui.runtime.tree.ReadonlyTreeNode"
+      ],
+      "arkui.ScrollModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ScrollModifier"
+      ],
+      "arkui.SearchModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\SearchModifier"
+      ],
+      "arkui.SelectModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\SelectModifier"
+      ],
+      "arkui.ShapeModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\ShapeModifier"
+      ],
+      "arkui.SideBarContainerModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\SideBarContainerModifier"
+      ],
+      "arkui.SpanModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\SpanModifier"
+      ],
+      "arkui.StackModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\StackModifier"
+      ],
+      "arkui.stateManagement.decorator": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\stateManagement\\decorator"
+      ],
+      "arkui.stateManagement.memorize.state": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\stateManagement\\memorize\\state"
+      ],
+      "arkui.stateManagement.remember": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\stateManagement\\remember"
+      ],
+      "arkui.stateManagement.runtime": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\stateManagement\\runtime"
+      ],
+      "arkui.stateManagement.storage.appStorage": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\stateManagement\\storage\\appStorage"
+      ],
+      "arkui.stateManagement.storage.environment": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\stateManagement\\storage\\environment"
+      ],
+      "arkui.stateManagement.storage.localStorage": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\stateManagement\\storage\\localStorage"
+      ],
+      "arkui.stateManagement.storage.persistentStorage": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\stateManagement\\storage\\persistentStorage"
+      ],
+      "arkui.stateManagement.storage.storageProperty": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\stateManagement\\storage\\storageProperty"
+      ],
+      "arkui.stateManagement.utils": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\stateManagement\\utils"
+      ],
+      "arkui.StepperItemModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\StepperItemModifier"
+      ],
+      "arkui.StepperModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\StepperModifier"
+      ],
+      "arkui.SwiperModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\SwiperModifier"
+      ],
+      "arkui.SymbolGlyphModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\SymbolGlyphModifier"
+      ],
+      "arkui.SymbolSpanModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\SymbolSpanModifier"
+      ],
+      "arkui.TextAreaModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\TextAreaModifier"
+      ],
+      "arkui.TextInputModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\TextInputModifier"
+      ],
+      "arkui.TextModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\TextModifier"
+      ],
+      "arkui.UserView": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\UserView"
+      ],
+      "arkui.VideoModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\VideoModifier"
+      ],
+      "arkui.WaterFlowModifier": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\arkui\\WaterFlowModifier"
+      ],
+      "bundleManager.AbilityInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\AbilityInfo"
+      ],
+      "bundleManager.ApplicationInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\ApplicationInfo"
+      ],
+      "bundleManager.AppProvisionInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\AppProvisionInfo"
+      ],
+      "bundleManager.BundleInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\BundleInfo"
+      ],
+      "bundleManager.BundlePackInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\BundlePackInfo"
+      ],
+      "bundleManager.BundleResourceInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\BundleResourceInfo"
+      ],
+      "bundleManager.DispatchInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\DispatchInfo"
+      ],
+      "bundleManager.ElementName": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\ElementName"
+      ],
+      "bundleManager.ExtensionAbilityInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\ExtensionAbilityInfo"
+      ],
+      "bundleManager.HapModuleInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\HapModuleInfo"
+      ],
+      "bundleManager.LauncherAbilityInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\LauncherAbilityInfo"
+      ],
+      "bundleManager.LauncherAbilityResourceInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\LauncherAbilityResourceInfo"
+      ],
+      "bundleManager.Metadata": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\Metadata"
+      ],
+      "bundleManager.OverlayModuleInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\OverlayModuleInfo"
+      ],
+      "bundleManager.PermissionDef": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\PermissionDef"
+      ],
+      "bundleManager.PluginBundleInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\PluginBundleInfo"
+      ],
+      "bundleManager.RecoverableApplicationInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\RecoverableApplicationInfo"
+      ],
+      "bundleManager.RemoteAbilityInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\RemoteAbilityInfo"
+      ],
+      "bundleManager.SharedBundleInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\SharedBundleInfo"
+      ],
+      "bundleManager.ShortcutInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\ShortcutInfo"
+      ],
+      "bundleManager.Skill": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\bundleManager\\Skill"
+      ],
+      "commonEvent.commonEventData": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\commonEvent\\commonEventData"
+      ],
+      "commonEvent.commonEventPublishData": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\commonEvent\\commonEventPublishData"
+      ],
+      "commonEvent.commonEventSubscribeInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\commonEvent\\commonEventSubscribeInfo"
+      ],
+      "commonEvent.commonEventSubscriber": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\commonEvent\\commonEventSubscriber"
+      ],
+      "global.rawFileDescriptor": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\global\\rawFileDescriptor"
+      ],
+      "global.resource": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\global\\resource"
+      ],
+      "graphics3d.Scene": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\graphics3d\\Scene"
+      ],
+      "graphics3d.SceneNodes": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\graphics3d\\SceneNodes"
+      ],
+      "graphics3d.ScenePostProcessSettings": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\graphics3d\\ScenePostProcessSettings"
+      ],
+      "graphics3d.SceneResources": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\graphics3d\\SceneResources"
+      ],
+      "graphics3d.SceneTypes": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\graphics3d\\SceneTypes"
+      ],
+      "multimedia.ringtonePlayer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\multimedia\\ringtonePlayer"
+      ],
+      "multimedia.soundPool": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\multimedia\\soundPool"
+      ],
+      "multimedia.systemTonePlayer": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\multimedia\\systemTonePlayer"
+      ],
+      "notification.notificationActionButton": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationActionButton"
+      ],
+      "notification.NotificationCommonDef": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\NotificationCommonDef"
+      ],
+      "notification.notificationContent": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationContent"
+      ],
+      "notification.notificationFlags": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationFlags"
+      ],
+      "notification.notificationRequest": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationRequest"
+      ],
+      "notification.notificationSlot": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationSlot"
+      ],
+      "notification.notificationSorting": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationSorting"
+      ],
+      "notification.notificationSortingMap": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationSortingMap"
+      ],
+      "notification.notificationSubscribeInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationSubscribeInfo"
+      ],
+      "notification.notificationSubscriber": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationSubscriber"
+      ],
+      "notification.notificationTemplate": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationTemplate"
+      ],
+      "notification.notificationUserInput": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\notification\\notificationUserInput"
+      ],
+      "permissions": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\permissions"
+      ],
+      "security.PermissionRequestResult": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\security\\PermissionRequestResult"
+      ],
+      "wantAgent.triggerInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\wantAgent\\triggerInfo"
+      ],
+      "wantAgent.wantAgentInfo": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\api\\wantAgent\\wantAgentInfo"
+      ],
+      "@arkts.collections": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\arkts\\@arkts.collections"
+      ],
+      "@arkts.math.Decimal": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\arkts\\@arkts.math.Decimal"
+      ],
+      "@kit.AbilityKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.AbilityKit"
+      ],
+      "@kit.AccessibilityKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.AccessibilityKit"
+      ],
+      "@kit.ArkGraphics2D": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.ArkGraphics2D"
+      ],
+      "@kit.ArkGraphics3D": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.ArkGraphics3D"
+      ],
+      "@kit.ArkTS": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.ArkTS"
+      ],
+      "@kit.ArkUI": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.ArkUI"
+      ],
+      "@kit.ArkWeb": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.ArkWeb"
+      ],
+      "@kit.AudioKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.AudioKit"
+      ],
+      "@kit.BasicServicesKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.BasicServicesKit"
+      ],
+      "@kit.CameraKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.CameraKit"
+      ],
+      "@kit.ConnectivityKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.ConnectivityKit"
+      ],
+      "@kit.CoreFileKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.CoreFileKit"
+      ],
+      "@kit.CryptoArchitectureKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.CryptoArchitectureKit"
+      ],
+      "@kit.DeviceCertificateKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.DeviceCertificateKit"
+      ],
+      "@kit.DrmKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.DrmKit"
+      ],
+      "@kit.FormKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.FormKit"
+      ],
+      "@kit.ImageKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.ImageKit"
+      ],
+      "@kit.LocalizationKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.LocalizationKit"
+      ],
+      "@kit.LocationKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.LocationKit"
+      ],
+      "@kit.MDMKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.MDMKit"
+      ],
+      "@kit.MediaKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.MediaKit"
+      ],
+      "@kit.MediaLibraryKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.MediaLibraryKit"
+      ],
+      "@kit.NetworkKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.NetworkKit"
+      ],
+      "@kit.NotificationKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.NotificationKit"
+      ],
+      "@kit.PerformanceAnalysisKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.PerformanceAnalysisKit"
+      ],
+      "@kit.TestKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.TestKit"
+      ],
+      "@kit.UserAuthenticationKit": [
+        "C:\\Users\\hisec\\AppData\\Local\\OpenHarmony\\Sdk\\20\\ets\\ets1.2\\kits\\@kit.UserAuthenticationKit"
+      ]
+    },
+    "entry": "",
+    "dependencies": {}
+  }
+}
