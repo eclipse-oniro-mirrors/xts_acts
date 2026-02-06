@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for hls player Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "2000000",
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.multimedia.media.hlsplayer",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHLSPlayerJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": []
+        }
+    ]
+}

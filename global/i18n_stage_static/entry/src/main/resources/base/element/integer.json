@@ -1,0 +1,20 @@
+{
+    "integer": [
+      {
+        "name": "integer_1",
+        "value": 100
+      },
+      {
+        "name": "integer_2",
+        "value": 200
+      },
+      {
+        "name": "integer_loopA",
+        "value": "$integer:integer_loopB"
+      },
+      {
+        "name": "integer_loopB",
+        "value": "$integer:integer_loopA"
+      }
+    ]
+  }

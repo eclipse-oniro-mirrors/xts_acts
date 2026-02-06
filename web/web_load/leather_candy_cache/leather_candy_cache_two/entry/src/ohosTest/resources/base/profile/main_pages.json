@@ -1,0 +1,11 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/precompileJavaScriptTest",
+    "testability/pages/injectOfflineResourcesTest",
+    "testability/pages/clearPrefetchedResourceTest",
+    "testability/pages/BlankLessInfoWithKeyTest",
+    "testability/pages/NdkBlanklessInfoWithKeyTest",
+    "testability/pages/SetBlanklessLoadingCacheCapacityTest"
+  ]
+}

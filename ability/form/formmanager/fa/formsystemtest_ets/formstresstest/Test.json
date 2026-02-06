@@ -1,0 +1,42 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "360000",
+        "bundle-name": "com.ohos.st.formstresstest",
+        "package-name": "com.ohos.st.formstresstest",
+        "shell-timeout": "600000",
+        "testcase-timeout":"30000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.sys.suspend_manager_enabled false",
+                "param set persist.ace.testmode.enabled true",
+                "wait 5",
+                "power-shell wakeup",
+                "wait 5",
+                "uinput -T -m 300 2700 280 200",
+                "uinput -K -d 2054 -u 2054",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsFormStressTest.hap",
+                "FormSystemHostK.hap",
+                "FormSupplyAppF.hap",
+                "FormSupplyAppG.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "teardown-command": [
+                "param set persist.sys.suspend_manager_enabled true"
+            ]
+        }
+    ]
+}

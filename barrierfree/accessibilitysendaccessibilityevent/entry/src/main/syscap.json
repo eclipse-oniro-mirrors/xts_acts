@@ -1,0 +1,14 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.BarrierFree.Accessibility.Core",
+                    "SystemCapability.BarrierFree.Accessibility.Hearing",
+                    "SystemCapability.BarrierFree.Accessibility.Vision"
+                ]
+            }
+        ]
+    }
+}

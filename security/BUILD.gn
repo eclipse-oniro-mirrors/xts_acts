@@ -1,0 +1,45 @@
+# Copyright (C) 2023-2025 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+base_root = "../../../../"
+import("$base_root/build/ohos_var.gni")
+import("$base_root/test/xts/tools/build/suite.gni")
+
+group("security") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "accessTokenStaticTest:ActsAccessTokenStaticTest",
+      "access_token/AccessTokenTest:ActsAccessTokenApiTest",
+      "access_token/AccessTokenTest_Normal_js:ActsAccessTokenApiJSNormalTest",
+      "accesstokenNDKTest:ActsAccessTokenNDKTest",
+      "asset",
+      "certificate_framework",
+      "certificate_manager",
+      "cipher/datacipher:datacipher",
+      "cryptoFramework",
+      "crypto_architecture:ActsCryptoArchitectureTest",
+      "crypto_framework_napi_BasicTest:ActsCryptoFrameworkNAPITest",
+      "dlpNDKTest:ActsDlpNDKTest",
+      "dlpNDK20Test:ActsDlpNDK20Test",
+      "dlp_errorcode_func:ActsDlpErrorCodeTest",
+      "dlp_permission_service:DlpTest",
+      "huks",
+      "requestPermissionOnSettingTestStatic:ActsRequestPermissionsOnSettingStaticTest",
+      "requestPermissionsFromUserStaticTest:ActsRequestPermissionsFromUserStaticTest",
+      "security_component/save_component_customize:ActsSaveButtonCustomizeTest",
+      "security_component/security_component_pastebutton:ActsSecPasteButtonTest",
+      "security_component/security_component_savebutton:ActsSecSaveButtonTest",
+    ]
+  }
+}

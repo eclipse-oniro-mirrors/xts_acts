@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for ActsThirdPartyTsan Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.thirdparty.tsan.napitest",
+        "module-name": "entry_test"
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsThirdPartyTsanMainTest.hap",
+            "ActsThirdPartyTsanTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }, {
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "power-shell setmode 602"
+        ]
+
+    }]
+}

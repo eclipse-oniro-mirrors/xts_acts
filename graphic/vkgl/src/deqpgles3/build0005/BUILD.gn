@@ -1,0 +1,81 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0005") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3Suite0005Test") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles30005TestSuite.cpp",
+    "../functional/Deqpgles3arrays_complex_expressionTestCase.cpp",
+    "../functional/Deqpgles3arrays_constructorTestCase.cpp",
+    "../functional/Deqpgles3arrays_declarationTestCase.cpp",
+    "../functional/Deqpgles3arrays_invalidTestCase.cpp",
+    "../functional/Deqpgles3arrays_lengthTestCase.cpp",
+    "../functional/Deqpgles3arrays_returnTestCase.cpp",
+    "../functional/Deqpgles3arrays_unnamed_parameterTestCase.cpp",
+    "../functional/Deqpgles3functions_array_argumentsTestCase.cpp",
+    "../functional/Deqpgles3functions_control_flowTestCase.cpp",
+    "../functional/Deqpgles3functions_datatypesTestCase.cpp",
+    "../functional/Deqpgles3functions_declarationsTestCase.cpp",
+    "../functional/Deqpgles3functions_invalidTestCase.cpp",
+    "../functional/Deqpgles3functions_miscTestCase.cpp",
+    "../functional/Deqpgles3functions_overloadingTestCase.cpp",
+    "../functional/Deqpgles3functions_qualifiersTestCase.cpp",
+    "../functional/Deqpgles3keywords_invalid_identifiersTestCase.cpp",
+    "../functional/Deqpgles3keywords_keywordsTestCase.cpp",
+    "../functional/Deqpgles3keywords_reserved_keywordsTestCase.cpp",
+    "../functional/Deqpgles3large_constant_arrays_indexingTestCase.cpp",
+    "../functional/Deqpgles3parameters_invalidTestCase.cpp",
+    "../functional/Deqpgles3parameters_validTestCase.cpp",
+    "../functional/Deqpgles3scoping_invalidTestCase.cpp",
+    "../functional/Deqpgles3scoping_validTestCase.cpp",
+    "../functional/Deqpgles3variables_invalidTestCase.cpp",
+    "../functional/Deqpgles3variables_validTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles3func0005" ]
+
+  cflags = [ "-Wno-error" ]
+}

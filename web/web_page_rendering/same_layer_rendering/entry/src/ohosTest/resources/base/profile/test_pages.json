@@ -1,0 +1,16 @@
+{
+  "src": [
+        "testability/pages/WebDefaultTextEncodingFormat",
+        "testability/pages/EmbedVisibilityChange",
+        "testability/pages/webViewControllerPart2",
+        "testability/pages/webViewRegisterNativeEmbedRule",
+        "testability/pages/webViewObjectEmbed",
+        "testability/pages/webViewObjectEmbed2",
+        "testability/pages/webViewObjectEmbed3",
+        "testability/pages/webViewObjectEmbedEnhance",
+        "testability/pages/webViewAvoidArea",
+        "testability/pages/webViewObjectPositionReport",
+		"testability/pages/WebViewSupportCssDisplayChange",
+		"testability/pages/WebOnNativeEmbedMouseEvent"
+  ]
+}

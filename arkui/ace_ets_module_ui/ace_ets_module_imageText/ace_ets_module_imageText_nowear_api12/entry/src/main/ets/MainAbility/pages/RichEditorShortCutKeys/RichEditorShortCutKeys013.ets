@@ -1,0 +1,70 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License')
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import Utils from '../../common/Utils'
+
+@Entry
+@Component
+struct RichEditorShortCutKeys013 {
+  controller: RichEditorController = new RichEditorController();
+  @State style: string = '';
+  build() {
+
+    Column() {
+
+      RichEditor({ controller: this.controller })
+        .padding('10px')
+        .height(200)
+        .width('100%')
+        .borderWidth(1)
+        .borderColor(Color.Green)
+        .onReady(() => {
+          this.controller.addImageSpan($r('app.media.icon'),
+            {
+              imageStyle:
+              {
+                size: ['25px', '25px']
+              }
+            });
+          this.controller.addTextSpan('0123', {
+            style: {
+              fontSize: 35,
+              fontWeight: FontWeight.Bolder,
+              fontColor: Color.Red,
+              fontFamily: Utils.FONT_FAMILY,
+              decoration: { type: TextDecorationType.Underline, color: Color.Black, style: TextDecorationStyle.SOLID }
+            }
+          });
+        })
+        .id('RichEditorShortCutKeys013')
+      Button('set select').onClick(() => {
+        this.controller.setSelection(2,5);
+      }).id('setSelect')
+
+      Button('get spans').onClick(() => {
+        this.style = '';
+        this.controller.getSpans({
+          start: 0,
+          end: 6
+        }).forEach(item => {
+          this.style = JSON.stringify((item as RichEditorTextSpanResult));
+          console.log('RichEditorController  this.style:' +  JSON.stringify(this.style));
+        })
+      }).id('getSpans')
+
+      Text('style:' + this.style).id('style')
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.staticinformationmultiple",
+        "module-name": "phone",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAmsStaticInformationMultipleTest.hap",
+                "ActsAmsStaticQueryTestTwoRelyHap.hap",
+                "ActsAmsStaticARelyHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "param set persist.sys.abilityms.support.ecologicalrulemgrservice false"
+            ],
+            "teardown-command": [
+              "param set persist.sys.abilityms.support.ecologicalrulemgrservice true"
+          ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+                "ActsAmsStaticInformationMultipleTest.hap->/data/ActsAmsStaticInformationMultipleTest.hap",
+                "ActsAmsStaticQueryTestTwoRelyHap.hap->/data/ActsAmsStaticQueryTestTwoRelyHap.hap",
+                "ActsAmsStaticARelyHap.hap->/data/ActsAmsStaticARelyHap.hap"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 644 /data/test/*.hap"
+            ]
+        }
+    ]
+}

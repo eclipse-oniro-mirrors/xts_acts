@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for ActsCapabilityStartSelfUIAbilityTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.actscapistartselfuiabilitytest20test",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout":"30000",
+        "compile-mode":"esmodule"
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsCapiStartSelfUiAbilityTest20Test.hap",
+            "ActsCapiStartSelfUiAbility20MainTest.hap",
+            "ActsCapiStartSelfUiAbilityRely.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }, {
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "power-shell setmode 602"
+        ]
+    }]
+}

@@ -1,0 +1,15 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/webViewOnRequestStart",
+    "testability/pages/webViewOnRequestStartTwo",
+    "testability/pages/webViewOnRequestStop",
+    "testability/pages/WebSchemeHandlerResponse",
+    "testability/pages/WebHttpBodyStream",
+    "testability/pages/setAndClearWebSchemeHandler",
+    "testability/pages/setAndClearServiceWorkerWebSchemeHandler",
+    "testability/pages/customizeSchemes",
+    "testability/pages/WebNetError",
+    "testability/pages/webViewGetRequestResourceType"
+  ]
+}

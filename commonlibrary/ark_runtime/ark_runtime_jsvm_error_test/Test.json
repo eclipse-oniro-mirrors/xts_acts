@@ -1,0 +1,22 @@
+{
+    "description": "Configuration for JSVM interfaces Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.acts.ace.napijsvmerrorcodetest",
+        "module-name": "entry_test",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsArkRuntimeJsvmErrorCodeTest_main.hap",
+                "ActsArkRuntimeJsvmErrorCodeTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
+

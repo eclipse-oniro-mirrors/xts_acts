@@ -1,0 +1,41 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1200000",
+	    "bundle-name": "com.example.savecomponent_customize",
+	    "module-name": "entry",
+	    "shell-timeout": "1200000",
+	    "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsSaveButtonCustomizeTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "param set persist.sys.suspend_manager_enbled 0",
+                "param set persist.usb.setting.gadget_conn_prompt false",
+                "reboot",
+                "wait 5",
+                "power-shell wakeup",
+                "uinput -T -m 540 1752 540 751 100",
+                "uinput -K -d 2054 -u 2054",
+                "hidumper -s 3301 -a -t",
+                "echo 10000 > /sys/class/graphics/fb0/brightness",
+                "param set persist.skip_scb_charging 1",
+                "wait 5",
+                "uinput -T -m 540 1752 540 751 100"
+            ],
+            "teardown-command": [
+                "power-shell setmode 601"
+            ]
+        }
+    ]
+}

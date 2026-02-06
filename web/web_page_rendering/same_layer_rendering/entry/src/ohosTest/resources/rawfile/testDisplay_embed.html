@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>同层渲染测试html</title>
+    <meta name="viewport">
+</head>
+<body>
+<div>
+    <button  onclick="changeDisplay()" style="margin: 30px;font-size:40px">changeDisplay</button>
+    <div id="bodyId3" style="opacity:1; display: block; width: 1000px; ">
+        <p id="demo28" style="font-size:30px;">input1:</p>
+        <embed id = "input4" type="native/view" src = "test?params1=value" style="display: block; width: 1000px; height: 100px; margin: 30px;"/>
+    </div>
+
+</div>
+</body>
+
+<script>
+    function changeDisplay() {
+       document.getElementById('input4').style.display == 'contents' ? (document.getElementById('input4').style.display = "flex") : (document.getElementById('input4').style.display = "contents")
+    }
+</script>
+</html>

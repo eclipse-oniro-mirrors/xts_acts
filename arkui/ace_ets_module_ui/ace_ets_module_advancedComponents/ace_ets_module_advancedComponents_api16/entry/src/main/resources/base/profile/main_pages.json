@@ -1,0 +1,33 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/composeListItem/composeListItemPageTest",
+    "MainAbility/pages/composeListItem/composeListItemOperateItemSymbolStyle",
+    "MainAbility/pages/toolBar/toolBarAccessibilityPage",
+    "MainAbility/pages/progressButton/progressButtonPage",
+    "MainAbility/pages/progressButtonV2/progressButtonV2Page",
+    "MainAbility/pages/subHeaderV2/subHeaderV2Page",
+    "MainAbility/pages/subHeaderV2/subHeaderV2AccessibilityPage",
+    "MainAbility/pages/toolBarV2/toolBarV2Page",
+    "MainAbility/pages/toolBarV2/toolBarV2ItemState",
+    "MainAbility/pages/editableTitleBar/editableTitleBarAccessibilityPage",
+    "MainAbility/pages/editableTitleBar/editableTitleBarSymbolPage",
+    "MainAbility/pages/subHeader/subHeaderAccessibilityPage",
+    "MainAbility/pages/composeTitleBar/composeTitleBarAccessibilityPage",
+    "MainAbility/pages/composeTitleBar/composeTitleBarSymbolPage",
+    "MainAbility/pages/selectTitleBar/selectTitleBarAccessibilityPage",
+    "MainAbility/pages/selectTitleBar/selectTitleBarSymbolPage",
+    "MainAbility/pages/tabTitleBar/tabTitleBarAccessibilityPage",
+    "MainAbility/pages/tabTitleBar/tabTitleBarSymbolPage",
+    "MainAbility/pages/toolBarV2/ToolBarV2AccessibilityPage",
+    "MainAbility/pages/dialogV2/selectDialogV2TestPage",
+    "MainAbility/pages/dialogV2/loadingDialogV2TestPage",
+    "MainAbility/pages/dialogV2/confirmDialogV2TestPage",
+    "MainAbility/pages/dialogV2/tipsDialogV2TestPage",
+    "MainAbility/pages/composeListItem/composeListItemAccessibilityPage",
+    "MainAbility/pages/exceptionPrompt/exceptionPromptSymbolStyle",
+    "MainAbility/pages/dialogV2/alertDialogV2TestPage",
+    "MainAbility/pages/dialogV2/popoverDialogV2TestPage",
+    "MainAbility/pages/dialogV2/customContentDialogV2TestPage"
+  ]
+}

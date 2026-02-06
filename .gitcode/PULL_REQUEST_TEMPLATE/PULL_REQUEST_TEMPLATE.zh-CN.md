@@ -1,0 +1,70 @@
+<table>
+    <tr>
+        <td style="font-weight: bold;">类别</td>
+        <td style="font-weight: bold;">检查项目</td>
+        <td style="font-weight: bold;">检查结果（满足或不涉及）</td>
+        <td style="font-weight: bold;">备注（不涉及需说明原因）</td>
+    </tr>
+    <tr>
+        <td rowspan="9">新增脚本</td>
+        <td>覆盖定义的所有入参、返回值的所有可能取值</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>覆盖可选参数的默认取值</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>覆盖有权限和无权限场景</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>覆盖所有定义错误码场景</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>返回结果不能仅检查有误，需检查返回内容</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>用例中禁止虚假断言、恒真断言</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>脚本定义中填写用例级别字段</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>测试流程执行完成进行环境恢复</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>附录新增用例所在测试套完整测试报告</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td rowspan="3">修改脚本</td>
+        <td>规格不兼容变更导致脚本修改需附评审结论</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>涉及版本隔离需验证版本隔离结果</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>附录修改用例所在测试套完整测试报告</td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>

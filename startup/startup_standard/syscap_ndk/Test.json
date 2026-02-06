@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for startup syscap js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "ohos.acts.startup.syscap.function",
+        "package-name": "ohos.acts.startup.syscap.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStartupSysCapabilityTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

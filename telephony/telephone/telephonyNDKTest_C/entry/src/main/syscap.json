@@ -1,0 +1,14 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Account.OsAccount",
+                    "SystemCapability.Telephony.CellularData",
+                    "SystemCapability.Telephony.CoreService"
+                ]
+            }
+        ]
+    }
+}

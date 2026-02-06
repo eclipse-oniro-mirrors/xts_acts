@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for ActsThirdPartyMusl Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.thirdparty.musl.napitest",
+        "module-name": "entry_test",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsThirdPartyMuslTest.hap",
+                "ActsThirdPartyMuslMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+				"reboot",
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

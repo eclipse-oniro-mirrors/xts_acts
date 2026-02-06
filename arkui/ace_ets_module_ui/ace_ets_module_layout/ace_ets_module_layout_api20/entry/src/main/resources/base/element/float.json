@@ -1,0 +1,12 @@
+{
+  "float": [
+    {
+        "name": "flex_float_Space",
+        "value": "10.9vp"
+    },
+    {
+        "name": "floatSpace",
+        "value": "10.9"
+    }
+  ]
+}

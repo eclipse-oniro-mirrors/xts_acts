@@ -1,0 +1,69 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "testcase-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.imageGetMimeType",
+        "shell-timeout": "600000",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageGetMimeTypeTestMain.hap",
+                "ActsImageGetMimeTypeTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/test.webp ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/test.ico ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/test.svg ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/test.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/test.dng ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/test.png ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/test.jpeg ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/mimeType_test.cr2 ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/mimeType_test.raf ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/mimeType_test.nef ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/mimeType_test.nrw ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/mimeType_test.orf ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/mimeType_test.rw2 ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/mimeType_test.pef ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/mimeType_test.srw ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/mimeType_test.arw ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/HDRVividSingleLayer.heic ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/image/moving_test.webp ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/wrongSuffixImage/wrong_suffix_png.gif ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/wrongSuffixImage/wrong_suffix_jpeg.png ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/wrongSuffixImage/wrong_suffix_jpg.jpeg ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/wrongSuffixImage/wrong_suffix_bmp.dng ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/wrongSuffixImage/wrong_suffix_gif.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/wrongSuffixImage/wrong_suffix_webp.ico ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/wrongSuffixImage/wrong_suffix_ico.svg ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/wrongSuffixImage/wrong_suffix_dng.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files",
+                "./resource/wrongSuffixImage/wrong_suffix_heic.png ->/data/app/el2/100/base/ohos.acts.multimedia.imageGetMimeType/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": []
+        }
+    ]
+}

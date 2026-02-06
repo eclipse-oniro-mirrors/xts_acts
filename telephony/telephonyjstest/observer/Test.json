@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "2000000",
+        "bundle-name": "com.ohos.observer",
+        "package-name": "com.ohos.observer",
+        "shell-timeout": "2000000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsObserverEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

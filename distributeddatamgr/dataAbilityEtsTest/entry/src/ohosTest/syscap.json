@@ -1,0 +1,14 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.DistributedDataManager.DataShare.Core",
+                    "SystemCapability.DistributedDataManager.DataShare.Consumer",
+                    "SystemCapability.DistributedDataManager.DataShare.Provider"
+                ]
+            }
+        ]
+    }
+}

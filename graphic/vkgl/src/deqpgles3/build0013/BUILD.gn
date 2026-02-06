@@ -1,0 +1,93 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0013") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3Suite0013Test") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles30013TestSuite.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_acosTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_acoshTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_asinTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_asinhTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_atan2TestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_atanTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_atanhTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_cosTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_coshTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_degreesTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_radiansTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_sinTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_sinhTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_tanTestCase.cpp",
+    "../functional/Deqpgles3angle_and_trigonometry_tanhTestCase.cpp",
+    "../functional/Deqpgles3binary_operator_logical_andTestCase.cpp",
+    "../functional/Deqpgles3binary_operator_logical_orTestCase.cpp",
+    "../functional/Deqpgles3binary_operator_logical_xorTestCase.cpp",
+    "../functional/Deqpgles3binary_operator_not_equalTestCase.cpp",
+    "../functional/Deqpgles3common_functions_absTestCase.cpp",
+    "../functional/Deqpgles3common_functions_ceilTestCase.cpp",
+    "../functional/Deqpgles3common_functions_floorTestCase.cpp",
+    "../functional/Deqpgles3common_functions_fractTestCase.cpp",
+    "../functional/Deqpgles3common_functions_maxTestCase.cpp",
+    "../functional/Deqpgles3common_functions_minTestCase.cpp",
+    "../functional/Deqpgles3common_functions_modTestCase.cpp",
+    "../functional/Deqpgles3common_functions_roundEvenTestCase.cpp",
+    "../functional/Deqpgles3common_functions_roundTestCase.cpp",
+    "../functional/Deqpgles3common_functions_signTestCase.cpp",
+    "../functional/Deqpgles3common_functions_truncTestCase.cpp",
+    "../functional/Deqpgles3exponential_exp2TestCase.cpp",
+    "../functional/Deqpgles3exponential_expTestCase.cpp",
+    "../functional/Deqpgles3exponential_inversesqrtTestCase.cpp",
+    "../functional/Deqpgles3exponential_log2TestCase.cpp",
+    "../functional/Deqpgles3exponential_logTestCase.cpp",
+    "../functional/Deqpgles3exponential_powTestCase.cpp",
+    "../functional/Deqpgles3exponential_sqrtTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles3func0013" ]
+
+  cflags = [ "-Wno-error" ]
+}

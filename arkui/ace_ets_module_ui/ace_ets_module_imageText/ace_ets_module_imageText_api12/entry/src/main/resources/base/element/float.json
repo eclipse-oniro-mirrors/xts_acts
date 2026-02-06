@@ -1,0 +1,40 @@
+{
+  "float":[
+    {
+      "name":"font_hello",
+      "value":"28.0fp"
+    },
+    {
+      "name":"font_world",
+      "value":"20.0fp"
+    },
+    {
+      "name": "textShadowRadius",
+      "value": "5.0"
+    },
+    {
+      "name": "textShadowOffset",
+      "value": "5.0"
+    },
+    {
+      "name": "Caretwidth",
+      "value": "10.0"
+    },
+    {
+      "name": "50vp",
+      "value": "50vp"
+    },
+    {
+      "name":"bottom",
+      "value":"40px"
+    },
+    {
+      "name":"leading_Margin",
+      "value":"20"
+    },
+    {
+      "name":"text_con_width",
+      "value":"200vp"
+    }
+  ]
+}

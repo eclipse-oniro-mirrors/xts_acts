@@ -1,0 +1,30 @@
+# Copyright (C) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos_var.gni")
+
+group("sensors") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "ace_sensor_standard_static:ActsSensorJSApiStaticTest",
+      "miscdevice_ndk:ActsMiscdeviceNdkTest",
+      "miscdevice_standard:miscdevice_js_test",
+      "miscdevice_standard_nop:miscdevice_nop_test",
+      "sensor/sensor_cpp_standard:ActsSensorNdkTest",
+      "sensor_standard:sensor_js_test",
+      "sensor_standard_nop:sensor_js_nop_test",
+      "sensor_type_cpp:ActsSensorTypeTest",
+    ]
+  }
+}

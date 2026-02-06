@@ -1,0 +1,170 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
+import CommonFunc from '../../MainAbility/common/Common';
+import { KeyCode } from '@kit.InputKit';
+
+export default function RichEditorShortCutKeys003() {
+  describe('RichEditorShortCutKeys003', () => {
+    beforeEach(async (done: Function) => {
+      console.info("RichEditorShortCutKeys003 beforeEach start");
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/RichEditorShortCutKeys/RichEditorShortCutKeys003',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get RichEditorShortCutKeys003 state pages: " + JSON.stringify(pages));
+        if (!("RichEditorShortCutKeys003" == pages.name)) {
+          console.info("get RichEditorShortCutKeys003 state pages.name: " + JSON.stringify(pages.name));
+          let result = await router.push(options);
+          await CommonFunc.sleep(3000);
+          console.info("push RichEditorShortCutKeys003 success: " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push RichEditorShortCutKeys003 page error: " + err);
+        expect().assertFail();
+      }
+      done();
+    });
+
+    /**
+     * @tc.number: SUB_ACE_UI_COMPONENT_TEXT_RICHEDIT0R_SHORTCUTKEYS_0005
+     * @tc.name  : SUB_ACE_UI_COMPONENT_TEXT_RICHEDIT0R_SHORTCUTKEYS_0005
+     * @tc.desc  : Shortcut keys Ctrl+→ Move the cursor to the next word to test RichEditor shortCutKeys
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('SUB_ACE_UI_COMPONENT_TEXT_RICHEDIT0R_SHORTCUTKEYS_0005',  Level.LEVEL0, async (done: Function) => {
+      console.info('SUB_ACE_UI_COMPONENT_TEXT_RICHEDIT0R_SHORTCUTKEYS_0005 START');
+      let driver = Driver.create();
+      let rich = await driver.findComponent(ON.id('RichEditorShortCutKeys003'));
+      let pointCenter = await rich.getBoundsCenter();
+      await driver.click(pointCenter.x, pointCenter.y);
+      await CommonFunc.sleep(500);
+
+      driver.triggerKey(KeyCode.KEYCODE_MOVE_HOME);
+      await CommonFunc.sleep(500);
+
+      let get_position = await driver.findComponent(ON.id('get_position'));
+      await get_position.click();
+      await CommonFunc.sleep(500);
+
+      let positionNum = await driver.findComponent(ON.id('positionNum'));
+      let positionNumText = await positionNum.getText();
+      await CommonFunc.sleep(500);
+      expect(positionNumText).assertEqual('positionNum:0');
+
+      driver.triggerKey(KeyCode.KEYCODE_DPAD_RIGHT);
+      await CommonFunc.sleep(500);
+      await get_position.click();
+      await CommonFunc.sleep(500);
+      positionNumText = await positionNum.getText();
+      await CommonFunc.sleep(500);
+      expect(positionNumText).assertEqual('positionNum:1');
+      driver.triggerKey(KeyCode.KEYCODE_DPAD_RIGHT);
+      await CommonFunc.sleep(500);
+      await get_position.click();
+      await CommonFunc.sleep(500);
+      positionNumText = await positionNum.getText();
+      await CommonFunc.sleep(500);
+      expect(positionNumText).assertEqual('positionNum:2');
+      driver.triggerKey(KeyCode.KEYCODE_DPAD_RIGHT);
+      await CommonFunc.sleep(500);
+      await get_position.click();
+      await CommonFunc.sleep(500);
+      positionNumText = await positionNum.getText();
+      await CommonFunc.sleep(500);
+      expect(positionNumText).assertEqual('positionNum:4');
+      driver.triggerKey(KeyCode.KEYCODE_DPAD_RIGHT);
+      await CommonFunc.sleep(500);
+      await get_position.click();
+      await CommonFunc.sleep(500);
+      positionNumText = await positionNum.getText();
+      await CommonFunc.sleep(500);
+      expect(positionNumText).assertEqual('positionNum:5');
+      done();
+    });
+
+    /**
+     * @tc.number: SUB_ACE_UI_COMPONENT_TEXT_RICHEDIT0R_SHORTCUTKEYS_0008
+     * @tc.name  : SUB_ACE_UI_COMPONENT_TEXT_RICHEDIT0R_SHORTCUTKEYS_0008
+     * @tc.desc  : Shortcut keys Ctrl+← cursor forward to test RichEditor shortCutKeys
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('SUB_ACE_UI_COMPONENT_TEXT_RICHEDIT0R_SHORTCUTKEYS_0008',  Level.LEVEL0, async (done: Function) => {
+      console.info('SUB_ACE_UI_COMPONENT_TEXT_RICHEDIT0R_SHORTCUTKEYS_0008 START');
+      let driver = Driver.create();
+
+      let get_position = await driver.findComponent(ON.id('get_position'));
+      await get_position.click();
+      await CommonFunc.sleep(500);
+
+      let positionNum = await driver.findComponent(ON.id('positionNum'));
+      let positionNumText = await positionNum.getText();
+      await CommonFunc.sleep(500);
+      expect(positionNumText).assertEqual('positionNum:5');
+
+      driver.triggerKey(KeyCode.KEYCODE_DPAD_LEFT);
+      await CommonFunc.sleep(500);
+      await get_position.click();
+      await CommonFunc.sleep(500);
+      positionNumText = await positionNum.getText();
+      await CommonFunc.sleep(500);
+      expect(positionNumText).assertEqual('positionNum:4');
+      driver.triggerKey(KeyCode.KEYCODE_DPAD_LEFT);
+      await CommonFunc.sleep(500);
+      await get_position.click();
+      await CommonFunc.sleep(500);
+      positionNumText = await positionNum.getText();
+      await CommonFunc.sleep(500);
+      expect(positionNumText).assertEqual('positionNum:2');
+      driver.triggerKey(KeyCode.KEYCODE_DPAD_LEFT);
+      await CommonFunc.sleep(500);
+      await get_position.click();
+      await CommonFunc.sleep(500);
+      positionNumText = await positionNum.getText();
+      await CommonFunc.sleep(500);
+      expect(positionNumText).assertEqual('positionNum:1');
+      driver.triggerKey(KeyCode.KEYCODE_DPAD_LEFT);
+      await CommonFunc.sleep(500);
+      await get_position.click();
+      await CommonFunc.sleep(500);
+      positionNumText = await positionNum.getText();
+      await CommonFunc.sleep(500);
+      expect(positionNumText).assertEqual('positionNum:0');
+      done();
+    });
+  })
+}
+
+

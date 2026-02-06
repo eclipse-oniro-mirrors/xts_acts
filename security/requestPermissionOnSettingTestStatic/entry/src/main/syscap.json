@@ -1,0 +1,22 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Security.AccessToken",
+                    "SystemCapability.BundleManager.BundleFramework.Core",
+                    "SystemCapability.BundleManager.BundleFramework.Resource",
+                    "SystemCapability.Ability.AbilityRuntime.Core",
+                    "SystemCapability.Test.UiTest",
+                    "SystemCapability.Driver.HID.Extension",
+                    "SystemCapability.Driver.ExternalDevice",
+                    "SystemCapability.Driver.USB.Extension",
+                    "SystemCapability.Driver.DDK.Extension",
+                    "SystemCapability.Driver.UsbSerial.Extension",
+                    "SystemCapability.Driver.SCSI.Extension"
+                ]
+            }
+        ]
+    }
+}

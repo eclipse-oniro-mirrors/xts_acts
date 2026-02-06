@@ -1,0 +1,18 @@
+{
+  "devices": {
+    "general": [],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.Account.AppAccount",
+          "SystemCapability.Account.OsAccount",
+          "SystemCapability.ArkUI.ArkUI.Full",
+          "SystemCapability.WindowManager.WindowManager.Core",
+          "SystemCapability.ArkUI.ArkUI.Full",
+          "SystemCapability.HiviewDFX.HiAppEvent",
+          "SystemCapability.HiviewDFX.HiCollie"
+        ]
+      }
+    ]
+  }
+}

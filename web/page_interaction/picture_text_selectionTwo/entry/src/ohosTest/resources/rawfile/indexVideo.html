@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #file {
+        height:1000px;
+        width:1000px;
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:99999
+     }
+    </style>
+</head>
+<body>
+<video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+<canvas id="canvas" width="500px" height="500px"></canvas>
+<br>
+<div id="mediaBox">
+    <input id="file" type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()"/>
+</div>
+
+<script>
+   function getMedia()
+   {
+     let constraints = {
+       video: {width: 500, height: 500},
+       audio: true
+     };
+     let video = document.getElementById("video");
+     console.log(video)
+     let promise = navigator.mediaDevices.getUserMedia(constraints);
+     promise.then(function (MediaStream) {
+       video.srcObject = MediaStream;
+       video.play();
+     });
+   }
+ </script>
+</body>
+</html>

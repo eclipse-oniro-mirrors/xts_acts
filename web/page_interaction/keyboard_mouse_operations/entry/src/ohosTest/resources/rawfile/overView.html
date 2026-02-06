@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Title</title>
+    <style>
+        body{
+            width:5000px;
+            padding-right:170px;
+            padding-left: 170px;
+            border:5px solid blueviolet
+        }
+    </style>
+</head>
+<body>
+This is the test page to test SetLoadWithOverviewMode interface
+</body>
+<script>
+    function getViewResult(){
+        let scaleNumber=window.visualViewport.scale;
+        console.log(scaleNumber)
+        return scaleNumber;
+    }
+</script>
+</html>

@@ -1,0 +1,9 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/WebAttributeTest",
+    "testability/pages/WebOnBeforeUnload",
+    "testability/pages/WebAttributeEnhancedTest"
+  ]
+}
+

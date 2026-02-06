@@ -1,0 +1,10 @@
+{
+  "src": [
+      "testability/pages/web",
+      "testability/pages/runJavaScript",
+      "testability/pages/jsMessageExt",
+      "testability/pages/WebViewEnumAndFontLibrary",
+      "testability/pages/webTwo",
+      "testability/pages/runJavaScriptErrorCode"
+  ]
+}

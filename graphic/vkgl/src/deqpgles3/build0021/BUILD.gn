@@ -1,0 +1,68 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0021") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3Suite0021Test") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles30021TestSuite.cpp",
+    "../functional/Deqpgles3basic_expression_combinedTestCase.cpp",
+    "../functional/Deqpgles3basic_expression_fragmentTestCase.cpp",
+    "../functional/Deqpgles3comparison_ops_fragmentTestCase.cpp",
+    "../functional/Deqpgles3comparison_ops_vertexTestCase.cpp",
+    "../functional/Deqpgles3conditionals_combinedTestCase.cpp",
+    "../functional/Deqpgles3conditionals_fragmentTestCase.cpp",
+    "../functional/Deqpgles3conditionals_vertexTestCase.cpp",
+    "../functional/Deqpgles3scalar_conversion_combinedTestCase.cpp",
+    "../functional/Deqpgles3scalar_conversion_fragmentTestCase.cpp",
+    "../functional/Deqpgles3scalar_conversion_vertexTestCase.cpp",
+    "../functional/Deqpgles3swizzle_fragmentTestCase.cpp",
+    "../functional/Deqpgles3swizzle_vertexTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles3func0021" ]
+
+  cflags = [ "-Wno-error" ]
+}

@@ -1,0 +1,47 @@
+{
+    "description": "Configuration for OhAudioNdk Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.avmetadataextractorndk",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 30000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsOhAVMetadataExtractorNDKMainTest.hap",
+                "ActsOhAVMetadataExtractorNDKTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/com.example.avmetadataextractorndk/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/com.example.avmetadataextractorndk/haps/entry_test/files/*",
+                "mkdir -p /data/app/el2/100/base/com.example.avmetadataextractorndk/haps/entry_test/cache/",
+                "chmod -R 777 /data/app/el2/100/base/com.example.avmetadataextractorndk/haps/entry_test/*"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/media/MP4_ROTATE_90.mp4 ->/data/app/el2/100/base/com.example.avmetadataextractorndk/haps/entry_test/files",
+                "./resource/media/metadata/H264_AAC.mp4 ->/data/app/el2/100/base/com.example.avmetadataextractorndk/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/com.example.avmetadataextractorndk/haps/entry_test/files/*",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

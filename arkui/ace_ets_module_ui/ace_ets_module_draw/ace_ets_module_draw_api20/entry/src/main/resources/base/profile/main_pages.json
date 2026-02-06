@@ -1,0 +1,23 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/CanvasRenderingContext2D/RoundRectPage",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasGradientPage",
+        "MainAbility/pages/CanvasRenderingContext2D/StartImageAnalyzerErrorCode",
+        "MainAbility/pages/Circle/CircleResource",
+        "MainAbility/pages/Ellipse/EllipseResource",
+        "MainAbility/pages/Line/LineResource",
+        "MainAbility/pages/Path/PathResource",
+        "MainAbility/pages/Polygon/PolygonResource",
+        "MainAbility/pages/Polyline/PolylineResource",
+        "MainAbility/pages/Rect/RectResource",
+        "MainAbility/pages/Shape/ShapeResource",
+
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasEllipse",
+        "MainAbility/pages/CanvasRenderingContext2D/Matrix2DMultiply",
+        "MainAbility/pages/CanvasRenderingContext2D/StartImageAnalyzerErrorCode1",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRoundRectErrorCode",
+        "MainAbility/pages/CanvasRenderingContext2D/AddColorStopErrorCode"
+
+    ]
+}

@@ -1,0 +1,1759 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import buttonOnClickTest from './button/ButtonOnClickTest.test'
+import buttonBackgroundColorTest from './button/ButtonBackgroundColorTest.test'
+import buttonFontColorTest from './button/ButtonFontColorTest.test'
+import buttonFontSizeTest from './button/ButtonFontSizeTest.test'
+import buttonFontWeightTest from './button/ButtonFontWeightTest.test'
+import buttonLabelTest from './button/ButtonLabelTest.test'
+import buttonTypeTest from './button/ButtonTypeTest.test'
+import checkboxOnChangeTest from './checkbox/CheckboxOnChangeTest.test'
+import checkboxSelectTest from './checkbox/CheckboxSelectTest.test'
+import checkboxSelectedColorTest from './checkbox/CheckboxSelectedColorTest.test'
+import checkboxUnselectedColorTest from './checkbox/CheckboxUnselectedColorTest.test'
+import checkboxMarkTest from './checkbox/CheckboxMarkTest.test'
+import checkboxShapeTest from './checkbox/CheckboxShapeTest.test'
+import commonAttrsAlignSelfTest from './commonattrs/CommonAttrsAlignSelfTest.test'
+import commonAttrsAlignItemsTest from './commonattrs/CommonAttrsAlignItemsTest.test'
+import commonAttrsAlignContentTest from './commonattrs/CommonAttrsAlignContentTest.test'
+import commonAttrsFlexGrowTest from './commonattrs/CommonAttrsFlexGrowTest.test'
+import commonAttrsFlexBasisTest from './commonattrs/CommonAttrsFlexBasisTest.test'
+import commonAttrsFlexShrinkTest from './commonattrs/CommonAttrsFlexShrinkTest.test'
+import commonAttrsJustifyContentTest from './commonattrs/CommonAttrsJustifyContentTest.test'
+import commonAttrsBackgroundColorTest from './commonattrs/CommonAttrsBackgroundColorTest.test'
+import commonAttrsBorderColorTest from './commonattrs/CommonAttrsBorderColorTest.test'
+import commonAttrsBorderRadiusTest from './commonattrs/CommonAttrsBorderRadiusTest.test'
+import commonAttrsBorderStyleTest from './commonattrs/CommonAttrsBorderStyleTest.test'
+import commonAttrsBorderWidthTest from './commonattrs/CommonAttrsBorderWidthTest.test'
+import commonAttrsForegroundBlurStyleTest from './commonattrs/CommonAttrsForegroundBlurStyleTest.test'
+import commonAttrsHeightTest from './commonattrs/CommonAttrsHeightTest.test'
+import commonAttrsPositionTest from './commonattrs/CommonAttrsPositionTest.test'
+import commonAttrsWidthTest from './commonattrs/CommonAttrsWidthTest.test'
+import commonAttrsAlignTest from './commonattrs/CommonAttrsAlignTest.test'
+import commonEventOnClickTest from './commonevent/CommonEventOnClickTest.test'
+import commonEventOnFocusTest from './commonevent/CommonEventOnFocusTest.test'
+import commonEventOnBlurTest from './commonevent/CommonEventOnBlurTest.test'
+import commonEventOnAppearTest from './commonevent/CommonEventOnAppearTest.test'
+import commonEventOnAreaChangeTest from './commonevent/CommonEventOnAreaChangeTest.test'
+import commonEventOnTouchTest from './commonevent/CommonEventOnTouchTest.test'
+import PointEventOnTouchTest from './commonevent/PointEventOnTouchTest.test'
+import commonAttrsEnabledTest from './commonattrs/CommonAttrsEnabledTest.test'
+import commonAttrsFocusableTest from './commonattrs/CommonAttrsFocusableTest.test'
+import commonAttrsHitTestBehaviorTest from './commonattrs/CommonAttrsHitTestBehaviorTest.test'
+import commonAttrsIdTest from './commonattrs/CommonAttrsIdTest.test'
+import commonAttrsContrastTest from './commonattrs/CommonAttrsContrastTest.test'
+import commonAttrsGrayscaleTest from './commonattrs/CommonAttrsGrayscaleTest.test'
+import commonAttrsInvertTest from './commonattrs/CommonAttrsInvertTest.test'
+import commonAttrsOpacityTest from './commonattrs/CommonAttrsOpacityTest.test'
+import commonAttrsSepiaTest from './commonattrs/CommonAttrsSepiaTest.test'
+import customComponentOnMeasureTest from './customcomponent/CustomComponentOnMeasureTest.test'
+import customComponentOnLayoutTest from './customcomponent/CustomComponentOnLayoutTest.test'
+import customComponentOnDrawTest from './customcomponent/CustomComponentOnDrawTest.test'
+import imageHitTestBehaviorTest from './image/ImageHitTestBehaviorTest.test'
+import imageIdTest from './image/ImageIdTest.test'
+import imageOnCompleteTest from './image/ImageOnCompleteTest.test'
+import imageOnErrorTest from './image/ImageOnErrorTest.test'
+import imageAltTest from './image/ImageAltTest.test'
+import imageAutoResizeTest from './image/ImageAutoResizeTest.test'
+import imageBackgroundColorTest from './image/ImageBackgroundColorTest.test'
+import imageBlurTest from './image/ImageBlurTest.test'
+import imageBorderColorTest from './image/ImageBorderColorTest.test'
+import imageBorderRadiusTest from './image/ImageBorderRadiusTest.test'
+import imageBorderStyleTest from './image/ImageBorderStyleTest.test'
+import imageBorderWidthTest from './image/ImageBorderWidthTest.test'
+import imageBrightnessTest from './image/ImageBrightnessTest.test'
+import imageClipTest from './image/ImageClipTest.test'
+import imageColorFilterTest from './image/ImageColorFilterTest.test'
+import imageInterpolationTest from './image/ImageInterpolationTest.test'
+import imageLinearGradientTest from './image/ImageLinearGradientTest.test'
+import imageObjectFitTest from './image/ImageObjectFitTest.test'
+import imageObjectRepeatTest from './image/ImageObjectRepeatTest.test'
+import imageOpacityTest from './image/ImageOpacityTest.test'
+import imageRadialGradientTest from './image/ImageRadialGradientTest.test'
+import imageRotateTest from './image/ImageRotateTest.test'
+import imageSaturateTest from './image/ImageSaturateTest.test'
+import imageScaleTest from './image/ImageScaleTest.test'
+import imageShadowTest from './image/ImageShadowTest.test'
+import imageSrcTest from './image/ImageSrcTest.test'
+import imageSweepGradientTest from './image/ImageSweepGradientTest.test'
+import imageTransformTest from './image/ImageTransformTest.test'
+import imageTranslateTest from './image/ImageTranslateTest.test'
+import listHitTestBehaviorTest from './list/ListHitTestBehaviorTest.test'
+import listItemHitTestBehaviorTest from './listitem/ListItemHitTestBehaviorTest.test'
+import toggleOnChangeTest from './toggle/ToggleOnChangeTest.test'
+import toggleEnabledTest from './toggle/ToggleEnabledTest.test'
+import scrollNestedScrollTest from './scroll/ScrollNestedScrollTest.test'
+import scrollHitTestBehaviorTest from './scroll/ScrollHitTestBehaviorTest.test'
+import scrollOnAppearTest from './scroll/ScrollOnAppearTest.test'
+import scrollOnScrollEdgeTest from './scroll/ScrollOnScrollEdgeTest.test'
+import scrollOnScrollFrameBeginTest from './scroll/ScrollOnScrollFrameBeginTest.test'
+import scrollOnScrollStartTest from './scroll/ScrollOnScrollStartTest.test'
+import scrollOnScrollStopTest from './scroll/ScrollOnScrollStopTest.test'
+import scrollOnScrollTest from './scroll/ScrollOnScrollTest.test'
+import scrollScrollEdgeTest from './scroll/ScrollScrollEdgeTest.test'
+import stackHitTestBehaviorTest from './stack/StackHitTestBehaviorTest.test'
+import stackOnAreaChangeTest from './stack/StackOnAreaChangeTest.test'
+import stackOnTouchTest from './stack/StackOnTouchTest.test'
+import textEnabledTest from './text/TextEnabledTest.test'
+import commonAttrsDirectionTest from './commonattrs/CommonAttrsDirectionTest.test'
+import commonAttrsTransformTest from './commonattrs/CommonAttrsTransformTest.test'
+import commonAttrsMaskTest from './commonattrs/CommonAttrsMaskTest.test'
+import commonAttrsBlendModeTest from './commonattrs/CommonAttrsBlendModeTest.test'
+import stackAlignTest from './stack/StackAlignTest.test'
+import stackBackgroundBlurStyleTest from './stack/StackBackgroundBlurStyleTest.test'
+import stackBackgroundColorTest from './stack/StackBackgroundColorTest.test'
+import stackBackgroundImageTest from './stack/StackBackgroundImageTest.test'
+import stackBackgroundImagePositionTest from './stack/StackBackgroundImagePositionTest.test'
+import stackBackgroundImageSizeTest from './stack/StackBackgroundImageSizeTest.test'
+import stackBorderColorTest from './stack/StackBorderColorTest.test'
+import stackBorderRadiusTest from './stack/StackBorderRadiusTest.test'
+import stackBorderStyleTest from './stack/StackBorderStyleTest.test'
+import stackBorderWidthTest from './stack/StackBorderWidthTest.test'
+import stackBrightnessTest from './stack/StackBrightnessTest.test'
+import stackClipTest from './stack/StackClipTest.test'
+import stackHeightTest from './stack/StackHeightTest.test'
+import stackIdTest from './stack/StackIdTest.test'
+import stackLinearGradientTest from './stack/StackLinearGradientTest.test'
+import stackMarginTest from './stack/StackMarginTest.test'
+import stackOpacityTest from './stack/StackOpacityTest.test'
+import stackPositionTest from './stack/StackPositionTest.test'
+import stackRotateTest from './stack/StackRotateTest.test'
+import stackSaturateTest from './stack/StackSaturateTest.test'
+import stackScaleTest from './stack/StackScaleTest.test'
+import stackShadowTest from './stack/StackShadowTest.test'
+import stackTransformTest from './stack/StackTransformTest.test'
+import stackTransitionTest from './stack/StackTransitionTest.test'
+import stackTranslateTest from './stack/StackTranslateTest.test'
+import stackWidthTest from './stack/StackWidthTest.test'
+import toggleBackgroundColorTest from './toggle/ToggleBackgroundColorTest.test'
+import toggleClipTest from './toggle/ToggleClipTest.test'
+import toggleFocusableTest from './toggle/ToggleFocusableTest.test'
+import toggleHeightTest from './toggle/ToggleHeightTest.test'
+import toggleMarginTest from './toggle/ToggleMarginTest.test'
+import togglePositionTest from './toggle/TogglePositionTest.test'
+import toggleSelectedColorTest from './toggle/ToggleSelectedColorTest.test'
+import toggleUnSelectedColorTest from './toggle/ToggleUnSelectedColorTest.test'
+import toggleSwitchPointColorTest from './toggle/ToggleSwitchPointColorTest.test'
+import toggleWidthTest from './toggle/ToggleWidthTest.test'
+import toggleSwitchTest from './toggle/ToggleSwitchTest.test'
+import swiperAutoPlayTest from './swiper/SwiperAutoPlayTest.test'
+import swiperBackgroundColorTest from './swiper/SwiperBackgroundColorTest.test'
+import swiperBackgroundImageTest from './swiper/SwiperBackgroundImageTest.test'
+import swiperClipTest from './swiper/SwiperClipTest.test'
+import swiperCurveTest from './swiper/SwiperCurveTest.test'
+import swiperDisableSwipeTest from './swiper/SwiperDisableSwipeTest.test'
+import swiperDisplayArrowTest from './swiper/SwiperDisplayArrowTest.test'
+import swiperDisplayCountTest from './swiper/SwiperDisplayCountTest.test'
+import swiperDurationTest from './swiper/SwiperDurationTest.test'
+import swiperHeightTest from './swiper/SwiperHeightTest.test'
+import swiperIndexTest from './swiper/SwiperIndexTest.test'
+import swiperIndicatorTest from './swiper/SwiperIndicatorTest.test'
+import swiperIntervalTest from './swiper/SwiperIntervalTest.test'
+import swiperItemSpaceTest from './swiper/SwiperItemSpaceTest.test'
+import swiperLoopTest from './swiper/SwiperLoopTest.test'
+import swiperPositionTest from './swiper/SwiperPositionTest.test'
+import swiperVerticalTest from './swiper/SwiperVerticalTest.test'
+import swiperWidthTest from './swiper/SwiperWidthTest.test'
+import swiperCachedCountTest from './swiper/SwiperCachedCountTest.test'
+import swiperEffectModeTest from './swiper/SwiperEffectModeTest.test'
+import swiperPrevMarginTest from './swiper/SwiperPrevMarginTest.test'
+import swiperNextMarginTest from './swiper/SwiperNextMarginTest.test'
+import swiperNestedScrollTest from './swiper/SwiperNestedScrollTest.test'
+import swiperChangeIndexTest from './swiper/SwiperChangeIndexTest.test'
+import swiperOnChangeTest from './swiper/SwiperOnChangeTest.test'
+import swiperOnAnimationStartTest from './swiper/SwiperOnAnimationStartTest.test'
+import swiperOnAnimationEndTest from './swiper/SwiperOnAnimationEndTest.test'
+import swiperAdapterTest from './swiper/SwiperAdapterTest.test'
+import swiperOnContentDidScrollTest from './swiper/SwiperOnContentDidScrollTest.test'
+import swiperOnGestureSwipeTest from './swiper/SwiperOnGestureSwipeTest.test'
+import textWidthTest from './text/TextWidthTest.test'
+import textHeightTest from './text/TextHeightTest.test'
+import textPositionTest from './text/TextPositionTest.test'
+import TextStyleGraphicTest from './text/TextStyleGraphicTest.test'
+import scrollWidthTest from './scroll/ScrollWidthTest.test'
+import scrollHeightTest from './scroll/ScrollHeightTest.test'
+import scrollPositionTest from './scroll/ScrollPositionTest.test'
+import imageWidthTest from './image/ImageWidthTest.test'
+import imageHeightTest from './image/ImageHeightTest.test'
+import imagePositionTest from './image/ImagePositionTest.test'
+import imageDraggableTest from './image/ImageDraggableTest.test'
+import imageDraggableEventTest from './image/ImageDraggableEventTest.test'
+import imageRenderModeTest from './image/ImageRenderModeTest.test'
+import imageFitOriginalSizeTest from './image/ImageFitOriginalSizeTest.test'
+import imageFillColorTest from './image/ImageFillColorTest.test'
+import imageResizableTest from './image/ImageResizableTest.test'
+import imageOnfinishTest from './image/ImageOnfinishTest.test'
+import listHeightTest from './list/ListHeightTest.test'
+import listWidthTest from './list/ListWidthTest.test'
+import listBackgroundColorTest from './list/ListBackgroundColorTest.test'
+import listBorderWidthTest from './list/ListBorderWidthTest.test'
+import listBorderColorTest from './list/ListBorderColorTest.test'
+import listBorderRadiusTest from './list/ListBorderRadiusTest.test'
+import listOpacityTest from './list/ListOpacityTest.test'
+import listClipTest from './list/ListClipTest.test'
+import listTranslateTest from './list/ListTranslateTest.test'
+import listScaleTest from './list/ListScaleTest.test'
+import listBrightnessTest from './list/ListBrightnessTest.test'
+import listRotateTest from './list/ListRotateTest.test'
+import listSaturateTest from './list/ListSaturateTest.test'
+import listBlurTest from './list/ListBlurTest.test'
+import listShadowTest from './list/ListShadowTest.test'
+import ListNodeAdapterTest from './list/ListNodeAdapterTest.test'
+import ListNodeAdapterEventTest from './list/ListNodeAdapterEventTest.test'
+import listItemLinearGradientTest from './listitem/ListItemLinearGradientTest.test'
+import listItemShadowTest from './listitem/ListItemShadowTest.test'
+import listItemBlurTest from './listitem/ListItemBlurTest.test'
+import listItemBrightnessTest from './listitem/ListItemBrightnessTest.test'
+import listItemScaleTest from './listitem/ListItemScaleTest.test'
+import listItemTranslateTest from './listitem/ListItemTranslateTest.test'
+import listItemRotateTest from './listitem/ListItemRotateTest.test'
+import listItemSaturateTest from './listitem/ListItemSaturateTest.test'
+import listItemClipTest from './listitem/ListItemClipTest.test'
+import listItemOpacityTest from './listitem/ListItemOpacityTest.test'
+import listItemBorderRadiusTest from './listitem/ListItemBorderRadiusTest.test'
+import listItemBorderColorTest from './listitem/ListItemBorderColorTest.test'
+import listItemBorderWidthTest from './listitem/ListItemBorderWidthTest.test'
+import listItemBackgroundColorTest from './listitem/ListItemBackgroundColorTest.test'
+import listItemWidthTest from './listitem/ListItemWidthTest.test'
+import listItemHeightTest from './listitem/ListItemHeightTest.test'
+import listEnableScrollInteractionTest from './list/ListEnableScrollInteractionTest.test'
+import ListSwipeChildMinSizeTest from  './list/ListSwipeChildMinSizeTest.test.ets'
+import listCachedCountTest from './list/ListCachedCountTest.test'
+import listFrictionTest from './list/ListFrictionTest.test'
+import listStickyTest from './list/ListStickyTest.test'
+import listListDirectionTest from './list/ListListDirectionTest.test'
+import listLinearGradientTest from './list/ListLinearGradientTest.test'
+import listScrollBarTest from './list/ListScrollBarTest.test'
+import listEdgeEffectTest from './list/ListEdgeEffectTest.test'
+import ListSwipeActionItemTest from './list/ListSwipeActionItemTest.test'
+import commonAttrsClipTest from './commonattrs/CommonAttrsClipTest.test'
+import commonAttrsLinearGradientTest from './commonattrs/CommonAttrsLinearGradientTest.test'
+import commonAttrsShadowTest from './commonattrs/CommonAttrsShadowTest.test'
+import commonAttrsScaleTest from './commonattrs/CommonAttrsScaleTest.test'
+import commonAttrsMarginTest from './commonattrs/CommonAttrsMarginTest.test'
+import commonAttrsConstraintSizeTest from './commonattrs/CommonAttrsConstraintSizeTest.test'
+import textAlignTest from './text/TextAlignTest.test'
+import textBackgroundColorTest from './text/TextBackgroundColorTest.test'
+import textBackgroundImageTest from './text/TextBackgroundImageTest.test'
+import textBaselineOffsetTest from './text/TextBaselineOffsetTest.test'
+import textBorderColorTest from './text/TextBorderColorTest.test'
+import textBorderRadiusTest from './text/TextBorderRadiusTest.test'
+import textBorderWidthTest from './text/TextBorderWidthTest.test'
+import textClipTest from './text/TextClipTest.test'
+import textContentTest from './text/TextContentTest.test'
+import textCopyOptionTest from './text/TextCopyOptionTest.test'
+import textDecorationTest from './text/TextDecorationTest.test'
+import textFontColorTest from './text/TextFontColorTest.test'
+import textFontFamilyTest from './text/TextFontFamilyTest.test'
+import textFontSizeTest from './text/TextFontSizeTest.test'
+import textFontStyleTest from './text/TextFontStyleTest.test'
+import textFontTest from './text/TextFontTest.test'
+import textFontWeightTest from './text/TextFontWeightTest.test'
+import textHeightAdaptivePolicyTest from './text/TextHeightAdaptivePolicyTest.test'
+import textLetterSpacingTest from './text/TextLetterSpacingTest.test'
+import textLinearGradientTest from './text/TextLinearGradientTest.test'
+import textLineHeightTest from './text/TextLineHeightTest.test'
+import textMaskTest from './text/TextMaskTest.test'
+import textMaxLinesTest from './text/TextMaxLinesTest.test'
+import textMinFontSizeTest from './text/TextMinFontSizeTest.test'
+import textOffsetTest from './text/TextOffsetTest.test'
+import textMaxFontSizeTest from './text/TextMaxFontSizeTest.test'
+import textOpacityTest from './text/TextOpacityTest.test'
+import textRadialGradientTest from './text/TextRadialGradientTest.test'
+import textShadowTest from './text/TextShadowTest.test'
+import textTextAlignTest from './text/TextTextAlignTest.test'
+import textScaleTest from './text/TextScaleTest.test'
+import textOverlayTest from './text/TextOverlayTest.test'
+import textPaddingTest from './text/TextPaddingTest.test'
+import textSweepGradientTest from './text/TextSweepGradientTest.test'
+import textTextCaseTest from './text/TextTextCaseTest.test'
+import textTextIndentTest from './text/TextTextIndentTest.test'
+import textTextOverflowTest from './text/TextTextOverflowTest.test'
+import textTextShadowTest from './text/TextTextShadowTest.test'
+import textTransformTest from './text/TextTransformTest.test'
+import textVisibilityTest from './text/TextVisibilityTest.test'
+import textLineBreakStrategyTest from './text/TextLineBreakStrategyTest.test'
+import textAlignRulesTest from './text/TextAlignRulesTest.test'
+import textWorkBreakTest from './text/TextWorkBreakTest.test'
+import textEllipsisModeTest from './text/TextEllipsisModeTest.test'
+import textLineSpacingTest from './text/TextLineSpacingTest.test'
+import textFontFeatureTest from './text/TextFontFeatureTest.test'
+import textSelectedBackgroundColorTest from './text/TextSelectedBackgroundColorTest.test'
+import textEnableDataDetectortest from './text/TextEnableDataDetectortest.test'
+import textParagraphTest from './text/TextParagraphTest.test'
+import textDataDetectorConfigTest from './text/TextDataDetectorConfigTest.test'
+import commonAttrsRadialGradientTest from './commonattrs/CommonAttrsRadialGradientTest.test'
+import commonAttrsSweepGradientTest from './commonattrs/CommonAttrsSweepGradientTest.test'
+import scrollScrollBarTest from './scroll/ScrollScrollBarTest.test'
+import scrollScrollBarColorTest from './scroll/ScrollScrollBarColorTest.test'
+import scrollEnableScrollInteractionTest from './scroll/ScrollEnableScrollInteractionTest'
+import scrollClipTest from './scroll/ScrollClipTest'
+import scrollBackgroundColorTest from './scroll/ScrollBackgroundColorTest'
+import scrollBarWidthTest from './scroll/ScrollBarWidthTest.test'
+import scrollBorderWidthTest from './scroll/ScrollBorderWidthTest'
+import scrollBorderColorTest from './scroll/ScrollBorderColorTest'
+import scrollBorderRadiusTest from './scroll/ScrollBorderRadiusTest'
+import scrollScrollAbleTest from './scroll/ScrollScrollAbleTest'
+import scrollOpacityTest from './scroll/ScrollOpacityTest.test'
+import scrollTranslateTest from './scroll/ScrollTranslateTest.test'
+import scrollScaleTest from './scroll/ScrollScaleTest.test'
+import scrollRotateTest from './scroll/ScrollRotateTest.test'
+import scrollBrightnessTest from './scroll/ScrollBrightnessTest.test'
+import scrollBlurTest from './scroll/ScrollBlurTest'
+import scrollShadowTest from './scroll/ScrollShadowTest.test'
+import scrollEdgeEffectTest from './scroll/ScrollEdgeEffectTest.test'
+import scrollFrictionTest from './scroll/ScrollFrictionTest'
+import scrollScrollSnapTest from './scroll/ScrollScrollSnapTest.test'
+import scrollCurrentOffsetTest from './scroll/ScrollCurrentOffsetTest.test'
+import scrollSaturateTest from './scroll/ScrollSaturateTest'
+import scrollScrollToTest from './scroll/ScrollScrollToTest.test'
+import scrollOverlayTest from './scroll/ScrollOverlayTest.test'
+import scrollLinearGradientTest from './scroll/ScrollLinearGradientTest'
+import scrollPageTest from './scroll/ScrollPageTest.test'
+import scrollPageEnableTest from './scroll/ScrollPageEnableTest'
+import textPickerOnChangeTest from './textpicker/TextPickerOnChangeTest.test'
+import textPickerDisappearTextStyleTest from './textpicker/TextPickerDisappearTextStyleTest.test'
+import textPickerTextStyleTest from './textpicker/TextPickerTextStyleTest.test'
+import textPickerSelectedTextStyleTest from './textpicker/TextPickerSelectedTextStyleTest.test'
+import textPickerSelectedIndexTest from './textpicker/TextPickerSelectedIndexTest.test'
+import textPickerSelectedTest from './textpicker/TextPickerSelectedTest.test'
+import textPickerCanLoopTest from './textpicker/TextPickerCanLoopTest.test'
+import textPickerDefaultPickerItemHeightTest from './textpicker/TextPickerDefaultPickerItemHeightTest.test'
+import textPickerValueTest from './textpicker/TextPickerValueTest.test'
+import customDialogOpenTest from './customdialog/CustomDialogOpenTest.test'
+import customDialogCloseTest from './customdialog/CustomDialogCloseTest.test'
+import customDialogAlignmentTest from './customdialog/CustomDialogAlignmentTest.test'
+import customDialogCustomStyleTest from './customdialog/CustomDialogCustomStyleTest.test'
+import datePickerLunarTest from './datepicker/DatePickerLunarTest.test'
+import datePickerOnDateChangeTest from './datepicker/DatePickerOnDateChangeTest.test'
+import datePickerStartTest from './datepicker/DatePickerStartTest.test'
+import datePickerEndTest from './datepicker/DatePickerEndTest.test'
+import datePickerSelectedTest from './datepicker/DatePickerSelectedTest.test'
+import datePickerSelectedTextStyleTest from './datepicker/DatePickerSelectedTextStyleTest.test'
+import datePickerDisappearTextStyleTest from './datepicker/DatePickerDisappearTextStyleTest.test'
+import datePickerTextStyleTest from './datepicker/DatePickerTextStyleTest.test'
+import timePickerUseMilitaryTimeTest from './timepicker/TimePickerUseMilitaryTimeTest.test'
+import timePickerOnChangeTest from './timepicker/TimePickerOnChangeTest.test'
+import timePickerHeightTest from './timepicker/TimePickerHeightTest.test'
+import timePickerSelectedTest from './timepicker/TimePickerSelectedTest.test'
+import timePickerTextStyleTest from './timepicker/TimePickerTextStyleTest.test'
+import timePickerDisappearTextStyleTest from './timepicker/TimePickerDisappearTextStyleTest.test'
+import timePickerSelectedTextStyleTest from './timepicker/TimePickerSelectedTextStyleTest.test'
+import xComponentSourceIdTest from './xcomponent/XComponentSourceIdTest.test'
+import xComponentTypeTest from './xcomponent/XComponentTypeTest.test'
+import customDialogMaskColorTest from './customdialog/CustomDialogMaskColorTest.test'
+import textPickerRangeTest from './textpicker/TextPickerRangeTest.test'
+import textInputAccessibilityDescriptionTest from './accessibility/TextInputAccessibilityDescriptionTest.test'
+import textInputAccessibilityGroupTest from './accessibility/TextInputAccessibilityGroupTest.test'
+import textInputAccessibilityLevelTest from './accessibility/TextInputAccessibilityLevelTest.test'
+import textInputAccessibilityTextTest from './accessibility/TextInputAccessibilityTextTest.test'
+import textAreaAccessibilityDescriptionTest from './accessibility/TextAreaAccessibilityDescriptionTest.test'
+import textAreaAccessibilityGroupTest from './accessibility/TextAreaAccessibilityGroupTest.test'
+import textAreaAccessibilityLevelTest from './accessibility/TextAreaAccessibilityLevelTest.test'
+import textAreaAccessibilityTextTest from './accessibility/TextAreaAccessibilityTextTest.test'
+import swiperAccessibilityDescriptionTest from './accessibility/SwiperAccessibilityDescriptionTest.test'
+import swiperAccessibilityGroupTest from './accessibility/SwiperAccessibilityGroupTest.test'
+import swiperAccessibilityLevelTest from './accessibility/SwiperAccessibilityLevelTest.test'
+import swiperAccessibilityTextTest from './accessibility/SwiperAccessibilityTextTest.test'
+import scrollAccessibilityDescriptionTest from './accessibility/ScrollAccessibilityDescriptionTest.test'
+import scrollAccessibilityGroupTest from './accessibility/ScrollAccessibilityGroupTest.test'
+import scrollAccessibilityLevelTest from './accessibility/ScrollAccessibilityLevelTest.test'
+import scrollAccessibilityTextTest from './accessibility/ScrollAccessibilityTextTest.test'
+import listAccessibilityDescriptionTest from './accessibility/ListAccessibilityDescriptionTest.test'
+import listAccessibilityGroupTest from './accessibility/ListAccessibilityGroupTest.test'
+import listAccessibilityTextTest from './accessibility/ListAccessibilityTextTest.test'
+import listAccessibilityLevelTest from './accessibility/ListAccessibilityLevelTest.test'
+import toggleAccessibilityDescriptionTest from './accessibility/ToggleAccessibilityDescriptionTest.test'
+import toggleAccessibilityGroupTest from './accessibility/ToggleAccessibilityGroupTest.test'
+import toggleAccessibilityLevelTest from './accessibility/ToggleAccessibilityLevelTest.test'
+import toggleAccessibilityTextTest from './accessibility/ToggleAccessibilityTextTest.test'
+import textAccessibilityDescriptionTest from './accessibility/TextAccessibilityDescriptionTest.test'
+import textAccessibilityGroupTest from './accessibility/TextAccessibilityGroupTest.test'
+import textAccessibilityLevelTest from './accessibility/TextAccessibilityLevelTest.test'
+import textAccessibilityTextTest from './accessibility/TextAccessibilityTextTest.test'
+import refreshAccessibilityDescriptionTest from './accessibility/RefreshAccessibilityDescriptionTest.test'
+import refreshAccessibilityGroupTest from './accessibility/RefreshAccessibilityGroupTest.test'
+import refreshAccessibilityLevelTest from './accessibility/RefreshAccessibilityLevelTest.test'
+import refreshAccessibilityTextTest from './accessibility/RefreshAccessibilityTextTest.test'
+import datePickerAccessibilityDescriptionTest from './accessibility/DatePickerAccessibilityDescriptionTest.test'
+import datePickerAccessibilityGroupTest from './accessibility/DatePickerAccessibilityGroupTest.test'
+import datePickerAccessibilityLevelTest from './accessibility/DatePickerAccessibilityLevelTest.test'
+import datePickerAccessibilityTextTest from './accessibility/DatePickerAccessibilityTextTest.test'
+import timePickerAccessibilityDescriptionTest from './accessibility/TimePickerAccessibilityDescriptionTest.test'
+import timePickerAccessibilityGroupTest from './accessibility/TimePickerAccessibilityGroupTest.test'
+import timePickerAccessibilityLevelTest from './accessibility/TimePickerAccessibilityLevelTest.test'
+import timePickerAccessibilityTextTest from './accessibility/TimePickerAccessibilityTextTest.test'
+import sliderAccessibilityDescriptionTest from './accessibility/SliderAccessibilityDescriptionTest.test'
+import sliderAccessibilityGroupTest from './accessibility/SliderAccessibilityGroupTest.test'
+import sliderAccessibilityLevelTest from './accessibility/SliderAccessibilityLevelTest.test'
+import sliderAccessibilityTextTest from './accessibility/SliderAccessibilityTextTest.test'
+import buttonAccessibilityDescriptionTest from './accessibility/ButtonAccessibilityDescriptionTest.test'
+import buttonAccessibilityGroupTest from './accessibility/ButtonAccessibilityGroupTest.test'
+import buttonAccessibilityLevelTest from './accessibility/ButtonAccessibilityLevelTest.test'
+import buttonAccessibilityTextTest from './accessibility/ButtonAccessibilityTextTest.test'
+import textPickerAccessibilityDescriptionTest from './accessibility/TextPickerAccessibilityDescriptionTest.test'
+import textPickerAccessibilityGroupTest from './accessibility/TextPickerAccessibilityGroupTest.test'
+import textPickerAccessibilityLevelTest from './accessibility/TextPickerAccessibilityLevelTest.test'
+import textPickerAccessibilityTextTest from './accessibility/TextPickerAccessibilityTextTest.test'
+import checkboxAccessibilityDescriptionTest from './accessibility/CheckboxAccessibilityDescriptionTest.test'
+import checkboxAccessibilityGroupTest from './accessibility/CheckboxAccessibilityGroupTest.test'
+import checkboxAccessibilityLevelTest from './accessibility/CheckboxAccessibilityLevelTest.test'
+import checkboxAccessibilityTextTest from './accessibility/CheckboxAccessibilityTextTest.test'
+import progressAccessibilityDescriptionTest from './accessibility/ProgressAccessibilityDescriptionTest.test'
+import progressAccessibilityGroupTest from './accessibility/ProgressAccessibilityGroupTest.test'
+import progressAccessibilityLevelTest from './accessibility/ProgressAccessibilityLevelTest.test'
+import progressAccessibilityTextTest from './accessibility/ProgressAccessibilityTextTest.test'
+import customComponentAlignSelfTest from './customcomponent/CustomComponentAlignSelfTest.test'
+import customComponentFlexGrowTest from './customcomponent/CustomComponentFlexGrowTest.test'
+import customComponentFlexBasisTest from './customcomponent/CustomComponentFlexBasisTest.test'
+import customComponentFlexShrinkTest from './customcomponent/CustomComponentFlexShrinkTest.test'
+import customComponentBackgroundColorTest from './customcomponent/CustomComponentBackgroundColorTest.test'
+import customComponentBorderColorTest from './customcomponent/CustomComponentBorderColorTest.test'
+import customComponentBorderRadiusTest from './customcomponent/CustomComponentBorderRadiusTest.test'
+import customComponentBorderStyleTest from './customcomponent/CustomComponentBorderStyleTest.test'
+import customComponentBorderWidthTest from './customcomponent/CustomComponentBorderWidthTest.test'
+import customComponentForegroundBlurStyleTest from './customcomponent/CustomComponentForegroundBlurStyleTest.test'
+import customComponentHeightTest from './customcomponent/CustomComponentHeightTest.test'
+import customComponentPositionTest from './customcomponent/CustomComponentPositionTest.test'
+import customComponentWidthTest from './customcomponent/CustomComponentWidthTest.test'
+import customComponentAlignTest from './customcomponent/CustomComponentAlignTest.test'
+import customComponentEnabledTest from './customcomponent/CustomComponentEnabledTest.test'
+import customComponentFocusableTest from './customcomponent/CustomComponentFocusableTest.test'
+import customComponentHitTestBehaviorTest from './customcomponent/CustomComponentHitTestBehaviorTest.test'
+import customComponentIdTest from './customcomponent/CustomComponentIdTest.test'
+import customComponentContrastTest from './customcomponent/CustomComponentContrastTest.test'
+import customComponentGrayscaleTest from './customcomponent/CustomComponentGrayscaleTest.test'
+import customComponentInvertTest from './customcomponent/CustomComponentInvertTest.test'
+import customComponentOpacityTest from './customcomponent/CustomComponentOpacityTest.test'
+import customComponentSepiaTest from './customcomponent/CustomComponentSepiaTest.test'
+import customComponentDirectionTest from './customcomponent/CustomComponentDirectionTest.test'
+import customComponentTransformTest from './customcomponent/CustomComponentTransformTest.test'
+import customComponentMaskTest from './customcomponent/CustomComponentMaskTest.test'
+import customComponentBlendModeTest from './customcomponent/CustomComponentBlendModeTest.test'
+import customComponentClipTest from './customcomponent/CustomComponentClipTest.test'
+import customComponentLinearGradientTest from './customcomponent/CustomComponentLinearGradientTest.test'
+import customComponentShadowTest from './customcomponent/CustomComponentShadowTest.test'
+import customComponentScaleTest from './customcomponent/CustomComponentScaleTest.test'
+import customComponentMarginTest from './customcomponent/CustomComponentMarginTest.test'
+import customComponentConstraintSizeTest from './customcomponent/CustomComponentConstraintSizeTest.test'
+import customComponentRadialGradientTest from './customcomponent/CustomComponentRadialGradientTest.test'
+import customComponentSweepGradientTest from './customcomponent/CustomComponentSweepGradientTest.test'
+import customComponentAccessibilityDescriptionTest from './customcomponent/CustomComponentAccessibilityDescriptionTest.test'
+import customComponentAccessibilityLevelTest from './customcomponent/CustomComponentAccessibilityLevelTest.test'
+import customComponentAccessibilityTextTest from './customcomponent/CustomComponentAccessibilityTextTest.test'
+import customComponentAccessibilityGroupTest from './customcomponent/CustomComponentAccessibilityGroupTest.test'
+import customComponentOnClickTest from './customcomponent/CustomComponentOnClickTest.test'
+import customComponentOnFocusTest from './customcomponent/CustomComponentOnFocusTest.test'
+import customComponentOnBlurTest from './customcomponent/CustomComponentOnBlurTest.test'
+import customComponentOnAppearTest from './customcomponent/CustomComponentOnAppearTest.test'
+import customComponentOnAreaChangeTest from './customcomponent/CustomComponentOnAreaChangeTest.test'
+import customComponentOnTouchTest from './customcomponent/CustomComponentOnTouchTest.test'
+import textInputBackgroundColorTest from './textinput/TextInputBackgroundColorTest.test'
+import textInputBackgroundImageTest from './textinput/TextInputBackgroundImageTest.test'
+import textInputCaretColorTest from './textinput/TextInputCaretColorTest.test'
+import textInputClipTest from './textinput/TextInputClipTest.test'
+import textInputFontColorTest from './textinput/TextInputFontColorTest.test'
+import textInputFontSizeTest from './textinput/TextInputFontSizeTest.test'
+import textInputFontStyleTest from './textinput/TextInputFontStyleTest.test'
+import textInputFontWeightTest from './textinput/TextInputFontWeightTest.test'
+import textInputPaddingTest from './textinput/TextInputPaddingTest.test'
+import textInputShowUnderLineTest from './textinput/TextInputShowUnderLineTest.test'
+import textInputTextAlignTest from './textinput/TextInputTextAlignTest.test'
+import imageSpanWidthTest from './imagespan/ImageSpanWidthTest.test'
+import imageSpanHeightTest from './imagespan/ImageSpanHeightTest.test'
+import imageSpanObjectFitTest from './imagespan/ImageSpanObjectFitTest.test'
+import imageSpanVerticalAlignTest from './imagespan/ImageSpanVerticalAlignTest.test'
+import imageSpanPaddingTest from './imagespan/ImageSpanPaddingTest.test'
+import imageSpanSrcTest from './imagespan/ImageSpanSrcTest.test'
+import imageSpanAltTest from './imagespan/ImageSpanAltTest.test'
+import imageSpanOnClickTest from './imagespan/ImageSpanOnClickTest.test'
+import columnWidthTest from './column/ColumnWidthTest.test'
+import columnHeightTest from './column/ColumnHeightTest.test'
+import columnPaddingTest from './column/ColumnPaddingTest.test'
+import columnJustifyContentTest from './column/ColumnJustifyContentTest.test'
+import columnAlignItemsTest from './column/ColumnAlignItemsTest.test'
+import columnForegroundBlurStyleTest from './column/ColumnForegroundBlurStyleTest.test'
+import rowHeightTest from './row/RowHeightTest.test'
+import rowJustifyContentTest from './row/RowJustifyContentTest.test'
+import rowAlignItemsTest from './row/RowAlignItemsTest.test'
+import sliderWidthTest from './slider/SliderWidthTest.test'
+import sliderHeightTest from './slider/SliderHeightTest.test'
+import sliderEnabledTest from './slider/SliderEnabledTest.test'
+import SliderColorTest from './slider/SliderColorTest.test'
+import datePickerWidthTest from './datepicker/DatePickerWidthTest.test'
+import checkboxWidthTest from './checkbox/CheckboxWidthTest.test'
+import checkboxHeightTest from './checkbox/CheckboxHeightTest.test'
+import checkboxEnabledTest from './checkbox/CheckboxEnabledTest.test'
+import textPickerWidthTest from './textpicker/TextPickerWidthTest.test'
+import textPickerHeightTest from './textpicker/TextPickerHeightTest.test'
+import flexWidthTest from './flex/FlexWidthTest.test'
+import flexHeightTest from './flex/FlexHeightTest.test'
+import flexOptionTest from './flex/FlexOptionTest.test'
+import xComponentWidthTest from './xcomponent/XComponentWidthTest.test'
+import xComponentHeightTest from './xcomponent/XComponentHeightTest.test'
+import textAreaBlurOnSubmitTest from './textarea/TextAreaBlurOnSubmitTest.test'
+import textAreaSelectionMenuHiddenTest from './textarea/TextAreaSelectionMenuHiddenTest.test'
+import textAreaShowCounterTest from './textarea/TextAreaShowCounterTest.test'
+import textAreaSelectedBackgroundColorTest from './textarea/TextAreaSelectedBackgroundColorTest.test'
+import textAreaPlaceholderTest from './textarea/TextAreaPlaceholderTest.test'
+import textAreaTypeTest from './textarea/TextAreaTypeTest.test'
+import textAreaWidthTest from './textarea/TextAreaWidthTest.test'
+import textAreaHeightTest from './textarea/TextAreaHeightTest.test'
+import textAreaPositionTest from './textarea/TextAreaPositionTest.test'
+import textAreaEnabledTest from './textarea/TextAreaEnabledTest.test'
+import textInputBlurOnSubmitTest from './textinput/TextInputBlurOnSubmitTest.test'
+import textInputSelectionMenuHiddenTest from './textinput/TextInputSelectionMenuHiddenTest.test'
+import textInputPlaceholderTest from './textinput/TextInputPlaceholderTest.test'
+import textInputWidthTest from './textinput/TextInputWidthTest.test'
+import textInputHeightTest from './textinput/TextInputHeightTest.test'
+import textInputPositionTest from './textinput/TextInputPositionTest.test'
+import textInputShowPasswordIconTest from './textinput/TextInputShowPasswordIconTest.test'
+import textInputCaretStyleTest from './textinput/TextInputCaretStyleTest.test'
+import textInputSelectedBackgroundColorTest from './textinput/TextInputSelectedBackgroundColorTest.test'
+import textInputEnabledTest from './textinput/TextInputEnabledTest.test'
+import textInputTypeTest from './textinput/TextInputTypeTest.test'
+import textInputOnChangeTest from './textinput/TextInputOnChangeTest.test'
+import textInputEnterKeyTypeTest from './textinput/TextInputEnterKeyTypeTest.test'
+import textInputEnableKeyboardOnFocusTest from './textinput/TextInputEnableKeyboardOnFocusTest.test'
+import datePickerEnabledTest from './datepicker/DatePickerEnabledTest.test'
+import spanDecorationTest from './span/SpanDecorationTest.test'
+import spanTextCaseTest from './span/SpanTextCaseTest.test'
+import spanLetterSpacingTest from './span/SpanLetterSpacingTest.test'
+import spanLineHeightTest from './span/SpanLineHeightTest.test'
+import spanFontColorTest from './span/SpanFontColorTest.test'
+import spanFontSizeTest from './span/SpanFontSizeTest.test'
+import spanFontStyleTest from './span/SpanFontStyleTest.test'
+import spanFontWeightTest from './span/SpanFontWeightTest.test'
+import spanContentTest from './span/SpanContentTest.test'
+import spanTextBackgroundStyleTest from './span/SpanTextBackgroundStyleTest.test'
+import spanTextShadowTest from './span/SpanTextShadowTest.test'
+import spanFontFamilyTest from './span/SpanFontFamilyTest.test'
+import spanBaseLineOffsetTest from './span/SpanBaseLineOffsetTest.test'
+import spanOnClickTest from './span/SpanOnClickTest.test'
+import loadingProgressColorTest from './loadingprogress/LoadingProgressColorTest'
+import loadingProgressEnableLoadingTest from './loadingprogress/LoadingProgressEnableLoadingTest'
+import progressColorTest from './progress/ProgressColorTest'
+import progressBackGroundColorTest from './progress/ProgressBackgroundColorTest'
+import textAreaTextAlignTest from './textarea/TextAreaTextAlignTest'
+import textAreaBorderRadiusTest from './textarea/TextAreaBorderRadiusTest'
+import textAreaBackgroundColorTest from './textarea/TextAreaBackgroundColorTest'
+import textAreaCaretColorTest from './textarea/TextAreaCaretColorTest'
+import textAreaFontColorTest from './textarea/TextAreaFontColorTest'
+import textAreaPlaceholderColorTest from './textarea/TextAreaPlaceholderColorTest'
+import textAreaStopEditingTest from './textarea/TextAreaStopEditingTest'
+import textAreaFontFamilyTest from './textarea/TextAreaFontFamilyTest'
+import textAreaFontSizeTest from './textarea/TextAreaFontSizeTest'
+import textAreaFontWeightTest from './textarea/TextAreaFontWeightTest'
+import textAreaFontStyleTest from './textarea/TextAreaFontStyleTest'
+import textAreaLineHeightTest from './textarea/TextAreaLineHeightTest'
+import textAreaMaxLengthTest from './textarea/TextAreaMaxLengthTest'
+import textAreaPaddingTest from './textarea/TextAreaPaddingTest'
+import textAreaPlaceholderFontTest from './textarea/TextAreaPlaceholderFontTest'
+import textInputFontFamilyTest from './textinput/TextInputFontFamilyTest'
+import textInputPlaceholderFontTest from './textinput/TextInputPlaceholderFontTest'
+import textInputMaxLengthTest from './textinput/TextInputMaxLengthTest'
+import textInputPlaceholderColorTest from './textinput/TextInputPlaceholderColorTest'
+import textInputResponseRegionTest from './textinput/TextInputResponseRegionTest'
+import textInputClearButtonModeTest from './textinput/TextInputClearButtonModeTest'
+import textAreaDefaultFocusTest from './textarea/TextAreaDefaultFocusTest'
+import textAreaResponseRegionTest from './textarea/TextAreaResponseRegionTest'
+import refreshOnRefreshingTest from './refresh/RefreshOnRefreshingTest'
+import refreshOnStateChangeTest from './refresh/RefreshOnStateChangeTest'
+import refreshOnOffsetChangeTest from './refresh/RefreshOnOffsetChangeTest'
+import textAreaOnFocusTest from './textarea/TextAreaOnFocusTest'
+import textAreaOnBlurTest from './textarea/TextAreaOnBlurTest'
+import textAreaKeyTest from './textarea/TextAreaKeyTest'
+import textInputKeyTest from './textinput/TextInputKeyTest'
+import textAreaOnChangeTest from './textarea/TextAreaOnChangeTest'
+
+import progressStyleTest from './progress/ProgressStyleTest'
+import progressTotalTest from './progress/ProgressTotalTest.test'
+import progressValueTest from './progress/ProgressValueTest.test'
+import progressTypeTest from './progress/ProgressTypeTest.test'
+import refreshOffsetTest from './refresh/RefreshOffsetTest.test'
+import refreshPullDownRatioTest from './refresh/RefreshPullDownRatioTest.test'
+import refreshPullToRefreshTest from './refresh/RefreshPullToRefreshTest.test'
+import refreshRefreshingTest from './refresh/RefreshRefreshingTest.test'
+import refreshContentTest from './refresh/RefreshContentTest.test'
+import sliderOnChangeTest from './slider/SliderOnChangeTest.test'
+import sliderBlockColorTest from './slider/SliderBlockColorTest.test'
+import sliderBlockStyleTest from './slider/SliderBlockStyleTest.test'
+import sliderDirectionTest from './slider/SliderDirectionTest.test'
+import sliderMaxTest from './slider/SliderMaxTest.test'
+import sliderMinTest from './slider/SliderMinTest.test'
+import sliderReverseTest from './slider/SliderReverseTest.test'
+import sliderSelectedColorTest from './slider/SliderSelectedColorTest.test'
+import sliderShowStepsTest from './slider/SliderShowStepsTest.test'
+import sliderStepTest from './slider/SliderStepTest.test'
+import sliderStyleTest from './slider/SliderStyleTest.test'
+import sliderTrackColorTest from './slider/SliderTrackColorTest.test'
+import sliderTrackThicknessTest from './slider/SliderTrackThicknessTest.test'
+import sliderValueTest from './slider/SliderValueTest.test'
+import textInputStopEditingTest from './textinput/TextInputStopEditingTest.test'
+import textInputLineHeightTest from './textinput/TextInputLineHeightTest.test'
+import textInputOnBlurTest from './textinput/TextInputOnBlurTest.test'
+import textInputOnFocusTest from './textinput/TextInputOnFocusTest.test'
+import textInputOnSubmitTest from './textinput/TextInputOnSubmitTest.test'
+
+import textInputDefaultFocusTest from './textinput/TextInputDefaultFocusTest'
+import TestArkUIAddApi from './arkApi/arkApi.test'
+import testArkUI from './arkApi/arkUIApiTest.test'
+import testAnimationTest from './animation/animationTest.test'
+import testWaterFlower from './waterFlower/waterFlowerTest.test'
+import waterFlowAttrsTest from './waterFlower/WaterFlowAttrsTest.test'
+import waterFlowEventTest from './waterFlower/WaterFlowEventTest.test'
+import waterFlowScrollToIndex from './waterFlower/WaterFlowScrollToIndex.test'
+import waterFlowScrollOffsetTest from './waterFlower/WaterFlowScrollOffsetTest.test'
+import waterFlowScrollPageTest from './waterFlower/WaterFlowScrollPageTest.test'
+import waterFlowScrollByTest from './waterFlower/WaterFlowScrollByTest.test'
+import waterFlowNestedScrollTest from './waterFlower/WaterFlowNestedScrollTest.test'
+import accessibilityStateTest from './accessibilityState/accessibilityStateTest.test'
+import relativeContainerGuidelineTest from "./relativecontainer/RelativeContainerGuidelineTest.test"
+import relativeContainerBarrierTest from "./relativecontainer/RelativeContainerBarrierTest.test"
+import relativecontaineAlignmentRuleOptionAdditionTest from './relativecontainer/RelativeContainerAlignmentRuleOptionAdditionTest.test'
+import relativecontaineAlignmentRuleOptionTest from './relativecontaine/RelativeContaineAlignmentRuleOptionTest.test'
+import relativecontaineBarrierOptionTest from './relativecontaine/RelativeContaineBarrierOptionTest.test'
+import testGesture from './gesture/GestureTest.test'
+import gestureGestureAttrsTest from './gesture/GestureGestureAttrsTest.test'
+import gestureGestureInterrupterTest from './gesture/GestureGestureInterrupterTest.test'
+import gestureCreateGestureTest from './gesture/GestureCreateGestureTest.test'
+import gestureGestureInfoTest from  './gesture/GestureGestureInfoTest.test'
+import gestureNestScrollTest from './gestureScroll/GestureNestScollTest.test'
+import gridColumnGapTest from './grid/GridColumnGapTest.test' 
+import gridRowsTemplateTest from './grid/GridRowsTemplateTest.test'
+import gridColumnTemplateTest from './grid/GridColumnTemplateTest.test'
+import gridRowsGapTest from './grid/GridRowsGapTest.test' 
+import gridCachedCountTest from './grid/GridCachedCountTest.test' 
+import gridAdapterTest from './grid/GridAdapterTest.test' 
+import radioValueTest from './radio/RadioValueTest.test'
+import radioGroupTest from './radio/RadioGroupTest.test'
+import radioRadioStyleTest from './radio/RadioRadioStyleTest.test'
+import radioCheckedTest from './radio/RadioCheckedTest.test'
+import customComponentEventTest from './customcomponent/CustomComponentEventTest.test'
+import commonAttrsAnimateTest from './commonattrs/CommonAttrsAnimateTest.test'
+import drawableDescriptorCreateTest from './drawabledescriptor/DrawableDescriptorCreateTest.test'
+import nodeContentTest from './nodecontent/NodeContentTest.test'
+import nativeXComponentTest from './nativexcomponent/NativeXComponentTest.test'
+import mouseEventTest from './mouseevent/MouseEventTest.test'
+import pointerEventTest from './pointerevent/PointerEventTest.test'
+import nativeTest from './native/nativeTest.test'
+import DialogDismissEventTest from './Dialog/DialogDismissEvent.test'
+import DragGetDragEventTest from "./drag/DragGetDragEvent.test"
+import DragEventGetDataTypesTest from "./drag/DragEventGetDataTypes.test"
+import DragEventDisableDefaultDropAnimationTest from "./drag/DragEventDisableDefaultDropAnimation.test"
+import DragGetPreDragStatusTest from "./drag/DragGetPreDragStatus.test"
+import DragEventSetSuggestedDropOperationTest from "./drag/DragEventSetSuggestedDropOperation.test"
+import DragEventSetDragResultTest from "./drag/DragEventSetDragResult.test"
+import DragEventGetDataTypesCountTest from "./drag/DragEventGetDataTypesCount.test"
+import DragEventGetDragResultTest from "./drag/DragEventGetDragResult.test"
+import DragEventGetDropOperationTest from "./drag/DragEventGetDropOperation.test"
+import DragSetGetUdmfDataTest from "./drag/DragSetGetUdmfData.test"
+import DragEventGetXYTest from "./drag/DragEventGetXY.test"
+import DragEventGetWidthHeightTest from "./drag/DragEventGetWidthHeight.test"
+import DragEventGetModifierKeyStatesTest from "./drag/DragEventGetModifierKeyStates.test"
+import DragSetDragEventStrictReportTest from "./drag/DragSetDragEventStrictReport.test"
+import DragAllowDropDataTypesTest from "./drag/DragAllowDropDataTypes.test"
+import DragSetNodeDragPreviewTest from "./drag/DragSetNodeDragPreview.test"
+import DragDragPreviewOptionTest from "./drag/DragDragPreviewOption.test"
+import DragDragActionTest from "./drag/DragDragAction.test"
+import DragActionCreateDragActionTest from "./drag/DragActionCreateDragAction.test"
+import DragActionSetPointerIdTest from "./drag/DragActionSetPointerId.test"
+import DragActionSetDragPreviewOptionTest from "./drag/DragActionSetDragPreviewOption.test"
+import DragActionSetTouchPointXYTest from "./drag/DragActionSetTouchPointXY.test"
+import DragActionRegisterStatusListenerTest from "./drag/DragActionRegisterStatusListener.test"
+import SystemColorFontChangeTest from "./system/SystemColorFontChange.test"
+import animatorEventTest from "./animation/AnimatorEventTest.test"
+import animationEventTest from './animation/AnimationEventTest.test'
+import animateOptionTest from "./animation/AnimateOptionTest.test"
+import keyframeAnimateOptionTest from "./animation/KeyframeAnimateOptionTest.test"
+import animateCurveTest from "./animation/AnimateCurveTest.test"
+import geometryTransitionTest from "./animation/GeometryTransitionTest.test"
+import animatorOptionTest from "./animation/AnimatorOptionTest.test"
+import textCustomSpanTest from "./text/TextCustomSpan.test"
+import textImageSpanTest from "./text/TextImageSpan.test"
+import customComponentGetChildAtTest from "./customcomponent/CustomComponentGetChildAtTest.test"
+import customComponentGetChildTotalCountTest from "./customcomponent/CustomComponentGetChildTotalCountTest.test"
+import customComponentGetFirstChildTest from "./customcomponent/CustomComponentGetFirstChildTest.test"
+import customComponentGetLastChildTest from "./customcomponent/CustomComponentGetLastChildTest.test"
+import customComponentGetPreviousSiblingTest from "./customcomponent/CustomComponentGetPreviousSiblingTest.test"
+import customComponentGetNextSiblingTest from "./customcomponent/CustomComponentGetNextSiblingTest.test"
+import customComponentMeasuredSizeTest from "./customcomponent/CustomComponentMeasuredSizeTest.test"
+import customComponentLayoutPositionTest from "./customcomponent/CustomComponentLayoutPositionTest.test"
+import customComponentMeasureNodeTest from "./customcomponent/CustomComponentMeasureNodeTest.test"
+import customComponentGetContextDrawCanvasTest from "./customcomponent/CustomComponentGetContextDrawCanvasTest.test"
+import customComponentDrawContextGetSizeTest from "./customcomponent/CustomComponentDrawContextGetSizeTest.test"
+import customComponentEventOnDrawTest from "./customcomponent/CustomComponentEventOnDrawTest.test"
+import customComponentRegisterNodeCustomEventTest from "./customcomponent/CustomComponentRegisterNodeCustomEventTest.test"
+import customComponentUnRegisterNodeCustomEventTest from "./customcomponent/CustomComponentUnRegisterNodeCustomEventTest.test"
+import customComponentLayoutConstraintDisposeTest from "./customcomponent/CustomComponentLayoutconstraintDisposeTest.test"
+import inputEvent from "./inputevent/InputEventTest.test"
+import imageAnimatorImageFrameInfoTest from './imageAnimator/ImageAnimatorImageFrameInfoTest.test'
+import imageAnimatorImagesTest from './imageAnimator/ImageAnimatorImagesTest.test'
+import imageAnimatorStateTest from './imageAnimator/ImageAnimatorStateTest.test'
+import imageAnimatorDurationTest from './imageAnimator/ImageAnimatorDurationTest.test'
+import imageAnimatorReverseTest from './imageAnimator/ImageAnimatorReverseTest.test'
+import imageAnimatorFixedSizeTest from './imageAnimator/ImageAnimatorFixedSizeTest.test'
+import imageAnimatorFillModeTest from './imageAnimator/ImageAnimatorFillModeTest.test'
+import imageAnimatorIterationsTest from './imageAnimator/ImageAnimatorIterationsTest.test'
+import imageAnimatorEventTest from "./imageAnimator/ImageAnimatorEventTest.test"
+import radioOnChangeTest from "./radio/RadioOnChangeTest.test"
+import commonAttrsSaturateTest from './commonattrs/CommonAttrsSaturateTest.test'
+import commonAttrsBlurTest from './commonattrs/CommonAttrsBlurTest.test'
+import commonAttrsZIndexTest from './commonattrs/CommonAttrsZIndexTest.test'
+import commonAttrsVisibilityTest from './commonattrs/CommonAttrsVisibilityTest.test'
+import commonAttrsClipShapeTest from './commonattrs/CommonAttrsClipShapeTest.test'
+import commonAttrsBackgroundImageTest from './commonattrs/CommonAttrsBackgroundImageTest.test'
+import commonAttrsBackgroundImagePixelMapTest from './commonattrs/CommonAttrsBackgourndImagePixelMapTest.test'
+import commonAttrsPaddingTest from './commonattrs/CommonAttrsPaddingTest.test'
+import commonAttrsTranslateTest from './commonattrs/CommonAttrsTranslateTest.test'
+import commonAttrsRotateTest from './commonattrs/CommonAttrsRotateTest.test'
+import commonAttrsBrightnessTest from './commonattrs/CommonAttrsBrightnessTest.test'
+import commonAttrsCustomShadowTest from './commonattrs/CommonAttrsCustomShadowTest.test'
+import commonAttrsBackgroundImageSizeTest from './commonattrs/CommonAttrsBackgroundImageSizeTest.test'
+import commonAttrsBackgroundBlurStyleTest from './commonattrs/CommonAttrsBackgroundBlurStyleTest.test'
+import commonAttrsTransformCenterTest from './commonattrs/CommonAttrsTransformCenterTest.test'
+import commonAttrsTransitionEffectOpacityTest from './commonattrs/CommonAttrsTransitionOpacityTest.test'
+import commonAttrsTransitionEffectRotateTest from './commonattrs/CommonAttrsTransitionRotateTest.test'
+import commonAttrsTransitionEffectScaleTest from './commonattrs/CommonAttrsTransitionScaleTest.test'
+import commonAttrsTransitionTranslateTest from './commonattrs/CommonAttrsTransitionTranslateTest.test'
+import commonAttrsTransitionEffectMoveTest from './commonattrs/CommonAttrsTransitionMoveTest.test'
+import commonAttrsDefaultFocusTest from './commonattrs/CommonAttrsDefaultFocusTest.test'
+import commonAttrsResponseRegionTest from './commonattrs/CommonAttrsResponseRegionTest.test'
+import commonAttrsOverlayTest from './commonattrs/CommonAttrsOverlayTest.test'
+import commonAttrsForegroundColorTest from './commonattrs/CommonAttrsForegroundColorTest.test'
+import commonAttrsOffsetTest from './commonattrs/CommonAttrsOffsetTest.test'
+import commonAttrsMarkAnchorTest from './commonattrs/CommonAttrsMarkAnchorTest.test'
+import commonAttrsBackgroundImagePositionTest from './commonattrs/CommonAttrsBackgroundImagePositionTest.test'
+import commonAttrsFocusStatusTest from './commonattrs/CommonAttrsFocusStatusTest.test'
+import commonAttrsAspectRatioTest from './commonattrs/CommonAttrsAspectRatioTest.test'
+import commonAttrsLayoutWeightTest from './commonattrs/CommonAttrsLayoutWeightTest.test'
+import commonAttrsDisplayPriorityTest from './commonattrs/CommonAttrsDisplayPriorityTest.test'
+import commonAttrsOutlineWidthTest from './commonattrs/CommonAttrsOutlineWidthTest.test'
+import commonAttrsOutlineColorTest from './commonattrs/CommonAttrsOutlineColorTest.test'
+import commonAttrsRenderFitTest from './commonattrs/CommonAttrsRenderFitTest.test'
+import commonAttrsColorBlendTest from './commonattrs/CommonAttrsColorBlendTest.test'
+import commonAttrsTouchableTest from './commonattrs/CommonAttrsTouchableTest.test'
+import commonAttrsRenderGroupTest from './commonattrs/CommonAttrsRenderGroupTest.test'
+import commonAttrsSizeTest from './commonattrs/CommonAttrsSizeTest.test'
+import commonAttrsChainModeTest from './commonattrs/CommonAttrsChainModeTest.test'
+import commonAttrsAccessibilityIdTest from './commonattrs/CommonAttrsAccessibilityIdTest.test'
+import commonAttrsAccessibilityActionsTest from './commonattrs/CommonAttrsAccessibilityActionsTest.test'
+import commonAttrsAccessibilityRoleTest from './commonattrs/CommonAttrsAccessibilityRoleTest.test'
+import commonAttrsAccessibilityStateTest from './commonattrs/CommonAttrsAccessibilityStateTest.test'
+import commonAttrsAccessibilityValueTest from './commonattrs/CommonAttrsAccessibilityValueTest.test'
+import commonAttrsFocusOnTouchTest from './commonattrs/CommonAttrsFocusOnTouchTest.test'
+import commonAttrsExpandSafeAreaTest from './commonattrs/CommonAttrsExpandSafeAreaTest.test'
+import commonAttrsTransitionEffectAsymmetricTest from './commonattrs/CommonAttrsTransitionAsymmetricTest.test'
+import eventCallbackTest from "./eventcallback/EventCallbackTest.test"
+import attributeSettingTest from "./attributesetting/AttributeSettingTest.test"
+import commonEventEventTest from './commonevent/CommonEventEventTest.test'
+import nodeTreeTest from './nodetree/NodeTreeTest.test'
+import nodeTreeXComponentTest from './nodetree/NodeTreeXComponentTest.test'
+
+import textAreaTextTest from "./textarea/TextAreaTextTest.test"
+import textAreaFontFeatureTest from "./textarea/TextAreaFontFeatureTest.test"
+import textAreaMaxLinesTest from "./textarea/TextAreaMaxLinesTest.test"
+import textAreaInputFilterTest from "./textarea/TextAreaInputFilterTest.test"
+import textAreaEnterKeyTypeTest from "./textarea/TextAreaEnterKeyTypeTest.test"
+import textAreaEnableKeyboardOnFocusTest from "./textarea/TextAreaEnableKeyboardOnFocusTest.test"
+import textAreaShowKeyboardOnFocusTest from "./textarea/TextAreaShowKeyboardOnFocusTest.test"
+import textAreaCaretOffsetTest from "./textarea/TextAreaCaretOffsetTest.test"
+import textAreaGetTextContentRectTest from "./textarea/TextAreaGetTextContentRectTest.test"
+import textAreaGetContentLineCountTest from "./textarea/TextAreaGetContentLineCountTest.test"
+import textAreaTextSelectionTest from "./textarea/TextAreaTextSelectionTest.test"
+import textAreaOnTextSelectionChangeTest from "./textarea/TextAreaOnTextSelectionChangeTest.test"
+import textAreaOnContentScrollTest from "./textarea/TextAreaOnContentScrollTest.test"
+import textAreaOnContentDidChangeTest from "./textarea/TextAreaOnContentDidChangeTest.test"
+import textAreaEnableAutoFillTest from "./textarea/TextAreaEnableAutoFillTest.test"
+import textAreaOnInsertTest from "./textarea/TextAreaOnInsertTest.test"
+import textAreaOnDeleteTest from "./textarea/TextAreaOnDeleteTest.test"
+import textAreaNumberOfLinesTest from "./textarea/TextAreaNumberOfLinesTest.test"
+import textAreaContentTypeTest from "./textarea/TextAreaContentTypeTest.test"
+import textAreaOnSubmitTest from "./textarea/TextAreaOnSubmitTest.test"
+import textInputCancelButtonTest from "./textinput/TextInputCancelButtonTest.test"
+import textInputTextTest from "./textinput/TextInputTextTest.test"
+import textInputTextSelectionTest from "./textinput/TextInputTextSelectionTest.test"
+import textInputUnderlineColorTest from "./textinput/TextInputUnderlineColorTest.test"
+import textInputFontFeatureTest from "./textinput/TextInputFontFeatureTest.test"
+import textInputStyleTest from "./textinput/TextInputStyleTest.test"
+import textInputEnableAutoFillTest from "./textinput/TextInputEnableAutoFillTest.test"
+import textInputContentTypeTest from "./textinput/TextInputContentTypeTest.test"
+import textInputMinFontSizeTest from "./textinput/TextInputMinFontSizeTest.test"
+import textInputMaxFontSizeTest from "./textinput/TextInputMaxFontSizeTest.test"
+import textInputPasswordRulesTest from "./textinput/TextInputPasswordRulesTest.test"
+import textInputCustomKeyboardTest from "./textinput/TextInputCustomKeyboardTest.test"
+import textInputSelectAllTest from "./textinput/TextInputSelectAllTest.test"
+import textInputMaxLinesTest from "./textinput/TextInputMaxLinesTest.test"
+import textInputNumberOfLinesTest from "./textinput/TextInputNumberOfLinesTest.test"
+import textInputInputFilterTest from "./textinput/TextInputInputFilterTest.test"
+import textInputShowKeyboardOnFocusTest from "./textinput/TextInputShowKeyboardOnFocusTest.test"
+import textInputCaretOffsetTest from "./textinput/TextInputCaretOffsetTest.test"
+import textInputContentLineCountTest from "./textinput/TextInputContentLineCountTest.test"
+import textInputOnTextSelectionChangeTest from "./textinput/TextInputOnTextSelectionChangeTest.test"
+import textInputOnContentScrollTest from "./textinput/TextInputOnContentScrollTest.test"
+import textInputOnContentDidChangeTest from "./textinput/TextInputOnContentDidChangeTest.test"
+import textInputOnEditChangeTest from "./textinput/TextInputOnEditChangeTest.test"
+import textInputOnInsertTest from "./textinput/TextInputOnInsertTest.test"
+import textInputOnDeleteTest from "./textinput/TextInputOnDeleteTest.test"
+import textInputGetTextContentRect from "./textinput/TextInputGetTextContentRectTest.test"
+import swiperSwipeToIndexTest from "./swiper/SwiperSwipeToIndexTest.test"
+import swiperNestedScrollEventTest from "./swiper/SwiperNestedScrollEventTest.test"
+import refreshOffsetEventTest from "./refresh/RefreshOffsetEventTest.test"
+import radioOnChangeCheckedTest from "./radio/RadioOnChangeCheckedTest.test"
+import unitLengthMetricsTest from "./unit/UnitLengthMetricsTest.test"
+import unitWidthPercentTest from "./unit/UnitWidthPercentTest.test"
+import unitHeightPercentTest from "./unit/UnitHeightPercentTest.test"
+import unitMarginPercentTest from "./unit/UnitMarginPercentTest.test"
+import unitPaddingPercentTest from "./unit/UnitPaddingPercentTest.test"
+import unitBorderRadiusPercentTest from "./unit/UnitBorderRadiusPercentTest.test"
+import toolsLayoutRectTest from "./tools/ToolsLayoutRectTest.test"
+import hybirdGetNodeHandleTest from "./hybird/HybirdGetNodeHandleTest.test"
+import requirementPanGestureTest from './requirement/RequirementPanGestureTest.test'
+import customComponentLayoutConstraintTest from './customcomponent/CustomComponentLayoutConstraintTest.test'
+import customDialogSetContentTest from "./customdialog/CustomDialogSetContentTest.test"
+import customDialogRemoveContentTest from "./customdialog/CustomDialogRemoveContentTest.test"
+import customDialogSetContentAlignmentTest from "./customdialog/CustomDialogSetContentAlignmentTest.test"
+import customDialogResetContentAlignmentTest from "./customdialog/CustomDialogResetContentAlignmentTest.test"
+import customDialogSetModalModeTest from "./customdialog/CustomDialogSetModalModeTest.test"
+import customDialogSetAutoCancelTest from "./customdialog/CustomDialogSetAutoCancelTest.test"
+import customDialogSetMaskTest from "./customdialog/CustomDialogSetMaskTest.test"
+import customDialogSetBackgroundColorTest from "./customdialog/CustomDialogSetBackgroundColorTest.test"
+import customDialogSetCornerRadiusTest from "./customdialog/CustomDialogSetCornerRadiusTest.test"
+import customDialogSetGridColumnCountTest from "./customdialog/CustomDialogSetGridColumnCountTest.test"
+import customDialogEnableCustomAnimationTest from "./customdialog/CustomDialogEnableCustomAnimationTest.test"
+import customDialogRegisterOnWillDismissTest from "./customdialog/CustomDialogRegisterOnWillDismissTest.test"
+import customDialogShowTest from "./customdialog/CustomDialogShowTest.test"
+
+import lazyForEachCreateTest from "./lazyforeach/LazyForEachCreateTest.test"
+import lazyForEachDisposeTest from "./lazyforeach/LazyForEachDisposeTest.test"
+import lazyForEachGetAllItemsTest from "./lazyforeach/LazyForEachGetAllItemsTest.test"
+import lazyForEachGetHostNodeTest from "./lazyforeach/LazyForEachGetHostNodeTest.test"
+import lazyForEachGetItemIndexTest from "./lazyforeach/LazyForEachGetItemIndexTest.test"
+import lazyForEachGetRemovedNodeTest from "./lazyforeach/LazyForEachGetRemovedNodeTest.test"
+import lazyForEachGetTotalNodeCountTest from "./lazyforeach/LazyForEachGetTotalNodeCountTest.test"
+import lazyForEachGetTypeTest from "./lazyforeach/LazyForEachGetTypeTest.test"
+import lazyForEachGetUserDataTest from "./lazyforeach/LazyForEachGetUserDataTest.test"
+import lazyForEachInsertItemTest from "./lazyforeach/LazyForEachInsertItemTest.test"
+import lazyForEachMoveItemTest from "./lazyforeach/LazyForEachMoveItemTest.test"
+import lazyForEachRegisterEventReceiverTest from "./lazyforeach/LazyForEachRegisterEventReceiverTest.test"
+import lazyForEachReloadAllItemsTest from "./lazyforeach/LazyForEachReloadAllItemsTest.test"
+import lazyForEachReloadItemTest from "./lazyforeach/LazyForEachReloadItemTest.test"
+import lazyForEachRemoveItemTest from "./lazyforeach/LazyForEachRemoveItemTest.test"
+import lazyForEachSetItemTest from "./lazyforeach/LazyForEachSetItemTest.test"
+import lazyForEachSetNodeIdTest from "./lazyforeach/LazyForEachSetNodeIdTest.test"
+import lazyForEachSetTotalNodeCountTest from "./lazyforeach/LazyForEachSetTotalNodeCountTest.test"
+import lazyForEachSetUserDataTest from "./lazyforeach/LazyForEachSetUserDataTest.test"
+import lazyForEachUnregisterEventReceiverTest from "./lazyforeach/LazyForEachUnregisterEventReceiverTest.test"
+import scrollScrollEventTest from './scroll/ScrollScrollEventTest.test'
+import xComponentIdTest from './xcomponent/XComponentIdTest.test'
+
+import listScrollBarColorTest from './list/ListScrollBarColorTest.test'
+import listScrollBarWidthTest from './list/ListScrollBarWidthTest.test'
+import listSpaceTest from './list/ListSpaceTest.test'
+import listAlignListItemTest from './list/ListAlignListItemTest.test'
+import listListNodeAdapterTest from './list/ListListNodeAdapterTest.test'
+import listInitialIndexTest from './list/ListInitialIndexTest.test'
+import listDividerTest from './list/ListDividerTest.test'
+import listItemGroupSetHeaderTest from './list/ListItemGroupSetHeaderTest.test'
+import listItemGroupSetFooterTest from './list/ListItemGroupSetFooterTest.test'
+import listItemGroupSetDividerTest from './list/ListItemGroupSetDividerTest.test'
+import listItemSwipeActionTest from './list/ListItemSwipeActionTest.test'
+import listScrollOffsetTest from './list/ListScrollOffsetTest.test'
+import listScrollEdgeTest from './list/ListScrollEdgeTest.test'
+import listScrollPageTest from './list/ListScrollPageTest.test'
+import listScrollByTest from './list/ListScrollByTest.test'
+import listEventTest from './list/ListEventTest.test'
+import listScrollToIndex from './list/ListScrollToIndexTest.test'
+import listChildrenMainSizeTest from './list/ListChildrenMainSizeTest.test'
+import listCloseAllActionTest from './list/ListCloseAllActionTest.test'
+import listNestedScrollEventTest from './list/ListNestedScrollEventTest.test'
+import listNestedScrollTest from './list/ListNestedScrollTest.test'
+
+import textInputOnTextSelectionAllChangeTest from './textinput/TextInputOnTextSelectionAllChangeTest.test'
+import customComponentSecondaryLayoutTest from "./customcomponent/CustomComponentSecondaryLayoutTest.test"
+import requirementRouterPageStateTest from './requirement/RequirementRouterPageStateTest.test'
+import resourceNapiValueTest from './resourcenapivalue/ResourceNapiValueTest.test'
+
+export default function testsuite() {
+  customComponentShadowTest()
+  commonAttrsShadowTest()
+  imageShadowTest()
+  listShadowTest()
+  listItemShadowTest()
+  stackShadowTest()
+  scrollShadowTest()
+  textShadowTest()
+  listScrollBarColorTest()
+  inputEvent()
+  testGesture()
+  gestureGestureInfoTest()
+  DragEventDisableDefaultDropAnimationTest()
+  DragGetPreDragStatusTest()
+  DragEventSetSuggestedDropOperationTest()
+  DragEventSetDragResultTest()
+  DragEventGetDataTypesCountTest()
+  DragEventGetDragResultTest()
+  DragEventGetDropOperationTest()
+  DragSetGetUdmfDataTest()
+  DragEventGetXYTest()
+  DragEventGetWidthHeightTest()
+  DragEventGetModifierKeyStatesTest()
+  DragActionCreateDragActionTest()
+  DragActionSetPointerIdTest()
+  DragActionSetDragPreviewOptionTest()
+  DragActionSetTouchPointXYTest()
+  DragActionRegisterStatusListenerTest()
+  swiperOnAnimationStartTest()
+  refreshOffsetEventTest()
+  refreshOnOffsetChangeTest()
+  customDialogRegisterOnWillDismissTest()
+  listCloseAllActionTest()
+  textTextShadowTest()
+  spanTextShadowTest()
+  commonAttrsCustomShadowTest()
+  lazyForEachSetUserDataTest()
+  lazyForEachCreateTest()
+  lazyForEachDisposeTest()
+  lazyForEachSetTotalNodeCountTest()
+  lazyForEachGetTotalNodeCountTest()
+  lazyForEachRegisterEventReceiverTest()
+  lazyForEachUnregisterEventReceiverTest()
+  lazyForEachReloadAllItemsTest()
+  lazyForEachReloadItemTest()
+  lazyForEachRemoveItemTest()
+  lazyForEachInsertItemTest()
+  lazyForEachMoveItemTest()
+  lazyForEachGetAllItemsTest()
+  lazyForEachGetUserDataTest()
+  lazyForEachGetTypeTest()
+  lazyForEachGetRemovedNodeTest()
+  lazyForEachGetItemIndexTest()
+  lazyForEachGetHostNodeTest()
+  lazyForEachSetItemTest()
+  lazyForEachSetNodeIdTest()
+  listScrollOffsetTest()
+  listScrollEdgeTest()
+  listScrollPageTest()
+  listScrollByTest()
+  listEventTest()
+  scrollBarWidthTest()
+  scrollPageTest()
+  scrollScrollEventTest()
+  datePickerAccessibilityDescriptionTest()
+  datePickerAccessibilityGroupTest()
+  datePickerAccessibilityLevelTest()
+  datePickerAccessibilityTextTest()
+  timePickerAccessibilityDescriptionTest()
+  timePickerAccessibilityGroupTest()
+  timePickerAccessibilityLevelTest()
+  timePickerAccessibilityTextTest()
+  textPickerAccessibilityDescriptionTest()
+  textPickerAccessibilityGroupTest()
+  textPickerAccessibilityLevelTest()
+  textPickerAccessibilityTextTest()
+  datePickerTextStyleTest()
+  datePickerDisappearTextStyleTest()
+  datePickerSelectedTextStyleTest()
+  datePickerSelectedTest()
+  datePickerStartTest()
+  datePickerEndTest()
+  datePickerLunarTest()
+  datePickerWidthTest()
+  timePickerTextStyleTest()
+  timePickerDisappearTextStyleTest()
+  timePickerSelectedTextStyleTest()
+  timePickerSelectedTest()
+  timePickerHeightTest()
+  timePickerUseMilitaryTimeTest()
+  textPickerRangeTest()
+  textPickerValueTest()
+  textPickerDefaultPickerItemHeightTest()
+  textPickerCanLoopTest()
+  textPickerSelectedTest()
+  textPickerSelectedIndexTest()
+  textPickerSelectedTextStyleTest()
+  textPickerTextStyleTest()
+  textPickerDisappearTextStyleTest()
+  textPickerWidthTest()
+  textPickerHeightTest()
+  buttonFontSizeTest()
+  buttonFontColorTest()
+  buttonFontWeightTest()
+  buttonBackgroundColorTest()
+  buttonLabelTest()
+  buttonTypeTest()
+  checkboxSelectTest()
+  checkboxSelectedColorTest()
+  checkboxUnselectedColorTest()
+  checkboxMarkTest()
+  checkboxShapeTest()
+  sliderBlockColorTest()
+  sliderBlockStyleTest()
+  sliderDirectionTest()
+  sliderMaxTest()
+  sliderMinTest()
+  sliderReverseTest()
+  sliderSelectedColorTest()
+  sliderShowStepsTest()
+  sliderStepTest()
+  sliderStyleTest()
+  sliderTrackColorTest()
+  sliderTrackThicknessTest()
+  sliderValueTest()
+  textInputStopEditingTest()
+  textInputLineHeightTest()
+  loadingProgressColorTest()
+  loadingProgressEnableLoadingTest()
+  progressColorTest()
+  progressBackGroundColorTest()
+  textAreaTextAlignTest()
+  textAreaBorderRadiusTest()
+  textAreaBackgroundColorTest()
+  textAreaCaretColorTest()
+  textAreaFontColorTest()
+  textAreaPlaceholderColorTest()
+  textAreaPlaceholderFontTest()
+  textAreaStopEditingTest()
+  textAreaFontFamilyTest()
+  textAreaFontSizeTest()
+  textAreaFontWeightTest()
+  textAreaFontStyleTest()
+  textAreaLineHeightTest()
+  textAreaMaxLengthTest()
+  textAreaPaddingTest()
+  textInputFontFamilyTest()
+  textInputPlaceholderFontTest()
+  textInputMaxLengthTest()
+  textInputPlaceholderColorTest()
+  progressStyleTest()
+  progressTotalTest()
+  progressValueTest()
+  refreshOffsetTest()
+  refreshPullDownRatioTest()
+  refreshPullToRefreshTest()
+  refreshRefreshingTest()
+  refreshContentTest()
+  textInputBackgroundColorTest()
+  textInputBackgroundImageTest()
+  textInputCaretColorTest()
+  textInputClipTest()
+  textInputDefaultFocusTest()
+  textInputFontColorTest()
+  textInputFontSizeTest()
+  textInputFontStyleTest()
+  textInputFontWeightTest()
+  textInputPaddingTest()
+  textInputShowUnderLineTest()
+  textInputTextAlignTest()
+  textInputAccessibilityDescriptionTest()
+  textInputAccessibilityGroupTest()
+  textInputAccessibilityLevelTest()
+  textInputAccessibilityTextTest()
+  textAreaAccessibilityDescriptionTest()
+  textAreaAccessibilityGroupTest()
+  textAreaAccessibilityLevelTest()
+  textAreaAccessibilityTextTest()
+  swiperAccessibilityDescriptionTest()
+  swiperAccessibilityGroupTest()
+  swiperAccessibilityLevelTest()
+  swiperAccessibilityTextTest()
+  scrollAccessibilityDescriptionTest()
+  scrollAccessibilityGroupTest()
+  scrollAccessibilityLevelTest()
+  scrollAccessibilityTextTest()
+  listAccessibilityDescriptionTest()
+  listAccessibilityGroupTest()
+  listAccessibilityLevelTest()
+  listAccessibilityTextTest()
+  toggleAccessibilityDescriptionTest()
+  toggleAccessibilityGroupTest()
+  toggleAccessibilityLevelTest()
+  toggleAccessibilityTextTest()
+  textAccessibilityDescriptionTest()
+  textAccessibilityGroupTest()
+  textAccessibilityLevelTest()
+  textAccessibilityTextTest()
+  refreshAccessibilityDescriptionTest()
+  refreshAccessibilityGroupTest()
+  refreshAccessibilityLevelTest()
+  refreshAccessibilityTextTest()
+  sliderAccessibilityDescriptionTest()
+  sliderAccessibilityGroupTest()
+  sliderAccessibilityLevelTest()
+  sliderAccessibilityTextTest()
+  buttonAccessibilityDescriptionTest()
+  buttonAccessibilityGroupTest()
+  buttonAccessibilityLevelTest()
+  buttonAccessibilityTextTest()
+  checkboxAccessibilityDescriptionTest()
+  checkboxAccessibilityGroupTest()
+  checkboxAccessibilityLevelTest()
+  checkboxAccessibilityTextTest()
+  progressAccessibilityDescriptionTest()
+  progressAccessibilityGroupTest()
+  progressAccessibilityLevelTest()
+  progressAccessibilityTextTest()
+  customComponentAccessibilityDescriptionTest()
+  customComponentAccessibilityGroupTest()
+  customComponentAccessibilityLevelTest()
+  customComponentAccessibilityTextTest()
+  customComponentAlignSelfTest()
+  customComponentFlexGrowTest()
+  customComponentFlexBasisTest()
+  customComponentFlexShrinkTest()
+  customComponentWidthTest()
+  customComponentHeightTest()
+  customComponentBackgroundColorTest()
+  customComponentPositionTest()
+  customComponentBorderWidthTest()
+  customComponentBorderColorTest()
+  customComponentBorderRadiusTest()
+  customComponentBorderStyleTest()
+  customComponentSweepGradientTest()
+  customComponentRadialGradientTest()
+  customComponentTransformTest()
+  customComponentMaskTest()
+  customComponentBlendModeTest()
+  customComponentForegroundBlurStyleTest()
+  customComponentClipTest()
+  customComponentLinearGradientTest()
+  customComponentScaleTest()
+  customComponentMarginTest()
+  customComponentConstraintSizeTest()
+  customComponentContrastTest()
+  customComponentGrayscaleTest()
+  customComponentInvertTest()
+  customComponentOpacityTest()
+  customComponentSepiaTest()
+  customComponentAlignTest()
+  customComponentDirectionTest()
+  customDialogMaskColorTest()
+  xComponentTypeTest()
+  xComponentSourceIdTest()
+  commonAttrsAlignSelfTest()
+  commonAttrsAlignItemsTest()
+  commonAttrsAlignContentTest()
+  commonAttrsFlexGrowTest()
+  commonAttrsFlexBasisTest()
+  commonAttrsFlexShrinkTest()
+  commonAttrsJustifyContentTest()
+  commonAttrsWidthTest()
+  commonAttrsHeightTest()
+  commonAttrsBackgroundColorTest()
+  commonAttrsPositionTest()
+  commonAttrsBorderWidthTest()
+  commonAttrsBorderColorTest()
+  commonAttrsBorderRadiusTest()
+  commonAttrsBorderStyleTest()
+  commonAttrsSweepGradientTest()
+  commonAttrsRadialGradientTest()
+  commonAttrsTransformTest()
+  commonAttrsMaskTest()
+  commonAttrsBlendModeTest()
+  commonAttrsForegroundBlurStyleTest()
+  commonAttrsClipTest()
+  commonAttrsLinearGradientTest()
+  commonAttrsScaleTest()
+  commonAttrsMarginTest()
+  commonAttrsConstraintSizeTest()
+  commonAttrsContrastTest()
+  commonAttrsGrayscaleTest()
+  commonAttrsInvertTest()
+  commonAttrsOpacityTest()
+  commonAttrsSepiaTest()
+  imageAltTest()
+  imageAutoResizeTest()
+  imageBackgroundColorTest()
+  imageBlurTest()
+  imageBorderColorTest()
+  imageBorderRadiusTest()
+  imageBorderStyleTest()
+  imageBorderWidthTest()
+  imageBrightnessTest()
+  imageClipTest()
+  imageColorFilterTest()
+  imageInterpolationTest()
+  imageLinearGradientTest()
+  imageObjectFitTest()
+  imageObjectRepeatTest()
+  imageOpacityTest()
+  imageRadialGradientTest()
+  imageRotateTest()
+  imageSaturateTest()
+  imageScaleTest()
+  imageSrcTest()
+  imageSweepGradientTest()
+  imageTransformTest()
+  imageTranslateTest()
+  listHeightTest()
+  listWidthTest()
+  ListSwipeChildMinSizeTest()
+  listBackgroundColorTest()
+  listBorderWidthTest()
+  listBorderColorTest()
+  listBorderRadiusTest()
+  listOpacityTest()
+  listClipTest()
+  listTranslateTest()
+  listScaleTest()
+  listRotateTest()
+  listBrightnessTest()
+  listSaturateTest()
+  listBlurTest()
+  listScrollBarTest()
+  listLinearGradientTest()
+  listListDirectionTest()
+  listStickyTest()
+  listFrictionTest()
+  listCachedCountTest()
+  listEdgeEffectTest()
+  listEnableScrollInteractionTest()
+  ListNodeAdapterTest()
+  ListNodeAdapterEventTest()
+  listItemHeightTest()
+  listItemWidthTest()
+  listItemBackgroundColorTest()
+  listItemBorderWidthTest()
+  listItemBorderColorTest()
+  listItemBorderRadiusTest()
+  listItemOpacityTest()
+  listItemClipTest()
+  listItemTranslateTest()
+  listItemScaleTest()
+  listItemRotateTest()
+  listItemBrightnessTest()
+  listItemSaturateTest()
+  listItemBlurTest()
+  listItemLinearGradientTest()
+  stackAlignTest()
+  stackBackgroundBlurStyleTest()
+  stackBackgroundColorTest()
+  stackBackgroundImageTest()
+  stackBackgroundImagePositionTest()
+  stackBackgroundImageSizeTest()
+  stackBorderColorTest()
+  stackBorderRadiusTest()
+  stackBorderStyleTest()
+  stackBorderWidthTest()
+  stackBrightnessTest()
+  stackClipTest()
+  stackHeightTest()
+  stackIdTest()
+  stackLinearGradientTest()
+  stackMarginTest()
+  stackOpacityTest()
+  stackPositionTest()
+  stackRotateTest()
+  stackSaturateTest()
+  stackScaleTest()
+  stackTransformTest()
+  stackTransitionTest()
+  stackTranslateTest()
+  stackWidthTest()
+  TextStyleGraphicTest()
+  toggleBackgroundColorTest()
+  toggleClipTest()
+  toggleFocusableTest()
+  toggleHeightTest()
+  toggleMarginTest()
+  togglePositionTest()
+  toggleSelectedColorTest()
+  toggleSwitchPointColorTest()
+  toggleWidthTest()
+  toggleSwitchTest()
+  swiperAutoPlayTest()
+  swiperBackgroundColorTest()
+  swiperBackgroundImageTest()
+  swiperClipTest()
+  swiperCurveTest()
+  swiperDisableSwipeTest()
+  swiperDisplayArrowTest()
+  swiperDisplayCountTest()
+  swiperDurationTest()
+  swiperHeightTest()
+  swiperIndexTest()
+  swiperIndicatorTest()
+  swiperIntervalTest()
+  swiperItemSpaceTest()
+  swiperLoopTest()
+  swiperPositionTest()
+  swiperVerticalTest()
+  swiperWidthTest()
+  swiperCachedCountTest()
+  textWidthTest()
+  textHeightTest()
+  textPositionTest()
+  scrollWidthTest()
+  scrollHeightTest()
+  scrollPositionTest()
+  imageWidthTest()
+  imageHeightTest()
+  imagePositionTest()
+  scrollScrollBarTest()
+  scrollScrollBarColorTest()
+  scrollEnableScrollInteractionTest()
+  scrollClipTest()
+  scrollBackgroundColorTest()
+  scrollBorderWidthTest()
+  scrollBorderColorTest()
+  scrollBorderRadiusTest()
+  scrollScrollAbleTest()
+  scrollOpacityTest()
+  scrollTranslateTest()
+  scrollScaleTest()
+  scrollRotateTest()
+  scrollBrightnessTest()
+  scrollBlurTest()
+  scrollEdgeEffectTest()
+  scrollFrictionTest()
+  scrollScrollSnapTest()
+  scrollOverlayTest()
+  scrollLinearGradientTest()
+  scrollSaturateTest()
+  scrollPageEnableTest()
+  textAlignTest()
+  textBackgroundColorTest()
+  textBackgroundImageTest()
+  textBaselineOffsetTest()
+  textBorderColorTest()
+  textBorderRadiusTest()
+  textBorderWidthTest()
+  textClipTest()
+  textContentTest()
+  textCopyOptionTest()
+  textDecorationTest()
+  textFontColorTest()
+  textFontFamilyTest()
+  textFontSizeTest()
+  textFontStyleTest()
+  textFontTest()
+  textFontWeightTest()
+  textHeightAdaptivePolicyTest()
+  textLetterSpacingTest()
+  textLinearGradientTest()
+  textLineHeightTest()
+  textMaskTest()
+  textMaxFontSizeTest()
+  textMaxLinesTest()
+  textMinFontSizeTest()
+  textOffsetTest()
+  textOpacityTest()
+  textOverlayTest()
+  textPaddingTest()
+  textRadialGradientTest()
+  textScaleTest()
+  textSweepGradientTest()
+  textTextAlignTest()
+  textTextCaseTest()
+  textTextIndentTest()
+  textTextOverflowTest()
+  textTransformTest()
+  textVisibilityTest()
+  textLineBreakStrategyTest()
+  textAlignRulesTest()
+  customDialogCustomStyleTest()
+  customDialogAlignmentTest()
+  customDialogCloseTest()
+  customDialogOpenTest()
+  imageSpanWidthTest()
+  imageSpanHeightTest()
+  imageSpanObjectFitTest()
+  imageSpanVerticalAlignTest()
+  imageSpanPaddingTest()
+  spanDecorationTest()
+  spanTextCaseTest()
+  spanLetterSpacingTest()
+  spanLineHeightTest()
+  spanFontColorTest()
+  spanFontSizeTest()
+  spanFontStyleTest()
+  spanFontWeightTest()
+  spanContentTest()
+  checkboxWidthTest()
+  checkboxHeightTest()
+  flexWidthTest()
+  flexHeightTest()
+  flexOptionTest()
+  xComponentWidthTest()
+  xComponentHeightTest()
+  textAreaBlurOnSubmitTest()
+  textAreaSelectionMenuHiddenTest()
+  textAreaShowCounterTest()
+  textAreaSelectedBackgroundColorTest()
+  textAreaPlaceholderTest()
+  textAreaTypeTest()
+  textAreaWidthTest()
+  textAreaHeightTest()
+  textAreaPositionTest()
+  textInputBlurOnSubmitTest()
+  textInputSelectionMenuHiddenTest()
+  textInputPlaceholderTest()
+  textInputWidthTest()
+  textInputHeightTest()
+  textInputPositionTest()
+  textInputShowPasswordIconTest()
+  textInputCaretStyleTest()
+  textInputSelectedBackgroundColorTest()
+  textInputTypeTest()
+  textInputEnterKeyTypeTest()
+  textInputEnableKeyboardOnFocusTest()
+  columnWidthTest()
+  columnHeightTest()
+  rowHeightTest()
+  rowJustifyContentTest()
+  rowAlignItemsTest()
+  sliderWidthTest()
+  sliderHeightTest()
+  columnPaddingTest()
+  columnJustifyContentTest()
+  columnAlignItemsTest()
+  columnForegroundBlurStyleTest()
+  commonAttrsAlignTest()
+  commonAttrsDirectionTest()
+  commonAttrsEnabledTest()
+  commonAttrsFocusableTest()
+  commonEventOnAppearTest()
+  commonEventOnAreaChangeTest()
+  commonEventOnBlurTest()
+  commonEventOnFocusTest()
+  commonEventOnTouchTest()
+  PointEventOnTouchTest()
+  commonEventOnClickTest()
+  commonAttrsHitTestBehaviorTest()
+  commonAttrsIdTest()
+  imageHitTestBehaviorTest()
+  imageIdTest()
+  imageOnCompleteTest()
+  imageOnErrorTest()
+  listHitTestBehaviorTest()
+  listItemHitTestBehaviorTest()
+  ListSwipeActionItemTest()
+  toggleOnChangeTest()
+  toggleEnabledTest()
+  scrollNestedScrollTest()
+  scrollOnScrollTest()
+  scrollOnScrollFrameBeginTest()
+  scrollOnScrollStartTest()
+  scrollOnScrollStopTest()
+  scrollOnAppearTest()
+  scrollOnScrollEdgeTest()
+  scrollScrollEdgeTest()
+  scrollHitTestBehaviorTest()
+  stackOnAreaChangeTest()
+  stackHitTestBehaviorTest()
+  stackOnTouchTest()
+  textEnabledTest()
+  textAreaKeyTest()
+  textAreaEnabledTest()
+  textInputEnabledTest()
+  textInputOnChangeTest()
+  checkboxEnabledTest()
+  sliderEnabledTest()
+  SliderColorTest()
+  datePickerEnabledTest()
+  textPickerOnChangeTest()
+  datePickerOnDateChangeTest()
+  timePickerOnChangeTest()
+  customComponentHitTestBehaviorTest()
+  customComponentIdTest()
+  customComponentEnabledTest()
+  customComponentFocusableTest()
+  customComponentOnAppearTest()
+  customComponentOnAreaChangeTest()
+  customComponentOnBlurTest()
+  customComponentOnFocusTest()
+  customComponentOnTouchTest()
+  customComponentOnClickTest()
+  textInputKeyTest()
+  textInputResponseRegionTest()
+  textInputClearButtonModeTest()
+  textAreaOnFocusTest()
+  textAreaOnBlurTest()
+  textAreaOnChangeTest()
+
+  textAreaDefaultFocusTest()
+  textAreaResponseRegionTest()
+  refreshOnStateChangeTest()
+  refreshOnRefreshingTest()
+  sliderOnChangeTest()
+  checkboxOnChangeTest()
+  buttonOnClickTest()
+  textInputOnBlurTest()
+  textInputOnSubmitTest()
+
+  customComponentOnMeasureTest()
+  customComponentOnLayoutTest()
+  customComponentOnDrawTest()
+  scrollCurrentOffsetTest()
+  scrollScrollToTest()
+  TestArkUIAddApi()
+  testArkUI()
+  testAnimationTest()
+  testWaterFlower()
+  waterFlowEventTest()
+  waterFlowScrollToIndex()
+  waterFlowScrollPageTest()
+  waterFlowScrollByTest()
+  waterFlowAttrsTest()
+  waterFlowNestedScrollTest()
+  textInputOnFocusTest()
+  accessibilityStateTest()
+  relativeContainerGuidelineTest()
+  relativeContainerBarrierTest()
+  relativecontaineAlignmentRuleOptionAdditionTest()
+  relativecontaineAlignmentRuleOptionTest()
+  relativecontaineBarrierOptionTest()
+  gestureGestureAttrsTest()
+  gestureCreateGestureTest()
+  gestureGestureInterrupterTest()
+  gestureNestScrollTest()
+  gridColumnGapTest()
+  gridRowsTemplateTest()
+  gridColumnTemplateTest()
+  gridRowsGapTest()
+  gridCachedCountTest()
+  radioValueTest()
+  radioGroupTest()
+  radioRadioStyleTest()
+  radioCheckedTest()
+  customComponentEventTest()
+  commonAttrsAnimateTest()
+  drawableDescriptorCreateTest()
+  nodeContentTest()
+  nativeXComponentTest()
+  mouseEventTest()
+  pointerEventTest()
+  nativeTest()
+  DialogDismissEventTest()
+  DragGetDragEventTest()
+  DragEventGetDataTypesTest()
+  DragSetDragEventStrictReportTest()
+  DragAllowDropDataTypesTest()
+  DragSetNodeDragPreviewTest()
+  DragDragPreviewOptionTest()
+  DragDragActionTest()
+  SystemColorFontChangeTest()
+  animationEventTest()
+  animateOptionTest()
+  keyframeAnimateOptionTest()
+  animateCurveTest()
+  geometryTransitionTest()
+  animatorOptionTest()
+  textCustomSpanTest()
+  textImageSpanTest()
+  swiperEffectModeTest()
+  swiperPrevMarginTest()
+  swiperNextMarginTest()
+  swiperNestedScrollTest()
+  swiperChangeIndexTest()
+  swiperOnChangeTest()
+  swiperOnAnimationEndTest()
+  swiperAdapterTest()
+  swiperOnContentDidScrollTest()
+  swiperOnGestureSwipeTest()
+  swiperNestedScrollEventTest()
+  swiperSwipeToIndexTest()
+  imageAnimatorImageFrameInfoTest()
+  imageAnimatorImagesTest()
+  imageAnimatorStateTest()
+  imageAnimatorDurationTest()
+  imageAnimatorReverseTest()
+  imageAnimatorFixedSizeTest()
+  imageAnimatorFillModeTest()
+  imageAnimatorIterationsTest()
+  imageAnimatorEventTest()
+  toggleUnSelectedColorTest()
+  radioOnChangeTest()
+  textAreaTextTest()
+  textAreaFontFeatureTest()
+  textAreaMaxLinesTest()
+  textAreaInputFilterTest()
+  textAreaEnterKeyTypeTest()
+  textAreaEnableKeyboardOnFocusTest()
+  textAreaShowKeyboardOnFocusTest()
+  textAreaCaretOffsetTest()
+  textAreaGetTextContentRectTest()
+  textAreaGetContentLineCountTest()
+  textAreaTextSelectionTest()
+  textAreaOnTextSelectionChangeTest()
+  textAreaOnContentScrollTest()
+  textAreaOnContentDidChangeTest()
+  textAreaEnableAutoFillTest()
+  textAreaOnInsertTest()
+  textAreaOnDeleteTest()
+  textAreaNumberOfLinesTest()
+  textAreaContentTypeTest()
+  textAreaOnSubmitTest()
+  textInputCancelButtonTest()
+  textInputTextTest()
+  textInputTextSelectionTest()
+  textInputUnderlineColorTest()
+  textInputFontFeatureTest()
+  textInputStyleTest()
+  textInputEnableAutoFillTest()
+  textInputContentTypeTest()
+  textInputMinFontSizeTest()
+  textInputMaxFontSizeTest()
+  textInputPasswordRulesTest()
+  textInputCustomKeyboardTest()
+  textInputSelectAllTest()
+  textInputMaxLinesTest()
+  textInputNumberOfLinesTest()
+  textInputInputFilterTest()
+  textInputShowKeyboardOnFocusTest()
+  textInputCaretOffsetTest()
+  textInputContentLineCountTest()
+  textInputOnTextSelectionChangeTest()
+  textInputOnContentScrollTest()
+  textInputOnEditChangeTest()
+  textInputOnInsertTest()
+  textInputOnDeleteTest()
+  textInputGetTextContentRect()
+  textInputOnContentDidChangeTest()
+  textWorkBreakTest()
+  textEllipsisModeTest()
+  textLineSpacingTest()
+  textFontFeatureTest()
+  textEnableDataDetectortest()
+  textParagraphTest()
+  spanTextBackgroundStyleTest()
+  spanFontFamilyTest()
+  spanBaseLineOffsetTest()
+  imageDraggableTest()
+  imageRenderModeTest()
+  imageFitOriginalSizeTest()
+  imageFillColorTest()
+  imageResizableTest()
+  imageOnfinishTest()
+  imageSpanSrcTest()
+  imageSpanAltTest()
+  imageSpanOnClickTest()
+  spanOnClickTest()
+  textDataDetectorConfigTest()
+  imageDraggableEventTest()
+  commonAttrsSaturateTest()
+  commonAttrsBlurTest()
+  commonAttrsZIndexTest()
+  commonAttrsVisibilityTest()
+  commonAttrsClipShapeTest()
+  commonAttrsBackgroundImageTest()
+  commonAttrsBackgroundImagePixelMapTest()
+  commonAttrsPaddingTest()
+  commonAttrsTranslateTest()
+  commonAttrsRotateTest()
+  commonAttrsBrightnessTest()
+  commonAttrsBackgroundImageSizeTest()
+  commonAttrsBackgroundBlurStyleTest()
+  commonAttrsTransformCenterTest()
+  commonAttrsTransitionEffectOpacityTest()
+  commonAttrsTransitionEffectRotateTest()
+  commonAttrsTransitionEffectScaleTest()
+  commonAttrsTransitionTranslateTest()
+  commonAttrsTransitionEffectMoveTest()
+  commonAttrsDefaultFocusTest()
+  commonAttrsResponseRegionTest()
+  commonAttrsOverlayTest()
+  commonAttrsForegroundColorTest()
+  commonAttrsOffsetTest()
+  commonAttrsMarkAnchorTest()
+  commonAttrsBackgroundImagePositionTest()
+  commonAttrsFocusStatusTest()
+  commonAttrsAspectRatioTest()
+  commonAttrsLayoutWeightTest()
+  commonAttrsDisplayPriorityTest()
+  commonAttrsOutlineWidthTest()
+  commonAttrsRenderFitTest()
+  commonAttrsColorBlendTest()
+  commonAttrsTouchableTest()
+  commonAttrsRenderGroupTest()
+  commonAttrsSizeTest()
+  commonAttrsChainModeTest()
+  commonAttrsAccessibilityIdTest()
+  commonAttrsAccessibilityActionsTest()
+  commonAttrsAccessibilityRoleTest()
+  commonAttrsAccessibilityStateTest()
+  commonAttrsAccessibilityValueTest()
+  commonAttrsFocusOnTouchTest()
+  commonAttrsExpandSafeAreaTest()
+  commonAttrsTransitionEffectAsymmetricTest()
+  attributeSettingTest()
+  eventCallbackTest()
+  commonEventEventTest()
+  nodeTreeTest()
+  nodeTreeXComponentTest()
+  gridAdapterTest()
+  radioOnChangeCheckedTest()
+  unitLengthMetricsTest()
+  unitWidthPercentTest()
+  unitHeightPercentTest()
+  unitMarginPercentTest()
+  unitPaddingPercentTest()
+  unitBorderRadiusPercentTest()
+  toolsLayoutRectTest()
+  hybirdGetNodeHandleTest()
+  requirementPanGestureTest()
+  customComponentGetChildAtTest()
+  customComponentGetChildTotalCountTest()
+  customComponentGetFirstChildTest()
+  customComponentGetLastChildTest()
+  customComponentGetPreviousSiblingTest()
+  customComponentGetNextSiblingTest()
+  customComponentMeasuredSizeTest()
+  customComponentLayoutPositionTest()
+  customComponentMeasureNodeTest()
+  customComponentGetContextDrawCanvasTest()
+  customComponentDrawContextGetSizeTest()
+  customComponentEventOnDrawTest()
+  customComponentRegisterNodeCustomEventTest()
+  customComponentUnRegisterNodeCustomEventTest()
+  customComponentLayoutConstraintDisposeTest()
+  customComponentLayoutConstraintTest()
+  customDialogSetContentTest()
+  customDialogRemoveContentTest()
+  customDialogSetContentAlignmentTest()
+  customDialogResetContentAlignmentTest()
+  customDialogSetModalModeTest()
+  customDialogSetAutoCancelTest()
+  customDialogSetMaskTest()
+  customDialogSetBackgroundColorTest()
+  customDialogSetCornerRadiusTest()
+  customDialogSetGridColumnCountTest()
+  customDialogEnableCustomAnimationTest()
+  customDialogShowTest()
+  progressTypeTest()
+  xComponentIdTest()
+  listScrollBarWidthTest()
+  listSpaceTest()
+  listAlignListItemTest()
+  listListNodeAdapterTest()
+  listInitialIndexTest()
+  listDividerTest()
+  listItemGroupSetHeaderTest()
+  listItemGroupSetFooterTest()
+  listItemGroupSetDividerTest()
+  listItemSwipeActionTest()
+  listScrollToIndex()
+  listChildrenMainSizeTest()
+  listNestedScrollEventTest()
+  listNestedScrollTest()
+  textInputOnTextSelectionAllChangeTest()
+  customComponentSecondaryLayoutTest()
+  requirementRouterPageStateTest()
+  resourceNapiValueTest()
+  animatorEventTest()
+  commonAttrsOutlineColorTest()
+  textSelectedBackgroundColorTest()
+  waterFlowScrollOffsetTest()
+}

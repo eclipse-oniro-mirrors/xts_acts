@@ -1,0 +1,44 @@
+{
+    "name": "@ohos/acts",
+    "description": "acts",
+    "version": "3.1",
+    "license": "Apache License 2.0",
+    "publishAs": "code-segment",
+    "segment": {
+        "destPath": "test/xts/acts"
+    },
+    "dirs": {},
+    "scripts": {},
+    "component": {
+        "name": "acts",
+        "subsystem": "xts",
+        "syscap": [],
+        "features": [],
+        "adapted_system_type": [
+            "mini",
+            "small",
+            "standard"
+        ],
+        "rom": "~256KB",
+        "ram": "0KB",
+        "deps": {
+            "components": [
+                "graphic_2d",
+                "graphic_surface",
+                "window_manager",
+                "zlib"
+            ],
+            "third_party": [
+                "libpng",
+                "glslang",
+                "spirv-tools",
+                "vk-gl-cts"
+            ]
+        },
+        "build": {
+            "sub_component": [ "//test/xts/acts/build:acts_lite" ],
+            "inner_kits": [],
+            "test": [ "//test/xts/acts/build:acts_group" ]
+        }
+    }
+}

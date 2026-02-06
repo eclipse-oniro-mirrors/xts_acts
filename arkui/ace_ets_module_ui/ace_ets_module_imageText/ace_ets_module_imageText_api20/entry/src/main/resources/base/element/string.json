@@ -1,0 +1,220 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name":"string_hello",
+      "value":"Hello"
+    },
+    {
+      "name":"string_world",
+      "value":"World"
+    },
+    {
+      "name":"message_arrive",
+      "value":"We will arrive at %s."
+    },
+    {
+      "name": "phone_entry_dsc",
+      "value": "i am an entry for phone"
+    },
+    {
+      "name": "phone_entry_main",
+      "value": "the phone entry ability"
+    },
+    {
+      "name": "entry_label",
+      "value": "ActsContextTest"
+    },
+    {
+      "name": "form_description",
+      "value": "my form"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "my whether"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "app_name",
+      "value": "Demo"
+    },
+    {
+      "name": "start_50",
+      "value": "50"
+    },
+    {
+      "name": "reason",
+      "value": "AI"
+    },
+    {
+      "name": "maxFontScale",
+      "value": "3"
+    },
+    {
+      "name": "minFontScale",
+      "value": "0.5"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "permission_read_paste_board",
+      "value": "123321"
+    },
+    {
+      "name": "fontFamily",
+      "value": "HarmonyOS Sans"
+    },
+    {
+      "name": "lineHeight",
+      "value": "20vp"
+    },
+    {
+      "name": "fontSize",
+      "value": "50"
+    },
+    {
+      "name": "long",
+      "value": "这是超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本 超长文本"
+    },
+    {
+      "name": "btn_fullscreen",
+      "value": "FullScreen screenshot"
+    },
+    {
+      "name": "RichEditor_addTextSpan",
+      "value": "创建不使用属性字符串构建的RichEditor组件."
+    },
+    {
+      "name": "Text_fontWeight",
+      "value": "400"
+    },
+    {
+      "name": "Text_fontWeight2",
+      "value": "900"
+    },
+    {
+      "name": "Text_fontWeight3",
+      "value": "800"
+    },
+    {
+      "name": "Text_fontWeight4",
+      "value": "1000"
+    },
+    {
+      "name": "Text_fontWeight_negativeNumber",
+      "value": "-100"
+    },
+    {
+      "name": "Text_fontWeight_str",
+      "value": "aaa"
+    },
+    {
+      "name": "letterSpacing_text",
+      "value": "10"
+    },
+    {
+      "name": "Text_height",
+      "value": "200"
+    },
+    {
+      "name": "Text_baseline_str",
+      "value": "aaa"
+    },
+    {
+      "name": "Text_baseline_str2",
+      "value": "0"
+    },
+    {
+      "name": "Text_baseline_str3",
+      "value": "50"
+    },
+    {
+      "name": "Text_baseline_str4",
+      "value": "50.5"
+    },
+    {
+      "name": "Text_baseline_negativeNumber",
+      "value": "-5"
+    },
+    {
+      "name": "Search_Create",
+      "value": "创建搜索组件"
+    },
+    {
+      "name": "Search_searchButton",
+      "value": "Search_Test"
+    },
+    {
+      "name": "Span_fontWeight",
+      "value": "800"
+    },
+    {
+      "name": "TextArea_fontWeight",
+      "value": "800"
+    },
+    {
+      "name": "TextInput_fontWeight",
+      "value": "800"
+    },
+    {
+      "name": "TextInput_letterSpacing_str",
+      "value": "aaa"
+    },
+    {
+      "name": "TextInput_letterSpacing_str2",
+      "value": "0"
+    },
+    {
+      "name": "TextInput_letterSpacing_str3",
+      "value": "20"
+    },
+    {
+      "name": "TextInput_letterSpacing_str4",
+      "value": "20.5"
+    },
+    {
+      "name": "TextInput_letterSpacing_negativeNumber",
+      "value": "-5"
+    },
+    {
+      "name": "Search_searchButton_Chinese",
+      "value": "搜索"
+    },
+    {
+      "name": "Search_searchButton_En",
+      "value": "Search"
+    },
+    {
+      "name": "RichEditor_addTextSpan_two",
+      "value": "RichEditor_addTextSpan_two"
+    }
+  ]
+}

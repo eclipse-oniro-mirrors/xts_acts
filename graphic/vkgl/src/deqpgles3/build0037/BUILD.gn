@@ -1,0 +1,95 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles3func0037") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles3BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles3
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+}
+
+ohos_moduletest_suite("ActsDeqpgles3Suite0037Test") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles30037TestSuite.cpp",
+    "../functional/Deqpgles3active_uniform_array_in_structTestCase.cpp",
+    "../functional/Deqpgles3active_uniform_basicTestCase.cpp",
+    "../functional/Deqpgles3active_uniform_basic_arrayTestCase.cpp",
+    "../functional/Deqpgles3active_uniform_basic_structTestCase.cpp",
+    "../functional/Deqpgles3active_uniform_multiple_basicTestCase.cpp",
+    "../functional/Deqpgles3active_uniform_multiple_basic_arrayTestCase.cpp",
+    "../functional/Deqpgles3active_uniform_multiple_nested_structs_arraysTestCase.cpp",
+    "../functional/Deqpgles3active_uniform_nested_structs_arraysTestCase.cpp",
+    "../functional/Deqpgles3active_uniform_struct_in_arrayTestCase.cpp",
+    "../functional/Deqpgles3active_uniform_unused_uniformsTestCase.cpp",
+    "../functional/Deqpgles3consistency_array_in_structTestCase.cpp",
+    "../functional/Deqpgles3consistency_basicTestCase.cpp",
+    "../functional/Deqpgles3consistency_basic_arrayTestCase.cpp",
+    "../functional/Deqpgles3consistency_basic_structTestCase.cpp",
+    "../functional/Deqpgles3consistency_multiple_basicTestCase.cpp",
+    "../functional/Deqpgles3consistency_multiple_basic_arrayTestCase.cpp",
+    "../functional/Deqpgles3consistency_multiple_nested_structs_arraysTestCase.cpp",
+    "../functional/Deqpgles3consistency_nested_structs_arraysTestCase.cpp",
+    "../functional/Deqpgles3consistency_struct_in_arrayTestCase.cpp",
+    "../functional/Deqpgles3consistency_unused_uniformsTestCase.cpp",
+    "../functional/Deqpgles3get_uniform_basicTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_array_in_structTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_basicTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_basic_arrayTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_basic_array_first_elem_without_bracketsTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_basic_structTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_multiple_basicTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_multiple_basic_arrayTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_multiple_nested_structs_arraysTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_nested_structs_arraysTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_struct_in_arrayTestCase.cpp",
+    "../functional/Deqpgles3indices_active_uniformsiv_unused_uniformsTestCase.cpp",
+    "../functional/Deqpgles3random_all_per_block_buffersTestCase.cpp",
+    "../functional/Deqpgles3random_all_shared_bufferTestCase.cpp",
+    "../functional/Deqpgles3random_basic_instance_arraysTestCase.cpp",
+    "../functional/Deqpgles3random_nested_structsTestCase.cpp",
+    "../functional/Deqpgles3random_nested_structs_arraysTestCase.cpp",
+    "../functional/Deqpgles3random_nested_structs_arrays_instance_arraysTestCase.cpp",
+    "../functional/Deqpgles3random_nested_structs_instance_arraysTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles3func0037" ]
+
+  cflags = [ "-Wno-error" ]
+}

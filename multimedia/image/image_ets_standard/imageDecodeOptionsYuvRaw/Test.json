@@ -1,0 +1,53 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw",
+        "module-name": "entry_test",
+        "shell-timeout": "300000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageDecodeOptionsYuvRawTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files/*",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test_tree_400.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_tree_411.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_tree_420.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_tree_422.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_tree_440.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_tree_444.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_treeodd_400.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_treeodd_411.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_treeodd_420.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_treeodd_422.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_treeodd_440.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test_treeodd_444.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/test2.arw ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/JPG-480360-YUV311.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/JPG-480361-YUV311.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/JPG-481360-YUV311.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files",
+                "./resource/image/JPG-481361-YUV311.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageDecodeOptionsYuvRaw/haps/entry_test/files"
+            ]
+        }
+    ]
+}

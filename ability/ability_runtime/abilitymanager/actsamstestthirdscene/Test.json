@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.actsamstestthirdscene",
+        "package-name": "com.example.actsamstestthirdscene"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAmsTestThirdSceneTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

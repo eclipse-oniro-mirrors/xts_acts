@@ -1,0 +1,7 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/WebViewControllerPart3",
+    "testability/pages/WebSecureDnsModeEnumTest"
+  ]
+}

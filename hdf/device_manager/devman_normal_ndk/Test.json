@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for deviceManager js normal app NDK Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "bundle-name": "com.acts.device_manager.normal",
+        "module-name": "com.acts.device_manager.normal",
+        "shell-timeout": "60000",
+        "testcase-timeout": 60000
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsDeviceManagerNormalAPPJSApiNdkTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }, {
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "power-shell setmode 602"
+        ]
+
+    }]
+}

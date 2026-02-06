@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Communication.IPC.Core",
+                    "SystemCapability.Communication.IPC"
+                ]
+            }
+        ]
+    }
+}

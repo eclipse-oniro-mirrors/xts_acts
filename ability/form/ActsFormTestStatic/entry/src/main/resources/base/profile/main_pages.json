@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/Index2",
+    "testform/pages/XtsFormLink",
+    "testform/pages/XtsFormComponent",
+    "testform/pages/XtsFormProvider",
+    "testform/pages/XtsFormInfo"
+  ]
+}

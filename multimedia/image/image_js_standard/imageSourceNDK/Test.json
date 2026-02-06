@@ -1,0 +1,76 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "testcase-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.imageSourceNDK",
+        "shell-timeout": "600000",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageSourceNdkJsTestMain.hap",
+                "ActsImageSourceNdkJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/moving_test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test_exif.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.png ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test_large.webp ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test_large.svg ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test_dng.dng ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.nrw ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.cr2 ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.arw ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.pef ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.raf ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.rw2 ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/moving_test_loop5.gif ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/moving_test_loop1.gif ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/moving_test_loop0.gif ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/text.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.ico ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.webp ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/all_auxtype.heic ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/CUVAHdr.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test_exif.png ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test_exif_v2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/testExif.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test.ico ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/food.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/food_notHW.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/food_notHW2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test_exif1.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files",
+                "./resource/image/test_exif_v3.heic ->/data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/haps/entry_test/*"
+            ],
+            "teardown-command": [
+                "rm -rf /data/app/el2/100/base/ohos.acts.multimedia.imageSourceNDK/*"
+            ]
+        }
+    ]
+}

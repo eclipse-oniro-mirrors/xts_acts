@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for intljs Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "testcase-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "ohos.intl.test",
+        "package-name": "ohos.intl.test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsIntlJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

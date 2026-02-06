@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "com.acts.ability.errcode2",
+        "module-name": "entry_test",
+        "testcase-timeout": "15000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBaseUIabilityErrorCodeTwoTest.hap",
+                "ActsErrcodeAssitHap.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "power-shell timeout -o 864000000"
+            ]
+        }
+    ]
+}

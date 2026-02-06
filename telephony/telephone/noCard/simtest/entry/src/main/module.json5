@@ -1,0 +1,62 @@
+/**
+ * Copyright (c) 2024 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+	"module": {
+		"name": "entry_test",
+		"type": "feature",
+		"description": "$string:module_test_desc",
+		"mainElement": "EntryAbility",
+		"deviceTypes": [],
+		"deliveryWithInstall": true,
+		"installationFree": false,
+		"pages": "$profile:main_pages",
+		"abilities": [
+			{
+				"name": "EntryAbility",
+				"srcEntry": "./ets/entryability/EntryAbility.ts",
+				"description": "$string:TestAbility_desc",
+				"icon": "$media:icon",
+				"label": "$string:TestAbility_label",
+				"exported": true,
+				"startWindowIcon": "$media:icon",
+				"startWindowBackground": "$color:start_window_background",
+				"skills": [
+					{
+						"actions": ["action.system.home"],
+						"entities": ["entity.system.home"]
+					}
+				]
+			}
+		],
+		"requestPermissions": [
+			{
+				"name": "ohos.permission.WRITE_CONTACTS"
+			},
+			{
+				"name": "ohos.permission.READ_CONTACTS"
+			},
+			{
+				"name": "ohos.permission.SET_TELEPHONY_STATE"
+			},
+			{
+				"name": "ohos.permission.GET_TELEPHONY_STATE"
+			},
+			{
+				"name": "ohos.permission.GET_PHONE_NUMBERS"
+			}
+		]
+	}
+}

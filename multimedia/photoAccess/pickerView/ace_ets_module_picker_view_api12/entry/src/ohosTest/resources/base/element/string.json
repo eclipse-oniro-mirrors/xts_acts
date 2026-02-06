@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "module_desc",
+      "value": "Dynamic Style XTS Test"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "Dynamic Style XTS Test"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Dynamic Style XTS Test"
+    },
+    {
+      "name": "font_family_regular",
+      "value": "HarmonyOS Sans SC-Regular"
+    }
+  ]
+}

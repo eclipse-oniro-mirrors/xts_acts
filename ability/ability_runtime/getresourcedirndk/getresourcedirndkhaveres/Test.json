@@ -1,0 +1,32 @@
+{
+    "description": "Configuration for capi ability runtime Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.getresourcedirndkhaverestest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout":"30000",
+        "compile-mode":"esmodule"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsGetResourceDirNdkHaveResMainTest-application-default-signed.hap",
+                "ActsGetResourceDirNdkHaveResMainTest-entry-default-signed.hap",
+                "ActsGetResourceDirNdkHaveResMainTest-feature-default-signed.hap",
+                "ActsGetResourceDirNdkHaveResMainTest-shared-default-signed.hsp",
+                "ActsGetResourceDirNdkHaveResTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

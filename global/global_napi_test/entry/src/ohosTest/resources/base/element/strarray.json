@@ -1,0 +1,15 @@
+{
+  "strarray": [
+    {
+      "name": "size",
+      "value": [
+        {
+          "value": "small"
+        },
+        {
+          "value": "big"
+        }
+      ]
+    }
+  ]
+}
