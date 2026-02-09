@@ -1,0 +1,38 @@
+# Copyright (C) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+group("web") {
+  testonly = true
+  deps = [
+    "DFX:DFXTest",
+    "application_interworking:ActsApplicationInterworkingTest",
+    "network_management:NetWorkManagement",
+    "page_interaction:pageInteraction",
+    "web_connectNative:webConnectNative",
+    "web_content_processing:WebContentProcessing",
+    "web_device:WebDeviceService",
+    "web_dfx:WebDFXTest",
+    "web_engine_version:WebEngineVersion",
+    "web_jump:WebJump",
+    "web_life_cycle:webLifeCycle",
+    "web_load:WebLoad",
+    "web_multi_media:WebMultimedia",
+    "web_multimedia:ActsWebMultiMediaTest",
+    "web_net:ActsWebNetTest",
+    "web_page_document_processing:webPageDocumentProcessing",
+    "web_page_rendering:webPageRenderingTest",
+    "web_security_privacy:WebSecurityPrivacy",
+    "web_storage:WebStorage",
+    "web_switch_core:ActsWebSwitchCoreTest",
+  ]
+}

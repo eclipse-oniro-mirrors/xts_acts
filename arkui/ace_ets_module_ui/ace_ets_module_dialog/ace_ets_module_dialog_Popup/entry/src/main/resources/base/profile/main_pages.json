@@ -1,0 +1,12 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/promptAction/bindPopupOffset",
+    "MainAbility/pages/Menu/bindPopup",
+    "MainAbility/pages/popup/arrowOffset",
+    "MainAbility/pages/popup/isVisible", 
+    "MainAbility/pages/bindTips/bindTips1",
+    "MainAbility/pages/promptAction/Popup",
+    "MainAbility/pages/bindTips/bindTips2"
+  ]
+}

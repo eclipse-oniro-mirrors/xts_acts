@@ -1,0 +1,15 @@
+{
+	"CommonInfo":{
+		"project.ide.version":"6.0.0.31",
+		"current.select.product":"default",
+		"current.select.buildMode":""
+	},
+	"BuildOptions":{
+		"SELECT_BUILD_PRODUCT":"default",
+		"BUNDLE_NAME":"com.open.harmony.actsaceloadstatusenhancedtesttwo.static",
+		"BUILD_PATH":{
+			"OUTPUT_PATH":"C:\\Users\\chenmo\\Desktop\\ace_load_status_enhanced_two_static\\build\\outputs\\default"
+		},
+		"SELECT_BUILD_MODE":""
+	}
+}

@@ -1,0 +1,24 @@
+{
+  "float":[
+    {
+      "name":"font_hello",
+      "value":"15px"
+    },
+    {
+      "name":"font_world",
+      "value":"20.0fp"
+    },
+    {
+      "name": "BarMode_Test",
+      "value": "8.00fp"
+    },
+    {
+      "name": "Padding_Test",
+      "value": "10.00vp"
+    },
+    {
+      "name": "offset",
+      "value": "20"
+    }
+  ]
+}

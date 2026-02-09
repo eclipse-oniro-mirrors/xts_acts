@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/DragController/createDragAction",
+    "MainAbility/pages/DragController/dragAdaptation",
+    "MainAbility/pages/DragController/setForegroundColor",
+    "MainAbility/pages/onChildTouchTest/parentX"
+  ]
+}

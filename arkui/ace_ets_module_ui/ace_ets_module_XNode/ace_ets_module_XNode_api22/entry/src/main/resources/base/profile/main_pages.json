@@ -1,0 +1,20 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/ReactiveBuilderNode/FlushStateNodeTest",
+        "MainAbility/pages/ReactiveBuilderNode/FrameNodeNullTest",
+        "MainAbility/pages/ReactiveBuilderNode/InheritFreezeOptionsNodeFalseTest",
+        "MainAbility/pages/ReactiveBuilderNode/InheritFreezeOptionsNodeTrueTest",
+        "MainAbility/pages/ReactiveBuilderNode/IsDisposedNodeTest",
+        "MainAbility/pages/ReactiveBuilderNode/postInputEventTest",
+        "MainAbility/pages/ReactiveBuilderNode/postTouchEventTest",
+        "MainAbility/pages/ReactiveBuilderNode/ReuseRecycleNodeTest",
+        "MainAbility/pages/ReactiveBuilderNode/UpdateConfigurationNodeTest",
+        "MainAbility/pages/ReactiveComponentContent/FlushStateContentTest",
+        "MainAbility/pages/ReactiveComponentContent/InheritFreezeOptionsContentFalseTest",
+        "MainAbility/pages/ReactiveComponentContent/InheritFreezeOptionsContentTrueTest",
+        "MainAbility/pages/ReactiveComponentContent/IsDisposedContentTest",
+        "MainAbility/pages/ReactiveComponentContent/ReuseRecycleContentTest",
+        "MainAbility/pages/ReactiveComponentContent/UpdateConfigurationContentTest"
+    ]
+}

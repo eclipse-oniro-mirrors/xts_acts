@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for ActsNnrtE2ETest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "shell-timeout": "1800000",
+        "bundle-name": "net.openvalley.acts_nnrt_e2e_test",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNnrtE2ETest.hap",
+                "ActsNnrtE2EMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

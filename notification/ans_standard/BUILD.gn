@@ -1,0 +1,67 @@
+# Copyright (c) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//build/ohos_var.gni")
+
+group("ans_standard") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "actsNotificationAnsPriorityTest:ActsNotificationPriorityTest",
+      "actsNotificationAnsPriorityTestStatic:ActsNotificationAnsPriorityStaticTest",
+      "actsNotificationAnsReduceAlertsTest:ActsNotificationAnsReduceAlertsTest",
+      "actsNotificationAnsReduceAlertsTestStatic:ActsNotificationAnsReduceAlertsStaticTest",
+      "actsNotificationAnsThreePartyWatchTest:ActsNotificationThreePartyWatchTest",
+      "actsNotificationAnsThreePartyWatchThirdPartyNoAbilityTest:ActsNotificationAnsThreePartyWatchThirdPartyNoAbilityTest",
+      "actsNotificationAnsThreePartyWatchThirdPartyTest:ActsNotificationAnsThreePartyWatchThirdPartyTest",
+      "actsNotificationBadgeTest:ActsNotificationBadgeTest",
+      "actsNotificationBadgeTestStatic:ActsNotificationBadgeStaticTest",
+      "actsNotificationClassEmitterTest:ActsNotificationClassEmitterTest",
+      "actsNotificationClassEmitterTestStatic:ActsNotificationClassEmitterStaticTest",
+      "actsNotificationDistributedTest:ActsNotificationDistributedTest",
+      "actsNotificationDistributedTestStatic:ActsNotificationDistributedStaticTest",
+      "actsNotificationEmitterNewTest:ActsNotificationEmitterNewTest",
+      "actsNotificationEmitterNewTestStatic:ActsNotificationEmitterNewStaticTest",
+      "actsNotificationEmitterTest:ActsNotificationEmitterTest",
+      "actsNotificationEmitterTestStatic:ActsNotificationEmitterStaticTest",
+      "actsNotificationGeofenceLiveViewTest:ActsNotificationGeofenceLiveViewTest",
+      "actsNotificationGeofenceLiveViewTestStatic:ActsNotificationGeofenceLiveViewStaticTest",
+      "actsNotificationInterfaceChangeTest:ActsNotificationInterfaceChangeTest",
+      "actsNotificationInterfaceChangeTestStatic:ActsNotificationInterfaceChangeStaticTest",
+      "actsNotificationManagerSlotTest:ActsNotificationManagerSlotTest",
+      "actsNotificationManagerSlotTestStatic:ActsNotificationManagerSlotStaticTest",
+      "actsNotificationNDKEnableTest:ActsNotificationNDKEnableTest",
+      "actsNotificationPublishTest:ActsNotificationPublishTest",
+      "actsNotificationPublishTestStatic:ActsNotificationPublishStaticTest",
+      "actsNotificationRequestTest:ActsNotificationRequestTest",
+      "actsNotificationRequestTestStatic:ActsNotificationRequestStaticTest",
+      "actsNotificationSecondaryDirectoryTest:ActsNotificationSecondaryDirectoryTest",
+      "actsNotificationSecondaryDirectoryTestStatic:ActsNotificationSecondaryDirectoryStaticTest",
+      "actsNotificationShowTest:ActsNotificationShowTest",
+      "actsNotificationSlotTest:ActsNotificationSlotTest",
+      "actsNotificationSlotTestStatic:ActsNotificationSlotStaticTest",
+      "actsNotificationSystemAPITest:ActsNotificationSystemAPITest",
+      "actsNotificationSystemAPITestStatic:ActsNotificationSystemAPIStaticTest",
+      "actsNotificationSystemLiveViewTest:ActsNotificationSystemLiveViewTest",
+      "actsNotificationSystemLiveViewTestStatic:ActsNotificationSystemLiveViewStaticTest",
+      "actsNotificationThirdPartyWatchTestStatic:actsNotificationThirdPartyWatchStaticTest",
+      "actsNotificationVibrationSoundTest:ActsNotificationVibrationSoundTest",
+      "actsNotificationVibrationSoundTestStatic:ActsNotificationVibrationSoundStaticTest",
+      "actsNotificationWantUriTest:ActsNotificationWantUriTest",
+      "actsNotificationWantUriTestStatic:ActsNotificationWantUriStaticTest",
+      "notificationManager:notificationManager",
+      "notificationManagerStatic:NotificationManagerStaticTest",
+      "actsAnsNotificationBadgeNoSystemTest:ActsNotificationAnsBadgeNoSystemTest",
+      "actsAnsNotificationBadgeNoSystemTestStatic:ActsNotificationAnsBadgeNoSystemStaticTest"
+    ]
+  }
+}

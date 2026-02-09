@@ -1,0 +1,10 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 定义遮罩 -->
+  <defs>
+    <mask id="colorMask" maskUnits="objectBoundingBox" maskContentUnits="userSpaceOnUse">
+	 <ellipse cx="100" cy="75" rx="80" ry="50" fill="white" />
+    </mask>
+  </defs>
+
+  <rect  x="0" y="0" width="200" fill="red" height="200" mask="url(#colorMask)" />
+</svg>

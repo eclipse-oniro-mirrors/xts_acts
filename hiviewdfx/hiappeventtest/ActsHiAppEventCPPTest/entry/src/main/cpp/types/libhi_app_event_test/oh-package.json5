@@ -1,0 +1,6 @@
+{
+  "name": "libhi_app_event_test.so",
+  "types": "./index.d.ts",
+  "version": "1.0.0",
+  "description": "Please describe the basic information."
+}

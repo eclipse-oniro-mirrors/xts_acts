@@ -1,0 +1,89 @@
+{
+    "description": "Configuration for camerastandard Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "3000000",
+        "bundle-name": "ohos.acts.multimedia.photoAccess.supp.xts",
+        "shell-timeout": "600000",
+        "testcase-timeout": 300000,
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff",
+                "rm -rf /storage/media/100/local/files/Videos/*",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.photoAccess.supp.xts/haps/entry_test/files/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.photoAccess.supp.xts/haps/entry_test/files/",
+                "mkdir -p /data/tmp/case",
+                "chmod -R 777 /data/tmp/case "
+            ],
+            "teardown-command": [
+                "power-shell setmode 600",
+                "rm -rf /data/app/el2/100/database/ohos.acts.multimedia.photoAccess.supp.xts/*",
+                "kill -9 `pidof ohos.acts.multimedia.photoAccess.supp.xts`",
+                "scanner",
+                "sleep 5"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/medialibrary/01.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoAccess.supp.xts/haps/entry_test/files/",
+                "./resource/medialibrary/01.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.photoAccess.supp.xts/haps/entry_test/files/",
+                "./resource/medialibrary/01.png ->/data/app/el2/100/base/ohos.acts.multimedia.photoAccess.supp.xts/haps/entry_test/files/",
+                "./resource/medialibrary/01.mpeg ->/data/app/el2/100/base/ohos.acts.multimedia.photoAccess.supp.xts/haps/entry_test/files/",
+                "./resource/medialibrary/01.gif ->/data/app/el2/100/base/ohos.acts.multimedia.photoAccess.supp.xts/haps/entry_test/files/",
+                "./resource/medialibrary/stm_RAW.dng ->/data/app/el2/100/base/ohos.acts.multimedia.photoAccess.supp.xts/haps/entry_test/files/",
+                "./resource/media/1vp9_320x240_30.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.photoAccess.supp.xts/haps/entry_test/files/",
+                "./resource/medialibrary/01.jpg ->/data/tmp/case",
+                "./resource/medialibrary/test_exif.jpg ->/data/tmp/case",
+                "./resource/medialibrary/01.gif ->/data/tmp/case",
+                "./resource/medialibrary/01.png ->/data/tmp/case",
+                "./resource/medialibrary/01.mpeg ->/data/tmp/case",
+                "./resource/medialibrary/stm_RAW.dng ->/data/tmp/case"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mediatool send /data/tmp/case/01.jpg",
+                "mediatool send /data/tmp/case/test_exif.jpg",
+                "mediatool send /data/tmp/case/01.gif",
+                "mediatool send /data/tmp/case/01.png",
+                "mediatool send /data/tmp/case/01.mpeg",
+                "mediatool send /data/tmp/case/stm_RAW.dng"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600",
+                "hilog -Q pidon",
+                "hilog -Q domainon",
+                "rm -rf /data/tmp/case/*",
+                "rm -rf /storage/media/100/local/files/Pictures",
+                "rm -rf /storage/media/100/local/files/Videos",
+                "rm -rf /storage/media/100/local/files/Camera",
+                "rm -rf /storage/media/100/local/files/Audios",
+                "rm -rf /storage/media/100/local/files/Docs/Documents/*",
+                "rm -rf /storage/media/100/local/files/Docs/Documents/.*",
+                "rm -rf /storage/media/100/local/files/entry_test/*",
+                "rm -rf /storage/media/100/local/files/Photo/*",
+                "sleep 5",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "kill -9 `pidof com.ohos.medialibrary.medialibrarydata`"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsPhotoAccessXtsSuppTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

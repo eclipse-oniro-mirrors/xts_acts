@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/index/second",
+    "MainAbility/pages/Refresh/refresh",
+    "MainAbility/pages/Refresh/refresh_modifier"
+  ]
+}

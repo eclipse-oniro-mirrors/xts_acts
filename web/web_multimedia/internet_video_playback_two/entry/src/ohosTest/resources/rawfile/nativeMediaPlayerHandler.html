@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单个播放源：preload-metadata</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+<div>
+    <button onclick="buttonLoad()">load()</button>
+    <button id="playButton" onclick="getVideo('bodyId').play()">play()</button>
+    <button onclick="getVideo('bodyId').pause()">pause()</button>
+</div>
+<video  id='bodyId' controls preload='metadata' muted
+        controlslist='noremoteplayback'>
+    <source id='mp4'
+            src='https://www.runoob.com/try/demo_source/movie.mp4'
+            type='video/mp4'>
+    <source  src='https://www-file.huawei.com/-/media/corp2020/videos/giv/2030/green-ict/green-ict-cn-1080p.mp4' >
+</video>
+</body>
+</html>
+<script>
+    function getVideo(id) {
+        return document.getElementById(id);
+    }
+    function buttonLoad() {
+        getVideo('bodyId').load();
+        return true;
+    }
+     function buttonPlay() {
+      document.getElementById('playButton').click();
+        return 'play';
+    }
+     function buttonPause() {
+        getVideo('bodyId').pause();
+        return 'pause';
+    }
+    function setVolume() {
+        getVideo('bodyId').muted = false;
+        getVideo('bodyId').volume = 0.5;
+        return 'volume h5';
+    }1
+    function jumpToEnd() {
+        let durationTime = getVideo('bodyId').duration;
+        if (durationTime > 0) {
+            getVideo('bodyId').currentTime = durationTime - 2;
+        }
+
+    }
+    function setMutedFalse() {
+        getVideo('bodyId').muted = false;
+        getVideo('bodyId').volume = 0.5;
+        getVideo('bodyId').muted = true;
+        return 'setMuted';
+    }
+     function setSeek() {
+        getVideo('bodyId').currentTime = 50;
+        return 'setSeek';
+    }
+     function setPlayBackRate() {
+        getVideo('bodyId').playbackRate = 2;
+        return 'setPlayBackRate';
+    }
+</script>
+
+<style>
+    .btnGroup{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .object-container{
+        margin-bottom: 10px;
+    }
+</style>
+<style>
+
+    a { color: #ffffe0;}
+   video {
+      border: 1px solid black;
+      padding: 0; margin: 0;
+      width: 427px;
+      height: 240px;
+      background-color: black;
+      margin: auto;
+    }
+    table { border: none;  margin-top: 1ex;}
+    th {  text-align: right; }
+    caption { background-color: #ffffe0; color: black;}
+    thead th {  background-color: #ffffe0; color: black;}
+    #events td { text-align: right; width: 4ex;}
+    #properties td { }
+    hr { clear: both; margin-top: 2em;}
+    .true { background-color: #360; color: #ffffe0; }
+    .false { background-color: #603; color: #ffffe0; }
+
+</style>

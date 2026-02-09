@@ -1,0 +1,164 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name":"string_hello",
+      "value":"Hello"
+    },
+    {
+      "name":"string_world",
+      "value":"World"
+    },
+    {
+      "name":"message_arrive",
+      "value":"We will arrive at %s."
+    },
+	{
+		"name": "phone_entry_dsc",
+		"value": "i am an entry for phone"
+	},
+	{
+		"name": "phone_entry_main",
+		"value": "the phone entry ability"
+	},
+	{
+		"name": "entry_label",
+		"value": "ActsContextTest"
+	},
+	{
+		"name": "form_description",
+		"value": "my form"
+	},
+	{
+		"name": "serviceability_description",
+		"value": "my whether"
+	},
+	{
+		"name": "description_application",
+		"value": "demo for test"
+	},
+	{
+		"name": "app_name",
+		"value": "Demo"
+	},
+    {
+      "name": "IsInSandboxPromise_desc",
+      "value": "description"
+    },
+    {
+      "name": "IsInSandboxPromise_label",
+      "value": "label"
+    },
+    {
+      "name": "IsInSandboxCallback_desc",
+      "value": "description"
+    },
+    {
+      "name": "IsInSandboxCallback_label",
+      "value": "label"
+    },
+    {
+      "name": "GetDLPPermissionInfoPromise_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetDLPPermissionInfoPromise_label",
+      "value": "label"
+    },
+    {
+      "name": "GetDLPPermissionInfoCallback_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetDLPPermissionInfoCallback_label",
+      "value": "label"
+    },
+    {
+      "name": "OnOpenDlpFile_desc",
+      "value": "description"
+    },
+    {
+      "name": "OnOpenDlpFile_label",
+      "value": "label"
+    },
+    {
+      "name": "OffOpenDlpFile_desc",
+      "value": "description"
+    },
+    {
+      "name": "OffOpenDlpFile_label",
+      "value": "label"
+    },
+    {
+      "name": "GetDLPFileAccessRecordsCallback_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetDLPFileAccessRecordsCallback_label",
+      "value": "label"
+    },
+    {
+      "name": "GetDLPFileAccessRecordsPromise_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetDLPFileAccessRecordsPromise_label",
+      "value": "label"
+    },
+    {
+      "name": "GetRetentionSandboxListCallback_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetRetentionSandboxListCallback_label",
+      "value": "label"
+    },
+    {
+      "name": "GetRetentionSandboxListPromise_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetRetentionSandboxListPromise_label",
+      "value": "label"
+    },
+    {
+      "name": "SandboxConfigPromise_desc",
+      "value": "description"
+    },
+    {
+      "name": "SandboxConfigPromise_label",
+      "value": "label"
+    },
+    {
+      "name": "SetRetentionStateCallback_desc",
+      "value": "description"
+    },
+    {
+      "name": "SetRetentionStateCallback_label",
+      "value": "label"
+    },
+    {
+      "name": "SetRetentionStatePromise_desc",
+      "value": "description"
+    },
+    {
+      "name": "SetRetentionStatePromise_label",
+      "value": "label"
+    }
+  ]
+}

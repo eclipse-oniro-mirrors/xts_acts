@@ -1,0 +1,45 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#ifndef INPUTMETHODTESTAPI20_INPUTMETHODPRIVATECOMMANDCAPITEST_H
+#define INPUTMETHODTESTAPI20_INPUTMETHODPRIVATECOMMANDCAPITEST_H
+
+#include "napi/native_api.h"
+#include <js_native_api_types.h>
+#include <napi/native_api.h>
+#include <vector>
+
+void AddInputMethodPrivateCommandCapiTest(std::vector<napi_property_descriptor> &descData);
+
+napi_value TestOhPrivateCommandSetKeyNullPointer(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandSetKeyOk(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandSetBoolValueNullPointer(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandSetIntValueNullPointer(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandSetStrValueNullPointer(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetKeyNullPointer(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetKeyOk(napi_env env, napi_callback_info info);
+napi_value TestOHPrivateCommandGetValueTypeNullPointer(napi_env env, napi_callback_info info);
+napi_value TestOHPrivateCommandGetValueTypeOk(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetBoolValueNullPointer(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetBoolValueOk(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetBoolValueQueryFailed(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetIntValueNullPointer(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetIntValueOk(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetIntValueQueryFailed(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetStrValueNullPointer(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetStrValueOk(napi_env env, napi_callback_info info);
+napi_value TestOhPrivateCommandGetStrValueQueryFailed(napi_env env, napi_callback_info info);
+
+#endif //INPUTMETHODTESTAPI20_INPUTMETHODPRIVATECOMMANDCAPITEST_H

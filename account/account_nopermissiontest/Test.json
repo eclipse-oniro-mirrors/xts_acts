@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.account.nopermission",
+        "package-name": "ohos.acts.account.nopermission"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAccountNoPermissionTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "power-shell timeout -o 86400000",
+                "hidumper -s 3301 -a -t"
+            ]
+        }
+    ]
+}

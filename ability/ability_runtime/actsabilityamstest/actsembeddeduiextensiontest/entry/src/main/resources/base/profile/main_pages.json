@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/extension",
+    "entryembeddeduiextability3/pages/EntryEmbeddedUIExtAbility3Page",
+    "entryembeddeduiextability4/pages/EntryEmbeddedUIExtAbility4Page",
+    "entryembeddeduiextability5/pages/EntryEmbeddedUIExtAbility5Page",
+    "entryembeddeduiextability6/pages/EntryEmbeddedUIExtAbility6Page",
+    "pages/EtyD"
+  ]
+}

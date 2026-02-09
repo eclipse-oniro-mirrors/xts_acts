@@ -1,0 +1,9 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/WebViewNativeMediaPlayerEnableFalse",
+    "testability/pages/WebViewNativeMediaPlayerHandlerEnhanced",
+    "testability/pages/WebViewNativeMediaPlayerHandler4",
+    "testability/pages/WebViewNativeMediaUpdateRect"
+  ]
+}

@@ -1,0 +1,87 @@
+'use static';
+/**
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { MessageManager, Callback, Message } from '../../../../common/MessageManager';
+import {
+  Entry,
+  Text,
+  Column,
+  Component,
+  Button,
+  ClickEvent,
+  Scroller,
+  Scroll,
+  ForEach,
+  Search,
+  Color,
+  EdgeEffect,
+  ColumnOptions,
+  GridRow,
+  GutterOption,
+  BreakPoints,
+  GridRowColumnOption,
+  GridRowOptions,
+  GridRowDirection,
+  GridCol,
+  GridRowSizeOption,
+  BreakpointsReference,
+  Row,
+  GridColOptions
+} from '@ohos.arkui.component'
+import { State, AppStorage } from '@ohos.arkui.stateManagement'
+
+@Entry
+@Component
+struct Grid_Row_Length_String {
+  @State addLength: string = '0';
+  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
+  @State currentBp: string = 'unknown';
+  messageManager: MessageManager<string> = new MessageManager<string>();
+
+  onPageShow() {
+    console.info('Grid_Row_Length_String  onPageShow');
+    AppStorage.setOrCreate<MessageManager<string>>("messageManager", this.messageManager);
+    let callback: Callback<string> = (message: Message<string>) => {
+      console.error('message = ' + message.name + "--" + message.value);
+      if (message.name == 'addLength') {
+        this.addLength = message.value;
+      }
+    };
+    this.messageManager.registerCallback(callback);
+  }
+
+  build() {
+    Column() {
+      GridRow({
+        columns: 6,
+        gutter: { x: this.addLength, y: 10 } as GutterOption,
+        breakpoints: { value: ["50vp", "100vp", "150vp", "200vp", "300vp"],
+          reference: BreakpointsReference.ComponentSize } as BreakPoints,
+        direction: GridRowDirection.Row
+      } as GridRowOptions) {
+        ForEach(this.bgColors, (color: Color, index?: int) => {
+          GridCol({ span: 1 }) {
+
+          }.borderColor(color).borderWidth(2).key("Length_String_0" + index).height(50)
+        })
+      }.width("100%").height("100%")
+      .onBreakpointChange((breakpoint:string) => {
+        this.currentBp = breakpoint
+      })
+    }.width(300).height(500)
+    .border({ color: '#880606', width: 2 })
+  }
+}

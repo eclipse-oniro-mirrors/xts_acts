@@ -1,0 +1,14 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/List/ListBackToTop",
+        "MainAbility/pages/Grid/GridBackToTop",
+        "MainAbility/pages/Scroll/ScrollBackToTop",
+        "MainAbility/pages/List/focusWrapModeList",
+        "MainAbility/pages/List/focusWrapModeList2",
+        "MainAbility/pages/Grid/focusWrapDefault",
+        "MainAbility/pages/Grid/focusWrapWrap",
+        "MainAbility/pages/List/listAction",
+        "MainAbility/pages/List/listActionWithError"
+    ]
+}

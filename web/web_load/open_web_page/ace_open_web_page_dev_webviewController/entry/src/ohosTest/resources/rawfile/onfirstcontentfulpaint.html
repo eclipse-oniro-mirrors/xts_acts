@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>这里是直出的内容</h1>
+    <img src="https://avatars3.githubusercontent.com/u/8401872" alt="">
+    <hr/>
+    <h1>下面是异步加载的内容</h1>
+    <img src="icon.png" alt="icon" id="imgs">
+    <h2 id="title"></h2>
+    <div id="app"></div>
+    <script>
+        let ele = document.getElementById("imgs");
+        let loadImage;
+        ele.onload = function() {
+            loadImage = 'load complete';
+        };
+        function test() {
+            backToEts.test('backToEts');
+        }
+        setTimeout(() => {
+            for (let i = 0; i < 200; i++) {
+                let newDiv = document.createElement('div');
+                let newContent = document.createTextNode('异步回来的内容 ' + i);
+                newDiv.appendChild(newContent);
+                document.querySelector('#app').appendChild(newDiv);
+            }
+            document.querySelector('#title').innerText = '第 1 次异步';
+        }, 200);
+        setTimeout(() => {
+            for (let i = 0; i < 200; i++) {
+                let newDiv = document.createElement('div');
+                let newContent = document.createTextNode('异步回来的更多内容 ' + i);
+                newDiv.appendChild(newContent);
+                document.querySelector('#app').appendChild(newDiv);
+            }
+            document.querySelector('#title').innerText = '第 2 次异步，更多的内容';
+        }, 200);
+    </script>
+</body>
+</html>

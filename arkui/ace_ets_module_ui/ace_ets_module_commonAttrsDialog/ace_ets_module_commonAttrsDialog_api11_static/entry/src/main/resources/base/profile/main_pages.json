@@ -1,0 +1,23 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/menuControl/BindMenu",
+    "MainAbility/pages/popupControl/customPopup",
+    "MainAbility/pages/popupControl/popup",
+    "MainAbility/pages/menu/menuBlurStyle",
+    "MainAbility/pages/menu/ModalBlurStyle",
+    "MainAbility/pages/popupControl/popupArrow",
+    "MainAbility/pages/bindSheet/Index",
+    "MainAbility/pages/popupControl/popupfirst",
+    "MainAbility/pages/menuControl/bindContextMenu",
+    "MainAbility/pages/popupControl/CustomPopupOptions",
+    "MainAbility/pages/popupControl/CustomPopupOptionsFalse",
+    "MainAbility/pages/popupControl/CustomPopupOptionsTrue",
+    "MainAbility/pages/popupControl/PopupOptions",
+    "MainAbility/pages/popupControl/PopupOptionsFalse",
+    "MainAbility/pages/popupControl/PopupOptionsTrue",
+    "MainAbility/pages/menuControl/BindMenu1",
+    "MainAbility/pages/menuControl/aboutToDisappear"
+
+  ]
+}

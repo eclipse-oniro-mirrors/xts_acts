@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Video Pause Test</title>
+</head>
+
+<body>
+    <video controls height="360" id="myVideo1" width="640" >
+        <source
+            src="https://vd2.bdstatic.com/mda-pm68mkxgax2mwydj/sc/cae_h264/1701958902456543503/mda-pm68mkxgax2mwydj.mp4?v_from_s=hkapp-haokan-hbf&auth_key=1703753049-0-0-952d747c497ad77ea1b953d042357beb&bcevod_channel=searchbox_feed&pd=1&cr=2&cd=0&pt=3&logid=2649216236&vid=7962020702593201339&klogid=2649216236&abtest="
+            type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <video controls height="360" id="myVideo2" width="640" >
+        <source
+            src="https://vd2.bdstatic.com/mda-pm68mkxgax2mwydj/sc/cae_h264/1701958902456543503/mda-pm68mkxgax2mwydj.mp4?v_from_s=hkapp-haokan-hbf&auth_key=1703753049-0-0-952d747c497ad77ea1b953d042357beb&bcevod_channel=searchbox_feed&pd=1&cr=2&cd=0&pt=3&logid=2649216236&vid=7962020702593201339&klogid=2649216236&abtest="
+            type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <audio controls id="myAudio" >
+        <source
+            src="https://freetyst.nf.migu.cn/public/product7th/productB25/2020/08/1013/2012年12月05日海蝶唱片内容准入8首/歌曲下载/MP3_40_16_Stero/60058623031134052.mp3?Key=70af7c02a4856b85&Tim=1705634075498&channelid=00&msisdn=8700c70cf0e44da784421de296a1eb9f&CI=600586230312600902000009525658&F=000009"
+            type="audio/mpeg">
+    </audio>
+    <script>
+        function pauseVideo1() {
+            let videoElement = document.getElementById('myVideo1');
+            videoElement.pause();
+        }
+        function playVideo1() {
+            let videoElement = document.getElementById('myVideo1');
+            videoElement.play();
+        }
+        function pauseVideo2() {
+            let videoElement = document.getElementById('myVideo2');
+            videoElement.pause();
+        }
+        function playVideo2() {
+            let videoElement = document.getElementById('myVideo2');
+            videoElement.play();
+        }
+        function playAudio() {
+            let videoElement = document.getElementById('myAudio');
+            videoElement.play();
+        }
+        function enterFullScreen1() {
+            let videoElement = document.getElementById('myVideo1');
+            if (!videoElement.fullscreenElement) {
+                if (videoElement.requestFullscreen) {
+                    videoElement.requestFullscreen();
+                } else if (videoElement.mozRequestFullScreen) {
+                    videoElement.mozRequestFullScreen();
+                } else if (videoElement.webkitRequestFullscreen) {
+                    videoElement.webkitRequestFullscreen();
+                } else if (videoElement.msRequestFullscreen) {
+                    videoElement.msRequestFullscreen();
+                }
+            }
+        }
+        function exitFullScreen1() {
+            let videoElement = document.getElementById('myVideo1');
+            if (videoElement.exitFullscreen) {
+                videoElement.exitFullscreen();
+            } else if (videoElement.mozCancelFullScreen) { /* Firefox */
+                videoElement.mozCancelFullScreen();
+            } else if (videoElement.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                videoElement.webkitExitFullscreen();
+            } else if (videoElement.msExitFullscreen) { /* IE/Edge */
+                videoElement.msExitFullscreen();
+            }
+        }
+        function enterFullScreen2() {
+            let videoElement = document.getElementById('myVideo2');
+            if (!videoElement.fullscreenElement) {
+                if (videoElement.requestFullscreen) {
+                    videoElement.requestFullscreen();
+                } else if (videoElement.mozRequestFullScreen) {
+                    videoElement.mozRequestFullScreen();
+                } else if (videoElement.webkitRequestFullscreen) {
+                    videoElement.webkitRequestFullscreen();
+                } else if (videoElement.msRequestFullscreen) {
+                    videoElement.msRequestFullscreen();
+                }
+            }
+        }
+        function exitFullScreen2() {
+            let videoElement = document.getElementById('myVideo2');
+            if (videoElement.exitFullscreen) {
+                videoElement.exitFullscreen();
+            } else if (videoElement.mozCancelFullScreen) {
+                videoElement.mozCancelFullScreen();
+            } else if (videoElement.webkitExitFullscreen) {
+                videoElement.webkitExitFullscreen();
+            } else if (videoElement.msExitFullscreen) {
+                videoElement.msExitFullscreen();
+            }
+        }
+        function isVideoFullScreen1() {
+            let videoElement = document.getElementById('myVideo1');
+            if (!videoElement) {
+                return 0;
+            }
+            if (document.fullscreenElement === videoElement ||
+                document.mozFullScreenElement === videoElement ||
+                document.webkitFullscreenElement === videoElement ||
+                document.msFullscreenElement === videoElement) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+        function isVideoFullScreen2() {
+            let videoElement = document.getElementById('myVideo2');
+            if (!videoElement) {
+                return 0;
+            }
+            if (document.fullscreenElement === videoElement ||
+                document.mozFullScreenElement === videoElement ||
+                document.webkitFullscreenElement === videoElement ||
+                document.msFullscreenElement === videoElement) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <p id="clientHeightLog">clientHeight log</p>
+    <p id="visualViewportHeightLog">visualViewportHeight log</p>
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true"  inputmode="text">paragraph with text</p>
+    <p contenteditable="true"  inputmode="tel">paragraph with tel</p>
+    <p contenteditable="true"  inputmode="url">paragraph with url</p>
+    <p contenteditable="true"  inputmode="email">paragraph with email</p>
+    <p contenteditable="true"  inputmode="numeric">paragraph with numeric</p>
+    <p contenteditable="true"  inputmode="decimal">paragraph with decimal</p>
+    
+    <script>
+        var log_clientHeight = document.getElementById("clientHeightLog");
+        var log_visualViewportHeight = document.getElementById("visualViewportHeightLog");
+        window.addEventListener('resize', function(){
+            console.log('window.visualViewport.height:',window.visualViewport.height);
+            console.log('document.documentElement.clientHeight:',document.documentElement.clientHeight);
+            log_clientHeight.innerHTML = 'document.documentElement.clientHeight:'+ document.documentElement.clientHeight;
+            log_visualViewportHeight.innerHTML = 'window.visualViewport.height:' +window.visualViewport.height;
+        });
+        function checkHeight(){
+            let a = document.documentElement.clientHeight;
+            let b = window.visualViewport.height
+            if (a<2000 && b<2000) {
+                return true;
+            }
+            return false;
+        }
+
+        function checkHeightOne(){
+            let a = document.documentElement.clientHeight;
+            let b = window.visualViewport.height
+            if (a >= 1950 && a <= 2050 && b < 2000) {
+                return true;
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

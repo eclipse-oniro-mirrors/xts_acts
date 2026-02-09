@@ -1,0 +1,110 @@
+'use static';
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import {
+  Entry,
+  Component,
+  TextMenuItem,
+  Column,
+  TextRange,
+  TextMenuItemId,
+  Text,
+  TextArea,
+  TextInput,
+  Margin,
+  TextAlign,
+  CopyOptions,
+  Callback
+} from '@ohos.arkui.component'
+import {
+  State,
+  // StateDecoratedVariable
+} from '@ohos.arkui.stateManagement'
+@Entry
+@Component
+struct editMenuIdAIWriter {
+  @State text: string = 'Text editMenuOptions'
+  @State textArea: string = 'TextArea editMenuOptions'
+  @State textInput: string = 'TextInput editMenuOptions'
+  @State flag: boolean = false
+
+  onCreateMenu(menuItems: Array<TextMenuItem>) {
+    let newMenuItems:TextMenuItem[]=[]
+    menuItems.forEach((value, index) => {
+      if (value.id.equals(TextMenuItemId.AI_WRITER)) {
+        value.content = 'AI_WRITER'
+        this.flag = true
+        newMenuItems.push(value)
+      }
+      if (value.id.equals(TextMenuItemId.SELECT_ALL)) {
+        newMenuItems.push(value)
+      }
+    })
+    return newMenuItems
+  }
+  build() {
+    Column() {
+      Text(''+this.flag).key('flag')
+      TextArea({ text:this.textArea })
+        .id('TextAreaEditMenuOptions')
+        .height(50)
+        .textAlign(TextAlign.Center)
+        .fontSize(25)
+        .copyOption(CopyOptions.InApp)
+        .editMenuOptions({
+          onCreateMenu: (menuItems: Array<TextMenuItem>)=>{
+            return this.onCreateMenu(menuItems)
+          }, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+            if (menuItem.id.equals(TextMenuItemId.AI_WRITER)) {
+              console.log('Intercepted AI_WRITER start:' + textRange.start + '; end:' + textRange.end)
+              return true;
+            }
+            return false;
+          }
+        })
+        .onEditChange((isEditing:boolean)=>{
+          if(!isEditing){
+            this.flag = false
+          }
+        })
+        .margin({ top: 50 } as Margin)
+      TextInput({ text:this.textInput })
+        .id('TextInputEditMenuOptions')
+        .height(50)
+        .textAlign(TextAlign.Center)
+        .fontSize(25)
+        .copyOption(CopyOptions.InApp)
+        .editMenuOptions({
+          onCreateMenu: (menuItems: Array<TextMenuItem>)=>{
+            return this.onCreateMenu(menuItems)
+          }, onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+            if (menuItem.id.equals(TextMenuItemId.AI_WRITER)) {
+              console.log('Intercepted AI_WRITER start:' + textRange.start + '; end:' + textRange.end)
+              return true;
+            }
+            return false;
+          }
+        })
+        .onEditChange((isEditing:boolean)=>{
+          if(!isEditing){
+            this.flag = false
+          }
+        } as Callback<boolean> )
+        .margin({ top: 50 } as Margin)
+    }
+    .width('90%')
+    .margin('5%')
+  }
+}

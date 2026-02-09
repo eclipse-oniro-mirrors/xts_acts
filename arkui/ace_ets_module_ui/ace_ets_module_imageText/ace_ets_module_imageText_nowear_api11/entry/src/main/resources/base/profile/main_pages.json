@@ -1,0 +1,20 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/TextArea/textAreaInputTest",
+        "MainAbility/pages/button/getcomponentadd",
+        "MainAbility/pages/Search/search_center",
+        "MainAbility/pages/select/SelectPage",
+        "MainAbility/pages/TextArea/textArea_center",
+        "MainAbility/pages/TextInput/TextinputSec",
+        "MainAbility/pages/text/TextDrag",
+        "MainAbility/pages/text/positionSetting",
+        "MainAbility/pages/text/TextState",
+        "MainAbility/pages/TextArea/textAreaUI",
+        "MainAbility/pages/TextArea/textAreaBC1",
+        "MainAbility/pages/TextInput/TextInputPage",
+        "MainAbility/pages/Search/SearchGesture",
+        "MainAbility/pages/Search/SearchPage",
+        "MainAbility/pages/text/onTextSelectionChange"
+    ]
+}

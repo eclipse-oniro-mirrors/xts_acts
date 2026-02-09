@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for hjunit Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "30000",
+        "bundle-name": "com.acts.startappclonetest",
+        "module-name": "entry_test",
+        "testcase-timeout": 30000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStartAppCloneTest.hap",
+                "AppCloneHap1.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 1279 280 200",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "power-shell timeout -o 86400000",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

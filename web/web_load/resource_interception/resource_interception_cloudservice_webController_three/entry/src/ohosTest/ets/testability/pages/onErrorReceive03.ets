@@ -1,0 +1,89 @@
+/**
+ * Copyright (c) 2023 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import Utils from '../../test/Utils';
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct onErrorReceive03 {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State str: string = "emitOnErrorReceive03";
+  @State testMultiWindowAccess: boolean = true;
+  @State testAllowWindowOpenMethod: boolean = true;
+  @State userAgent: string = "Mozilla/5.0 (Window NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) CHrome/105.0.0.0 Safari/537.36 Edg/105.0.1343.27";
+  @State javaScriptAccess: boolean = true;
+  @State fileAccess: boolean = true;
+  @State domStorageAccess: boolean = false;
+  @State imageAccess: boolean = true;
+  @State onlineImageAccess: boolean = true;
+  @State databaseAccess: boolean = true;
+
+  build() {
+    Column() {
+      Row() {
+        Button("web click").key('onErrorReceive03').onClick(async () => {
+          console.info("key==>" + this.str)
+          switch (this.str) {
+            case "emitOnErrorReceive03": {
+              try {
+                this.controller.loadUrl('https://wrong.host.badssl.com');
+              } catch (error) {
+                console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+              }
+              break;
+            }
+          }
+        })
+      }
+
+      Web({ src: $rawfile('onErrorReceive.html'), controller: this.controller })
+        .multiWindowAccess(this.testMultiWindowAccess)
+        .allowWindowOpenMethod(this.testAllowWindowOpenMethod)
+        .onErrorReceive((event) => {
+          console.log(`onErrorReceive start`);
+          if (event) {
+            let errorInfo = event.error.getErrorInfo();
+            console.log(`errorInfo is: ${errorInfo}`);
+            Utils.emitEvent(errorInfo, 202000)
+            let errorCode = event.error.getErrorCode();
+            console.log(`errorCode is: ${errorCode}`);
+            Utils.emitEvent(errorCode, 202010);
+            let url = event.request.getRequestUrl();
+            console.log(`url is: ${url}`);
+            Utils.emitEvent(url, 202020);
+            let mainFrame = event.request.isMainFrame();
+            console.log(`mainFrame is: ${mainFrame}`);
+            Utils.emitEvent(mainFrame, 202030);
+            let redirect = event.request.isRedirect();
+            console.log(`redirect is: ${redirect}`);
+            Utils.emitEvent(redirect, 202040);
+            let requestGesture = event.request.isRequestGesture();
+            console.log(`requestGesture is: ${requestGesture}`);
+            Utils.emitEvent(requestGesture, 202050);
+            let requestHeader = event.request.getRequestHeader()
+            console.log(`requestHeader is: ${JSON.stringify(requestHeader)}`);
+            Utils.emitEvent(JSON.stringify(requestHeader), 202060);
+          }
+        })
+        .javaScriptAccess(this.javaScriptAccess)
+        .fileAccess(this.fileAccess)
+        .imageAccess(this.imageAccess)
+        .domStorageAccess(this.domStorageAccess)
+        .onlineImageAccess(this.onlineImageAccess)
+        .databaseAccess(this.databaseAccess)
+        .userAgent(this.userAgent)
+    }
+  }
+}

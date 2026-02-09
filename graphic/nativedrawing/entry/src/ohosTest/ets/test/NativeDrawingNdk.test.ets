@@ -1,0 +1,1737 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, expect, it, TestType, Level, Size } from '@ohos/hypium'
+import nativeDrawing from 'libnativeDrawingndk.so'
+
+export default function nativeDrawingNdkTest() {
+  describe('NativeDrawingNdkTest', () => {
+
+    /**
+     * @tc.name   testOHDrawingBitmapCreate001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BITMAP_OH_DRAWING_BITMAPCREATE_0100
+     * @tc.desc   test OH_Drawing_BitmapCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBitmapCreate001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBitmapCreate();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBitmapBuild001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BITMAP_OH_DRAWING_BITMAPBUILD_0100
+     * @tc.desc   test OH_Drawing_BitmapBuild
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBitmapBuild001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBitmapBuild();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBitmapGetWidth001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BITMAP_OH_DRAWING_BITMAPGETWIDTH_0100
+     * @tc.desc   test OH_Drawing_BitmapGetWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBitmapGetWidth001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBitmapGetWidth();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBitmapGetHeight001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BITMAP_OH_DRAWING_BITMAPGETHEIGHT_0100
+     * @tc.desc   test OH_Drawing_BitmapGetHeight
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBitmapGetHeight001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBitmapGetHeight();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBitmapGetPixels001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BITMAP_OH_DRAWING_BITMAPGETPIXELS_0100
+     * @tc.desc   test OH_Drawing_BitmapGetPixels
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBitmapGetPixels001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBitmapGetPixels();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBrushCreate001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BRUSH_OH_DRAWING_BRUSHCREATE_0100
+     * @tc.desc   test OH_Drawing_BrushCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBrushCreate001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBrushCreate();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBrushIsAntiAlias001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BRUSH_OH_DRAWING_BRUSHISANTIALIAS_0100
+     * @tc.desc   test OH_Drawing_BrushIsAntiAlias
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBrushIsAntiAlias001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBrushIsAntiAlias();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBrushSetAntiAlias001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BRUSH_OH_DRAWING_BRUSHSETANTIALIAS_0100
+     * @tc.desc   test OH_Drawing_BrushSetAntiAlias
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBrushSetAntiAlias001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBrushSetAntiAlias();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBrushGetColor001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BRUSH_OH_DRAWING_BRUSHGETCOLOR_0100
+     * @tc.desc   test OH_Drawing_BrushGetColor
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBrushGetColor001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBrushGetColor();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBrushSetColor001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BRUSH_OH_DRAWING_BRUSHSETCOLOR_0100
+     * @tc.desc   test OH_Drawing_BrushSetColor
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBrushSetColor001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBrushSetColor();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCanvasCreate001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_CANVAS_OH_DRAWING_CANVASCREATE_0100
+     * @tc.desc   test OH_Drawing_CanvasCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCanvasCreate001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCanvasCreate();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPathCreate001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PATH_OH_DRAWING_PATHCREATE_0100
+     * @tc.desc   test OH_Drawing_PathCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPathCreate001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPathCreate();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenCreate001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PATH_OH_DRAWING_PENCREATE_0100
+     * @tc.desc   test OH_Drawing_PenCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenCreate001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenCreate();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenIsAntiAlias001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENISANTIALIAS_0100
+     * @tc.desc   test OH_Drawing_PenIsAntiAlias
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenIsAntiAlias001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenIsAntiAlias();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetAntiAlias001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETANTIALIAS_0100
+     * @tc.desc   test OH_Drawing_PenSetAntiAlias
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetAntiAlias001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetAntiAlias();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenGetColor001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENGETCOLOR_0100
+     * @tc.desc   test OH_Drawing_PenGetColor
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenGetColor001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenGetColor();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetColor001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETCOLOR_0100
+     * @tc.desc   test OH_Drawing_PenSetColor
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetColor001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetColor();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenGetWidth001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENGETWIDTH_0100
+     * @tc.desc   test OH_Drawing_PenGetWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenGetWidth001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenGetWidth();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetWidth001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETWIDTH_0100
+     * @tc.desc   test OH_Drawing_PenSetWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetWidth001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetWidth();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenGetMiterLimit001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENGETMITERLIMIT_0100
+     * @tc.desc   test OH_Drawing_PenGetMiterLimit
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenGetMiterLimit001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenGetMiterLimit();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetMiterLimit001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETMITERLIMIT_0100
+     * @tc.desc   test OH_Drawing_PenSetMiterLimit
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetMiterLimit001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetMiterLimit();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenGetCap001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENGETCAP_0100
+     * @tc.desc   test OH_Drawing_PenGetCap
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenGetCap001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenGetCap();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetCap001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETCAP_0100
+     * @tc.desc   test OH_Drawing_PenSetCap
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetCap001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetCap();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenGetJoin001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENGETJOIN_0100
+     * @tc.desc   test OH_Drawing_PenGetJoin
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenGetJoin001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenGetJoin();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetJoin001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETJOIN_0100
+     * @tc.desc   test OH_Drawing_PenSetJoin
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetJoin001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetJoin();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingColorSetArgb001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_COLOR_OH_DRAWING_COLORSETARGB_0100
+     * @tc.desc   test OH_Drawing_ColorSetArgb
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingColorSetArgb001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingColorSetArgb();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateFontCollection001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_FONTCOLLECTION_OH_DRAWING_CREATEFONTCOLLECTION_0100
+     * @tc.desc   test OH_Drawing_CreateFontCollection
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateFontCollection001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateFontCollection();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTypographyStyle001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_FONTCOLLECTION_OH_DRAWING_CREATETYPOGRAPHYSTYLE_0100
+     * @tc.desc   test OH_Drawing_CreateTypographyStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTypographyStyle001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTypographyStyle();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_0100
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyle();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTypographyHandler001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETYPOGRAPHYHANDLER_0100
+     * @tc.desc   test OH_Drawing_CreateTypographyHandler
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTypographyHandler001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTypographyHandler();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTypography001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETYPOGRAPHY_0100
+     * @tc.desc   test OH_Drawing_CreateTypography
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTypography001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTypography();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyLayout001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYLAYOUT_0100
+     * @tc.desc   test OH_Drawing_TypographyLayout
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyLayout001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyLayout();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetMaxWidth001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETMAXWIDTH_0100
+     * @tc.desc   test OH_Drawing_TypographyGetMaxWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetMaxWidth001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetMaxWidth();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetMinIntrinsicWidth001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETMININTRINSICWIDTH_0100
+     * @tc.desc   test OH_Drawing_TypographyGetMinIntrinsicWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetMinIntrinsicWidth001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetMinIntrinsicWidth();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetMaxIntrinsicWidth001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETMAXINTRINSICWIDTH_0100
+     * @tc.desc   test OH_Drawing_TypographyGetMaxIntrinsicWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetMaxIntrinsicWidth001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL00,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetMaxIntrinsicWidth();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetLongestLine001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETLONGESTLINE_0100
+     * @tc.desc   test OH_Drawing_TypographyGetLongestLine
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetLongestLine001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetLongestLine();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetLongestLine002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETLONGESTLINE_0200
+     * @tc.desc   test OH_Drawing_TypographyGetLongestLine
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetLongestLine002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetLongestLineAbnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetLongestLineWithIndent
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETLONGESTLINEWithIndent
+     * @tc.desc   test OH_Drawing_TypographyGetLongestLineWithIndent
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetLongestLineWithIndent', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetLongestLineWithIndent();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetAlphabeticBaseline001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETALPHABETICBASELINE_0100
+     * @tc.desc   test OH_Drawing_TypographyGetAlphabeticBaseline
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetAlphabeticBaseline001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetAlphabeticBaseline();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetIdeographicBaseline002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETIDEOGRAPHICBASELINE_0200
+     * @tc.desc   test OH_Drawing_TypographyGetIdeographicBaseline
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetIdeographicBaseline002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetIdeographicBaselineNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetIdeographicBaseline001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETIDEOGRAPHICBASELINE_0100
+     * @tc.desc   test OH_Drawing_TypographyGetIdeographicBaseline
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetIdeographicBaseline001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetIdeographicBaseline();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetAlphabeticBaseline002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETALPHABETICBASELINE_0200
+     * @tc.desc   test OH_Drawing_TypographyGetAlphabeticBaseline
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetAlphabeticBaseline002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetAlphabeticBaselineNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetHeight001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETHEIGHT_0100
+     * @tc.desc   test OH_Drawing_TypographyGetHeight
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetHeight001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetHeight();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetHeight002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETHEIGHT_0200
+     * @tc.desc   test OH_Drawing_TypographyGetHeight
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetHeight002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetHeightAbnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenGetCap002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENGETCAP_0200
+     * @tc.desc   test OH_Drawing_PenGetCap
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenGetCap002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenGetCapNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetCap002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETCAP_0200
+     * @tc.desc   test OH_Drawing_PenSetCap
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetCap002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetCapNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenGetJoin002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENGETJOIN_0200
+     * @tc.desc   test OH_Drawing_PenGetJoin
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenGetJoin002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenGetJoinNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetJoin002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETJOIN_0200
+     * @tc.desc   test OH_Drawing_PenSetJoin
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetJoin002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetJoinNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenIsAntiAlias002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENISANTIALIAS_0200
+     * @tc.desc   test OH_Drawing_PenIsAntiAlias
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenIsAntiAlias002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenIsAntiAliasNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetAntiAlias002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETANTIALIAS_0200
+     * @tc.desc   test OH_Drawing_PenSetAntiAlias
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetAntiAlias002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetAntiAliasNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBitmapBuild002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BITMAP_OH_DRAWING_BITMAPBUILD_0200
+     * @tc.desc   test OH_Drawing_BitmapBuild
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBitmapBuild002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBitmapBuildNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBitmapGetWidth002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BITMAP_OH_DRAWING_BITMAPGETWIDTH_0200
+     * @tc.desc   test OH_Drawing_BitmapGetWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBitmapGetWidth002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBitmapGetWidthNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBitmapGetHeight002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BITMAP_OH_DRAWING_BITMAPGETHEIGHT_0200
+     * @tc.desc   test OH_Drawing_BitmapGetHeight
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBitmapGetHeight002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBitmapGetHeightNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBitmapGetPixels002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BITMAP_OH_DRAWING_BITMAPGETPIXELS_0200
+     * @tc.desc   test OH_Drawing_BitmapGetPixels
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBitmapGetPixels002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBitmapGetPixelsNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBrushIsAntiAlias002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BRUSH_OH_DRAWING_BRUSHANTIALIAS_0200
+     * @tc.desc   test OH_Drawing_BrushIsAntiAlias
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBrushIsAntiAlias002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBrushIsAntiAliasNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBrushSetAntiAlias002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BRUSH_OH_DRAWING_BRUSHSETANTIALIAS_0200
+     * @tc.desc   test OH_Drawing_BrushSetAntiAlias
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBrushSetAntiAlias002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBrushSetAntiAliasNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBrushGetColor002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BRUSH_OH_DRAWING_BRUSHGETCOLOR_0200
+     * @tc.desc   test OH_Drawing_BrushGetColor
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBrushGetColor002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBrushGetColorNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingBrushSetColor002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_BRUSH_OH_DRAWING_BRUSHSETCOLOR_0200
+     * @tc.desc   test OH_Drawing_BrushSetColor
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingBrushSetColor002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingBrushSetColorNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenGetColor002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENGETCOLOR_0200
+     * @tc.desc   test OH_Drawing_PenGetColor
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenGetColor002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenGetColorNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetColor002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETCOLOR_0200
+     * @tc.desc   test OH_Drawing_PenSetColor
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetColor002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetColorNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenGetWidth002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENGETWIDTH_0200
+     * @tc.desc   test OH_Drawing_PenGetWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenGetWidth002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenGetWidthNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetWidth002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETWIDTH_0200
+     * @tc.desc   test OH_Drawing_PenSetWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetWidth002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetWidthNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenGetMiterLimit002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENGETMITERLIMIT_0200
+     * @tc.desc   test OH_Drawing_PenGetMiterLimit
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenGetMiterLimit002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenGetMiterLimitNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPenSetMiterLimit002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PEN_OH_DRAWING_PENSETMITERLIMIT_0200
+     * @tc.desc   test OH_Drawing_PenSetMiterLimit
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPenSetMiterLimit002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingPenSetMiterLimitNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingColorSetArgb002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_COLOR_OH_DRAWING_COLORSETARGB_0200
+     * @tc.desc   test OH_Drawing_ColorSetArgb
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingColorSetArgb002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingColorSetArgbNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyLayout002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYLAYOUT_0200
+     * @tc.desc   test OH_Drawing_TypographyLayout
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyLayout002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyLayoutNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetMaxWidth002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETMAXWIDTH_0200
+     * @tc.desc   test OH_Drawing_TypographyGetMaxWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetMaxWidth002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetMaxWidthNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetMinIntrinsicWidth002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETMININTRINSICWIDTH_0200
+     * @tc.desc   test OH_Drawing_TypographyGetMinIntrinsicWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetMinIntrinsicWidth002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetMinIntrinsicWidthNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTypographyGetMaxIntrinsicWidth002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_TYPOGRAPHYGETMAXINTRINSICWIDTH_0200
+     * @tc.desc   test OH_Drawing_TypographyGetMaxIntrinsicWidth
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyGetMaxIntrinsicWidth002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyGetMaxIntrinsicWidthNormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+
+
+    /**
+     * @tc.name   testOHDrawingCreateTypographyStyle002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETYPOGRAPHYSTYLE_0200
+     * @tc.desc   test OH_Drawing_CreateTypographyStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTypographyStyle002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTypographyStyleAnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTypographyStyle003
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETYPOGRAPHYSTYLE_0300
+     * @tc.desc   test OH_Drawing_CreateTypographyStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTypographyStyle003', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTypographyStyleBnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTypographyStyle004
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETYPOGRAPHYSTYLE_0400
+     * @tc.desc   test OH_Drawing_CreateTypographyStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTypographyStyle004', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTypographyStyleCnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTypographyStyle005
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETYPOGRAPHYSTYLE_0500
+     * @tc.desc   test OH_Drawing_CreateTypographyStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTypographyStyle005', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTypographyStyleDnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTypographyStyle006
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETYPOGRAPHYSTYLE_0600
+     * @tc.desc   test OH_Drawing_CreateTypographyStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTypographyStyle006', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTypographyStyleEnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTypographyStyle007
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETYPOGRAPHYSTYLE_0700
+     * @tc.desc   test OH_Drawing_CreateTypographyStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTypographyStyle007', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTypographyStyleFnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_0200
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleAnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle003
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_0300
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle003', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleBnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle004
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_0400
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle004', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleCnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle005
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_0500
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle005', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleDnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle006
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_0600
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle006', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleEnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle007
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_0700
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle007', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleFnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle008
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_0800
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle008', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleGnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle009
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_0900
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle009', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleHnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle010
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_1000
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle010', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleInormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle011
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_1100
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle011', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleJnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle012
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_1200
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle012', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleKnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle013
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_1300
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle013', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleLnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle014
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_1400
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle014', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleMnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle015
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_1500
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle015', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleNnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle016
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_1600
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle016', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleOnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle017
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_1700
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle017', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStylePnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle018
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_1800
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle018', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleQnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle019
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_1900
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle019', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleRnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle020
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_2000
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle020', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleSnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHDrawingCreateTextStyle021
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETEXTSTYLE_2100
+     * @tc.desc   test OH_Drawing_CreateTextStyle
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTextStyle021', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTextStyleTnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+
+    /**
+     * @tc.name   testOHDrawingTypographyHandlerAddText001
+     * @tc.number testOHDrawingTypographyHandlerAddText001
+     * @tc.desc   testOHDrawingTypographyHandlerAddText001
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyHandlerAddText001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyHandlerAddText();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+
+    /**
+     * @tc.name   testOHDrawingTypographyHandlerAddText002
+     * @tc.number testOHDrawingTypographyHandlerAddText002
+     * @tc.desc   testOHDrawingTypographyHandlerAddText002
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingTypographyHandlerAddText002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingTypographyHandlerAddTextAanormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCanvasCreate002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_CANVAS_OH_DRAWING_CANVASCREATE_0200
+     * @tc.desc   test OH_Drawing_CanvasCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCanvasCreate002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCanvasCreateBitmap();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCanvasCreate003
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_CANVAS_OH_DRAWING_CANVASCREATE_0300
+     * @tc.desc   test OH_Drawing_CanvasCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCanvasCreate003', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCanvasCreatePen();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCanvasCreate004
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_CANVAS_OH_DRAWING_CANVASCREATE_0400
+     * @tc.desc   test OH_Drawing_CanvasCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCanvasCreate004', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCanvasCreateBrush();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCanvasCreate005
+     * @tc.number 5SUB_GRAPHIC_GRAPHIC_2D_DRAWING_CANVAS_OH_DRAWING_CANVASCREATE_0500
+     * @tc.desc   test OH_Drawing_CanvasCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCanvasCreate005', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCanvasCreateSave();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCanvasCreate006
+     * @tc.number 6SUB_GRAPHIC_GRAPHIC_2D_DRAWING_CANVAS_OH_DRAWING_CANVASCREATE_0600
+     * @tc.desc   test OH_Drawing_CanvasCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCanvasCreate006', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCanvasCreateDrawLine();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCanvasCreate007
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_CANVAS_OH_DRAWING_CANVASCREATE_0700
+     * @tc.desc   test OH_Drawing_CanvasCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCanvasCreate007', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCanvasCreateDrawPath();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCanvasCreate008
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_CANVAS_OH_DRAWING_CANVASCREATE_0800
+     * @tc.desc   test OH_Drawing_CanvasCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCanvasCreate008', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCanvasCreateClear();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCanvasCreate009
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_CANVAS_OH_DRAWING_CANVASCREATE_0900
+     * @tc.desc   test OH_Drawing_CanvasCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCanvasCreate009', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCanvasCreateDetachPen();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCanvasCreate010
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_CANVAS_OH_DRAWING_CANVASCREATE_1000
+     * @tc.desc   test OH_Drawing_CanvasCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCanvasCreate010', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCanvasCreateDetachBrush();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPathCreate002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PATH_OH_DRAWING_PATHCREATE_0200
+     * @tc.desc   test OH_Drawing_PathCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPathCreate002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.ohDrawingPathCreateMoveTo();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPathCreate003
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PATH_OH_DRAWING_PATHCREATE_0300
+     * @tc.desc   test OH_Drawing_PathCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPathCreate003', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.ohDrawingPathCreateLineTo();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPathCreate004
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PATH_OH_DRAWING_PATHCREATE_0400
+     * @tc.desc   test OH_Drawing_PathCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPathCreate004', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.ohDrawingPathCreateArcTo();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPathCreate005
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PATH_OH_DRAWING_PATHCREATE_0500
+     * @tc.desc   test OH_Drawing_PathCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPathCreate005', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.ohDrawingPathCreateQuadTo();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPathCreate006
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PATH_OH_DRAWING_PATHCREATE_0600
+     * @tc.desc   test OH_Drawing_PathCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPathCreate006', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.ohDrawingPathCreateCubicTo();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPathCreate007
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PATH_OH_DRAWING_PATHCREATE_0700
+     * @tc.desc   test OH_Drawing_PathCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPathCreate007', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.ohDrawingPathCreateClose();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingPathCreate008
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_PATH_OH_DRAWING_PATHCREATE_0800
+     * @tc.desc   test OH_Drawing_PathCreate
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingPathCreate008', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      let result: number = nativeDrawing.ohDrawingPathCreateReset();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingCreateTypography002
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_CREATETYPOGRAPHY_0200
+     * @tc.desc   test OH_Drawing_CreateTypography
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHDrawingCreateTypography002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: Function) => {
+      let result: number = nativeDrawing.oHDrawingCreateTypographyPaint();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTextVerticalAlignmentBaseline001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_VERRICALALIGNMENTBASELINE_0100
+     * @tc.desc   test TEXT_VERTICAL_ALIGNMENT_BASELINE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testOHDrawingTextVerticalAlignmentBaseline001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1,
+      async (done: Function) => {
+        let result: number = nativeDrawing.oHDrawingTextVerticalAlignmentBaseline();
+        expect(result).assertEqual(0);
+        done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTextVerticalAlignmentCenter001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_VERRICALALIGNMENTCENTER_0100
+     * @tc.desc   test TEXT_VERTICAL_ALIGNMENT_CENTER
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testOHDrawingTextVerticalAlignmentCenter001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1,
+      async (done: Function) => {
+        let result: number = nativeDrawing.oHDrawingTextVerticalAlignmentCenter();
+        expect(result).assertEqual(0);
+        done();
+    });
+
+    /**
+     * @tc.name   testOHDrawingTextVerticalAlignmentTop001
+     * @tc.number SUB_GRAPHIC_GRAPHIC_2D_DRAWING_TEXTTYPOGRAPHY_OH_DRAWING_VERRICALALIGNMENTTOP_0100
+     * @tc.desc   test TEXT_VERTICAL_ALIGNMENT_CENTER
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testOHDrawingTextVerticalAlignmentTop001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1,
+      async (done: Function) => {
+        let result: number = nativeDrawing.oHDrawingTextVerticalAlignmentTop();
+        expect(result).assertEqual(0);
+        done();
+    });
+    
+  })
+}

@@ -1,0 +1,89 @@
+'use static';
+/**
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { RenderNode, FrameNode, NodeController } from "@ohos.arkui.node"
+import { UIContext } from '@ohos.arkui.UIContext';
+import {
+  Entry,
+  Column,
+  Component,
+  Button,
+  Text,
+  Row,
+  Color,
+  $r,
+  Margin,
+  ColumnOptions,
+  Flex,
+  Scroll,
+  Padding,
+  Position,
+  Builder,
+  Image,
+  FlexDirection,
+  ItemAlign,
+  FlexAlign,
+  Alignment,
+  TextAlign,
+  TextOverflow,
+  NodeContainer
+} from '@ohos.arkui.component';
+import { State, AppStorage } from '@ohos.arkui.stateManagement';
+import { ClickEvent } from '@ohos.arkui.component';
+import { UIContext } from '@ohos.arkui.UIContext';
+
+const renderNode = new RenderNode();
+renderNode.size = { width: 200, height: 200 };
+renderNode.shadowColor = 0XFF00FF00.toInt()
+renderNode.shadowAlpha = 0.7;
+
+
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.rootNode = new FrameNode(uiContext);
+
+    const rootRenderNode = this.rootNode?.getRenderNode();
+    if (rootRenderNode !== null) {
+      rootRenderNode!.appendChild(renderNode);
+
+    }
+
+    return this.rootNode;
+  }
+}
+
+@Entry
+@Component
+struct getShadowColor {
+  @State MyNodeController: MyNodeController = new MyNodeController();
+  @State sColor: number = 10;
+
+  build() {
+    Column({ space: 10 } as ColumnOptions) {
+      NodeContainer(this.MyNodeController).height('30%')
+      Text('shadowColor:' + this.sColor).key('render_shadowColor').height('5%')
+      Button('set get shadowColor').height('5%')
+        .key('getSet_shadowColor')
+        .onClick((e: ClickEvent) => {
+          this.sColor = renderNode.shadowColor
+        })
+    }
+    .margin({ top: 100 } as Margin)
+    .width('100%')
+    .height('100%')
+  }
+}

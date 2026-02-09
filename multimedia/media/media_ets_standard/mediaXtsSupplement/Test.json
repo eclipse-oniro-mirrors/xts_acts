@@ -1,0 +1,64 @@
+{
+    "description": "Configuration for camerastandard Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "3000000",
+        "bundle-name": "ohos.acts.multimedia.media.supp.xts",
+        "shell-timeout": "600000",
+        "testcase-timeout": 300000,
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff",
+                "rm -rf /storage/media/100/local/files/Videos/*",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files/*"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600",
+                "rm -rf /data/app/el2/100/database/ohos.acts.multimedia.media.supp.xts/*",
+                "kill -9 `pidof ohos.acts.multimedia.media.supp.xts`",
+                "scanner",
+                "sleep 5"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/media/1vp9_320x240_30.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/audioplayer/aac/aac_48ksr_16kbr_1ch.aac ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/1h264_320x240_60.3gp ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/h261_352x288_30.mov ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/h261_352x288_30.mkv ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/h264_320x240_60.m4v ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/1h264_720x480_30.3g2 ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/audio_2video.avi ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/h264_720x480_60.f4v ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/MP3_48000_32_1.mp3 ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/OGG_48000_1.ogg ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/libvpx-vp9_1280x720_30.mkv ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/audioplayer/flac/flac_48ksr_16kbr_1ch.flac ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/audioplayer/wav/pcm_48ksr_16kbr_1ch.wav ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/AVPlayer/amrnb_4.75k_8000.amr ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/h263_352x288_30.mov ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/videoplayer/mpeg_ts/mpeg4_mp3_480p_25r.ts ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files",
+                "./resource/media/1libvpx_720x480_60.ts ->/data/app/el2/100/base/ohos.acts.multimedia.media.supp.xts/haps/entry_test/files"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsMediaXtsSuppTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

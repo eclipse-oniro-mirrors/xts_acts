@@ -1,0 +1,64 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//foundation/arkui/ace_engine/ace_config.gni")
+group("ActsAceEtsModuleAdvancedComponentsTest") {
+  testonly = true
+  if (ace_engine_feature_wearable) {
+    deps = [
+      "ace_ets_module_advancedComponents_api12:ActsAceEtsModuleAdvancedComponentsApi12Test",
+      "ace_ets_module_advanceDialog:ActsAceEtsModuleAdvancedDialogTest",
+      "ace_ets_module_advancedComponents_api12_static:ActsAceEtsModuleAdvancedComponentsApi12StaticTest",
+      "ace_ets_module_counter:ActsAceEtsModuleCounterTest",
+    ]
+  } else {
+    deps = [
+      "ace_ets_module_advancedComponents_api12:ActsAceEtsModuleAdvancedComponentsApi12Test",
+      "ace_ets_module_advancedComponents_api12_static:ActsAceEtsModuleAdvancedComponentsApi12StaticTest",
+      "ace_ets_module_advancedComponents_api13:ActsAceEtsModuleAdvancedComponentsApi13Test",
+      "ace_ets_module_advancedComponents_api13_static:ActsAceEtsModuleAdvancedComponentsApi13StaticTest",
+      "ace_ets_module_advancedComponents_api16:ActsAceEtsModuleAdvancedComponentsApi16Test",
+      "ace_ets_module_advancedComponents_api16_static:ActsAceEtsModuleAdvancedComponentsApi16StaticTest",
+      "ace_ets_module_advancedComponents_nowear_api12:ActsAceEtsModuleAdvancedComponentsNoWearApi12Test",
+      "ace_ets_module_advancedComponents_nowear_api12_static:ActsAceEtsModuleAdvancedComponentsNoWearApi12StaticTest",
+      "ace_ets_module_advancedComponents_nowear_api13:ActsAceEtsModuleAdvancedComponentsNoWearApi13Test",
+      "ace_ets_module_advancedComponents_nowear_api13_static:ActsAceEtsModuleAdvancedComponentsNoWearApi13StaticTest",
+      "ace_ets_module_advancedComponents_nowear_api18:ActsAceEtsModuleAdvancedComponentsNoWearApi18Test",
+      #"ace_ets_module_advancedComponents_nowear_api18_static:ActsAceEtsModuleAdvancedComponentsNoWearApi18StaticTest",
+      "ace_ets_module_advancedComponents_nowear_api20:ActsAceEtsModuleAdvancedComponentsNoWearApi20Test",
+      "ace_ets_module_advancedComponents_nowear_api20_static:ActsAceEtsModuleAdvancedComponentsNoWearApi20StaticTest",
+      "ace_ets_module_chip_nowear:ActsAceEtsModuleChipNoWearTest",
+      "ace_ets_module_segmentButton_nowear:ActsAceEtsModuleSegmentButtonNoWearTest",
+      "ace_ets_module_counter:ActsAceEtsModuleCounterTest",
+      "ace_ets_module_composeTitleBar_nowear:ActsAceEtsModuleComposeTitleBarNoWearTest",
+      "ace_ets_module_editableTitleBar_nowear:ActsAceEtsModuleEditableTitleBarNoWearTest",
+      "ace_ets_module_exceptionPrompt_nowear:ActsAceEtsModuleExceptionPromptNoWearTest",
+      "ace_ets_module_filter_nowear:ActsAceEtsModuleFilterNoWearTest",
+      "ace_ets_module_splitLayout_nowear:ActsAceEtsModuleSplitLayoutNoWearTest",
+      "ace_ets_module_subHeader_nowear:ActsAceEtsModuleSubHeaderNoWearTest",
+      "ace_ets_module_subHeaderV2_nowear:ActsAceEtsModuleSubHeaderV2NoWearTest",
+      "ace_ets_module_tabTitleBar_nowear:ActsAceEtsModuleTabTitleBarNoWearTest",
+      "ace_ets_module_toolBar_nowear:ActsAceEtsModuleToolBarNoWearTest",
+      "ace_ets_module_treeView_nowear:ActsAceEtsModuleTreeViewNoWearTest",
+      "ace_ets_module_advancedDialogV2_nowear:ActsAceEtsModuleAdvancedDialogV2Test",
+      "ace_ets_module_gridObjectSortComponent_nowear:ActsAceEtsModuleGridObjectSortComponentNoWearTest",
+      "ace_ets_module_progressButtonV2_nowear:ActsAceEtsModuleProgressButtonV2Test",
+      "ace_ets_module_toolBarV2_nowear:ActsAceEtsModuleToolBarV2Test",
+      "ace_ets_module_advanceDialog:ActsAceEtsModuleAdvancedDialogTest",
+      "ace_ets_module_composeListItem_nowear:ActsAceEtsModuleComposeListItemNoWearTest",
+      "ace_ets_module_progressButton_nowear:ActsAceEtsModuleProgressButtonNoWearTest",
+      "ace_ets_module_selectTitleBar_nowear:ActsAceEtsModuleSelectTitleBarNoWearTest",
+      "ace_ets_module_swipeRefresher_nowear:ActsAceEtsModuleSwipeRefresherNoWearTest"
+    ]
+  }
+}

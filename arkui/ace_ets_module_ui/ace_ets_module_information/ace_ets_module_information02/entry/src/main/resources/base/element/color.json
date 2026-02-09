@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "color_hello",
+      "value": "#ffff0000"
+    },
+    {
+      "name": "color_world",
+      "value": "#ff0000ff"
+    },
+    {
+      "name": "pink",
+      "value": "#ff00ff"
+    },
+    {
+      "name": "RED",
+      "value": "#FFE01111"
+    },
+    {
+      "name": "Progress_updateColor",
+      "value": "#FFFD0000"
+    },
+    {
+      "name": "Progress_updateColor_transparency",
+      "value": "#33006cde"
+    }
+  ]
+}

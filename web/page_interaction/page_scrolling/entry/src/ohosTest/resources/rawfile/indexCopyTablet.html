@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <style>
+	#pageHeight{
+	  height:3000px;
+	}
+    #pageHeight1{
+      height:3000px;
+	}
+    </style>
+</head>
+<body>
+    <div id="container">首页</div>
+    <div id="pageHeight"></div>
+    <div id="contenttext">内容</div>
+    <div id="pageHeight1"></div>
+    <div id="ending">末尾</div>
+    <a href="second.html" id="fileAccess">打开rawfile文件</a>
+    <img src="icon.png" alt="icon" id="imgs">
+</body>
+<script>
+    let ele=document.getElementById("imgs");
+    let loadImage;
+    ele.onload=function(){
+        loadImage="load complete"
+    }
+    function getUserAgent(){
+        return navigator.userAgent
+    }
+    function test(){
+        backToEts.test("backToEts")
+    }
+    function testRunJavaScript(){
+        return "testRunJavaScript"
+    }
+    function getPageHeight(){
+        let height=document.body.scrollHeight
+        return height
+    }
+    function proxy(){
+        objName.register("backToEts")
+    }
+    function registerTest(){
+        let str=objName.register();
+        console.log(str);
+        return str
+    }
+    function jsAccess(){
+        console.log("web111")
+    }
+    function consoleTest(){
+        console.log("console test")
+    }
+    function alertTest(){
+        alert('alert test')
+    }
+    function confirmTest(){
+        confirm("confirm test")
+    }
+    function getImgResult(){
+        return loadImage
+    }
+    function toPrompt(){
+        let result=prompt("age","20");
+        console.log("result:"+result)
+    }
+    function openRawFile(){
+        document.getElementById("fileAccess").click()
+    }
+    function gettitle(){
+        return document.title
+    }
+    function getNavigatorOnLine(){
+        let onlineResult = navigator.onLine;
+        return onlineResult
+    }
+    function checkPageUpEle(){
+        const up_element = document.getElementById("container");
+        let UpEle = up_element.innerText;
+        let x = up_element.scrollLeft;
+        let y = up_element.scrollTop;
+        let z = up_element.scrollHeight;
+        let w = up_element.scrollWidth;
+        let style = (window.getComputedStyle(document.getElementById("container"), null)).display;
+        let style2 = (window.getComputedStyle(document.getElementById("container"), null)).getPropertyValue("visibility");
+        console.log("UpEle : " + UpEle + style + style2 + x + y + z + w);
+        return [UpEle,style,style2,x,y,z,w]
+    }
+    function checkContentEle(){
+        const middle_element = document.getElementById("contenttext");
+        let ContentEle = middle_element.innerText;
+        let x = middle_element.scrollLeft;
+        let y = middle_element.scrollTop;
+        let z = middle_element.scrollHeight;
+        let w = middle_element.scrollWidth;
+        let style = (window.getComputedStyle(document.getElementById("contenttext"), null)).display;
+        let style2 = (window.getComputedStyle(document.getElementById("contenttext"), null)).getPropertyValue("visibility");
+        console.log("ContentEle : " + ContentEle + style + style2 + x + y + z + w);
+        return [ContentEle,style,style2,x,y,z,w]
+    }
+    function checkPageDownEle(){
+        const down_element = document.getElementById("ending");
+        let DownEle = down_element.innerText;
+        let x = down_element.scrollLeft;
+        let y = down_element.scrollTop;
+        let z = down_element.scrollHeight;
+        let w = down_element.scrollWidth;
+        let style = (window.getComputedStyle(document.getElementById("ending"), null)).display;
+        let style2 = (window.getComputedStyle(document.getElementById("ending"), null)).getPropertyValue("visibility");
+        console.log("DownEle : " + DownEle + style + style2 + x + y + z + w);
+        return [DownEle,style,style2,x,y,z,w]
+    }
+    function checkVIsible(){
+        let m = document.body.scrollHeight;
+        let n = document.documentElement.scrollHeight;
+        let a = document.body.scrollTop;
+        let b = document.documentElement.scrollTop;
+        console.log("checkVisible result is : " + m + n + a + b);
+        return [m,n,a,b]
+    }
+</script>
+</html>

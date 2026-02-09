@@ -1,0 +1,15 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/updateMenu/updateMenu",
+    "MainAbility/pages/openMenu/onDidAppearOpenMenu",
+    "MainAbility/pages/openMenu/onDidDisappearOpenMenu",
+    "MainAbility/pages/openMenu/onWillAppearOpenMenu",
+    "MainAbility/pages/openMenu/onWillDisappearOpenMenu",
+    "MainAbility/pages/bindMenu/onDidAppear",
+    "MainAbility/pages/bindMenu/onDidDisappear",
+    "MainAbility/pages/bindMenu/onWillAppear",
+    "MainAbility/pages/bindMenu/onWillDisappear",
+    "MainAbility/pages/bindContextMenu/bindContextMenu"
+  ]
+}

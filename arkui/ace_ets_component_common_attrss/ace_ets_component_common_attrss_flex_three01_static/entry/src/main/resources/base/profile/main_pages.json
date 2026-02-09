@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/flex/FlexShrinkPage",
+    "MainAbility/pages/flex/FlexGrowPage"
+  ]
+}

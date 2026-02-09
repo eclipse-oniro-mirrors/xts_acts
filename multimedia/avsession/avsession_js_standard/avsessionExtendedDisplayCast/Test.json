@@ -1,0 +1,32 @@
+{
+    "description": "Configuration for avSessionExtendedDisplayCast Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1500000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.avSessionExtendedDisplayCast",
+        "testcase-timeout": "1100000",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAVSessionExtendedDisplayCastTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600"
+            ]
+        }
+    ]
+}

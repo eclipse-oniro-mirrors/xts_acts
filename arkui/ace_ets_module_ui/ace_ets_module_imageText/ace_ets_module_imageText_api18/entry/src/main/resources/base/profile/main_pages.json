@@ -1,0 +1,17 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Text/textAreaInputTest",
+    "MainAbility/pages/TextInput/ContentType1",
+    "MainAbility/pages/TextInput/ContentType2",
+    "MainAbility/pages/FontScaleTest/symbolGlyphFontScaleTest",
+    "MainAbility/pages/ImageAnimator/monitorInvisibleArea",
+    "MainAbility/pages/Search/SearchGetText",
+    "MainAbility/pages/TextArea/TextAreaGetText",
+    "MainAbility/pages/TextInput/TextInputGetText",
+    "MainAbility/pages/StyledString/ParagraphSpacing",
+    "MainAbility/pages/TextArea/WordBreakTest",
+    "MainAbility/pages/ImageContent/ImageContentEmpty",
+    "MainAbility/pages/ImageError/ImageOnError"
+  ]
+}

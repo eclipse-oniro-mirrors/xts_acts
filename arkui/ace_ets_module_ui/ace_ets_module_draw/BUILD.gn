@@ -1,0 +1,28 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+group("ActsAceEtsModuleDrawTest") {
+  testonly = true
+  deps = [
+    "ace_ets_module_draw_api11:ActsAceEtsModuleDrawApi11Test",
+    "ace_ets_module_draw_api12:ActsAceEtsModuleDrawApi12Test",
+    "ace_ets_module_draw_api13:ActsAceEtsModuleDrawApi13Test",
+    "ace_ets_module_draw_api20:ActsAceEtsModuleDrawApi20Test",
+    "ace_ets_module_draw_canvas:ActsAceEtsModuleDrawCanvasTest",
+    "ace_ets_module_draw_shape:ActsAceEtsModuleDrawShapeTest",
+    "ace_ets_module_draw_api13_static:ActsAceEtsModuleDrawApi13StaticTest",
+    "ace_ets_module_draw_api20_static:ActsAceEtsModuleDrawApi20StaticTest",
+    "ace_ets_module_draw_api11_static:ActsAceEtsModuleDrawApi11StaticTest",
+    "ace_ets_module_draw_api12_static:ActsAceEtsModuleDrawApi12StaticTest",
+  ]
+}

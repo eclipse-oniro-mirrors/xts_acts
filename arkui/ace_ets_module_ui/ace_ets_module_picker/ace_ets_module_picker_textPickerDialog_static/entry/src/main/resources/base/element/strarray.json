@@ -1,0 +1,40 @@
+{
+  "strarray": [
+    {
+      "name": "maxFontScale",
+      "value": [
+        {
+          "value": "small"
+        }
+      ]
+    },
+    {
+      "name": "minFontScale",
+      "value": [
+        {
+          "value": "small"
+        }
+      ]
+    },
+    {
+      "name": "range",
+      "value": [
+        {
+          "value": "AAAAA"
+        },
+        {
+          "value": "BBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+        },
+        {
+          "value": "CCCC"
+        },
+        {
+          "value": "DDDDDDDD"
+        },
+        {
+          "value": "EEE"
+        }
+      ]
+    }
+  ]
+}

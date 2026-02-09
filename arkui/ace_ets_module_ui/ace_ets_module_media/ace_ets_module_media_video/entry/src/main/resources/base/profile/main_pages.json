@@ -1,0 +1,35 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Video/videoEnableShortcutKey",
+        "MainAbility/pages/Video/videoCallback",
+
+        "MainAbility/pages/Video/Video",
+        "MainAbility/pages/Video/video1",
+        "MainAbility/pages/Video/video2",
+        "MainAbility/pages/Video/videoApI",
+
+        "MainAbility/pages/Video/VideoTest1",
+        "MainAbility/pages/Video/MovingPhotoView",
+        "MainAbility/pages/Video/VideoReset1",
+        "MainAbility/pages/Video/VideoReset2",
+        "MainAbility/pages/Video/VideoReset3",
+        "MainAbility/pages/Video/VideoReset4",
+        "MainAbility/pages/Video/VideoReset5",
+        "MainAbility/pages/Video/VideoReset6",
+        "MainAbility/pages/Video/VideoReset7",
+        "MainAbility/pages/Video/VideoReset8",
+        "MainAbility/pages/Video/VideoReset9",
+        "MainAbility/pages/Video/VideoReset10",
+        "MainAbility/pages/Video/VideoReset11",
+        "MainAbility/pages/Video/VideoReset12",
+        "MainAbility/pages/Video/VideoReset13",
+        "MainAbility/pages/Video/VideoReset14",
+        "MainAbility/pages/Video/VideoTest2",
+
+        "MainAbility/pages/Video/VideoOnErrorPage",
+        "MainAbility/pages/Video/VideoContentTransitionEffect",
+        "MainAbility/pages/Video/VideoSupportMoreSpeed",
+        "MainAbility/pages/Video/VideoOneBoundary"
+    ]
+}

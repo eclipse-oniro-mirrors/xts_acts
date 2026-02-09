@@ -1,0 +1,6 @@
+{
+  "name": "libdrawingnative.so",
+  "types": "./Index.d.ts",
+  "version": "1.0.0",
+  "description": "drawing native c api test."
+}

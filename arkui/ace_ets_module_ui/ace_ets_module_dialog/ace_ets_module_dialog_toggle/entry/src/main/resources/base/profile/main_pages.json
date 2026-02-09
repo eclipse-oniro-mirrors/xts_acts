@@ -1,0 +1,16 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Toggle/TogglePage",
+        "MainAbility/pages/Toggle/Toggle",
+        "MainAbility/pages/Toggle/toggle3", 
+
+        "MainAbility/pages/Toggle/ToggleContentModifier",
+        "MainAbility/pages/Toggle/ToggleSwitchStyle",
+        "MainAbility/pages/Toggle/ToggleIsOn",
+        "MainAbility/pages/Toggle/ToggleEnabled",
+
+        "MainAbility/pages/Toggle/toggleNode",
+        "MainAbility/pages/Toggle/toggleOnChangeModifier"
+    ]
+}

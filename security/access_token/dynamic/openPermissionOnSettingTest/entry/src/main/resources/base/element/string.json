@@ -1,0 +1,32 @@
+{
+    "string": [
+        {
+            "name": "module_desc",
+            "value": "module description"
+        },
+        {
+            "name": "EntryAbility_desc",
+            "value": "description"
+        },
+        {
+            "name": "entry_label",
+            "value": "label"
+        },
+        {
+            "name": "phone_entry_dsc",
+            "value": "description"
+        },
+        {
+            "name": "description_application",
+            "value": "description"
+        },
+        {
+          "name": "usePermission_desc",
+          "value": "use for xts"
+        },
+        {
+          "name": "ceshi",
+          "value": "ceshi"
+    }
+    ]
+}

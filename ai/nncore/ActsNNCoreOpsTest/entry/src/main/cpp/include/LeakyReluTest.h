@@ -1,0 +1,53 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#ifndef ACTSMINDSPORECTEST_ACTS_NNCORE_LEAKY_RELU_TEST_H
+#define ACTSMINDSPORECTEST_ACTS_NNCORE_LEAKY_RELU_TEST_H
+
+namespace Acts {
+namespace NnCoreOps {
+int SUBAINNRtFuncNorthLeakyReluBuild01();
+int SUBAINNRtFuncNorthLeakyReluBuild02();
+int SUBAINNRtFuncNorthLeakyReluBuild03();
+int SUBAINNRtFuncNorthLeakyReluBuild04();
+int SUBAINNRtFuncNorthLeakyReluBuild05();
+int SUBAINNRtFuncNorthLeakyReluBuild06();
+int SUBAINNRtFuncNorthLeakyReluBuild07();
+int SUBAINNRtFuncNorthLeakyReluModelFinish01();
+int SUBAINNRtFuncNorthLeakyReluModelFinish02();
+int SUBAINNRtFuncNorthLeakyReluModelFinish03();
+int SUBAINNRtFuncNorthLeakyReluModelSetOperandValue01();
+int SUBAINNRtFuncNorthLeakyReluModelSetOperandValue02();
+int SUBAINNRtFuncNorthLeakyReluModelSetOperandValue03();
+int SUBAINNRtFuncNorthLeakyReluModelSpecifyInputsAndOutputs01();
+int SUBAINNRtFuncNorthLeakyReluModelSpecifyInputsAndOutputs02();
+int SUBAINNRtFuncNorthLeakyReluModelSpecifyInputsAndOutputs03();
+int SUBAINNRtFuncNorthLeakyReluModelSpecifyInputsAndOutputs04();
+int SUBAINNRtFuncNorthLeakyReluModelSpecifyInputsAndOutputs05();
+int SUBAINNRtFuncNorthLeakyReluModelSpecifyInputsAndOutputs06();
+int SUBAINNRtFuncNorthLeakyReluModelSpecifyInputsAndOutputs07();
+int SUBAINNRtFuncNorthLeakyReluModelSpecifyInputsAndOutputs08();
+int SUBAINNRtFuncNorthLeakyReluModelAddOperation01();
+int SUBAINNRtFuncNorthLeakyReluModelAddOperation02();
+int SUBAINNRtFuncNorthLeakyReluModelAddOperation03();
+int SUBAINNRtFuncNorthLeakyReluModelAddOperation04();
+int SUBAINNRtFuncNorthLeakyReluModelAddOperation05();
+int SUBAINNRtFuncNorthLeakyReluModelAddOperation06();
+int SUBAINNRtFuncNorthLeakyReluModelAddOperation07();
+int SUBAINNRtFuncNorthLeakyReluModelAddOperation09();
+} // namespace NnCoreOps
+} // namespace Acts
+#endif // ACTSMINDSPORECTEST_ACTS_NNCORE_LEAKY_RELU_TEST_H
+

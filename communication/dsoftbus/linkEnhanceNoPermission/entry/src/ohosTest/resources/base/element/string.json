@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "module description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "add_permission",
+      "value": "the test ability"
+    }
+  ]
+}

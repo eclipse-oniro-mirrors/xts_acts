@@ -1,0 +1,221 @@
+'use static';
+/**
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import events_emitter from '@ohos.events.emitter'
+import Matrix4 from '@ohos.matrix4'
+import {
+  Entry,
+  Column,
+  Component,
+  Button,
+  Text,
+  Row,
+  Color,
+  $r,
+  Margin,
+  ColumnOptions,
+  Flex,
+  Scroll,
+  Padding,
+  Position,
+  Builder,
+  Image,
+  FlexDirection,
+  ItemAlign,
+  FlexAlign,
+  Alignment,
+  TextAlign,
+  TextOverflow,
+  RotateOptions,
+  ScaleOptions,
+  TranslateOptions,
+  Rect,
+  Circle
+} from '@ohos.arkui.component';
+import { State, AppStorage } from '@ohos.arkui.stateManagement';
+import { ClickEvent } from '@ohos.arkui.component';
+import { UIContext } from '@ohos.arkui.UIContext';
+import { RecordData } from '@ohos.base';
+
+@Entry
+@Component
+struct ohosMatrix4 {
+  @State rotateValue: RotateOptions = {
+    x: 1,
+    y: 1,
+    z: 1,
+    centerX: 7,
+    centerY: 8,
+    angle: 300,
+    centerZ:0,
+    perspective:0
+  } as RotateOptions
+  @State scaleValue: ScaleOptions = { x: 2, y: 0.5 } as ScaleOptions
+  @State transformValue: TranslateOptions = { x: 100, y: 100, z: 30 } as TranslateOptions
+  @State transformValue1: object = Matrix4.identity().translate({ x: 100, y: 100, z: 30 })
+  @State matrix1: object = Matrix4.identity().transformPoint([100, 10])
+  @State matrix2: Matrix4.Matrix4Transit = Matrix4.identity().translate({ x: 300 }).copy()
+  @State matrix3: Matrix4.Matrix4Transit = Matrix4.identity().scale({ x: 3 }).copy()
+  @State matrix4: Matrix4.Matrix4Transit = Matrix4.identity()
+    .rotate({
+      x: 1,
+      y: 1,
+      z: 2,
+      angle: 30
+    })
+  @State matrix5: Matrix4.Matrix4Transit = Matrix4.identity()
+    .scale({
+      x: 5,
+      y: 1,
+      z: 1,
+      centerX: 50,
+      centerY: 50
+    })
+  @State matrix6: Matrix4.Matrix4Transit = Matrix4.identity().translate({ x: 100, y: 200, z: 30 })
+  @State matrix7: Matrix4.Matrix4Transit = Matrix4.identity()
+    .translate({ x: 300 })
+    .combine(Matrix4.identity().scale({ x: 3 }));
+  @State onClickValue: boolean = false;
+  private stateChangCallBack: (eventData: events_emitter.EventData) => void = (eventData: events_emitter.EventData) => {
+    console.info("transFormExample page state change called:" + JSON.stringify(eventData));
+    if (eventData != null && eventData.data != null) {
+      const data = eventData.data as Record<String,RecordData>
+      if (data['matrix2'] != null && data['matrix2'] != null) {
+        let matrixV = Matrix4.identity().translate(data['matrix2'] as Matrix4.TranslateOption)
+        if (matrixV && data['matrix3'] != null && data['matrix3']) {
+          this.matrix2 = Matrix4.identity().translate(data['matrix2'] as Matrix4.TranslateOption).copy();
+          this.matrix3 = Matrix4.identity().scale(data['matrix3'] as Matrix4.ScaleOption).copy();
+        }
+      } else {
+        console.info("this.matrix value is not");
+      }
+      if (data['rotateValue'] != null) {
+        this.rotateValue = data['rotateValue'] as RotateOptions;
+      }
+      if (data['scaleValue'] != null) {
+        this.scaleValue = data['scaleValue'] as ScaleOptions;
+      }
+    }
+  }
+
+  onPageShow() {
+    console.info('transFormExample page show called');
+
+    let stateChangeEvent: events_emitter.InnerEvent = {
+      eventId: 140,
+      priority: events_emitter.EventPriority.LOW
+    }
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
+  }
+
+  build() {
+    Column() {
+      Text('rotate')
+        .width('10%')
+        .fontColor('0xCCCCCC')
+        .padding(5)
+        .fontSize(5)
+      Row()
+        .rotate(this.rotateValue)
+        .width(10)
+        .height(10)
+        .backgroundColor('0xAFEEEE')
+        .key('rotate')
+
+      Text('translate')
+        .width('10%')
+        .fontColor('0xCCCCCC')
+        .padding(5)
+        .fontSize(5)
+      Row()
+        .translate(this.transformValue)
+        .width(10)
+        .height(10)
+        .backgroundColor('0xAFEEEE')
+        .margin({ bottom: 10 } as Margin)
+        .key('rotate2')
+
+      Text('scale')
+        .width('90%')
+        .fontColor('0xCCCCCC')
+        .padding(5)
+        .fontSize(5)
+      Row()
+        .scale(this.scaleValue)
+        .width(10)
+        .height(10)
+        .backgroundColor('0xAFEEEE')
+        .key('rotate3')
+
+      Text('Matrix4')
+        .width('10%')
+        .fontColor('0xCCCCCC')
+        .padding(5)
+        .fontSize(5)
+      Row()
+        .width(10)
+        .height(10)
+        .backgroundColor('0xAFEEEE')
+        .transform(Matrix4.identity().translate({ x: 100, y: 100, z: 30 }))
+        .key('rotate4')
+      Button("get Point").padding(40)
+        .onClick((e: ClickEvent) => {
+          this.getUIContext().getPromptAction().showToast({ message: JSON.stringify(this.matrix1), duration: 200 })
+          this.onClickValue = true;
+          try {
+            let backData: events_emitter.EventData = {
+              data: {
+                "matrix1": "[100, 10]",
+                "ACTION": this.onClickValue
+              } as Record<String,RecordData>
+            }
+            let backEvent: events_emitter.InnerEvent = {
+              eventId: 141,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("click to emit action state")
+            events_emitter.emit(backEvent, backData)
+          } catch (err) {
+            console.info("click action state err: " + JSON.stringify((err as Error)?.message))
+          }
+        }).backgroundColor('0x2788D9').key('rotate5')
+      Image('/images/bg.jpg')
+        .padding(5)
+        .transform(this.matrix7)
+        .width("40%")
+        .height(100)
+        .margin({ top: 5 } as Margin)
+        .key('rotate6')
+      Image('/images/bg.jpg')
+        .transform(this.matrix4)
+        .padding(5)
+        .width("40%")
+        .height(100)
+        .key('rotate7')
+      Image('/images/bg.jpg')
+        .transform(this.matrix5)
+        .padding(5)
+        .width("40%")
+        .height(100)
+        .key('rotate8')
+      Image('/images/bg.jpg').transform(this.matrix6)
+        .width("40%")
+        .height(100)
+        .key('rotate9')
+    }
+    .width('100%')
+    .margin({ top: 5 } as Margin)
+  }
+}

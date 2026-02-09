@@ -1,0 +1,160 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "color_hello",
+      "value": "#ffff0000"
+    },
+    {
+      "name": "color_world",
+      "value": "#ff0000ff"
+    },
+    {
+      "name": "pink",
+      "value": "#ff00ff"
+    },
+    {
+      "name": "RED",
+      "value": "#FFE01111"
+    },
+    {
+      "name": "badge_BorderColor",
+      "value": "#FFFD0000"
+    },
+    {
+      "name": "DataPanel_TrackBackgroundColor",
+      "value": "#FF00FF00"
+    },
+    {
+      "name": "DataPanel_ValueColors1",
+      "value": "#FFFF0000"
+    },
+    {
+      "name": "DataPanel_ValueColors2",
+      "value": "#FF00FF00"
+    },
+    {
+      "name": "DataPanel_ValueColors3",
+      "value": "#FF0000FF"
+    },
+    {
+      "name": "DataPanel_ValueColors4",
+      "value": "#FF000000"
+    },
+    {
+      "name": "DataPanel_ValueColors5",
+      "value": "#FFA500"
+    },
+    {
+      "name": "DataPanel_ValueColors6",
+      "value": "#FFFFFF00"
+    },
+    {
+      "name": "DataPanel_ValueColors7",
+      "value": "#FFC0CB"
+    },
+    {
+      "name": "DataPanel_ValueColors8",
+      "value": "#FF00FF00"
+    },
+    {
+      "name": "DataPanel_ValueColors9",
+      "value": "#FF0000FF"
+    },
+    {
+      "name": "DataPanel_ValueColors10",
+      "value": "#FFFF0000"
+    },
+    {
+      "name": "DataPanel_ValueColors11",
+      "value": "#01FFA500"
+    },
+    {
+      "name": "DataPanel_ValueColors12",
+      "value": "#4CFF0000"
+    },
+    {
+      "name": "DataPanel_ValueColors13",
+      "value": "#9AC0CB00"
+    },
+    {
+      "name": "DataPanel_ValueColors14",
+      "value": "#FF00FF00"
+    },
+    {
+      "name": "DataPanel_TrackShadow1",
+      "value": "#FFFF00"
+    },
+    {
+      "name": "DataPanel_TrackShadow2",
+      "value": "#FFA500"
+    },
+    {
+      "name": "DataPanel_TrackShadow3",
+      "value": "#FFC0CB"
+    },
+    {
+      "name": "DataPanel_TrackShadow4",
+      "value": "#FFA500"
+    },
+    {
+      "name": "DataPanel_TrackShadow5",
+      "value": "#FFFFFF00"
+    },
+    {
+      "name": "DataPanel_TrackShadow6",
+      "value": "#FFC0CB"
+    },
+    {
+      "name": "DataPanel_TrackShadow7",
+      "value": "#FF00FF00"
+    },
+    {
+      "name": "DataPanel_TrackShadow8",
+      "value": "#FF0000FF"
+    },
+    {
+      "name": "DataPanel_TrackShadow9",
+      "value": "#FFFF0000"
+    },
+    {
+      "name": "DataPanel_TrackShadow10",
+      "value": "#FFC0CB"
+    },
+    {
+      "name": "DataPanel_TrackShadow11",
+      "value": "#FF00FF00"
+    },
+    {
+      "name": "DataPanel_TrackShadow12",
+      "value": "#FFFF0000"
+    },
+    {
+      "name": "ResourceColor1",
+      "value": "#FFC0ECE5"
+    },
+    {
+      "name": "ResourceColor2",
+      "value": "#FF61CFBE"
+    },
+    {
+      "name": "ResourceColor3",
+      "value": "#FF64BB5C"
+    },
+    {
+      "name": "ResourceColor4",
+      "value": "#FFDBEFA5"
+    },
+    {
+      "name": "gaugeColor1",
+      "value": "#FF0000FF"
+    },
+    {
+      "name": "gaugeColor2",
+      "value": "#FF00FFFF"
+    }
+  ]
+}

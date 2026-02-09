@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta id='viewport' name="viewport" content="initial-scale=1.0"/>
+    <title>metaViewport</title>
+</head>
+<body>
+<span>hello world!</span>
+</body>
+</html>
+<script type="text/javascript">
+    function isElementMetaViewport() {
+       let beforeWindowInnerWidth = window.innerWidth;
+
+        console.log('beforeWindowInnerWidth'+beforeWindowInnerWidth);
+         let viewport = document.getElementById("viewport");
+       viewport.content = 'initial-scale=2.0';
+       let afterWindowInnerWidth = window.innerWidth;
+       console.log('afterWindowInnerWidth' + afterWindowInnerWidth);
+       return beforeWindowInnerWidth !== afterWindowInnerWidth;
+     }
+</script>
+<style>
+</style>

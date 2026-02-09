@@ -1,0 +1,120 @@
+{
+  "app": {
+    "vendor": "example",
+    "bundleName": "ohos.acts.aafwk.test.fasupplement",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    },
+    "apiVersion": {
+      "compatible": 8,
+      "releaseType": "Release",
+      "target": 8
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "mainAbility": ".TestAbility",
+    "deviceType": [],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "TestAbility",
+        "name": ".TestAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "launchType": "singleton"
+      },
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "MainAbility",
+        "name": ".MainAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "launchType": "singleton"
+      },
+      {
+        "name": ".DataAbility",
+        "srcLanguage": "ets",
+        "srcPath": "DataAbility",
+        "icon": "$media:icon",
+        "description": "$string:DataAbility_desc",
+        "type": "data",
+        "uri": "dataability://ohos.acts.aafwk.test.fasupplement.DataAbility"
+      }
+    ],
+    "distro": {
+      "moduleType": "feature",
+      "installationFree": false,
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test"
+    },
+    "srcPath": "",
+    "name": ".entry_test",
+    "package": "ohos.acts.aafwk.test.fasupplement_test",
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      },
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "testRunner": {
+      "name": "OpenHarmonyTestRunner",
+      "srcPath": "TestRunner"
+    }
+  }
+}

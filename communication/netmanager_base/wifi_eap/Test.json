@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for network eap Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "ohos.acts.communication.net.manager.eap",
+        "module-name": "entry_test",
+		"testcase-timeout": "30000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsWifiEapTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

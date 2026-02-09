@@ -1,0 +1,11 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogCallBack",
+    "MainAbility/pages/textPickerDialog/TextPickerOnChange",
+    "MainAbility/pages/textPickerDialog/TextPickerOnScrollStop",
+    "MainAbility/pages/textPickerDialog/TextPickerOnEnterSelectedArea",
+    "MainAbility/pages/textPickerDialog/TextPickerOnAccept",
+    "MainAbility/pages/textPickerDialog/TextPickerOnCancel"
+  ]
+}

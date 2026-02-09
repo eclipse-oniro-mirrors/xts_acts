@@ -1,0 +1,20 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/WaterflowDemo",
+        "MainAbility/pages/Waterflow_add",
+        "MainAbility/pages/WaterFlowFrictionPage",
+        "MainAbility/pages/WaterFlow/waterFlowDraggingFling",
+        "MainAbility/pages/WaterFlow/repeatNoMakeObserved",
+        "MainAbility/pages/WaterFlow/waterOffsetRes",
+        "MainAbility/pages/WaterFlow/waterContentOffset",
+        "MainAbility/pages/WaterFlow/cachedFlowMin",
+        "MainAbility/pages/WaterFlow/cachedShowFlowMin",
+        "MainAbility/pages/WaterFlow/waterFlowStopDrag",
+        "MainAbility/pages/WaterFlow/syncLoadFlow",
+        "MainAbility/pages/WaterFlow/scrollbarColor",
+        "MainAbility/pages/WaterFlow/WaterFlowFillPolicy",
+        "MainAbility/pages/WaterFlow/WaterFlowContentSize",
+        "MainAbility/pages/WaterFlow/WaterFlowFillPolicyModifier"
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.soundpoolxts.static",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsSoundPoolStaticTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    },
+    {
+        "type": "ShellKit",
+        "run-command": [
+            "remount",
+            "mkdir /data/test",
+            "mkdir -p /data/app/el2/100/base/com.example.soundpoolxts.static/haps/entry/files",
+            "chmod 777 -R /data/app/el2/100/base/com.example.soundpoolxts.static/haps/entry"
+        ]
+    },
+    {
+        "type": "PushKit",
+        "push": [
+            "./resource/soundpool/test_01.mp3 -> /data/app/el2/100/base/com.example.soundpoolxts.static/haps/entry/files/",
+            "./resource/soundpool/test_02.mp3 -> /data/app/el2/100/base/com.example.soundpoolxts.static/haps/entry/files/",
+            "./resource/soundpool/test_03.mp3 -> /data/app/el2/100/base/com.example.soundpoolxts.static/haps/entry/files/",
+            "./resource/soundpool/test_04.mp3 -> /data/app/el2/100/base/com.example.soundpoolxts.static/haps/entry/files/",
+            "./resource/soundpool/test_05.wav -> /data/app/el2/100/base/com.example.soundpoolxts.static/haps/entry/files/"
+        ]
+    },
+    {
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "uinput -T -m 300 2700 280 200",
+            "power-shell setmode 602"
+        ]
+    }]
+}

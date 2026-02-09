@@ -1,0 +1,10 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/XComponent/NodeXComponentPage",
+        "MainAbility/pages/XComponent/NodeContentPage",
+        "MainAbility/pages/XComponent/XComponentKeyMouseEventPage",
+        "MainAbility/pages/XComponent/SetXComponentSurfaceConfigPage",
+        "MainAbility/pages/XComponent/NDKXComponentSurfaceConfigPage"
+    ]
+}

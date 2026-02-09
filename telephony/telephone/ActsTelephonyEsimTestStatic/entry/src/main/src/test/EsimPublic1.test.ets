@@ -1,0 +1,207 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, it, expect, TestType, Size, Level, beforeAll } from "../../../hypium/index";
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+import eSIM from '@ohos.telephony.esim';
+
+let domain: int = 0x0000;
+let tag: string = 'EsimPublic1';
+
+let profile: eSIM.DownloadableProfile = {
+  activationCode: '123456',
+  confirmationCode: '',
+  carrierName: '',
+  accessRules: [{
+    certificateHashHexStr: '',
+    packageName: '',
+    accessType: 0
+  }]
+};
+const SLOT_0: int = 0;
+const SLOT_1: int = 1;
+const SLOT_2: int = 2;
+const SLOT_3: int = -1;
+
+const ExpectFail = () => {
+  try {
+    expect().assertFail();
+  } catch (err) {
+    hilog.info(domain, tag, '%{public}s', 'test failed');
+  }
+}
+
+const ExpectTrue = (n: boolean) => {
+  try {
+    expect(n).assertTrue();
+  } catch (err) {
+    hilog.info(domain, tag, '%{public}s', 'test failed');
+  }
+}
+
+export default function EsimPublic1() {
+  describe('EsimPublic1', () => {
+
+    /** 
+     * @tc.number    SUB_Telephony_Esim_AddProfile_0700
+     * @tc.name      testTelephonyEsimAddProfile_static_0700
+     * @tc.desc      Starts a page through an ability, on which users can touch the button to download a profile.
+     * @tc.size      MediumTest
+     * @tc.type      Function
+     * @tc.level     Level 0
+     */
+    it("testTelephonyEsimAddProfile_static_0700", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: () => void): Promise<void> => {
+        let caseName: string = 'testTelephonyEsimAddProfile_static_0700';
+        hilog.info(domain, tag, `${caseName} test start`);
+        try {
+          let data = await eSIM.addProfile(profile);
+          hilog.info(domain, tag, `${caseName} success : the data is:${data}`);
+          ExpectTrue(true);
+          hilog.info(domain, tag, `${caseName} test end`);
+          done();
+        } catch (error) {
+          let err = error as BusinessError;
+          if (err?.code === 801) {
+            hilog.error(domain, tag,
+              `${caseName} The current device type does not, promise: err->${JSON.stringify(err)}`);
+            expect(err?.code).assertEqual(801);
+            hilog.error(domain, tag, `${caseName} test end`);
+            done();
+          } else {
+            hilog.error(domain, tag, `${caseName} AddProfile failed, promise: err->${JSON.stringify(err)}`);
+            expect(err?.code).assertEqual(3120002);
+            hilog.error(domain, tag, `${caseName} test end`);
+            done();
+          }
+        }
+      });
+
+    /**
+     * @tc.number    SUB_Telephony_Esim_IsSupported_0100
+     * @tc.name      testTelephonyEsimIsSupported_static_0100
+     * @tc.desc      Whether embedded subscriptions are currently supported.
+     * @tc.size      MediumTest
+     * @tc.type      Function
+     * @tc.level     Level 0
+     */
+    it("testTelephonyEsimIsSupported_static_0100", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: () => void): Promise<void> => {
+        let caseName: string = 'testTelephonyEsimIsSupported_static_0100';
+        hilog.info(domain, tag, `${caseName} test start`);
+        try {
+          let isEsimSupport: boolean = eSIM.isSupported(SLOT_0);
+          if (isEsimSupport) {
+            hilog.info(domain, tag, `eSIM is supported`);
+            ExpectTrue(true);
+            hilog.info(domain, tag, `${caseName} test end`);
+            done();
+          } else {
+            hilog.info(domain, tag, `${caseName} eSIM is not supported`);
+            ExpectFail();
+            hilog.info(domain, tag, `${caseName} test end`);
+            done();
+          }
+        } catch (error) {
+          let err = error as BusinessError;
+          hilog.info(domain, tag, caseName + " err = " + JSON.stringify(err));
+          ExpectFail();
+          done();
+        }
+      });
+
+    /** 
+     * @tc.number    SUB_Telephony_Esim_IsSupported_0200
+     * @tc.name      testTelephonyEsimIsSupported_static_0200
+     * @tc.desc      Whether embedded subscriptions are currently supported.
+     * @tc.size      MediumTest
+     * @tc.type      Function
+     * @tc.level     Level 1
+     */
+    it("testTelephonyEsimIsSupported_static_0200", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1,
+      async (done: () => void): Promise<void> => {
+        let caseName: string = 'testTelephonyEsimIsSupported_static_0200';
+        hilog.info(domain, tag, `${caseName} test start`);
+        try {
+          let data: boolean = eSIM.isSupported(SLOT_1);
+          hilog.info(domain, tag, `${caseName} success : the data is:${data}`);
+          ExpectTrue(true);
+          hilog.info(domain, tag, `${caseName} test end`);
+          done();
+        } catch (error) {
+          let err = error as BusinessError;
+          hilog.error(domain, tag, `${caseName} IsSupported failed, promise: err->${JSON.stringify(err)}`);
+          expect(err?.code).assertEqual(401);
+          hilog.error(domain, tag, `${caseName} test end`);
+          done();
+        }
+      });
+
+    /**
+     * @tc.number    SUB_Telephony_Esim_IsSupported_0300
+     * @tc.name      testTelephonyEsimIsSupported_static_0300
+     * @tc.desc      Whether embedded subscriptions are currently supported.
+     * @tc.size      MediumTest
+     * @tc.type      Function
+     * @tc.level     Level 1
+     */
+    it("testTelephonyEsimIsSupported_static_0300", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1,
+      async (done: () => void): Promise<void> => {
+        let caseName: string = 'testTelephonyEsimIsSupported_static_0300';
+        hilog.info(domain, tag, `${caseName} test start`);
+        try {
+          let data: boolean = eSIM.isSupported(SLOT_2);
+          hilog.info(domain, tag, `${caseName} success : the data is:${data}`);
+          ExpectTrue(true);
+          hilog.info(domain, tag, `${caseName} test end`);
+          done();
+        } catch (error) {
+          let err = error as BusinessError;
+          hilog.error(domain, tag, `${caseName} IsSupported failed, promise: err->${JSON.stringify(err)}`);
+          expect(err?.code).assertEqual(401);
+          hilog.error(domain, tag, `${caseName} test end`);
+          done();
+        }
+      });
+
+    /**
+     * @tc.number    SUB_Telephony_Esim_IsSupported_0400
+     * @tc.name      testTelephonyEsimIsSupported_static_0400
+     * @tc.desc      Whether embedded subscriptions are currently supported.
+     * @tc.size      MediumTest
+     * @tc.type      Function
+     * @tc.level     Level 1
+     */
+    it("testTelephonyEsimIsSupported_static_0400", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1,
+      async (done: () => void): Promise<void> => {
+        let caseName: string = 'testTelephonyEsimIsSupported_static_0400';
+        hilog.info(domain, tag, `${caseName} test start`);
+        try {
+          let data: boolean = eSIM.isSupported(SLOT_3);
+          hilog.info(domain, tag, `${caseName} success : the data is:${data}`);
+          ExpectTrue(true);
+          hilog.info(domain, tag, `${caseName} test end`);
+          done();
+        } catch (error) {
+          let err = error as BusinessError;
+          hilog.error(domain, tag, `${caseName} IsSupported failed, promise: err->${JSON.stringify(err)}`);
+          expect(err?.code).assertEqual(401);
+          hilog.error(domain, tag, `${caseName} test end`);
+          done();
+        }
+      });
+
+  });
+}

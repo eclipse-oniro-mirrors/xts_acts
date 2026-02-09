@@ -1,0 +1,132 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { beforeEach, describe, expect, it , TestType, Size, Level } from "@ohos/hypium"
+import Utils from './Utils'
+import timex1 from 'libtimexndk32.so'
+
+export default function timexNdk1Test() {
+  describe('MuslTimex1Test', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
+
+    /**
+     * @tc.name   testMuslTimexAdjtimexTime64001
+     * @tc.number SUB_THIRDPARTY_MUSL_TIMEX_ADJTIMEX_TIME64_0100
+     * @tc.desc   test the normal condition of AdjTimex_time64_One
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslTimexAdjtimexTime64001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      expect(timex1.AdjTimex_time64_One()).assertEqual(1);
+      done()
+    });
+
+    /**
+     * @tc.name   testMuslTimexAdjtimexTime64002
+     * @tc.number SUB_THIRDPARTY_MUSL_TIMEX_ADJTIMEX_TIME64_0200
+     * @tc.desc   test the abnormal condition of AdjTimex_time64_Two
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslTimexAdjtimexTime64002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      expect(timex1.AdjTimex_time64_Two()).assertEqual(1);
+      done()
+    });
+
+    /**
+     * @tc.name   testMuslTimexAdjtimex001
+     * @tc.number SUB_THIRDPARTY_MUSL_TIMEX_ADJTIMEX_0100
+     * @tc.desc   test the normal condition of AdjTimex_One
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslTimexAdjtimex001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      expect(timex1.AdjTimex_One()).assertEqual(1);
+      done()
+    });
+
+    /**
+     * @tc.name   testMuslTimexAdjtimex002
+     * @tc.number SUB_THIRDPARTY_MUSL_TIMEX_ADJTIMEX_0200
+     * @tc.desc   test the abnormal condition of AdjTimex_Two
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslTimexAdjtimex002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      expect(timex1.AdjTimex_Two()).assertEqual(1);
+      done()
+    });
+
+    /**
+     * @tc.name   testMuslTimeClockAdjtime64001
+     * @tc.number SUB_THIRDPARTY_MUSL_TIME_CLOCK_ADJTIME64_0100
+     * @tc.desc   test the normal condition of Clock_adjTime64_One
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslTimeClockAdjtime64001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      expect(timex1.Clock_adjTime64_One()).assertEqual(1);
+      done()
+    });
+
+    /**
+     * @tc.name   testMuslTimeClockAdjtime64002
+     * @tc.number SUB_THIRDPARTY_MUSL_TIME_CLOCK_ADJTIME64_0200
+     * @tc.desc   test the abnormal condition of Clock_adjTime64_Two
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslTimeClockAdjtime64002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      expect(timex1.Clock_adjTime64_Two()).assertEqual(1);
+      done()
+    });
+
+    /**
+     * @tc.name   testMuslTimeClockAdjtime64003
+     * @tc.number SUB_THIRDPARTY_MUSL_TIME_CLOCK_ADJTIME64_0300
+     * @tc.desc   test the abnormal condition of Clock_adjTime64_Three
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslTimeClockAdjtime64003', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+     expect(timex1.Clock_adjTime64_Three()).assertEqual(1);
+      done()
+    });
+
+    /**
+     * @tc.name   testMuslTimeClockAdjtime64004
+     * @tc.number SUB_THIRDPARTY_MUSL_TIME_CLOCK_ADJTIME64_0400
+     * @tc.desc   test the abnormal condition of Clock_adjTime64_Four
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testMuslTimeClockAdjtime64004', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      expect(timex1.Clock_adjTime64_Four()).assertEqual(1);
+      done()
+    });
+
+  })
+}

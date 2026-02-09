@@ -1,0 +1,31 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "1200000",
+    "shell-timeout": "900000",
+    "testcase-timeout": "600000",
+    "bundle-name": "com.acts.userauthetstest",
+    "module-name": "entry_test"
+  },
+  "kits": [
+    {
+      "type": "ShellKit",
+      "run-command": [
+
+          "power-shell wakeup",
+          "hidumper -s 3301 -a -t"
+      ],
+      "teardown-command":[
+          "power-shell suspend"
+      ]
+  },
+    {
+      "test-file-name": [
+        "ActsUserAuthEtsTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    }
+  ]
+}

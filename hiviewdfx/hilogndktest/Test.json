@@ -1,0 +1,37 @@
+{
+    "description": "Configuration for hilogjstest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "ohos.acts.hiviewdfx.hilog.function",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHilogNdkTest.hap",
+                "ActsHilogNdkOtherTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "hilog -G 1024K",
+                "hilog -b X",
+                "hilog -b D -D 0x3200",
+                "hilog -b D -D 0xD003200",
+                "hilog -b D -D 0x64",
+                "hilog -b D -D 0xffff",
+                "hilog -b D -D 0xfffe",
+                "hilog -b D -D 0x0"
+            ],
+            "teardown-command": [
+                "hilog -G 256K"
+            ]
+        }
+    ]
+}

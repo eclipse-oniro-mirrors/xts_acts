@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        html, body {
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: white;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            position: relative;
+            user-select: none;
+            font-family: Arial, sans-serif;
+        }
+        .cell {
+            position: relative;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        .text {
+            position: absolute;
+            font-size: 14px;
+            color: red;
+            transition: opacity 0.3s;
+            text-align: center;
+            padding: 5px;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 3px;
+            cursor: pointer;
+            border: 1px solid #f0f0f0;
+        }
+        /* 中央独立文字样式 */
+        #centerText {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            font-size: 16px;
+            color: red;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            opacity: 1;
+            pointer-events: auto;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        /* 隐藏状态 */
+        #centerText.hidden {
+            opacity: 0;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body>
+<script>
+    const gridSize = 5; // 5x5网格
+
+    // 内部交叉点文字（4x4=16个点）
+    const texts = [
+        "壹"
+    ];
+
+    // 生成25个网格区域
+    for(let row = 0; row < gridSize; row++) {
+        for(let col = 0; col < gridSize; col++) {
+            const cell = document.createElement('div');
+            cell.className = 'cell';
+            cell.dataset.row = row;
+            cell.dataset.col = col;
+            document.body.appendChild(cell);
+        }
+    }
+
+    // 只在内部交叉点上放置文字（4x4=16个点）
+    let textIndex = 0;
+    for(let row = 1; row < gridSize; row++) {
+        for(let col = 1; col < gridSize; col++) {
+            if (textIndex < texts.length) {
+                const text = document.createElement('div');
+                text.className = 'text';
+                text.textContent = texts[textIndex];
+                text.id = `text-${row}-${col}`;
+
+                // 计算交叉点位置（相对于视口的百分比）
+                const leftPercent = (col / gridSize) * 100;
+                const topPercent = (row / gridSize) * 100;
+
+                text.style.left = `${leftPercent}%`;
+                text.style.top = `${topPercent}%`;
+                text.style.transform = 'translate(-50%, -50%)';
+
+                document.body.appendChild(text);
+
+                // 为每个交叉点文字添加点击事件
+                text.addEventListener('click', () => {
+                    if(text.style.display === 'none') {
+                        text.style.display = 'block';
+                    } else {
+                        text.style.display = 'none';
+                    }
+                });
+
+                textIndex++;
+            }
+        }
+    }
+
+    // 创建屏幕中央独立文字
+    const centerText = document.createElement('div');
+    centerText.id = 'centerText';
+    centerText.textContent = "中央文字";
+<!--    document.body.appendChild(centerText);-->
+
+    // 点击中央文字切换显示隐藏，使用class控制opacity
+    centerText.addEventListener('click', () => {
+        centerText.classList.toggle('hidden');
+    });
+</script>
+</body>
+</html>

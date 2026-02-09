@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for ActsNewDrawingNativeTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.acts_drawing_native",
+        "module-name": "drawing_native_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNewDrawingNativeTest.hap",
+                "ActsDrawingNativeMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/position/EdgesPositionPage",
+    "MainAbility/pages/textContentAlign/TextContentAlignTest",
+    "MainAbility/pages/PixelRound/PixelRoundPage",
+    "MainAbility/pages/Column/ColumnMatchParent",
+    "MainAbility/pages/Column/ColumnWrapContent",
+    "MainAbility/pages/Column/ColumnFixAtiDealSize",
+    "MainAbility/pages/list/ListWillStopDraggingTest",
+    "MainAbility/pages/list/ListWillStartDraggingTest",
+    "MainAbility/pages/list/ListDidStopDraggingTest",
+    "MainAbility/pages/list/ListWillStartFlingTest",
+    "MainAbility/pages/list/ListDidStopFlingTest",
+    "MainAbility/pages/imageSupportSvg2/ImageSupportSvg2Page",
+    "MainAbility/pages/sourceType/SourceTypeTest",
+    "MainAbility/pages/nodeUtil/TestGetPositionGetSize",
+    "MainAbility/pages/list/SourceDragTest",
+    "MainAbility/pages/list/SourceFlingTest",
+    "MainAbility/pages/list/SourceEdgeTest",
+    "MainAbility/pages/list/SourceOtherTest",
+    "MainAbility/pages/list/SourceBarTest",
+    "MainAbility/pages/list/SourceBarFlingTest",
+    "MainAbility/pages/list/SourceScrollerTest",
+    "MainAbility/pages/list/SourceAnimationTest",
+    "MainAbility/pages/custom/CustomNodeEventTest"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Text/textAreaInputTest",
+    "MainAbility/pages/Text/editMenuOptions",
+    "MainAbility/pages/Text/setMenuOptions"
+  ]
+}

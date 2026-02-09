@@ -1,0 +1,365 @@
+/*
+* Copyright (C) 2024 HiHope Open Source Organization.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium';
+import { sleep } from '../testability/pages/Utils';
+
+
+export default function BuiltinsNumberIsIntegerTest() {
+  describe('BuiltinsNumberIsIntegerTest', () => {
+    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
+    beforeAll(() => {
+      // Presets an action, which is performed only once before all test cases of the test suite start.
+      // This API supports only one parameter: preset action function.
+    })
+    beforeEach(async () => {
+      await sleep(20);
+      // Presets an action, which is performed before each unit test case starts.
+      // The number of execution times is the same as the number of test cases defined by **it**.
+      // This API supports only one parameter: preset action function.
+    })
+    afterEach(() => {
+      // Presets a clear action, which is performed after each unit test case ends.
+      // The number of execution times is the same as the number of test cases defined by **it**.
+      // This API supports only one parameter: clear action function.
+    })
+    afterAll(() => {
+      // Presets a clear action, which is performed after all test cases of the test suite end.
+      // This API supports only one parameter: clear action function.
+    })
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest0100
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_0100
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest0100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest0100';
+      console.log(`${caseName} test start`);
+      const num = Number.isInteger(0);
+      console.log(`${num}`);
+      expect(true).assertEqual(num);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest0200
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_0200
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest0200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest0200';
+      console.log(`${caseName} test start`);
+      const num1 = Number.isInteger(1);
+      console.log(`${num1}`);
+      expect(true).assertEqual(num1);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest0300
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_0300
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest0300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest0300';
+      console.log(`${caseName} test start`);
+      const num2 = Number.isInteger(-100000);
+      console.log(`${num2}`);
+      expect(true).assertEqual(num2);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest0400
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_0400
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest0400', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest0400';
+      console.log(`${caseName} test start`);
+      const num3 = Number.isInteger(999999999999999999999999999999999999);
+      console.log(`${num3}`);
+      expect(true).assertEqual(num3);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest0500
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_0500
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest0500', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest0500';
+      console.log(`${caseName} test start`);
+      const num4 = Number.isInteger(0.1);
+      console.log(`${num4}`);
+      expect(false).assertEqual(num4);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest0600
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_0600
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest0600', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest0600';
+      console.log(`${caseName} test start`);
+      const num5 = Number.isInteger(Math.PI);
+      console.log(`${num5}`);
+      expect(false).assertEqual(num5);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest0700
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_0700
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest0700', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest0700';
+      console.log(`${caseName} test start`);
+      const num6 = Number.isInteger(NaN);
+      console.log(`${num6}`);
+      expect(false).assertEqual(num6);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest0800
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_0800
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest0800', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest0800';
+      console.log(`${caseName} test start`);
+      const num7 = Number.isInteger(Infinity);
+      console.log(`${num7}`);
+      expect(false).assertEqual(num7);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest0900
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_0900
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest0900', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest0900';
+      console.log(`${caseName} test start`);
+      const num8 = Number.isInteger(-Infinity);
+      console.log(`${num8}`);
+      expect(false).assertEqual(num8);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest1000
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_1000
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest1000', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest1000';
+      console.log(`${caseName} test start`);
+      const num9 = Number.isInteger("10");
+      console.log(`${num9}`);
+      expect(false).assertEqual(num9);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest1100
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_1100
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest1100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest1100';
+      console.log(`${caseName} test start`);
+      const num10 = Number.isInteger(true);
+      console.log(`${num10}`);
+      expect(false).assertEqual(num10);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest1200
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_1200
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest1200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest1200';
+      console.log(`${caseName} test start`);
+      const num11 = Number.isInteger(false);
+      console.log(`${num11}`);
+      expect(false).assertEqual(num11);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest1300
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_1300
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest1300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest1300';
+      console.log(`${caseName} test start`);
+      const num12 = Number.isInteger([1]);
+      console.log(`${num12}`);
+      expect(false).assertEqual(num12);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest1400
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_1400
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest1400', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest1400';
+      console.log(`${caseName} test start`);
+      const num13 = Number.isInteger(5.0);
+      console.log(`${num13}`);
+      expect(true).assertEqual(num13);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest1500
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_1500
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest1500', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest1500';
+      console.log(`${caseName} test start`);
+      const num14 = Number.isInteger(5.000000000000001);
+      console.log(`${num14}`);
+      expect(false).assertEqual(num14);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest1600
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_1600
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest1600', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest1600';
+      console.log(`${caseName} test start`);
+      const num15 = Number.isInteger(5.0000000000000001);
+      console.log(`${num15}`);
+      expect(true).assertEqual(num15);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+
+
+    /**
+     * @tc.name   builtinsNumberIsIntegerTest1700
+     * @tc.number SUB_BUILTINS_NUMBER_ISINTEGER_TEST_1700
+     * @tc.desc   Testing Task
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('builtinsNumberIsIntegerTest1700', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (Done: Function) => {
+      const caseName = 'builtinsNumberIsIntegerTest1700';
+      console.log(`${caseName} test start`);
+      const num16 = Number.isInteger(4500000000000000.1);
+      console.log(`${num16}`);
+      expect(true).assertEqual(num16);
+      console.log(`${caseName} test end`);
+      Done();
+    })
+  })
+}

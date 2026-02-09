@@ -1,0 +1,19 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/blendMode/blendMode",
+    "MainAbility/pages/image/getUIContextApi01",
+    "MainAbility/pages/image/getUIContextApi02",
+    "MainAbility/pages/image/getUIContextApi03",
+    "MainAbility/pages/image/getUIContextApi04",
+    "MainAbility/pages/image/ImageAlt22",
+    "MainAbility/pages/image/ImageContentTransition",
+    "MainAbility/pages/image/ImageSupportSvg2",
+    "MainAbility/pages/drawableDescriptor/ImageAnimationController",
+    "MainAbility/pages/drawableDescriptor/ImageAnimationControllerERROR",
+    "MainAbility/pages/ImageLoader/ImageLoader",
+    "MainAbility/pages/image/ImageOrientation",
+    "MainAbility/pages/image/ImageHdrBrightness"
+    
+  ]
+}

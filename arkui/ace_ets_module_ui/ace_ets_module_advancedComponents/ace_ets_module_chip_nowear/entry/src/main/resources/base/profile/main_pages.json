@@ -1,0 +1,25 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/chip/ChipDirection",
+    "MainAbility/pages/chip/ChipOnClick",
+    "MainAbility/pages/chip/ChipAction",
+    "MainAbility/pages/chip/ChipOnClose",
+    "MainAbility/pages/chip/ChipAction2",
+    "MainAbility/pages/chip/ChipOnClose2",
+    "MainAbility/pages/chip/ChipPage",
+    "MainAbility/pages/chip/accessibilitySelectedTypeTest",
+    "MainAbility/pages/chip/ChipApi1",
+    "MainAbility/pages/chip/ChipCloseOptions",
+    "MainAbility/pages/chip/ChipFontScale",
+    "MainAbility/pages/chip/ChipFontSize",
+    "MainAbility/pages/chip/ChipPadding",
+    "MainAbility/pages/ChipGroup/ChipGroupApi1",
+    "MainAbility/pages/ChipGroup/startSpace",
+    "MainAbility/pages/ChipGroup/endSpace",
+    "MainAbility/pages/ChipGroup/itemSpace",
+    "MainAbility/pages/chip/localizedLabelMargin",
+    "MainAbility/pages/ChipGroup/ChipGroupIconItemOptionsPage",
+    "MainAbility/pages/ChipGroup/ChipGroupSymbolItemOptionsPage"
+  ]
+}

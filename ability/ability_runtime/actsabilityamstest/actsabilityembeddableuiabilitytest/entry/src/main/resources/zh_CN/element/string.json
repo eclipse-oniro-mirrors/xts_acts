@@ -1,0 +1,128 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "SpecifedProcessAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SpecifedProcessAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "Deeplinkcaller_ability_desc",
+      "value": "description"
+    },
+    {
+      "name": "Deeplinkcaller_ability_label",
+      "value": "label"
+    },
+    {
+      "name": "embeddableuiability_desc",
+      "value": "description"
+    },
+    {
+      "name": "embeddableuiability_label",
+      "value": "label"
+    },
+    {
+      "name": "embeddableUIAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "embeddableUIAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "moveabilitytobackground_desc",
+      "value": "description"
+    },
+    {
+      "name": "moveabilitytobackground_label",
+      "value": "label"
+    },
+    {
+      "name": "reportDrawnCompleted_desc",
+      "value": "description"
+    },
+    {
+      "name": "reportDrawnCompleted_label",
+      "value": "label"
+    },
+    {
+      "name": "restoreWindowStage_desc",
+      "value": "description"
+    },
+    {
+      "name": "restoreWindowStage_label",
+      "value": "label"
+    },
+    {
+      "name": "setMissionContinueState_desc",
+      "value": "description"
+    },
+    {
+      "name": "setMissionContinueState_label",
+      "value": "label"
+    },
+    {
+      "name": "setMissionLabel_desc",
+      "value": "description"
+    },
+    {
+      "name": "setMissionLabel_label",
+      "value": "label"
+    },
+    {
+      "name": "startability_desc",
+      "value": "description"
+    },
+    {
+      "name": "startability_label",
+      "value": "label"
+    },
+    {
+      "name": "startAbilityForResult_desc",
+      "value": "description"
+    },
+    {
+      "name": "startAbilityForResult_label",
+      "value": "label"
+    },
+    {
+      "name": "StartAbilityByType_desc",
+      "value": "description"
+    },
+    {
+      "name": "StartAbilityByType_label",
+      "value": "label"
+    },
+    {
+      "name": "byTypeAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "byTypeAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "terminateSelfWithResult_desc",
+      "value": "description"
+    },
+    {
+      "name": "terminateSelfWithResult_label",
+      "value": "label"
+    },
+    {
+      "name": "serviceExtensionAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "serviceExtensionAbility_label",
+      "value": "label"
+    }
+  ]
+}

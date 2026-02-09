@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "300000",
+        "testcase-timeout":"30000",
+        "bundle-name": "com.amsst.actsabilitydelegatorcasetest",
+        "package-name": "com.amsst.actsabilitydelegatorcasetest"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAbilityDelegatorCaseTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 1279 280 200",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "power-shell timeout -o 86400000",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

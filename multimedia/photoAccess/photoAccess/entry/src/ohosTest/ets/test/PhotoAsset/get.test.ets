@@ -1,0 +1,1176 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import photoAccessHelper from '@ohos.file.photoAccessHelper';
+import { describe, it, expect, beforeAll, Level } from "@ohos/hypium";
+import {
+  photoKeys,
+  photoFetchOption,
+  getFileAsset,
+  getAssetId,
+  isNum,
+  photoType,
+  getBurstKey,
+  pushCreateAsset,
+  sleep,
+  getPermission,
+  driveFn
+} from '../common'
+import common from '@ohos.app.ability.common';
+
+export default function getTest() {
+  describe('getTest', () => {
+    let testContext: common.UIAbilityContext = AppStorage.get('testContext') as common.UIAbilityContext;
+    const phAccessHelper = photoAccessHelper.getPhotoAccessHelper(testContext);
+    const fileNameList = ["getTest.jpg", "getTest.mp4"];
+
+    let checkPhotoKeysValue = async (done: Function, testNum: string, fetchOps: photoAccessHelper.FetchOptions,
+      key: string, value: string | number) => {
+      try {
+        let asset: photoAccessHelper.PhotoAsset = await getFileAsset(testContext, testNum, fetchOps);
+        console.info(`${testNum} key: ${key}, value: ${value}, asset.key: ${asset.get(key)}`);
+        if (key === 'uri') {
+          const id: string = getAssetId(asset.get(key));
+          const expectUri = value + id;
+          const uri = asset.get(key).toString();
+          const isIncludes = uri.includes(expectUri);
+          expect(isIncludes).assertTrue();
+        } else if (key === 'date_added' || key === 'date_modified' || key === 'date_taken' || key === 'date_added_ms' || key === 'date_modified_ms' || key === 'date_taken_ms') {
+          expect(isNum(asset.get(key))).assertTrue();
+        } else {
+          expect(asset.get(key)).assertEqual(value);
+        }
+        done();
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error}`);
+        expect(false).assertTrue();
+        done();
+      }
+    }
+
+    let getNotExistKeysValue = async (done: Function, testNum: string, fetchOps: photoAccessHelper.FetchOptions,
+      key: string, value: string | number) => {
+      try {
+        let asset: photoAccessHelper.PhotoAsset = await getFileAsset(testContext, testNum, fetchOps);
+        console.info(`${testNum} key: ${key}, value: ${value}, asset.key: ${asset.get(key)}`);
+        expect(false).assertTrue();
+        done();
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error} ${error.code}`);
+        expect(error.code).assertEqual('14000014');
+        done();
+      }
+    }
+
+    let getErrorKeysValue = async (done: Function, testNum: string, fetchOps: photoAccessHelper.FetchOptions,
+      key: string | undefined, value: string | number) => {
+      try {
+        let asset: photoAccessHelper.PhotoAsset = await getFileAsset(testContext, testNum, fetchOps);
+        console.info(`${testNum} key: ${key}, value: ${value}, asset.key: ${asset.get(key)}`);
+        expect(false).assertTrue();
+        done();
+      } catch (error) {
+        console.info(`${testNum} failed; error: ${error} ${error.code}`);
+        expect(error.code === '13900020' || error.code === '401').assertTrue();
+        done();
+      }
+    }
+
+    beforeAll(async () => {
+      console.info('beforeAll case');
+      await getPermission();
+      await sleep(1000);
+      await driveFn();
+      await pushCreateAsset(testContext, fileNameList);
+    });
+
+    const checkProvisionAsset = async (done: Function, testNum: string, displayName: string) => {
+      try {
+        const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+        let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> =
+          await phAccessHelper.getAssets(fetchOps);
+        let fetchCount = fetchResult.getCount();
+        console.log(`${testNum} :: fetchCount is ${fetchCount}`);
+        if (fetchCount <= 0) {
+          console.error(`${testNum} :: checkProvisionAsset :: have no Asset displayName is ${displayName}!`);
+          expect(false).assertTrue();
+          done();
+        }
+      } catch (error) {
+        console.error(`${testNum} :: checkProvisionAsset failed, err ==> ${error}!`);
+        expect(false).assertTrue();
+        done();
+      }
+    }
+
+    const checkPhotoKeysDateTime =
+      async (done: Function, testNum: string, expectDateMs: number, actualDateMs: number) => {
+        try {
+          console.log(`${testNum} :: expectDateMs is ${expectDateMs}, actualDateMs is ${actualDateMs}`);
+          let lowRange = 0.998 * expectDateMs;
+          let topRange = 1.002 * expectDateMs;
+          if (lowRange <= actualDateMs && actualDateMs <= topRange) {
+            console.log(`${testNum} :: ${actualDateMs} is between ${lowRange} and ${topRange} .`);
+            done();
+          } else {
+            console.log(`${testNum} :: ${actualDateMs} is not between ${lowRange} and ${topRange}, failed !`);
+            expect(false).assertTrue();
+            done();
+          }
+        } catch (error) {
+          console.log(`${testNum} :: checkPhotoKeysDateTime error , err is ${error} !`);
+          expect(false).assertTrue();
+          done();
+        }
+      }
+
+
+    //callback
+    //image
+    /**
+     * @tc.name   get_image_uri_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_0000
+     * @tc.desc   image get photoKeys.URI
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_uri_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_uri_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.URI;
+      const value: string = 'file://media/Photo/';
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_photo_type_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_0100
+     * @tc.desc   image get photoKeys.PHOTO_TYPE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_photo_type_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_photo_type_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.PHOTO_TYPE;
+      const value: number = photoType.IMAGE;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_displayName_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_0200
+     * @tc.desc   image get photoKeys.DISPLAY_NAME
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_displayName_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_displayName_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DISPLAY_NAME;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, displayName);
+    });
+
+    /**
+     * @tc.name   get_image_date_added_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_0300
+     * @tc.desc   image get photoKeys.DATE_ADDED
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_date_added_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_date_added_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DATE_ADDED;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_date_modified_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_0400
+     * @tc.desc   image get photoKeys.DATE_MODIFIED
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_date_modified_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_date_modified_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DATE_MODIFIED;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_duration_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_0500
+     * @tc.desc   image get photoKeys.DURATION
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_duration_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_duration_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DURATION;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_width_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_0600
+     * @tc.desc   image get photoKeys.WIDTH
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_width_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_width_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.WIDTH;
+      const value: number = 1279;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_height_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_0700
+     * @tc.desc   image get photoKeys.HEIGHT
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_height_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_height_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.HEIGHT;
+      const value: number = 1706;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_date_taken_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_0800
+     * @tc.desc   image get photoKeys.DATE_TAKEN
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_date_taken_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_date_taken_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DATE_TAKEN;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_orientation_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_0900
+     * @tc.desc   image get photoKeys.ORIENTATION
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_orientation_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_orientation_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.ORIENTATION;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_favorite_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_1000
+     * @tc.desc   image get photoKeys.FAVORITE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_favorite_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_favorite_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.FAVORITE;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_size_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_1100
+     * @tc.desc   image get photoKeys.SIZE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_size_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_size_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.SIZE;
+      const value: number = 348113;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_title_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_1200
+     * @tc.desc   image get photoKeys.TITLE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_title_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_title_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.TITLE;
+      const value: string = 'getTest';
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_position_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_1300
+     * @tc.desc   image get photoKeys.POSITION
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_position_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_position_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.POSITION;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_date_trash_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_1400
+     * @tc.desc   image get photoKeys.DATE_TRASHED
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_date_trash_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_date_trash_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DATE_TRASHED;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_hidden_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_1500
+     * @tc.desc   image get photoKeys.HIDDEN
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_image_hidden_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_image_hidden_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.HIDDEN;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    //video
+    /**
+     * @tc.name   get_video_uri_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_5000
+     * @tc.desc   video get photoKeys.URI
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_uri_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_uri_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.URI;
+      const value: string = 'file://media/Photo/';
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_photo_type_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_5100
+     * @tc.desc   video get photoKeys.PHOTO_TYPE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_photo_type_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_photo_type_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.PHOTO_TYPE;
+      const value: number = photoType.VIDEO;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_display_name_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_5200
+     * @tc.desc   video get photoKeys.DISPLAY_NAME
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_display_name_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_052';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DISPLAY_NAME;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, displayName);
+    });
+
+    /**
+     * @tc.name   get_video_date_added_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_5300
+     * @tc.desc   video get photoKeys.DATE_ADDED
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_date_added_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_date_added_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DATE_ADDED;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_date_modified_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_5400
+     * @tc.desc   video get photoKeys.DATE_MODIFIED
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_date_modified_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_date_modified_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DATE_MODIFIED;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_duration_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_5500
+     * @tc.desc   video get photoKeys.DURATION
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_duration_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_duration_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DURATION;
+      const value: number = 10100;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_width_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_5600
+     * @tc.desc   video get photoKeys.WIDTH
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_width_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_width_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.WIDTH;
+      const value: number = 1280;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_height_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_5700
+     * @tc.desc   video get photoKeys.HEIGHT
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_height_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_height_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.HEIGHT;
+      const value: number = 720;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_date_taken_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_5800
+     * @tc.desc   video get photoKeys.DATE_TAKEN
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_date_taken_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_date_taken_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DATE_TAKEN;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_orientation_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_5900
+     * @tc.desc   video get photoKeys.ORIENTATION
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_orientation_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_orientation_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.ORIENTATION;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_favorite_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_6000
+     * @tc.desc   video get photoKeys.FAVORITE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_favorite_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_favorite_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.FAVORITE;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_size_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_6100
+     * @tc.desc   video get photoKeys.SIZE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_size_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_size_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.SIZE;
+      const value: number = 4853005;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_title_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_6200
+     * @tc.desc   video get photoKeys.TITLE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_title_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_title_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.TITLE;
+      const value: string = 'getTest';
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_position_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_6300
+     * @tc.desc   video get photoKeys.POSITION
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_position_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_position_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.POSITION;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_date_trash_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_6400
+     * @tc.desc   video get photoKeys.DATE_TRASHED
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_date_trash_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_date_trash_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DATE_TRASHED;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_hidden_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_6500
+     * @tc.desc   video get photoKeys.HIDDEN
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_hidden_001', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_hidden_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.HIDDEN;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_date_add_ms_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_6600
+     * @tc.desc   image get photoKeys.DATE_ADDED_MS
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_image_date_add_ms_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_image_date_add_ms_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      let asset: photoAccessHelper.PhotoAsset = await getFileAsset(testContext, testNum, fetchOps);
+      const dateAdded: ESObject = asset.get(photoKeys.DATE_ADDED);
+      console.log(`${testNum} :: asset photoKeys.DATE_ADDED is ${dateAdded}`);
+      const key: string = photoKeys.DATE_ADDED_MS;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+      const dateAddedMs: ESObject = asset.get(key);
+      console.log(`${testNum} :: asset photoKeys.DATE_ADDED_MS is ${dateAddedMs}`);
+      await checkPhotoKeysDateTime(done, testNum, (dateAdded * 1000), dateAddedMs);
+      done();
+    });
+
+    /**
+     * @tc.name   get_video_date_added_ms_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_6700
+     * @tc.desc   video get photoKeys.DATE_ADDED_MS
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_video_date_added_ms_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_video_date_add_ms_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      let asset: photoAccessHelper.PhotoAsset = await getFileAsset(testContext, testNum, fetchOps);
+      const dateAdded: ESObject = asset.get(photoKeys.DATE_ADDED);
+      console.log(`${testNum} :: asset photoKeys.DATE_ADDED is ${dateAdded}`);
+      const key: string = photoKeys.DATE_ADDED_MS;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+      const dateAddedMs: ESObject = asset.get(key);
+      console.log(`${testNum} :: asset photoKeys.DATE_ADDED_MS is ${dateAddedMs}`);
+      await checkPhotoKeysDateTime(done, testNum, (dateAdded * 1000), dateAddedMs);
+      done();
+    });
+
+    /**
+     * @tc.name   get_image_date_modified_ms_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_6800
+     * @tc.desc   image get photoKeys.DATE_MODIFIED_MS
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_image_date_modified_ms_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_image_date_modified_ms_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      let asset: photoAccessHelper.PhotoAsset = await getFileAsset(testContext, testNum, fetchOps);
+      const dateModified: ESObject = asset.get(photoKeys.DATE_MODIFIED);
+      console.log(`${testNum} :: asset photoKeys.DATE_MODIFIED is ${dateModified}`);
+      const key: string = photoKeys.DATE_MODIFIED_MS;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+      const dateModifiedMs: ESObject = asset.get(key);
+      console.log(`${testNum} :: asset photoKeys.DATE_MODIFIED_MS is ${dateModifiedMs}`);
+      await checkPhotoKeysDateTime(done, testNum, (dateModified * 1000), dateModifiedMs);
+      done();
+    });
+
+    /**
+     * @tc.name   get_video_date_modified_ms_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_6900
+     * @tc.desc   video get photoKeys.DATE_MODIFIED_MS
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_video_date_modified_ms_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_video_date_modified_ms_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      let asset: photoAccessHelper.PhotoAsset = await getFileAsset(testContext, testNum, fetchOps);
+      const dateModified: ESObject = asset.get(photoKeys.DATE_MODIFIED);
+      console.log(`${testNum} :: asset photoKeys.DATE_MODIFIED is ${dateModified}`);
+      const key: string = photoKeys.DATE_MODIFIED_MS;
+      const value: number = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+      const dateModifiedMs: ESObject = asset.get(key);
+      console.log(`${testNum} :: asset photoKeys.DATE_MODIFIED_MS is ${dateModifiedMs}`);
+      await checkPhotoKeysDateTime(done, testNum, (dateModified * 1000), dateModifiedMs);
+      done();
+    });
+
+
+    /**
+     * @tc.name   get_image_dynamic_range_type_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_7000
+     * @tc.desc   image get photoKeys.DYNAMIC_RANGE_TYPE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_image_dynamic_range_type_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_image_dynamic_range_type_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.DYNAMIC_RANGE_TYPE;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_cover_position_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_7001
+     * @tc.desc   common image get photoKeys.COVER_POSITION
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_image_cover_position_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_image_cover_position_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.COVER_POSITION;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_cover_position_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_7002
+     * @tc.desc   video get photoKeys.COVER_POSITION
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_video_cover_position_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_video_cover_position_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.COVER_POSITION;
+      const value: number = 0;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_burst_key_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_7003
+     * @tc.desc   image get photoKeys.BURST_KEY
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_image_burst_key_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_image_burst_key_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      let burstKey: string | number = await getBurstKey(testContext, testNum, fetchOps);
+      console.log(`${testNum} :: getBurstKey :: burstKey is '' :: ${burstKey === ''}`);
+      expect(burstKey == '').assertTrue();
+      done();
+    });
+
+    /**
+     * @tc.name   get_video_burst_key_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_7004
+     * @tc.desc   video get photoKeys.BURST_KEY
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_video_burst_key_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_video_burst_key_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      let burstKey: string | number = await getBurstKey(testContext, testNum, fetchOps);
+      console.log(`${testNum} :: getBurstKey :: burstKey is '' :: ${burstKey === ''}`);
+      expect(burstKey == '').assertTrue();
+      done();
+    });
+
+    /**
+     * @tc.name   get_image_lcd_size_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_7005
+     * @tc.desc   image get photoKeys.LCD_SIZE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_image_lcd_size_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_image_lcd_size_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.LCD_SIZE;
+      const value: string = "1279:1706";
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_lcd_size_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_7006
+     * @tc.desc   video get photoKeys.LCD_SIZE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_video_lcd_size_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_video_lcd_size_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.LCD_SIZE;
+      const value: string = "1280:720";
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_thm_size_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_7007
+     * @tc.desc   image get photoKeys.THM_SIZE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_image_thm_size_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_image_thm_size_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.THM_SIZE;
+      console.log(`${testNum} :: get key success, THM_SIZE is ${key}`);
+      const value: string = "350:466";
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_video_thm_size_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_7008
+     * @tc.desc   video get photoKeys.THM_SIZE
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_video_thm_size_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_video_thm_size_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps: photoAccessHelper.FetchOptions = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      const key: string = photoKeys.THM_SIZE;
+      console.log(`${testNum} :: get key success, THM_SIZE is ${key}`);
+      const value: string = "622:350";
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+    });
+
+    /**
+     * @tc.name   get_image_detail_time_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_DETAIL_TIME_001
+     * @tc.desc   image get photoKeys.DETAIL_TIME
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_image_detail_time_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_image_detail_time_001';
+      const displayName = 'getTest.jpg';
+      try {
+        const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+        await checkProvisionAsset(done, testNum, displayName);
+        const key = photoKeys.DETAIL_TIME;
+        console.log(`${testNum} :: get key success, DETAIL_TIME is ${key}`);
+        let asset = await getFileAsset(testContext, testNum, fetchOps);
+        let date = new Date();
+        let year = date.getFullYear();
+        let month: string = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1).toString() : ('0' + (date.getMonth() + 1));
+        let day: string = date.getDate() > 9 ? date.getDate().toString() : ('0' + date.getDate());
+        let value = asset?.get(key);
+        let detailTimeStr = year + ":" + month + ":" + day;
+        console.log(`${testNum} :: expect Date is ${detailTimeStr}, actual is ${value}`);
+        expect(value).assertContain(detailTimeStr)
+        done();
+      } catch(error) {
+        console.error(`${testNum} :: get photoKeys.DETAIL_TIME failed , error is ${error}`);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.name   get_video_detail_time_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_DETAIL_TIME_002
+     * @tc.desc   video get photoKeys.DETAIL_TIME
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_video_detail_time_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_video_detail_time_00';
+      const displayName = 'getTest.mp4';
+      try {
+        const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+        await checkProvisionAsset(done, testNum, displayName);
+        const key = photoKeys.DETAIL_TIME;
+        console.log(`${testNum} :: get key success, DETAIL_TIME is ${key}`);
+        let asset = await getFileAsset(testContext, testNum, fetchOps);
+        let date = new Date();
+        let year = date.getFullYear();
+        let month: string = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1).toString() : ('0' + (date.getMonth() + 1));
+        let day: string = date.getDate() > 9 ? date.getDate().toString() : ('0' + date.getDate());
+        let value = asset?.get(key);
+        let detailTimeStr = year + ":" + month + ":" + day;
+        console.log(`${testNum} :: expect Date is ${detailTimeStr}, actual is ${value}`);
+        expect(value).assertContain(detailTimeStr)
+        done();
+      } catch(error) {
+        console.error(`${testNum} :: get photoKeys.DETAIL_TIME failed , error is ${error}`);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+    /**
+     * @tc.name   get_image_date_taken_ms_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_DATE_TAKEN_MS_001
+     * @tc.desc   image get photoKeys.DATE_TAKEN_MS
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_image_date_taken_ms_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_image_date_taken_ms_001';
+      const displayName = 'getTest.jpg';
+      const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      let asset = await getFileAsset(testContext, testNum, fetchOps);
+      const dateTaken: ESObject = asset?.get(photoKeys.DATE_TAKEN);
+      console.log(`${testNum} :: asset photoKeys.DATE_TAKEN is ${dateTaken}`);
+      const key = photoKeys.DATE_TAKEN_MS;
+      const value = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+      const dateTakenMs: ESObject = asset.get(key);
+      console.log(`${testNum} :: asset photoKeys.DATE_TAKEN_MS is ${dateTakenMs}`);
+      await checkPhotoKeysDateTime(done, testNum, (dateTaken * 1000), dateTakenMs);
+      done();
+    });
+
+    /**
+     * @tc.name   get_video_date_taken_ms_001
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_DATE_TAKEN_MS_002
+     * @tc.desc   video get photoKeys.DATE_TAKEN_MS
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_video_date_taken_ms_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_video_date_taken_ms_001';
+      const displayName = 'getTest.mp4';
+      const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await checkProvisionAsset(done, testNum, displayName);
+      let asset = await getFileAsset(testContext, testNum, fetchOps);
+      const dateTaken: ESObject = asset?.get(photoKeys.DATE_TAKEN);
+      console.log(`${testNum} :: asset photoKeys.DATE_TAKEN is ${dateTaken}`);
+      const key = photoKeys.DATE_TAKEN_MS;
+      const value = 1;
+      await checkPhotoKeysValue(done, testNum, fetchOps, key, value);
+      const dateTakenMs: ESObject = asset.get(key);
+      console.log(`${testNum} :: asset photoKeys.DATE_TAKEN_MS is ${dateTakenMs}`);
+      await checkPhotoKeysDateTime(done, testNum, (dateTaken * 1000), dateTakenMs);
+      done();
+    });
+
+      /**
+       * @tc.name   get_video_date_taken_ms_002
+       * @tc.number SUB_PHOTOACCESS_HELPER_GET_DATE_TAKEN_MS_002
+       * @tc.desc   video get key '', error code 14000014
+       * @tc.type   FUNCTION
+       * @tc.size   MEDIUMTEST
+       * @tc.level  LEVEL2
+       */
+      it('get_video_date_taken_ms_002', Level.LEVEL2, async (done: Function) => {
+        const testNum = 'get_video_date_taken_ms_002';
+        const displayName = 'getTest.mp4';
+        const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+        await getFileAsset(testContext, testNum, fetchOps);
+        const key = '';
+        const value = 1;
+        await getNotExistKeysValue(done, testNum, fetchOps, key, value);
+        done();
+      });
+
+    /**
+     * @tc.name   get_video_date_taken_ms_003
+     * @tc.number SUB_PHOTOACCESS_HELPER_GET_DATE_TAKEN_MS_003
+     * @tc.desc   video get key undefined, error code 13900020 or 401
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL2
+     */
+    it('get_video_date_taken_ms_003', Level.LEVEL2, async (done: Function) => {
+      const testNum = 'get_video_date_taken_ms_003';
+      const displayName = 'getTest.mp4';
+      const fetchOps = photoFetchOption(testNum, photoKeys.DISPLAY_NAME, displayName);
+      await getFileAsset(testContext, testNum, fetchOps);
+      const value = 1;
+      await getErrorKeysValue(done, testNum, fetchOps, undefined, value);
+      done();
+    });
+
+    /**
+     * @tc.name   get_asset_mediaSuffix_001
+     * @tc.number Sub_MediaLibrary_Get_MediaSuffix_001
+     * @tc.desc   get all asset mediaSuffix
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('get_asset_mediaSuffix_001', Level.LEVEL1, async (done: Function) => {
+      const testNum = 'get_asset_mediaSuffix_001';
+      try {
+        let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+        let fetchOptions: photoAccessHelper.FetchOptions = {
+          fetchColumns: [
+            photoAccessHelper.PhotoKeys.DISPLAY_NAME,
+            photoAccessHelper.PhotoKeys.MEDIA_SUFFIX
+          ],
+          predicates: predicates
+        };
+        let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
+        let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
+        for (let i = 0; i < photoAssetList.length; i++) {
+          let photoAsset: photoAccessHelper.PhotoAsset = photoAssetList[i];
+          let suffix: string = (photoAsset.displayName).substring(((photoAsset.displayName).lastIndexOf(".") + 1), photoAsset.displayName.length);
+          console.log(`${testNum} :: get PhotoAsset ${photoAsset.displayName} mediaSuffix = ${suffix}`);
+          let mediaSuffix: string = photoAsset.get(photoAccessHelper.PhotoKeys.MEDIA_SUFFIX).toString();
+          console.log(`${testNum} :: get  get PhotoAsset suffix key value = ${mediaSuffix}`);
+          expect(mediaSuffix).assertEqual(suffix);
+        }
+        done();
+      } catch(error) {
+        console.error(`${testNum} :: get asset mediaSuffix failed ! error = ${error}`);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+
+  })
+}

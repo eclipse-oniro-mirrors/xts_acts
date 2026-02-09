@@ -1,0 +1,18 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/datePickerDialog/datePickerDialogBackgroundEffect",
+    "MainAbility/pages/UIContext/showDatePickerDialogBlurStyleOptions",
+    "MainAbility/pages/UIContext/showTimePickerDialogBlurStyleOptions",
+    "MainAbility/pages/UIContext/showActionSheetBackgroundEffect",
+    "MainAbility/pages/UIContext/showTextPickerDialogBackgroundEffect",
+    "MainAbility/pages/UIContext/showDatePickerDialogBackgroundEffect",
+    "MainAbility/pages/UIContext/showTimePickerDialogBackgroundEffect",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogBackgroundEffect",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogBlurStyleOptions",
+    "MainAbility/pages/UIContext/showActionSheetBlurStyleOptions",
+    "MainAbility/pages/UIContext/showTextPickerDialogBlurStyleOptions",
+    "MainAbility/pages/actionSheet/actionSheetBackgroundEffect",
+    "MainAbility/pages/actionSheet/actionSheetBlurStyleOptions"
+  ]
+}

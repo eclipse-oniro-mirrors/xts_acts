@@ -1,0 +1,53 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.image.imagePackToFileGif.Static",
+        "module-name": "entry",
+        "shell-timeout": "300000",
+        "testcase-timeout": "100000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImagePackToFileGifStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files/*",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/cache/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/*"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files",
+                "./resource/image/moving_test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files",
+                "./resource/image/test.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files",
+                "./resource/image/test.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files",
+                "./resource/image/test.svg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files",
+                "./resource/image/test.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files",
+                "./resource/image/test.jpeg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files",
+                "./resource/image/test.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files",
+                "./resource/image/HDRVividSingleLayer.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePackToFileGif.Static/haps/entry/files/*",
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

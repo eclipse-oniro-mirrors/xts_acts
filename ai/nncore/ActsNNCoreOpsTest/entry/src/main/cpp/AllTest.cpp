@@ -1,0 +1,840 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <iostream>
+#include <neural_network_runtime/neural_network_core.h>
+#include <string>
+#include <vector>
+#include "OhosCommonTest.h"
+#include "nncore_utils.h"
+
+using namespace OHOS::NeuralNetworkRuntime::Test;
+
+namespace {
+
+struct AllModel1 {
+    const std::vector<int32_t> input_shape = { 2, 2 };
+    const std::vector<int32_t> output_shape = { 1 };
+    std::vector<int64_t> keepDimsValue = { 0 };
+    bool inputValue[2][2] = { { true, true }, { true, false } };
+    int64_t* axisValue = {};
+    bool outputValue[1] = { false };
+
+    OHNNOperandTest input = { OH_NN_BOOL, OH_NN_TENSOR, input_shape, inputValue, 4 * sizeof(bool) };
+    OHNNOperandTest axis = { OH_NN_INT64, OH_NN_TENSOR, {}, axisValue, 0 * sizeof(int64_t) };
+    OHNNOperandTest output = { OH_NN_BOOL, OH_NN_TENSOR, output_shape, outputValue, sizeof(bool) };
+    OHNNOperandTest keepDims = { OH_NN_INT64, OH_NN_ALL_KEEP_DIMS, { 1 }, &keepDimsValue, sizeof(int64_t) };
+    OHNNGraphArgs graphArgs = { .operationType = OH_NN_OPS_ALL,
+                                .operands = { input, axis, output, keepDims },
+                                .paramIndices = { 3 },
+                                .inputIndices = { 0, 1 },
+                                .outputIndices = { 2 } };
+};
+
+struct AllModel2 {
+    const std::vector<int32_t> input_shape = { 2, 3 };
+    const std::vector<int32_t> output_shape = { 2, 1 };
+    std::vector<int64_t> keepDimsValue = { 1 };
+    bool inputValue[2][3] = { { true, false, true }, { true, true, true } };
+    int64_t axisValue[1] = { 1 };
+    bool outputValue[2][1] = { false };
+
+    OHNNOperandTest input = { OH_NN_BOOL, OH_NN_TENSOR, input_shape, inputValue, 6 * sizeof(float) };
+    OHNNOperandTest axis = { OH_NN_INT64, OH_NN_TENSOR, { 1 }, axisValue, sizeof(int64_t) };
+    OHNNOperandTest output = { OH_NN_BOOL, OH_NN_TENSOR, output_shape, outputValue, 2 * sizeof(float) };
+    OHNNOperandTest keepDims = { OH_NN_INT64, OH_NN_ALL_KEEP_DIMS, { 1 }, &keepDimsValue, sizeof(int64_t) };
+    OHNNGraphArgs graphArgs = { .operationType = OH_NN_OPS_ALL,
+                                .operands = { input, axis, output, keepDims },
+                                .paramIndices = { 3 },
+                                .inputIndices = { 0, 1 },
+                                .outputIndices = { 2 } };
+};
+
+struct AllModel3 {
+    const std::vector<int32_t> input_shape = { 2, 2, 2 };
+    const std::vector<int32_t> output_shape = { 1 };
+    std::vector<int64_t> keepDimsValue = { 1 };
+    bool inputValue[2][2][2] = { { { true, true }, { true, true } }, { { true, true }, { true, true } } };
+    int64_t* axisValue = {};
+    bool outputValue[1] = { false };
+
+    OHNNOperandTest input = { OH_NN_BOOL, OH_NN_TENSOR, input_shape, inputValue, 8 * sizeof(float) };
+    OHNNOperandTest axis = { OH_NN_INT64, OH_NN_TENSOR, {}, axisValue, 0 * sizeof(int64_t) };
+    OHNNOperandTest output = { OH_NN_BOOL, OH_NN_TENSOR, output_shape, outputValue, sizeof(float) };
+    OHNNOperandTest keepDims = { OH_NN_INT64, OH_NN_ALL_KEEP_DIMS, { 1 }, &keepDimsValue, sizeof(int64_t) };
+    OHNNGraphArgs graphArgs = { .operationType = OH_NN_OPS_ALL,
+                                .operands = { input, axis, output, keepDims },
+                                .paramIndices = { 3 },
+                                .inputIndices = { 0, 1 },
+                                .outputIndices = { 2 } };
+};
+} // namespace
+
+namespace Acts {
+namespace NnCoreOps {
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Build_04
+ * @tc.number SUB_AI_NNRt_Func_North_All_Build_04
+ * @tc.desc   AllModel1模型输入Tensor+1进行build测试
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllBuild04()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.operands = { allModel.input, allModel.input, allModel.axis, allModel.output, allModel.keepDims };
+    graphArgs.inputIndices = { 0, 1, 2 };
+    graphArgs.outputIndices = { 3 };
+    graphArgs.paramIndices = { 4 };
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, BuildSingleOpGraph(model, graphArgs));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Build_05
+ * @tc.number SUB_AI_NNRt_Func_North_All_Build_05
+ * @tc.desc   AllModel1模型输出Tensor+1进行build测试
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllBuild05()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.operands = { allModel.input, allModel.axis, allModel.output, allModel.output, allModel.keepDims };
+    graphArgs.inputIndices = { 0, 1 };
+    graphArgs.outputIndices = { 2, 3 };
+    graphArgs.paramIndices = { 4 };
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, BuildSingleOpGraph(model, graphArgs));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Build_06
+ * @tc.number SUB_AI_NNRt_Func_North_All_Build_06
+ * @tc.desc   AllModel1模型传入非法参数进行build测试
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllBuild06()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+
+    int8_t activationValue = OH_NN_FUSED_NONE;
+    OHNNOperandTest activation = { OH_NN_INT8, OH_NN_ADD_ACTIVATIONTYPE, {}, &activationValue, sizeof(int8_t) };
+    graphArgs.operands = { allModel.input, allModel.axis, allModel.output, allModel.keepDims, activation };
+    graphArgs.paramIndices = { 3, 4 };
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, BuildSingleOpGraph(model, graphArgs));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_Finish_01
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_Finish_01
+ * @tc.desc   模型构图，未添加操作数
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelFinish01()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    OHNNGraphArgs graphArgs;
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, SingleModelBuildEndStep(model, graphArgs));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_Finish_02
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_Finish_02
+ * @tc.desc   模型构图，未设置输入输出
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelFinish02()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.specifyIO = false;
+    EXPECT_EQ(OH_NN_OPERATION_FORBIDDEN, BuildSingleOpGraph(model, graphArgs));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_Finish_03
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_Finish_03
+ * @tc.desc   模型构图，设置输入输出，构图成功
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL1
+ */
+int SUBAINNRtFuncNorthAllModelFinish03()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SetOperandValue_01
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SetOperandValue_01
+ * @tc.desc   设置操作数值，操作数不存在
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSetOperandValue01()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+
+    NN_TensorDesc* tensorDesc = nullptr;
+    std::vector<NN_TensorDesc*> tensorDescVec;
+
+    for (size_t i = 0; i < graphArgs.operands.size(); i++) {
+        const OHNNOperandTest& operandTem = graphArgs.operands[i];
+        tensorDesc = createTensorDesc(
+            operandTem.shape.data(), (uint32_t)operandTem.shape.size(), operandTem.dataType, operandTem.format);
+        tensorDescVec.emplace_back(tensorDesc);
+        EXPECT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
+        EXPECT_EQ(OH_NN_SUCCESS, OH_NNModel_SetTensorType(model, i, operandTem.type));
+
+        if (std::find(graphArgs.paramIndices.begin(), graphArgs.paramIndices.end(), i) !=
+            graphArgs.paramIndices.end()) {
+            EXPECT_EQ(
+                OH_NN_INVALID_PARAMETER,
+                OH_NNModel_SetTensorData(model, INVALID_TENSOR_INDEX_OFFSET + i, operandTem.data, operandTem.length));
+        }
+    }
+
+    FreeTensorDescVec(tensorDescVec);
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SetOperandValue_02
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SetOperandValue_02
+ * @tc.desc   设置操作数值，buffer为nullptr
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSetOperandValue02()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+
+    NN_TensorDesc* tensorDesc = nullptr;
+    std::vector<NN_TensorDesc*> tensorDescVec;
+
+    for (size_t i = 0; i < graphArgs.operands.size(); i++) {
+        const OHNNOperandTest& operandTem = graphArgs.operands[i];
+        tensorDesc = createTensorDesc(
+            operandTem.shape.data(), (uint32_t)operandTem.shape.size(), operandTem.dataType, operandTem.format);
+        tensorDescVec.emplace_back(tensorDesc);
+        EXPECT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
+        EXPECT_EQ(OH_NN_SUCCESS, OH_NNModel_SetTensorType(model, i, operandTem.type));
+
+        if (std::find(graphArgs.paramIndices.begin(), graphArgs.paramIndices.end(), i) !=
+            graphArgs.paramIndices.end()) {
+            EXPECT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorData(model, i, nullptr, operandTem.length));
+        }
+    }
+
+    FreeTensorDescVec(tensorDescVec);
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SetOperandValue_03
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SetOperandValue_03
+ * @tc.desc   设置操作数值，length为0
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSetOperandValue03()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+
+    NN_TensorDesc* tensorDesc = nullptr;
+    std::vector<NN_TensorDesc*> tensorDescVec;
+
+    for (size_t i = 0; i < graphArgs.operands.size(); i++) {
+        const OHNNOperandTest& operandTem = graphArgs.operands[i];
+        tensorDesc = createTensorDesc(
+            operandTem.shape.data(), (uint32_t)operandTem.shape.size(), operandTem.dataType, operandTem.format);
+        tensorDescVec.emplace_back(tensorDesc);
+        EXPECT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
+        EXPECT_EQ(OH_NN_SUCCESS, OH_NNModel_SetTensorType(model, i, operandTem.type));
+
+        if (std::find(graphArgs.paramIndices.begin(), graphArgs.paramIndices.end(), i) !=
+            graphArgs.paramIndices.end()) {
+            EXPECT_EQ(OH_NN_INVALID_PARAMETER,
+                      OH_NNModel_SetTensorData(model, INVALID_TENSOR_INDEX_OFFSET + i, operandTem.data, 0));
+        }
+    }
+
+    FreeTensorDescVec(tensorDescVec);
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_01
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_01
+ * @tc.desc   设置输入输出，inputIndices为nullptr
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSpecifyInputsAndOutputs01()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SpecifyInputsAndOutputs(model, nullptr, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_02
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_02
+ * @tc.desc   设置输入输出，inputindices中data为nullptr
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSpecifyInputsAndOutputs02()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    inputIndices.data = nullptr;
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SpecifyInputsAndOutputs(model, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_03
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_03
+ * @tc.desc   设置输入输出，inputindices中data对应序号不存在
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSpecifyInputsAndOutputs03()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    graphArgs.inputIndices = { 100000 };
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SpecifyInputsAndOutputs(model, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_04
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_04
+ * @tc.desc   设置输入输出，inputindices中size为0
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSpecifyInputsAndOutputs04()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    inputIndices.size = 0;
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SpecifyInputsAndOutputs(model, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_05
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_05
+ * @tc.desc   设置输入输出，outputindices为nullptr
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSpecifyInputsAndOutputs05()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SpecifyInputsAndOutputs(model, &inputIndices, nullptr));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_06
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_06
+ * @tc.desc   设置输入输出，outputindices中data为nullptr
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSpecifyInputsAndOutputs06()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    outputIndices.data = nullptr;
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SpecifyInputsAndOutputs(model, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_07
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_07
+ * @tc.desc   设置输入输出，outputindices中data对应序号不存在
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSpecifyInputsAndOutputs07()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    graphArgs.outputIndices = { 100000 };
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SpecifyInputsAndOutputs(model, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_08
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_SpecifyInputsAndOutputs_08
+ * @tc.desc   设置输入输出，outputindices中size为0
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelSpecifyInputsAndOutputs08()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    outputIndices.size = 0;
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SpecifyInputsAndOutputs(model, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_AddOperation_01
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_AddOperation_01
+ * @tc.desc   添加算子，paramindices为nullptr
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelAddOperation01()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.addOperation = false;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER,
+              OH_NNModel_AddOperation(model, graphArgs.operationType, nullptr, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_AddOperation_02
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_AddOperation_02
+ * @tc.desc   添加算子，paramindices中data为nullptr
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelAddOperation02()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.addOperation = false;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto paramIndices = TransformUInt32Array(graphArgs.paramIndices);
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    paramIndices.data = nullptr;
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER,
+              OH_NNModel_AddOperation(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_AddOperation_03
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_AddOperation_03
+ * @tc.desc   添加算子，paramindices中data对应序号不存在
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelAddOperation03()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.addOperation = false;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    graphArgs.paramIndices = { 100000 };
+    auto paramIndices = TransformUInt32Array(graphArgs.paramIndices);
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER,
+              OH_NNModel_AddOperation(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_AddOperation_04
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_AddOperation_04
+ * @tc.desc   添加算子，paramindices中size为0
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelAddOperation04()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.addOperation = false;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto paramIndices = TransformUInt32Array(graphArgs.paramIndices);
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    paramIndices.size = 0;
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER,
+              OH_NNModel_AddOperation(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_AddOperation_05
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_AddOperation_05
+ * @tc.desc   添加算子，inputindices为nullptr
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelAddOperation05()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.addOperation = false;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto paramIndices = TransformUInt32Array(graphArgs.paramIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER,
+              OH_NNModel_AddOperation(model, graphArgs.operationType, &paramIndices, nullptr, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_AddOperation_06
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_AddOperation_06
+ * @tc.desc   添加算子，inputindices中data为nullptr
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelAddOperation06()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.addOperation = false;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto paramIndices = TransformUInt32Array(graphArgs.paramIndices);
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    inputIndices.data = nullptr;
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER,
+              OH_NNModel_AddOperation(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_AddOperation_07
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_AddOperation_07
+ * @tc.desc   添加算子，inputindices中data对应序号不存在
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelAddOperation07()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.addOperation = false;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    graphArgs.inputIndices = { 100000 };
+    auto paramIndices = TransformUInt32Array(graphArgs.paramIndices);
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER,
+              OH_NNModel_AddOperation(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_AddOperation_08
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_AddOperation_08
+ * @tc.desc   添加算子，inputindices中size为0
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelAddOperation08()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.addOperation = false;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto paramIndices = TransformUInt32Array(graphArgs.paramIndices);
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    inputIndices.size = 0;
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER,
+              OH_NNModel_AddOperation(model, graphArgs.operationType, &paramIndices, &inputIndices, &outputIndices));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+/**
+ * @tc.name   SUB_AI_NNRt_Func_North_All_Model_AddOperation_09
+ * @tc.number SUB_AI_NNRt_Func_North_All_Model_AddOperation_09
+ * @tc.desc   添加算子，outputindices为nullptr
+ * @tc.type   FUNCTION
+ * @tc.size   MEDIUMTEST
+ * @tc.level  LEVEL2
+ */
+int SUBAINNRtFuncNorthAllModelAddOperation09()
+{
+    OH_NNModel* model = OH_NNModel_Construct();
+    EXPECT_NE(nullptr, model);
+
+    AllModel1 allModel;
+    OHNNGraphArgs graphArgs = allModel.graphArgs;
+    graphArgs.addOperation = false;
+    graphArgs.specifyIO = false;
+    graphArgs.build = false;
+    EXPECT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(model, graphArgs));
+
+    auto paramIndices = TransformUInt32Array(graphArgs.paramIndices);
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    EXPECT_EQ(OH_NN_INVALID_PARAMETER,
+              OH_NNModel_AddOperation(nullptr, graphArgs.operationType, &paramIndices, &inputIndices, nullptr));
+
+    Free(model, nullptr, nullptr);
+    return OH_NN_SUCCESS;
+}
+
+} // namespace NnCoreOps
+} // namespace Acts

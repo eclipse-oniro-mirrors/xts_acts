@@ -1,0 +1,9 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="pattern1" patternUnits="objectBoundingBox" patternContentUnits="objectBoundingBox" x="0" y="0" width="0.4" height="0.4">
+      <rect x="0" y="0" width="0.1" height="0.1" fill="red" />
+        <circle cx="0.2" cy="0.2" r="0.1" fill="blue" />
+    </pattern>
+  </defs>
+  <rect x="10" y="10" width="200" height="200" fill="url(#pattern1)" />
+</svg>

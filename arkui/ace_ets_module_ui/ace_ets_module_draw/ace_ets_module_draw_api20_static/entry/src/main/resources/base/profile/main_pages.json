@@ -1,0 +1,15 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/CanvasRenderingContext2D/RoundRectPage",
+        "MainAbility/pages/CanvasRenderingContext2D/StartImageAnalyzerErrorCode",
+        "MainAbility/pages/Circle/CircleResource",
+        "MainAbility/pages/Ellipse/EllipseResource",
+        "MainAbility/pages/Line/LineResource",
+        "MainAbility/pages/Path/PathResource",
+        "MainAbility/pages/Polygon/PolygonResource",
+        "MainAbility/pages/Polyline/PolylineResource",
+        "MainAbility/pages/Rect/RectResource",
+        "MainAbility/pages/Shape/ShapeResource"
+    ]
+}

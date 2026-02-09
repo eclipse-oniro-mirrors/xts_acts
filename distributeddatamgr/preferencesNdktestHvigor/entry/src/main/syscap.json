@@ -1,0 +1,15 @@
+{
+    "devices": {
+        "general": [
+            "tablet",
+            "default"
+        ],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.DistributedDataManager.Preferences.Core"
+                ]
+            }
+        ]
+    }
+}

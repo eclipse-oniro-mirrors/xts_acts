@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for ActsNnrtStabilityTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "6000000",
+        "shell-timeout": "6000000",
+        "bundle-name": "net.openvalley.acts_ai_nnrt_stability_test",
+        "module-name": "entry_test",
+		"testcase-timeout": 6000000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNnrtStabilityTest.hap",
+                "ActsNnrtStabilityMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

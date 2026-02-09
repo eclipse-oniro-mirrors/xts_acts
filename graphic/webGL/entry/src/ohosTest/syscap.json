@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Graphic.Graphic2D.WebGL",
+                    "SystemCapability.Graphic.Graphic2D.WebGL2"
+                ]
+            }
+        ]
+    }
+}

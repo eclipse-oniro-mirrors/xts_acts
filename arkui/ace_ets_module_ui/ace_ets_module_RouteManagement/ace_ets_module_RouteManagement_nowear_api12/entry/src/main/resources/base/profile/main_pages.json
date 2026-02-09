@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/router/focus/focus1",
+        "MainAbility/pages/router/focus/focus01"
+    ]
+}

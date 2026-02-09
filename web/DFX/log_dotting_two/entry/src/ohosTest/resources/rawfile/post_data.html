@@ -1,0 +1,24 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<script>
+
+    function testError() {
+        const formData = new FormData();
+        const invalidFile = new File([], 'fake.txt', { type: 'text/plain' });
+        formData.append('file', invalidFile);
+
+        fetch('https://www.example.com', {
+          method: 'POST',
+          body: formData
+        }).then(response => response.json())
+        .then(data => console.log('Success:', data))
+        .catch(error => console.error('Error:', error));
+
+    }
+</script>
+<body>
+<div onclick="testError()">test post chunked http body.</div>
+</body>
+</html>

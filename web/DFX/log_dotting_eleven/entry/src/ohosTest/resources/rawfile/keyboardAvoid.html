@@ -1,0 +1,316 @@
+<!--/*
+* Copyright (C) 2024 HiHope Open Source Organization.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Input Types and Input Modes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style type="text/css">
+    //::selection {
+    //  background-color: #00ff00; /* 设置选中背景色为红色 */
+    //  color: #ff0000;
+    //}
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    .popup {
+        position: fixed;
+        left: 0;
+        z-index: 20;
+        width: 100%;
+        flex-shrink: 0;
+        display: none;
+        background-color: rgba(255, 255, 0, 1.0);
+    }
+    .popupOk {
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 80%;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        z-index: 999;
+        display: block;
+        background-color: rgba(255, 255, 0, 1.0);
+    }
+
+    ::selection {
+        background-color: #ffffff;
+        color: rgba(192, 192, 192, 1);
+    }
+
+        div {
+          margin: 0em;
+          padding: 2em;
+        }
+        #source {
+          color: blue;
+          border: 1px solid black;
+        }
+        #target {
+          border: 1px solid black;
+        }
+</style>
+<body>
+<div>
+    <p id="source" ondragstart="dragstart_handler(event);" draggable="true">
+        Select this element, drag it to the Drop Zone and then release the selection to move the element.</p>
+</div>
+<div id="target" style="user-select:none" ondrop="drop_handler(event);" ondragover="dragover_handler(event);">Drop Zone</div>
+<div style="background-color: rgba(192, 192, 192, 1)">
+    <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Scrol To Top</button>
+    <button onclick="window.scrollBy(100, 200)">Scroll Down 200px</button>
+    <p >This is a contenteditable paragraph with inputmode "text".</p>
+    <p >This is a contenteditable paragraph with inputmode "text".</p>
+    <p> <br> </p>
+    <hr contenteditable="false"></hr>
+    <a href="https://192.168.0.1" target="_blank">点击跳转百度ip</a>
+    <p id="log">clientHeight log</p>
+    <button onclick="openPopup()">openPopup</button>
+    <button id="save" contenteditable="true">button</button>
+    <h2>Input Types</h2>
+    <input type="text" placeholder="Text">
+    <input type="password" placeholder="Password">
+    <input type="number" placeholder="Number">
+    <input type="email" placeholder="Email">
+    <input type="url" placeholder="URL">
+    <input type="tel" placeholder="Tel">
+
+    <h2>type="text" Input Modes</h2>
+    <input type="text" inputmode="text" readonly placeholder="readonly" value="readonly">
+    <input type="text" inputmode="text" disabled placeholder="disabled" value="disabled">
+    <input type="text" inputmode="text" placeholder="Text">
+    <input type="text" inputmode="tel" placeholder="Tel">
+    <input type="text" inputmode="url" placeholder="URL">
+    <input type="text" inputmode="email" placeholder="Email">
+    <input type="text" inputmode="numeric" placeholder="Numeric">
+    <input type="text" inputmode="decimal" placeholder="Decimal"><br>
+    <p>aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+    <p>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
+    <p>cccccccccccccccccccccccccccccccccc</p>
+    <p>aaaaaaaaaaaaaaaaaaaaaaaaaa</p><br>
+    <hr></hr>
+    <img src="./img.png" alt="image &#45;&#45; end" width="100" height="100">
+    <img src="./icon.png" alt="image &#45;&#45; end" width="100" height="100">
+    <p>aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+    <p>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
+    <p>cccccccccccccccccccccccccccccccccc</p>
+    <h2>type="number" Input Modes</h2>
+    <input type="number" inputmode="text" placeholder="Text">
+    <input type="number" inputmode="tel" placeholder="Tel">
+    <input type="number" inputmode="url" placeholder="URL">
+    <input type="number" inputmode="email" placeholder="Email">
+    <input type="number" inputmode="numeric" placeholder="Numeric">
+    <input type="number" inputmode="decimal" placeholder="Decimal">
+
+    <h2>type="email" Input Modes</h2>
+    <input type="email" inputmode="text" placeholder="Text">
+    <input type="email" inputmode="tel" placeholder="Tel">
+    <input type="email" inputmode="url" placeholder="URL">
+    <input type="email" inputmode="email" placeholder="Email">
+    <input type="email" inputmode="numeric" placeholder="Numeric">
+    <input type="email" inputmode="decimal" placeholder="Decimal">
+
+    <h2>type="url" Input Modes</h2>
+    <input type="url" inputmode="text" placeholder="Text">
+    <input type="url" inputmode="tel" placeholder="Tel">
+    <input type="url" inputmode="url" placeholder="URL">
+    <input type="url" inputmode="email" placeholder="Email">
+    <input type="url" inputmode="numeric" placeholder="Numeric">
+    <input type="url" inputmode="decimal" placeholder="Decimal">
+
+    <h2>type="tel" Input Modes</h2>
+    <input type="tel" inputmode="text" placeholder="Text">
+    <input type="tel" inputmode="tel" placeholder="Tel">
+    <input type="tel" inputmode="url" placeholder="URL">
+    <input type="tel" inputmode="email" placeholder="Email">
+    <input type="tel" inputmode="numeric" placeholder="Numeric">
+    <input type="tel" inputmode="decimal" placeholder="Decimal">
+
+    <h2>type="search" Input Modes</h2>
+    <input type="search" inputmode="text" placeholder="Text">
+    <input type="search" inputmode="tel" placeholder="Tel">
+    <input type="search" inputmode="url" placeholder="URL">
+    <input type="search" inputmode="email" placeholder="Email">
+    <input type="search" inputmode="numeric" placeholder="Numeric">
+    <input type="search" inputmode="decimal" placeholder="Decimal">
+
+    <p id="clientHeightLog">clientHeight log</p>
+    <p id="visualViewportHeightLog">visualViewportHeight log</p>
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+
+    <h2>Content Editable and Input Modes</h2>
+    <p contenteditable="true" inputmode="text">This is a contenteditable paragraph with inputmode "text".</p>
+    <p contenteditable="true" inputmode="tel">This is a contenteditable paragraph with inputmode "tel".</p>
+    <p contenteditable="true" inputmode="url">This is a contenteditable paragraph with inputmode "url".</p>
+    <p contenteditable="true" inputmode="email">This is a contenteditable paragraph with inputmode "email".</p>
+    <p contenteditable="true" inputmode="numeric">This is a contenteditable paragraph with inputmode "numeric".</p>
+    <p contenteditable="true" inputmode="decimal">This is a contenteditable paragraph with inputmode "decimal".</p>
+</div>
+
+<script>
+    var log = document.getElementById("log");
+    function openPopup() {
+      //document.getElementById("popup").style.display = "block";
+      var t = new Date(2024, 7, 29, 0, 0, 59, 0);
+      //console.log(t.toLocaleTimeString('bo', {  hourCycle: "h23" }))
+      //console.log(window.lang)
+      log.innerHTML = t.toLocaleTimeString(window.lang, { hourCycle: "h23" })
+    }
+
+    function closePopup() {
+      //document.getElementById("popup").style.display = "none";
+      var t = new Date();
+      t.toLocaleTimeString(window.lang, { hourCycle: "h23" })
+    }
+
+    var log_clientHeight = document.getElementById("clientHeightLog");
+    var log_visualViewportHeight = document.getElementById("visualViewportHeightLog");
+    window.addEventListener('resize', function() {
+      console.log('window.visualViewport.height:', window.visualViewport.height);
+      console.log('document.documentElement.clientHeight:', document.documentElement.clientHeight);
+      log_clientHeight.innerHTML = 'document.documentElement.clientHeight:' + document.documentElement.clientHeight;
+      log_visualViewportHeight.innerHTML = 'window.visualViewport.height:' + window.visualViewport.height;
+    });
+
+
+        function elt(tag, content, className, style) {
+            var e = document.createElement(tag);
+            if (className) { e.className = className; }
+            if (style) { e.style.cssText = style; }
+            if (typeof content == "string") { e.appendChild(document.createTextNode(content)); }
+            else if (content) { for (var i = 0; i < content.length; ++i) { e.appendChild(content[i]); } }
+            return e
+        }
+</script>
+</body>
+</html>

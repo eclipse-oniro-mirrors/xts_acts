@@ -1,0 +1,17 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/UiAbility01",
+    "testability/pages/UiAbility02",
+    "testability/pages/UiAbility03",
+    "testability/pages/UiAbility04",
+    "testability/pages/UiAbility05",
+    "testability/pages/UiAbility06",
+    "testability/pages/UiAbility07",
+    "testability/pages/UiAbility08",
+    "testability/pages/UiAbility09",
+    "testability/pages/UiAbility010",
+    "testability/pages/UiAbility011",
+    "testability/pages/UiAbility012"
+  ]
+}

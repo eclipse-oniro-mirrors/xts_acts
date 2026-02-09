@@ -1,0 +1,38 @@
+{
+    "knowledgeSource": [
+        {
+            "version": 1,
+            "tables": [
+                {
+                    "tableName": "mail",
+                    "referenceFields": ["id"],
+                    "knowledgeFields": [
+                        {
+                            "columnName": "subject",
+                            "type": ["Text"]
+                        },
+                        {
+                            "columnName": "content",
+                            "type": ["Text"]
+                        }
+                    ]
+                }
+            ],
+            "knowledgeProcess": {
+                "embeddingModelCfg": {
+                    "modelVersion": "default"
+                },
+                "chunkSplitter": {
+                    "chunkSize": 1024,
+                    "segmentSize": 300,
+                    "overlapRatio": 0.1
+                },
+                "perRecordLimit": {
+                    "parseFileMaxCnt": 10,
+                    "textEmbeddingMaxCnt": 50,
+                    "imageEmbeddingMaxCnt": 10
+                }
+            }
+        }
+    ]
+}

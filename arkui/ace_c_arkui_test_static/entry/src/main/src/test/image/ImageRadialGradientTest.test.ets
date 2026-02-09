@@ -1,0 +1,101 @@
+'use static';
+/*
+ * Copyright (C) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { beforeEach, describe, expect, it, Level,beforeAll } from '../../../../hypium';
+import Utils from '../common/Utils';
+import {LibUtil} from '../../../ets/pages/LibUtil'
+import { UtilsTest } from '../Util.test'
+let libUtil:LibUtil = new LibUtil();
+
+export default function imageRadialGradientTest() {
+
+  describe('ImageRadialGradientTest', () => {
+
+    beforeAll(() => {
+      await UtilsTest.startAbility("com.openharmony.arkui_ani_test.static", "EntryAbility");
+    });
+
+beforeEach(async () => {
+      await Utils.sleep(100);
+    });
+
+    
+    
+/**
+     * @tc.number   testImageRadialGradient001
+     * @tc.name     testImageRadialGradient001
+     * @tc.desc     testImageRadialGradient001
+     * @tc.level    Level.LEVEL1
+     */
+    it('testImageRadialGradient001', Level.LEVEL1, async (done: () => void): Promise<void> => {
+      expect(libUtil.testImageRadialGradient001()).assertEqual(0)
+      done()
+    })
+
+    
+    
+/**
+     * @tc.number   testImageRadialGradient002
+     * @tc.name     testImageRadialGradient002
+     * @tc.desc     testImageRadialGradient002
+     * @tc.level    Level.LEVEL1
+     */
+    it('testImageRadialGradient002', Level.LEVEL1, async (done: () => void): Promise<void> => {
+      expect(libUtil.testImageRadialGradient002()).assertEqual(0)
+      done()
+    })
+
+    
+    
+/**
+     * @tc.number   testImageRadialGradient003
+     * @tc.name     testImageRadialGradient003
+     * @tc.desc     testImageRadialGradient003
+     * @tc.level    Level.LEVEL1
+     */
+    it('testImageRadialGradient003', Level.LEVEL1, async (done: () => void): Promise<void> => {
+      expect(libUtil.testImageRadialGradient003()).assertEqual(0)
+      done()
+    })
+
+    
+    
+/**
+     * @tc.number   testImageRadialGradient004
+     * @tc.name     testImageRadialGradient004
+     * @tc.desc     testImageRadialGradient004
+     * @tc.level    Level.LEVEL1
+     */
+    it('testImageRadialGradient004', Level.LEVEL1, async (done: () => void): Promise<void> => {
+      expect(libUtil.testImageRadialGradient004()).assertEqual(0)
+      done()
+    })
+
+    
+    
+/**
+     * @tc.number   testImageRadialGradient005
+     * @tc.name     testImageRadialGradient005
+     * @tc.desc     testImageRadialGradient005
+     * @tc.level    Level.LEVEL1
+     */
+    it('testImageRadialGradient005', Level.LEVEL1, async (done: () => void): Promise<void> => {
+      expect(libUtil.testImageRadialGradient005()).assertEqual(0)
+      done()
+    })
+
+  })
+}
