@@ -1,0 +1,29 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/stepper/stepperUI",
+        "MainAbility/pages/stepper/stepper",
+        "MainAbility/pages/stepper/Stepper1",
+        "MainAbility/pages/stepper/stepperItem",
+        "MainAbility/pages/stepper/stepperLayout/stepperLayout001",
+        "MainAbility/pages/stepper/stepperLayout/stepperLayout002",
+        "MainAbility/pages/stepper/stepperLayout/stepperLayout003",
+        "MainAbility/pages/stepper/stepperLayout/stepperLayout004",
+        "MainAbility/pages/stepper/stepperInterface/stepperInterface001",
+        "MainAbility/pages/stepper/stepperInterface/stepperInterface002",
+        "MainAbility/pages/stepper/stepperInterface/stepperInterface003",
+        "MainAbility/pages/stepper/stepperInterface/stepperInterface004",
+        "MainAbility/pages/stepper/stepperInterface/stepperInterface005",
+        "MainAbility/pages/stepper/stepperInterface/stepperInterface006",
+        "MainAbility/pages/stepper/stepperInterface/stepperInterface009",
+        "MainAbility/pages/stepper/stepperAction/stepperAction001",
+        "MainAbility/pages/stepper/stepperAction/stepperAction003",
+        "MainAbility/pages/stepper/stepperAction/stepperAction004",
+        "MainAbility/pages/stepper/stepperAction/stepperAction005",
+        "MainAbility/pages/stepper/stepperAction/stepperAction006",
+        "MainAbility/pages/stepper/stepperAction/stepperAction007",
+        "MainAbility/pages/stepper/stepperAction/stepperAction027",
+        "MainAbility/pages/stepper/StepperTest1",
+        "MainAbility/pages/stepper/stepperItem2"
+    ]
+}

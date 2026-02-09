@@ -1,0 +1,37 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.image.imageFormatTranscoding",
+        "module-name": "entry_test",
+        "shell-timeout": "300000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageFormatTranscodingTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imageFormatTranscoding/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.imageFormatTranscoding/haps/entry_test/files/*"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/JPG_800500.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageFormatTranscoding/haps/entry_test/files",
+                "./resource/image/JPG_800501.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageFormatTranscoding/haps/entry_test/files",
+                "./resource/image/JPG_801500.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageFormatTranscoding/haps/entry_test/files",
+                "./resource/image/JPG_801501.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageFormatTranscoding/haps/entry_test/files"
+            ]
+        }
+    ]
+}

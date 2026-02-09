@@ -1,0 +1,11 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/UIobserver/Router/ChangePage",
+        "MainAbility/pages/UIobserver/Router/RouterPageSizeChange",
+        "MainAbility/pages/UIobserver/Navigation/QueryNavDestinationSize",
+        "MainAbility/pages/UIobserver/Navigation/NavDestinationSizeUnique",
+        "MainAbility/pages/Router/GetStackSize",
+        "MainAbility/pages/Navigation/NavigationDivider"
+    ]
+}

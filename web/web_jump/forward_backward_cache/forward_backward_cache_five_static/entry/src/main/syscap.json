@@ -1,0 +1,21 @@
+{
+    "devices": {
+        "general": ["default",
+            "tablet"],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Ability.AbilityRuntime.Core",
+                    "SystemCapability.Ability.AbilityRuntime.FAModel",
+                    "SystemCapability.Ability.AbilityRuntime.AbilityCore",
+                    "SystemCapability.Ability.AbilityRuntime.Mission",
+                    "SystemCapability.Ability.AbilityRuntime.QuickFix",
+                    "SystemCapability.Ability.AbilityTools.AbilityAssistant",
+                    "SystemCapability.Ability.AppStartup",
+                    "SystemCapability.Web.Webview.Core",
+                    "SystemCapability.Ability.AppExtension.PhotoEditorExtension"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,164 @@
+'use static';
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { LengthMetrics } from '@ohos.arkui.node'
+import image from "@ohos.multimedia.image";
+import { MyCustomSpan } from '../../common/MyCustomSpan'
+import CommonFunc from '../../common/Common'
+
+import {
+  Entry,ImageAttachmentInterface,
+  Component,
+  Column,
+  Row,
+  Text,
+  ColumnOptions,
+  TouchType,
+  CustomBuilder,
+  DragItemInfo,
+  Color,
+  Button,
+  TouchEvent,
+  Margin,
+  Scroller,
+  GestureRecognizer,
+  PanRecognizer,
+  GestureEvent,
+  ScrollableTargetInfo,
+  Stack,
+  Alignment,
+  Scroll,
+  TextAlign,
+  ForEach,
+  ScrollDirection,
+  BarState,
+  EdgeEffect,
+  GestureControl,ImageSpanAlignment,ImageFit,
+  PanGesture,
+GestureRecognizerState,RichEditorController,RichEditor,RichEditorChangeValue,RichEditorTextSpanResult,RichEditorOptions,RichEditorLayoutStyle,LongPressGesture,Direction,RichEditorRange,ClickEvent,$r,LayoutManager,RichEditorOptions,MutableStyledString,TextStyle,StyledString,RichEditorStyledStringController,Resource,ImageAttachment,FontWeight,FontStyle,StyledStringKey,RichEditorStyledStringOptions,TextEditControllerEx,TextMenuItem,TextRange,TextMenuItemId,CopyOptions,RichEditorInsertValue,Builder
+} from '@ohos.arkui.component'
+import { State, AppStorage } from '@ohos.arkui.stateManagement'
+import { UIContext, Router } from '@ohos.arkui.UIContext';
+import common from '@ohos.app.ability.common';
+@Entry
+@Component
+struct RichEditorCustomSpan010 {
+  customSpan1: MyCustomSpan = new MyCustomSpan('Hello', 80);
+  style1: MutableStyledString = new MutableStyledString(this.customSpan1);
+  imagePixelMap: image.PixelMap | undefined = undefined;
+  @State stylesInfo: string = '';
+
+  richEditorStyledString: MutableStyledString = new MutableStyledString('');
+  textStyle: TextStyle = new TextStyle({
+    fontWeight: FontWeight.Lighter,
+    fontFamily: CommonFunc.FONT_FAMILY,
+    fontColor: Color.Green,
+    fontSize: LengthMetrics.vp(30),
+    fontStyle: FontStyle.Normal
+  })
+  fontStyle1: TextStyle = { fontColor: Color.Blue } as TextStyle
+  fontStyleAttr1: TextStyle =new TextStyle({
+    fontColor: Color.Orange,
+    fontSize: LengthMetrics.vp(50)
+  })
+  mutableStyledString: MutableStyledString = new MutableStyledString('abcd',
+    [{ start: 0, length: 4, styledKey: StyledStringKey.FONT, styledValue: this.fontStyle1 }]);
+
+  controller: RichEditorStyledStringController = new RichEditorStyledStringController();
+  options: RichEditorStyledStringOptions = {controller: this.controller} as RichEditorStyledStringOptions;
+
+   onPageShow() {
+    console.info('aboutToAppear initial imagePixelMap');
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.icon'));
+  }
+
+  private async getPixmapFromMedia(resource: Resource): Promise<image.PixelMap> {
+    let unit8Array = await AppStorage.get<common.Context>('applicationContext')?.resourceManager?.getMediaContent(resource.id)!
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let createPixelMap: image.PixelMap = await (imageSource?.createPixelMap({
+      desiredPixelFormat: image.PixelMapFormat.RGBA_8888
+    }) as Promise<image.PixelMap>)
+    await (imageSource?.release() as Promise<void>)
+    return createPixelMap
+  }
+
+build() {
+    Column() {
+      Button('image Top').onClick((e: ClickEvent) => {
+        if (this.imagePixelMap !== undefined) {
+          let imageStyledString = new MutableStyledString(new ImageAttachment({
+            value: this.imagePixelMap as image.PixelMap,
+            size: { width: 20, height: 20 },
+            layoutStyle: { borderRadius: LengthMetrics.vp(10) },
+            verticalAlign: ImageSpanAlignment.TOP,
+            objectFit: ImageFit.Contain
+          } as ImageAttachmentInterface))
+          this.richEditorStyledString = this.controller!.getStyledString()!;
+          this.richEditorStyledString.appendStyledString(imageStyledString);
+          this.controller!.setStyledString(this.richEditorStyledString);
+          this.controller!.setCaretOffset(this.richEditorStyledString.length);
+        }
+      }).id('imageTop')
+
+      Button('getStyles')
+        .onClick((e: ClickEvent) => {
+          let richEditorStyledString = this.controller!.getStyledString()!;
+          let styles = richEditorStyledString!.getStyles(0, richEditorStyledString.length)!;
+          for (let i = 0; i < styles!.length; i++) {
+            if (styles[i as int].styledKey === 0) {
+              let fontAttr = styles[i as int].styledValue as TextStyle;
+              this.stylesInfo += 'fontColor:' + fontAttr.fontColor + ',';
+              this.stylesInfo += 'fontSize:' + fontAttr.fontSize + ',';
+            }
+          }
+        })
+        .id('getStyles')
+      Button('setStyle').onClick((e: ClickEvent) => {
+        let richEditorStyledString = this.controller!.getStyledString()!;
+        richEditorStyledString.setStyle({
+          start: 0,
+          length: 4,
+          styledKey: StyledStringKey.FONT,
+          styledValue: this.fontStyleAttr1
+        })
+        this.controller!.setStyledString(richEditorStyledString);
+      }).id('setStyle')
+
+      Text('stylesInfo:' + this.stylesInfo).id('stylesInfo')
+
+      RichEditor(this.options)
+        .onReady((): void => {
+          this.controller!.setStyledString(this.mutableStyledString);
+        })
+        .height('20%')
+        .width('100%')
+        .borderWidth(1)
+        .borderColor(Color.Black).id('RichEditorCustomSpan010')
+
+      Column() {
+        Row() {
+          Button('add custom').onClick((e: ClickEvent) => {
+            this.richEditorStyledString = this.controller!.getStyledString()!;
+            this.richEditorStyledString.appendStyledString(this.style1);
+            this.controller!.setStyledString(this.richEditorStyledString);
+            this.controller!.setCaretOffset(this.richEditorStyledString.length);
+          }).id('addCustom')
+        }
+
+      }
+      .width('100%')
+    }
+  }
+}

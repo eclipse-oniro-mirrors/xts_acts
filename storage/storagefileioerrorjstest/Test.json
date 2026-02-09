@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for storage fileio Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.storage.fileioerror",
+        "package-name": "ohos.acts.storage.fileioerror"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStorageFileIoErrorJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

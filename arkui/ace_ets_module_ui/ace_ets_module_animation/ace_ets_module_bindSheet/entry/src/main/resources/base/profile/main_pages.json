@@ -1,0 +1,21 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/SheetType/sheetTypeSide",
+    "MainAbility/pages/SheetType/dismissSheetAction",
+    "MainAbility/pages/SheetType/enableFloatingDragBar",
+    "MainAbility/pages/SheetType/sheetTypeContentCover",
+    "MainAbility/pages/SheetType/modalTransition",
+    "MainAbility/pages/BindContentCover/bindContentCover",
+    "MainAbility/pages/bindSheet/showInSubWindowBindSheet",
+    "MainAbility/pages/bindSheet/bindSheetRadius",
+    "MainAbility/pages/UIContext/closeBindSheet",
+    "MainAbility/pages/UIContext/openBindSheet",
+    "MainAbility/pages/UIContext/updateBindSheet",
+    "MainAbility/pages/bindSheet/sheetBorderWidth",
+    "MainAbility/pages/Panel/Panel",
+    "MainAbility/pages/Panel/Index",
+    "MainAbility/pages/Panel/PanelUI",
+    "MainAbility/pages/Panel/Panel3"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "app": {
+    "vendor": "example",
+    "bundleName": "com.example.bmsaccesstoken2",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    }
+  },
+  "deviceConfig": {
+    "default": {}
+  },
+  "module": {
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "icon": "$media:icon",
+        "name": ".MainAbility",
+        "description": "$string:mainability_description",
+        "label": "$string:app_name",
+        "type": "page",
+        "launchType": "standard",
+        "metaData": {
+          "customizeData": [
+            {
+              "name": "originWidgetName",
+              "value": "com.weather.testWidget"
+            }
+          ]
+        },
+        "srcPath": "MainAbility",
+        "srcLanguage": "js"
+      }
+    ],
+    "deviceType": [],
+    "mainAbility": ".MainAbility",
+    "distro": {
+      "moduleType": "entry",
+      "installationFree": false,
+      "deliveryWithInstall": true,
+      "moduleName": "entry"
+    },
+    "package": "com.example.bmsaccesstoken2",
+    "name": ".MyApplication1",
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "use ohos.permission.DISTRIBUTED_DATASYNC"
+      },
+      {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "reason": "use ohos.permission.KEEP_BACKGROUND_RUNNING"
+      }
+    ]
+  }
+}

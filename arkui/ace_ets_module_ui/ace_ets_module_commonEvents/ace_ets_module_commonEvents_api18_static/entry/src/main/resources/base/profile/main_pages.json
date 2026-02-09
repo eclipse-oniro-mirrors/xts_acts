@@ -1,0 +1,19 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Drag/notifyDragStartRequest",
+    "MainAbility/pages/Drag/PreDrag",
+    "MainAbility/pages/DragInteractionOptions/enableEdgeAutoScroll",
+    "MainAbility/pages/DragInteractionOptions/enableEdgeAutoScroll_false",
+    "MainAbility/pages/DragInteractionOptions/enableEdgeAutoScroll_true",
+    "MainAbility/pages/GestureRecognizer/LongPressRecognizer",
+    "MainAbility/pages/GestureRecognizer/PanRecognizer",
+    "MainAbility/pages/GestureRecognizer/RotationRecognizer",
+    "MainAbility/pages/GestureRecognizer/TapRecognizer",
+    "MainAbility/pages/InteractionEventBindingInfo/InteractionEventBindingInfo",
+    "MainAbility/pages/nextFocus/nextFocus",
+    "MainAbility/pages/nextFocus2/nextFocus2",
+    "MainAbility/pages/onVisiable/onVisiable",
+    "MainAbility/pages/PanGesture/panGestureDistance"
+  ]
+}

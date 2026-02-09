@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for MemoryUitls Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "600000",
+        "testcase-timeout": "6000",
+        "bundle-name": "com.network.websocket.napitest",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNetStackWebsocketNdkTest.hap",
+                "ActsNetStackWebsocketNdkMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "ActsCapiNoPermissionTest"
+    },
+    {
+      "name": "description_application",
+      "value": "ActsCapiNoPermissionTest"
+    }
+  ]
+}

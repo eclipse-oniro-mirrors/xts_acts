@@ -1,0 +1,6 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/progressButtonV2/progressButtonV2Page"
+  ]
+}

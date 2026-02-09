@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "UIExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "UIExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryEmbeddedUIExtAbility_label",
+      "value": "label"
+    }
+  ]
+}

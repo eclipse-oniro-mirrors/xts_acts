@@ -1,0 +1,13 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Scroll/ScrollBackToTop",
+    "MainAbility/pages/Scroll/publishStatusClick",
+    "MainAbility/pages/Grid/GridBackToTop",
+    "MainAbility/pages/Grid/publishStatusClick",
+    "MainAbility/pages/List/ListBackToTop",
+    "MainAbility/pages/List/publishStatusClick",
+    "MainAbility/pages/WaterFlow/publishStatusClick",
+    "MainAbility/pages/WaterFlow/WaterFlowBackToTop"
+  ]
+}

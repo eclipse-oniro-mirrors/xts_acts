@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.downloadcloudsync.static",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStorageDownloadcloudsyncJsStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

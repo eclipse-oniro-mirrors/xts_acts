@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/toolBar/toolBarItemState",
+    "MainAbility/pages/toolBar/toolBarPageTest"
+  ]
+}

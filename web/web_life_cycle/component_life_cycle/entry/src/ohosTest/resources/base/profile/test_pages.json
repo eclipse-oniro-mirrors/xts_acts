@@ -1,0 +1,9 @@
+{
+  "src": [
+    "testability/pages/WebInitTest",
+    "testability/pages/componentLifeCycleTestOne",
+	  "testability/pages/webViewSharedRenderProcessToken",
+    "testability/pages/WebViewSetWebDestroyMode"
+  ]
+}
+

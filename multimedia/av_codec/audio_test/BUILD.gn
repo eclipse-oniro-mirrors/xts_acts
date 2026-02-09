@@ -1,0 +1,69 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+module_output_path = "av_codec/ActsAvAudioEncoderCapiNdkTest"
+
+test_cflags = [
+  "-std=c++17",
+  "-fno-rtti",
+  "-fno-exceptions",
+  "-Wall",
+  "-fno-common",
+  "-fstack-protector-strong",
+  "-Wshadow",
+  "-FPIC",
+  "-FS",
+  "-O2",
+  "-D_FORTIFY_SOURCE=2",
+  "-fvisibility=hidden",
+  "-Wformat=2",
+  "-Wdate-time",
+  "-Werror",
+  "-Wextra",
+  "-Wimplicit-fallthrough",
+  "-Wsign-compare",
+  "-Wunused-parameter",
+]
+
+##################################################################################################################
+ohos_moduletest_suite("ActsAvAudioEncoderCapiNdkTest") {
+  sanitize = {
+    debug = false
+  }
+  module_out_path = module_output_path
+  include_dirs = []
+  include_dirs += [
+    "./",
+    "//interface/sdk_c",
+    "//interface/sdk_c/graphic/graphic_2d",
+    "//interface/sdk_c/multimedia/av_codec",
+    "//interface/sdk_c/multimedia/media_foundation",
+  ]
+
+  cflags = test_cflags
+
+  cflags_cc = cflags
+
+  public_configs = []
+
+  sources = [ "./src/audio_encoder_capi_ndk_test.cpp" ]
+
+  deps = [ "//foundation/multimedia/av_codec/interfaces/kits/c:capi_packages" ]
+
+  external_deps = [ "media_foundation:native_media_core" ]
+
+  part_name = "av_codec"
+  subsystem_name = "multimedia"
+}

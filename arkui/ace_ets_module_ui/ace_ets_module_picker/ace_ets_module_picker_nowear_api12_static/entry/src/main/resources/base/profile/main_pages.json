@@ -1,0 +1,12 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/select/selectApi1",
+    "MainAbility/pages/select/select",
+    "MainAbility/pages/select/triggerSelect",
+    "MainAbility/pages/TimePicker/timePicker",
+    "MainAbility/pages/TextPicker/textPicker",
+    "MainAbility/pages/DatePicker/datePicker",
+    "MainAbility/pages/CalendarPicker/calendarpicker"
+  ]
+}

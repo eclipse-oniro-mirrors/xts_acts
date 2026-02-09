@@ -1,0 +1,26 @@
+{
+    "description": "decima10 test",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "shell-timeout": "800000",
+		"testcase-timeout": "15000",
+        "bundle-name": "com.decimal010.static.test",
+		"module-name": "entry"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsDecimal10StaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

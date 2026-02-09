@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "MainAbility/pages/button/ButtonGetTypeTest",
+    "MainAbility/pages/dragEvent/dragEventGetDisplayId",
+    "MainAbility/pages/dragEvent/dragEventGetDragSource",
+    "MainAbility/pages/dropBadge/enableDropDisallowedBadge"
+  ]
+}

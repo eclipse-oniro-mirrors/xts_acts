@@ -1,0 +1,23 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/datePickerDialog/datePickerDialogEvents",
+    "MainAbility/pages/datePickerDialog/datePickerDialogBGBlurStyle",
+    "MainAbility/pages/datePickerDialog/datePickerDialogBGColor",
+    "MainAbility/pages/datePickerDialog/datePickerDialogCanLoop",
+    "MainAbility/pages/datePickerDialog/datePickerDialogEnableHapticFeedback",
+    "MainAbility/pages/datePickerDialog/datePickerDialogMode",
+    "MainAbility/pages/datePickerDialog/datePickerDialogShadow",
+    "MainAbility/pages/datePickerDialog/stageDatePickerDialog",
+    "MainAbility/pages/datePickerDialog/DatePickerDialogOptions",
+    "MainAbility/pages/datePickerDialog/DatePickerDialogUI",
+    "MainAbility/pages/datePickerDialog/DatePickerDialogWindowProperties",
+    "MainAbility/pages/datePickerDialog/DatePickerDialogAppearText",
+    "MainAbility/pages/datePickerDialog/DatePickerDialogButtonStyle",
+    "MainAbility/pages/datePickerDialog/DatePickerDialogCallback",
+    "MainAbility/pages/datePickerDialog/datePickerDialogBackgroundEffect",
+    "MainAbility/pages/datePickerDialog/datePickerDialogBlurStyleOptions",
+    "MainAbility/pages/datePickerDialog/showDatePickerDialogBackgroundEffect",
+    "MainAbility/pages/datePickerDialog/showDatePickerDialogBlurStyleOptions"
+  ]
+}

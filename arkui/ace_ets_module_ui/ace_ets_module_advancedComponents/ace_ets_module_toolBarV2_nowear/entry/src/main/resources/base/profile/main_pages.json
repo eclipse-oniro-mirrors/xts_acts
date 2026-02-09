@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/toolBarV2/toolBarV2Page",
+    "MainAbility/pages/toolBarV2/toolBarV2ItemState",
+    "MainAbility/pages/toolBarV2/ToolBarV2AccessibilityPage"
+  ]
+}

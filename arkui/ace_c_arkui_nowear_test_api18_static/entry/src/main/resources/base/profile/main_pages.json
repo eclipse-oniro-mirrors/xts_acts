@@ -1,0 +1,19 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/accessibilityValue/accessibilityValue",
+    "pages/arkuiXComponent/arkuiXComponent",
+    "pages/calendarPicker/TestCalendarPickerDate",
+    "pages/customDialog/customDialog",
+    "pages/getGestureParam/getGestureParam",
+    "pages/dragEndPending/dragEndPending",
+    "pages/layoutCallbackOnNodeHandle/layoutCallbackOnNodeHandle",
+    "pages/pointerEvent/pointerEvent",
+    "pages/slider/SliderEnableHapticFeedbackTest",
+    "pages/surfaceHolder/surfaceHolder",
+    "pages/swiperArrowStyle/swiperArrowStyle",
+    "pages/swiperDigitIndicator/swiperDigitIndicator",
+    "pages/swiperIndicator/swiperIndicator",
+    "pages/textPickerCascade/textPickerCascade"
+  ]
+}

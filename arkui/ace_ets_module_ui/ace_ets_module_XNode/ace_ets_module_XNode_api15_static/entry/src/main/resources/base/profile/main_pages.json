@@ -1,0 +1,10 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/FrameNode/lazyForEachTest",
+    "MainAbility/pages/AttributeUpdater/ApplyNormalAttributeTest",
+    "MainAbility/pages/observer/UIObserverDensityUpdateTest",
+    "MainAbility/pages/observer/UIObserverDidLayoutTest",
+    "MainAbility/pages/observer/UIObserverWillDrawTest"
+  ]
+}

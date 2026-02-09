@@ -1,0 +1,157 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry_test",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:test_pages",
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "EmbeddedUIExtAbilityBundle",
+        "icon": "$media:icon",
+        "description": "EmbeddedUIExtAbility",
+        "type": "embeddedUI",
+        "srcEntry": "./ets/EmbeddedUIExtAbilityBundle/EmbeddedUIExtAbility.ets",
+        "extensionProcessMode": "bundle"
+      },
+      {
+        "name": "EmbeddedUIExtAbilityBundle2",
+        "icon": "$media:icon",
+        "description": "EmbeddedUIExtAbility",
+        "type": "embeddedUI",
+        "srcEntry": "./ets/EmbeddedUIExtAbilityBundle2/EmbeddedUIExtAbility.ets",
+        "extensionProcessMode": "bundle"
+      },
+      {
+        "name": "EmbeddedUIExtAbilityBundle3",
+        "icon": "$media:icon",
+        "description": "EmbeddedUIExtAbility",
+        "type": "embeddedUI",
+        "srcEntry": "./ets/EmbeddedUIExtAbilityBundle3/EmbeddedUIExtAbility.ets",
+        "extensionProcessMode": "bundle"
+      },
+      {
+        "name": "EmbeddedUIExtAbilityDefault",
+        "srcEntry": "./ets/EmbeddedUIExtAbilityDefault/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbilityDefault",
+        "type": "embeddedUI",
+        "icon": "$media:icon",
+      },
+      {
+        "name": "EmbeddedUIExtAbilityDefault2",
+        "srcEntry": "./ets/EmbeddedUIExtAbilityDefault2/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbilityDefault",
+        "type": "embeddedUI",
+        "icon": "$media:icon",
+      },
+      {
+        "name": "EmbeddedUIExtAbilityType",
+        "srcEntry": "./ets/EmbeddedUIExtAbilityType/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbilityType",
+        "type": "embeddedUI",
+        "extensionProcessMode": "type"
+      },
+      {
+        "name": "EmbeddedUIExtAbilityInstance",
+        "srcEntry": "./ets/EmbeddedUIExtAbilityInstance/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbilityInstance",
+        "type": "embeddedUI",
+        "extensionProcessMode": "instance"
+      },
+      {
+        "name": "EmbeddedUIExtAbility0700",
+        "srcEntry": "./ets/EmbeddedUIExtAbility0700/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbility0700",
+        "type": "embeddedUI",
+        "icon": "$media:icon",
+      },
+      {
+        "name": "EmbeddedUIExtAbility0800",
+        "srcEntry": "./ets/EmbeddedUIExtAbility0800/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbility0800",
+        "type": "embeddedUI",
+        "icon": "$media:icon",
+      },
+      {
+        "name": "EmbeddedUIExtAbility0900",
+        "srcEntry": "./ets/EmbeddedUIExtAbility0900/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbilityDefault",
+        "type": "embeddedUI",
+        "icon": "$media:icon",
+      },
+      {
+        "name": "EmbeddedUIExtAbility1000",
+        "srcEntry": "./ets/EmbeddedUIExtAbility1000/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbilityDefault",
+        "type": "embeddedUI",
+        "icon": "$media:icon",
+      },
+      {
+        "name": "EmbeddedUIExtAbility1100",
+        "srcEntry": "./ets/EmbeddedUIExtAbility1000/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbilityDefault",
+        "type": "embeddedUI",
+        "icon": "$media:icon",
+      },
+      {
+        "name": "EmbeddedUIExtAbility1200",
+        "srcEntry": "./ets/EmbeddedUIExtAbility1200/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbilityDefault",
+        "type": "embeddedUI",
+        "icon": "$media:icon",
+      },
+      {
+        "name": "EmbeddedUIExtAbility1300",
+        "srcEntry": "./ets/EmbeddedUIExtAbility1300/EmbeddedUIExtAbility.ets",
+        "description": "EmbeddedUIExtAbilityDefault",
+        "type": "embeddedUI",
+        "icon": "$media:icon",
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ]
+  }
+}

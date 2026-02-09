@@ -1,0 +1,11 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/AlertDialog/primary",
+    "MainAbility/pages/CalendarPickerDialog/ButtonStyle",
+    "MainAbility/pages/Popup/DismissReason",
+    "MainAbility/pages/TimePickerDialog/ButtonStyle/Time_accept",
+    "MainAbility/pages/TimePickerDialog/DateTimeOptions",
+    "MainAbility/pages/TimePickerDialog/ButtonStyle/Time_cancel"
+  ]
+}

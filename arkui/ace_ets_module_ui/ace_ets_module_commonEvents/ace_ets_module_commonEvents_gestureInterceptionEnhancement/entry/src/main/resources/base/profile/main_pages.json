@@ -1,0 +1,10 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/index/indexassist",
+        "MainAbility/pages/GestureInterceptionEnhancement/tabsInterceptionEnhancement",
+        "MainAbility/pages/GestureInterceptionEnhancement/tabsInterceptionEnhancementcallbackTest",
+        "MainAbility/pages/GestureInterceptionEnhancement/tabsInterceptionEnhancementcallbackRecognizerTest",
+        "MainAbility/pages/GestureInterceptionEnhancement/tabsInterceptionEnhancementcallbackRecognizerSwiperTest"
+    ]
+}

@@ -1,0 +1,37 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#ifndef ACTSWINDOWNDKAPI20TEST_DISPLAY_H
+#define ACTSWINDOWNDKAPI20TEST_DISPLAY_H
+
+#include "common/Common.h"
+
+namespace Display {
+
+napi_value CaptureScreenPixelmapInvalidParamOrDeviceNotSupported(napi_env env, napi_callback_info info);
+napi_value CaptureScreenPixelmapNoPermission(napi_env env, napi_callback_info info);
+
+napi_value TestCaptureScreenPixelmapBoundaryValue(napi_env env, napi_callback_info info);
+napi_value TestCreateDisplayByIdBoundaryValue(napi_env env, napi_callback_info info);
+napi_value TestUnregisterAvailableAreaChangeListenerBoundaryValue(napi_env env, napi_callback_info info);
+napi_value TestCreateAvailableAreaBoundaryValue(napi_env env, napi_callback_info info);
+napi_value TestUnregisterDisplayAddListenerBoundaryValue(napi_env env, napi_callback_info info);
+napi_value TestUnregisterDisplayRemoveListenerBoundaryValue(napi_env env, napi_callback_info info);
+napi_value TestGetDisplaySourceModeBoundaryValue(napi_env env, napi_callback_info info);
+napi_value TestGetDisplayPositionBoundaryValue(napi_env env, napi_callback_info info);
+
+};
+
+#endif //ACTSWINDOWNDKAPI20TEST_DISPLAY_H

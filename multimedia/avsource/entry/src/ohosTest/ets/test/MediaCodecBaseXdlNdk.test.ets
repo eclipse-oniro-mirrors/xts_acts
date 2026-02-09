@@ -1,0 +1,2427 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, it, expect, Level } from "@ohos/hypium"
+import mediacodecbasexdlndk from 'libmediacodecbasexdlndk.so'
+
+export default function mediaCodecBaseXdlNdkTest() {
+  describe('MuslMediaCodecBaseXdlTest', () => {
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange002
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_0200
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange002', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeAnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetEncoderQualityRange002 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange003
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_0300
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange003', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeBnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange004
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_0400
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange004', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeCnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange005
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_0500
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange005', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeDnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange006
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_0600
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange006', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeEnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange007
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_0700
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange007', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeFnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange008
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_0800
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange008', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeGnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange009
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_0900
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange009', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeHnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange010
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1000
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange010', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeInormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange011
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1100
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange011', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeJnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetEncoderQualityRange011 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange012
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1200
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange012', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeKnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange013
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1300
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange013', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeLnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange014
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1400
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange014', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeMnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange015
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1500
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange015', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeNnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOHAvCapabilityGetEncoderQualityRange015 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange016
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1600
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange016', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeOnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange017
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1700
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange017', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangePnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange018
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1800
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange018', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeQnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange019
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1900
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange019', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeRnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange020
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_2000
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange020', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeSnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetEncoderQualityRange020 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange021
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_2100
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange021', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeTnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetEncoderQualityRange021 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange022
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_2200
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange022', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeUnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange023
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_2300
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange023', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeVnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange024
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_2400
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange024', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeWnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange025
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_2500
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange025', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeXnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange026
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_2600
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange026', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeYnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange027
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_2700
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange027', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeZnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange028
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_2800
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange028', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeAAnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange029
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_2900
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange029', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeABnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange030
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_3000
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange030', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeACnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange031
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_1100
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange031', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeADnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange032
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_3200
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange032', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeAEnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange033
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_3300
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange033', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeAFnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange034
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_3400
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange034', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeAGnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange035
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_3500
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange035', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeAHnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange036
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_3600
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange036', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeAInormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange037
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_3700
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange037', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeAJnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange038
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_3800
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange038', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeAKnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange039
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_3900
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange039', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeALnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderQualityRange040
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_4000
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderQualityRange040', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderQualityRangeAMnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOHAvCapabilityGetEncoderQualityRange040 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange002
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_0200
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange002', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeAnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange003
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_0300
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange003', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeBnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange004
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_0400
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange004', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeCnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange005
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_0500
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange005', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeDnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange006
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_0600
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange006', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeEnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetEncoderComplexityRange006 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange007
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_0700
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange007', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeFnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange008
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_0800
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange008', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeGnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange009
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_0900
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange009', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeHnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange010
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_1000
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange010', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeInormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange011
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_1100
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange011', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeJnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange012
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_1200
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange012', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeKnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange013
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_1300
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange013', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeLnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange014
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_1400
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange014', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeMnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange015
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_1500
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange015', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeNnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange016
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_1600
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange016', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeOnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetEncoderComplexityRange016 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange017
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_1700
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange017', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangePnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange018
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_1800
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange018', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeQnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange019
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_1900
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange019', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeRnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange020
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_2000
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange020', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeSnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange021
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_2100
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange021', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeTnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetEncoderComplexityRange021 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange022
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_2200
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange022', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeUnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange023
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_2300
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange023', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeVnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange024
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_2400
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange024', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeWnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange025
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_2500
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange025', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeXnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange026
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_2600
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange026', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeYnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOHAvCapabilityGetEncoderComplexityRange026 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange027
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_2700
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange027', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeZnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOHAvCapabilityGetEncoderComplexityRange027 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange028
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_2800
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange028', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeAAnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange029
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_2900
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange029', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeABnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange030
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_3000
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange030', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeACnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange031
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_3100
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange031', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeADnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOHAvCapabilityGetEncoderComplexityRange031 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange032
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_3200
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange032', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeAEnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange033
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_3300
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange033', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeAFnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange034
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_3400
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange034', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeAGnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange035
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_3500
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange035', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeAHnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange036
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_3600
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange036', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeAInormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange037
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_3700
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange037', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeAJnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange038
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_3800
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange038', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeAKnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange039
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_3900
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange039', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeALnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetEncoderComplexityRange040
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_4000
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetEncoderComplexityRange040', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetEncoderComplexityRangeAMnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates002
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_0200
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates002', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesAbnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates003
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_0300
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates003', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesAnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates004
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_0400
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates004', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesBnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates005
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_0500
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates005', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesCnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates006
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_0600
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates006', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesDnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates007
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_0700
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates007', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesEnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates008
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_0800
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates008', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesFnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates009
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_0900
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates009', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesGnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates010
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_1000
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates010', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesHnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates011
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_1100
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates011', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesInormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates012
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_1200
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates012', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesGnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates013
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_1300
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates013', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesKnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates014
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_1400
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates014', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesLnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates015
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_1500
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates015', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesMnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates016
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_1600
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates016', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesNnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates017
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_1700
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates017', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesOnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioSupportedSampleRates018
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_1800
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioSupportedSampleRates018', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioSupportedSampleRatesPnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetAudioSupportedSampleRates018 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange002
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_0200
+     * @tc.desc   test OH_AVCapafbility_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange002', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeAnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange003
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_0300
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange003', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeBnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange004
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_0400
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange004', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeCnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange005
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_0500
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange005', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeDnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange006
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_0600
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange006', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeEnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetAudioChannelCountRange006 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange007
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_0700
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange007', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeFnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOHAvCapabilityGetAudioChannelCountRange007 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange008
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_0800
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange008', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeGnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange009
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_0900
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange009', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeHnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange010
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_1000
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange010', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeInormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange011
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_1100
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange011', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeJnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange012
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_1200
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange012', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeKnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetAudioChannelCountRange012 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange013
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_1300
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange013', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeLnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange014
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_1400
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange014', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeMnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange015
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_1500
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange015', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeNnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange016
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_1600
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange016', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeOnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetAudioChannelCountRange016 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange017
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_1700
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange017', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangePnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange018
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_1800
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange018', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeQnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange019
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_1900
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange019', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeRnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetAudioChannelCountRange020
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_2000
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetAudioChannelCountRange020', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetAudioChannelCountRangeSnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment002
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_0200
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment002', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentAnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment003
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_0300
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment003', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentBnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetVideoWidthAlignment003 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment004
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_0400
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment004', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentCnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment005
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_0500
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment005', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentDnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment006
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_0600
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment006', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentEnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetVideoWidthAlignment006 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment007
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_0700
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment007', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentFnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOHAvCapabilityGetVideoWidthAlignment007 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment008
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_0800
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment008', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentGnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOHAvCapabilityGetVideoWidthAlignment008 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment009
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_0900
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment009', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentHnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOHAvCapabilityGetVideoWidthAlignment009 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment010
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_1000
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment010', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentInormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOHAvCapabilityGetVideoWidthAlignment010 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment011
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_1100
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment011', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentJnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment012
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_1200
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment012', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentKnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment013
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_1300
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment013', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentLnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+    
+    /**
+     * @tc.name   testOHAvCapabilityGetVideoWidthAlignment014
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_1400
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOHAvCapabilityGetVideoWidthAlignment014', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoWidthAlignmentMnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment002
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_0200
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment002', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentAnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment003
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_0300
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment003', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentBnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetVideoHeightAlignment003 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment004
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_0400
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment004', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentCnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment005
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_0500
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment005', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentDnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment006
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_0600
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment006', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentEnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetVideoHeightAlignment006 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment007
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_0700
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment007', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentFnormal();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetVideoHeightAlignment007 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment008
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_0800
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment008', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentGnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOhAvCapabilityGetVideoHeightAlignment008 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment009
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_0900
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment009', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentHnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOhAvCapabilityGetVideoHeightAlignment009 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment010
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_1000
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment010', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentInormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment011
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_1100
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment011', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentJnormal();
+      expect(result).assertEqual(-1);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment012
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_1200
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment012', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentKnormal();
+        expect(result != null).assertTrue();
+        done();
+      } catch(err) {
+        console.info('testOhAvCapabilityGetVideoHeightAlignment012 failed, error is' + err.message);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment013
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_1300
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment013', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentLnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment014
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_1400
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment014', Level.LEVEL0, async (done: Function) => {
+      let result: number = mediacodecbasexdlndk.oHAvCapabilityGetVideoHeightAlignmentMnormal();
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetEncoderQualityRange001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERQUALITYRANGE_0100
+     * @tc.desc   test OH_AVCapability_GetEncoderQualityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetEncoderQualityRange001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_GetEncoderQualityRange();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetEncoderQualityRange001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetEncoderComplexityRange001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETENCODERCOMPLEXITYRANGE_0100
+     * @tc.desc   test OH_AVCapability_GetEncoderComplexityRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetEncoderComplexityRange001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_GetEncoderComplexityRange();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetEncoderComplexityRange001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetAudioSupportedSampleRates001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOSUPPORTEDSAMPLERATES_0100
+     * @tc.desc   test OH_AVCapability_GetAudioSupportedSampleRates
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetAudioSupportedSampleRates001', Level.LEVEL0, async (done: Function) => {
+      expect(mediacodecbasexdlndk.OH_AVCapability_GetAudioSupportedSampleRates()).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetAudioChannelCountRange001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETAUDIOCHANNELCOUNTRANGE_0100
+     * @tc.desc   test OH_AVCapability_GetAudioChannelCountRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetAudioChannelCountRange001', Level.LEVEL0, async (done: Function) => {
+      expect(mediacodecbasexdlndk.OH_AVCapability_GetAudioChannelCountRange()).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoWidthAlignment001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHALIGNMENT_0100
+     * @tc.desc   test OH_AVCapability_GetVideoWidthAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoWidthAlignment001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_GetVideoWidthAlignment();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetVideoWidthAlignment001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightAlignment001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTALIGNMENT_0100
+     * @tc.desc   test OH_AVCapability_GetVideoHeightAlignment
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightAlignment001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_GetVideoHeightAlignment();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetVideoHeightAlignment001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCodecGetCapability001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_AVCAPABILITY_OH_AVCODEC_GETCAPABILITY_0100
+     * @tc.desc   test OH_AVCodec_GetCapability
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCodecGetCapability001', Level.LEVEL0, async (done: Function) => {
+      expect(mediacodecbasexdlndk.OH_AVCodec_GetCapability()).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCodecGetCapabilityByCategory001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCODEC_GETCAPABILITYBYCATEGORY_0100
+     * @tc.desc   test OH_AVCodec_GetCapabilityByCategory
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCodecGetCapabilityByCategory001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCodec_GetCapabilityByCategory();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCodecGetCapabilityByCategory001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoWidthRange001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOWIDTHRANGE_0100
+     * @tc.desc   test OH_AVCapability_GetVideoWidthRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoWidthRange001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_GetVideoWidthRange();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetVideoWidthRange001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoHeightRange001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOHEIGHTRANGE_0100
+     * @tc.desc   test OH_AVCapability_GetVideoHeightRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoHeightRange001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_GetVideoHeightRange();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetVideoHeightRange001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityIsVideoSizeSupported001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_ISVIDEOSIZESUPPORTED_0100
+     * @tc.desc   test OH_AVCapability_IsVideoSizeSupported
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityIsVideoSizeSupported001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_IsVideoSizeSupported();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityIsVideoSizeSupported001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoFrameRateRange001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOFRAMERATERANGE_0100
+     * @tc.desc   test OH_AVCapability_GetVideoFrameRateRange
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoFrameRateRange001', Level.LEVEL0, async (done: Function) => {
+      try {
+            let result: number = mediacodecbasexdlndk.OH_AVCapability_GetVideoFrameRateRange();
+            expect(result != null).assertTrue();
+            done();
+      } catch (err) {
+            console.info('testOhAvCapabilityGetVideoFrameRateRange001 failed, error is' + err.message);
+            expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoFrameRateRangeForSize001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOFRAMERATERANGEFORSIZE_0100
+     * @tc.desc   test OH_AVCapability_GetVideoFrameRateRangeForSize
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoFrameRateRangeForSize001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_GetVideoFrameRateRangeForSize();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetVideoFrameRateRangeForSize001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityAreVideoSizeAndFrameRateSupported001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_AREVIDEOSIZEANDFRAMERATESUPPORTED_0100
+     * @tc.desc   test OH_AVCapability_AreVideoSizeAndFrameRateSupported
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityAreVideoSizeAndFrameRateSupported001', Level.LEVEL0, async (done: Function) => {
+      expect(mediacodecbasexdlndk.OH_AVCapability_AreVideoSizeAndFrameRateSupported()).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetVideoSupportedPixelFormats001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETVIDEOSUPPORTEDPIXELFORMATS_0100
+     * @tc.desc   test OH_AVCapability_GetVideoSupportedPixelFormats
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetVideoSupportedPixelFormats001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_GetVideoSupportedPixelFormats();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetVideoSupportedPixelFormats001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetSupportedProfiles001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETSUPPORTEDPROFILES_0100
+     * @tc.desc   test OH_AVCapability_GetSupportedProfiles
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetSupportedProfiles001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_GetSupportedProfiles();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetSupportedProfiles001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.name   testOhAvCapabilityGetSupportedLevelsForProfile001
+     * @tc.number SUB_MULTIMEDIA_AV_CODEC_NATIVE_AVCAPABILITY_OH_AVCAPABILITY_GETSUPPORTEDLEVELSFORPROFILE_0100
+     * @tc.desc   test OH_AVCapability_GetSupportedLevelsForProfile
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testOhAvCapabilityGetSupportedLevelsForProfile001', Level.LEVEL0, async (done: Function) => {
+      try {
+        let result: number = mediacodecbasexdlndk.OH_AVCapability_GetSupportedLevelsForProfile();
+        expect(result != null).assertTrue();
+	      done();
+      } catch (err) {
+        console.info('testOhAvCapabilityGetSupportedLevelsForProfile001 failed, error is' + err.message);
+	      expect(false).assertTrue();
+      }
+    });
+
+  })
+}

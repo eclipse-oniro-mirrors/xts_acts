@@ -1,0 +1,25 @@
+{
+    "description": "Config for hcpptest demo test cases",
+    "environment": [
+        {
+            "type": "device",
+            "label": "ipcamera"
+        }
+    ],
+    "kits": [
+        {
+            "type": "MountKit",
+            "server": "NfsServer",
+            "mount": [
+                {
+                    "source": "testcases/distributeddatamgr",
+                    "target": "/test_root/distributeddatamgr"
+                }
+            ]
+        }
+    ],
+    "driver": {
+        "type": "CppTestLite",
+        "execute": "/test_root/distributeddatamgr/ActsKvStoreTest.bin"
+    }
+}

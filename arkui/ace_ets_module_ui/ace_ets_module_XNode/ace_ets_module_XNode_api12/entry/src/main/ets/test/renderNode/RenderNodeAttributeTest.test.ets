@@ -1,0 +1,331 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, beforeAll, beforeEach, afterEach, afterAll,  it, Level, expect } from "@ohos/hypium"
+import router from '@ohos.router';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import CommonFunc from '../../MainAbility/common/Common';
+export default function RenderNodeAttributeTest() {
+  describe('RenderNodeAttributeTest', () => {
+    beforeEach(async (done: Function) => {
+      console.info("RenderNodeAttributeTest beforeEach start");
+      let options : router.RouterOptions = {
+        url: "MainAbility/pages/renderNode/RenderNodeAttribute",
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get RenderNodeAttributeTest state pages: " + JSON.stringify(pages));
+        if (!("RenderNodeAttribute" == pages.name)) {
+          console.info("get RenderNodeAttributeTest state pages.name: " + JSON.stringify(pages.name));
+          let result = await router.pushUrl(options)
+          await CommonFunc.sleep(2000);
+          console.info("push RenderNodeAttributeTest success: " + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push RenderNodeAttributeTest page error: " + err);
+        expect().assertFail();
+      }
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_0100
+     * @tc.number api
+     * @tc.desc   borderWidth_left
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_0100', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_0100 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderWidth_left');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_0100] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('8');
+      console.info('[RenderNodeAttributeTest_0100] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_0200
+     * @tc.number api
+     * @tc.desc   borderWidth_top
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_0200', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_0200 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderWidth_top');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_0200] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('8');
+      console.info('[RenderNodeAttributeTest_0200] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_0300
+     * @tc.number api
+     * @tc.desc   borderWidth_bottom
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_0300', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_0300 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderWidth_bottom');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_0300] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('8');
+      console.info('[RenderNodeAttributeTest_0300] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_0400
+     * @tc.number api
+     * @tc.desc   borderWidth_right
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_0400', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_0400 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderWidth_right');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_0400] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('8');
+      console.info('[RenderNodeAttributeTest_0400] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_0500
+     * @tc.number api
+     * @tc.desc   borderColor_left
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_0500', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_0500 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderColor_left');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_0500] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('true');
+      console.info('[RenderNodeAttributeTest_0500] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_0600
+     * @tc.number api
+     * @tc.desc   borderColor_right
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_0600', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_0600 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderColor_right');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_0600] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('true');
+      console.info('[RenderNodeAttributeTest_0600] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_0700
+     * @tc.number api
+     * @tc.desc   borderColor_top
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_0700', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_0700 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderColor_top');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_0700] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('true');
+      console.info('[RenderNodeAttributeTest_0700] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_0800
+     * @tc.number api
+     * @tc.desc   borderColor_bottom
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_0800', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_0800 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderColor_bottom');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_0800] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('true');
+      console.info('[RenderNodeAttributeTest_0800] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_0900
+     * @tc.number api
+     * @tc.desc   borderStyle_left
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_0900', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_0900 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderStyle_left');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_0900] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('0');
+      console.info('[RenderNodeAttributeTest_0900] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_1000
+     * @tc.number api
+     * @tc.desc   borderStyle_right
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_1000', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_1000 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderStyle_right');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_1000] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('1');
+      console.info('[RenderNodeAttributeTest_1000] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_1100
+     * @tc.number api
+     * @tc.desc   borderStyle_top
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_1100', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_1100 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderStyle_top');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_1100] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('2');
+      console.info('[RenderNodeAttributeTest_1100] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_1200
+     * @tc.number api
+     * @tc.desc   borderStyle_bottom
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_1200', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_1200 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderStyle_bottom');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_1200] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('0');
+      console.info('[RenderNodeAttributeTest_1200] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_1300
+     * @tc.number api
+     * @tc.desc   borderRadius_topRight
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_1300', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_1300 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderRadius_topRight');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_1300] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('32');
+      console.info('[RenderNodeAttributeTest_1300] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_1400
+     * @tc.number api
+     * @tc.desc   borderRadius_topLeft
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_1400', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_1400 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderRadius_topLeft');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_1400] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('32');
+      console.info('[RenderNodeAttributeTest_1400] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_1500
+     * @tc.number api
+     * @tc.desc   borderRadius_bottomLeft
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_1500', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_1500 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderRadius_bottomLeft');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_1500] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('32');
+      console.info('[RenderNodeAttributeTest_1500] END');
+      done();
+    });
+    /**
+     * @tc.name   RenderNodeAttributeTest_1600
+     * @tc.number api
+     * @tc.desc   borderRadius_bottomRight
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('RenderNodeAttributeTest_1600', Level.LEVEL0, async (done: Function) => {
+      console.info('RenderNodeAttributeTest_1600 START');
+      await CommonFunc.sleep(1000);
+      let strJson: string = getInspectorByKey('RenderNodeAttribute_borderRadius_bottomRight');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      console.info("[RenderNodeAttributeTest_1600] component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('32');
+      console.info('[RenderNodeAttributeTest_1600] END');
+      done();
+    });
+  })
+}

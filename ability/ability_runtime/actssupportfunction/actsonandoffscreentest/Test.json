@@ -1,0 +1,41 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.example.actsonandoffscreentest",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": "30000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsOnAndOffScreenTest.hap",
+                "FaOnAndOffScreen.hap",
+                "StageOnAndOffScreen.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 1279 280 200",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "power-shell timeout -o 86400000",
+                "power-shell setmode 602",
+                "param set persist.sys.abilityms.support.ecologicalrulemgrservice false"
+            ],
+            "teardown-command": [
+                "param set persist.sys.abilityms.support.ecologicalrulemgrservice true",
+                "power-shell wakeup",
+                "uinput -T -m 300 1279 280 200",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "power-shell timeout -o 86400000",
+                "power-shell setmode 602"
+          ]
+        }
+    ]
+}

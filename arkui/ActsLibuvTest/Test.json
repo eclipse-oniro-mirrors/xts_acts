@@ -1,0 +1,27 @@
+{
+  "description": "Config for ActsLibuvTest HAP",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "180000",
+    "bundle-name": "com.example.acts_libuv_test",
+    "module-name": "entry_test",
+    "shell-timeout": "180000",
+    "testcase-timeout": "150000"
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsLibuvMainTest.hap",
+        "ActsLibuvHapTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "mkdir -p /data/test"
+      ]
+    }
+  ]
+}

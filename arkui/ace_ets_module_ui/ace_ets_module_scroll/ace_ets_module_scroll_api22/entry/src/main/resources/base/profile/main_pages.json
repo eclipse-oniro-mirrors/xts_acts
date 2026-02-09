@@ -1,0 +1,20 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/List/ContentOffset",
+        "MainAbility/pages/List/scrollSnapAnimationSpeedModifier",
+        "MainAbility/pages/List/scrollSnapAnimationSpeed",
+        "MainAbility/pages/List/listScrollbarColor",
+        "MainAbility/pages/Grid/gridScrollbarColor",
+        "MainAbility/pages/Scroll/scrollScrollbarColor",
+        "MainAbility/pages/WaterFlow/scrollbarColor",
+        "MainAbility/pages/List/ListFillPolicy",
+        "MainAbility/pages/Grid/GridFillPolicy",
+        "MainAbility/pages/WaterFlow/WaterFlowFillPolicy",
+        "MainAbility/pages/Grid/GridContentSize",
+        "MainAbility/pages/List/ListContentSize",
+        "MainAbility/pages/Scroll/ScrollContentSize",
+        "MainAbility/pages/WaterFlow/WaterFlowContentSize",
+        "MainAbility/pages/WaterFlow/WaterFlowFillPolicyModifier"
+    ]
+}

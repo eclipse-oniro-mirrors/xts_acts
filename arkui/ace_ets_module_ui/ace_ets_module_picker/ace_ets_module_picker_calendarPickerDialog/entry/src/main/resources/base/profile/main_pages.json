@@ -1,0 +1,17 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogBGBlurStyle",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogBGColor",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogShadow",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogStartEndTest",
+    "MainAbility/pages/calendarPickerDialog/dialogDisableDateRangeAndMarkToday",
+    "MainAbility/pages/calendarPickerDialog/CalendarPickerDialogExits",
+    "MainAbility/pages/calendarPickerDialog/CalendarPickerDialogWindowProperties",
+    "MainAbility/pages/calendarPickerDialog/CalendarDialogCallback",
+    "MainAbility/pages/calendarPickerDialog/CalendarPickerDialog",
+    "MainAbility/pages/calendarPickerDialog/CalendarPickerDialogButtonStyle",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogBackgroundEffect",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogBlurStyleOptions"
+  ]
+}

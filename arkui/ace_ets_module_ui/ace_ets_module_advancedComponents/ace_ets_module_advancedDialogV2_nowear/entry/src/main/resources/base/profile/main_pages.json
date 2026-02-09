@@ -1,0 +1,12 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/dialogV2/selectDialogV2TestPage",
+    "MainAbility/pages/dialogV2/loadingDialogV2TestPage",
+    "MainAbility/pages/dialogV2/confirmDialogV2TestPage",
+    "MainAbility/pages/dialogV2/tipsDialogV2TestPage",
+    "MainAbility/pages/dialogV2/alertDialogV2TestPage",
+    "MainAbility/pages/dialogV2/popoverDialogV2TestPage",
+    "MainAbility/pages/dialogV2/customContentDialogV2TestPage"
+  ]
+}

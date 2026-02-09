@@ -1,0 +1,32 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.delegatortest",
+        "module-name": "entry",
+        "testcase-timeout": 15000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCrossplatformAbilityTest.hap",
+                "ActsCrossplatformFeatureATest.hap",
+                "ActsCrossplatformFeatureBTest.hap",
+                "ActsCrossplatformFeatureCTest.hap",
+                "ActsCrossplatformFeatureDTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "power-shell timeout -o 86400000",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100"
+            ]
+        }
+    ]
+}

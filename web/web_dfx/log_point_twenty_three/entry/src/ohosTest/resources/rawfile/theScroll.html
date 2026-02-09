@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homework</title>
+    <style>
+        html{
+            width:2000px;
+        }
+		#kuang{
+			height:220px;
+			white-space:nowrap;
+		}
+		img{
+			border-radius:5px;
+			margin-top:10px;
+			width:1000px;
+			height:200px;
+			display:inline
+		}
+		#centerHeight{
+		    height:3000px;
+		}
+	</style>
+</head>
+<body>
+<div >
+    <div id="kuang">
+        <img src="icon.png" id ="leftImg">
+        <img src="icon.png" id ="centerImg">
+        <img src="icon.png" id ="rightImg">
+    </div>
+    <div id="gao">
+        <div id="centerHeight"></div>
+        <img src="icon.png" alt="icon" id="bottomImg">
+    </div>
+</div>
+</body>
+</html>
+<script>
+    function getScroll(){
+        let x = document.documentElement.scrollLeft;
+        let y = document.documentElement.scrollTop;
+        let z = document.body.scrollHeight;
+        let p = document.body.scrollWidth;
+        let arr = [x,y];
+        console.log(arr)
+        return arr;
+    }
+    getScroll();
+</script>
+</html>
+

@@ -1,0 +1,29 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/UIContext/getOverlayManager",
+        "MainAbility/pages/UIContext/OverlayManager_001",
+        "MainAbility/pages/UIContext/OverlayManager_002",
+        "MainAbility/pages/UIContext/OverlayManager_003",
+        "MainAbility/pages/UIContext/OverlayManager_004",
+        "MainAbility/pages/UIContext/OverlayManager_005",
+        "MainAbility/pages/UIContext/OverlayManager_006",
+        "MainAbility/pages/UIContext/getContextMenuController",
+        "MainAbility/pages/customProperty/customProperty",
+        "MainAbility/pages/callback/callback",
+        "MainAbility/pages/Common/backgroundBlurStyle/backgroundBlurStyleOptions/inactiveColor",
+        "MainAbility/pages/Common/backgroundBlurStyle/backgroundBlurStyleOptions/Policy",
+        "MainAbility/pages/Common/BackgroundEffect/BackgroundEffectOptions/BlurStyleActivePolicy_ALWAYS_ACTIVE",
+        "MainAbility/pages/Common/BackgroundEffect/BackgroundEffectOptions/BlurStyleActivePolicy_ALWAYS_INACTIVE",
+        "MainAbility/pages/Common/BackgroundEffect/BackgroundEffectOptions/BlurStyleActivePolicy_FOLLOWS_WINDOW_ACTIVE_STATE",
+        "MainAbility/pages/Common/BackgroundEffect/BackgroundEffectOptions/inactiveColor",
+        "MainAbility/pages/Common/BackgroundEffect/BackgroundEffectOptions/Policy",
+        "MainAbility/pages/Button/Button_API/Role",
+        "MainAbility/pages/UIContext/getPageInfoByUniqueId",
+        "MainAbility/pages/UIContext/setFrameRateRange",
+        "MainAbility/pages/AttributeUpdater/AttributeUpdater",
+	    "MainAbility/pages/componentSnapshot/componentSnapshot",
+        "MainAbility/pages/UIContext/postDelayedFrameCallback",
+        "MainAbility/pages/UIContext/postFrameCallback"
+    ]
+}

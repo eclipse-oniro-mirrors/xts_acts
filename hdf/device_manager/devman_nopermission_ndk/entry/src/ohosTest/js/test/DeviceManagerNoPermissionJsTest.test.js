@@ -1,0 +1,335 @@
+/*
+ * Copyright (C) 2024-2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import usbManager from '@ohos.usbManager'
+import deviceManager from '@ohos.driver.deviceManager'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium';
+
+export default function DeviceManagerNoPermissionJsTest() {
+    describe("NoPermissionJsTest", function () {
+        const TAG = "[NoPermissionJsTest]";
+        const PERMISSION_DENIED_CODE = 201;
+        const PERMISSION_DENIED_NOSYSTEM_CODE = 202;
+        const TEST_DEVICE_ID = 0;
+        const TEST_DRIVER_UID = 'testDriverUid'
+        const TEST_FUNCTION = (data) => {
+            expect(data === null).assertTrue();
+            console.info("Test function is called");
+        };
+
+        let deviceNum = 0;
+        const isDeviceConnected = done => {
+            if (deviceNum > 0) {
+                console.info("Test USB device is connected");
+                return true;
+            }
+            console.info("Test USB device is not connected");
+            expect(true).assertTrue();
+            if (typeof (done) === 'function') {
+                done();
+            }
+            return false;
+        }
+
+        beforeAll(function () {
+            console.info('beforeAll called');
+            try {
+                const devicesList = usbManager.getDevices();
+                if (Array.isArray(devicesList)) {
+                    deviceNum = devicesList.length;
+                }
+            } catch (err) {
+                console.error(TAG, `getDevices failed, message is ${err.message}`);
+            }
+        })
+
+        afterAll(function () {
+            console.info('afterAll called');
+        })
+
+        beforeEach(function () {
+            console.info('beforeEach called');
+        })
+
+        afterEach(function () {
+            console.info('afterEach called');
+        })
+
+        /**
+         * @tc.name   testNoPermissionQueryDevices001
+         * @tc.number SUB_Driver_Ext_DevManNoPermission_0100
+         * @tc.desc   verify permission of queryDevices
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('testNoPermissionQueryDevices001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, done => {
+            console.info('----------------------testNoPermissionQueryDevices001---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                let devices = deviceManager.queryDevices(deviceManager.BusType.USB);
+                expect(devices === null).assertTrue();
+                done();
+            } catch (err) {
+                console.info(TAG, 'testNoPermissionQueryDevices001 catch err code: ', err.code, ', message: ', err.message);
+                expect(err.code).assertEqual(PERMISSION_DENIED_CODE);
+                done();
+            }
+        });
+
+        /**
+         * @tc.name   testNoPermissionBindDevice001
+         * @tc.number SUB_Driver_Ext_DevManNoPermission_0200
+         * @tc.desc   verify permission of bindDevice
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('testNoPermissionBindDevice001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, done => {
+            console.info('----------------------testNoPermissionBindDevice001---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                deviceManager.bindDevice(TEST_DEVICE_ID, TEST_FUNCTION, TEST_FUNCTION);
+                done();
+            } catch (err) {
+                console.info(TAG, 'testNoPermissionBindDevice001 catch err code: ', err.code, ', message: ', err.message);
+                expect(err.code).assertEqual(PERMISSION_DENIED_CODE);
+                done();
+            }
+        });
+
+        /**
+         * @tc.name   testNoPermissionBindDevice002
+         * @tc.number SUB_Driver_Ext_DevManNoPermission_0300
+         * @tc.desc   verify permission of bindDevice
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('testNoPermissionBindDevice002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async done => {
+            console.info('----------------------testNoPermissionBindDevice002---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                await deviceManager.bindDevice(TEST_DEVICE_ID, TEST_FUNCTION);
+                done();
+            } catch (err) {
+                console.info(TAG, 'testNoPermissionBindDevice002 catch err code: ', err.code, ', message: ', err.message);
+                expect(err.code).assertEqual(PERMISSION_DENIED_CODE);
+                done();
+            }
+        });
+
+        /**
+         * @tc.name   testNoPermissionBindDeviceDriver001
+         * @tc.number SUB_Driver_Ext_DevManNoPermission_0400
+         * @tc.desc   verify permission of bindDeviceDriver
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('testNoPermissionBindDeviceDriver001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, done => {
+            console.info('----------------------testNoPermissionBindDeviceDriver001---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                deviceManager.bindDeviceDriver(TEST_DEVICE_ID, TEST_FUNCTION, TEST_FUNCTION);
+                done();
+            } catch (err) {
+                console.info(TAG, 'testNoPermissionBindDeviceDriver001 catch err code: ',
+                    err.code, ', message: ', err.message);
+                expect(err.code).assertEqual(PERMISSION_DENIED_CODE);
+                done();
+            }
+        });
+
+        /**
+         * @tc.name   testNoPermissionBindDeviceDriver002
+         * @tc.number SUB_Driver_Ext_DevManNoPermission_0500
+         * @tc.desc   verify permission of bindDeviceDriver
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('testNoPermissionBindDeviceDriver002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async done => {
+            console.info('----------------------testNoPermissionBindDeviceDriver002---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                await deviceManager.bindDeviceDriver(TEST_DEVICE_ID, TEST_FUNCTION);
+                done();
+            } catch (err) {
+                console.info(TAG, 'testNoPermissionBindDeviceDriver002 catch err code: ',
+                    err.code, ', message: ', err.message);
+                expect(err.code).assertEqual(PERMISSION_DENIED_CODE);
+                done();
+            }
+        });
+
+        /**
+         * @tc.name   testNoPermissionUnbindDevice001
+         * @tc.number SUB_Driver_Ext_DevManNoPermission_0600
+         * @tc.desc   verify permission of unbindDevice
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('testNoPermissionUnbindDevice001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, done => {
+            console.info('----------------------testNoPermissionUnbindDevice001---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                deviceManager.unbindDevice(TEST_DEVICE_ID, TEST_FUNCTION);
+                done();
+            } catch (err) {
+                console.info(TAG, 'testNoPermissionUnbindDevice001 catch err code: ',
+                    err.code, ', message: ', err.message);
+                expect(err.code).assertEqual(PERMISSION_DENIED_CODE);
+                done();
+            }
+        });
+
+        /**
+         * @tc.name   testNoPermissionUnbindDevice002
+         * @tc.number SUB_Driver_Ext_DevManNoPermission_0700
+         * @tc.desc   verify permission of unbindDevice
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('testNoPermissionUnbindDevice002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async done => {
+            console.info('----------------------testNoPermissionUnbindDevice002---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                await deviceManager.unbindDevice(TEST_DEVICE_ID).then(data => {
+                    expect(data === null).assertTrue();
+                })
+                done();
+            } catch (err) {
+                console.info(TAG, 'testNoPermissionUnbindDevice002 catch err code: ',
+                    err.code, ', message: ', err.message);
+                expect(err.code).assertEqual(PERMISSION_DENIED_CODE);
+                done();
+            }
+        });
+
+        /**
+         * @tc.name   testNoPermissionQueryDeviceInfo001
+         * @tc.number SUB_Driver_Ext_DevManNoPermission_0800
+         * @tc.desc   verify permission of queryDeviceInfo
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('testNoPermissionQueryDeviceInfo001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, done => {
+            console.info('----------------------testNoPermissionQueryDeviceInfo001---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                let deviceInfos = deviceManager.queryDeviceInfo(TEST_DEVICE_ID);
+                expect(deviceInfos === null).assertTrue();
+                done();
+            } catch (err) {
+                console.info(TAG, 'testNoPermissionQueryDeviceInfo001 catch err code: ',
+                    err.code, ', message: ', err.message);
+                expect(err.code).assertEqual(PERMISSION_DENIED_NOSYSTEM_CODE);
+                done();
+            }
+        });
+
+        /**
+         * @tc.name   testNoPermissionQueryDriverInfo001
+         * @tc.number SUB_Driver_Ext_DevManNoPermission_0900
+         * @tc.desc   verify permission of queryDeviceInfo
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it('testNoPermissionQueryDriverInfo001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, done => {
+            console.info('----------------------testNoPermissionQueryDriverInfo001---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                let driverInfos = deviceManager.queryDriverInfo(TEST_DRIVER_UID);
+                expect(driverInfos === null).assertTrue();
+                done();
+            } catch (err) {
+                console.info(TAG, 'testNoPermissionQueryDriverInfo001 catch err code: ',
+                    err.code, ', message: ', err.message);
+                expect(err.code).assertEqual(PERMISSION_DENIED_NOSYSTEM_CODE);
+                done();
+            }
+        });
+
+        /**
+         * @tc.name   Permission_bindDriverWithDeviceId_001
+         * @tc.number Permission_bindDriverWithDeviceId_001
+         * @tc.desc   verify permission of bindDriverWithDeviceId
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it("Permission_bindDriverWithDeviceId_001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async done => {
+            console.info('----------------------Permission_bindDriverWithDeviceId_001---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                await deviceManager.bindDriverWithDeviceId(TEST_DEVICE_ID, TEST_FUNCTION);
+                expect(false).assertTrue();
+                done();
+            } catch (err) {
+                expect(err.code).assertEqual(PERMISSION_DENIED_CODE);
+                done();
+            }
+        });
+
+        /**
+         * @tc.name   Permission_unbindDriverWithDeviceId
+         * @tc.number Permission_unbindDriverWithDeviceId
+         * @tc.desc   verify permission of unbindDriverWithDeviceId
+         * @tc.type   FUNCTION
+         * @tc.size   MEDIUMTEST
+         * @tc.level  LEVEL0
+         */
+        it("Permission_unbindDriverWithDeviceId", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async done => {
+            console.info('----------------------Permission_unbindDriverWithDeviceId_001---------------------------');
+            if (!isDeviceConnected(done)) {
+                return;
+            }
+            try {
+                await deviceManager.unbindDriverWithDeviceId(TEST_DEVICE_ID);
+                expect(false).assertTrue();
+                done();
+            } catch (err) {
+                expect(err.code).assertEqual(PERMISSION_DENIED_CODE);
+                done();
+            }
+        });
+
+    })
+}

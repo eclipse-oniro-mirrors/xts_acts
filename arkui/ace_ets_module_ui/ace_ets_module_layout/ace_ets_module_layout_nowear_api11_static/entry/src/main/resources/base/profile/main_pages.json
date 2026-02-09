@@ -1,0 +1,11 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Column/ColumnSplit",
+    "MainAbility/pages/Column/columnSplitPage",
+    "MainAbility/pages/FolderStack/folder_stack",
+    "MainAbility/pages/FolderStack/FolderStack3Api",
+    "MainAbility/pages/Row/RowSplit",
+    "MainAbility/pages/waterflow/WaterflowDemo"
+  ]
+}

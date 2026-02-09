@@ -1,0 +1,31 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+group("ActsWebOpenWebPageTest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "ace_open_web_page_dev:ActsWebOpenWebPageDevTest",
+      "ace_open_web_page_dev_four:ActsWebOpenWebPageDevFourTest",
+      "ace_open_web_page_dev_four_static:ActsWebOpenWebPageDevFourStaticTest",
+      "ace_open_web_page_dev_three:ActsWebOpenWebPageDevThreeTest",
+      "ace_open_web_page_dev_two:ActsWebOpenWebPageDevTwoTest",
+      "ace_open_web_page_dev_webviewController:ActsWebOpenWebPageDevWebViewControllerTest",
+      "ace_open_web_page_enhanced_one:ActsWebOpenWebPageEnhancedTest",
+      "ace_open_web_page_enhanced_three:ActsWebOpenWebPageEnhancedThreeTest",
+      "ace_open_web_page_enhanced_three_static:ActsWebOpenWebPageEnhancedThreeStaticTest",
+      "ace_open_web_page_enhanced_two:ActsWebOpenWebPageEnhancedTwoTest",
+      "ace_open_web_page_napis_enhance_one:ActsWebOpenWebPageNapisEnhanceOneTest",
+    ]
+  }
+}

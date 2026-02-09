@@ -1,0 +1,10 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/List/headerList",
+        "MainAbility/pages/Tabs/tabsOpacity",
+        "MainAbility/pages/Tabs/bindTabsScroll",
+        "MainAbility/pages/List/listItemGroup",
+        "MainAbility/pages/Scroll/offsetRemainScroll"
+    ]
+}

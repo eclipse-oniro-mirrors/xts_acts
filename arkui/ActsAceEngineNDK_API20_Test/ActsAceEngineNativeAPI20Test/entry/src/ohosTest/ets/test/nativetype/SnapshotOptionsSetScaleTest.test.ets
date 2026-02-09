@@ -1,0 +1,69 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, it, expect, TestType, Size, Level } from '@ohos/hypium'
+import libnativetype from 'libnativetype.so'
+import Utils from '../common/Utils';
+
+const OS_ACCOUNT_ERR_INVALID_PARAMETER = 12300002;
+
+export default function SnapshotOptionsSetScaleTest() {
+  describe('SnapshotOptionsSetScaleTest', () => {
+    /**
+     * @tc.name   testArkUIACESnapshotOptionsSetScaleTest0100
+     * @tc.number SUB_ArkUI_ACE_SnapshotOptionsSetScaleTest_0100
+     * @tc.desc   testing OH_ArkUI_SnapshotOptions_SetScale interface.
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testArkUIACESnapshotOptionsSetScaleTest0100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1,
+      async (done: Function) => {
+        try {
+          console.info("====>SUB_ArkUI_ACE_SnapshotOptionsSetScaleTest_0100 start====");
+          await Utils.sleep(500);
+          let result: number = libnativetype.ArkUISnapshotOptionsSetScaleSuccess(5);
+          console.info("====>SUB_ArkUI_ACE_SnapshotOptionsSetScaleTest_0100 result: " + result);
+          expect(result).assertEqual(0);
+          done()
+        } catch (err) {
+          console.error("====>SUB_ArkUI_ACE_SnapshotOptionsSetScaleTest_0100 catch err: " + err);
+          expect(false).assertEqual(OS_ACCOUNT_ERR_INVALID_PARAMETER);
+        }
+      })
+    /**
+     * @tc.name   testArkUIACESnapshotOptionsSetScaleTest0200
+     * @tc.number SUB_ArkUI_ACE_SnapshotOptionsSetScaleTest_0200
+     * @tc.desc   testing OH_ArkUI_SnapshotOptions_SetScale interface.
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testArkUIACESnapshotOptionsSetScaleTest0200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1,
+      async (done: Function) => {
+        try {
+          console.info("====>SUB_ArkUI_ACE_SnapshotOptionsSetScaleTest_0200 start====");
+          await Utils.sleep(500);
+          let result: number = libnativetype.ArkUISnapshotOptionsSetScaleError();
+          console.info("====>SUB_ArkUI_ACE_SnapshotOptionsSetScaleTest_0200 result: " + result);
+          expect(result).assertEqual(401);
+          done()
+        } catch (err) {
+          console.error("====>SUB_ArkUI_ACE_SnapshotOptionsSetScaleTest_0200 catch err: " + err);
+          expect(false).assertEqual(OS_ACCOUNT_ERR_INVALID_PARAMETER);
+        }
+      })
+  })
+}

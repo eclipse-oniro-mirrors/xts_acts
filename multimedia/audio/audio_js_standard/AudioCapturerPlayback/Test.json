@@ -1,0 +1,33 @@
+{
+    "description": "Configuration for ActsAudioCapturerPlaybackTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.huawei.it.welink",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioCapturerPlaybackTest.hap",
+                "ActsAudioCapturerPlaybackMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/com.huawei.it.welink/haps/entry_test/files",
+                "chmod 777 -R /data/app/el2/100/base/com.huawei.it.welink/haps/entry_test"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600"
+            ],
+            "cleanup-apps": true
+        }
+    ]
+}

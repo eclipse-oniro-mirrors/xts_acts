@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "120000",
+        "shell-timeout": "120000",
+        "bundle-name": "com.example.actsbmsjsunpermissiontest",
+        "package-name": "com.example.actsbmsjsunpermissiontest"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBmsJsUnPermissionTest.hap",
+                "bmsJstest1.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

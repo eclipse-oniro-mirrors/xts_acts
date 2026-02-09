@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "demo2"
+    },
+    {
+      "name": "SingletonAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SingletonAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "IsolationAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "IsolationAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "NoSpecifiedAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "NoSpecifiedAbility_label",
+      "value": "label"
+    }
+  ]
+}

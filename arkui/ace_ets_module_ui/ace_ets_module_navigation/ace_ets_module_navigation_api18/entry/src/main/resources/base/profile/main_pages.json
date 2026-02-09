@@ -1,0 +1,13 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/OnActivePage",
+        "MainAbility/pages/OverlayTest",
+        "MainAbility/pages/Basic",
+        "MainAbility/pages/CustomDialogTest",
+        "MainAbility/pages/BasicSheet01",
+        "MainAbility/pages/BasicSheet02",
+        "MainAbility/pages/PathStackPage",
+        "MainAbility/pages/NavDestinationStateActive"
+    ]
+}

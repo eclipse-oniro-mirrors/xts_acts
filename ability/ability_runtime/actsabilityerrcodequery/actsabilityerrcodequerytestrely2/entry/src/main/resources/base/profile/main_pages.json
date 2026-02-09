@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "abilitya/pages/IndexA",
+    "abilityb/pages/IndexB",
+    "abilityc/pages/IndexC",
+    "abilityd/pages/IndexD",
+    "abilitye/pages/IndexE"
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "app": {
+    "bundleName": "com.example.getmultipleaccountstest",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.getmultipleaccountstest",
+    "name": ".entry_test",
+    "mainAbility": ".TestAbility",
+    "deviceType": [],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "defPermissions": [
+    ],
+    "reqPermissions": [
+      {
+        "name":"ohos.permission.GET_ALL_APP_ACCOUNTS",
+        "reason":"need use ohos.permission.GET_ALL_APP_ACCOUNTS"
+      },
+      {
+        "name":"ohos.permission.GET_BUNDLE_INFO",
+        "reason":"need use ohos.permission.GET_BUNDLE_INFO"
+      },
+      {
+        "name":"ohos.permission.CHANGE_ABILITY_ENABLED_STATE",
+        "reason":"need use ohos.permission.CHANGE_ABILITY_ENABLED_STATE"
+      },
+      {
+        "name":"ohos.permission.REMOVE_CACHE_FILES",
+        "reason":"need use ohos.permission.REMOVE_CACHE_FILES"
+      },
+      {
+        "name":"ohos.permission.LISTEN_BUNDLE_CHANGE",
+        "reason":"need use ohos.permission.LISTEN_BUNDLE_CHANGE"
+      }
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".TestAbility",
+        "srcLanguage": "js",
+        "srcPath": "TestAbility",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "testRunner": {
+      "name": "OpenHarmonyTestRunner",
+      "srcPath": "TestRunner"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>空白HTML文档</title>
+    <style>
+        /* 移除所有默认边距和填充 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 设置HTML和body元素为100%视口高度 */
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* 可选：添加一个几乎不可见的边框，仅用于确认页面存在 */
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.01);
+            pointer-events: none;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<!-- 这是一个完全空白的页面 -->
+</body>
+</html>

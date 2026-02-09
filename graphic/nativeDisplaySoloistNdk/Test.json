@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for graphic display soloist Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.example.displaymanager",
+        "module-name": "entry_test",
+        "shell-timeout": "180000"
+    },
+    "kits": [
+        {
+        "test-file-name": [
+            "ActsNativeDisplaySoloistTest.hap",
+            "ActsNativeDisplaySoloistMainTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

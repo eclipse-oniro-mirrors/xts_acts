@@ -1,0 +1,15 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/AlphabetIndexer/alphabet",
+        "MainAbility/pages/AlphabetIndexer/alphabetIndexerux",
+        "MainAbility/pages/AlphabetIndexer/AlphabetIndexer",
+        "MainAbility/pages/AlphabetIndexer/alphabetIndexerAPI",
+        "MainAbility/pages/AlphabetIndexer/alphabetEnable",
+        "MainAbility/pages/AlphabetIndexer/alphabetBorderRadius",
+        "MainAbility/pages/AlphabetIndexer/alphabetAlignStyle",
+        "MainAbility/pages/AlphabetIndexer/outliersAlphabet",
+        "MainAbility/pages/AlphabetIndexer/valueAlphabet",
+        "MainAbility/pages/AlphabetIndexer/PopupAlpha"
+    ]
+}

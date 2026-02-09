@@ -1,0 +1,15 @@
+{
+    "integer":[
+      {
+        "name": "Caretwidth",
+        "value": 10
+      },
+      {
+        "name": "maxFontScale",
+        "value": 2
+      },{
+        "name": "minFontScale",
+        "value": 1
+      }
+    ]
+}

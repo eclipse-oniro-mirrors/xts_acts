@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+        "name": "entry_label",
+        "value": "ActsContextTest"
+    },
+    {
+        "name": "description_application",
+        "value": "demo for test"
+    },
+    {
+        "name": "app_name",
+        "value": "Demo"
+    },
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "Check_Mark_Size_test",
+      "value": "50vp"
+    }
+  ]
+}

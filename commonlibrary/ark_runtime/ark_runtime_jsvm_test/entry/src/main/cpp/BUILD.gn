@@ -1,0 +1,80 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/config/ohos/config.gni")
+import("//test/xts/tools/build/suite.gni")
+import("//foundation/arkui/napi/napi.gni")
+
+config("config") {
+  visibility = [ ":*" ]
+
+  cflags = [
+    "-Wall",
+    "-Werror",
+    "-g3",
+    "-Wunused-variable",
+    "-DOHOS_JSVMTEST_XTS",
+    "-DTEST_WASM",
+    "-DTEST_ARRAY_BUFFER_BACKING_STORE",
+    "-DTEST_WRAPPER_OBJECT",
+    "-DTEST_WELL_KNOWN_SYMBOLS",
+    "-DTEST_TRACE",
+    "-DTEST_DEFINE_CLASS_WITH_OPTIONS",
+    "-DTEST_TRIGGER_EXCEPTIONS",
+    "-DTEST_TRIGGER_GC",
+  ]
+}
+
+config("public_config") {
+}
+
+ohos_xts_shared_library("jsvmtest") {
+  sources = [
+    "./jsvmtest/jsvm_utils.cpp",
+    "./jsvmtest/jsvmtest.cpp",
+    "./jsvmtest/unittests/test_array_buffer_backing_store.cpp",
+    "./jsvmtest/unittests/test_define_class_with_options.cpp",
+    "./jsvmtest/unittests/test_external_string.cpp",
+    "./jsvmtest/unittests/test_microtask_policy.cpp",
+    "./jsvmtest/unittests/test_private.cpp",
+    "./jsvmtest/unittests/test_promise.cpp",
+    "./jsvmtest/unittests/test_proxy.cpp",
+    "./jsvmtest/unittests/test_trace.cpp",
+    "./jsvmtest/unittests/test_trigger_exceptions.cpp",
+    "./jsvmtest/unittests/test_trigger_gc.cpp",
+    "./jsvmtest/unittests/test_wasm.cpp",
+    "./jsvmtest/unittests/test_well_known_symbols.cpp",
+    "./jsvmtest/unittests/test_wrapper_object.cpp",
+    "./napi/napi_test.cpp",
+  ]
+  include_dirs = [
+    "./jsvmtest",
+    "./jsvmtest/unittests/wasm-def",
+  ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
+  configs = [ ":config" ]
+
+  # add for third-party depend checking failed
+  testonly = true
+
+  deps = [ "//third_party/bounds_checking_function:libsec_static" ]
+  external_deps = [
+    "hilog:hilog_ndk",
+    "napi:ace_napi",
+    "napi:napi_packages",
+  ]
+  subsystem_name = "arkui"
+  part_name = "napi"
+
+  output_extension = "so"
+}

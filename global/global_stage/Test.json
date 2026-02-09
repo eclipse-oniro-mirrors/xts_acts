@@ -1,0 +1,22 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "600000",
+        "bundle-name": "ohos.acts.globalstage",
+        "module-name": "entry_test",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsGlobalStageTestLibrary-library-default-signed.hsp",
+                "ActsGlobalStageTestLibrary-entry-default-signed.hap",
+                "ActsGlobalStageTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

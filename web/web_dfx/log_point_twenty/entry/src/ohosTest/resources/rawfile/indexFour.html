@@ -1,0 +1,31 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+</head>
+<body>
+<img src="http://example.com/image.jpg" alt="icon" id="imgss">
+<video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+<canvas id="canvas" width="500px" height="500px"></canvas>
+<br>
+<input type="button" title="HTML5摄像头" value="开启摄像头" onclick="getMedia()"/>
+<script>
+   function getMedia()
+   {
+     let constraints = {
+       video: {width: 500, height: 500},
+       audio: true
+     };
+     let video = document.getElementById("video");
+     let promise = navigator.mediaDevices.getUserMedia(constraints);
+     promise.then(function (MediaStream) {
+       video.srcObject = MediaStream;
+       video.play();
+     });
+   }
+ </script>
+</body>
+</html>

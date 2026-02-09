@@ -1,0 +1,9 @@
+{
+  "src": [
+    "TestAbility/pages/Index",
+    "pages/PageImportHar",
+    "pages/PageImportNapi",
+    "pages/PageImportRelative",
+    "pages/PageImportSystem"
+  ]
+}

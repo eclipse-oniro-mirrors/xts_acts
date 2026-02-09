@@ -1,0 +1,44 @@
+'use static'
+/**
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { State } from '@ohos.arkui.stateManagement'
+import { Entry,Column,Text,Button,Divider,Component,SafeAreaType,
+  SafeAreaEdge} from '@ohos.arkui.component'
+
+@Entry
+@Component
+struct CommonExample {
+  @State isUndefined: boolean = true;
+  @State buttonText: string = 'true'
+
+  build() {
+    Column() {
+      Text('expandSafeArea-动态切换').fontSize(20).margin(15).width('90%')
+      Button('Button')
+        .fontSize(50)
+        .expandSafeArea(this.isUndefined ? [SafeAreaType.SYSTEM] : undefined,
+          this.isUndefined ? [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM] : undefined)
+        .id('Common_expandSafeArea')
+
+      Divider()
+      Button('isUndefined = ' + this.buttonText)
+        .id('changeButton')
+        .onClick(() => {
+          this.isUndefined == true ? this.isUndefined = false : this.isUndefined = true
+          this.isUndefined == true ? this.buttonText = 'true' : this.buttonText = 'false'
+        })
+    }.width('100%')
+  }
+}

@@ -1,0 +1,68 @@
+'use static';
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import {
+  Entry,
+  Column,
+  Component,
+  GestureModifier,
+  UIGestureEvent,
+  TapGestureHandler,
+  GestureEvent,
+  Text,
+  Color
+} from '@ohos.arkui.component';
+import { LocalStorage } from '@ohos.arkui.stateManagement';
+import {
+  State,
+
+  AppStorage
+} from '@ohos.arkui.stateManagement';
+
+let storage: LocalStorage = new LocalStorage();
+
+class MyButtonModifier implements GestureModifier {
+  applyGesture(event: UIGestureEvent): void {
+    event.addGesture(
+      new TapGestureHandler({ count: 1, fingers: 1 })
+        .tag("TapGestureHandleraaa")
+        .onAction((event: GestureEvent) => {
+          storage.set('storageContext', 'setContext');
+        })
+    )
+    event.removeGestureByTag("TapGestureHandleraaa")
+  }
+}
+
+@Entry
+@Component
+struct APIremoveGestureByTag {
+  @State modifier: MyButtonModifier = new MyButtonModifier()
+  @State text: string = 'init'
+
+  build() {
+    Column() {
+      Column()
+        .gestureModifier(this.modifier)
+        .width(200)
+        .height(200)
+        .backgroundColor(Color.Blue)
+
+      Text(this.text).key('APIremoveGestureByTag_Text01')
+        .fontWeight(700).fontSize(30)
+    }
+  }
+}

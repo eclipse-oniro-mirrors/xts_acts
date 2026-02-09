@@ -1,0 +1,17 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/ActionSheet/actionSheetHoverMode",
+    "MainAbility/pages/AlertDialog/alertDialogHoverMode",
+    "MainAbility/pages/bindSheetTest/bindSheetHoverMode",
+    "MainAbility/pages/bindSheetTest/bindSheetShowClose",
+    "MainAbility/pages/bindSheetTest/bindSheetType",
+    "MainAbility/pages/CustomDialog/customDialogHoverMode",
+    "MainAbility/pages/dialog/popoverDialogTest",
+    "MainAbility/pages/Popup/followTransformOfTargetCustomPopup",
+    "MainAbility/pages/Popup/followTransformOfTargetPopup",
+    "MainAbility/pages/promptActionTest/showDialogHoverMode",
+    "MainAbility/pages/promptActionTest/showToastHoverMode",
+    "MainAbility/pages/UIContext/FocusController/activeTest"
+  ]
+}

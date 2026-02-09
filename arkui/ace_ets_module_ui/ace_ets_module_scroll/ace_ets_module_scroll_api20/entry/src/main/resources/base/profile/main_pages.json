@@ -1,0 +1,29 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Swiper/maintainPosition",
+        "MainAbility/pages/Grid/barMarginGrid",
+        "MainAbility/pages/List/barMarginList",
+        "MainAbility/pages/Scroll/barMarginScroll",
+        "MainAbility/pages/Tabs/curvesTabs",
+        "MainAbility/pages/Refresh/maxDownRefresh",
+        "MainAbility/pages/Tabs/barHeightNoMinHeightLimit",
+        "MainAbility/pages/ScrollBar/scrollBarColor",
+        "MainAbility/pages/Grid/canOverGrid",
+        "MainAbility/pages/List/canOverList",
+        "MainAbility/pages/Scroll/canOverScroll",
+        "MainAbility/pages/Grid/gridStopDrag",
+        "MainAbility/pages/List/listStopDrag",
+        "MainAbility/pages/Scroll/scrollStopDrag",
+        "MainAbility/pages/WaterFlow/waterFlowStopDrag",
+        "MainAbility/pages/Grid/syncLoadGrid",
+        "MainAbility/pages/List/syncLoadList",
+        "MainAbility/pages/List/syncLoadGroup",
+        "MainAbility/pages/WaterFlow/syncLoadFlow",
+        "MainAbility/pages/Swiper/stateChange",
+        "MainAbility/pages/Scroll/zoomScaleScroll",
+        "MainAbility/pages/Scroll/zoomScaleNull",
+        "MainAbility/pages/Tabs/animationCurve",
+        "MainAbility/pages/List/groupStickyBoth"
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/checkboxGroup/CheckboxgroupContentModifier",
+
+        "MainAbility/pages/checkbox/checkBoxExample",
+        "MainAbility/pages/checkbox/checkBoxGroupUI",
+
+        "MainAbility/pages/checkbox/CheckboxTest",
+        "MainAbility/pages/checkbox/checkbox",
+        "MainAbility/pages/checkboxGroup/checkboxGroup",
+        "MainAbility/pages/checkbox/CheckBox1",
+        "MainAbility/pages/checkboxGroup/CheckBoxGroup1",
+        "MainAbility/pages/checkbox/checkBox2",
+        "MainAbility/pages/checkbox/checkBoxGroup",
+        "MainAbility/pages/checkboxGroup/checkBoxGroup2",
+
+        "MainAbility/pages/checkboxGroup/CheckBoxShape",
+        "MainAbility/pages/checkbox/contentModifier",
+        "MainAbility/pages/checkbox/triggerChange",
+        "MainAbility/pages/checkbox/indicatorBuilder",
+
+        "MainAbility/pages/checkbox/checkboxNode",
+        "MainAbility/pages/checkboxGroup/checkboxGroupNode",
+        "MainAbility/pages/checkbox/checkboxOnChangeModifier",
+        "MainAbility/pages/checkboxGroup/checkboxGroupOnChangeModifier"
+    ]
+}

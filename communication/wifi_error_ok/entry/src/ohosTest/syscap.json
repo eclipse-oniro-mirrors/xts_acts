@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Communication.WiFi.STA",
+                    "SystemCapability.Communication.Bluetooth.Core"
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/keyboardShortcut/ShortcutKeyTAB",
+        "MainAbility/pages/keyboardShortcut/ShortcutKeyDPADUP",
+        "MainAbility/pages/keyboardShortcut/ShortcutKeyDPADDOWN",
+        "MainAbility/pages/keyboardShortcut/ShortcutKeyDPADLEFT",
+        "MainAbility/pages/keyboardShortcut/ShortcutKeyDPADRIGHT",
+        "MainAbility/pages/onKeyEvent/getModifierKeyState",
+        "MainAbility/pages/onKeyEvent/getModifierKeyState2",
+        "MainAbility/pages/onKeyEvent/getModifierKeyState3",
+        "MainAbility/pages/onKeyEvent/unicode",
+        "MainAbility/pages/keyEventDispatchTest/keyEventDispatchTest01",
+        "MainAbility/pages/keyEventDispatchTest/keyEventDispatchTest02",
+        "MainAbility/pages/keyEventDispatchTest/keyEventDispatchTest03",
+        "MainAbility/pages/keyEventDispatchTest/keyEventDispatchTest04",
+        "MainAbility/pages/keyEventDispatchTest/keyEventDispatchTest05",
+        "MainAbility/pages/keyEventDispatchTest/keyEventDispatchTest06",
+        "MainAbility/pages/keyEventDispatchTest/onKeyEventDispatch01",
+        "MainAbility/pages/keyEventDispatchTest/onkeyEventDispatch03",
+        "MainAbility/pages/keyEventDispatchTest/onkeyEventDispatch04",
+        "MainAbility/pages/keyEventDispatchTest/onkeyEventDispatch06",
+        "MainAbility/pages/keyEventDispatchTest/onkeyEventDispatch07",
+        "MainAbility/pages/keyEventDispatchTest/onkeyEventDispatch08"
+    ]
+}

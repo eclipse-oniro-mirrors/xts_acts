@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for ActsHiDebugColTest demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.hidebug.collect.test",
+        "package-name": "com.hidebug.collect.test_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHiDebugColTest.hap",
+                "ActsHiDebugColMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

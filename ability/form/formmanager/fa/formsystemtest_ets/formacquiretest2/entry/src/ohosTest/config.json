@@ -1,0 +1,121 @@
+{
+  "app": {
+    "bundleName": "com.ohos.st.formacquiretest2",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.ohos.st.formacquiretest2",
+    "name": ".entry_test",
+    "mainAbility": ".TestAbility",
+    "deviceType": [],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "defPermissions": [
+      {
+      "availableScope": [],
+      "grantMode": "system_grant",
+      "name": "FMS_FormDelete_commonEvent"
+      },
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormOnAcquired_commonEvent"
+      },
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormOnError_commonEvent"
+      },
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormCast_commonEvent"
+      },
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "FMS_FormSupply_commonEvent"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "FMS_FormOnAcquired_commonEvent",
+        "reason": "need use onAcquired commonEvent"
+      },
+      {
+        "name": "FMS_FormDelete_commonEvent",
+        "reason": "need use delete commonEvent"
+      },
+      {
+        "name": "FMS_FormOnError_commonEvent",
+        "reason": "need use OnError commonEvent"
+      },
+      {
+        "name": "FMS_FormCast_commonEvent",
+        "reason": "need use castFrom commonEvent"
+      },
+      {
+        "name": "FMS_FormSupply_commonEvent",
+        "reason": "need use FormSupply commonEvent"
+      },
+      {
+        "name":"ohos.permission.CLEAN_BACKGROUND_PROCESSES",
+        "reason":"need use ohos.permission.CLEAN_BACKGROUND_PROCESSES"
+      },
+      {
+        "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+        "reason":"need use ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "TestAbility",
+        "name": ".TestAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

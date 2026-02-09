@@ -1,0 +1,17 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/setFontSizeAbility001",
+    "testability/pages/setFontSizeAbility002",
+    "testability/pages/setFontSizeAbility003",
+    "testability/pages/setFontSizeAbility004",
+    "testability/pages/setFontSizeAbility005",
+    "testability/pages/setFontSizeAbility006",
+    "testability/pages/setFontSizeAbility007",
+    "testability/pages/setFontSizeAbility008",
+    "testability/pages/setFontSizeAbility009",
+    "testability/pages/setFontSizeAbility010",
+    "testability/pages/setFontSizeAbility011",
+    "testability/pages/setFontSizeAbility012"
+  ]
+}

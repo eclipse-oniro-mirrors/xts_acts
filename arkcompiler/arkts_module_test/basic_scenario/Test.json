@@ -1,0 +1,24 @@
+{
+    "description": "Configuration for ecma_new_features Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "bundle-name": "com.example.arkts_module",
+        "module-name": "entry_test",
+        "shell-timeout": "180000",
+        "compile-mode": "esmodule"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsArktsModuleBasicScenarioMainTest-library2-default-signed.hsp",
+                "ActsArktsModuleBasicScenarioMainTest-library-default-signed.hsp",
+                "ActsArktsModuleBasicScenarioMainTest-library3-default-signed.hsp",
+                "ActsArktsModuleBasicScenarioMainTest-entry-default-signed.hap",
+                "ActsArktsModuleBasicScenarioTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

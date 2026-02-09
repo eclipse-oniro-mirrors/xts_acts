@@ -1,0 +1,30 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/XComponent/getXComponentSurfaceRect",
+        "MainAbility/pages/XComponent/onSurfaceCreated",
+        "MainAbility/pages/XComponent/stopImageAnalyzer",
+        "MainAbility/pages/Video/VideoTest1",
+	"MainAbility/pages/XComponent/setXComponentSurfaceRotation",
+        "MainAbility/pages/InputMethodList/inputMethodListTest",
+        "MainAbility/pages/EmbeddedComponent/extension",
+        "MainAbility/pages/EmbeddedComponent/onTerminated",
+        "MainAbility/pages/MovingPhotoView/MovingPhotoView",
+        "MainAbility/pages/Video/VideoReset/VideoReset1",
+        "MainAbility/pages/Video/VideoReset/VideoReset2",
+        "MainAbility/pages/Video/VideoReset/VideoReset3",
+        "MainAbility/pages/Video/VideoReset/VideoReset4",
+        "MainAbility/pages/Video/VideoReset/VideoReset5",
+        "MainAbility/pages/Video/VideoReset/VideoReset6",
+        "MainAbility/pages/Video/VideoReset/VideoReset7",
+        "MainAbility/pages/Video/VideoReset/VideoReset8",
+        "MainAbility/pages/Video/VideoReset/VideoReset9",
+        "MainAbility/pages/Video/VideoReset/VideoReset10",
+        "MainAbility/pages/Video/VideoReset/VideoReset11",
+        "MainAbility/pages/Video/VideoReset/VideoReset12",
+        "MainAbility/pages/Video/VideoReset/VideoReset13",
+        "MainAbility/pages/Video/VideoReset/VideoReset14",
+        "MainAbility/pages/Video/VideoTest2",
+        "MainAbility/pages/XComponent/surfaceRotationOptionsLock"
+    ]
+}

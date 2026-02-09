@@ -1,0 +1,27 @@
+{
+    "description": "spec Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "testcase-timeout": "15000",
+        "bundle-name": "dataview.standard.test.static",
+        "module-name": "entry"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsDataviewStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

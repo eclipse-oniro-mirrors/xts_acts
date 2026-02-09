@@ -1,0 +1,10 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/datePickerDialog/datePickerDialogCanLoop",
+        "MainAbility/pages/textPickerDialog/textPickerDialogDisappearTextStyle",
+        "MainAbility/pages/textPickerDialog/textPickerDialogSelectedTextStyle",
+        "MainAbility/pages/textPickerDialog/textPickerDialogTextStyle",
+        "MainAbility/pages/textPickerDialog/textPickerDialogSelectedBgColor"
+    ]
+}

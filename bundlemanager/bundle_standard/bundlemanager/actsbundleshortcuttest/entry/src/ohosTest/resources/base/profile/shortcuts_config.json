@@ -1,0 +1,53 @@
+{
+  "shortcuts": [
+    {
+      "shortcutId": "shortcut_id",
+      "wants": [{
+        "bundleName": "com.example.shortcuttest",
+        "moduleName": "entry",
+        "abilityName": "EntryAbility",
+        "parameters": {"index": "0"}
+      }]
+    },
+    {
+      "shortcutId": "id_test1",
+      "visible": true,
+      "wants": [{
+        "bundleName": "com.example.shortcuttest",
+        "moduleName": "entry",
+        "abilityName": "EntryAbility",
+        "parameters": {"index": "1"}
+      }]
+    },
+    {
+      "shortcutId": "id_test2",
+      "visible": false,
+      "wants": [{
+        "bundleName": "com.example.shortcuttest",
+        "moduleName": "entry",
+        "abilityName": "EntryAbility",
+        "parameters": {"index": "2"}
+      }]
+    },
+    {
+      "shortcutId": "id_test3",
+      "visible": false,
+      "wants": [{
+        "bundleName": "com.example.shortcuttest",
+        "moduleName": "entry",
+        "abilityName": "EntryAbility",
+        "parameters": {"index": "3"}
+      }]
+    },
+    {
+      "shortcutId": "id_test4_test",
+      "visible": true,
+      "wants": [{
+        "bundleName": "com.example.shortcuttest_test",
+        "moduleName": "entry_test",
+        "abilityName": "EntryAbility_test",
+        "parameters": {"index": "4"}
+      }]
+    }
+  ]
+}

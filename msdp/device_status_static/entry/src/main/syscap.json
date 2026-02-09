@@ -1,0 +1,14 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.MultimodalAwareness.DeviceStatus",
+                    "SystemCapability.MultimodalAwareness.MetadataBinding",
+                    "SystemCapability.MultimodalAwareness.Motion"
+                ]
+            }
+        ]
+    }
+}

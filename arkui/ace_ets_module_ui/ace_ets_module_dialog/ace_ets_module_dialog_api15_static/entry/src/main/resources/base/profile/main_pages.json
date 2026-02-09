@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/bindSheet/sheetBorderWidth",
+    "MainAbility/pages/button/buttonMaxFontSize"
+  ]
+}

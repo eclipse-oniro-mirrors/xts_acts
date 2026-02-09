@@ -1,0 +1,10 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/list/swipeErrorTest",
+    "MainAbility/pages/list/swipeActionTest",
+    "MainAbility/pages/sourceType/SourceTypeTest"
+
+  ]
+}

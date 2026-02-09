@@ -1,0 +1,103 @@
+/**
+ * Copyright (c) 2023 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import events_emitter from '@ohos.events.emitter';
+import Utils from '../../test/Utils';
+import web_webview from '@ohos.web.webview'
+
+const EVENT_ID_SET_EMIT_KEY = 201350;
+
+@Entry
+@Component
+struct webViewOnMetaOnOverriderUrlLoading {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  handler: FullScreenExitHandler = new FullScreenExitHandler();
+  @State str: string = "emitWebViewOnOverrideUrlLoading";
+  @State javaScriptAccess: boolean = true;
+  @State fileAccess: boolean = true;
+  @State domStorageAccess: boolean = true;
+  @State imageAccess: boolean = true;
+  @State onlineImageAccess: boolean = true;
+  @State databaseAccess: boolean = true;
+  @State checkEleResult: string = "";
+  @State isPageEnd: number = -1;
+  @State isReceive: number = -1;
+  
+  onPageShow() {
+      let valueChangeEvent: events_emitter.InnerEvent = {
+          eventId: EVENT_ID_SET_EMIT_KEY,
+          priority: events_emitter.EventPriority.LOW
+      }
+      events_emitter.on(valueChangeEvent, this.valueChangeCallBack)
+  }
+
+  onPageHide() {
+    events_emitter.off(EVENT_ID_SET_EMIT_KEY)
+  }
+  
+  private valueChangeCallBack = (eventData: events_emitter.EventData) => {
+      if (eventData != null) {
+          console.info("valueChangeCallBack:" + JSON.stringify(eventData));
+          if (eventData.data != null && eventData.data.ACTION != null) {
+              this.str = eventData.data.ACTION;
+              this.isReceive = 1;
+          }
+      }
+  }
+  
+  build() {
+      Column() {
+          Row() {
+              Button("web click")
+              .key('webViewOnOverrideUrlLoading')
+              .onClick(async () => {
+                  await Utils.waitForExist(()=>this.isPageEnd, 'webViewOnOverrideUrlLoadingIsPageEnd', 1, 1000);
+                  await Utils.waitForExist(()=>this.isReceive, 'webViewOnOverrideUrlLoadingIsReceive', 1, 1000);
+                  console.info("key==>" + this.str);
+                  this.isReceive = -1;
+                  switch (this.str) {
+                    case "emitWebViewOnOverrideUrlLoading": {
+                        this.controller.runJavaScript("jump()", (error, result) => {
+                        })
+                        this.controller.runJavaScript("isOnOverrideUrlLoading()", (error, result) => {
+                            console.log('>>>>>isOnOverrideUrlLoading:' + result)
+                            Utils.emitEvent(result, 201360)
+                        })
+                        break;
+                    }
+                }
+              })
+          }
+          Web({ src: $rawfile('onOverRideUrlLoading.html'), controller: this.controller })
+                .javaScriptAccess(this.javaScriptAccess)
+                .fileAccess(this.fileAccess)
+                .imageAccess(this.imageAccess)
+                .domStorageAccess(this.domStorageAccess)
+                .onlineImageAccess(this.onlineImageAccess)
+                .databaseAccess(this.databaseAccess)
+                
+                .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
+                    if (webResourceRequest && webResourceRequest.getRequestUrl() == "https://www.example.com/") {
+                        console.log('== abort')
+                        return true;
+                    }
+                    return false;
+                })
+                .onPageEnd((event) => {
+                  console.log('onPageEnd url:' + event.url);
+                  this.isPageEnd = 1;
+               })
+      }
+  }
+}

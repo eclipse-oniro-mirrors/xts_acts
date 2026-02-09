@@ -1,0 +1,16 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Scroll/ScrollToIndex/ScrollToIndexForWaterFlow01",
+    "MainAbility/pages/Scroll/ScrollToIndex/ScrollToIndexForWaterFlow02",
+    "MainAbility/pages/Scroll/ScrollToIndex/WaterFlowDataSource",
+    "MainAbility/pages/Scroll/loadingprogrees_add02",
+    "MainAbility/pages/Scroll/waterflow_add",
+    "MainAbility/pages/Tabs/tabs_api12/tabs_onContentWillChangeIndex10",
+    "MainAbility/pages/Tabs/tabs_api12/tabs_onContentWillChangeIndex11",
+    "MainAbility/pages/WaterFlow/WaterFlow_attribute/WaterFlowDataSource",
+    "MainAbility/pages/WaterFlow/WaterFlow_attribute/WaterFlowFrictionPage",
+    "MainAbility/pages/SideBarContainer/sideBar",
+    "MainAbility/pages/SideBarContainer/sidebarType"
+  ]
+}

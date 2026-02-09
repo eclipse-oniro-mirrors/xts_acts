@@ -1,0 +1,6 @@
+{
+  "name": "libmindspore.so",
+  "types": "./Index.d.ts",
+  "version": "1.0.0",
+  "description": "mindspore c api test."
+}

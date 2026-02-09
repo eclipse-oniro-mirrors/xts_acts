@@ -1,0 +1,13 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/LongPressGesture/LongPressGesture1",
+        "MainAbility/pages/LongPressGesture/LongPressGesture2",
+        "MainAbility/pages/LongPressGesture/LongPressGesture3",
+        "MainAbility/pages/LongPressGesture/longPressGesture",
+        "MainAbility/pages/LongPressGesture/LongPressGestureTemplate",
+        "MainAbility/pages/LongPressGesture/LongPressGestureLongClickMouse",
+        "MainAbility/pages/LongPressGesture/LongPressGestureLongClick",
+        "MainAbility/pages/LongPressGesture/allowableMovement"
+    ]
+}

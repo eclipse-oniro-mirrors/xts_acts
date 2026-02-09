@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/calendarpicker/CalendarPickerEnabledTest",
+    "pages/calendarpicker/CalendarPickerOnChangeTest",
+    "pages/textarea/TextAreaOnPasteTest",
+    "pages/textinput/TextInputMethodTest",
+    "pages/textinput/TextInputOnCutTest",
+    "pages/textinput/TextInputOnPasteTest"
+  ]
+}

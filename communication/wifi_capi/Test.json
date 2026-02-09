@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for wifi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.wifi.napitest",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsWifiCApiTest.hap",
+                "ActsWifiCApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell timeout -o 864000000"
+            ]
+        }
+    ]
+}

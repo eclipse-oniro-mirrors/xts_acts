@@ -1,0 +1,27 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/actionSheet/actionSheetBackgroundEffect",
+    "MainAbility/pages/actionSheet/actionSheetBlurStyleOptions",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogBackgroundEffect",
+    "MainAbility/pages/calendarPickerDialog/calendarPickerDialogBlurStyleOptions",
+    "MainAbility/pages/datePickerDialog/datePickerDialogBackgroundEffect",
+    "MainAbility/pages/datePickerDialog/datePickerDialogBlurStyleOptions",
+    "MainAbility/pages/textPickerDialog/textPickerDialogBackgroundEffect",
+    "MainAbility/pages/textPickerDialog/textPickerDialogBlurStyleOptions",
+    "MainAbility/pages/timePickerDialog/timePickerDialogBackgroundEffect",
+    "MainAbility/pages/timePickerDialog/timePickerDialogBlurStyleOptions",
+    "MainAbility/pages/UIContext/showActionSheetBackgroundEffect",
+    "MainAbility/pages/UIContext/showActionSheetBlurStyleOptions",
+    "MainAbility/pages/UIContext/showDatePickerDialogBackgroundEffect",
+    "MainAbility/pages/UIContext/showDatePickerDialogBlurStyleOptions",
+    "MainAbility/pages/UIContext/showTextPickerDialogBackgroundEffect",
+    "MainAbility/pages/UIContext/showTextPickerDialogBlurStyleOptions",
+    "MainAbility/pages/UIContext/showTimePickerDialogBackgroundEffect",
+    "MainAbility/pages/UIContext/showTimePickerDialogBlurStyleOptions",
+    "MainAbility/pages/promptAction/openMenuAnchorPosition",
+    "MainAbility/pages/promptAction/updateMenuAnchorPosition",
+    "MainAbility/pages/promptAction/subwindowDialog",
+    "MainAbility/pages/Popup/Maxwidth"   
+  ]
+}

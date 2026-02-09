@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for uitest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "bundle-name": "com.uitest.acts",
+        "package-name": "com.uitest.acts",
+        "shell-timeout": "180000",
+        "testcase-timeout": "1800000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.usb.setting.gadget_conn_prompt false",
+                "param set persist.skip_scb_charging 1",
+                "wait 5",
+                "power-shell wakeup",
+                "uinput -T -m 300 2600 280 200",
+                "wait 5",
+                "uinput -T -m 300 2600 280 200",
+                "uinput -K -d 2054 -u 2054",
+                "hidumper -s 3301 -a -t",
+                "uitest dumpLayout"
+            ],
+            "teardown-command": [
+                "param set persist.usb.setting.gadget_conn_prompt true"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsUiTestErrorCodeTest.hap",
+                "ActsUiTestScene.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

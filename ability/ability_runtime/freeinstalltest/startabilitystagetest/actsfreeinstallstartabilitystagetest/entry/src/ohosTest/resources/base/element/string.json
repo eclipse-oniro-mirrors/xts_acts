@@ -1,0 +1,51 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },{
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "form_FormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "form_FormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "form_ServiceAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "form_ServiceAbility_label",
+      "value": "form_label"
+    }
+  ]
+}

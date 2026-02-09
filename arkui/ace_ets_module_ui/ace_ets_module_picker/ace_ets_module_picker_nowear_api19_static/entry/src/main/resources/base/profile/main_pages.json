@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/calendarPicker/disableDateRangeAndMarkToday",
+    "MainAbility/pages/calendarPickerDialog/dialogDisableDateRangeAndMarkToday"
+  ]
+}

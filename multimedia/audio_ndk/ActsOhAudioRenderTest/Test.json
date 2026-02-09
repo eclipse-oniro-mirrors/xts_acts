@@ -1,0 +1,27 @@
+{
+  "description": "Configuration for ActsOhAudioRenderHapTest Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "1000000",
+    "shell-timeout": "1000000",
+    "bundle-name": "com.example.actsohaudiorendertest",
+    "module-name": "entry_test",
+    "testcase-timeout": 1000000
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsOhAudioRenderMainTest.hap",
+        "ActsOhAudioRenderHapTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },{
+      "type": "ShellKit",
+      "run-command": [
+        "power-shell wakeup",
+        "power-shell setmode 602"
+      ]
+    }
+  ]
+}

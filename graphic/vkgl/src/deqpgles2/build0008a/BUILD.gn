@@ -1,0 +1,75 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles2func0008a") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles2BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles2
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+  testonly = true
+}
+
+ohos_moduletest_suite("ActsDeqpgles2Suite0008aTest") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles20008TestSuite.cpp",
+    "../functional/Deqpgles2matrix_mul_assignTestCase.cpp",
+    "../functional/Deqpgles2matrix_negationTestCase.cpp",
+    "../functional/Deqpgles2matrix_post_decrementTestCase.cpp",
+    "../functional/Deqpgles2matrix_post_incrementTestCase.cpp",
+    "../functional/Deqpgles2matrix_pre_decrementTestCase.cpp",
+    "../functional/Deqpgles2matrix_pre_incrementTestCase.cpp",
+    "../functional/Deqpgles2matrix_sub_assignTestCase.cpp",
+    "../functional/Deqpgles2matrix_unary_additionTestCase.cpp",
+    "../functional/Deqpgles2shaders_algorithmTestCase.cpp",
+    "../functional/Deqpgles2shaders_builtin_variableTestCase.cpp",
+    "../functional/Deqpgles2shaders_discardTestCase.cpp",
+    "../functional/Deqpgles2shaders_fragdataTestCase.cpp",
+    "../functional/Deqpgles2shaders_returnTestCase.cpp",
+    "../functional/Deqpgles2struct_localTestCase.cpp",
+    "../functional/Deqpgles2struct_uniformTestCase.cpp",
+    "../functional/Deqpgles2texture_functions_fragmentTestCase.cpp",
+    "../functional/Deqpgles2texture_functions_invalidTestCase.cpp",
+    "../functional/Deqpgles2texture_functions_vertexTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles2func0008a" ]
+
+  cflags = [ "-Wno-error" ]
+}

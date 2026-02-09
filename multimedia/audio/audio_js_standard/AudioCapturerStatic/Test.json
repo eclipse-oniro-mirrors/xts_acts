@@ -1,0 +1,41 @@
+{
+    "description": "Configuration for audio manager Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1500000",
+        "testcase-timeout": "50000",
+        "bundle-name": "ohos.acts.multimedia.audio.audiocapturer.static",
+        "shell-timeout": "60000",
+        "module-name": "entry"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioCapturerJsStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.audiocapturer.static/haps/entry/files",
+                "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.audio.audiocapturer.static/haps/entry"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600"
+            ],
+            "cleanup-apps": true
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/media/audioplayer/wav/pcm_48ksr_32kbr_2ch.wav ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audiocapturer.static/haps/entry/files/"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for ActsDetailEnhancerVideoNdkUnitHapTest",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.actsdetailenhancervideondktest",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsDetailEnhancerVideoNdkUnitMainTest.hap",
+                "ActsDetailEnhancerVideoNdkUnitHapTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "power-shell wakeup",
+        "power-shell setmode 602"
+      ]
+    }
+    ]
+}
+

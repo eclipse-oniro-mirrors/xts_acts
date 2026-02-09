@@ -1,0 +1,130 @@
+'use static';
+/**
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import {
+  Entry,
+  Component,
+  $r,
+  Column,
+  ColumnOptions,
+  Text,
+  Color,
+  Image,
+  List,
+  ListItem,
+  PreDragStatus,
+  Scroller,
+  CanvasRenderingContext2D,
+  Button,
+  RenderingContextSettings,
+  Canvas,
+  ClickEvent,
+  Row,
+  CheckboxGroup,
+  Circle,
+  Counter,
+  Divider,
+  Ellipse,
+  Gauge,
+  GridRow,
+  GridCol,
+  ForEach,
+  GridItem,
+  Grid,
+  Builder,
+  ListItemGroup,
+  ResourceStr,
+  MenuItemGroup,
+  MenuItem,
+  Menu,
+  Path,
+  Polygon,
+  Polyline,
+  LineJoinStyle,
+  QRCode,
+  Radio,
+  Scroll,
+} from '@ohos.arkui.component';
+import {
+  State,
+  Link,
+  PropRef,
+} from '@ohos.arkui.stateManagement';
+import { AppStorage } from '@ohos.arkui.stateManagement';
+import { UIContext, Router } from '@ohos.arkui.UIContext';
+import inspector from '@ohos.arkui.inspector';
+import matrix4 from '@ohos.matrix4'
+
+let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0])
+
+@Entry
+@Component
+struct comSizeAbilityTest_11 {
+  private value: string = 'hello world'
+  build() {
+    Scroll() {
+      Column({ space: 20 } as ColumnOptions) {
+        Column() {
+          QRCode(this.value)
+            .color(0xF7CE00)
+            .backgroundColor('black')
+            .key("QRCode_Size")
+            .size({ width: 210, height: 132 })
+            .translate({ x: 1, y: 1, z: 1 })
+            .scale({
+              x: 1,
+              y: 1,
+              z: 1,
+              centerX: 1,
+              centerY: 1
+            })
+            .rotate({
+              x: 1,
+              y: 1,
+              z: 1,
+              angle: 0,
+              centerX: 1,
+              centerY: 1
+            })
+            .transform(matrix)
+        }.key('QRCode_Father')
+
+        Column() {
+          Radio({ value: 'Radio1', group: 'radioGroup' })
+            .backgroundColor('black')
+            .key("Radio_Size")
+            .size({ width: 185, height: 140 })
+            .translate({ x: 1, y: 1, z: 1 })
+            .scale({
+              x: 1,
+              y: 1,
+              z: 1,
+              centerX: 1,
+              centerY: 1
+            })
+            .rotate({
+              x: 1,
+              y: 1,
+              z: 1,
+              angle: 0,
+              centerX: 1,
+              centerY: 1
+            })
+            .transform(matrix)
+        }.key('Radio_Father')
+      }.width('100%')
+    }.height('100%')
+  }
+}

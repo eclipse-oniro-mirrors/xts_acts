@@ -1,0 +1,36 @@
+// index.html
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<!-- 引入JS SDK文件 -->
+<script src="../js/atomicservice-sdk.js" type="text/javascript"></script>
+<body>
+<h1>JS SDK - postMessage()</h1>
+<br/>
+<button type="button" onclick="postMessage({ name: 'Jerry', age: 18 });">发送消息</button>
+<br/>
+<button type="button" onclick="back();">返回上一页</button>
+</body>
+<script type="text/javascript">
+    function postMessage(data) {
+        // JS SDK提供的发送消息接口
+        has.asWeb.postMessage({
+            data: data,
+            callback: (err, res) => {
+                if (err) {
+                    console.error(`[AtomicServiceWebLog H5] postMessage error err. Code: ${err.code}, message: ${err.message}`);
+                } else {
+                    console.info(`[AtomicServiceWebLog H5] postMessage success res = ${JSON.stringify(res)}`);
+                }
+            }
+        });
+    }
+
+    function back() {
+        // JS SDK提供的Router路由回退接口
+        has.router.back({
+            delta: 1
+        });
+    }
+</script>
+</html>

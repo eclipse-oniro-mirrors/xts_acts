@@ -1,0 +1,44 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Canvas/CanvasAPIUnit",
+        "MainAbility/pages/Canvas/CanvasAPICanvasRender",
+        "MainAbility/pages/Canvas/CanvasAPI",
+        "MainAbility/pages/Canvas/CanvasShader",
+        "MainAbility/pages/Canvas/CanvasColor",
+        "MainAbility/pages/Canvas/OffScreenCanvas",
+        "MainAbility/pages/Canvas/CanvasRenderer",
+        "MainAbility/pages/Canvas/drwableAdd",
+        "MainAbility/pages/Canvas/canvas2",
+        "MainAbility/pages/Canvas/canvas3",
+        "MainAbility/pages/Canvas/canvas",
+        "MainAbility/pages/Canvas/curves2",
+        "MainAbility/pages/Canvas/curves",
+        "MainAbility/pages/Canvas/Matrix2DPage",
+        "MainAbility/pages/Canvas/CanvasGetLineDash",
+
+        "MainAbility/pages/Canvas/APICanvasSize",
+        "MainAbility/pages/Canvas/RestoreLayer",
+        "MainAbility/pages/Canvas/SaveLayer",
+        "MainAbility/pages/Canvas/DrawModifier",
+
+        "MainAbility/pages/Canvas/AttachDetachTest",
+        "MainAbility/pages/Canvas/AttachDetachRebindTest",
+        "MainAbility/pages/Canvas/CanvasAttrsTest",
+        "MainAbility/pages/Canvas/CanvasAttrsTabTest",
+
+        "MainAbility/pages/Canvas/RoundRectPage",
+        "MainAbility/pages/Canvas/CanvasGradientPage",
+        "MainAbility/pages/Canvas/StartImageAnalyzerErrorCode",
+        "MainAbility/pages/Canvas/CanvasEllipse",
+        "MainAbility/pages/Canvas/Matrix2DMultiply",
+        "MainAbility/pages/Canvas/StartImageAnalyzerErrorCode1",
+        "MainAbility/pages/Canvas/CanvasRoundRectErrorCode",
+        "MainAbility/pages/Canvas/AddColorStopErrorCode",
+        "MainAbility/pages/Canvas/CanvasParamsUnitPage",
+        "MainAbility/pages/Canvas/CanvasParamsImageAnalyzerPage",
+        "MainAbility/pages/Canvas/CanvasParamsVisibilityPage",
+        "MainAbility/pages/Canvas/CanvasParamsAntialiasPage"
+        
+    ]
+}

@@ -1,0 +1,772 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility",
+        "srcEntry": "./ets/mainability/MainAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility1",
+        "srcEntry": "./ets/mainability1/MainAbility1.ets",
+        "description": "$string:MainAbility1_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility1_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility2",
+        "srcEntry": "./ets/mainability2/MainAbility2.ets",
+        "description": "$string:MainAbility2_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility2_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility3",
+        "srcEntry": "./ets/mainability3/MainAbility3.ets",
+        "description": "$string:MainAbility3_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility3_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility4",
+        "srcEntry": "./ets/mainability4/MainAbility4.ets",
+        "description": "$string:MainAbility4_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility4_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility5",
+        "srcEntry": "./ets/mainability5/MainAbility5.ets",
+        "description": "$string:MainAbility5_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility5_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility6",
+        "srcEntry": "./ets/mainability6/MainAbility6.ets",
+        "description": "$string:MainAbility6_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility6_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility7",
+        "srcEntry": "./ets/mainability7/MainAbility7.ets",
+        "description": "$string:MainAbility7_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility7_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility8",
+        "srcEntry": "./ets/mainability8/MainAbility8.ets",
+        "description": "$string:MainAbility8_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility8_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility9",
+        "srcEntry": "./ets/mainability9/MainAbility9.ets",
+        "description": "$string:MainAbility9_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility9_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility10",
+        "srcEntry": "./ets/mainability10/MainAbility10.ets",
+        "description": "$string:MainAbility10_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility10_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility11",
+        "srcEntry": "./ets/mainability11/MainAbility11.ets",
+        "description": "$string:MainAbility11_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility11_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility12",
+        "srcEntry": "./ets/mainability12/MainAbility12.ets",
+        "description": "$string:MainAbility12_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility12_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility13",
+        "srcEntry": "./ets/mainability13/MainAbility13.ets",
+        "description": "$string:MainAbility13_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility13_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility14",
+        "srcEntry": "./ets/mainability14/MainAbility14.ets",
+        "description": "$string:MainAbility14_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility14_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility15",
+        "srcEntry": "./ets/mainability15/MainAbility15.ets",
+        "description": "$string:MainAbility15_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility15_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility16",
+        "srcEntry": "./ets/mainability16/MainAbility16.ets",
+        "description": "$string:MainAbility16_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility16_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility17",
+        "srcEntry": "./ets/mainability17/MainAbility17.ets",
+        "description": "$string:MainAbility17_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility17_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility18",
+        "srcEntry": "./ets/mainability18/MainAbility18.ets",
+        "description": "$string:MainAbility18_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility18_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "standard",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility19",
+        "srcEntry": "./ets/mainability19/MainAbility19.ets",
+        "description": "$string:MainAbility19_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility19_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility14B",
+        "srcEntry": "./ets/mainability14b/MainAbility14B.ets",
+        "description": "$string:MainAbility14B_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility14B_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility20",
+        "srcEntry": "./ets/mainability20/MainAbility20.ets",
+        "description": "$string:MainAbility20_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility20_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility20b",
+        "srcEntry": "./ets/mainability20b/MainAbility20b.ets",
+        "description": "$string:MainAbility20b_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility20b_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility21",
+        "srcEntry": "./ets/mainability21/MainAbility21.ets",
+        "description": "$string:MainAbility21_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility21_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility21b",
+        "srcEntry": "./ets/mainability21b/MainAbility21b.ets",
+        "description": "$string:MainAbility21b_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility21b_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility12b",
+        "srcEntry": "./ets/mainability12b/MainAbility12b.ets",
+        "description": "$string:MainAbility12b_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility12b_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility19b",
+        "srcEntry": "./ets/mainability19b/MainAbility19b.ets",
+        "description": "$string:MainAbility19b_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility19b_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility26",
+        "srcEntry": "./ets/mainability26/MainAbility26.ets",
+        "description": "$string:SystemAppA_5500_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:SystemAppA_5500_label",
+        "launchType": "singleton",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility23",
+        "srcEntry": "./ets/mainability23/MainAbility23.ets",
+        "description": "$string:mainability_0200_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:mainability_0200_label",
+        "launchType": "singleton",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility22",
+        "srcEntry": "./ets/mainability22/MainAbility22.ets",
+        "description": "$string:MainAbility_1900_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility_1900_label",
+        "launchType": "singleton",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility25",
+        "srcEntry": "./ets/mainability25/MainAbility25.ets",
+        "description": "$string:MainAbility_4900_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility_4900_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MainAbility24",
+        "srcEntry": "./ets/mainability24/MainAbility24.ets",
+        "description": "$string:MainAbility_4700_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:MainAbility_4700_label",
+        "launchType": "singleton",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ThirdAbility24",
+        "srcEntry": "./ets/thirdability24/ThirdAbility24.ets",
+        "description": "$string:ThirdAbility_4700_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:ThirdAbility_4700_label",
+        "launchType": "singleton",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "singleton",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.START_INVISIBLE_ABILITY"
+      },
+      {
+        "name": "ohos.permission.ABILITY_BACKGROUND_COMMUNICATION"
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/onChildTouch/onChildTouch",
+        "MainAbility/pages/onTouchIntercept/onTouchIntercept",
+        "MainAbility/pages/onChildTouchTest/parentX"
+    ]
+}

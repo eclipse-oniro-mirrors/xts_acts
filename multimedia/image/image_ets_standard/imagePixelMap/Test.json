@@ -1,0 +1,97 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.image.imagePixelmap",
+        "module-name": "entry_test",
+        "shell-timeout": "300000",
+        "testcase-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImagePixelMapTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files/*",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/cache/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/*"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test.wbmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test_dng.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/0801_sdr2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/SIZE_0_0.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/CUVAHdrMulti.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test_DMA.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test_DMA_33_77.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test_DMA_55_77.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test_DMA_128_256.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test_DMA_512_512.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test_DMA_2999_3742.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test_DMA_3071_4095.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test_DMA_3072_4096.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/test_DMA_1801_4041.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/big-30118x30118.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/big-30000x30000.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/30009x30009_without_alpha.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_SONY_A350.ARW ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_SONY_A900.ARW ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_CANON_G9.CR2 ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_CANON_G10.CR2 ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_NIKON_D90.NEF ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_NIKON_D3300.NEF ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_NIKON_COOLPIX_P340.NRW ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_NIKON_P6000_GPS.NRW ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_OLYMPUS_E3.ORF ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_OLYMPUS_E410.ORF ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_PENTAX_STAR_DL.PEF ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_PENTAX_STARISTD_SRGB.PEF ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_FUJI_S6500FD.RAF ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_FUJI_S9500_SRGB.RAF ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_PANASONIC_G1.RW2 ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_PANASONIC_LX3.RW2 ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/RAW_SAMSUNG_EX2F.SRW ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/023A9785.CR3 ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/023A9867.CR3 ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/1920x1080_Deflate.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/1920x1080_G3.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/1920x1080_G4.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/1920x1080_Jpeg.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/1920x1080_Lzw.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/1920x1080_Next.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/1920x1080_none.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/1920x1080_Packbits.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/1920x1080_PixarLog_RGB.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/1920x1080_SGILOG_gray16.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files",
+                "./resource/image/thunderscan-1920x1080.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imagePixelmap/haps/entry_test/files/*",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}
