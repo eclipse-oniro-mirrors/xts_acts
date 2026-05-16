@@ -1,0 +1,791 @@
+/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+@import '../../../common/style.css';
+
+.container {
+    flex-direction:row;
+    width:100%;
+    height:100%;
+    padding: 1px;
+}
+
+.title{
+    width: 100%;
+    font-size: 18px;
+    margin: 2px;
+    padding: 2px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sub-title{
+    width: 100%;
+    font-size: 14px;
+    text-align: left;
+    margin: 2px;
+    padding: 2px;
+}
+
+.style-container{
+    flex-direction: column;
+    width: 50%;
+}
+
+#styleOne{
+    width: 150px;
+    height: 20px;
+    margin-left: 1px;
+    margin-top: 2px;
+    margin-right: 1.5px;
+    margin-bottom: 0.5px;
+    margin-start: 1px;
+    margin-end: 2px;
+}
+
+#styleTwo{
+    width: 149px;
+    height: 19px;
+    margin-left: 2px;
+    margin-top: 1px;
+    margin-right: 2px;
+    margin-bottom: 1px;
+    margin-start: 2px;
+    margin-end: 1px;
+}
+
+#styleThree{
+    width: 148px;
+    height: 18px;
+    margin-left: 1.1px;
+    margin-top: 1.1px;
+    margin-right: 1.1px;
+    margin-bottom: 1.1px;
+    margin-start: 1.1px;
+    margin-end: 1.1px;
+}
+
+#styleFour{
+    width: 147px;
+    height: 17px;
+    margin-left: 1.2px;
+    margin-top: 1.2px;
+    margin-right: 1.2px;
+    margin-bottom: 1.2px;
+    margin-start: 1.2px;
+    margin-end: 1.2px;
+}
+
+#styleFive{
+    width: 146px;
+    height: 16px;
+    margin-left: 1.3px;
+    margin-top: 1.3px;
+    margin-right: 1.3px;
+    margin-bottom: 1.3px;
+    margin-start: 1.3px;
+    margin-end: 1.3px;
+}
+
+#styleSix{
+    width: 145px;
+    height: 15px;
+    margin-left: 1.4px;
+    margin-top: 1.4px;
+    margin-right: 1.4px;
+    margin-bottom: 1.4px;
+    margin-start: 1.4px;
+    margin-end: 1.4px;
+}
+
+#styleSeven{
+    width: 144px;
+    height: 14px;
+    margin-left: 1.5px;
+    margin-top: 1.5px;
+    margin-right: 1.5px;
+    margin-bottom: 1.5px;
+    margin-start: 1.5px;
+    margin-end: 1.5px;
+}
+
+#styleEight{
+    width: 143px;
+    height: 13px;
+    margin-left: 1.6px;
+    margin-top: 1.6px;
+    margin-right: 1.6px;
+    margin-bottom: 1.6px;
+    margin-start: 1.6px;
+    margin-end: 1.6px;
+}
+
+#styleNine{
+    width: 142px;
+    height: 12px;
+    margin-left: 1.7px;
+    margin-top: 1.7px;
+    margin-right: 1.7px;
+    margin-bottom: 1.7px;
+    margin-start: 1.7px;
+    margin-end: 1.7px;
+}
+
+#styleTen{
+    width: 141px;
+    height: 11px;
+    margin-left: 1.8px;
+    margin-top: 1.8px;
+    margin-right: 1.8px;
+    margin-bottom: 1.8px;
+    margin-start: 1.8px;
+    margin-end: 1.8px;
+}
+
+#styleEleven{
+    width: 140px;
+    height: 10px;
+    margin-left: 1.9px;
+    margin-top: 1.9px;
+    margin-right: 1.9px;
+    margin-bottom: 1.9px;
+    margin-start: 1.9px;
+    margin-end: 1.9px;
+}
+
+#styleTwelve{
+    width: 139px;
+    height: 11px;
+    margin-left: 2.0px;
+    margin-top: 2.0px;
+    margin-right: 2.0px;
+    margin-bottom: 2.0px;
+    margin-start: 2.0px;
+    margin-end: 2.0px;
+}
+
+#styleThirteen{
+    width: 138px;
+    height: 12px;
+    margin-left: 2.1px;
+    margin-top: 2.1px;
+    margin-right: 2.1px;
+    margin-bottom: 2.1px;
+    margin-start: 2.1px;
+    margin-end: 2.1px;
+}
+
+#styleFourteen{
+    width: 137px;
+    height: 13px;
+    margin-left: 2.2px;
+    margin-top: 2.2px;
+    margin-right: 2.2px;
+    margin-bottom: 2.2px;
+    margin-start: 2.2px;
+    margin-end: 2.2px;
+}
+
+#styleFifteen{
+    width: 136px;
+    height: 14px;
+    margin-left: 2.3px;
+    margin-top: 2.3px;
+    margin-right: 2.3px;
+    margin-bottom: 2.3px;
+    margin-start: 2.3px;
+    margin-end: 2.3px;
+}
+
+#styleSixteen{
+    width: 135px;
+    height: 15px;
+    margin-left: 2.4px;
+    margin-top: 2.4px;
+    margin-right: 2.4px;
+    margin-bottom: 2.4px;
+    margin-start: 2.4px;
+    margin-end: 2.4px;
+}
+
+#styleSeventeen{
+    width: 134px;
+    height: 16px;
+    margin-left: 2.5px;
+    margin-top: 2.5px;
+    margin-right: 2.5px;
+    margin-bottom: 2.5px;
+    margin-start: 2.5px;
+    margin-end: 2.5px;
+}
+
+#styleEighteen{
+    width: 133px;
+    height: 17px;
+    margin-left: 2.6px;
+    margin-top: 2.6px;
+    margin-right: 2.6px;
+    margin-bottom: 2.6px;
+    margin-start: 2.6px;
+    margin-end: 2.6px;
+}
+
+#styleNineteen{
+    width: 132px;
+    height: 18px;
+    margin-left: 2.7px;
+    margin-top: 2.7px;
+    margin-right: 2.7px;
+    margin-bottom: 2.7px;
+    margin-start: 2.7px;
+    margin-end: 2.7px;
+}
+
+#styleTwenty{
+    width: 132px;
+    height: 18px;
+    margin-left: 2.8px;
+    margin-top: 2.8px;
+    margin-right: 2.8px;
+    margin-bottom: 2.8px;
+    margin-start: 2.8px;
+    margin-end: 2.8px;
+}
+
+#styleTwentyOne{
+    width: 132px;
+    height: 18px;
+    margin-left: 2.9px;
+    margin-top: 2.9px;
+    margin-right: 2.9px;
+    margin-bottom: 2.9px;
+    margin-start: 2.9px;
+    margin-end: 2.9px;
+}
+
+#styleTwentyTwo{
+    width: 132px;
+    height: 18px;
+    margin-left: 3.0px;
+    margin-top: 3.0px;
+    margin-right: 3.0px;
+    margin-bottom: 3.0px;
+    margin-start: 3.0px;
+    margin-end: 3.0px;
+}
+
+#styleTwentyThree{
+    width: 132px;
+    height: 18px;
+    margin-left: 3.1px;
+    margin-top: 3.1px;
+    margin-right: 3.1px;
+    margin-bottom: 3.1px;
+    margin-start: 3.1px;
+    margin-end: 3.1px;
+}
+
+#styleTwentyFour{
+    width: 132px;
+    height: 18px;
+    margin-left: 3.2px;
+    margin-top: 3.2px;
+    margin-right: 3.2px;
+    margin-bottom: 3.2px;
+    margin-start: 3.2px;
+    margin-end: 3.2px;
+}
+
+#styleTwentyFive{
+    width: 132px;
+    height: 18px;
+    margin-left: 3.3px;
+    margin-top: 3.3px;
+    margin-right: 3.3px;
+    margin-bottom: 3.3px;
+    margin-start: 3.3px;
+    margin-end: 3.3px;
+}
+
+#styleTwentySix{
+    width: 132px;
+    height: 18px;
+    margin-left: 3.4px;
+    margin-top: 3.4px;
+    margin-right: 3.4px;
+    margin-bottom: 3.4px;
+    margin-start: 3.4px;
+    margin-end: 3.4px;
+}
+
+#styleTwentySeven{
+    width: 132px;
+    height: 18px;
+    margin-left: 3.5px;
+    margin-top: 3.5px;
+    margin-right: 3.5px;
+    margin-bottom: 3.5px;
+    margin-start: 3.5px;
+    margin-end: 3.5px;
+}
+
+#styleTwentyNine{
+    width: 132px;
+    height: 18px;
+    margin-left: 3.6px;
+    margin-top: 3.6px;
+    margin-right: 3.6px;
+    margin-bottom: 3.6px;
+    margin-start: 3.6px;
+    margin-end: 3.6px;
+}
+
+#styleThirty{
+    width: 132px;
+    height: 18px;
+    margin-left: 3.7px;
+    margin-top: 3.7px;
+    margin-right: 3.7px;
+    margin-bottom: 3.7px;
+    margin-start: 3.7px;
+    margin-end: 3.7px;
+}
+
+#styleThirtyOne{
+    width: 132px;
+    height: 18px;
+    margin-left: 3.8px;
+    margin-top: 3.8px;
+    margin-right: 3.8px;
+    margin-bottom: 3.8px;
+    margin-start: 3.8px;
+    margin-end: 3.8px;
+}
+
+#styleThirtyTwo{
+    width: 132px;
+    height: 18px;
+    margin-left: 3.9px;
+    margin-top: 3.9px;
+    margin-right: 3.9px;
+    margin-bottom: 3.9px;
+    margin-start: 3.9px;
+    margin-end: 3.9px;
+}
+#styleThirtyThree{
+    width: 132px;
+    height: 18px;
+    margin-left: 4.0px;
+    margin-top: 4.0px;
+    margin-right: 4.0px;
+    margin-bottom: 4.0px;
+    margin-start: 4.0px;
+    margin-end: 4.0px;
+}
+
+.specific-container{
+    flex-direction: column;
+    flex-weight: 1;
+}
+
+#specificOne{
+    width: 70px;
+    height: 25px;
+    flex-direction: row;
+    flex-wrap:nowrap;
+}
+
+#specificTwo{
+    width: 100%;
+    height: 50px;
+    flex-direction: column;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+#specificThree{
+    width: 18%;
+    height: 48%;
+    border: 1px solid pink;
+    flex-direction: row;
+    justify-content:flex-end;
+    align-items: flex-end;
+    align-content: flex-end;
+    margin: 1%;
+}
+
+#specificFour{
+    width: 18%;
+    height: 48%;
+    border: 1px solid pink;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    align-items: center;
+    margin: 1%;
+}
+
+#specificFive{
+    width: 18%;
+    height: 48%;
+    border: 1px solid pink;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items:stretch;
+    align-content: space-between;
+    margin: 1%;
+}
+
+#specificSix{
+    width: 18%;
+    height: 48%;
+    border: 1px solid pink;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: baseline;
+    align-content: space-around;
+    margin: 1%;
+}
+
+#specificSeven{
+    width: 50px;
+    height: 10px;
+    background-color: #ff0000;
+    overflow: hidden;
+}
+
+#specificEight{
+    width: 70px;
+    height: 10px;
+    background-color: #00ff00;
+    overflow: visible;
+    margin-left: 10px;
+}
+
+#specificNine{
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    overflow: scroll;
+    flex-direction: column;
+    scrollbar-color:#ff0000;
+    scrollbar-width:2px;
+    overscroll-effect:spring;
+}
+
+#specificTen{
+    width: 100%;
+    height: 10px;
+    margin-top: 10px;
+    overflow: scroll;
+    scrollbar-color:#ff0000;
+    scrollbar-width:2px;
+    overscroll-effect:fade;
+}
+
+#specificEleven{
+    width: 100%;
+    height: 10px;
+    margin-top: 10px;
+    overflow: scroll;
+    scrollbar-color:#ff0000;
+    scrollbar-width:2px;
+    overscroll-effect:none;
+}
+
+#specificTwelve{
+    width: 100%;
+    height: 30px;
+    display: grid;
+    background-color: #000fff;
+    grid-template-rows: 50px 100px 60px;
+    grid-rows-gap:10px;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-auto-flow:row;
+}
+
+#specificThirteen{
+    width: 100%;
+    height: 30px;
+    background-color: #fff000;
+    display: grid;
+    grid-template-columns: 50px 100px 60px;
+    grid-columns-gap:10px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-auto-flow:column;
+}
+
+.flex-item{
+    width: 40%;
+    height: 10px;
+}
+
+.red-item{
+    background-color: #ff0000;
+}
+
+.green-item{
+    background-color: #00ff00;
+}
+
+.blue-item{
+    background-color: #0000ff;
+}
+
+.yellow-item{
+    background-color: #fff000;
+}
+
+
+#addOne{
+    width: 10%;
+    height: 20px;
+    background-image:url('common/images/image.png');
+    background-size:cover;
+    align-self:stretch;
+    position:fixed;
+    transform: none;
+    animation-timing-function:cubic-bezier(0.4, 0.0, 0.4, 1.0);
+    shared-transition-effect:static;
+    shared-transition-name:ani;
+    shared-transition-timing-function:friction;
+    transition-enter:ani;
+    transition-exit: ani;
+    transition-duration:10;
+    transition-timing-function:friction;
+    clip-path:border-box;
+    display-index:1;
+    filter:blur(10px);
+    backdrop-filter:blur(10px);
+    window-filter:blur(10%);
+    align-items:center;
+    font-weight:lighter;
+    overflow:hidden;
+}
+
+#addTwo{
+    width: 100px;
+    height: 15px;
+    font-size:14px;
+    stroke-width:34px;
+    start-angle:240;
+    total-angle:240;
+    allow-scale:true;
+    background-image:url('common/images/image.png');
+    background-size:auto;
+    position:relative;
+    transform: matrix(0.5,0.1,0.2,0.9,20,10);
+    animation-timing-function:steps(4);
+    shared-transition-effect:exchange;
+    clip-path:padding-box;
+    align-items:flex-end;
+    font-weight:normal;
+    overflow:visible;
+}
+
+#addThree{
+    width: 100px;
+    height: 15px;
+    font-size:13px;
+    stroke-width:24px;
+    start-angle:120;
+    total-angle:120;
+    allow-scale:false;
+    background-color:#000000;
+    transform: matrix3d(1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2);
+    clip-path:content-box;
+    align-items:flex-start;
+    font-weight:bolder;
+}
+
+#addFour{
+    width: 100px;
+    height: 15px;
+    stroke-width:30px;
+    start-angle:100;
+    total-angle:100;
+    center-x:38px;
+    center-y:8px;
+    radius:6px;
+    font-style:normal;
+    background-color:#000000;
+    transform: translate3d(1px,2px,1px) scale3d(1,2,1) rotate3d(10,10,10,10deg) skew(1deg,2deg) perspective(10px);
+    clip-path:circle(1);
+    align-items:baseline;
+    font-weight:medium;
+}
+
+#addFive{
+    width: 100px;
+    height: 15px;
+    start-angle:150;
+    total-angle:80;
+    center-x:30px;
+    center-y:7.5px;
+    radius:7.5px;
+    font-style:italic;
+    background-color:#000000;
+    transform: translateY(1px) translateZ(10px)
+    scale(1,2) scaleZ(0.4)
+    rotateX(10deg) rotateY(10deg) rotateZ(10deg)
+    skewX(1deg) skewY(2deg);
+    clip-path:ellipse(1);
+    align-items:stretch;
+    font-weight:regular;
+}
+
+#addSix{
+    width: 100px;
+    height: 15px;
+    start-angle:360;
+    total-angle:360;
+    center-x:35px;
+    center-y:7px;
+    radius:7px;
+    background-color:#000000;
+    transform: scaleX(1) scaleY(0.4);
+    clip-path:ellipse(1);
+    font-weight:300;
+}
+
+#addSeven{
+    width: 100px;
+    height: 15px;
+    start-angle:0;
+    total-angle:70;
+    text-color:#ff0000;
+    font-family:sans-serif;
+    background-color:#000000;
+    clip-path:path(1);
+    aspect-ratio:2;
+    font-weight:400;
+}
+
+#addEight{
+    width: 100px;
+    height: 15px;
+    total-angle:0;
+    background-color:#ff0000;
+    font-weight:500;
+}
+
+#addNine{
+    width: 100px;
+    height: 15px;
+    radius:5px;
+    background-color:#ff0000;
+    font-weight:600;
+}
+
+#addTen{
+    width: 90px;
+    height: 16px;
+    radius:3px;
+    background-color:#ff0000;
+    font-weight:700;
+}
+
+#addEleven{
+    width: 91px;
+    height: 17px;
+    radius:4px;
+    background-color:#ff0000;
+    font-weight:500;
+}
+
+#addTwelve{
+    width: 93px;
+    height: 18px;
+    radius:6px;
+    start-angle:60;
+    background-color:#ff0000;
+    font-weight:600;
+}
+
+#addThirteen{
+    width: 93px;
+    height: 18px;
+    start-angle:50;
+    radius:6px;
+    background-color:#ff0000;
+    font-weight:600;
+}
+
+#addFourteen{
+    width: 93px;
+    height: 18px;
+    start-angle:15;
+    total-angle:60;
+    radius:6px;
+    background-color:#ff0000;
+    font-weight:600;
+}
+
+#addFifteen{
+    width: 93px;
+    height: 18px;
+    start-angle:60;
+    total-angle:120;
+    radius:6px;
+    background-color:#ff0000;
+    font-weight:600;
+}
+
+#addSixteen{
+    width: 93px;
+    height: 18px;
+    start-angle:80;
+    total-angle:90;
+    radius:6px;
+    background-color:#ff0000;
+    font-weight:600;
+}
+
+#addSeventeen{
+    width: 93px;
+    height: 18px;
+    start-angle:180;
+    total-angle:180;
+    radius:6px;
+    background-color:#ff0000;
+    font-weight:600;
+}
+
+#addEighteen{
+    width: 93px;
+    height: 18px;
+    start-angle:40;
+    total-angle:80;
+    radius:6px;
+    background-color:#ff0000;
+    font-weight:600;
+}
+
+@font-face {
+    font-family: SimSunfont;
+    src: url('/common/simsun.ttf');
+}
+
+@media (device-type: tv) {
+    .addSeven {
+        width: 500px;
+        height: 500px;
+        background-color: #fa8072;
+    }
+}
+

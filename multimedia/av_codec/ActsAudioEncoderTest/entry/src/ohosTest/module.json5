@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "audio_coder_test",
+    "type": "feature",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false
+  }
+}

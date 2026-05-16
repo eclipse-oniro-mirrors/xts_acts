@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "HelloWorld"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    }
+  ]
+}

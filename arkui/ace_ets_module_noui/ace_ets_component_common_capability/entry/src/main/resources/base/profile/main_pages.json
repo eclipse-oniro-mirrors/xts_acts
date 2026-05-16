@@ -1,0 +1,13 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/EmbeddedComponent/onTerminated",
+    "MainAbility/pages/EmbeddedComponent/extension",
+    "MainAbility/pages/inspectorTest/inspector",
+    "MainAbility/pages/layoutInspector/layoutInspector",
+    "MainAbility/pages/pluginComponent",
+    "MainAbility/pages/assemblyCallback",
+    "MainAbility/pages/enumTest/enumTest",
+    "MainAbility/pages/LayoutChildren"
+  ]
+}

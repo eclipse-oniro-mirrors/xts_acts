@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for resourceschedule filefs Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.actsshorttimetasktest.static",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command":[
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "test-file-name": ["ActsResourcescheduleShortTimeTaskStaticTest.hap"],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

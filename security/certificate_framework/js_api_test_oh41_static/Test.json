@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for cert demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1200000",
+        "shell-timeout": "900000",
+        "testcase-timeout": "600000",
+        "bundle-name": "com.openharmony.certificateframework3.static",
+        "module-name": "entry"
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsCertFrameworkJSFuncStaticTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    },{
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "uinput -T -m 300 2700 280 200",
+            "power-shell setmode 602"
+        ]
+    }]
+}

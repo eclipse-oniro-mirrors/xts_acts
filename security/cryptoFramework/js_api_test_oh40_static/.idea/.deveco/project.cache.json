@@ -1,0 +1,16 @@
+{
+	"CommonInfo":{
+		"project.ide.version":"6.0.0.41",
+		"current.select.product":"default",
+		"current.select.buildMode":"",
+		"crossplatform.projectType":""
+	},
+	"BuildOptions":{
+		"SELECT_BUILD_PRODUCT":"default",
+		"BUNDLE_NAME":"com.openharmony.cryptoFramework2.static",
+		"BUILD_PATH":{
+			"OUTPUT_PATH":"F:\\idlize\\code\\xts_acts\\security\\cryptoFramework\\js_api_test_oh40_static\\build\\outputs\\default"
+		},
+		"SELECT_BUILD_MODE":""
+	}
+}

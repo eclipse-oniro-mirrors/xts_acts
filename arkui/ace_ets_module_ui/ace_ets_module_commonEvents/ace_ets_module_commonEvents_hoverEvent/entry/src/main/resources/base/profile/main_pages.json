@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/onHoverStatusChange/onHoverStatusChange",
+        "MainAbility/pages/MouseEvent/MouseEventWindow"
+    ]
+}

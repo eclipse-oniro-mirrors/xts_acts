@@ -1,0 +1,30 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/noBarrierComponents",
+    "MainAbility/pages/noBarriersGroup",
+    "MainAbility/pages/overlay/overlay",
+    "MainAbility/pages/visibility/visibility",
+    "MainAbility/pages/zIndex/zIndex",
+    "MainAbility/pages/attributeModifier/AttributeModifierDemoAPI01",
+    "MainAbility/pages/attributeModifier/AttributeModifierDemoAPI03",
+    "MainAbility/pages/Accessible/accessVN",
+    "MainAbility/pages/attributeModifier/attribute",
+    "MainAbility/pages/outline/outline",
+    "MainAbility/pages/Hover/Hover5",
+    "MainAbility/pages/Hover/Hover11",
+    "MainAbility/pages/Hover/Hover17",
+    "MainAbility/pages/Hover/Hover23",
+    "MainAbility/pages/Hover/Hover25",
+    "MainAbility/pages/overlay/overlayUI",
+    "MainAbility/pages/second/postCardAction",
+    "MainAbility/pages/second/RotateOptions",
+    "MainAbility/pages/second/ShadowTypeStyle",
+    "MainAbility/pages/second/TransitionEffect",
+    "MainAbility/pages/second/ApiRect",
+    "MainAbility/pages/second/BlurStyle",
+    "MainAbility/pages/second/EntryOptions",
+    "MainAbility/pages/second/ModalTransition",
+    "MainAbility/pages/second/customAdd"
+  ]
+}

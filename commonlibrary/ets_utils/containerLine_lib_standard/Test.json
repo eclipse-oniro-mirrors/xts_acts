@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for startup util js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "com.example.containerLine",
+        "package-name": "com.example.containerLine"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsContainerLineJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

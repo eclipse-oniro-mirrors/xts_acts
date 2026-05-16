@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.actsbmsmetadatatest",
+        "package-name": "com.example.actsbmsmetadatatest"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBmsMetaDataTest.hap",
+                "bmsSystemBundleTest1.hap",
+                "bmsVendorBundleTest1.hap",
+                "bmsThirdBundleTest1.hap",
+                "bmsThirdBundleTestA1.hap",
+                "bmsThirdBundleTest5.hap",
+                "first_right.hap",
+                "second_right.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

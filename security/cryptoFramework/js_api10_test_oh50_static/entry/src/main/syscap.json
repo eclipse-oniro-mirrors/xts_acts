@@ -1,0 +1,21 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Security.CryptoFramework.Cipher",
+                    "SystemCapability.Security.CryptoFramework.Key",
+                    "SystemCapability.Security.CryptoFramework.Key.SymKey",
+                    "SystemCapability.Security.CryptoFramework.Key.AsymKey",
+                    "SystemCapability.Security.CryptoFramework.Rand",
+                    "SystemCapability.Security.CryptoFramework.Mac",
+                    "SystemCapability.Security.CryptoFramework.MessageDigest",
+                    "SystemCapability.Security.CryptoFramework.Signature",
+                    "SystemCapability.Security.CryptoFramework.KeyAgreement",
+                    "SystemCapability.Security.CryptoFramework.Kdf"
+                ]
+            }
+        ]
+    }
+}

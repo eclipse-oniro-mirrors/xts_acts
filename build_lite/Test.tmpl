@@ -1,0 +1,21 @@
+{
+    "description": "Config for $module test cases",
+    "environment": [
+        {
+            "type": "device",
+            "label": "wifiiot"
+        }
+    ],
+    "kits": [
+        {
+            "type": "DeployToolKit",
+            "auto_deploy":"True",
+            "timeout": "2000000",
+            "upgrade_file_path":"resource/tools/UpgradeDevice_$product.py",
+            "burn_file": "$product/$module"
+        }
+    ],
+    "driver": {
+        "type": "CTestLite"
+    }
+}

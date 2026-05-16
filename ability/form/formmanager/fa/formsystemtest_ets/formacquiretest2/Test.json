@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "com.ohos.st.formacquiretest2",
+        "package-name": "com.ohos.st.formacquiretest2",
+        "shell-timeout": "600000",
+        "testcase-timeout":"30000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsFormAcquire2Test.hap",
+                "FormSystemHost.hap",
+                "FormSystemHostI.hap",
+                "FormSystemHostJ.hap",
+                "FormSystemHostNoPerm.hap",
+                "FormSupplyAppA.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

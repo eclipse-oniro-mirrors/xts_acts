@@ -1,0 +1,24 @@
+{
+    "description": "Configuration for ActsLocationCApi20Test Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.acts.actslocationcapi20test",
+        "module-name": "entry_test"
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsLocationCApi20Test.hap",
+            "ActsLocationCApi20MainTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }, {
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "power-shell setmode 602"
+        ]
+    }]
+}

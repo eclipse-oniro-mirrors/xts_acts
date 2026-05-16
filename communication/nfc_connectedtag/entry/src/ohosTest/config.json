@@ -1,0 +1,95 @@
+{
+  "app": {
+    "bundleName": "ohos.acts.communication.nfc.nfcdevice",
+    "vendor": "acts",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "ohos.acts.communication.nfc.nfcdevice",
+    "name": ".entry_test",
+    "mainAbility": ".TestAbility",
+    "deviceType": [],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "nfc_standard_test",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".TestAbility",
+        "srcLanguage": "js",
+        "srcPath": "TestAbility",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "standard",
+        "skills":[
+            {
+                "entities":[
+                    "entity.system.home"
+                ],
+                "actions":[
+                    "action.system.home"
+                ]
+            }
+        ],
+        "metaData":{
+            "customizeData":
+            [
+                {
+                    "name":"payment-aid",
+                    "value":"A0000000031010"
+                },
+                {
+                    "name":"other-aid",
+                    "value":"A0000000031011"
+                }
+            ]
+        }
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.NFC_TAG",
+        "reason": "use ohos.permission.NFC_TAG"
+      },
+      {
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC",
+        "reason": "ceshi"
+      }
+    ],
+    "testRunner": {
+      "name": "OpenHarmonyTestRunner",
+      "srcPath": "TestRunner"
+    },
+    "srcPath": "",
+    "defPermissions": [
+      {
+        "availableScope": [],
+        "grantMode": "system_grant",
+        "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+      }
+    ]
+  }
+}

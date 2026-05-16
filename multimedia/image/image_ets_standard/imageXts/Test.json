@@ -1,0 +1,101 @@
+{
+  "description": "Configuration for image Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "180000",
+    "bundle-name": "ohos.acts.multimedia.image.xts",
+    "module-name": "entry_test",
+    "shell-timeout": "600000",
+    "testcase-timeout": 900000
+  },
+  "kits": [
+    {
+      "type": "ShellKit",
+      "pre-push": [],
+      "run-command": [
+        "rm -rf /storage/media/100/local/files/Pictures",
+        "rm -rf /storage/media/100/local/files/Videos",
+        "rm -rf /storage/media/100/local/files/Camera",
+        "rm -rf /storage/media/100/local/files/Audios",
+        "rm -rf /storage/media/100/local/files/Docs/Documents/*",
+        "rm -rf /storage/media/100/local/files/Docs/Documents/.*",
+        "rm -rf /storage/media/100/local/files/entry_test/*",
+        "sleep 5",
+        "rm -rf /data/app/el2/100/database/ohos.acts.multimedia.image.xts/*",
+        "kill -9 `pidof ohos.acts.multimedia.image.xts`"
+      ]
+    },
+    {
+      "test-file-name": [
+        "ActsImageXtsTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "pre-push": [],
+      "run-command": [
+        "param set persist.ace.testmode.enabled 1",
+        "power-shell wakeup",
+        "uinput -T -m 300 2700 280 200",
+        "power-shell setmode 602",
+        "mkdir -p /storage/media/100/local/files/Pictures",
+        "mkdir -p /storage/media/100/local/files/Videos",
+        "mkdir -p /storage/media/100/local/files/Camera",
+        "mkdir -p /storage/media/100/local/files/Audios",
+        "mkdir /storage/media/100/local/files/Pictures/Screenshots",
+        "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files",
+        "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/photos",
+        "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test",
+        "chmod -R 777 /storage/media/100/local/files/*",
+        "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*"
+      ]
+    },
+    {
+      "type": "PushKit",
+      "pre-push": [],
+      "push": [
+        "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/test.svg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/test7.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/test8.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/test_aisr.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/test_aisr.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/test_dng.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/test_exif_empty2.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/test.jpeg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/0801_sdr2.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/AllAuxiliaryPictures.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/CUVAHdr.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/CUVAHdrMulti.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/testExif.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/test_exif.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/",
+        "./resource/image/test6.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts/haps/entry_test/files/"
+      ]
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "hilog -Q pidoff",
+        "hilog -Q domainoff",
+        "hilog -b D -D 0xD002B70"
+      ],
+      "teardown-command": [
+        "power-shell setmode 600",
+        "hilog -Q pidon",
+        "hilog -Q domainon",
+        "rm -rf /storage/media/100/local/files/Pictures",
+        "rm -rf /storage/media/100/local/files/Videos",
+        "rm -rf /storage/media/100/local/files/Camera",
+        "rm -rf /storage/media/100/local/files/Audios",
+        "rm -rf /storage/media/100/local/files/Docs/Documents/*",
+        "rm -rf /storage/media/100/local/files/Docs/Documents/.*",
+        "rm -rf /storage/media/100/local/files/entry_test/*",
+        "sleep 5",
+        "rm -rf /data/app/el2/100/database/com.ohos.image.imagedata/*",
+        "kill -9 `pidof com.ohos.image.imagedata`"
+      ]
+    }
+  ]
+}

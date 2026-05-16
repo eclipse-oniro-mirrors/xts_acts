@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/treeView/treeViewNodeParamContainer",
+    "MainAbility/pages/treeView/treeViewSymbol"
+  ]
+}

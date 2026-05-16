@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地理位置</title>
+</head>
+<body>
+    <div id="result"></div>
+    <script>
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                let cords=position.coords;
+                document.getElementById('result').innerText='当前经度:'+cords.longitude
+            },
+            function(error) {
+                let errorTypes={1:'位置服务被拒绝',2:'获取不到位置信息',3:'获取位置信息超时'};
+                document.getElementById("result").innerText=errorTypes[error.code];
+                console.log('errorcode is:' + error.code);
+            }
+        );
+        function getGeoResult() {
+                let str = document.getElementById('result').innerText;
+                return str;
+        }
+    </script>
+</body>
+</html>

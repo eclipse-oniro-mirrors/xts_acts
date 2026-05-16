@@ -1,0 +1,6 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testuiextensionability/pages/TestUIExtensionAbilityPage"
+  ]
+}

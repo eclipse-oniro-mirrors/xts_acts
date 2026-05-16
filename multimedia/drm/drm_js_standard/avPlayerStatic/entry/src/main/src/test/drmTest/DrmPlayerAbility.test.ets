@@ -1,0 +1,4294 @@
+/*
+ * Copyright (C) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License');
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level, Size, TestType } from '../../../../hypium/index';
+import drm from '@ohos.multimedia.drm';
+import http from '@ohos.net.http';
+import util from '@ohos.util';
+import media from '@ohos.multimedia.media';
+import { BusinessError } from '@ohos.base';
+import Utils from '../Util.test.ets';
+
+let systemName:string;
+let isClearPlay = drm.isMediaKeySystemSupported("com.clearplay.drm");
+if (isClearPlay) {
+  systemName = "com.clearplay.drm";
+} else {
+  systemName = "com.wiseplay.drm";
+}
+
+export async function getHttpData(url: string, _extraData: Object):Promise<string>{
+  let responseData: string = 'defaultStr';
+  let httpRequest = http.createHttp();
+  let header: Record<string, string> = {
+    'Content-Type': 'application/json'
+  }
+  let response = httpRequest.request(
+    url,
+    {
+      method: http.RequestMethod.POST,
+      header: header,
+      extraData : _extraData,
+      expectDataType: http.HttpDataType.STRING,
+    }as http.HttpRequestOptions
+  );
+  await response.then((data: http.HttpResponse) => {
+    if (data.responseCode == 200) {
+      console.info("getHttpData success")
+      if(typeof data.result == 'string'){
+        responseData = data.result as string;
+      } else {
+        console.info("getHttpData Failed 1")
+      }
+    } else {
+      // todo 请求失败，进行失败逻辑处理
+      console.info("getHttpData Failed 2")
+    }
+  }).catch((err:Error) => {
+    // todo 请求失败，进行失败逻辑处理
+    console.info('getHttpData error:' + JSON.stringify(err));
+  })
+  console.info("getHttpData end")
+  return responseData;
+}
+
+function stringToUint8Array(str:string) {
+  const length = str.length;
+  const array = new Uint8Array(length);
+
+  for (let i = 0; i < length; i++) {
+    array[i] = str.charCodeAt(i);
+  }
+
+  return array;
+}
+
+function byteToString(arr:Uint8Array) {
+  if(typeof arr === 'string') {
+    return arr;
+  }
+  let str = '',
+    _arr = arr;
+  for(let i = 0; i < _arr.length; i++) {
+    let one = _arr[i].toString(2),
+      v = one.match(new RegExp('^1+?(?=0)'));
+    if(v && one.length == 8) {
+      let bytesLength = v[0]!.length;
+      let store = _arr[i].toString(2).slice(7 - bytesLength);
+      for(let st = 1; st < bytesLength; st++) {
+        store += _arr[st + i].toString(2).slice(2);
+      }
+      str += String.fromCharCode(parseInt(store, 2));
+      i += bytesLength - 1;
+    } else {
+      str += String.fromCharCode(_arr[i]);
+    }
+  }
+  return str;
+}
+
+export default function abilityTest() {
+  describe('ActsAbilityTest', () => {
+    // Defines a test suite. Two parameters are supported: test suite name and test suite function.
+    beforeAll(() => {
+      // Presets an action, which is performed only once before all test cases of the test suite start.
+      // This API supports only one parameter: preset action function.
+    });
+    beforeEach(() => {
+      // Presets an action, which is performed before each unit test case starts.
+      // The number of execution times is the same as the number of test cases defined by **it**.
+      // This API supports only one parameter: preset action function.
+    });
+    afterEach(() => {
+      await Utils.msSleep(2000);
+      // Presets a clear action, which is performed after each unit test case ends.
+      // The number of execution times is the same as the number of test cases defined by **it**.
+      // This API supports only one parameter: clear action function.
+    });
+    afterAll(() => {
+      // Presets a clear action, which is performed after all test cases of the test suite end.
+      // This API supports only one parameter: clear action function.
+    });
+    console.info("--------------------assertContain-------Stage-----------------------");
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2300
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2300
+     * @tc.desc   创建最大64个system
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmMediaKeySystem:(drm.MediaKeySystem|undefined)[] = [];
+      let errCode: double = 0;
+      for (let i = 0; i < 64; i++) {
+        let mediaKeySystem = drm.createMediaKeySystem(systemName);
+        expect(mediaKeySystem!.getStatistics().length).assertLarger(0);
+        drmMediaKeySystem.push(mediaKeySystem);
+      }
+      try {
+        let drmMediaKeySystem2 = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2300 createMediaKeySystem err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+        for (let j = 0; j < 64; j++) {
+          drmMediaKeySystem[j]!.destroy();
+        }
+      }
+      expect(errCode).assertEqual(drm.DrmErrorCode.MAX_SYSTEM_NUM_REACHED);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2400
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2400
+     * @tc.desc   创建最大64个session
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2400', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmMediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        drmMediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2400 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      let sessionArray:(drm.MediaKeySession|undefined)[] = [];
+      let errCode: double = 0;
+      for (let i = 0; i < 64; i++) {
+        let sessionArray_ = drmMediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+        expect(sessionArray_!.getContentProtectionLevel()).not().assertEqual(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+        sessionArray.push(sessionArray_!);
+      }
+      try {
+        let session2 = drmMediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2400 createMediaKeySession err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+        for (let j = 0; j < 64; j++) {
+          sessionArray[j]!.destroy();
+        }
+        drmMediaKeySystem!.destroy();
+      }
+      expect(errCode).assertEqual(drm.DrmErrorCode.MAX_SESSION_NUM_REACHED);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1000
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1000
+     * @tc.desc   get metric information
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1000', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1000 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        let sessionArray:(drm.MediaKeySession|undefined)[] = [];
+        let metric = mediaKeySystem!.getStatistics();
+        for (let item of metric) {
+          console.log("XX TEST metric" + item.name + ':' + item.value);
+          if (item.name === drm.PreDefinedConfigName.CONFIG_SESSION_CURRENT as string) {
+            expect(item.value).assertEqual('0');
+          }
+        }
+        for (let i = 0; i < 64; i++) {
+          let sessionArray_ = mediaKeySystem!.createMediaKeySession();
+          sessionArray.push(sessionArray_!);
+        }
+        let metric2 = mediaKeySystem!.getStatistics();
+        for (let item2 of metric2) {
+          console.log("XX TEST metric2" + item2.name + ':' + item2.value);
+          if (item2.name === drm.PreDefinedConfigName.CONFIG_SESSION_CURRENT as string) {
+            expect(item2.value).assertEqual('64');
+          }
+        }
+        for (let j = 0; j < 32; j++) {
+          sessionArray[j]!.destroy();
+        }
+        let metric3 = mediaKeySystem!.getStatistics();
+        for (let item3 of metric3) {
+          console.log("XX TEST metric3" + item3.name + ':' + item3.value);
+          if (item3.name === drm.PreDefinedConfigName.CONFIG_SESSION_CURRENT as string) {
+            expect(item3.value).assertEqual('32');
+          }
+        }
+        for (let k = 32; k < 64; k++) {
+          sessionArray[k]!.destroy();
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1000 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_AVPLAYER_static_0100
+     * @tc.number SUB_MULTIMEDIA_MEDIA_AVPLAYER_static_0100
+     * @tc.desc   create AVPlayer to getMediaKeySystemInfos
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_static_0100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmMediaKeySystem:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmMediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX MEDIA_AVPLAYER_0100 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        session = drmMediaKeySystem!.createMediaKeySession();
+      } catch (err: Error) {
+        console.log("XX MEDIA_AVPLAYER_0100 createMediaKeySession failed");
+        drmMediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+      let avPlayer = await media.createAVPlayer();
+      avPlayer!.setDecryptionConfig(session!, false);
+      session!.destroy();
+      drmMediaKeySystem!.destroy();
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_AVPLAYER_static_0200
+     * @tc.number SUB_MULTIMEDIA_MEDIA_AVPLAYER_static_0200
+     * @tc.desc   create AVPlayer to getMediaKeySystemInfos
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_static_0200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmMediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        drmMediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX MEDIA_AVPLAYER_0200 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      let avPlayer = await media.createAVPlayer();
+      let MediaKeySystemInfo = avPlayer!.getMediaKeySystemInfos();
+      if (MediaKeySystemInfo && MediaKeySystemInfo.length > 0) {
+        for (let item = 0; item < MediaKeySystemInfo.length; item++) {
+          console.info(`getMediaKeySystemInfos item:${item}, MediaKeySystemInfo[${item}].uuid:${MediaKeySystemInfo[item].uuid}, MediaKeySystemInfo[${item}].pssh:${MediaKeySystemInfo[item].pssh}`);
+        }
+      }
+      expect(MediaKeySystemInfo.length).assertEqual(0);
+      drmMediaKeySystem!.destroy();
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0100
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0100
+     * @tc.desc   Reliability Test
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let errCode: double = 0;
+      let drmMediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        drmMediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_0100 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      expect(drmMediaKeySystem!).not().assertUndefined();
+      drmMediaKeySystem!.destroy();
+      try {
+        let metric = drmMediaKeySystem!.getStatistics();
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_0100 err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+      }
+      expect(errCode).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0200
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0200
+     * @tc.desc   Abnormal systemName
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let errCode: double = 0;
+      try {
+        let drmMediaKeySystem = drm.createMediaKeySystem("405E6D359B9A41E8B843DD3C6E72C42C");
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_0200 createMediaKeySystem err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+      }
+      expect(errCode).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0300
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0300
+     * @tc.desc   null systemName
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let errCode: double = 0;
+      try {
+        let drmMediaKeySystem = drm.createMediaKeySystem("");
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_0300 createMediaKeySystem err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+      }
+      expect(errCode).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0400
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0400
+     * @tc.desc   one params error systemName
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0400', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let isSysSupport = drm.isMediaKeySystemSupported("405E6D359B9A41E8B843DD3C6E72C42C");
+      expect(isSysSupport).assertFalse();
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0500
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0500
+     * @tc.desc   one params null systemName
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0500', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let errCode: double = 0;
+      try {
+        let isSysSupport = drm.isMediaKeySystemSupported("");
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_0500 isMediaKeySystemSupported err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+      }
+      expect(errCode).assertEqual(401);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0600
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0600
+     * @tc.desc   two params
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0600', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let isSysSupport = drm.isMediaKeySystemSupported(systemName, "video/mp4");
+      expect(isSysSupport).assertTrue();
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0700
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0700
+     * @tc.desc   two params error systemName
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0700', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let isSysSupport = drm.isMediaKeySystemSupported("405E6D359B9A41E8B843DD3C6E72C42C", "video/mp4");
+      expect(isSysSupport).assertFalse();
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0800
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0800
+     * @tc.desc   two params null systemName
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0800', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let errCode: double = 0;
+      try {
+        let isSysSupport = drm.isMediaKeySystemSupported("", "video/mp4");
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_0800 isMediaKeySystemSupported err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+      }
+      expect(errCode).assertEqual(401);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0900
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0900
+     * @tc.desc   two params error mimetype
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_0900', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let isSysSupport = drm.isMediaKeySystemSupported(systemName, "1111/2222");
+      if (isClearPlay) {
+        expect(isSysSupport).assertFalse();
+      } else {
+        expect(isSysSupport).assertTrue();
+      }
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1000
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1000
+     * @tc.desc   two params null mimetype
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1000', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let errCode: double = 0;
+      try {
+        let isSysSupport = drm.isMediaKeySystemSupported(systemName, "");
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_1000 isMediaKeySystemSupported err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+      }
+      expect(errCode).assertEqual(drm.DrmErrorCode.ERROR_UNKNOWN);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1100
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1100
+     * @tc.desc   three params
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let isSysSupport = drm.isMediaKeySystemSupported(systemName, "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      expect(isSysSupport).assertTrue();
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1200
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1200
+     * @tc.desc   three params
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      try {
+        let isSysSupport = drm.isMediaKeySystemSupported(systemName, "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_HW_CRYPTO);
+        console.log("XX DRM_FRAMEWORK_API_1200 isSysSupport is", isSysSupport);
+      } catch(error: Error) {
+        console.log("XX DRM_FRAMEWORK_API_1200 isSysSupport error: ", JSON.stringify(error));
+        expect(true).assertFalse();
+      }
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1300
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1300
+     * @tc.desc   three params
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      try {
+        let isSysSupport = drm.isMediaKeySystemSupported(systemName, "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_ENHANCED_HW);
+        console.log("XX DRM_FRAMEWORK_API_1300 isSysSupport is", isSysSupport);
+      } catch(error: Error) {
+        console.log("XX DRM_FRAMEWORK_API_1300 isSysSupport error: ", JSON.stringify(error));
+        expect(true).assertFalse();
+      }
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1400
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1400
+     * @tc.desc   three params,error systemName
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1400', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let isSysSupport = drm.isMediaKeySystemSupported("405E6D359B9A41E8B843DD3C6E72C42C", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      expect(isSysSupport).assertFalse();
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1500
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1500
+     * @tc.desc   three params,error mimetype
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1500', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let isSysSupport = drm.isMediaKeySystemSupported(systemName, "1111/22222", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      if (isClearPlay) {
+        expect(isSysSupport).assertFalse();
+      } else {
+        expect(isSysSupport).assertTrue();
+      }
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1700
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1700
+     * @tc.desc   three params,null systemName
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1700', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let errCode: double = 0;
+      try {
+        let isSysSupport = drm.isMediaKeySystemSupported("", "video/mp4",
+          drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_1700 isMediaKeySystemSupported err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+      }
+      expect(errCode).assertEqual(401);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1800
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1800
+     * @tc.desc   three params,null mimetype
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_1800', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let isSysSupport = drm.isMediaKeySystemSupported(systemName, "", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      expect(isSysSupport).assertFalse();
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2000
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2000
+     * @tc.desc   判断是否支持安全解码video/mp4
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2000', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmMediaKeySystem:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmMediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2000 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        session = drmMediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2000 createMediaKeySession failed");
+        drmMediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+      expect(session!).not().assertUndefined();
+      try {
+        let result = session!.requireSecureDecoderModule("video/avc");
+        expect(result).assertFalse();
+        let result1 = session!.requireSecureDecoderModule("video/hevc");
+        expect(result1).assertFalse();
+        let result2 = session!.requireSecureDecoderModule("video/avs3");
+        expect(result2).assertFalse();
+        session!.destroy();
+        drmMediaKeySystem!.destroy();
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2000 failed");
+        session!.destroy();
+        drmMediaKeySystem!.destroy();
+      }
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2100
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2100
+     * @tc.desc   判断是否支持安全解码video/mp4
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmMediaKeySystem:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      let drmMaxLevel:drm.ContentProtectionLevel = drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN;
+      try {
+        drmMediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2100 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        drmMaxLevel = drmMediaKeySystem!.getMaxContentProtectionLevel();
+        console.log("XX DRM_FRAMEWORK_API_2100 getMaxContentProtectionLevel is ", drmMaxLevel);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2100 getMaxContentProtectionLevel failed");
+        drmMediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+      if(drmMaxLevel === drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_HW_CRYPTO) {
+        try {
+          session = drmMediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_HW_CRYPTO);
+        } catch (err: Error) {
+          console.log("XX DRM_FRAMEWORK_API_2100 createMediaKeySession failed");
+          drmMediaKeySystem!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        }
+        expect(session!).not().assertUndefined();
+
+        try {
+          let result = session!.requireSecureDecoderModule("video/avc");
+          console.log("XX DRM_FRAMEWORK_API_2100 result is", result);
+          expect(result).not().assertFalse();
+          let result1 = session!.requireSecureDecoderModule("video/hevc");
+          console.log("XX DRM_FRAMEWORK_API_2100 result1 is", result1);
+          expect(result1).not().assertFalse();
+          let result2 = session!.requireSecureDecoderModule("video/avs3");
+          console.log("XX DRM_FRAMEWORK_API_2100 result2 is", result2);
+          expect(result2).not().assertFalse();
+          session!.destroy();
+          drmMediaKeySystem!.destroy();
+        } catch (err: Error) {
+          console.log("XX DRM_FRAMEWORK_API_2100 failed");
+          session!.destroy();
+          drmMediaKeySystem!.destroy();
+        }
+        done();
+      } else {
+        drmMediaKeySystem!.destroy();
+        done();
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2200
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2200
+     * @tc.desc   判断是否支持安全解码hls/ts
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmMediaKeySystem:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      let drmMaxLevel:drm.ContentProtectionLevel = drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN;
+      try {
+        drmMediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2200 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        drmMaxLevel = drmMediaKeySystem!.getMaxContentProtectionLevel();
+        console.log("XX DRM_FRAMEWORK_API_2200 getMaxContentProtectionLevel is ", drmMaxLevel);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2200 getMaxContentProtectionLevel failed");
+        drmMediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+      if(drmMaxLevel === drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_HW_CRYPTO) {
+        try {
+          session = drmMediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_HW_CRYPTO);
+        } catch (err: Error) {
+          console.log("XX DRM_FRAMEWORK_API_2200 createMediaKeySession failed");
+          drmMediaKeySystem!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        }
+        try {
+          if(isClearPlay) {
+            let result = session!.requireSecureDecoderModule("hls/ts");
+            expect(result).assertFalse();
+            session!.destroy();
+            drmMediaKeySystem!.destroy();
+          } else {
+            try {
+              let result = session!.requireSecureDecoderModule("hls/ts");
+            } catch (err: Error) {
+              console.log("XX DRM_FRAMEWORK_API_2200 requireSecureDecoderModule err end", (err as BusinessError).code);
+              expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+            }
+            session!.destroy();
+            drmMediaKeySystem!.destroy();
+          }
+        } catch (err: Error) {
+          console.log("XX DRM_FRAMEWORK_API_2200 failed");
+          session!.destroy();
+          drmMediaKeySystem!.destroy();
+        }
+        done();
+      } else {
+        drmMediaKeySystem!.destroy();
+        done();
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2500
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2500
+     * @tc.desc   会话安全等级unknown默认为HW
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2500', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let errCode: double = 0;
+      let drmMediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        drmMediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2500 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try{
+        let session = drmMediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+        session!.destroy();
+        drmMediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2500 createMediaKeySession err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+        drmMediaKeySystem!.destroy();
+      }
+      expect(errCode).assertEqual(401);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2600
+     * @tc.number SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2600
+     * @tc.desc   判断是否支持安全解码video/mp4
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_static_2600', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let errCode: double = 0;
+      let drmMediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        drmMediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2600 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        let session =
+          drmMediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_MAX);
+        session!.destroy();
+        drmMediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      } catch (err: Error) {
+        console.log("XX DRM_FRAMEWORK_API_2600 createMediaKeySession err end", (err as BusinessError).code);
+        errCode = (err as BusinessError).code;
+        drmMediaKeySystem!.destroy();
+      }
+      expect(errCode).assertEqual(401);
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_0100
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_0100
+     * @tc.desc   获取设备证书，正常参数
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_0100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let cstatus:drm.CertificateStatus|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0100 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        cstatus = drmsys!.getCertificateStatus();
+        console.log("XX DRM_AVPLAYER_0100 cstatus is ",cstatus)
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0100 getCertificateStatus failed")
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        if(cstatus! != drm.CertificateStatus.CERT_STATUS_PROVISIONED){
+          drmsys!.generateKeySystemRequest().then(async (drmRequest: drm.ProvisionRequest) => {
+            console.info("XX DRM_AVPLAYER_0100 success", drmRequest.data ,drmRequest.defaultURL);
+            let provisionRequestStr = byteToString(drmRequest.data);
+            let provisionResponseStr = await getHttpData(drmRequest.defaultURL, provisionRequestStr);
+            let provisionResponseByte = stringToUint8Array(provisionResponseStr);
+            drmsys!.processKeySystemResponse(provisionResponseByte).then(() => {
+              drmsys!.destroy();
+              console.info("XX DRM_AVPLAYER_0100 processKeySystemResponse success");
+              done();
+            }).catch((err:Error) =>{
+              console.info("XX DRM_AVPLAYER_0100 processKeySystemResponse err end", err.code);
+              drmsys!.destroy();
+              done();
+              expect(false).assertEqual(true);
+            });
+          }).catch((err:Error) =>{
+            console.info("XX DRM_AVPLAYER_0100 generateKeySystemRequest err end", err.code);
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          drmsys!.destroy();
+          done();
+        }
+      } catch (err: Error) {
+        console.info("XX DRM_AVPLAYER_0100 failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_0200
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_0200
+     * @tc.desc   获取许可证,正常参数
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_0200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let cstatus:drm.CertificateStatus;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0200 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0200 createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      let responseArray:Uint8Array;
+      let base64 = new util.Base64Helper();
+      let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+      let optionalData:drm.OptionsData[] = [{
+        name: "optionalDataName",
+        value: "optionalDataValue"
+      }];
+    
+      try {
+        session!.generateMediaKeyRequest("video/mp4",uint8pssh,drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData).then(async (licenseRequestData: drm.MediaKeyRequest) => {
+          console.info("XX DRM_AVPLAYER_0200 generateMediaKeyRequest success",licenseRequestData.mediaKeyRequestType,licenseRequestData.data,licenseRequestData.defaultURL);
+          if(isClearPlay){
+            console.log("______1");
+            responseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
+          } else {
+            let licenseRequestStr = byteToString(licenseRequestData.data);
+          console.log("______1");
+            let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense", licenseRequestStr);
+          console.log("______2");
+            console.info("XX DRM_AVPLAYER_0200 licenseResponseStr success", licenseResponseStr);
+            console.log("______3");
+            responseArray = stringToUint8Array(licenseResponseStr);
+          console.log("______4");
+          }
+          session!.processMediaKeyResponse(responseArray).then((keyId) => {
+            let keyvalue = session!.checkMediaKeyStatus();
+            expect(keyvalue).not().assertUndefined();
+            session!.destroy();
+            drmsys!.destroy();
+            console.info("XX DRM_AVPLAYER_0200 processMediaKeyResponse success ",keyvalue[0].value);
+            done();
+          }).catch((err:Error) =>{
+            console.info("XX DRM_AVPLAYER_0200 processMediaKeyResponse err end", err.code);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect((err as BusinessError).code).assertEqual(24700201);
+          });
+        }).catch((err:Error) =>{
+          console.info("XX DRM_AVPLAYER_0200 generateMediaKeyRequest err end", err.code);
+          session!.destroy();
+          drmsys!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        });
+      } catch (err: Error) {
+        console.info("XX DRM_AVPLAYER_0200 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_0300
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_0300
+     * @tc.desc   获取许可证,请求minetype异常
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_0300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0300 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0300 createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if(isClearPlay){
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          session!.generateMediaKeyRequest("1111/2222", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE as int, optionalData).then((DrmRequest) => {
+            console.log("XX DRM_AVPLAYER_0300 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+              DrmRequest.data, DrmRequest.defaultURL);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_0300 generateMediaKeyRequest err end", err.code);
+            expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+          });
+        } else {
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          session!.generateMediaKeyRequest("1111/2222", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData).then((DrmRequest) => {
+            console.log("XX DRM_AVPLAYER_0300 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType, DrmRequest.data, DrmRequest.defaultURL);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+          }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_0300 generateMediaKeyRequest err end", err.code);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        }
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0300 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_0400
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_0400
+     * @tc.desc   获取许可证,请求minetype为空
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_0400', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0400 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0400  createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      let base64 = new util.Base64Helper();
+      let uint8pssh =
+        base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+      let optionalData:drm.OptionsData[] = [{
+        name: "optionalDataName",
+        value: "optionalDataValue"
+      }];
+
+      try {
+        if(isClearPlay){
+          session!.generateMediaKeyRequest("", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData)
+            .then((DrmRequest: drm.MediaKeyRequest) => {
+              console.log("XX DRM_AVPLAYER_0400 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              session!.destroy();
+              drmsys!.destroy();
+              done();
+              expect(false).assertEqual(true);
+            }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_0400 generateMediaKeyRequest err end", err.code);
+            expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+          });
+        } else {
+          session!.generateMediaKeyRequest("", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData)
+            .then((DrmRequest: drm.MediaKeyRequest) => {
+              console.log("XX DRM_AVPLAYER_0400 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              session!.destroy();
+              drmsys!.destroy();
+              done();
+            }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_0400 generateMediaKeyRequest err end", err.code);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        }
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0400 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_0500
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_0500
+     * @tc.desc   获取许可证,请求初始数据异常
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_0500', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0500 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0500 createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      let base64 = new util.Base64Helper();
+      let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q=');
+      let optionalData:drm.OptionsData[] = [{
+        name: "optionalDataName",
+        value: "optionalDataValue"
+      }];
+
+      try {
+        session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData)
+          .then((DrmRequest) => {
+            console.log("XX DRM_AVPLAYER_0500 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+              DrmRequest.data, DrmRequest.defaultURL);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+          }).catch((err:Error) => {
+          console.log("XX DRM_AVPLAYER_0500 generateMediaKeyRequest err end", err.code);
+          session!.destroy();
+          drmsys!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        });
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0500 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        expect(false).assertEqual(true);
+        done();
+      }
+    });
+
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_0700
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_0700
+     * @tc.desc   获取许可证,请求的licensetype异常
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_0700', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0700 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0700 createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      let base64 = new util.Base64Helper();
+      let uint8pssh =
+        base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+      let optionalData:drm.OptionsData[] = [{
+        name: "optionalDataName",
+        value: "optionalDataValue"
+      }];
+
+      try {
+        session!.generateMediaKeyRequest("video/mp4", uint8pssh, 3, optionalData).then((DrmRequest) => {
+          console.log("XX DRM_AVPLAYER_0700 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+            DrmRequest.data, DrmRequest.defaultURL);
+          session!.destroy();
+          drmsys!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        }).catch((err:Error) => {
+          console.log("XX DRM_AVPLAYER_0700 generateMediaKeyRequest err end", err.code);
+          expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+          session!.destroy();
+          drmsys!.destroy();
+          done();
+        });
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0700 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_0800
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_0800
+     * @tc.desc   获取许可证,响应报文异常
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_0800', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0800 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0800 createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      let base64 = new util.Base64Helper();
+      let uint8pssh =
+        base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+      let optionalData:drm.OptionsData[] = [{
+        name: "optionalDataName",
+        value: "optionalDataValue"
+      }];
+
+      try {
+        session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData)
+          .then((DrmRequest) => {
+            console.log("XX DRM_AVPLAYER_0800 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+              DrmRequest.data, DrmRequest.defaultURL);
+            let responseArray = new Uint8Array([1, 2, 3, 4, 5]);
+            session!.processMediaKeyResponse(responseArray).then((keyId) => {
+              console.log("XX DRM_AVPLAYER_0800 processMediaKeyresponse success", keyId);
+              session!.destroy();
+              drmsys!.destroy();
+              done();
+              expect(false).assertEqual(true);
+            }).catch((err:Error) => {
+              console.log("XX DRM_AVPLAYER_0800 processMediaKeyResponse err end", err.code);
+              expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+              session!.destroy();
+              drmsys!.destroy();
+              done();
+            });
+          }).catch((err:Error) => {
+          console.log("XX DRM_AVPLAYER_0800 generateMediaKeyRequest err end", err.code);
+          session!.destroy();
+          drmsys!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        });
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0800 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_0900
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_0900
+     * @tc.desc   获取许可证,正常删除许可证信息，正常检查许可证状态
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_0900', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0900 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0900 createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      let base64 = new util.Base64Helper();
+      let uint8pssh =
+        base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+      let optionalData:drm.OptionsData[] = [{
+        name: "optionalDataName",
+        value: "optionalDataValue"
+      }];
+    
+      try {
+        if(isClearPlay){
+          let errCode: double = 0;
+          session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData)
+            .then((DrmRequest) => {
+              console.log("XX DRM_AVPLAYER_0900 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              let responseArray =
+                new Uint8Array([0x30, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+              session!.processMediaKeyResponse(responseArray).then((keyId) => {
+                let keyvalue = session!.checkMediaKeyStatus();
+                console.log("XX DRM_AVPLAYER_0900 keyvalue", keyvalue[0].value);
+                expect(keyvalue[0].value).assertEqual('MediaKey is OK');
+                session!.clearMediaKeys();
+                console.log("XX DRM_AVPLAYER_0900 clearMediaKeys");
+                try {
+                  let keyvalue2 = session!.checkMediaKeyStatus();
+                } catch (err: Error) {
+                  console.log("XX DRM_AVPLAYER_0900 generateKeySystemRequest err end", err);
+                  errCode = (err as BusinessError).code;
+                }
+                expect(errCode).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+                session!.destroy();
+                drmsys!.destroy();
+                console.log("XX DRM_AVPLAYER_0900 processMediaKeyResponse success", keyId);
+                done();
+              }).catch((err:Error) => {
+                console.log("XX DRM_AVPLAYER_0900 processMediaKeyResponse err end", err.code);
+                session!.destroy();
+                drmsys!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_0900 generateMediaKeyRequest err end", err.code);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData)
+            .then(async (DrmRequest: drm.MediaKeyRequest) => {
+              console.log("XX DRM_AVPLAYER_0900 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              let licenseRequestStr = byteToString(DrmRequest.data);
+              let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense", licenseRequestStr);
+              let licenseResponseByte = stringToUint8Array(licenseResponseStr);
+              session!.processMediaKeyResponse(licenseResponseByte).then((keyId) => {
+                let keyvalue = session!.checkMediaKeyStatus();
+                for(let i = 0; i<keyvalue.length; i++){
+                  if(keyvalue[i].name === 'LicenseType'){
+                    expect(keyvalue[i].value).assertEqual('Streaming');
+                  }
+                }
+                session!.clearMediaKeys();
+                let keyvalue2 = session!.checkMediaKeyStatus();
+                for(let i = 0; i<keyvalue2.length; i++){
+                  expect(keyvalue2[i].value).not().assertUndefined();
+                }
+                session!.destroy();
+                drmsys!.destroy();
+                console.log("XX DRM_AVPLAYER_0900 processMediaKeyResponse success", keyId);
+                done();
+              }).catch((err:Error) => {
+                console.log("XX DRM_AVPLAYER_0900 processMediaKeyResponse err end", err.code);
+                session!.destroy();
+                drmsys!.destroy();
+                done();
+                expect((err as BusinessError).code).assertEqual(24700201);
+              });
+            })
+            .catch((err:Error) => {
+              console.log("XX DRM_AVPLAYER_0900 generateMediaKeyRequest err end", err.code);
+              session!.destroy();
+              drmsys!.destroy();
+              done();
+              expect(false).assertEqual(true);
+            });
+        }
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_0900 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_1000
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_1000
+     * @tc.desc   离线许可证管理，获取离线licenseid，检查licenseid状态
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_1000', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1000 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1000 createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      let responseArray:Uint8Array;
+      let base64 = new util.Base64Helper();
+      let uint8pssh =
+        base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+      let optionalData:drm.OptionsData[] = [{
+        name: "optionalDataName",
+        value: "optionalDataValue"
+      }];
+    
+      try {
+        session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData)
+          .then(async (DrmRequest: drm.MediaKeyRequest) => {
+            console.log("XX DRM_AVPLAYER_1000 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+              DrmRequest.data, DrmRequest.defaultURL);
+            if(isClearPlay) {
+              responseArray =
+                new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+            } else {
+              let licenseRequestStr = byteToString(DrmRequest.data);
+              let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense", licenseRequestStr);
+              responseArray = stringToUint8Array(licenseResponseStr);
+            }
+            session!.processMediaKeyResponse(responseArray).then((keyId) => {
+              let keyIds = drmsys!.getOfflineMediaKeyIds();
+              console.log("keyIds is", keyIds);
+              let arry = new Uint8Array(keyIds[0]);
+              let OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(arry);
+              expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
+              session!.destroy();
+              drmsys!.destroy();
+              console.log("XX DRM_AVPLAYER_1000 processMediaKeyResponse success", keyId);
+              done();
+            }).catch((err:Error) => {
+              console.log("XX DRM_AVPLAYER_1000 generateMediaKeyRequest err end", err.code);
+              session!.destroy();
+              drmsys!.destroy();
+              done();
+              expect((err as BusinessError).code).assertEqual(24700201);
+            });
+          }).catch((err:Error) => {
+          console.log("XX DRM_AVPLAYER_1000 processMediaKeyResponse err end", err.code);
+          session!.destroy();
+          drmsys!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        });
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1000 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_1100
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_1100
+     * @tc.desc   离线许可证管理，删除离线licenseid，检查licenseid状态
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_1100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1100 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1100 createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      let base64 = new util.Base64Helper();
+      let responseArray:Uint8Array;
+      let uint8pssh =
+        base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+      let optionalData:drm.OptionsData[] = [{
+        name: "optionalDataName",
+        value: "optionalDataValue"
+      }];
+      try {
+        session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData)
+          .then(async (DrmRequest: drm.MediaKeyRequest) => {
+            console.log("XX DRM_AVPLAYER_1100 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+              DrmRequest.data, DrmRequest.defaultURL);
+            if(isClearPlay){
+              responseArray =
+                new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+            } else {
+              let licenseRequestStr = byteToString(DrmRequest.data);
+              let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense", licenseRequestStr);
+              responseArray = stringToUint8Array(licenseResponseStr);
+            }
+            session!.processMediaKeyResponse(responseArray).then((keyId) => {
+              console.log("XX DRM_AVPLAYER_1100 processMediaKeyResponse success ",responseArray);
+              let keyIds = drmsys!.getOfflineMediaKeyIds();
+              let arry = new Uint8Array(keyIds[0]);
+              let OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(arry);
+              expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
+              drmsys!.clearOfflineMediaKeys(arry);
+              OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(arry);
+              session!.destroy();
+              drmsys!.destroy();
+              done();
+              expect(false).assertEqual(true);
+            }).catch((err:Error) => {
+              console.log("XX DRM_AVPLAYER_1100 processMediaKeyResponse error", err.code);
+              session!.destroy();
+              drmsys!.destroy();
+              done();
+            });
+          }).catch((err:Error) => {
+          console.log("XX DRM_AVPLAYER_1100 generateMediaKeyRequest err end", err.code);
+          session!.destroy();
+          drmsys!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        });
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1100 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_1200
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_1200
+     * @tc.desc   离线许可证管理，无效离线licenseid，检查licenseid状态
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_1200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1200 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      let arry = new Uint8Array([1, 2, 3, 4, 5]);
+      try {
+        let OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(arry);
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }catch (err) {
+        console.log("XX DRM_AVPLAYER_1200 getOfflineMediaKeyStatus err end", (err as BusinessError).code);
+        expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+        drmsys!.destroy();
+        done();
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_1300
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_1300
+     * @tc.desc   离线许可证管理，删除离线许可证，错误参数
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_1300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1300 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        drmsys!.clearOfflineMediaKeys(new Uint8Array([1, 2, 3, 4, 5]));
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      } catch(err) {
+        console.log("XX DRM_AVPLAYER_1300 clearOfflineMediaKeys err end", (err as BusinessError).code);
+        expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+        drmsys!.destroy();
+        done();
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_1400
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_1400
+     * @tc.desc   离线许可证管理，删除离线许可证，参数为空
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_1400', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let base64 = new util.Base64Helper();
+      let uint8pssh = base64.decodeSync('');
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1400 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        drmsys!.clearOfflineMediaKeys(uint8pssh);
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      } catch(err) {
+        console.log("XX DRM_AVPLAYER_1400 clearOfflineMediaKeys err end", (err as BusinessError).code);
+        expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.ERROR_UNKNOWN);
+        drmsys!.destroy();
+        done();
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_1500
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_1500
+     * @tc.desc   离线许可证释放，正常传参
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_1500', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        if(isClearPlay){
+          try {
+            drmsys = drm.createMediaKeySystem(systemName);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_1500 createMediaKeySystem failed");
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          try {
+            session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_1500 createMediaKeySession failed");
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData)
+            .then((DrmRequest) => {
+              console.log("XX DRM_AVPLAYER_1500 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              let responseArray =
+                new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+              session!.processMediaKeyResponse(responseArray).then((keyId) => {
+                let keyIds = drmsys!.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(keyArray);
+                expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
+                session!.generateOfflineReleaseRequest(keyArray).then((OfflineReleaseRequest) => {
+                  console.log("XX DRM_AVPLAYER_1500 generateOfflineReleaseRequest success", OfflineReleaseRequest);
+                  session!.processOfflineReleaseResponse(keyArray, responseArray).then(() => {
+                    OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(keyArray);
+                    expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_INACTIVE);
+                    session!.destroy();
+                    drmsys!.destroy();
+                    console.log("XX DRM_AVPLAYER_1500 processOfflineReleaseResponse success");
+                    console.log("XX DRM_AVPLAYER_1500 processMediaKeyResponse success");
+                    done();
+                  }).catch((err:Error) => {
+                    console.log("XX DRM_AVPLAYER_1500 processOfflineReleaseResponse err end", err.code);
+                    session!.destroy();
+                    drmsys!.destroy();
+                    done();
+                    expect(false).assertEqual(true);
+                  });
+                }).catch((err:Error) => {
+                  console.log("XX DRM_AVPLAYER_1500 generateOfflineReleaseRequest err end", err.code);
+                  session!.destroy();
+                  drmsys!.destroy();
+                  done();
+                  expect(false).assertEqual(true);
+                });
+              }).catch((err:Error) => {
+                console.log("XX DRM_AVPLAYER_1500 processMediaKeyResponse err end", err.code);
+                session!.destroy();
+                drmsys!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_1500 generateMediaKeyRequest err end", err.code);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          done();
+        }
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1500 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_1600
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_1600
+     * @tc.desc   离线许可证释放，请求参数异常
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_1600', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        if (isClearPlay) {
+          try {
+            drmsys = drm.createMediaKeySystem(systemName);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_1600 createMediaKeySystem failed");
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          try {
+            session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_1600 createMediaKeySession failed");
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          }
+          let base64 = new util.Base64Helper();
+          let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData)
+            .then((DrmRequest) => {
+              console.log("XX DRM_AVPLAYER_1600 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType, DrmRequest.data, DrmRequest.defaultURL);
+              let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+              session!.processMediaKeyResponse(responseArray).then((keyId) => {
+                let keyIds = drmsys!.getOfflineMediaKeyIds();
+                let arry = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(arry);
+                expect(OfflineKeyState)
+                  .assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
+                let keyArray = new Uint8Array([1, 2, 3, 4, 5]);
+                session!.generateOfflineReleaseRequest(keyArray).then((OfflineReleaseRequest) => {
+                  console.log("XX DRM_AVPLAYER_1600 generateOfflineReleaseRequest success", OfflineReleaseRequest);
+                  session!.processOfflineReleaseResponse(keyArray, responseArray).then(() => {
+                    OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(arry);
+                  }).catch((err:Error) => {
+                    console.log("XX DRM_AVPLAYER_1600 processOfflineReleaseResponse err end", err.code);
+                    expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+                    session!.destroy();
+                    drmsys!.destroy();
+                    done();
+                  });
+                }).catch((err:Error) => {
+                  console.log("XX DRM_AVPLAYER_1600 generateOfflineReleaseRequest err end", err.code);
+                  session!.destroy();
+                  drmsys!.destroy();
+                  done();
+                  expect(false).assertEqual(true);
+                });
+              }).catch((err:Error) => {
+                console.log("XX DRM_AVPLAYER_1600 processMediaKeyResponse err end", err.code);
+                session!.destroy();
+                drmsys!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_1600 generateMediaKeyRequest err end", err.code);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        }
+        else {
+          done();
+        }
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1600 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_1700
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_1700
+     * @tc.desc   离线许可证释放，请求参数为空
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_1700', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        if(isClearPlay){
+          try {
+            drmsys = drm.createMediaKeySystem(systemName);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_1700 createMediaKeySystem failed");
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          try {
+            session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_1700 createMediaKeySession failed");
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData)
+            .then((DrmRequest) => {
+              console.log("XX DRM_AVPLAYER_1700 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              let responseArray =
+                new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+              session!.processMediaKeyResponse(responseArray).then((keyId) => {
+                let keyIds = drmsys!.getOfflineMediaKeyIds();
+                let arry = new Uint8Array(keyIds[0]);
+                let nullArry = new Uint8Array();
+                let OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(arry);
+                expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
+                session!.generateOfflineReleaseRequest(nullArry).then((OfflineReleaseRequest) => {
+                  console.log("XX DRM_AVPLAYER_1700 generateOfflineReleaseRequest success", OfflineReleaseRequest);
+                  done();
+                }).catch((err:Error) => {
+                  console.log("XX DRM_AVPLAYER_1700 generateOfflineReleaseRequest err end", err.code);
+                  expect((err as BusinessError).code).assertEqual(401);
+                  session!.destroy();
+                  drmsys!.destroy();
+                  done();
+                });
+              }).catch((err:Error) => {
+                console.log("XX DRM_AVPLAYER_1700 processMediaKeyResponse err end", err.code);
+                session!.destroy();
+                drmsys!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_1700 generateMediaKeyRequest err end", err.code);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          done();
+        }
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1700 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_1800
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_1800
+     * @tc.desc   离线许可证释放，响应参数异常licenseid
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_1800', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        if (isClearPlay){
+          try {
+            drmsys = drm.createMediaKeySystem(systemName);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_1800 createMediaKeySystem failed");
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          try {
+            session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_1800 createMediaKeySession failed");
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData)
+            .then((DrmRequest) => {
+              console.log("XX DRM_AVPLAYER_1800 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              let responseArray =
+                new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+              session!.processMediaKeyResponse(responseArray).then((keyId) => {
+                let keyIds = drmsys!.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
+                session!.generateOfflineReleaseRequest(keyArray).then((OfflineReleaseRequest) => {
+                  console.log("XX DRM_AVPLAYER_1800 generateOfflineReleaseRequest success", OfflineReleaseRequest);
+                  session!.processOfflineReleaseResponse(new Uint8Array([1, 2, 3, 4, 5]), responseArray).then(() => {
+                    console.log("XX DRM_AVPLAYER_1800 processOfflineReleaseResponse success");
+                  }).catch((err:Error) => {
+                    console.log("XX DRM_AVPLAYER_1800 processOfflineReleaseResponse err end", err.code);
+                    expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+                    session!.destroy();
+                    drmsys!.destroy();
+                    done();
+                  });
+                }).catch((err:Error) => {
+                  console.log("XX DRM_AVPLAYER_1800 generateOfflineReleaseRequest err end", err.code);
+                  session!.destroy();
+                  drmsys!.destroy();
+                  done();
+                  expect(false).assertEqual(true);
+                });
+              }).catch((err:Error) => {
+                console.log("XX DRM_AVPLAYER_1800 processMediaKeyResponse err end", err.code);
+                session!.destroy();
+                drmsys!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_1800 generateMediaKeyRequest err end", err.code);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          done();
+        }
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1800 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_1900
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_1900
+     * @tc.desc   离线许可证释放，响应参数异常响应报文
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_1900', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        if (isClearPlay){
+          try {
+            drmsys = drm.createMediaKeySystem(systemName);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_1900 createMediaKeySystem failed");
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          try {
+            session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_1900 createMediaKeySession failed");
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData)
+            .then((DrmRequest) => {
+              console.log("XX DRM_AVPLAYER_1900 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              let responseArray =
+                new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+              session!.processMediaKeyResponse(responseArray).then((keyId) => {
+                console.log("XX DRM_AVPLAYER_1900 processMediaKeyResponse success");
+                await Utils.msSleep(1000);
+                let keyIds = drmsys!.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(keyArray);
+                expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
+                session!.generateOfflineReleaseRequest(keyArray).then((OfflineReleaseRequest) => {
+                  console.log("XX DRM_AVPLAYER_1900 generateOfflineReleaseRequest success", OfflineReleaseRequest);
+                  session!.processOfflineReleaseResponse(keyArray, new Uint8Array([1, 2, 3, 4, 5])).then(() => {
+                    OfflineKeyState = drmsys!.getOfflineMediaKeyStatus(keyArray);
+                    expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_INACTIVE);
+                    session!.destroy();
+                    drmsys!.destroy();
+                    console.log("XX DRM_AVPLAYER_1900 processOfflineReleaseResponse success");
+                    console.log("XX DRM_AVPLAYER_1900 processMediaKeyResponse success");
+                    done();
+                  }).catch((err:Error) => {
+                    console.log("XX DRM_AVPLAYER_1900 processOfflineReleaseResponse err end", err.code);
+                    session!.destroy();
+                    drmsys!.destroy();
+                    done();
+                    expect(false).assertEqual(true);
+                  });
+                }).catch((err:Error) => {
+                  console.log("XX DRM_AVPLAYER_1900 generateOfflineReleaseRequest err end", err.code);
+                  session!.destroy();
+                  drmsys!.destroy();
+                  done();
+                  expect(false).assertEqual(true);
+                });
+              }).catch((err:Error) => {
+                console.log("XX DRM_AVPLAYER_1900 processMediaKeyResponse err end", err.code);
+                session!.destroy();
+                drmsys!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_1900 generateMediaKeyRequest err end", err.code);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          done();
+        }
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_1900 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_2000
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_2000
+     * @tc.desc   离线许可证释放，响应参数异常响应报文为空
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_2000', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        if(isClearPlay) {
+          try {
+            drmsys = drm.createMediaKeySystem(systemName);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_2000 createMediaKeySystem failed");
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          try {
+            session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+          } catch (err: Error) {
+            console.log("XX DRM_AVPLAYER_2000 createMediaKeySession failed");
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          }
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          session!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData)
+            .then((DrmRequest) => {
+              console.log("XX DRM_AVPLAYER_2000 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              let responseArray =
+                new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+              session!.processMediaKeyResponse(responseArray).then((keyId) => {
+                let keyIds = drmsys!.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
+                let responseArray =
+                  new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                    0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                    0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                    0x3D]);
+                session!.generateOfflineReleaseRequest(keyArray).then((OfflineReleaseRequest) => {
+                  console.log("XX DRM_AVPLAYER_2000 generateOfflineReleaseRequest success", OfflineReleaseRequest);
+                  session!.processOfflineReleaseResponse(keyArray, responseArray).then(() => {
+                    console.log("XX DRM_AVPLAYER_2000 processOfflineReleaseResponse success");
+                    done()
+                  }).catch((err:Error) => {
+                    console.log("XX DRM_AVPLAYER_2000 processOfflineReleaseResponse err end", err.code);
+                    expect((err as BusinessError).code).assertEqual(24700201);
+                    session!.destroy();
+                    drmsys!.destroy();
+                    done();
+                  });
+                }).catch((err:Error) => {
+                  console.log("XX DRM_AVPLAYER_2000 generateOfflineReleaseRequest err end", err.code);
+                  session!.destroy();
+                  drmsys!.destroy();
+                  done();
+                  expect(false).assertEqual(true);
+                });
+              }).catch((err:Error) => {
+                console.log("XX DRM_AVPLAYER_2000 processMediaKeyResponse err end", err.code);
+                session!.destroy();
+                drmsys!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+            console.log("XX DRM_AVPLAYER_2000 generateMediaKeyRequest err end", err.code);
+            session!.destroy();
+            drmsys!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          done();
+        }
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2000 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_2100
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_2100
+     * @tc.desc   离线许可证restore,传错误的licenseid
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_2100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2100 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2100 createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        session!.restoreOfflineMediaKeys(new Uint8Array([1, 2, 3, 4, 5])).then(() => {
+          console.log("XX DRM_AVPLAYER_2100 restoreOfflineMediaKeys success");
+        }).catch((err:Error) => {
+          console.log("XX DRM_AVPLAYER_2100 restoreOfflineMediaKeys err end", (err as BusinessError).code);
+          console.log("XX DRM_AVPLAYER_2100 restoreOfflineMediaKeys err message end", (err as BusinessError).message);
+          expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+          session!.destroy();
+          drmsys!.destroy();
+          done();
+        });
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2100 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_2200
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_2200
+     * @tc.desc   离线许可证restore,licenseid为空
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_2200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      let session:drm.MediaKeySession|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2200 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        session = drmsys!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2200 createMediaKeySession failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      let nullArry = new Uint8Array();
+      try {
+        session!.restoreOfflineMediaKeys(nullArry).then(() => {
+          console.log("XX DRM_AVPLAYER_2200 restoreOfflineMediaKeys success");
+        }).catch((err:Error) => {
+          console.log("XX DRM_AVPLAYER_2200 restoreOfflineMediaKeys err end", (err as BusinessError).code);
+          expect((err as BusinessError).code).assertEqual(drm.DrmErrorCode.SERVICE_FATAL_ERROR);
+          session!.destroy();
+          drmsys!.destroy();
+          done();
+        });
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2200 failed");
+        session!.destroy();
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_2300
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_2300
+     * @tc.desc   设备证书状态查询
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_2300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2300 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        let cstatus = drmsys!.getCertificateStatus();
+        console.log("XX DRM_AVPLAYER_2300 cstatus is ",cstatus);
+        expect(cstatus).assertEqual(drm.CertificateStatus.CERT_STATUS_PROVISIONED);
+        drmsys!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2300 failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_2600
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_2600
+     * @tc.desc   获取插件name以及systemName
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_2600', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let MediaKeySystemDescription = drm.getMediaKeySystems();
+      for (let i = 0; i < MediaKeySystemDescription.length; i++) {
+        console.log("XX DRM_AVPLAYER_2600 name is ", MediaKeySystemDescription[i].name);
+        console.log("XX DRM_AVPLAYER_2600 uuid is ", MediaKeySystemDescription[i].uuid);
+        expect(MediaKeySystemDescription[i].name != '').assertTrue();
+        expect(MediaKeySystemDescription[i].uuid != '').assertTrue();
+      }
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_2700
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_2700
+     * @tc.desc   获取插件最大安全等级
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_2700', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmsys:drm.MediaKeySystem|undefined;
+      try {
+        drmsys = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2700 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        let drmMaxLevel = drmsys!.getMaxContentProtectionLevel();
+        console.log("XX DRM_AVPLAYER_2700 level is ", drmMaxLevel);
+        expect(drmMaxLevel).not().assertEqual(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+        drmsys!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX DRM_AVPLAYER_2700 failed");
+        drmsys!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_AVPLAYER_static_2800
+     * @tc.number SUB_MULTIMEDIA_DRM_AVPLAYER_static_2800
+     * @tc.desc   获取插件name以及uuid
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('SUB_MULTIMEDIA_DRM_AVPLAYER_static_2800', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: () => void) => {
+      let drmUuid = drm.getMediaKeySystemUuid(systemName);
+      console.log("XX DRM_AVPLAYER_2800 uuid is ", drmUuid);
+      expect(drmUuid == '').assertFalse();
+      done();
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0100
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0100
+     * @tc.desc   给vendor赋值然后获取属性值
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0100 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        if (isClearPlay) {
+          mediaKeySystem!.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, "ABC");
+          let getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+          expect(getCfg).assertEqual("ABC");
+        } else {
+          let getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+          expect(getCfg != "").assertTrue();
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0100 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0200
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0200
+     * @tc.desc   给vendor赋值，输入错误的propertyName
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0200 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        if (isClearPlay) {
+          mediaKeySystem!.setConfigurationString("version_id", "1.1");
+          let getCfg = mediaKeySystem!.getConfigurationString("version_id");
+          expect(getCfg).assertEqual("1.1");
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0200 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0300
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0300
+     * @tc.desc   给vendor赋两次值，看最终结果是否覆盖
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0300 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          mediaKeySystem!.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, 'ABC');
+          let getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+          expect(getCfg).assertEqual('ABC');
+          mediaKeySystem!.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, 'EFGH');
+          getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+          expect(getCfg).assertEqual('EFGH');
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0300 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0400
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0400
+     * @tc.desc   set config drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION and get
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0400', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0400 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          mediaKeySystem!.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION, "1.1");
+          let getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
+          expect(getCfg).assertEqual("1.1");
+        } else {
+          let getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
+          expect(getCfg != "").assertTrue();
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0400 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0500
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0500
+     * @tc.desc   set config drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION and get
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0500', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0500 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          mediaKeySystem!.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION, "Test Set Get Config");
+          let getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
+          expect(getCfg).assertEqual("Test Set Get Config");
+        } else {
+          let getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
+          expect(getCfg).assertEqual("WisePlay DRM");
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0500 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0600
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0600
+     * @tc.desc   set config drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS and get
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0600', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0600 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          mediaKeySystem!.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS, "AES");
+          let getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
+          expect(getCfg).assertEqual("AES");
+        } else {
+          let getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
+          expect(getCfg).assertEqual("AES/CBC/NoPadding,AES/CTR/NoPadding,SM4/CBC/NoPadding");
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0600 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0700
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0700
+     * @tc.desc   get systemid
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0700', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0700 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (!isClearPlay) {
+          let getCfg = mediaKeySystem!.getConfigurationString("systemId");
+          console.info("XX SET_GET_CONFIG_0700 getCfg is",getCfg)
+          expect(getCfg).assertEqual("3d5e6d35-9b9a-41e8-b843-dd3c6e72c42c");
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0700 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0800
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0800
+     * @tc.desc   get deviceUniqueId
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0800', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0800 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (!isClearPlay) {
+          let getCfg = mediaKeySystem!.getConfigurationByteArray('deviceUniqueId');
+          console.info("XX SET_GET_CONFIG_0800 getCfg is",getCfg);
+          let getCfgString = byteToString(getCfg);
+          console.info("XX SET_GET_CONFIG_0800 getCfgString is",getCfgString);
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0800 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0900
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0900
+     * @tc.desc   查询最大会话数
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_0900', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0900 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          mediaKeySystem!.setConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, "64");
+        }
+        let getCfg = mediaKeySystem!.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+        expect(getCfg).assertEqual("64");
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_0900 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1100
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1100
+     * @tc.desc   给vendor赋值然后获取属性值(Uint8array)
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1100 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          let valueArray = stringToUint8Array("ABC");
+          mediaKeySystem!.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, valueArray);
+          let getCfg = mediaKeySystem!.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1100 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1200
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1200
+     * @tc.desc   给vendor赋值，输入错误的propertyName(Uint8Array)
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1200 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          let valueArray = stringToUint8Array("ABC");
+          mediaKeySystem!.setConfigurationByteArray("version_id", valueArray);
+          let getCfg = mediaKeySystem!.getConfigurationByteArray("version_id");
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1200 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1300
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1300
+     * @tc.desc   给vendor赋两次值，看最终结果是否覆盖(Uint8Array)
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1300 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          let valueArray = stringToUint8Array("ABC");
+          mediaKeySystem!.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, valueArray);
+          let getCfg = mediaKeySystem!.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+          valueArray = stringToUint8Array("EFG");
+          mediaKeySystem!.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, valueArray);
+          getCfg = mediaKeySystem!.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1300 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1400
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1400
+     * @tc.desc   set config drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION and get
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1400', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1400 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          let valueArray = stringToUint8Array("1.1");
+          mediaKeySystem!.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION, valueArray);
+          let getCfg = mediaKeySystem!.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1400 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1500
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1500
+     * @tc.desc   set config drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION and get
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1500', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1500 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          let valueArray = stringToUint8Array("Test Set Get Config");
+          mediaKeySystem!.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION, valueArray);
+          let getCfg = mediaKeySystem!.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1500 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1600
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1600
+     * @tc.desc   set config drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS and get
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1600', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1600 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          let valueArray = stringToUint8Array("AES");
+          mediaKeySystem!.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS, valueArray);
+          let getCfg = mediaKeySystem!.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1600 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1700
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1700
+     * @tc.desc   set config drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID and get
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1700', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1700 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          let valueArray = stringToUint8Array("7E8G9D");
+          mediaKeySystem!.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID, valueArray);
+          let getCfg = mediaKeySystem!.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID);
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1700 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1800
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1800
+     * @tc.desc   设置最大会话数为0
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1800', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1800 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          let valueArray = stringToUint8Array("0");
+          mediaKeySystem!.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, valueArray);
+          let getCfg = mediaKeySystem!.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1800 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1900
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1900
+     * @tc.desc   给maxSessionNum赋值，超过默认最大数64
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_1900', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1900 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          let valueArray = stringToUint8Array("65");
+          mediaKeySystem!.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, valueArray);
+          let getCfg = mediaKeySystem!.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_1900 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_2000
+     * @tc.number SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_2000
+     * @tc.desc   给maxSessionNum赋值1，创建两个会话
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_static_2000', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_2000 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+
+      try {
+        if (isClearPlay) {
+          let valueArray = stringToUint8Array("1");
+          mediaKeySystem!.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, valueArray);
+          let getCfg = mediaKeySystem!.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+          for (let i = 0; i < getCfg.length; i++) {
+            expect(getCfg[i]).assertEqual(valueArray[i]);
+          }
+        }
+        mediaKeySystem!.destroy();
+        done();
+      } catch (err: Error) {
+        console.log("XX SET_GET_CONFIG_2000 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    })
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0100
+     * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0100
+     * @tc.desc   keyNeeded on/off interface
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      let keySession:drm.MediaKeySession|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0100 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        keySession = mediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0100 createMediaKeySession failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        let licenseResponseByte:Uint8Array;
+        let sign = 1;
+        keySession!.onKeyRequired((eventInfo) => {
+          console.info('bbbbb receive keyRequired ' + eventInfo.info);
+          console.info('bbbbb receive keyRequired ' + eventInfo.extraInfo);
+          sign = 2;
+          expect(sign).assertEqual(2);
+          console.info("XX SESSION_ON_OFF_0100 2 is ",sign)
+          keySession!.offKeyRequired();
+          keySession!.destroy();
+          mediaKeySystem!.destroy();
+          done();
+        });
+        let base64 = new util.Base64Helper();
+        let uint8pssh = base64.decodeSync('AAAA73Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAM97InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoieHV4aW5zdyIsImtpZHMiOlsiYWNhMjU1ZTViMmRkZTJlNGM4YmI3YzE2NmNlYWMxMDAiLCJhY2EyNTVlNWIyZGRlMmU0YzhiYjdjMTY2Y2VhYzEwMSIsImFjYTI1NWU1YjJkZGUyZTRjOGJiN2MxNjZjZWFjMTAxIiwiYWNhMjU1ZTViMmRkZTJlNGM4YmI3YzE2NmNlYWMxMDEiXSwiZW5zY2hlbWEiOiJjYmMxIn0=');
+        let optionalData:drm.OptionsData[] = [{
+          name: "optionalDataName",
+          value: "optionalDataValue"
+        }];
+        keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData).then(async (DrmRequest: drm.MediaKeyRequest) => {
+          console.info("XX SESSION_ON_OFF_0100 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,DrmRequest.data, DrmRequest.defaultURL);
+          if(isClearPlay){
+            licenseResponseByte =
+              new Uint8Array([0x30, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                0x3D]);
+          } else {
+            let licenseRequestStr = byteToString(DrmRequest.data);
+            let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense?contentId=xuxinsw", licenseRequestStr);
+            licenseResponseByte = stringToUint8Array(licenseResponseStr);
+          }
+          keySession!.processMediaKeyResponse(licenseResponseByte).then(async (keyId: Uint8Array) => {
+            console.info("XX SESSION_ON_OFF_0100 is ",sign)
+          }).catch((err:Error) =>{
+            console.info("XX SESSION_ON_OFF_0100 processMediaKeyResponse err end", err.code);
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+            expect((err as BusinessError).code).assertEqual(24700201);
+          });
+        }).catch((err:Error) =>{
+          console.info("XX SESSION_ON_OFF_0100 generateMediaKeyRequest err end", err.code);
+          keySession!.destroy();
+          mediaKeySystem!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        });
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0100 failed");
+        keySession!.destroy();
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0200
+     * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0200
+     * @tc.desc   keyNeeded on/off interface
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0200', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      let keySession:drm.MediaKeySession|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0200 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        keySession = mediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0200 createMediaKeySession failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        let licenseResponseByte:Uint8Array;
+        let sign = 1;
+        keySession!.onKeyRequired((eventInfo) => {
+          console.info('bbbbb receive keyRequired ' + eventInfo.info);
+          console.info('bbbbb receive keyRequired ' + eventInfo.extraInfo);
+          sign = 2;
+        });
+        keySession!.offKeyRequired();
+        let base64 = new util.Base64Helper();
+        let uint8pssh = base64.decodeSync('AAAA73Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAM97InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoieHV4aW5zdyIsImtpZHMiOlsiYWNhMjU1ZTViMmRkZTJlNGM4YmI3YzE2NmNlYWMxMDAiLCJhY2EyNTVlNWIyZGRlMmU0YzhiYjdjMTY2Y2VhYzEwMSIsImFjYTI1NWU1YjJkZGUyZTRjOGJiN2MxNjZjZWFjMTAxIiwiYWNhMjU1ZTViMmRkZTJlNGM4YmI3YzE2NmNlYWMxMDEiXSwiZW5zY2hlbWEiOiJjYmMxIn0=');
+        let optionalData:drm.OptionsData[] = [{
+          name: "optionalDataName",
+          value: "optionalDataValue"
+        }];
+        keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData).then(async (DrmRequest: drm.MediaKeyRequest) => {
+          console.info("XX SESSION_ON_OFF_0200 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,DrmRequest.data, DrmRequest.defaultURL);
+          if(isClearPlay){
+            licenseResponseByte =
+              new Uint8Array([0x30, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                0x3D]);
+          } else {
+            let licenseRequestStr = byteToString(DrmRequest.data);
+            let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense?contentId=xuxinsw", licenseRequestStr);
+            licenseResponseByte = stringToUint8Array(licenseResponseStr);
+          }
+          keySession!.processMediaKeyResponse(licenseResponseByte).then(async (keyId: Uint8Array) => {
+            console.info("XX SESSION_ON_OFF_0200 is ",sign)
+            await Utils.msSleep(1000);
+            expect(sign).assertEqual(1);
+            console.info("XX SESSION_ON_OFF_0200 2 is ",sign)
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+          }).catch((err:Error) =>{
+            console.info("XX SESSION_ON_OFF_0200 processMediaKeyResponse err end", err.code);
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+            expect((err as BusinessError).code).assertEqual(24700201);
+          });
+        }).catch((err:Error) =>{
+          console.info("XX SESSION_ON_OFF_0200 generateMediaKeyRequest err end", err.code);
+          keySession!.destroy();
+          mediaKeySystem!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        });
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0200 failed");
+        keySession!.destroy();
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0300
+     * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0300
+     * @tc.desc   keyExpired on/off interface
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0300', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      let keySession:drm.MediaKeySession|undefined;
+      try {
+        if(isClearPlay){
+          try {
+            mediaKeySystem = drm.createMediaKeySystem(systemName);
+          } catch (err: Error) {
+            console.log("XX SESSION_ON_OFF_0300 createMediaKeySystem failed");
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          try {
+            keySession = mediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+          } catch (err: Error) {
+            console.log("XX SESSION_ON_OFF_0300 createMediaKeySession failed");
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          }
+          let sign = 1;
+          keySession!.onKeyExpired((eventInfo) => {
+            console.info('bbbbb receive keyExpired ' + eventInfo.info);
+            console.info('bbbbb receive keyExpired ' + eventInfo.extraInfo);
+            sign = 2;
+          });
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData)
+            .then((DrmRequest) => {
+              console.log("XX SESSION_ON_OFF_0300 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              let responseArray =
+                new Uint8Array([0x30, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+              keySession!.processMediaKeyResponse(responseArray).then((keyId) => {
+                keySession!.clearMediaKeys();
+                keySession!.processMediaKeyResponse(responseArray).then((keyId) => {
+                  await Utils.msSleep(1000);
+                  expect(sign).assertEqual(2);
+                  keySession!.offKeyExpired();
+                  keySession!.destroy();
+                  mediaKeySystem!.destroy();
+                  console.log("XX SESSION_ON_OFF_0300 keyExpired success");
+                  done();
+                }).catch((err:Error) => {
+                  console.log("XX SESSION_ON_OFF_0300 processMediaKeyResponse err end", err.code);
+                  keySession!.destroy();
+                  mediaKeySystem!.destroy();
+                  done();
+                  expect(false).assertEqual(true);
+                });
+              }).catch((err:Error) => {
+                console.log("XX SESSION_ON_OFF_0300 processMediaKeyResponse err end", err.code);
+                keySession!.destroy();
+                mediaKeySystem!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+            console.log("XX SESSION_ON_OFF_0300 generateMediaKeyRequest err end", err.code);
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          done();
+        }
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0300 failed");
+        keySession!.destroy();
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0400
+     * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0400
+     * @tc.desc   keyExpired on/off interface
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0400', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      let keySession:drm.MediaKeySession|undefined;
+      try {
+        if(isClearPlay){
+          try {
+            mediaKeySystem = drm.createMediaKeySystem(systemName);
+          } catch (err: Error) {
+            console.log("XX SESSION_ON_OFF_0400 createMediaKeySystem failed");
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          try {
+            keySession = mediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+          } catch (err: Error) {
+            console.log("XX SESSION_ON_OFF_0400 createMediaKeySession failed");
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          }
+
+          let sign = 1;
+          keySession!.onKeyExpired((eventInfo) => {
+            console.info('bbbbb receive keyExpired ' + eventInfo.info);
+            console.info('bbbbb receive keyExpired ' + eventInfo.extraInfo);
+            sign = 2;
+          });
+          keySession!.offKeyExpired();
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData)
+            .then((DrmRequest) => {
+              console.log("XX SESSION_ON_OFF_0400 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+                DrmRequest.data, DrmRequest.defaultURL);
+              let responseArray =
+                new Uint8Array([0x30, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+              keySession!.processMediaKeyResponse(responseArray).then((keyId) => {
+                keySession!.clearMediaKeys();
+                keySession!.processMediaKeyResponse(responseArray).then((keyId) => {
+                  await Utils.msSleep(1000);
+                  expect(sign).assertEqual(1);
+                  keySession!.destroy();
+                  mediaKeySystem!.destroy();
+                  console.log("XX SESSION_ON_OFF_0400 keyExpired success");
+                  done();
+                }).catch((err:Error) => {
+                  console.log("XX SESSION_ON_OFF_0400 processMediaKeyResponse err end", err.code);
+                  keySession!.destroy();
+                  mediaKeySystem!.destroy();
+                  done();
+                  expect(false).assertEqual(true);
+                });
+              }).catch((err:Error) => {
+                console.log("XX SESSION_ON_OFF_0400 processMediaKeyResponse err end", err.code);
+                keySession!.destroy();
+                mediaKeySystem!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+            console.log("XX SESSION_ON_OFF_0400 generateMediaKeyRequest err end", err.code);
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          done();
+        }
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0400 failed");
+        keySession!.destroy();
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0500
+     * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0500
+     * @tc.desc   expirationUpdate on/off interface
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0500', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      let keySession:drm.MediaKeySession|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0500 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        keySession = mediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0500 createMediaKeySession failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+      try {
+        if(isClearPlay){
+          let sign = 1;
+          keySession!.onExpirationUpdate((eventInfo) => {
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.info);
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.extraInfo);
+            sign = 2;
+          });
+          let base64 = new util.Base64Helper();
+          let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData).then((DrmRequest) => {
+            console.log("XX SESSION_ON_OFF_0500 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,DrmRequest.data, DrmRequest.defaultURL);
+            let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+            keySession!.processMediaKeyResponse(responseArray).then((keyId) => {
+              let keyIds = mediaKeySystem!.getOfflineMediaKeyIds();
+              let keyArray = new Uint8Array(keyIds[0]);
+              let OfflineKeyState = mediaKeySystem!.getOfflineMediaKeyStatus(keyArray);
+              expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
+              keySession!.generateOfflineReleaseRequest(keyArray).then((OfflineReleaseRequest) => {
+                console.log("XX SESSION_ON_OFF_0500 generateOfflineReleaseRequest end", OfflineReleaseRequest);
+                keySession!.processOfflineReleaseResponse(keyArray, responseArray).then(() => {
+                  OfflineKeyState = mediaKeySystem!.getOfflineMediaKeyStatus(keyArray);
+                  expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_INACTIVE);
+                  keySession!.restoreOfflineMediaKeys(keyArray).then(() => {
+                    await Utils.msSleep(1000);
+                    expect(sign).assertEqual(2);
+                    keySession!.offExpirationUpdate();
+                    keySession!.destroy();
+                    mediaKeySystem!.destroy();
+                    console.log("XX SESSION_ON_OFF_0500 expirationUpdate success");
+                    done();
+                  }).catch((err:Error) =>{
+                    console.log("XX SESSION_ON_OFF_0500 restoreOfflineMediaKeys err end", err.code);
+                    keySession!.destroy();
+                    mediaKeySystem!.destroy();
+                    done();
+                    expect(false).assertEqual(true);
+                  });
+                }).catch((err:Error) =>{
+                  console.log("XX SESSION_ON_OFF_0500 processOfflineReleaseResponse err end", err.code);
+                  keySession!.destroy();
+                  mediaKeySystem!.destroy();
+                  done();
+                  expect(false).assertEqual(true);
+                });
+              }).catch((err:Error) =>{
+                console.log("XX SESSION_ON_OFF_0500 generateOfflineReleaseRequest err end", err.code);
+                keySession!.destroy();
+                mediaKeySystem!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) =>{
+              console.log("XX SESSION_ON_OFF_0500 processMediaKeyResponse err end", err.code);
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              done();
+              expect(false).assertEqual(true);
+            });
+          }).catch((err:Error) =>{
+            console.log("XX SESSION_ON_OFF_0500 generateMediaKeyRequest err end", err.code);
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          let sign = 1;
+          keySession!.onExpirationUpdate((eventInfo) => {
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.info);
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.extraInfo);
+            sign = 2;
+          });
+          let base64 = new util.Base64Helper();
+          let uint8pssh = base64.decodeSync('AAAA73Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAM97InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoieHV4aW5zdyIsImtpZHMiOlsiYWNhMjU1ZTViMmRkZTJlNGM4YmI3YzE2NmNlYWMxMDAiLCJhY2EyNTVlNWIyZGRlMmU0YzhiYjdjMTY2Y2VhYzEwMSIsImFjYTI1NWU1YjJkZGUyZTRjOGJiN2MxNjZjZWFjMTAxIiwiYWNhMjU1ZTViMmRkZTJlNGM4YmI3YzE2NmNlYWMxMDEiXSwiZW5zY2hlbWEiOiJjYmMxIn0=');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData).then(async (DrmRequest: drm.MediaKeyRequest) => {
+            console.info("XX SESSION_ON_OFF_0500 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,DrmRequest.data, DrmRequest.defaultURL);
+            let licenseRequestStr = byteToString(DrmRequest.data);
+            let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense?contentId=xuxinsw", licenseRequestStr);
+            let licenseResponseByte = stringToUint8Array(licenseResponseStr);
+            keySession!.processMediaKeyResponse(licenseResponseByte).then((keyId) => {
+              console.info("XX SESSION_ON_OFF_0500 expirationUpdate sign is ",sign);
+              await Utils.msSleep(1000);
+              expect(sign).assertEqual(2);
+              keySession!.offExpirationUpdate();
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              console.info("XX SESSION_ON_OFF_0500 expirationUpdate success");
+              done();
+            }).catch((err:Error) =>{
+              console.info("XX SESSION_ON_OFF_0500 processMediaKeyResponse err end", err.code);
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              done();
+              expect((err as BusinessError).code).assertEqual(24700201);
+            });
+          }).catch((err:Error) =>{
+            console.info("XX SESSION_ON_OFF_0500 generateMediaKeyRequest err end", err.code);
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        }
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0500 failed");
+        keySession!.destroy();
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0600
+     * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0600
+     * @tc.desc   expirationUpdate on/off interface
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0600', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      let keySession:drm.MediaKeySession|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0600 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        keySession = mediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0600 createMediaKeySession failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        if(isClearPlay){
+          let sign = 1;
+          keySession!.onExpirationUpdate((eventInfo) => {
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.info);
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.extraInfo);
+            sign = 2;
+          });
+          keySession!.offExpirationUpdate();
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE,
+            optionalData).then((DrmRequest) => {
+            console.log("XX DRM_AVPLAYER_1900 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+              DrmRequest.data, DrmRequest.defaultURL);
+            let responseArray =
+              new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                0x3D]);
+            keySession!.processMediaKeyResponse(responseArray).then((keyId) => {
+              let keyIds = mediaKeySystem!.getOfflineMediaKeyIds();
+              let keyArray = new Uint8Array(keyIds[0]);
+              let OfflineKeyState = mediaKeySystem!.getOfflineMediaKeyStatus(keyArray);
+              expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
+              keySession!.generateOfflineReleaseRequest(keyArray).then((OfflineReleaseRequest) => {
+                console.log("XX SESSION_ON_OFF_0600 generateOfflineReleaseRequest success", OfflineReleaseRequest);
+                keySession!.processOfflineReleaseResponse(keyArray, responseArray).then(() => {
+                  OfflineKeyState = mediaKeySystem!.getOfflineMediaKeyStatus(keyArray);
+                  expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_INACTIVE);
+                  keySession!.restoreOfflineMediaKeys(keyArray).then(() => {
+                    await Utils.msSleep(1000);
+                    expect(sign).assertEqual(1);
+                    keySession!.destroy();
+                    mediaKeySystem!.destroy();
+                    console.log("XX SESSION_ON_OFF_0600 expirationUpdate success");
+                    done();
+                  }).catch((err:Error) => {
+                    console.log("XX SESSION_ON_OFF_0600 restoreOfflineMediaKeys err end", err.code);
+                    keySession!.destroy();
+                    mediaKeySystem!.destroy();
+                    done();
+                    expect(false).assertEqual(true);
+                  });
+                }).catch((err:Error) => {
+                  console.log("XX SESSION_ON_OFF_0600 processOfflineReleaseResponse err end", err.code);
+                  keySession!.destroy();
+                  mediaKeySystem!.destroy();
+                  done();
+                  expect(false).assertEqual(true);
+                });
+              }).catch((err:Error) => {
+                console.log("XX SESSION_ON_OFF_0600 generateOfflineReleaseRequest err end", err.code);
+                keySession!.destroy();
+                mediaKeySystem!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+              console.log("XX SESSION_ON_OFF_0600 processMediaKeyResponse err end", err.code);
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              done();
+              expect(false).assertEqual(true);
+            });
+          }).catch((err:Error) => {
+            console.log("XX SESSION_ON_OFF_0600 generateMediaKeyRequest err end", err.code);
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          let sign = 1;
+          keySession!.onExpirationUpdate((eventInfo) => {
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.info);
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.extraInfo);
+            sign = 2;
+          });
+          keySession!.offExpirationUpdate();
+          let base64 = new util.Base64Helper();
+          let uint8pssh = base64.decodeSync('AAAA73Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAM97InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoieHV4aW5zdyIsImtpZHMiOlsiYWNhMjU1ZTViMmRkZTJlNGM4YmI3YzE2NmNlYWMxMDAiLCJhY2EyNTVlNWIyZGRlMmU0YzhiYjdjMTY2Y2VhYzEwMSIsImFjYTI1NWU1YjJkZGUyZTRjOGJiN2MxNjZjZWFjMTAxIiwiYWNhMjU1ZTViMmRkZTJlNGM4YmI3YzE2NmNlYWMxMDEiXSwiZW5zY2hlbWEiOiJjYmMxIn0=');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData).then(async (DrmRequest: drm.MediaKeyRequest) => {
+            console.info("XX SESSION_ON_OFF_0600 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,DrmRequest.data, DrmRequest.defaultURL);
+            let licenseRequestStr = byteToString(DrmRequest.data);
+            let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense?contentId=xuxinsw", licenseRequestStr);
+            let licenseResponseByte = stringToUint8Array(licenseResponseStr);
+            keySession!.processMediaKeyResponse(licenseResponseByte).then((keyId) => {
+              console.info("XX SESSION_ON_OFF_0600 expirationUpdate sign is ",sign);
+              await Utils.msSleep(1000);
+              expect(sign).assertEqual(1);
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              console.info("XX SESSION_ON_OFF_0600 expirationUpdate success");
+              done();
+            }).catch((err:Error) =>{
+              console.info("XX SESSION_ON_OFF_0600 processMediaKeyResponse err end", err.code);
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              done();
+              expect((err as BusinessError).code).assertEqual(24700201);
+            });
+          }).catch((err:Error) =>{
+            console.info("XX SESSION_ON_OFF_0600 generateMediaKeyRequest err end", err.code);
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        }
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0600 failed");
+        keySession!.destroy();
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0700
+     * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0700
+     * @tc.desc   keyChanged on/off interface
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0700', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      let keySession:drm.MediaKeySession|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0700 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        keySession = mediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0700 createMediaKeySession failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        let sign = 1;
+        keySession!.onKeysChange((keyInfo, newKeyAvailable) => {
+          console.info('bbbbb receive keysChange newKeyAvailable:' + newKeyAvailable);
+          for (let index = 0; index < keyInfo.length; index++) {
+            console.info('bbbbb receive keysChange index:' + index);
+            console.info('bbbbb receive keysChange keyId:' + keyInfo[index].keyId);
+            console.info('bbbbb receive keysChange value:' + keyInfo[index].value);
+          }
+          sign = 2;
+        });
+        let responseArray:Uint8Array;
+        let responseArray2:Uint8Array;
+        let base64 = new util.Base64Helper();
+        let uint8pssh =
+          base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+        let optionalData:drm.OptionsData[] = [{
+          name: "optionalDataName",
+          value: "optionalDataValue"
+        }];
+        keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData)
+          .then(async (DrmRequest: drm.MediaKeyRequest) => {
+            if(isClearPlay) {
+              responseArray =
+                new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A,
+                  0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48,
+                  0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D,
+                  0x3D]);
+              responseArray2 =
+                new Uint8Array([0x30, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+            } else {
+              let licenseRequestStr = byteToString(DrmRequest.data);
+              let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense?contentId=xuxinsw", licenseRequestStr);
+              responseArray = stringToUint8Array(licenseResponseStr);
+              responseArray2 = stringToUint8Array(licenseResponseStr);
+            }
+            keySession!.processMediaKeyResponse(responseArray).then((keyId) => {
+              console.log("XX SESSION_ON_OFF_0700 processMediaKeyResponse success");
+              keySession!.processMediaKeyResponse(responseArray2).then((keyId) => {
+                await Utils.msSleep(1000);
+                expect(sign).assertEqual(2);
+                keySession!.offKeysChange();
+                keySession!.destroy();
+                mediaKeySystem!.destroy();
+                console.log("XX SESSION_ON_OFF_0700 keysChange success");
+                done();
+              }).catch((err:Error) => {
+                console.log("XX SESSION_ON_OFF_0700 processMediaKeyResponse err end", err);
+                keySession!.destroy();
+                mediaKeySystem!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+              console.log("XX SESSION_ON_OFF_0700 processMediaKeyResponse err end", err);
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              done();
+              expect((err as BusinessError).code).assertEqual(24700201);
+            });
+          }).catch((err:Error) => {
+          console.log("XX SESSION_ON_OFF_0700 processMediaKeyResponse err end", err);
+          keySession!.destroy();
+          mediaKeySystem!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        });
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0700 failed");
+        keySession!.destroy();
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+     /**
+      * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0800
+      * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0800
+      * @tc.desc   keyChanged on/off interface
+      * @tc.type   FUNCTION
+      * @tc.size   MEDIUMTEST
+      * @tc.level  LEVEL1
+      */
+     it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0800', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      let keySession:drm.MediaKeySession|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0800 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        keySession = mediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0800 createMediaKeySession failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        let sign = 1;
+        keySession!.onKeysChange((keyInfo, newKeyAvailable) => {
+          console.info('bbbbb receive keysChange newKeyAvailable:' + newKeyAvailable);
+          for (let index = 0; index < keyInfo.length; index++) {
+            console.info('bbbbb receive keysChange index:' + index);
+            console.info('bbbbb receive keysChange keyId:' + keyInfo[index].keyId);
+            console.info('bbbbb receive keysChange value:' + keyInfo[index].value);
+          }
+          sign = 2;
+        });
+        keySession!.offKeysChange();
+        let responseArray:Uint8Array;
+        let responseArray2:Uint8Array;
+        let base64 = new util.Base64Helper();
+        let uint8pssh =
+          base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+        let optionalData:drm.OptionsData[] = [{
+          name: "optionalDataName",
+          value: "optionalDataValue"
+        }];
+        keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData)
+          .then(async (DrmRequest: drm.MediaKeyRequest) => {
+            if(isClearPlay) {
+              responseArray =
+                new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A,
+                  0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48,
+                  0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D,
+                  0x3D]);
+              responseArray2 =
+                new Uint8Array([0x30, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                  0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                  0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                  0x3D]);
+            } else {
+              let licenseRequestStr = byteToString(DrmRequest.data);
+              let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense?contentId=xuxinsw", licenseRequestStr);
+              responseArray = stringToUint8Array(licenseResponseStr);
+              responseArray2 = stringToUint8Array(licenseResponseStr);
+            }
+            keySession!.processMediaKeyResponse(responseArray).then((keyId) => {
+              console.log("XX SESSION_ON_OFF_0700 processMediaKeyResponse success");
+              keySession!.processMediaKeyResponse(responseArray2).then((keyId) => {
+                await Utils.msSleep(1000);
+                expect(sign).assertEqual(1);
+                keySession!.offKeysChange();
+                keySession!.destroy();
+                mediaKeySystem!.destroy();
+                console.log("XX SESSION_ON_OFF_0700 keysChange success");
+                done();
+              }).catch((err:Error) => {
+                console.log("XX SESSION_ON_OFF_0700 processMediaKeyResponse err end", err);
+                keySession!.destroy();
+                mediaKeySystem!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+              console.log("XX SESSION_ON_OFF_0700 processMediaKeyResponse err end", err);
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              done();
+              expect((err as BusinessError).code).assertEqual(24700201);
+            });
+          }).catch((err:Error) => {
+          console.log("XX SESSION_ON_OFF_0700 processMediaKeyResponse err end", err);
+          keySession!.destroy();
+          mediaKeySystem!.destroy();
+          done();
+          expect(false).assertEqual(true);
+        });
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0800 failed");
+        keySession!.destroy();
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0900
+     * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0900
+     * @tc.desc   provisionRequired on/off interface
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_0900', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        if(isClearPlay){
+          try {
+            mediaKeySystem = drm.createMediaKeySystem(systemName);
+          } catch (err: Error) {
+            console.log("XX SESSION_ON_OFF_0900 createMediaKeySystem failed");
+            done();
+            expect(false).assertEqual(true);
+          }
+          let sign = 1;
+          mediaKeySystem!.onKeySystemRequired((eventInfo) => {
+            console.info('bbbbb receive keySystemRequired ' + eventInfo.info);
+            console.info('bbbbb receive keySystemRequired ' + eventInfo.extraInfo);
+            sign = 2;
+          });
+          mediaKeySystem!.generateKeySystemRequest().then((drmRequest: drm.ProvisionRequest) => {
+            console.log("XX SESSION_ON_OFF_0900 generateKeySystemRequest end", drmRequest.data, drmRequest.defaultURL);
+            console.log("XX SESSION_ON_OFF_0900 processKeySystemResponse start");
+            let arry =
+              new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A,
+                0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48,
+                0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D,
+                0x3D]);
+            mediaKeySystem!.processKeySystemResponse(arry).then(() => {
+              await Utils.msSleep(1000);
+              expect(sign).assertEqual(2);
+              mediaKeySystem!.offKeySystemRequired();
+              mediaKeySystem!.destroy();
+              console.log("XX SESSION_ON_OFF_0900 keySystemRequired success");
+              done();
+            }).catch((err:Error) => {
+              console.log("XX SESSION_ON_OFF_0900 processKeySystemResponse err end", err);
+              mediaKeySystem!.destroy();
+              done();
+              expect(false).assertEqual(true);
+            });
+          }).catch((err:Error) => {
+            console.log("XX SESSION_ON_OFF_0900 generateKeySystemRequest err end", err);
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          done();
+        }
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0900 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_1000
+     * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_1000
+     * @tc.desc   provisionRequired on/off interface
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_1000', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      try {
+        if(isClearPlay){
+          try {
+            mediaKeySystem = drm.createMediaKeySystem(systemName);
+          } catch (err: Error) {
+            console.log("XX SESSION_ON_OFF_1000 createMediaKeySystem failed");
+            done();
+            expect(false).assertEqual(true);
+          }
+          let sign = 1;
+          mediaKeySystem!.onKeySystemRequired((eventInfo) => {
+            console.info('bbbbb receive keySystemRequired ' + eventInfo.info);
+            console.info('bbbbb receive keySystemRequired ' + eventInfo.extraInfo);
+            sign = 2;
+          });
+          mediaKeySystem!.offKeySystemRequired();
+          mediaKeySystem!.generateKeySystemRequest().then((drmRequest) => {
+            console.log("XX SESSION_ON_OFF_1000 generateKeySystemRequest end", drmRequest.data, drmRequest.defaultURL);
+            console.log("XX SESSION_ON_OFF_1000 processKeySystemResponse start");
+            let arry =
+              new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A,
+                0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48,
+                0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D,
+                0x3D]);
+            mediaKeySystem!.processKeySystemResponse(arry).then(() => {
+              await Utils.msSleep(1000);
+              expect(sign).assertEqual(1);
+              mediaKeySystem!.destroy();
+              console.log("XX SESSION_ON_OFF_1000 keySystemRequired success");
+              done();
+            }).catch((err:Error) => {
+              console.log("XX SESSION_ON_OFF_1000 processKeySystemResponse err end", err);
+              mediaKeySystem!.destroy();
+              done();
+              expect(false).assertEqual(true);
+            });
+          }).catch((err:Error) => {
+            console.log("XX SESSION_ON_OFF_1000 generateKeySystemRequest err end", err);
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          done();
+        }
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_1000 failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+    /**
+     * @tc.name   SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_1100
+     * @tc.number SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_1100
+     * @tc.desc   vendorDefined on/off interface
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_static_1100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: () => void) => {
+      let mediaKeySystem:drm.MediaKeySystem|undefined;
+      let keySession:drm.MediaKeySession|undefined;
+      try {
+        mediaKeySystem = drm.createMediaKeySystem(systemName);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0600 createMediaKeySystem failed");
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        keySession = mediaKeySystem!.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0600 createMediaKeySession failed");
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    
+      try {
+        if(isClearPlay){
+          let sign = 1;
+          keySession!.onVendorDefined((eventInfo) => {
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.info);
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.extraInfo);
+            sign = 2;
+          });
+          keySession!.offVendorDefined();
+          let base64 = new util.Base64Helper();
+          let uint8pssh =
+            base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE,
+            optionalData).then((DrmRequest) => {
+            console.log("XX DRM_AVPLAYER_1900 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,
+              DrmRequest.data, DrmRequest.defaultURL);
+            let responseArray =
+              new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30,
+                0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F,
+                0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D,
+                0x3D]);
+            keySession!.processMediaKeyResponse(responseArray).then((keyId) => {
+              let keyIds = mediaKeySystem!.getOfflineMediaKeyIds();
+              let keyArray = new Uint8Array(keyIds[0]);
+              let OfflineKeyState = mediaKeySystem!.getOfflineMediaKeyStatus(keyArray);
+              expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
+              keySession!.generateOfflineReleaseRequest(keyArray).then((OfflineReleaseRequest) => {
+                console.log("XX SESSION_ON_OFF_0600 generateOfflineReleaseRequest success", OfflineReleaseRequest);
+                keySession!.processOfflineReleaseResponse(keyArray, responseArray).then(() => {
+                  OfflineKeyState = mediaKeySystem!.getOfflineMediaKeyStatus(keyArray);
+                  expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_INACTIVE);
+                  keySession!.restoreOfflineMediaKeys(keyArray).then(() => {
+                    await Utils.msSleep(1000);
+                    expect(sign).assertEqual(1);
+                    keySession!.destroy();
+                    mediaKeySystem!.destroy();
+                    console.log("XX SESSION_ON_OFF_0600 expirationUpdate success");
+                    done();
+                  }).catch((err:Error) => {
+                    console.log("XX SESSION_ON_OFF_0600 restoreOfflineMediaKeys err end", err.code);
+                    keySession!.destroy();
+                    mediaKeySystem!.destroy();
+                    done();
+                    expect(false).assertEqual(true);
+                  });
+                }).catch((err:Error) => {
+                  console.log("XX SESSION_ON_OFF_0600 processOfflineReleaseResponse err end", err.code);
+                  keySession!.destroy();
+                  mediaKeySystem!.destroy();
+                  done();
+                  expect(false).assertEqual(true);
+                });
+              }).catch((err:Error) => {
+                console.log("XX SESSION_ON_OFF_0600 generateOfflineReleaseRequest err end", err.code);
+                keySession!.destroy();
+                mediaKeySystem!.destroy();
+                done();
+                expect(false).assertEqual(true);
+              });
+            }).catch((err:Error) => {
+              console.log("XX SESSION_ON_OFF_0600 processMediaKeyResponse err end", err.code);
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              done();
+              expect(false).assertEqual(true);
+            });
+          }).catch((err:Error) => {
+            console.log("XX SESSION_ON_OFF_0600 generateMediaKeyRequest err end", err.code);
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        } else {
+          let sign = 1;
+          keySession!.onVendorDefined((eventInfo) => {
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.info);
+            console.info('bbbbb receive expirationUpdate ' + eventInfo.extraInfo);
+            sign = 2;
+          });
+          keySession!.offVendorDefined();
+          let base64 = new util.Base64Helper();
+          let uint8pssh = base64.decodeSync('AAAA73Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAM97InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoieHV4aW5zdyIsImtpZHMiOlsiYWNhMjU1ZTViMmRkZTJlNGM4YmI3YzE2NmNlYWMxMDAiLCJhY2EyNTVlNWIyZGRlMmU0YzhiYjdjMTY2Y2VhYzEwMSIsImFjYTI1NWU1YjJkZGUyZTRjOGJiN2MxNjZjZWFjMTAxIiwiYWNhMjU1ZTViMmRkZTJlNGM4YmI3YzE2NmNlYWMxMDEiXSwiZW5zY2hlbWEiOiJjYmMxIn0=');
+          let optionalData:drm.OptionsData[] = [{
+            name: "optionalDataName",
+            value: "optionalDataValue"
+          }];
+          keySession!.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData).then(async (DrmRequest: drm.MediaKeyRequest) => {
+            console.info("XX SESSION_ON_OFF_0600 generateMediaKeyRequest success", DrmRequest.mediaKeyRequestType,DrmRequest.data, DrmRequest.defaultURL);
+            let licenseRequestStr = byteToString(DrmRequest.data);
+            let licenseResponseStr = await getHttpData("http://license.dev.trustdta.com:8080/drmproxy/v3/getLicense?contentId=xuxinsw", licenseRequestStr);
+            let licenseResponseByte = stringToUint8Array(licenseResponseStr);
+            keySession!.processMediaKeyResponse(licenseResponseByte).then((keyId) => {
+              console.info("XX SESSION_ON_OFF_0600 expirationUpdate sign is ",sign);
+              await Utils.msSleep(1000);
+              expect(sign).assertEqual(1);
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              console.info("XX SESSION_ON_OFF_0600 expirationUpdate success");
+              done();
+            }).catch((err:Error) =>{
+              console.info("XX SESSION_ON_OFF_0600 processMediaKeyResponse err end", err.code);
+              keySession!.destroy();
+              mediaKeySystem!.destroy();
+              done();
+              expect((err as BusinessError).code).assertEqual(24700201);
+            });
+          }).catch((err:Error) =>{
+            console.info("XX SESSION_ON_OFF_0600 generateMediaKeyRequest err end", err.code);
+            keySession!.destroy();
+            mediaKeySystem!.destroy();
+            done();
+            expect(false).assertEqual(true);
+          });
+        }
+      } catch (err: Error) {
+        console.log("XX SESSION_ON_OFF_0600 failed");
+        keySession!.destroy();
+        mediaKeySystem!.destroy();
+        done();
+        expect(false).assertEqual(true);
+      }
+    });
+  })
+}

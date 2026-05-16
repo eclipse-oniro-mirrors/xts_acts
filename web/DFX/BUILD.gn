@@ -1,0 +1,43 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+group("DFXTest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "crash_information:ActsWebCrashInformationTest",
+      "crash_information_static:ActsWebCrashInformationStaticTest",
+      "log_dotting:ActsWebLogDottingTest",
+      "log_dotting_eleven:ActsWebLogDottingElevenTest",
+      "log_dotting_five:ActsWebLogDottingFiveTest",
+      "log_dotting_five_static:ActsWebLogDottingFiveStaticTest",
+      "log_dotting_four:ActsWebLogDottingFourTest",
+      "log_dotting_nine:ActsWebLogDottingNineTest",
+      "log_dotting_one:ActsWebLogDottingOneTest",
+      "log_dotting_one_static:ActsWebLogDottingOneStaticTest",
+      "log_dotting_seven:ActsWebLogDottingSevenTest",
+      "log_dotting_six:ActsWebLogDottingSixTest",
+      "log_dotting_static:ActsWebLogDottingStaticTest",
+      "log_dotting_ten:ActsWebLogDottingTenTest",
+      "log_dotting_three:ActsWebLogDottingThreeTest",
+      "log_dotting_two:ActsWebLogDottingTwoTest",
+      "log_dotting_two_static:ActsWebLogDottingTwoStaticTest",
+      "performance_maintenance:ActsWebPerformanceMaintenanceTest",
+      "performance_maintenance_static:ActsWebPerformanceMaintenanceStaticTest",
+      "system_events:ActsWebSystemEventsTest",
+      "system_events_static:ActsWebSystemEventsStaticTest",
+      "web_page_debug:ActsWebPageDebugTest",
+      "web_page_debug_static:ActsWebPageDebugStaticTest",
+    ]
+  }
+}

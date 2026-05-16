@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Stepper/StepperTest1",
+        "MainAbility/pages/sideBar",
+        "MainAbility/pages/stepperItem"
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "description": "Configuration for wifi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.wifi.napitest",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsWifiCApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.usb.setting.gadget_conn_prompt false",
+                "param set persist.skip_scb_charging 1",
+                "wait 5",
+                "power-shell wakeup",
+                "uinput -T -m 300 2600 280 200",
+                "wait 5",
+                "uinput -T -m 300 2600 280 200",
+                "wait 5",
+                "uinput -T -m 300 1279 280 200",
+                "uinput -K -d 2054 -u 2054",
+                "hidumper -s 3301 -a -t",
+                "uitest dumpLayout"
+            ],
+            "teardown-command": [
+                "param set persist.usb.setting.gadget_conn_prompt true"
+            ]
+        }
+    ]
+}

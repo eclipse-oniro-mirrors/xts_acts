@@ -1,0 +1,47 @@
+<!--/**
+ * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */-->
+
+<div class="container">
+
+    <div class="sub-container">
+
+        <div class="atom-container">
+            <text class="title">
+                原子布局
+            </text>
+            <text class="sub-title">
+                list原子布局1
+            </text>
+            <list style="flex-direction: row;height: 30px;width: 100%;">
+                <list-item style="width:20px;height:20px;background-color: blue;display-index: 1;">
+                </list-item>
+                <list-item style="width:30px; height:20px;background-color: black;display-index: 5;">
+                </list-item>
+                <list-item style="width:40px; height:20px;background-color: yellow;display-index: 4;">
+                </list-item>
+                <list-item style="width:10px; height:20px;background-color: red;display-index: 3;">
+                </list-item>
+                <list-item style="width:25px; height:20px;background-color:pink;display-index: 7;">
+                </list-item>
+                <list-item style="width:15px; height:20px;background-color: palegoldenrod;display-index: 2;">
+                </list-item>
+            </list>
+            <div style="background-color: #000000; width: 100%; height: 2px;">
+            </div>
+        </div>
+
+    </div>
+
+</div>

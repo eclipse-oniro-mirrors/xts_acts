@@ -1,0 +1,103 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//foundation/arkui/ace_engine/ace_config.gni")
+
+group("ActsAceEtsModuleImageTextTest") {
+  testonly = true
+  if (ace_engine_feature_wearable) {
+    deps = [
+      "ace_ets_module_imageText_api11:ActsAceEtsModuleImageTextApi11Test",
+      "ace_ets_module_imageText_api11_other:ActsAceEtsModuleImageTextApi11OtherTest",
+      "ace_ets_module_imageText_api12:ActsAceEtsModuleImageTextApi12Test",
+      "ace_ets_module_imageText_api12_other:ActsAceEtsModuleImageTextApi12OtherTest",
+      "ace_ets_module_imageText_api13:ActsAceEtsModuleImageTextApi13Test",
+      "ace_ets_module_imageText_api14:ActsAceEtsModuleImageTextApi14Test",
+      "ace_ets_module_imageText_api15:ActsAceEtsModuleImageTextApi15Test",
+      "ace_ets_module_imageText_api16:ActsAceEtsModuleImageTextApi16Test",
+      "ace_ets_module_imageText_api18:ActsAceEtsModuleImageTextApi18Test",
+      "ace_ets_module_imageText_api19:ActsAceEtsModuleImageTextApi19Test",
+      "ace_ets_module_imageText_api20:ActsAceEtsModuleImageTextApi20Test",
+      "ace_ets_module_imageText_api21:ActsAceEtsModuleImageTextApi21Test",
+      "ace_ets_module_imageText_api22:ActsAceEtsModuleImageTextApi22Test",
+      "ace_ets_module_imageText_common:ActsAceEtsModuleImageTextCommonTest",
+      "ace_ets_module_imageText_display:ActsAceEtsModuleImageTextDisplayTest",
+      "ace_ets_module_imageText_edit:ActsAceEtsModuleImageTextEditTest",
+      "ace_ets_module_imageText_image:ActsAceEtsModuleImageTextImageTest",
+      "ace_ets_module_imageText_search:ActsAceEtsModuleImageTextSearchTest",
+      "ace_ets_module_imageText_styledString:ActsAceEtsModuleImageTextStyledStringTest",
+      "ace_ets_module_imageText_text:ActsAceEtsModuleImageTextTextTest",
+      "ace_ets_module_richEditor:ActsAceEtsModuleRichEditorTest",
+      "ace_ets_module_imageText_api11_other_static:ActsAceEtsModuleImageTextApi11OtherStaticTest",
+      "ace_ets_module_imageText_api12_other_static:ActsAceEtsModuleImageTextApi12OtherStaticTest",
+      "ace_ets_module_imageText_api11_static:ActsAceEtsModuleImageTextApi11StaticTest",
+      "ace_ets_module_imageText_api12_static:ActsAceEtsModuleImageTextApi12StaticTest",
+      "ace_ets_module_imageText_api13_static:ActsAceEtsModuleImageTextApi13StaticTest",
+      "ace_ets_module_imageText_api14_static:ActsAceEtsModuleImageTextApi14StaticTest",
+      "ace_ets_module_imageText_api15_static:ActsAceEtsModuleImageTextApi15StaticTest",
+      "ace_ets_module_imageText_api16_static:ActsAceEtsModuleImageTextApi16StaticTest",
+      "ace_ets_module_imageText_api18_static:ActsAceEtsModuleImageTextApi18StaticTest",
+      "ace_ets_module_imageText_api19_static:ActsAceEtsModuleImageTextApi19StaticTest",
+    ]
+  } else {
+    deps = [
+      "ace_ets_module_imageText_api11:ActsAceEtsModuleImageTextApi11Test",
+      "ace_ets_module_imageText_api11_other:ActsAceEtsModuleImageTextApi11OtherTest",
+      "ace_ets_module_imageText_api12:ActsAceEtsModuleImageTextApi12Test",
+      "ace_ets_module_imageText_api12_other:ActsAceEtsModuleImageTextApi12OtherTest",
+      "ace_ets_module_imageText_api13:ActsAceEtsModuleImageTextApi13Test",
+      "ace_ets_module_imageText_api14:ActsAceEtsModuleImageTextApi14Test",
+      "ace_ets_module_imageText_api15:ActsAceEtsModuleImageTextApi15Test",
+      "ace_ets_module_imageText_api16:ActsAceEtsModuleImageTextApi16Test",
+      "ace_ets_module_imageText_api18:ActsAceEtsModuleImageTextApi18Test",
+      "ace_ets_module_imageText_api19:ActsAceEtsModuleImageTextApi19Test",
+      "ace_ets_module_imageText_api20:ActsAceEtsModuleImageTextApi20Test",
+      "ace_ets_module_imageText_api21:ActsAceEtsModuleImageTextApi21Test",
+      "ace_ets_module_imageText_api22:ActsAceEtsModuleImageTextApi22Test",
+      "ace_ets_module_imageText_common:ActsAceEtsModuleImageTextCommonTest",
+      "ace_ets_module_imageText_common_nowear:ActsAceEtsModuleImageTextCommonNowearTest",
+      "ace_ets_module_imageText_display:ActsAceEtsModuleImageTextDisplayTest",
+      "ace_ets_module_imageText_edit:ActsAceEtsModuleImageTextEditTest",
+      "ace_ets_module_imageText_edit_nowear:ActsAceEtsModuleImageTextEditNowearTest",
+      "ace_ets_module_imageText_image:ActsAceEtsModuleImageTextImageTest",
+      "ace_ets_module_imageText_nowear_api11:ActsAceEtsModuleImageTextNowearApi11Test",
+      "ace_ets_module_imageText_nowear_api12:ActsAceEtsModuleImageTextNowearApi12Test",
+      "ace_ets_module_imageText_nowear_api13:ActsAceEtsModuleImageTextNowearApi13Test",
+      "ace_ets_module_imageText_nowear_api15:ActsAceEtsModuleImageTextNowearApi15Test",
+      "ace_ets_module_imageText_nowear_api16:ActsAceEtsModuleImageTextNowearApi16Test",
+      "ace_ets_module_imageText_nowear_api18:ActsAceEtsModuleImageTextNowearApi18Test",
+      "ace_ets_module_imageText_nowear_api20:ActsAceEtsModuleImageTextNowearApi20Test",
+      "ace_ets_module_imageText_search:ActsAceEtsModuleImageTextSearchTest",
+      "ace_ets_module_imageText_styledString:ActsAceEtsModuleImageTextStyledStringTest",
+      "ace_ets_module_imageText_text:ActsAceEtsModuleImageTextTextTest",
+      "ace_ets_module_richEditor:ActsAceEtsModuleRichEditorTest",
+      "ace_ets_module_richEditor_nowear:ActsAceEtsModuleRichEditorNowearTest",
+      "ace_ets_module_imageText_nowear_api12_static:ActsAceEtsModuleImageTextNowearApi12StaticTest",
+      "ace_ets_module_imageText_nowear_api11_static:ActsAceEtsModuleImageTextNowearApi11StaticTest",
+      "ace_ets_module_imageText_nowear_api13_static:ActsAceEtsModuleImageTextNowearApi13StaticTest",
+      "ace_ets_module_imageText_nowear_api15_static:ActsAceEtsModuleImageTextNowearApi15StaticTest",
+      "ace_ets_module_imageText_nowear_api16_static:ActsAceEtsModuleImageTextNowearApi16StaticTest",
+      "ace_ets_module_imageText_nowear_api18_static:ActsAceEtsModuleImageTextNowearApi18StaticTest",
+      "ace_ets_module_imageText_api11_other_static:ActsAceEtsModuleImageTextApi11OtherStaticTest",
+      "ace_ets_module_imageText_api12_other_static:ActsAceEtsModuleImageTextApi12OtherStaticTest",
+      "ace_ets_module_imageText_api11_static:ActsAceEtsModuleImageTextApi11StaticTest",
+      "ace_ets_module_imageText_api12_static:ActsAceEtsModuleImageTextApi12StaticTest",
+      "ace_ets_module_imageText_api13_static:ActsAceEtsModuleImageTextApi13StaticTest",
+      "ace_ets_module_imageText_api14_static:ActsAceEtsModuleImageTextApi14StaticTest",
+      "ace_ets_module_imageText_api15_static:ActsAceEtsModuleImageTextApi15StaticTest",
+      "ace_ets_module_imageText_api16_static:ActsAceEtsModuleImageTextApi16StaticTest",
+      "ace_ets_module_imageText_api18_static:ActsAceEtsModuleImageTextApi18StaticTest",
+      "ace_ets_module_imageText_api19_static:ActsAceEtsModuleImageTextApi19StaticTest",
+      "ace_ets_module_imageText_image_static:ActsAceEtsModuleImageTextImageStaticTest",
+    ]
+  }
+}

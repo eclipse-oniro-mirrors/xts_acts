@@ -1,0 +1,27 @@
+{
+    "description": "typeArray Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "testcase-timeout": "15000",
+        "bundle-name": "type.array.standard.test.static",
+        "module-name": "entry"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsTypeArrayStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

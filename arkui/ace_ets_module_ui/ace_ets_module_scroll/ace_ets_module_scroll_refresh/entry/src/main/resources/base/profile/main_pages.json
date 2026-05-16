@@ -1,0 +1,16 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Refresh/refresh",
+        "MainAbility/pages/Refresh/refreshUx",
+        "MainAbility/pages/Refresh/refreshOffset",
+        "MainAbility/pages/Refresh/refreshOffsetChange",
+        "MainAbility/pages/Refresh/refreshResource",
+        "MainAbility/pages/Refresh/refreshString",
+        "MainAbility/pages/Refresh/RefreshingContent",
+        "MainAbility/pages/Refresh/maxDownRefresh",
+        "MainAbility/pages/Refresh/pullUpToCancelRefresh",
+        "MainAbility/pages/Refresh/pullUpToCancelRefreshModifier"
+
+    ]
+}

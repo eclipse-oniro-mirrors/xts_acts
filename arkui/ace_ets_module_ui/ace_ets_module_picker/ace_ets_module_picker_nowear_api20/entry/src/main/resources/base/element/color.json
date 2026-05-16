@@ -1,0 +1,48 @@
+{
+  "color": [
+    {
+      "name": "color_hello",
+      "value": "#ffff0000"
+    },
+    {
+      "name": "color_world",
+      "value": "#ff0000ff"
+    },
+    {
+      "name": "radio_BackgroundColor",
+      "value": "#FFA67D3D"
+    },
+    {
+      "name": "radio_UnBorderColor",
+      "value": "#FFFF0000"
+    },
+    {
+      "name": "radio_IndicatorColor",
+      "value": "#FF00FF00"
+    },
+    {
+      "name": "start_block_Border_Color",
+      "value": "#FF19D41C"
+    },
+    {
+      "name": "start_Step_Color",
+      "value": "#FF19D41C"
+    },
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "Divider_color",
+      "value": "#000000"
+    },
+    {
+      "name": "checkbox_Color",
+      "value": "#FFFD0000"
+    },
+    {
+      "name": "blue",
+      "value": "#0000FF"
+    }
+  ]
+}

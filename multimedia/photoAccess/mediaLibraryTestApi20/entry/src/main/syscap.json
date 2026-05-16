@@ -1,0 +1,13 @@
+{
+  "devices": {
+    "general": [],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.FileManagement.PhotoAccessHelper.Core",
+          "SystemCapability.Multimedia.Camera.Core"
+        ]
+      }
+    ]
+  }
+}

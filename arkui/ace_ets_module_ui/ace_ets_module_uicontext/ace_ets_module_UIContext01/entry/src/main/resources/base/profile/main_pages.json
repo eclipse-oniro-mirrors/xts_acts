@@ -1,0 +1,26 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Context/APIgetFrameNodeByUniqueId",
+    "MainAbility/pages/OnIdle/onIdleTest",
+    "MainAbility/pages/window/GetWindowWidthAndHeight",
+    "MainAbility/pages/xts/PixelUnitsConversion",
+    "MainAbility/pages/UIContext/arkuinode/arkui_node",
+    "MainAbility/pages/UIContext/UIContextApi1",
+    "MainAbility/pages/UIContext/UIcontextTestPage",
+    "MainAbility/pages/CacheMaxCount/CacheMaxCountForHSPTest",
+    "MainAbility/pages/Context/GetNodeByIdNullTest",
+    "MainAbility/pages/Context/UIContextUndefinedTest",
+    "MainAbility/pages/Context/UIContextWithoutWindowTest",
+    "MainAbility/pages/Context/UIContextGetOpacityTest",
+    "MainAbility/pages/Context/IsAvailableTest",
+    "MainAbility/pages/Context/IsFollowingSystemFontScaleFalseTest",
+    "MainAbility/pages/UIContext/IdTest",
+    "MainAbility/pages/getUIContext/GetUIContextMethodTest",
+    "MainAbility/pages/CacheMaxCount/CacheMaxCountForHSPParamTest",
+    "MainAbility/pages/getUIContext/WidthBreakpointEnumsTest",
+    "MainAbility/pages/getUIContext/GetWindowIdTest",
+    "MainAbility/pages/getUIContext/UIContextOnFrameTest",
+    "MainAbility/pages/getUIContext/UIContextOnIdleTest"
+  ]
+}

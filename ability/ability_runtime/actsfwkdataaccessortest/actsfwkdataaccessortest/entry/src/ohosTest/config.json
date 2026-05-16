@@ -1,0 +1,100 @@
+{
+  "app": {
+    "bundleName": "com.amsst.fwkdataaccessor",
+    "vendor": "amsst",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.amsst.fwkdataaccessor",
+    "name": ".entry_test",
+    "mainAbility": ".TestAbility",
+    "deviceType": [],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "defPermissions": [
+    ],
+    "reqPermissions": [
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": ".TestAbility",
+        "srcLanguage": "js",
+        "srcPath": "TestAbility",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "standard"
+      },
+      {
+          "srcPath": "TestDataAbility",
+          "name": ".TestDataAbility",
+          "icon": "$media:icon",
+          "srcLanguage": "js",
+          "description": "$string:description_testdataability",
+          "type": "data",
+          "visible": true,
+          "uri": "dataability://com.example.myapplication.TestDataAbility"
+      },
+      {
+          "srcPath": "TestDataAbility2",
+          "name": ".TestDataAbility2",
+          "icon": "$media:icon",
+          "srcLanguage": "js",
+          "description": "$string:description_testdataability",
+          "type": "data",
+          "visible": true,
+          "uri": "dataability://com.example.myapplication.TestDataAbility2"
+      },
+      {
+          "srcPath": "TestDataAbility3",
+          "name": ".TestDataAbility3",
+          "icon": "$media:icon",
+          "srcLanguage": "js",
+          "description": "$string:description_testdataability",
+          "type": "data",
+          "visible": true,
+          "uri": "dataability://com.example.myapplication.TestDataAbility3",
+          "readPermission": "ohos.permission.READ_CONTACTS",
+          "writePermission": "ohos.permission.WRITE_CONTACTS"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ],
+    "testRunner": {
+      "name": "OpenHarmonyTestRunner",
+      "srcPath": "TestRunner"
+    }
+  }
+}

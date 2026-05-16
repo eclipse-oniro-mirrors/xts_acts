@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/chip/accessibilitySelectedTypeTest",
+    "MainAbility/pages/segmentButton/maxFontScaleTest",
+    "MainAbility/pages/textPicker/onScrollStopTest"
+  ]
+}

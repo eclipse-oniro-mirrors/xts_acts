@@ -1,0 +1,21 @@
+{
+  "src": [
+  "MainAbility/pages/index/index",
+  "MainAbility/pages/Preset",
+  "MainAbility/pages/Text/TextDrag",
+  "MainAbility/pages/Text/positionSetting",
+  "MainAbility/pages/Text/TextState",
+  "MainAbility/pages/Text/onTextSelectionChange",
+  "MainAbility/pages/Text/editMenuOptionsApi12",
+  "MainAbility/pages/Text/editMenuIdAIWriter",
+  "MainAbility/pages/Text/TextContentGetSelectionTest",
+  "MainAbility/pages/Text/editMenuOptionsApi16",
+  "MainAbility/pages/Text/setMenuOptions",
+  "MainAbility/pages/Text/OnPrepareMenuTest",
+    
+  "MainAbility/pages/StyledString/styledStringChange",
+  "MainAbility/pages/MovingPhotoView/MovingPhotoViewApi13",
+  "MainAbility/pages/MovingPhotoView/MovingPhotoViewApi18",
+  "MainAbility/pages/Span/SpanOnHoverTest"
+  ]
+}

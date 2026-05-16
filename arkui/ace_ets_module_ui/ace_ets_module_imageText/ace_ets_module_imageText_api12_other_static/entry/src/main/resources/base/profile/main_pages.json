@@ -1,0 +1,27 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/ImageSpan/ImageLoadResult",
+    "MainAbility/pages/Search/SearchEnterKeyType",
+    "MainAbility/pages/Search/SearchFontFeature",
+    "MainAbility/pages/Search/SearchType",
+    "MainAbility/pages/SymbolGlyph/BounceSymbolEffect",
+    "MainAbility/pages/Text/textAreaInputTest",
+    "MainAbility/pages/Text/TextDecorationStyleTest",
+    "MainAbility/pages/TextInput/ContentType",
+    "MainAbility/pages/TextInput/fontFeature",
+    "MainAbility/pages/RichEditor/RichEditorEKeyboardTest",
+    "MainAbility/pages/RichEditor/RichEditorSymbolSpanStyleTest",
+    "MainAbility/pages/RichEditor/textShadowTest",
+    "MainAbility/pages/Modifier/ImageSpanModifier",
+    "MainAbility/pages/Modifier/MarqueeModifier",
+    "MainAbility/pages/Modifier/RichEditorModifier",
+    "MainAbility/pages/Modifier/RichTextModifier",
+    "MainAbility/pages/Modifier/SymbolSpanModifier",
+    "MainAbility/pages/Modifier/TextInputModifier",
+    "MainAbility/pages/StyledString/ImageAttachment",
+    "MainAbility/pages/StyledString/ParagraphStyle1",
+    "MainAbility/pages/StyledString/ParagraphStyle2",
+    "MainAbility/pages/StyledString/ParagraphStyle3"
+  ]
+}

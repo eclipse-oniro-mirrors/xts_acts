@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "the main ability"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "main label"
+    }
+  ]
+}

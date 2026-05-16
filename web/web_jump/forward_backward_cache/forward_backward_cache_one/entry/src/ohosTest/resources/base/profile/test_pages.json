@@ -1,0 +1,10 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/webStorage",
+    "testability/pages/webCookieManager",
+    "testability/pages/webController",
+    "testability/pages/WebViewControllerPart3"
+  ]
+}
+

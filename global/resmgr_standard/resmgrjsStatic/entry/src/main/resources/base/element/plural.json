@@ -1,0 +1,82 @@
+{
+  "plural": [
+    {
+      "name": "plural_name",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d apple"
+        },
+        {
+          "quantity": "other",
+          "value": "%d apples"
+        }
+      ]
+    },
+    {
+      "name": "plural_name_loop",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d apple"
+        },
+        {
+          "quantity": "other",
+          "value": "$string:test_stringLoopA"
+        }
+      ]
+    },
+    {
+      "name": "p_str4",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d apple"
+        },
+        {
+          "quantity": "other",
+          "value": "%d apples"
+        }
+      ]
+    },
+    {
+      "name": "test_cyc",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "$string:test_stringLoopA"
+        },
+        {
+          "quantity": "other",
+          "value": "$string:test_stringLoopA"
+        }
+      ]
+    },
+    {
+      "name": "string_format7",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "apple, %f"
+        },
+        {
+          "quantity": "other",
+          "value": "apples, %f"
+        }
+      ]
+    },
+    {
+      "name": "string_format8",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "$string:"
+        },
+        {
+          "quantity": "other",
+          "value": "$string:"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "license": "",
+  "devDependencies": {
+    "libnativexcomponent.so": "file:./src/main/cpp/types/libnativexcomponent",
+    "libaccessibilityndk.so": "file:./src/main/cpp/types/libaccessibilityndk",
+    "libanimatendk.so": "file:./src/main/cpp/types/libanimatendk",
+    "libnoderenderndk.so": "file:./src/main/cpp/types/libnoderenderndk",
+    "libkeyeventndk.so": "file:./src/main/cpp/types/libkeyeventndk",
+    "libnativedialog.so": "file:./src/main/cpp/types/libnativedialog",
+    "libnativegesturendk.so": "file:./src/main/cpp/types/libnativegesturendk",
+    "libuiinputeventndk.so": "file:./src/main/cpp/types/libuiinputeventndk",
+    "libnativetype.so": "file:./src/main/cpp/types/libnativetype",
+    "libosaccountndk.so": "file:./src/main/cpp/types/libosaccountndk",
+    "libdisplaymanager.so": "file:./src/main/cpp/types/libdisplaymanager"
+  },
+  "author": "",
+  "name": "entry",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "version": "1.0.0",
+  "dependencies": {
+    "libnativexcomponent.so": "file:./src/main/cpp/types/libnativexcomponent",
+    "libaccessibilityndk.so": "file:./src/main/cpp/types/libaccessibilityndk",
+    "libanimatendk.so": "file:./src/main/cpp/types/libanimatendk",
+    "libnoderenderndk.so": "file:./src/main/cpp/types/libnoderenderndk",
+    "libkeyeventndk.so": "file:./src/main/cpp/types/libkeyeventndk",
+    "libnativedialog.so": "file:./src/main/cpp/types/libnativedialog",
+    "libnativegesturendk.so": "file:./src/main/cpp/types/libnativegesturendk",
+    "libuiinputeventndk.so": "file:./src/main/cpp/types/libuiinputeventndk",
+    "libnativetype.so": "file:./src/main/cpp/types/libnativetype",
+    "libosaccountndk.so": "file:./src/main/cpp/types/libosaccountndk",
+    "libdisplaymanager.so": "file:./src/main/cpp/types/libdisplaymanager"
+  }
+}

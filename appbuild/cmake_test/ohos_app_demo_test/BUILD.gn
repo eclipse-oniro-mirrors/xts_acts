@@ -1,0 +1,55 @@
+# Copyright (c) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+ohos_app("ohos_app_demo") {
+  hap_name = "ohos_app_demo"
+  subsystem_name = "cmake"
+  part_name = "cmake_test"
+  certificate_profile = "./signature/openharmony_sx.p7b"
+  build_profile = "build-profile.json5"
+}
+
+root_path = "./entry/build/default"
+
+action("check_test") {
+  deps = [ ":ohos_app_demo" ]
+  script = "scripts/ohos_app_demo_check.py"
+  if (defined(target_app_dir) && target_app_dir != "") {
+    args = [
+      "--libPath",
+      rebase_path(
+          "${root_out_dir}/${target_app_dir}/ohos_app_demo_test/${root_path}/intermediates/libs/default"),
+      "--hapPath",
+      rebase_path(
+          "${root_out_dir}/${target_app_dir}/ohos_app_demo_test/${root_path}/outputs/default/app"),
+    ]
+  } else {
+    args = [
+      "--libPath",
+      rebase_path("${root_path}/intermediates/libs/default"),
+      "--hapPath",
+      rebase_path("${root_path}/outputs/default/app"),
+    ]
+  }
+
+  outputs = [ "$target_out_dir" ]
+}
+
+group("ohos_app_demo_test") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [ ":check_test" ]
+  }
+}

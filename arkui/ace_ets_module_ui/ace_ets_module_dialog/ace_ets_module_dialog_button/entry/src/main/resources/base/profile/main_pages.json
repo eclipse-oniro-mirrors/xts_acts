@@ -1,0 +1,22 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/button/buttonControlSize",
+        "MainAbility/pages/button/getcomponent",
+        "MainAbility/pages/button/ButtonHover",
+        "MainAbility/pages/button/ButtonIndex",
+        "MainAbility/pages/button/buttonEnabled",
+        "MainAbility/pages/button/buttonExample",
+        "MainAbility/pages/button/button3",
+        "MainAbility/pages/button/buttonMaxFontSize",
+        "MainAbility/pages/buttonType/ButtonTypeTest",
+        "MainAbility/pages/buttonType/buttonTypeApi",
+        "MainAbility/pages/buttonType/minFontScale",
+        "MainAbility/pages/buttonType/maxFontScale",
+        "MainAbility/pages/button/Button",
+        "MainAbility/pages/button/ButtonApi1",
+        "MainAbility/pages/button/ButtonApi2",
+        "MainAbility/pages/button/ButtonIndex1",
+        "MainAbility/pages/button/modifier"
+    ]
+}

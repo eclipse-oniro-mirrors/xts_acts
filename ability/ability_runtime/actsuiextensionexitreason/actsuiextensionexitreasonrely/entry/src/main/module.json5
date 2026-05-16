@@ -1,0 +1,218 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "UIExtAbility1",
+        "srcEntry": "./ets/uiextability/UIExtAbility1.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "share",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility2",
+        "srcEntry": "./ets/uiextability/UIExtAbility2.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "action",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility3",
+        "srcEntry": "./ets/uiextability/UIExtAbility3.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysDialog/common",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility4",
+        "srcEntry": "./ets/uiextability/UIExtAbility4.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysDialog/atomicServicePanel",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility5",
+        "srcEntry": "./ets/uiextability/UIExtAbility5.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysDialog/power",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility6",
+        "srcEntry": "./ets/uiextability/UIExtAbility6.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysPicker/share",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility7",
+        "srcEntry": "./ets/uiextability/UIExtAbility7.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "hms/account",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility8",
+        "srcEntry": "./ets/uiextability/UIExtAbility8.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "ads",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility9",
+        "srcEntry": "./ets/uiextability/UIExtAbility9.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "voip",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility10",
+        "srcEntry": "./ets/uiextability/UIExtAbility10.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysDialog/meetimeCall",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility11",
+        "srcEntry": "./ets/uiextability/UIExtAbility11.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysDialog/meetimeContact",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility12",
+        "srcEntry": "./ets/uiextability/UIExtAbility12.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysDialog/meetimeMessage",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility13",
+        "srcEntry": "./ets/uiextability/UIExtAbility13.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysDialog/print",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility14",
+        "srcEntry": "./ets/uiextability/UIExtAbility14.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysPicker/meetimeContact",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility15",
+        "srcEntry": "./ets/uiextability/UIExtAbility15.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysPicker/meetimeCallLog",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility16",
+        "srcEntry": "./ets/uiextability/UIExtAbility16.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysPicker/photoPicker",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility17",
+        "srcEntry": "./ets/uiextability/UIExtAbility17.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sys/commonUI",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility18",
+        "srcEntry": "./ets/uiextability/UIExtAbility18.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysPicker/navigation",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility19",
+        "srcEntry": "./ets/uiextability/UIExtAbility19.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysPicker/appSelector",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility20",
+        "srcEntry": "./ets/uiextability/UIExtAbility20.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysPicker/camera",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility21",
+        "srcEntry": "./ets/uiextability/UIExtAbility21.ts",
+        "description": "$string:EntryAbility_desc",
+        "label": "$string:EntryAbility_label",
+        "type": "sysDialog/userAuth",
+        "exported": true
+      }
+    ]
+  }
+}

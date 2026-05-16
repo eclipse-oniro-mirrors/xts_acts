@@ -1,0 +1,12 @@
+{
+  "float": [
+    {
+      "name": "float_loopA",
+      "value": "$float:float_loopB"
+    },
+    {
+      "name": "float_loopB",
+      "value": "$float:float_loopA"
+    }
+  ]
+}

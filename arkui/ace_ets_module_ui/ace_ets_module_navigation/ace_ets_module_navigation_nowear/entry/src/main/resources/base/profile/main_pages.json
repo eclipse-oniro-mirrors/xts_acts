@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/navigation/EnableToolBarAdaptation",
+        "MainAbility/pages/navigation/OnNewParamPage",
+        "MainAbility/pages/navigation/PreferredOrientation"
+    ]
+}

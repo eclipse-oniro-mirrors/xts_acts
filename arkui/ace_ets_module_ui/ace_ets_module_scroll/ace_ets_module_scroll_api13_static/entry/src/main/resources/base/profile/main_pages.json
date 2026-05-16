@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Tabs/bindTabsScroll",
+    "MainAbility/pages/Tabs/tabsOpacity",
+    "MainAbility/pages/Scroll/offsetRemainScroll"
+  ]
+}

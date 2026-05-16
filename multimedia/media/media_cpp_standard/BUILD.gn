@@ -1,0 +1,85 @@
+# Copyright (c) 2020-2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//foundation/multimedia/media_foundation/config.gni")
+import("//test/xts/tools/build/suite.gni")
+
+module_output_path = "acts/ActsAvcodecNdkTest"
+MEDIA_ROOT_DIR = "//foundation/multimedia/av_codec/"
+MEDIA_FOUNDATION_ROOT_DIR = histreamer_root_dir
+
+ohos_moduletest_suite("ActsAvcodecNdkTest") {
+  module_out_path = module_output_path
+  sources = [
+    "audioDecEncNdk/src/ADecEncNdkSample.cpp",
+    "audioDecEncNdk/src/ActsAudioDecEncNdkTest.cpp",
+    "codecFormatNdk/ActsCodecFormatNdkTest.cpp",
+    "videoDecEncNdk/src/ActsVideoDecEncNdkTest.cpp",
+    "videoDecEncNdk/src/VDecEncNdkSample.cpp",
+  ]
+  include_dirs = [
+    "include",
+    "audioDecEncNdk/include",
+    "videoDecEncNdk/include",
+    "../../../../../../foundation/multimedia/audio_framework/interfaces/inner_api/native/audiocommon/include",
+    "../../../../../../foundation/multimedia/drm_framework/services/drm_service/ipc/",
+    "../../../../../../foundation/graphic/graphic_2d/interfaces/inner_api/surface",
+    "../../../../../../foundation/graphic/graphic_2d/interfaces/inner_api/common",
+    "../../../../../../foundation/window/window_manager/interfaces/innerkits/wm",
+    "../../../../../../foundation/graphic/graphic_2d/interfaces/kits/surface",
+    "../../../../../../foundation/graphic/graphic_2d/interfaces/inner_api/surface",
+    "../../../../../../base/startup/init/interfaces/kits/syscap/include",
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/native",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c",
+  ]
+
+  cflags = [
+    "-Werror",
+    "-fno-rtti",
+    "-fno-exceptions",
+    "-Wall",
+    "-fno-common",
+    "-fstack-protector-strong",
+    "-Wshadow",
+    "-FPIC",
+    "-FS",
+    "-O2",
+    "-D_FORTIFY_SOURCE=2",
+    "-fvisibility=hidden",
+    "-Wformat=2",
+    "-Wdate-time",
+    "",
+  ]
+
+  deps = [
+    "$MEDIA_FOUNDATION_ROOT_DIR/src:media_foundation",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_adec",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_aenc",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_codecbase",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_vdec",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_venc",
+    "../../../../../../base/startup/init/interfaces/kits/syscap:deviceinfo_ndk",
+    "../../../../../../foundation/graphic/graphic_2d/rosen/modules/render_service_client:librender_service_client",
+    "../../../../../../foundation/multimedia/media_foundation/src/capi:native_media_core",
+    "../../../../../../foundation/window/window_manager/wm:libwm",
+  ]
+
+  external_deps = [
+    "c_utils:utils",
+    "graphic_surface:surface",
+    "hilog:libhilog",
+  ]
+
+  part_name = "player_framework"
+  subsystem_name = "multimedia"
+}

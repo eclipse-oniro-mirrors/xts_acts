@@ -1,0 +1,15 @@
+{
+  "devices": {
+    "general": [],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.DistributedSched.AppCollaboration",
+          "SystemCapability.Communication.Bluetooth.Core"
+
+          
+        ]
+
+    }]
+  }
+}

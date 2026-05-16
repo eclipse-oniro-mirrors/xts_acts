@@ -1,0 +1,35 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+		"MainAbility/pages/Preset/InputPreset",
+
+        "MainAbility/pages/Hyperlink/PreventDefault",
+
+        "MainAbility/pages/Marquee/MarqueeApi",
+        "MainAbility/pages/Marquee/MarqueeDynamicSyncSceneType",
+        "MainAbility/pages/Marquee/MarqueeFrame",
+        "MainAbility/pages/Marquee/Marquee",
+        "MainAbility/pages/Marquee/MarqueeMirroring",
+        "MainAbility/pages/Marquee/MarqueeModifier",
+        "MainAbility/pages/Marquee/MarqueeNode",
+        "MainAbility/pages/Marquee/MarqueeOptions1",
+        "MainAbility/pages/Marquee/MarqueeOptions2",
+        "MainAbility/pages/Marquee/MarqueeUI",
+        "MainAbility/pages/Marquee/MarqueeOptionsTest03",
+        
+        "MainAbility/pages/SymbolGlyph/BounceSymbolEffect",
+        "MainAbility/pages/SymbolGlyph/EffectFillStyle",
+        "MainAbility/pages/SymbolGlyph/EffectScope",
+        "MainAbility/pages/SymbolGlyph/FontWeight",
+        "MainAbility/pages/SymbolGlyph/SXSymbolGlyphSINGLE01",
+        "MainAbility/pages/SymbolGlyph/SymbolEffect",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyphApi",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyphApi1",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyphApi2",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyphApi3",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyphApi4",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyphApi5",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyphFontScaleTest",
+        "MainAbility/pages/SymbolGlyph/SymbolGlyphNode"
+    ]
+}

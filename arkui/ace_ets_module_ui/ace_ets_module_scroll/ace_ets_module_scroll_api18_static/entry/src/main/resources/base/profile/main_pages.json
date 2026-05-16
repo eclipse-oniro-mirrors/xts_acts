@@ -1,0 +1,14 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Tabs/iconTabs",
+    "MainAbility/pages/Tabs/onSelectedTabs",
+    "MainAbility/pages/Swiper/preloadSwiper",
+    "MainAbility/pages/Swiper/selectedSwiper",
+    "MainAbility/pages/Swiper/SwiperIndicatorDistanceTest",
+    "MainAbility/pages/Tabs/barBackground",
+    "MainAbility/pages/List/listDividerOptions",
+    "MainAbility/pages/List/stackFromEndList",
+    "MainAbility/pages/LazyVGridLayout/LazyVGridLayout"
+  ]
+}

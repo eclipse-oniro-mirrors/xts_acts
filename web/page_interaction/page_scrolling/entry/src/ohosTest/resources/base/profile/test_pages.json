@@ -1,0 +1,12 @@
+{
+  "src": [
+	"testability/pages/NestedScrollMode",
+	"testability/pages/scrollEvent",
+    "testability/pages/WebNestedScrollOptionsScrollForwardTest",
+    "testability/pages/webResourceResponseGet",
+    "testability/pages/ScrollPage",
+    "testability/pages/webViewController",
+    "testability/pages/webViewOnScroll",
+	"testability/pages/scrollByTo"
+  ]
+}

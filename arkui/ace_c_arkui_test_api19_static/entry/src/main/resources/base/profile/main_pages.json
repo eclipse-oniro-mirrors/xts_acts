@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/customdialog/customDialogTest1",
+    "pages/textPicker/testTextPickerRange",
+    "pages/textPicker/textPickerEnableHapticFeedback"
+  ]
+}

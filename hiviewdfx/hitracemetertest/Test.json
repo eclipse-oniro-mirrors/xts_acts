@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for hitracemeter demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "package-name": "ohos.hitracemeter.test",
+        "bundle-name": "ohos.hitracemeter.test",
+        "shell-timeout": "300000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHitraceMeterTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

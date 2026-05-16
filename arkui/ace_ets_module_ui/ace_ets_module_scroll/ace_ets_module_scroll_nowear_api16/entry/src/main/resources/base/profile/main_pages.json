@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/WaterFlow/WaterFlowEffectEdge",
+        "MainAbility/pages/WaterFlow/WaterComponentContent"
+    ]
+}

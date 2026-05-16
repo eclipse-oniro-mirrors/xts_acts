@@ -1,0 +1,66 @@
+'use static';
+/**
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { Entry, Component, Column, Scroller, ForEach, BarState, GridItem, TextAlign, ColumnOptions, Text, Stack, Alignment, Grid, Margin } from '@ohos.arkui.component'
+import { State,AppStorage } from '@ohos.arkui.stateManagement';
+
+@Entry
+@Component
+struct StartAndStop {
+  @State Number01: String[] = ['0', '1', '2', '3', '4'] as string[];
+  scroller: Scroller = new Scroller();
+  @State text1: string = '';
+  @State text2: string = '';
+
+  build() {
+    Column({ space: 5 } as ColumnOptions) {
+      Text(this.text1).key('StartAndStop_start')
+      Text(this.text2).key('StartAndStop_end')
+
+      Stack({ alignContent: Alignment.BottomEnd }) {
+        Grid(this.scroller) {
+          ForEach(this.Number01, (day: string) => {
+            ForEach(this.Number01, (day: string) => {
+              GridItem() {
+                Text(day)
+                  .fontSize(16)
+                  .backgroundColor(0xF9CF93)
+                  .width('100%')
+                  .height('25%')
+                  .textAlign(TextAlign.Center)
+              }
+            }, (day: string) => day)
+          }, (day: string) => day)
+        }
+        .margin({ right: 25 } as Margin)
+        .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+        .columnsGap(10)
+        .rowsGap(10)
+        .width('80%')
+        .backgroundColor(0xFAEEE0)
+        .height('70%')
+        .scrollBar(BarState.Off)
+        .onScrollStart(() => {
+          this.text1 = 'onScrollStart'
+        })
+        .onScrollStop(() => {
+          this.text2 = 'onScrollStop'
+        })
+        .id('StartandStop')
+
+      }.width('100%').margin({ top: 5 } as Margin)
+    }
+  }
+}

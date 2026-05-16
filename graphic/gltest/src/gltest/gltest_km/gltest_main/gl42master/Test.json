@@ -1,0 +1,69 @@
+{
+    "description": "Config for ActsOpenGlMainGl42MasterTest test cases",
+    "driver": {
+        "module-name": "ActsOpenGlMainGl42MasterTest",
+        "native-test-timeout": "120000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "100s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "pre-push" : [
+            ],
+            "post-push" : [
+                "mount -o rw,remount /",
+                "chmod -R 777 /data/local/tmp/*",
+                "rm -rf /data/local/tmp/*.qpa",
+                "rm -rf /data/local/tmp/*.xml",
+                "mkdir -p /data/storage/shader_cache/local",
+                "mkdir /data/local/tmp/gl_cts",
+                "tar zxvf /data/local/tmp/opengldata.tar.gz -C /data/local/tmp/gl_cts",
+                "chmod -R 777 /data/local/tmp/gl_cts/mustpass/*",
+                "cp -r /data/local/tmp/gl_cts/data/* /data/local/tmp/gl_cts"
+            ],
+            
+            "push": [
+                "ActsOpenGlMainGl42MasterTest->/data/local/tmp/ActsOpenGlMainGl42MasterTest",
+                "opengldata/libdeqp_ohos_platform.z.so->/data/local/tmp/libdeqp_ohos_platform.z.so",
+                "opengldata/librosen_context.z.so->/data/local/tmp/librosen_context.z.so",
+                "opengldata/libdeqp_spirv.z.so->/data/local/tmp/libdeqp_spirv.z.so",
+                "opengldata/libdeqp_amber.z.so->/data/local/tmp/libdeqp_amber.z.so",
+                "opengldata/libdeqp_spvremapper.z.so->/data/local/tmp/libdeqp_spvremapper.z.so", 
+                "opengldata/opengldata.tar.gz->/data/local/tmp/opengldata.tar.gz"
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "CommandKit",
+            "teardown": [
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsOpenGlMainGl42MasterTest.qpa->ActsOpenGlMainGl42MasterTest.qpa"
+                }
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "cd /data/local/tmp",
+                "rm -rf libdeqp_ohos_platform.z.so",
+                "rm -rf librosen_context.z.so",
+                "rm -rf libdeqp_spirv.z.so",
+                "rm -rf libdeqp_spvremapper.z.so",
+                "rm -rf libdeqp_amber.z.so",
+                "ln -s /data/local/tmp/libdeqp_ohos_platform.z.so /system/lib/libdeqp_ohos_platform.z.so",
+                "ln -s /data/local/tmp/librosen_context.z.so /system/lib/librosen_context.z.so",
+                "ln -s /data/local/tmp/libdeqp_spirv.z.so /system/lib/libdeqp_spirv.z.so",
+                "ln -s /data/local/tmp/libdeqp_spvremapper.z.so /system/lib/libdeqp_spvremapper.z.so",
+                "ln -s /data/local/tmp/libdeqp_amber.z.so /system/lib/libdeqp_amber.z.so"
+            ],
+            "teardown-localcommand": [
+                "python testcases/opengldata/genlocal.py ActsOpenGlMainGl42MasterTest gl/khronos_mustpass/main/gl42-core-master.txt"
+            ]
+        }
+
+    ]
+}

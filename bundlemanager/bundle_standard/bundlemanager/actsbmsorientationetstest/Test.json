@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for ActsBmsOrientationTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.orientationtest",
+        "module-name": "entry_test",
+        "testcase-timeout": 240000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBmsOrientationTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for aceEtsComponentCommonAttrs Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "10800000",
+        "bundle-name": "com.acts.arkui.component.common.attrs.test",
+        "module-name": "phone",
+        "shell-timeout": "10800000",
+        "testcase-timeout": 300000
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsAceEtsComponentCommonSevenAttrsBorderImageTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    }, {
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "power-shell setmode 602"
+        ]
+
+    }]
+}

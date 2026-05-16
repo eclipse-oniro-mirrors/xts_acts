@@ -1,0 +1,11 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/counter/CounterDirection",
+    "MainAbility/pages/counter/counterApi",
+    "MainAbility/pages/counter/ActsAceCounterComponentTest",
+    "MainAbility/pages/counter/CounterComponentTest",
+    "MainAbility/pages/counter/CounterEnableTest",
+    "MainAbility/pages/counter/CounterJsunitTest"
+  ]
+}

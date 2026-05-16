@@ -1,0 +1,66 @@
+<!Document>
+<html>
+<head>
+    <title>同层渲染测试html</title>
+    <meta name="viewport">
+</head>
+<body>
+<div>
+    <div id="bodyId">
+        <embed id="cameraTest"  type="test" width="800" height = "800"  style = "background-color:red">
+    </div>
+</div>
+
+<script>
+let nativeEmbed = {
+    //判断设备是否支持touch事件
+    touch:('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch,
+    nativeEmbed : document.getElementById('cameraTest'),
+
+    //事件
+    events:{
+        nativeEmbed:document.getElementById('objectTest'),
+        handleEvent:function (event) {
+            console.log('object event');
+            var self = this;
+            if (event.type === 'touchstart') {
+                self.start(event);
+            } else if (event.type === 'touchmove') {
+                self.move(event);
+            } else if (event.type === 'touchend') {
+                self.end(event);
+            }
+        },
+        //滑动开始
+        start:function (event) {
+            console.log('object start slide');
+            this.nativeEmbed.removeEventListener('touchmove', this, false);
+            this.nativeEmbed.removeEventListener('touchend', this, false);
+        },
+        move:function (event) {
+            console.log('object start move');
+            //当屏幕有多个touch或者页面被缩放过，就不执行move操作
+
+        },
+        //滑动释放
+        end:function (event) {
+            //解绑事件
+            console.log('object end slide');
+            this.nativeEmbed.removeEventListener('touchmove', this, false);
+            this.nativeEmbed.removeEventListener('touchend', this, false);
+        }
+
+    },
+
+    //初始化
+    init:function () {
+        let self = this;
+        console.log('init:function');
+        self.nativeEmbed.addEventListener('touchstart', self.events, false);
+    }
+};
+
+nativeEmbed.init();
+</script>
+</body>
+</html>

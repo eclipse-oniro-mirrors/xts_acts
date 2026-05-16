@@ -1,0 +1,22 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/DragEvent/DragModifier",
+        "MainAbility/pages/DragEvent/normalDrag",
+        "MainAbility/pages/DragEvent/dragSpringLoading",
+        "MainAbility/pages/DragEvent/enableInternalDropAnimation",
+        "MainAbility/pages/frameNode/framenode",
+        "MainAbility/pages/UIContext/isActive",
+        "MainAbility/pages/toolbar/ToolBarItem",
+        "MainAbility/pages/GestureRecognizer/SwipeRecognizer",
+        "MainAbility/pages/GestureRecognizer/PanRecognizer",
+        "MainAbility/pages/GestureRecognizer/ClickRecognizer",
+        "MainAbility/pages/GestureRecognizer/DragRecognizer",
+        "MainAbility/pages/GestureRecognizer/LongPressRecognizer",
+        "MainAbility/pages/GestureRecognizer/PinchRecognizer",
+        "MainAbility/pages/GestureRecognizer/RotationRecognizer",
+        "MainAbility/pages/GestureRecognizer/TapRecognizer",
+        "MainAbility/pages/GestureRecognizer/IsvalidRecognizer",
+        "MainAbility/pages/Text/textAreaInputTest"
+    ]
+}

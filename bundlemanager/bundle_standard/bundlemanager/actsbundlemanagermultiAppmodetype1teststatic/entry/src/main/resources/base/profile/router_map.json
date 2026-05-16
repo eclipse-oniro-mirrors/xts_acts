@@ -1,0 +1,27 @@
+{
+  "routerMap": [
+    {
+      "name": "DynamicPage1",
+      "pageSourceFile": "src/main/ets",
+      "buildFunction": "MyStateSample",
+      "data": {
+        "key1": "data1",
+        "key2": "data2"
+      },
+      "customData": {
+        "stringKey": "data1",
+        "intKey": 123,
+        "boolKey": false,
+        "nullKey": null,
+        "objectKey": {
+          "name": "TestDemo"
+        },
+        "arrayKey": [
+          {
+            "isEntry": false
+          }
+        ]
+      }
+    }
+  ]
+}

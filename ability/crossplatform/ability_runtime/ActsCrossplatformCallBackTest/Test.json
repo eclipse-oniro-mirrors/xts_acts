@@ -1,0 +1,33 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "60000",
+        "bundle-name": "com.example.crossplatformcallback",
+        "module-name": "entry_test",
+        "testcase-timeout": 15000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCrossplatformCallBackTest.hap",
+                "ActsCrossplatformFeatureATest.hap",
+                "ActsCrossplatformFeatureBTest.hap",
+                "ActsCrossplatformFeatureCTest.hap",
+                "ActsCrossplatformFeatureDTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "power-shell timeout -o 86400000",
+                "uinput -T -m 300 1279 280 200"
+            ]
+        }
+    ]
+}

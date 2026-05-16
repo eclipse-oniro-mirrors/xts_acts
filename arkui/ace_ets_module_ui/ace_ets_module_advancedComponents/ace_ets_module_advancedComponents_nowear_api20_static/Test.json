@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.arkui.component.common.attrs.nowear.test.static",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": 240000
+    },
+    "kits": [{
+        "test-file-name": [
+                "ActsAceEtsModuleAdvancedComponentsNoWearApi20StaticTest.hap"
+            ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

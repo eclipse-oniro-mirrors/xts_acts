@@ -1,0 +1,11 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Text/textAreaInputTest",
+    "MainAbility/pages/Text/TextMenuType",
+    "MainAbility/pages/Text/StyledString",
+    "MainAbility/pages/Text/enableHapticFeedback",
+    "MainAbility/pages/StyledString/unmarshalling",
+    "MainAbility/pages/StyledString/CustomSpan"
+  ]
+}

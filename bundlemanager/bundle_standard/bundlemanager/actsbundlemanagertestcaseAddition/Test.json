@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for ActsBundleMgrStageEtsTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "ohos.acts.bundlemanagererrcode.test",
+        "module-name": "testModule",
+        "testcase-timeout": 240000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsbundlemgrcaseAdditionEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

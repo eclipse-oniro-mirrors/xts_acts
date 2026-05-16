@@ -1,0 +1,8 @@
+xdevice
+xdevice-devicetest
+xdevice-ohos
+xdevice-oh-apptest
+pop-window
+hypium
+perf_collector
+selenium

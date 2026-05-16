@@ -1,0 +1,24 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/actionSheet/actionSheetMode",
+    "MainAbility/pages/actionSheet/showActionSheetMode",
+    "MainAbility/pages/actionSheet/index",
+    "MainAbility/pages/AlertDialog/AlertDialogUI",
+    "MainAbility/pages/AlertDialog/AlertDialog1",
+    "MainAbility/pages/AlertDialog/alertDialog2",
+    "MainAbility/pages/AlertDialog/AlertDialog3",
+    "MainAbility/pages/AlertDialog/AlertDialog4",
+    "MainAbility/pages/AlertDialog/AlertDialog5",
+    "MainAbility/pages/AlertDialog/AlertDialogFalse",
+    "MainAbility/pages/AlertDialog/AlertDialogParam",
+    "MainAbility/pages/AlertDialog/AlertDialogTrue",
+    "MainAbility/pages/AlertDialog/DialogPage",
+    "MainAbility/pages/AlertDialog/stageAlertDialog",
+    "MainAbility/pages/Dialog/showAlertDialogMode",
+    "MainAbility/pages/dialogLife/AlertDialogLife",
+    "MainAbility/pages/Dialog/alertDialogLevelOrder",
+    "MainAbility/pages/AlertDialog/alertDialogBlurStyleOptions",
+    "MainAbility/pages/AlertDialog/alertDialogBackgroundEffect"
+  ]
+}

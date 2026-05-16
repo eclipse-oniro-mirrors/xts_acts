@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/getId/getId",
+        "MainAbility/pages/getId/getIdTest"
+    ]
+}

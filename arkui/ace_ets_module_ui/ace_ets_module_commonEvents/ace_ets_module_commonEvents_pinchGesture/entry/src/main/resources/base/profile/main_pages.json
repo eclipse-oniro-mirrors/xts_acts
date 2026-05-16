@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/PinchGesture/PinchGestureBasic01",
+        "MainAbility/pages/PinchGesture/PinchGestureBasic02"
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/button/ButtonGetTypeTest",
+    "MainAbility/pages/grid/FocusWrapModeTest001",
+    "MainAbility/pages/grid/FocusWrapModeTest002",
+    "MainAbility/pages/grid/FocusWrapModeTest003",
+    "MainAbility/pages/dragEvent/dragEventGetDisplayId",
+    "MainAbility/pages/dragEvent/dragEventGetDragSource",
+    "MainAbility/pages/dragEvent/dragEventGetGlobalDisplay",
+    "MainAbility/pages/dragEvent/dragEventFuncTest",
+    "MainAbility/pages/dragEvent/DragEventFuncTest014",
+    "MainAbility/pages/dragEvent/DragEventFuncTest036",
+    "MainAbility/pages/dragEvent/DragEventFuncTest037",
+    "MainAbility/pages/dragEvent/DragEventFuncTest039",
+    "MainAbility/pages/dragEvent/dragEventFuncTest041",
+    "MainAbility/pages/InteractiveFramework/DragGetPreDragStatusTest",
+    "MainAbility/pages/dropBadge/enableDropDisallowedBadge",
+    "MainAbility/pages/dialog/DialogGetStateTest",
+    "MainAbility/pages/image/ImageDraggableEventTest"
+  ]
+}

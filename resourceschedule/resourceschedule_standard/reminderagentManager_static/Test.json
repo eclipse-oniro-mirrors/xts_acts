@@ -1,0 +1,38 @@
+{
+    "description": "Configuration for resourceschedule filefs Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.actsreminderagentmgr.static",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command":[
+                "mount -o rw,remount /",
+                "find /system -name notification_config.json | xargs sed -i 's/com.huawei.hmos.notepad/com.acts.actsreminderagentmgr.static/'",
+                "reboot",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "wait 5",
+                "uinput -T -m 300 2700 280 200",
+                "uinput -K -d 2054 -u 2054",
+                "uinput -K -d 2050 -u 2050",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "mount -o rw,remount /",
+                "find /system -name notification_config.json | xargs sed -i 's/com.acts.actsreminderagentmgr.static/com.huawei.hmos.notepad/'",
+                "reboot"
+            ]
+        },
+        {
+            "test-file-name": ["ActsResourcescheduleReminderAgentMgrStaticTest.hap"],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

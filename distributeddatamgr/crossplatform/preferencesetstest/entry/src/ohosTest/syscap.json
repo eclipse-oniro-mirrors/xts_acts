@@ -1,0 +1,15 @@
+{
+    "devices": {
+        "general": [
+            "default",
+            "wearable"
+        ],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.DistributedDataManager.Preferences.Core"
+                ]
+            }
+        ]
+    }
+}

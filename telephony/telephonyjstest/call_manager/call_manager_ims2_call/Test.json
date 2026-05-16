@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+      "type": "OHJSUnitTest",
+      "test-timeout": "1800000",
+      "bundle-name": "com.ohos.actscallmanagerims2calltest",
+      "package-name": "com.ohos.actscallmanagerims2calltest",
+      "shell-timeout": "1800000",
+      "testcase-timeout": "30000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+              "$module.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -m 200 1000 200 200 200",
+                "param set persist.ace.testmode.enabled 1"
+            ]
+        }
+    ]
+}

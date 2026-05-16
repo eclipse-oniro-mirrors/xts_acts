@@ -1,0 +1,55 @@
+/* 
+ * Copyright (C) 2025 Huawei Device Co., Ltd. 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0 
+ * 
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an "AS IS" BASIS, 
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and 
+ * limitations under the License. 
+ */
+import { image } from '@kit.ImageKit';
+interface myImageInfo {
+  format: number,
+  colorSpace: number,
+  strideAlignedRet: boolean
+}
+
+interface myPixelMapInfo {
+  width: number,
+  height: number,
+  pixelFormat: image.PixelMapFormat
+}
+
+interface onImageArriveData {
+  callBackId: number
+  num: number,
+  str: string,
+  callbackTriggered: boolean,
+  imageInfo?: myImageInfo,
+  pixelMapInfo?: myPixelMapInfo
+}
+
+export interface errorData {
+  err1: number,
+  err2: number
+}
+
+export const createReceiver: () => image.ImageReceiver;
+export const nativeOn: (receiver: image.ImageReceiver, userData: onImageArriveData) => number;
+export const nativeOff: (receiver: image.ImageReceiver) => number;
+export const imageArriveOn: (receiver: image.ImageReceiver, userData: onImageArriveData, ) => number;
+export const imageArriveOff: (receiver: image.ImageReceiver, callBackId: number) => number;
+export const imageReceiverTest: (receiverPhoto: image.ImageReceiver, cameraFormat?: number,
+  typeTag?: number, receiverPreview?: image.ImageReceiver) => number;
+export const waitForCondition: (callBackId: number, userNum: number, myDataIndex: number) => onImageArriveData | number;
+export const imageArriveOn_Error: (receiver: image.ImageReceiver, flag: boolean) => number;
+export const imageArriveOff_Error: () => number;
+export const releaseImageReceiver: (receiver: image.ImageReceiver) => number;
+export const testGetFormatNullptr: () => errorData;
+export const testGetColorSpaceNullptr: () => errorData;
+export const testGetBufferDataNullptr: () => errorData;

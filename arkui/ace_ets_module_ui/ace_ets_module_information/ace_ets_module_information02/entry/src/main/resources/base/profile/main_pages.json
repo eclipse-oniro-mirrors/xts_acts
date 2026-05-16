@@ -1,0 +1,38 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+
+
+
+        "MainAbility/pages/Progress/LoadingProgressJsunit",
+        "MainAbility/pages/Progress/LoadingProgressJsunit2",
+        "MainAbility/pages/Progress/ProgressJsunit",
+        "MainAbility/pages/Progress/ProgressJsunit1",
+        "MainAbility/pages/Progress/ActsProgressSecTest",
+        "MainAbility/pages/Progress/ActsProgressTest",
+        "MainAbility/pages/Progress/LoadingProgressCircularJsunit",
+        "MainAbility/pages/Progress/ProgressAttrTest",
+        "MainAbility/pages/Progress/ProgressCapsuleRadius",
+        "MainAbility/pages/Progress/ProgressContentModifier",
+        "MainAbility/pages/Progress/ProgressContentTest",
+        "MainAbility/pages/Progress/ProgressMask",
+        "MainAbility/pages/Progress/ProgressPrivacySensitive",
+        "MainAbility/pages/Progress/ProgressScaleCountTest",
+        "MainAbility/pages/Progress/ProgressStyleTest",
+
+        "MainAbility/pages/TextClock/TextClockApiTest",
+        "MainAbility/pages/TextClock/TextClockJsunit",
+        "MainAbility/pages/TextClock/TextClockJsunit2",
+        "MainAbility/pages/TextClock/TextClockLongJsunit",
+        "MainAbility/pages/TextClock/TextClockDateTimeOptions",
+        "MainAbility/pages/TextClock/TextClockFormat",
+        "MainAbility/pages/TextClock/TextClockNodeTest",
+
+        "MainAbility/pages/TextTimer/TextTimerApi",
+        "MainAbility/pages/TextTimer/TextTimerJsunit",
+        "MainAbility/pages/TextTimer/TextTimerJsunit2",
+        "MainAbility/pages/TextTimer/TextTimerFontWeight",
+        "MainAbility/pages/TextTimer/TextTimerNode",
+        "MainAbility/pages/TextTimer/TextTimerTextShadow"
+    ]
+}

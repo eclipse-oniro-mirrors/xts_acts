@@ -1,0 +1,44 @@
+{
+    "description": "Configuration for startabilitynotargetbundlelistfatest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+		"bundle-name": "com.open.harmony.startAbility",
+        "package-name": "com.open.harmony.startAbility",
+        "shell-timeout": "600000",
+        "testcase-timeout": "50000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStartAbilityNoTargetBundleListFaTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test/"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push":[
+                "AtomizationFaEntry.hap -> /data/test/AtomizationFaEntry.hap",
+                "FaMyApplication1.hap -> /data/test/FaMyApplication1.hap",
+                "MockService.hap -> /data/test/MockService.hap"
+            ]
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 1279 280 200",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "power-shell timeout -o 86400000",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

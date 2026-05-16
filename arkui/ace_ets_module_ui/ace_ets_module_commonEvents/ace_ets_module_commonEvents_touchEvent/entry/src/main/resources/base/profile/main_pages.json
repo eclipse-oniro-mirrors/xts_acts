@@ -1,0 +1,16 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/onTouch/touch",
+        "MainAbility/pages/onTouch/OnTouch1",
+        "MainAbility/pages/onTouch/OnTouch2",
+        "MainAbility/pages/onTouch/OnTouch3",
+        "MainAbility/pages/GetChangedPointerId/GetChangedPointerId",
+        "MainAbility/pages/RollAngle/RollAngle",
+        "MainAbility/pages/HitTestBehavior/BlockDescendants",
+        "MainAbility/pages/HitTestBehavior/BlockHierarchy",
+        "MainAbility/pages/BuilderNode/postInputEvent",
+        "MainAbility/pages/sourceType",
+        "MainAbility/pages/touchAble"
+    ]
+}

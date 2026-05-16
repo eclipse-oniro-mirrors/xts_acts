@@ -1,0 +1,12 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/componentSnapshot/APIcomponentSnapshotGetSync",
+        "MainAbility/pages/componentSnapshot/APIUIContextGetSync",
+        "MainAbility/pages/MeasureSize/measureSize",
+        "MainAbility/pages/MeasureSize/APIsetDragEventStrictReportingEnabled",
+        "MainAbility/pages/MeasureSize/APIgetFrameNodeByUniqueId",
+        "MainAbility/pages/PageInfo/PageInfo1",
+        "MainAbility/pages/OnIdle/onIdleTest"
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "description": "Config for opensles ndk test cases",
+    "driver": {
+        "module-name": "ActsOpenslesNdkTest",
+        "native-test-timeout": "300000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "1s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "pre-push" : [
+                "mount -o rw,remount /",
+                "rm /data/media/*",
+                "mkdir -p /data/media/",
+                "mkdir -p /data/local/tmp/"
+            ],
+            "push": [
+                "ActsOpenslesNdkTest->/data/local/tmp/ActsOpenslesNdkTest",
+                "./resource/audio/audioDecode/AAC_48000_32_1.aac ->/data/media/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod 777 -R /data/local/tmp",
+                "chmod 777 -R /data/media",
+                "chmod 777 /data/media/*"
+            ]
+        }
+    ]
+}

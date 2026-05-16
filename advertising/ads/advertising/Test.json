@@ -1,0 +1,75 @@
+{
+  "description": "Configuration for hjunit demo Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "600000",
+    "bundle-name": "com.acts.cloud.ad.test",
+    "module-name": "entry_test",
+    "shell-timeout": "600000",
+    "testcase-timeout": 30000
+  },
+  "kits": [
+    {
+      "type": "PushKit",
+      "pre-push": [
+        "mount -o rw,remount /"
+      ],
+      "push": [
+        "./resource/advertising/xts/install_list_capability.json -> /etc/advertising/ads_framework/install_list_capability.json"
+      ],
+      "post-push": [
+        "mount -o rw,remount /"
+      ],
+      "uninstall": false
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "mount -o rw,remount /",
+        "cp /system/etc/app/install_list_capability.json /etc/advertising/ads_framework/install_list_capability.json",
+        "cp /system/etc/app/install_list_capability.json /etc/advertising/ads_framework/install_list_capability_bak.json",
+        "sed -i -z 's/\"install_list\": \\[[[:space:]]*\\n/\"install_list\": [\\n\\t\\t{\\n\\t\\t\\t\"bundleName\": \"com.acts.AdsServiceDemo\",\\n\\t\\t\\t\"app_signature\": [\\n\\t\\t\\t\\t\"6F03B1B296CF815A643266C97B0EC671E91110176A65A7E49741A020091E7D5E\"\\n\\t\\t\\t],\\n\\t\\t\\t\"keepAlive\": true,\\n\\t\\t\\t\"removable\": true,\\n\\t\\t\\t\"allowAppDesktopIconHide\": true,\\n\\t\\t\\t\"allowAppUsePrivilegeExtension\": true,\\n\\t\\t\\t\"allowAppMultiProcess\": true\\n\\t\\t},\\n/' /etc/advertising/ads_framework/install_list_capability.json",
+        "cp /etc/advertising/ads_framework/install_list_capability.json /system/etc/app/install_list_capability.json"
+      ],
+      "teardown-command": []
+    },
+    {
+      "type": "PushKit",
+      "pre-push": [
+        "mount -o rw,remount /"
+      ],
+      "push": [
+        "./resource/advertising/xts/ad_service_config.json -> /etc/advertising/ads_framework/ad_service_config.json",
+        "./resource/advertising/xts/ad_service_config_ext.json -> /etc/advertising/ads_framework/ad_service_config_ext.json"
+      ],
+      "post-push": [
+        "mount -o rw,remount /",
+        "reboot"
+      ],
+      "uninstall": false
+    },
+    {
+      "type": "AppInstallKit",
+      "test-file-name": [
+        "ActsCloudAdTest.hap",
+        "ActsAdsKitTest.hap"
+      ],
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "power-shell wakeup",
+        "power-shell setmode 602"
+      ],
+      "teardown-command": [
+        "rm -rf /system/etc/app/install_list_capability.json",
+        "cp /etc/advertising/ads_framework/install_list_capability_bak.json /system/etc/app/install_list_capability.json",
+        "rm -rf /etc/advertising/ads_framework/install_list_capability_bak.json",
+        "bm uninstall -n com.acts.cloud.ad.test",
+        "bm uninstall -n com.acts.AdsServiceDemo",
+        "reboot"
+      ]
+    }
+  ]
+}

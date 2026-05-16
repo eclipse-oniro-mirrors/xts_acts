@@ -1,0 +1,18 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/SideBarContainer/SideBarContainer",
+        "MainAbility/pages/SideBarContainer/SideBarContainer_attribute/SideBarContainer_Attribute",
+        "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType",
+        "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType_DefaultValue1",
+        "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType_DefaultValue2",
+        "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType_DefaultValue3",
+        "MainAbility/pages/SideBarContainer/SideBarContainerDivider/SideBarContainerDivider",
+	    "MainAbility/pages/SideBarContainer/sideBar",
+        "MainAbility/pages/SideBarContainer/sidebar2",
+        "MainAbility/pages/SideBarContainer/sideBar3",
+        "MainAbility/pages/SideBarContainer/SidebarType",
+        "MainAbility/pages/SideBarContainer/SideBarWidth1",
+        "MainAbility/pages/SideBarContainer/SideBarWidth2"
+    ]
+}

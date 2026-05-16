@@ -1,0 +1,24 @@
+{
+    "description": "Configuration for ecma_new_features Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "bundle-name": "com.example.normalized_static_load",
+        "module-name": "entry_test",
+        "shell-timeout": "180000",
+        "compile-mode": "esmodule"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsModuleNormalizedStaticLoadLibTest-library1-default-signed.hsp",
+                "ActsModuleNormalizedStaticLoadLibTest-loadHsp-default-signed.hsp",
+                "ActsModuleNormalizedStaticLoadLibTest-hsp-default-signed.hsp",
+                "ActsModuleNormalizedStaticLoadLibTest-entry-default-signed.hap",
+                "ActsModuleNormalizedStaticLoadTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

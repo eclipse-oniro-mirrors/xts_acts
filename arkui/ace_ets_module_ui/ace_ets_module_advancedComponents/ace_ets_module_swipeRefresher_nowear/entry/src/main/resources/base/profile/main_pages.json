@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/api12/swipeRefresherPageTest",
+    "MainAbility/pages/api18/swipeRefresherPageTest18"
+  ]
+}

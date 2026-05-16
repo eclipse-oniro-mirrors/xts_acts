@@ -1,0 +1,11 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "AI Neural Network Runtime Interface Test",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@ohos/hypium": "^1.0.19"
+  }
+}

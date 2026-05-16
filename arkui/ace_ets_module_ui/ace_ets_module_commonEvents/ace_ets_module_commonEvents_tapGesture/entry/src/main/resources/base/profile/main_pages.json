@@ -1,0 +1,20 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/TapGesture/GestureTag",
+        "MainAbility/pages/TapGesture/TapGesture1",
+        "MainAbility/pages/TapGesture/TapGesture2",
+        "MainAbility/pages/TapGesture/TapGesture3",
+        "MainAbility/pages/TapGesture/tapGesture",
+        "MainAbility/pages/TapGesture/priorityGesture",
+        "MainAbility/pages/TapGesture/parallelGesture",
+        "MainAbility/pages/TapGesture/TapGestureTemplate",
+        "MainAbility/pages/TapGesture/TapGestureBasicClickMouse",
+        "MainAbility/pages/TapGesture/TapGestureBasicDoubleClickMouse",
+        "MainAbility/pages/TapGesture/TapGestureBasicClick",
+        "MainAbility/pages/TapGesture/TapGestureBasicDoubleClick",
+        "MainAbility/pages/tapGestureAddInterface/tapgestures",
+        "MainAbility/pages/TapGesture/tapLocation",
+        "MainAbility/pages/TapGesture/tapLocation2"
+    ]
+}

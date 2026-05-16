@@ -1,0 +1,395 @@
+{
+    "module": {
+        "name": "testModule",
+        "type": "entry",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:testModule_entry_dsc",
+        "mainElement": "ohos.acts.atomic.service.test.MainAbility",
+        "deviceTypes": [
+            "default",
+            "tablet",
+            "2in1",
+            "wearable",
+            "car"
+        ],
+        "dependencies": [
+            {
+                "moduleName": "feature"
+            }
+        ],
+        "atomicService": {
+            "preloads": [
+                {
+                    "moduleName": "feature"
+                },
+                {
+                    "moduleName": "shared"
+                }
+            ]
+        },
+        "deliveryWithInstall": true,
+        "installationFree": true,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "abilities": [
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "singleton",
+                "orientation": "portrait",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ],
+                "metadata": [
+                    {
+                        "name": "ohos.ability.form",
+                        "value": "",
+                        "resource": "$profile:shortcuts_config"
+                    }
+                ]
+            },
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility1",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "standard",
+                "orientation": "landscape",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility2",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "landscape_inverted",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility3",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "portrait_inverted",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility4",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility5",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_landscape",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility6",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_portrait",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility7",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_restricted",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility8",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_landscape_restricted",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility9",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "auto_rotation_portrait_restricted",
+                "skills": []
+            },
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility10",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "specified",
+                "orientation": "locked",
+                "skills": []
+            },
+            {
+                "name": "BROWSER",
+                "icon": "$media:icon",
+                "visible": true,
+                "skills": [
+                    {
+                        "actions": [
+                            "ohos.want.action.viewData"
+                        ],
+                        "entities": [
+                            "entity.system.browsable"
+                        ],
+                        "uris": [
+                            {
+                                "scheme": "http"
+                            }
+                        ]
+                    }
+                ],
+                "srcEntrance": ""
+            }
+        ],
+        "extensionAbilities": [
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "metadata": [
+                    {
+                        "name": "ohos.extension.form",
+                        "value": "",
+                        "resource": "$profile:shortcuts_config"
+                    }
+                ],
+                "name": "Form",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "form",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "Form1",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "form",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "workScheduler",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "workScheduler",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "inputMethod",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "inputMethod",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "accessibility",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "accessibility",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "fileShare",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "fileShare",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "staticSubscriber",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "staticSubscriber",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "wallpaper",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "wallpaper",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "backup",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "backup",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "window",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "window",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "enterpriseAdmin",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "enterpriseAdmin",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "thumbnail",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "thumbnail",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "preview",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "preview",
+                "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "driver",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "driver",
+                "visible": true
+            }
+        ],
+        "requestPermissions": [
+            {
+                "name": "ohos.permission.GET_BUNDLE_INFO",
+                "reason": "$string:permission_reason",
+                "usedScene": {
+                    "abilities": [
+                        "MainAbility"
+                    ],
+                    "when": "always"
+                }
+            },
+            {
+                "name": "ohos.permission.READ_CALENDAR",
+                "reason": "$string:permission_reason",
+                "usedScene": {
+                    "abilities": [
+                        "MainAbility"
+                    ],
+                    "when": "inuse"
+                }
+            }
+        ],
+        "metadata": [
+            {
+                "name": "MetaData1",
+                "value": "MetaDataValue",
+                "resource": "$profile:shortcuts_config"
+            }
+        ],
+        "querySchemes": [
+            "http",
+            "welink",
+            "SCHEME",
+            "matchscheme1",
+            "matchscheme2",
+            "Matchscheme3"
+        ]
+    }
+}

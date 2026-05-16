@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MenuTestPaste</title>
+    <style>
+        body{
+                background-color:gray;
+            }
+        .box {
+            width: 600px;
+            height: 450px;
+            line-height: 450px;
+            text-align: center;
+            background-color: orange;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -300px;
+            margin-top: -225px;
+         }
+         a{
+            font-size:3em;
+         }
+         #pasteInput {
+            position:absolute;
+            left:0;
+            top:0;
+            height:1000px;
+            width:600px;
+         }
+
+    </style>
+</head>
+<body>
+<div id="error"></div>
+<div class="box">
+    <input type="text" title="1301234" value="1301234" style="width: 600px;height: 500px;"/>
+</div>
+<input type="text" title="" value="" id="pasteInput"/>
+</body>
+<script>
+    function getInputValue() {
+        return document.querySelector('#pasteInput').value
+    }
+</script>
+</html>

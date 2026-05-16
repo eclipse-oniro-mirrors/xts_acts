@@ -1,0 +1,99 @@
+# Copyright (c) 2023 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//foundation/multimedia/av_codec/config.gni")
+import("//test/xts/tools/build/suite.gni")
+
+MEDIA_ROOT_DIR = "//foundation/multimedia/av_codec/"
+module_output_path = "acts/ActsSwDecodeTest"
+
+swdecoder_moduletest_native_include_dirs = [
+  "./include",
+  "$MEDIA_ROOT_DIR/../../graphic/graphic_2d/interfaces/inner_api",
+  "$MEDIA_ROOT_DIR/interfaces/inner_api/native",
+  "$MEDIA_ROOT_DIR/interfaces/kits/c",
+  "$MEDIA_ROOT_DIR/../../../third_party/openssl/ohos_lite/include",
+  "$drm_framework_root_dir/interfaces/kits/c/drm_capi/common",
+  "$drm_framework_root_dir/interfaces/kits/c/drm_capi/include",
+]
+
+swdecoder_moduletest_cflags = [
+  "-std=c++17",
+  "-fno-rtti",
+  "-fno-exceptions",
+  "-Wall",
+  "-fno-common",
+  "-fstack-protector-strong",
+  "-Wshadow",
+  "-FPIC",
+  "-FS",
+  "-O2",
+  "-D_FORTIFY_SOURCE=2",
+  "-fvisibility=hidden",
+  "-Wformat=2",
+  "-Wdate-time",
+  "-Werror",
+  "-Wextra",
+  "-Wimplicit-fallthrough",
+  "-Wsign-compare",
+  "-Wunused-parameter",
+]
+
+##################################################################################################################
+ohos_moduletest_suite("ActsSwDecodeTest") {
+  sanitize = av_codec_test_sanitize
+  module_out_path = module_output_path
+  include_dirs = swdecoder_moduletest_native_include_dirs
+  include_dirs += [ "./" ]
+
+  cflags = swdecoder_moduletest_cflags
+
+  if (av_codec_support_codec) {
+    sources = [
+      "./src/api_test.cpp",
+      "./src/func_test.cpp",
+      "./src/state_test.cpp",
+      "./src/VideodecApi11SampleTest.cpp",
+      "./src/videodec_ndk_sample.cpp",
+    ]
+  }
+
+  deps = [
+    "$MEDIA_ROOT_DIR/interfaces/inner_api/native:av_codec_client",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_codecbase",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_vdec",
+  ]
+  external_deps = [
+    "c_utils:utils",
+    "graphic_2d:libgraphic_utils",
+    "graphic_2d:librender_service_client",
+    "graphic_surface:surface",
+    "graphic_surface:sync_fence",
+    "hilog:libhilog",
+    "ipc:ipc_core",
+    "media_foundation:media_foundation",
+    "media_foundation:native_media_core",
+    "openssl:libcrypto_shared",
+    "window_manager:libwm",
+  ]
+
+  if (av_codec_support_drm) {
+    external_deps += [
+      "drm_framework:drm_framework",
+      "drm_framework:native_drm",
+    ]
+  }
+
+  part_name = "av_codec"
+  subsystem_name = "multimedia"
+}

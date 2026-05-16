@@ -1,0 +1,41 @@
+{
+    "module": {
+        "name": "feature",
+        "type": "feature",
+        "srcEntrance": "./ets/Application/AbilityStage.ts",
+        "description": "$string:testModule_entry_dsc",
+        "mainElement": "ohos.acts.atomic.service.test.MainAbility",
+        "deviceTypes": [
+            "default",
+            "tablet",
+            "2in1",
+            "wearable"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": true,
+        "uiSyntax": "ets",
+        "pages": "$profile:main_pages",
+        "abilities": [
+            {
+                "name": "ohos.acts.atomic.service.test.MainAbility1",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "description": "$string:testModule_entry_main",
+                "icon": "$media:icon",
+                "label": "$string:entry_label",
+                "visible": true,
+                "launchType": "singleton",
+                "orientation": "portrait",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

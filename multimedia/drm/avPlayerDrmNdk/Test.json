@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for ActsAVPlayerDrmNdkTest demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "360000",
+        "bundle-name": "com.example.myapplication",
+        "module-name": "entry_test",
+        "shell-timeout": "360000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+		{
+			"test-file-name": [
+				"ActsAVPlayerDrmNdkTest.hap",
+				"ActsAVPlayerDrmMainNdkTest.hap"
+			],
+			"type": "AppInstallKit",
+			"cleanup-apps": true
+		},
+		{
+			"type": "ShellKit",
+			"run-command": [
+				"power-shell wakeup",
+				"power-shell setmode 602",
+				"remount",
+				"mkdir -p /data/app/el2/100/base/com.example.myapplication/haps/entry_test/files",
+				"chmod 777 -R /data/app/el2/100/base/com.example.myapplication/haps/entry_test",
+				"mkdir -p /data/app/el2/100/base/com.example.myapplication/haps/entry/files",
+				"chmod 777 -R /data/app/el2/100/base/com.example.myapplication/haps/entry"					
+			]			
+		},
+		{
+			"type": "PushKit",
+			"uninstall": true,
+			"post-push": [
+				"chmod 777 -R /data/app/el2/100/base/com.example.myapplication/haps/entry_test",
+				"chmod 777 -R /data/app/el2/100/base/com.example.myapplication/haps/entry"
+			],
+			"push": [
+			   "./resource/media/ChinaDRMLab_Promo_210525-264-30-1080P-10000K.sm4c.ts -> /data/app/el2/100/base/com.example.myapplication/haps/entry_test/files/",
+			   "./resource/media/ChinaDRMLab_Promo_210525-264-30-1080P-10000K.sm4c.ts -> /data/app/el2/100/base/com.example.myapplication/haps/entry/files/"
+			]
+		}		
+	]
+}

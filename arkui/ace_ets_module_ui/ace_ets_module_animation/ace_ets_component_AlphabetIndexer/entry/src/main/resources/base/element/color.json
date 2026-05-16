@@ -1,0 +1,36 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "color_black",
+      "value": "#00000000"
+    },
+    {
+      "name": "color_red",
+      "value": "#FFFF0000"
+    },
+    {
+      "name": "color_blue",
+      "value": "#FF0000FF"
+    },
+    {
+      "name": "color_yellow",
+      "value": "#FFFFFF00"
+    },
+    {
+      "name": "popupSelectedColor",
+      "value": "#00C5CD"
+    },
+    {
+      "name": "popupUnselectedColor",
+      "value": "#FFEC8B"
+    },
+    {
+      "name": "popupItemBackground",
+      "value": "#4EEE94"
+    }
+  ]
+}

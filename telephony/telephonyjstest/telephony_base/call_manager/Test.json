@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+      "type": "OHJSUnitTest",
+      "test-timeout": "900000",
+      "bundle-name": "com.ohos.call_manager",
+      "package-name": "com.ohos.call_manager",
+      "shell-timeout": "900000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+              "$module.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

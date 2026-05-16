@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <style>
+	#pageHeight{
+	  height:1300px
+	}
+	#imgs,#imgss{
+	    width:200px;
+	    height:300px;
+	}
+	#imgss {
+	    width:200px;
+	    height:200px
+	}
+	#webCenter {
+	    font-size:30px;
+	    text-align:center
+	}
+	div{
+	    text-align:center
+	}
+	#lname {
+	    display:bloak;
+        width: 300px;
+        height: 150px;
+        line-height: 150px;
+        text-align: center;
+        background-color: orange;
+        position: absolute;
+        top: 35%;
+        left: 35%;
+        margin-left: -100px;
+        margin-top: -75px;
+        font-size：80px
+     }
+     #file {
+        height:150px;
+        width:300px;
+        position:absolute;
+        top:34%;
+        left:30%;
+        z-index:99999
+     }
+    </style>
+</head>
+<body>
+<div id="container">首页323 <a href="second.html" id="fileAccess">打开rawfile文件</a></div>
+<input type="password" id="lname" name="lname" value="abcdefg ABCDEFG" autofocus><br><br>
+</body>
+<script>
+    let ele=document.getElementById("imgss");
+    let loadImage;
+    ele.onload=function(){
+        loadImage="load complete"
+    }
+    function webTest() {
+        return "This value is from index.html"
+    }
+    function getfontsize() {
+        let fontSize = window.getComputedStyle(document.body, null).getPropertyValue('font-size')
+        console.log(fontSize)
+        return fontSize
+    }
+    function clickFile() {
+        return document.getElementById("webCenter").click()
+    }
+      function onClickFile() {
+        document.getElementById("file").click()
+        return "进来ONCLICKFILE"
+      }
+    function clickA(){
+        document.getElementById("fileAccess").click()
+    }
+    function clickB(){
+        document.getElementById("imgs").click()
+    }
+    // 601
+    function getMessageLevel() {
+           console.debug('This is a warning message.1')
+           console.info('This is a warning message.2')
+           console.warn('This is a warning message.3')
+           console.error('This is a warning message.4')
+           console.log('This is a warning message.5')
+           return "回调index.html的返回值"
+    }
+    function getMessageLevelDebug() {
+           console.debug('This is a warning message.1')
+           return "1"
+    }
+    function getMessageLevelInfo() {
+           console.info('This is a warning message.1')
+    }
+    function getMessageLevelWarn() {
+           console.warn('This is a warning message.1')
+           return "3"
+    }
+    function getMessageLevelError() {
+           console.error('This is a warning message.1')
+           return "4"
+    }
+    function getMessageLevelLog() {
+           console.log('This is a warning message.1')
+           return "5"
+    }
+    function getFontFamily(){
+        var bodyStyle = window.getComputedStyle(document.body);
+		var fontFamily = bodyStyle.getPropertyValue("font-family");
+        return fontFamily
+    }
+
+    function getBodySerifFontValue() {
+      const bodyElement = document.querySelector('body');
+      if (bodyElement) {
+        const computedStyle = window.getComputedStyle(bodyElement);
+        const fontFamily = computedStyle.getPropertyValue('font-family');
+        if (fontFamily.includes('serif')) {
+          return fontFamily;
+        }
+      }
+      return null;
+    }
+    function getSerifFont() {
+    const bodySerifFontValue = getBodySerifFontValue();
+    if (bodySerifFontValue) {
+      return bodySerifFontValue
+    } else {
+      return '没有'
+    }
+	}
+	function getSansSerifFont(){
+	    return '503方法'
+	}
+	function getWebFixedFont(){
+	    return '504方法'
+	}
+	function getWebFantasyFont(){
+	    return '505方法'
+	}
+	function getWebCursiveFont(){
+	    return '506方法'
+	}
+    function getUserAgent(){
+        return navigator.userAgent
+    }
+    function test(){
+        backToEts.test("backToEts")
+    }
+    function testRunJavaScript(){
+        return "testRunJavaScript"
+    }
+    function getPageHeight(){
+        let height=document.body.scrollHeight
+        return height
+    }
+    function proxy(){
+        objName.register("backToEts")
+    }
+    function registerTest(){
+        let str=objName.register();
+        console.log(str);
+        return str
+    }
+    function jsAccess(){
+        console.log("web111")
+    }
+    function consoleTest(){
+        console.log("console test")
+    }
+    function alertTest(){
+        alert('alert test')
+    }
+    function confirmTest(){
+        confirm("confirm test")
+    }
+    function getImgResult(){
+        return loadImage
+    }
+    function toPrompt(){
+        let result=prompt("age","20");
+        console.log("result:"+result)
+    }
+    function openRawFile(){
+        document.getElementById("fileAccess").click()
+    }
+    function getTitle(){
+        return document.title
+    }
+</script>
+</html>

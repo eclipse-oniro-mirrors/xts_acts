@@ -1,0 +1,30 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+group("ActsWebLoadStatusTest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "ace_load_status_cloudservice_webController_five:ActsWebLoadStatusCloudServiceWebControllerFiveTest",
+       "ace_load_status_cloudservice_webController_five_static:ActsWebLoadStatusCloudServiceWebControllerFiveStaticTest",
+      "ace_load_status_cloudservice_webController_group_eight:ActsWebLoadStatusCloudServiceWebControllerGroupEightTest",
+      "ace_load_status_dev:ActsWebLoadStatusDevTest",
+      "ace_load_status_enhanced_one:ActsWebLoadStatusEnhancedTest",
+       "ace_load_status_enhanced_one_static:ActsWebLoadStatusEnhancedStaticTest",
+      "ace_load_status_enhanced_three:ActsWebLoadStatusEnhancedThreeTest",
+      "ace_load_status_enhanced_three_static:ActsWebLoadStatusEnhancedThreeStaticTest",
+      "ace_load_status_enhanced_two:ActsWebLoadStatusEnhancedTwoTest",
+      "ace_load_status_enhanced_two_static:ActsWebLoadStatusEnhancedTwoStaticTest",
+    ]
+  }
+}

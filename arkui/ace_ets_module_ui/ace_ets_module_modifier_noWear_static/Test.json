@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1200000",
+        "bundle-name": "com.open.harmony.modifiernowear.static",
+        "module-name": "entry",
+        "shell-timeout": "1200000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAceEtsModuleModifierNoWearStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell timeout -o 864000000"
+            ]
+        }
+    ]
+}

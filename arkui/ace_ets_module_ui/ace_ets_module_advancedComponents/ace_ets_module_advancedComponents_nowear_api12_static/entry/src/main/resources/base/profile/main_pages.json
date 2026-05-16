@@ -1,0 +1,13 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/splitLayout/splitLayoutTest",
+    "MainAbility/pages/swipeRefresher/swipeRefresherPageTest",
+    "MainAbility/pages/treeView/treeViewNodeParamContainer",
+    "MainAbility/pages/treeView/treeViewSymbol",
+    "MainAbility/pages/subHeader/subHeaderButton",
+    "MainAbility/pages/subHeader/subHeaderIconGroup",
+    "MainAbility/pages/subHeader/subHeaderSelect",
+    "MainAbility/pages/popup/PopupDirection"
+  ]
+}

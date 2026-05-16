@@ -1,0 +1,11 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "libnnrt_e2e_test.so": "file:./src/main/cpp/types/libnnrt_e2e_test"
+  }
+}

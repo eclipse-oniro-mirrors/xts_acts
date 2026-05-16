@@ -1,0 +1,26 @@
+{
+	"description":"Configuration for hjunit demo Tests",
+	"driver":{
+		"type":"OHJSUnitTest",
+		"test-timeout":"180000",
+		"shell-timeout":"180000",
+		"bundle-name":"com.example.accessiblecheckability",
+		"package-name":"com.example.accessiblecheckability_test"
+	},
+	"kits":[
+		{
+			"test-file-name":[
+				"ActsAccessibleCheckAbilityTest.hap"
+			],
+			"type":"AppInstallKit",
+			"cleanup-apps":true
+		},
+		{
+			"type":"ShellKit",
+			"run-command":[
+				"power-shell wakeup",
+				"power-shell setmode 602"
+			]
+		}
+	]
+}

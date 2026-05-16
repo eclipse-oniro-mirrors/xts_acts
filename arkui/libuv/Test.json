@@ -1,0 +1,39 @@
+{
+    "description": "Config for ActsLibuvTest test cases",
+    "driver": {
+        "module-name": "ActsLibuvTest",
+        "native-test-timeout": "120000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "100s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "pre-push" : [
+                "mkdir -p /data/local/tmp/test/fixtures"
+            ],
+            "post-push" : [
+                "chmod -R 777 /data/local/tmp/*"
+            ],
+            "push": [
+                "ActsLibuvTest->/data/local/tmp/ActsLibuvTest",
+                "libuvdata/libuvruntest->/data/local/tmp/libuvruntest",
+                "libuvdata/test/fixtures/empty_file->/data/local/tmp/test/fixtures/empty_file",
+                "libuvdata/test/fixtures/load_error.node->/data/local/tmp/test/fixtures/load_error.node",
+                "libuvdata/test/fixtures/lorem_ipsum.txt->/data/local/tmp/test/fixtures/lorem_ipsum.txt"
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "cd /data/local/tmp"
+            ],
+            "teardown-localcommand": [
+                "python testcases/libuvdata/genlocal.py"
+            ]
+        }
+    ]
+}

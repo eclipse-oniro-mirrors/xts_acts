@@ -1,0 +1,117 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ets",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "EntryAbilityd",
+        "srcEntry": "./ets/entryabilityd/EntryAbilityd.ets",
+        "description": "$string:EntryAbilityd_desc",
+        "icon": "$media:layered_image",
+        "label": "$string:EntryAbilityd_label",
+        "startWindowIcon": "$media:startIcon",
+        "startWindowBackground": "$color:start_window_background"
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "EntryBackupAbility",
+        "srcEntry": "./ets/entrybackupability/EntryBackupAbility.ets",
+        "type": "backup",
+        "exported": false,
+        "metadata": [
+          {
+            "name": "ohos.extension.backup",
+            "resource": "$profile:backup_config"
+          }
+        ]
+      },
+      {
+        "name": "EmbeddedUIExtAbility",
+        "icon": "$media:app_icon",
+        "description": "EmbeddedUIExtAbility",
+        "type": "embeddedUI",
+        "srcEntry": "./ets/EmbeddedUIExtAbility/EmbeddedUIExtAbility.ets"
+      },
+      {
+        "name": "EmbeddedUIExtAbility2",
+        "srcEntry": "./ets/embeddeduiextability2/EmbeddedUIExtAbility2.ets",
+        "description": "$string:EmbeddedUIExtAbility2_desc",
+        "label": "$string:EmbeddedUIExtAbility2_label",
+        "type": "embeddedUI"
+      },
+      {
+        "name": "EntryEmbeddedUIExtAbility3",
+        "srcEntry": "./ets/entryembeddeduiextability3/EntryEmbeddedUIExtAbility3.ets",
+        "description": "$string:EntryEmbeddedUIExtAbility3_desc",
+        "label": "$string:EntryEmbeddedUIExtAbility3_label",
+        "type": "embeddedUI",
+        "extensionProcessMode": "bundle"
+      },
+      {
+        "name": "EntryEmbeddedUIExtAbility4",
+        "srcEntry": "./ets/entryembeddeduiextability4/EntryEmbeddedUIExtAbility4.ets",
+        "description": "$string:EntryEmbeddedUIExtAbility4_desc",
+        "label": "$string:EntryEmbeddedUIExtAbility4_label",
+        "type": "embeddedUI",
+        "extensionProcessMode": "instance"
+      },
+      {
+        "name": "EntryEmbeddedUIExtAbility5",
+        "srcEntry": "./ets/entryembeddeduiextability5/EntryEmbeddedUIExtAbility5.ets",
+        "description": "$string:EntryEmbeddedUIExtAbility5_desc",
+        "label": "$string:EntryEmbeddedUIExtAbility5_label",
+        "type": "embeddedUI",
+        "extensionProcessMode": "type"
+      },
+      {
+        "name": "EntryEmbeddedUIExtAbility6",
+        "srcEntry": "./ets/entryembeddeduiextability6/EntryEmbeddedUIExtAbility6.ets",
+        "description": "$string:EntryEmbeddedUIExtAbility6_desc",
+        "label": "$string:EntryEmbeddedUIExtAbility6_label",
+        "type": "embeddedUI"
+      }
+    ]
+  }
+}

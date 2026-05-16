@@ -1,0 +1,119 @@
+'use static';
+/**
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from "../../../../hypium/index"
+import router from '@ohos.router';
+import { Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import CommonFunc from '../../../ets/MainAbility/common/Common';
+import { UIContext, Router } from '@ohos.arkui.UIContext';
+import { AppStorage } from '@ohos.arkui.stateManagement';
+import { UtilsTest } from '../Util.test';
+import inspector from '@ohos.arkui.inspector'
+
+
+export default function GetWindowWidthAndHeightTest() {
+  describe('GetWindowWidthAndHeightTest', () => {
+
+    beforeAll(() => {
+      console.info("themePageToggleTest beforeEach start");
+      await UtilsTest.msSleep(4000)
+      await UtilsTest.startAbility("com.arkui.ace.commonAttrsLayout.api13.static", "EntryAbility")
+      await UtilsTest.msSleep(4000)
+    });
+
+    beforeEach(async (): Promise<void> => {
+      console.info("themePageToggleTest beforeEach start");
+      let options: router.RouterOptions = {
+        url:'MainAbility/pages/window/GetWindowWidthAndHeight',
+      }
+      try {
+        const routerInstance = AppStorage.get<Router>("router") as Router
+        routerInstance.clear();
+        let pages:router.RouterState = routerInstance.getState();
+        console.info("get themePageToggleTest state pages:" + JSON.stringify(pages));
+        if (!("MainAbility/pages/window/GetWindowWidthAndHeight" == pages.name)) {
+          console.info("get themePageToggleTest pages.name:" + '');
+          // await router 有已知问题，先注释,使用 routerInstance.pushUrl(options);
+          // let result = await routerInstance.pushUrl(options);
+          routerInstance.pushUrl(options);
+          await CommonFunc.sleep(2000);
+          // console.info("push themePageToggleTest page result:" + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push themePageToggleTest page error:" + err);
+      }
+      console.info("themePageToggleTest beforeEach end");
+    });
+
+    
+    
+/**
+     * @tc.number   GetWindowWidthBreakpoint_static_0100
+     * @tc.name     GetWindowWidthBreakpoint_static_0100
+     * @tc.desc     GetWindowWidthBreakpoint_static_0100
+     * @tc.level    Level.LEVEL0
+     */
+it('GetWindowWidthBreakpoint_static_0100', Level.LEVEL0, async (done: () => void): Promise<void> => {
+
+      console.info('GetWindowWidthBreakpoint_static_0100 START');
+      let driver =  Driver.create()
+      await CommonFunc.sleep(1000);
+      let button1 = await driver.findComponent(ON.id('getWindowWidthBreakpointButton'));
+      await (button1?.click() as Promise<void>);
+      await CommonFunc.sleep(2000);
+      let button2 = await driver.findComponent(ON.id('getWindowWidth'));
+      await (button2?.click() as Promise<void>);
+      await CommonFunc.sleep(2000);
+      let strJson = inspector.getInspectorByKey('widthBpValue');
+      let obj = JSON.parseJsonElement(strJson);
+      let strJson1 = inspector.getInspectorByKey('windowWidthBreakpoint');
+      let obj1 = JSON.parseJsonElement(strJson1);
+      console.info("[GetWindowWidthBreakpoint_static_0100] component obj is: " + obj.getElement('$attrs').getString('content'));
+      console.info("[GetWindowWidthBreakpoint_static_0100] component obj1 is: " + obj1.getElement('$attrs').getString('content'));
+      expect(obj.getElement('$attrs').getString('content')).assertEqual(obj1.getElement('$attrs').getString('content'))
+      console.info('[GetWindowWidthBreakpoint_static_0100] END');
+      done();
+    });
+    
+    
+/**
+     * @tc.number   GetWindowHeightBreakpoint_static_0200
+     * @tc.name     GetWindowHeightBreakpoint_static_0200
+     * @tc.desc     GetWindowHeightBreakpoint_static_0200
+     * @tc.level    Level.LEVEL0
+     */
+it('GetWindowHeightBreakpoint_static_0200', Level.LEVEL0, async (done: () => void): Promise<void> => {
+
+      console.info('GetWindowHeightBreakpoint_static_0200 START');
+      let driver =  Driver.create()
+      await CommonFunc.sleep(1000);
+      let button1 = await driver.findComponent(ON.id('getWindowHeightBreakpointButton'));
+      await (button1?.click() as Promise<void>);
+      await CommonFunc.sleep(2000);
+      let button2 = await driver.findComponent(ON.id('getWindowWidth'));
+      await (button2?.click() as Promise<void>);
+      await CommonFunc.sleep(2000);
+      let strJson = inspector.getInspectorByKey('heightBpValue');
+      let obj = JSON.parseJsonElement(strJson);
+      let strJson1 = inspector.getInspectorByKey('windowHeightBreakpoint');
+      let obj1 = JSON.parseJsonElement(strJson);
+      console.info("[GetWindowHeightBreakpoint_static_0200] component obj is: " + JSON.stringify(obj));
+      console.info("[GetWindowHeightBreakpoint_static_0200] component obj1 is: " + JSON.stringify(obj1));
+      expect(obj.getElement('$attrs').getString('content')).assertEqual(obj1.getElement('$attrs').getString('content'));
+      console.info('[GetWindowHeightBreakpoint_static_0200] END');
+      done();
+    });
+  })
+}

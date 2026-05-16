@@ -1,0 +1,51 @@
+import { describe, beforeEach, afterEach, it, expect, TestType, Size, Level } from '@ohos/hypium';
+import { Driver, ON } from '@ohos.UiTest';
+import router from '@ohos.router';
+import CommonFunc from '../../MainAbility/common/Common';
+
+export default function FileButtonReceiveTest() {
+
+  describe('FileButtonReceiveTest', () => {
+    beforeEach(async (done: Function) => {
+      console.info('FileButtonReceiveTest beforeEach start');
+      try {
+        router.clear();
+        let pages = router.getState();
+        if (!("FileButtonReceive" == pages.name)) {
+          await router.push({
+            url: 'MainAbility/pages/downloadFileButton/FileButtonReceive',
+          });
+          await CommonFunc.sleep(2000);
+        }
+      } catch (err) {
+        console.error('push FileButtonReceive page error: ' + err);
+      }
+      console.info('FileButtonReceiveTest beforeEach end');
+      done();
+    });
+
+    afterEach(async () => {
+      console.info('FileButtonReceiveTest after each called');
+    })
+
+    /**
+     * @tc.name   FileButtonReceiveTest_0100
+     * @tc.number FileButtonReceiveTest
+     * @tc.desc   Test FileButtonReceiveTest
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('FileButtonReceiveTest_0100', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done: Function) => {
+      console.info('[FileButtonReceiveTest] START');
+      let driver = await Driver.create();
+      await driver.delayMs(2000);
+      let title = await driver.findComponent(ON.text('接收'));
+      expect(title !== null).assertTrue();
+      await driver.delayMs(1000);
+      console.info('[FileButtonReceiveTest] END');
+      done();
+    });
+  })
+
+}

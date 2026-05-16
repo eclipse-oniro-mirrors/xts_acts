@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "Divider_width",
+      "value": "10px"
+    },
+    {
+      "name": "Divider_startMargin",
+      "value": "5px"
+    },
+    {
+      "name": "Divider_endMargin",
+      "value": "5px"
+    },
+    {
+      "name": "textInput_Size_test",
+      "value": "4"
+    }
+  ]
+}

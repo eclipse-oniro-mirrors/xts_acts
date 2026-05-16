@@ -1,0 +1,104 @@
+{
+    "description": "Configuration for photoAccess Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "ohos.acts.multimedia.photoaccess",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "1200000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/Pictures",
+                "rm -rf /storage/media/100/local/files/Videos",
+                "rm -rf /storage/media/100/local/files/Camera",
+                "rm -rf /storage/media/100/local/files/Audios",
+                "rm -rf /storage/media/100/local/files/Docs/Documents/*",
+                "rm -rf /storage/media/100/local/files/Docs/Documents/.*",
+                "rm -rf /storage/media/100/local/files/entry_test/*",
+                "sleep 5",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "kill -9 `pidof com.ohos.medialibrary.medialibrarydata`"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsPhotoAccessNDKMainTest.hap",
+                "ActsPhotoAccessNDKTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /storage/media/100/local/files/Pictures",
+                "mkdir -p /storage/media/100/local/files/Videos",
+                "mkdir -p /storage/media/100/local/files/Camera",
+                "mkdir -p /storage/media/100/local/files/Audios",
+                "mkdir /storage/media/100/local/files/Pictures/Screenshots",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/files",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos",
+                "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test",
+                "chmod -R 777 /storage/media/100/local/files/*",
+                "chmod -R 777 /data/service/el2/100/hmdfs/account/files/*"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/medialibrary/01.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/files/",
+                "./resource/medialibrary/01.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/files/",
+                "./resource/medialibrary/test_mov_1.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos/",
+                "./resource/medialibrary/test_mov_1.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos/",
+                "./resource/medialibrary/error_mp4.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/files/",
+                "./resource/medialibrary/error_jpg.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/files/",
+                "./resource/medialibrary/01.gif ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/files/",
+                "./resource/medialibrary/01.png ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/files/",
+                "./resource/medialibrary/01.mpeg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/files/",
+                "./resource/medialibrary/test_hdr_1.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos/",
+                "./resource/medialibrary/stm_daguangquan.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos/",
+                "./resource/medialibrary/stm_gaoxiangsu.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos/",
+                "./resource/medialibrary/stm_quanjing.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos/",
+                "./resource/medialibrary/stm_renxiang.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos/",
+                "./resource/medialibrary/stm_yejing.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos/",
+                "./resource/medialibrary/stm_zipai.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos/",
+                "./resource/medialibrary/stm_RAW.dng ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess/haps/entry_test/photos/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff",
+                "hilog -Q domainoff",
+                "hilog -b D -D 0xD002B70"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600",
+                "hilog -Q pidon",
+                "hilog -Q domainon",
+                "rm -rf /storage/media/100/local/files/Pictures",
+                "rm -rf /storage/media/100/local/files/Videos",
+                "rm -rf /storage/media/100/local/files/Camera",
+                "rm -rf /storage/media/100/local/files/Audios",
+                "rm -rf /storage/media/100/local/files/Docs/Documents/*",
+                "rm -rf /storage/media/100/local/files/Docs/Documents/.*",
+                "rm -rf /storage/media/100/local/files/entry_test/*",
+                "sleep 5",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "kill -9 `pidof com.ohos.medialibrary.medialibrarydata`"
+            ]
+        }
+    ]
+}

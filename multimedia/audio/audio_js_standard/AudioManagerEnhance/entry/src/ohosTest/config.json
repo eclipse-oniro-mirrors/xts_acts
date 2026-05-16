@@ -1,0 +1,82 @@
+{
+  "app": {
+    "bundleName": "com.example.xts_audiomanager",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.xts_audiomanager",
+    "name": ".entry_test",
+    "mainAbility": ".TestAbility",
+    "deviceType": [],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry_test",
+      "moduleType": "feature",
+      "installationFree": false
+    },
+    "reqPermissions": [
+        {
+            "name": "ohos.permission.MICROPHONE",
+            "reason": "use ohos.permission.MICROPHONE"
+        },
+        {
+            "name": "ohos.permission.ACCESS_NOTIFICATION_POLICY",
+            "reason": "use ohos.permission.ACCESS_NOTIFICATION_POLICY"
+        },
+        {
+            "name": "ohos.permission.MODIFY_AUDIO_SETTINGS",
+            "reason": "use ohos.permission.MODIFY_AUDIO_SETTINGS"
+        },
+        {
+            "name": "ohos.permission.MANAGE_AUDIO_CONFIG",
+            "reason": "use ohos.permission.MANAGE_AUDIO_CONFIG"
+        }
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "visible": true,
+        "srcPath": "TestAbility",
+        "name": ".TestAbility",
+        "srcLanguage": "ets",
+        "icon": "$media:icon",
+        "description": "$string:TestAbility_desc",
+        "formsEnabled": false,
+        "label": "$string:TestAbility_label",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "mode": {
+          "syntax": "ets",
+          "type": "pageAbility"
+        },
+        "pages": [
+          "pages/index"
+        ],
+        "name": ".TestAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

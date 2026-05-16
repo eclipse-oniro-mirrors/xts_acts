@@ -1,0 +1,10 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Navigation/EnableModeChangeAnimation",
+        "MainAbility/pages/Navigation/OnResultPage",
+        "MainAbility/pages/NavDestination/CustomTransitionPage",
+        "MainAbility/pages/NavDestination/HideBackButtonPage",
+		"MainAbility/pages/NavDestination/SystemTransition2"
+    ]
+}

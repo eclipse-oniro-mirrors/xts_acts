@@ -1,0 +1,6 @@
+{
+  "src": [
+    "pages/webViewJavaScriptProxyAndOnPageVisible",
+    "pages/webOnHttpErrorReceive"
+  ]
+}

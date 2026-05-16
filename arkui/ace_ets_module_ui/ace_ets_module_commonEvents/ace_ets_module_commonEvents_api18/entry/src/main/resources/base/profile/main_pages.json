@@ -1,0 +1,25 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/onVisiable/onVisiable",
+        "MainAbility/pages/PanGesture/panGestureOnOff",
+        "MainAbility/pages/PanGesture/panGestureDistance",
+        "MainAbility/pages/InteractionEventBindingInfo/InteractionEventBindingInfo",
+        "MainAbility/pages/Drag/PreDrag",
+        "MainAbility/pages/DragInteractionOptions/enableEdgeAutoScroll_false",
+        "MainAbility/pages/DragInteractionOptions/enableEdgeAutoScroll_true",
+        "MainAbility/pages/DragInteractionOptions/enableEdgeAutoScroll",
+        "MainAbility/pages/nextFocus/nextFocus",
+        "MainAbility/pages/nextFocus2/nextFocus2",
+        "MainAbility/pages/Drag/notifyDragStartRequest",
+        "MainAbility/pages/ListeningEvent/UIObserverEvent",
+        "MainAbility/pages/GestureRecognizer/LongPressRecognizer",
+        "MainAbility/pages/GestureRecognizer/PanRecognizer",
+        "MainAbility/pages/GestureRecognizer/PinchRecognizer",
+        "MainAbility/pages/GestureRecognizer/RotationRecognizer",
+        "MainAbility/pages/GestureRecognizer/SwipeRecognizer",
+        "MainAbility/pages/GestureRecognizer/TapRecognizer",
+        "MainAbility/pages/onVisiable/onVisibleAreaApproximateChange",
+        "MainAbility/pages/Focus/requestFocus"
+    ]
+}

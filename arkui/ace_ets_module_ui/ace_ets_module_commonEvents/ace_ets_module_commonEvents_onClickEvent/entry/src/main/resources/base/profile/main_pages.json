@@ -1,0 +1,13 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/OnClick/OnClick1",
+        "MainAbility/pages/OnClick/OnClick2",
+        "MainAbility/pages/OnClick/OnClick3",
+        "MainAbility/pages/EventTarget_id/EventTarget_id",
+        "MainAbility/pages/InteractionEventBindingInfo/InteractionEventBindingInfo",
+        "MainAbility/pages/Color/colorMetrics",
+        "MainAbility/pages/Background/BackgroundOptions",
+        "MainAbility/pages/NodeRenderState/nodeRenderState"
+    ]
+}

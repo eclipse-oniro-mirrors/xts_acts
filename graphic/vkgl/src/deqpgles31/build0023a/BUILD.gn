@@ -1,0 +1,81 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+}
+
+ohos_static_library("libdeqpgles31func0023a") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles31BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles31
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+  testonly = true
+}
+
+ohos_moduletest_suite("ActsDeqpgles31Suite0023aTest") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles310023TestSuite.cpp",
+    "../functional/Deqpgles31resource_list_vertex_tess_fragmentTestCase.cpp",
+    "../functional/Deqpgles31resource_list_vertex_tess_geo_fragmentTestCase.cpp",
+    "../functional/Deqpgles31separable_fragment_arrayTestCase.cpp",
+    "../functional/Deqpgles31separable_fragment_structTestCase.cpp",
+    "../functional/Deqpgles31separable_geometry_arrayTestCase.cpp",
+    "../functional/Deqpgles31separable_geometry_basic_typeTestCase.cpp",
+    "../functional/Deqpgles31separable_geometry_structTestCase.cpp",
+    "../functional/Deqpgles31separable_tess_ctrl_basic_typeTestCase.cpp",
+    "../functional/Deqpgles31separable_tess_ctrl_patch_varTestCase.cpp",
+    "../functional/Deqpgles31separable_tess_ctrl_patch_var_arrayTestCase.cpp",
+    "../functional/Deqpgles31separable_tess_ctrl_patch_var_structTestCase.cpp",
+    "../functional/Deqpgles31separable_tess_eval_arrayTestCase.cpp",
+    "../functional/Deqpgles31separable_tess_eval_basic_typeTestCase.cpp",
+    "../functional/Deqpgles31separable_tess_eval_patch_varTestCase.cpp",
+    "../functional/Deqpgles31separable_tess_eval_patch_var_arrayTestCase.cpp",
+    "../functional/Deqpgles31separable_tess_eval_patch_var_structTestCase.cpp",
+    "../functional/Deqpgles31separable_tess_eval_structTestCase.cpp",
+    "../functional/Deqpgles31separable_vertex_arrayTestCase.cpp",
+    "../functional/Deqpgles31separable_vertex_basic_typeTestCase.cpp",
+    "../functional/Deqpgles31separable_vertex_structTestCase.cpp",
+    "../functional/Deqpgles31type_separable_geometryTestCase.cpp",
+    "../functional/Deqpgles31type_separable_tess_ctrlTestCase.cpp",
+    "../functional/Deqpgles31vertex_fragment_arrayTestCase.cpp",
+    "../functional/Deqpgles31vertex_fragment_basic_typeTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles31func0023a" ]
+
+  cflags = [ "-Wno-error" ]
+}

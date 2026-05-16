@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/CustomSelect/CustomSelect",
+        "MainAbility/pages/ModifierSelect/ModifierSelect"
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/ColumnSplitRowSplit/ColumnSplit",
+        "MainAbility/pages/ColumnSplitRowSplit/RowSplit",
+        "MainAbility/pages/ColumnSplitRowSplit/columnSplitPage"
+    ]
+}

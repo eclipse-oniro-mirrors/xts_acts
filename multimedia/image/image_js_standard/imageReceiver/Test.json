@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1200000",
+        "shell-timeout": "120000",
+        "testcase-timeout": 60000,
+        "bundle-name": "ohos.acts.multimedia.image.Receiver",
+        "package-name": "ohos.acts.multimedia.image.Receiver"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageReceiverJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,93 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//foundation/arkui/ace_engine/ace_config.gni")
+group("ActsAceEtsModuleDialogTest") {
+  testonly = true
+  if (ace_engine_feature_wearable) {
+    deps = [
+      "ace_ets_module_menu:ActsAceEtsModuleMenuTest",
+      "ace_ets_module_dialog_api11:ActsAceEtsModuleDialogApi11Test",
+      "ace_ets_module_dialog_api12:ActsAceEtsModuleDialogApi12Test",
+      "ace_ets_module_dialog_api15:ActsAceEtsModuleDialogApi15Test",
+      "ace_ets_module_dialog_api16:ActsAceEtsModuleDialogApi16Test",
+      "ace_ets_module_dialog_api18:ActsAceEtsModuleDialogApi18Test",
+      "ace_ets_module_dialog_api19:ActsAceEtsModuleDialogApi19Test",
+      "ace_ets_module_dialog_api20:ActsAceEtsModuleDialogApi20Test",
+      "ace_ets_module_dialog_button:ActsAceEtsModuleDialogButtonTest",
+      "ace_ets_module_dialog_toggle:ActsAceEtsModuleDialogToggleTest",
+      "ace_ets_module_dialog_radio:ActsAceEtsModuleDialogRadioTest",
+      "ace_ets_module_dialog_checkbox:ActsAceEtsModuleDialogCheckBoxTest",
+      "ace_ets_module_dialog_ActionSheet:ActsAceEtsModuleSheetTest",
+      "ace_ets_module_dialog_AlertDalog:ActsAceEtsModuleAlertDialogTest",
+      "ace_ets_module_dialog_Popup:ActsAceEtsModulePopupTest",
+      "ace_ets_module_dialog_Prompt:ActsAceEtsModulePromptTest",
+      "ace_ets_module_dialog_Rating:ActsAceEtsModuleRatingTest",
+      "ace_ets_module_dialog_Select:ActsAceEtsModuleSelectTest",
+      "ace_ets_module_dialog_Slider:ActsAceEtsModuleSliderTest",
+      "ace_ets_module_dialog_api11_static:ActsAceEtsModuleDialogApi11StaticTest",
+      "ace_ets_module_dialog_api12_static:ActsAceEtsModuleDialogApi12StaticTest",
+      "ace_ets_module_dialog_api15_static:ActsAceEtsModuleDialogApi15StaticTest",
+      #"ace_ets_module_dialog_api16_static:ActsAceEtsModuleDialogApi16StaticTest",
+      #"ace_ets_module_dialog_api18_static:ActsAceEtsModuleDialogApi18StaticTest",
+      #"ace_ets_module_dialog_api19_static:ActsAceEtsModuleDialogApi19StaticTest",
+    ]
+  } else {
+    deps = [
+      "ace_ets_module_menu:ActsAceEtsModuleMenuTest",
+      "ace_ets_module_menu_nowear:ActsAceEtsModuleMenuNoWearTest",
+      "ace_ets_module_dialog_api11:ActsAceEtsModuleDialogApi11Test",
+      "ace_ets_module_dialog_api12:ActsAceEtsModuleDialogApi12Test",
+      "ace_ets_module_dialog_api15:ActsAceEtsModuleDialogApi15Test",
+      "ace_ets_module_dialog_api16:ActsAceEtsModuleDialogApi16Test",
+      "ace_ets_module_dialog_api18:ActsAceEtsModuleDialogApi18Test",
+      "ace_ets_module_dialog_api19:ActsAceEtsModuleDialogApi19Test",
+      "ace_ets_module_dialog_api20:ActsAceEtsModuleDialogApi20Test",
+      "ace_ets_module_dialog_nowear_api11:ActsAceEtsModuleDialogNoWearApi11Test",
+      "ace_ets_module_dialog_nowear_api12:ActsAceEtsModuleDialogNoWearApi12Test",
+      "ace_ets_module_dialog_nowear_api15:ActsAceEtsModuleDialogNoWearApi15Test",
+      "ace_ets_module_dialog_nowear_api18:ActsAceEtsModuleDialogNoWearApi18Test",
+      "ace_ets_module_dialog_nowear_api19:ActsAceEtsModuleDialogNoWearApi19Test",
+      "ace_ets_module_dialog_nowear_api20:ActsAceEtsModuleDialogNoWearApi20Test",
+      "ace_ets_module_dialog_button:ActsAceEtsModuleDialogButtonTest",
+      "ace_ets_module_dialog_button_static:ActsAceEtsModuleDialogButtonStaticTest",
+      "ace_ets_module_dialog_toggle:ActsAceEtsModuleDialogToggleTest",
+      "ace_ets_module_dialog_radio:ActsAceEtsModuleDialogRadioTest",
+      "ace_ets_module_dialog_checkbox:ActsAceEtsModuleDialogCheckBoxTest",
+      "ace_ets_module_dialog_ActionSheet:ActsAceEtsModuleSheetTest",
+      "ace_ets_module_dialog_AlertDalog:ActsAceEtsModuleAlertDialogTest",
+      "ace_ets_module_dialog_NoWear:ActsAceEtsModuleNoWearTest",
+      "ace_ets_module_dialog_Popup:ActsAceEtsModulePopupTest",
+      "ace_ets_module_dialog_Popup_static:ActsAceEtsModuleDialogPopupStaticTest",
+      "ace_ets_module_menu_static:ActsAceEtsModuleMenuStaticTest",
+      "ace_ets_module_dialog_Prompt:ActsAceEtsModulePromptTest",
+      "ace_ets_module_dialog_Rating:ActsAceEtsModuleRatingTest",
+      "ace_ets_module_dialog_Select:ActsAceEtsModuleSelectTest",
+      "ace_ets_module_dialog_Slider:ActsAceEtsModuleSliderTest",
+      "ace_ets_module_dialog_nowear_api11_static:ActsAceEtsModuleDialogNoWearApi11StaticTest",
+      #"ace_ets_module_dialog_nowear_api12_static:ActsAceEtsModuleDialogNoWearApi12StaticTest",
+      "ace_ets_module_dialog_nowear_api15_static:ActsAceEtsModuleDialogNoWearApi15StaticTest",
+      "ace_ets_module_dialog_nowear_api18_static:ActsAceEtsModuleDialogNoWearApi18StaticTest",
+      #"ace_ets_module_dialog_nowear_api19_static:ActsAceEtsModuleDialogNoWearApi19StaticTest",
+      "ace_ets_module_dialog_nowear_api20_static:ActsAceEtsModuleDialogNoWearApi20StaticTest",
+      "ace_ets_module_dialog_api11_static:ActsAceEtsModuleDialogApi11StaticTest",
+      "ace_ets_module_dialog_api12_static:ActsAceEtsModuleDialogApi12StaticTest",
+      "ace_ets_module_dialog_api15_static:ActsAceEtsModuleDialogApi15StaticTest",
+      #"ace_ets_module_dialog_api16_static:ActsAceEtsModuleDialogApi16StaticTest",
+      #"ace_ets_module_dialog_api18_static:ActsAceEtsModuleDialogApi18StaticTest",
+      #"ace_ets_module_dialog_api19_static:ActsAceEtsModuleDialogApi19StaticTest",
+      "ace_ets_module_dialog_Slider_static:ActsAceEtsModuleSliderStaticTest"
+
+    ]
+  }
+}

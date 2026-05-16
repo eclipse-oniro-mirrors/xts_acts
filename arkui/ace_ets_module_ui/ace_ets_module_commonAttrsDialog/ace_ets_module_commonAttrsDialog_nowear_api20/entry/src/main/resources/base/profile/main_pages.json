@@ -1,0 +1,11 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/popup/avoidAroundTarget",
+    "MainAbility/pages/popup/coverTarget",
+    "MainAbility/pages/customPopup/avoidAroundTarget",
+    "MainAbility/pages/customPopup/coverTarget",
+    "MainAbility/pages/promptAction/avoidOpenPopup",
+    "MainAbility/pages/promptAction/coverOpenPopup"
+  ]
+}

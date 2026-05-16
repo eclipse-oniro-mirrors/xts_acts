@@ -1,0 +1,17 @@
+{
+  "src": [
+    "testability/pages/geolocationPermissionsErrorCode",
+    "testability/pages/jsMessageExtErrorCode",
+    "testability/pages/webCookieManagerErrorCode",
+    "testability/pages/webMessageExtErrorCode",
+    "testability/pages/webMessagePortErrorCode",
+    "testability/pages/webStorageErrorCode",
+    "testability/pages/webViewControllerErrorCode",
+    "testability/pages/webErrorCode",
+    "testability/pages/WebViewControllerPostUrlErrorCode",
+    "testability/pages/webDownloadErrorCode",
+    "testability/pages/webViewControllerErrorCodeSecond",
+    "testability/pages/webResourceHandlerTest",
+    "testability/pages/webHttpBodyStreamTest"
+  ]
+}

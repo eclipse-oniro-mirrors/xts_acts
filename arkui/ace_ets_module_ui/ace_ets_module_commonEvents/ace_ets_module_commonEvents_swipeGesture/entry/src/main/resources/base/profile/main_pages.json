@@ -1,0 +1,11 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/SwipeGesture/SwipeGesture1",
+        "MainAbility/pages/SwipeGesture/SwipeGesture2",
+        "MainAbility/pages/SwipeGesture/SwipeGesture3",
+        "MainAbility/pages/SwipeGesture/SwipeGestureExample01",
+        "MainAbility/pages/SwipeGesture/SwipeGestureExample03",
+        "MainAbility/pages/SwipeGesture/SwipeGestureExample02"
+    ]
+}

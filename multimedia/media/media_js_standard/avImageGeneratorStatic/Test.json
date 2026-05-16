@@ -1,0 +1,40 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "ohos.acts.multimedia.avimagegenerator.static",
+        "module-name": "entry",
+        "shell-timeout": "600000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsAvImageGeneratorStaticTest.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    },
+    {
+        "type": "ShellKit",
+        "run-command": [
+            "remount",
+            "mkdir /data/test",
+            "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.avimagegenerator.static/haps/entry/files",
+            "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.avimagegenerator.static/haps/entry"
+        ]
+    },
+    {
+        "type": "PushKit",
+        "push": [
+            "./resource/audio/H264_AAC.mp4 -> /data/app/el2/100/base/ohos.acts.multimedia.avimagegenerator.static/haps/entry/files/"
+        ]
+    },{
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "uinput -T -m 300 2700 280 200",
+            "power-shell setmode 602"
+        ]
+    }]
+}

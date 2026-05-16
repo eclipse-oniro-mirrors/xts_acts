@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.arkui.ace.layout.nowear.api12",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [{
+        "test-file-name": [
+            "ActsAceEtsModuleLayoutNowearApi12Test.hap",
+            "ActsAceEtsModuleLayoutNowearApi12TestMain.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+    },
+    {
+        "type": "ShellKit",
+        "run-command": [
+            "power-shell wakeup",
+            "power-shell setmode 602",
+            "power-shell timeout -o 864000000"
+        ]
+    }
+    ]
+}

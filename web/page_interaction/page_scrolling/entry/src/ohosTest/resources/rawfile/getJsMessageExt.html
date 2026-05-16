@@ -1,0 +1,32 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en-gb">
+<body>
+<h1>run JavaScript Ext demo</h1>
+</body>
+<script type="text/javascript">
+function getString() {
+    return "hello, world";
+}
+function getNumber() {
+    return 1;
+}
+function getBoolean() {
+    return true;
+}
+function getBooleanFalse() {
+    return false;
+}
+function getArrayBuffer() {
+    const buffer = new ArrayBuffer(8);
+    const view = new Int32Array(buffer);
+    return view;
+}
+
+function getArray() {
+    const fruits = [];
+    fruits.push("banana", "apple", "peach");
+    return fruits;
+}
+</script>
+</html>

@@ -1,0 +1,82 @@
+{
+  "description": "Config for MindSpore test cases",
+  "driver": {
+    "module-name": "ActsMindSporeTest",
+    "native-test-timeout": "120000",
+    "native-test-device-path": "/data/local/tmp",
+    "runtime-hint": "1s",
+    "type": "CppTest"
+  },
+  "kits": [
+    {
+        "type": "ShellKit",
+        "run-command": [
+            "remount",
+            "mkdir /data/test"
+        ]
+    },
+    {
+        "type": "PushKit",
+        "push": [
+            "ActsMindSporeTest->/data/local/tmp/ActsMindSporeTest",
+            "resource/ai/mindspore/aiy_vision_classifier_plants_V1_3/aiy_vision_classifier_plants_V1_3.ms -> /data/test",
+            "resource/ai/mindspore/aiy_vision_classifier_plants_V1_3/aiy_vision_classifier_plants_V1_3_offline_model.ms -> /data/test",
+            "resource/ai/mindspore/aiy_vision_classifier_plants_V1_3/aiy_vision_classifier_plants_V1_3.input -> /data/test",
+            "resource/ai/mindspore/aiy_vision_classifier_plants_V1_3/aiy_vision_classifier_plants_V1_3_0.input -> /data/test",
+            "resource/ai/mindspore/aiy_vision_classifier_plants_V1_3/aiy_vision_classifier_plants_V1_30.output -> /data/test",
+            "resource/ai/mindspore/ml_face_is_face/ml_face_isface.ms -> /data/test",
+            "resource/ai/mindspore/ml_face_is_face/ml_face_isface_r13.ms -> /data/test",
+            "resource/ai/mindspore/ml_face_is_face/ml_face_isface_offline_model.ms -> /data/test",
+            "resource/ai/mindspore/ml_face_is_face/ml_face_isface.input -> /data/test",
+            "resource/ai/mindspore/ml_face_is_face/ml_face_isface_0.input -> /data/test",
+            "resource/ai/mindspore/ml_face_is_face/ml_face_isface0.output -> /data/test",
+            "resource/ai/mindspore/ml_Hand_deploy/ml_Hand_deploy.ms -> /data/test",
+            "resource/ai/mindspore/ml_Hand_deploy/ml_Hand_deploy_0.input -> /data/test",
+            "resource/ai/mindspore/ml_Hand_deploy/ml_Hand_deploy0.output -> /data/test",
+            "resource/ai/mindspore/ml_ocr_cn/ml_ocr_cn.ms -> /data/test",
+            "resource/ai/mindspore/ml_ocr_cn/ml_ocr_cn_offline_model.ms -> /data/test",
+            "resource/ai/mindspore/ml_ocr_cn/ml_ocr_cn_0.input -> /data/test",
+            "resource/ai/mindspore/ml_ocr_cn/ml_ocr_cn0.output -> /data/test",
+            "resource/ai/mindspore/ml_headpose_pb2tflite/ml_headpose_pb2tflite.ms -> /data/test",
+            "resource/ai/mindspore/ml_headpose_pb2tflite/ml_headpose_pb2tflite_offline_model.ms -> /data/test",
+            "resource/ai/mindspore/ml_headpose_pb2tflite/ml_headpose_pb2tflite_0.input -> /data/test",
+            "resource/ai/mindspore/ml_headpose_pb2tflite/ml_headpose_pb2tflite_1.input -> /data/test",
+            "resource/ai/mindspore/ml_headpose_pb2tflite/ml_headpose_pb2tflite_2.input -> /data/test",
+            "resource/ai/mindspore/ml_headpose_pb2tflite/ml_headpose_pb2tflite0.output -> /data/test",
+            "resource/ai/mindspore/Kirin_model/tinynet.om.ms -> /data/test",
+            "resource/ai/mindspore/lenet_train/lenet_train.ms -> /data/test",
+            "resource/ai/mindspore/lenet_train/lenet_train_0.input -> /data/test",
+            "resource/ai/mindspore/lenet_train/lenet_train_1.input -> /data/test",
+            "resource/ai/mindspore/lenet_train/lenet_train_infer_0.input -> /data/test",
+            "resource/ai/mindspore/lenet_train/lenet_train_infer_1.input -> /data/test",
+            "resource/ai/mindspore/lenet_train/lenet_train_infer0.output -> /data/test",
+            "resource/ai/mindspore/lenet_train/lenet_train_train_0.input -> /data/test",
+            "resource/ai/mindspore/lenet_train/lenet_train_train_1.input -> /data/test",
+            "resource/ai/mindspore/xiaoyi/xiaoyi_train_codegen.ms -> /data/test",
+            "resource/ai/mindspore/test_model.om/test_model_0.input -> /data/test",
+            "resource/ai/mindspore/test_model.om/test_model0.output -> /data/test",
+            "resource/ai/mindspore/test_model.om/test_model.om.ms -> /data/test",
+            "resource/ai/mindspore/test_model.om/test_model_param -> /data/test",
+            "resource/ai/mindspore/ml_face_isface_quant/ml_face_isface.om.ms -> /data/test",
+            "resource/ai/mindspore/ml_face_isface_quant/ml_face_isface_quant_0.input -> /data/test",
+            "resource/ai/mindspore/ml_face_isface_quant/ml_face_isface_quant0.output -> /data/test",
+            "resource/ai/mindspore/ml_face_isface_quant/ml_face_isface_quant.ms -> /data/test",
+            "resource/ai/mindspore/ml_face_is_face/invalid_content.config -> /data/test",
+            "resource/ai/mindspore/ml_face_is_face/ml_face_isface.config -> /data/test"
+        ]
+    },
+    {
+        "type": "ShellKit",
+	    "run-command": [
+            "mount -o rw,remount /",
+            "[ -d '/system/lib' ] && cp /system/lib/ndk/libmindspore_lite_ndk.so /system/lib/platformsdk/",
+            "[ -d '/system/lib64' ] && cp /system/lib64/ndk/libmindspore_lite_ndk.so /system/lib64/platformsdk/"
+	    ],
+        "teardown-command": [
+            "[ -d '/system/lib' ] && cp /system/lib64/platformsdk/libmindspore_lite_ndk.so",
+            "[ -d '/system/lib64' ] && cp /system/lib64/platformsdk/libmindspore_lite_ndk.so",
+            "mount -o ro,remount /"
+        ]
+    }
+  ]
+}

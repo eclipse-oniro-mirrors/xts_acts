@@ -1,0 +1,10 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/swiper/swiperFillPolicy",
+        "MainAbility/pages/swiper/SwiperParamExample",
+        "MainAbility/pages/tabs/TabsExample1",
+        "MainAbility/pages/tabs/TabsExample2",
+        "MainAbility/pages/swiper/SwiperFakeDragTest"
+    ]
+}

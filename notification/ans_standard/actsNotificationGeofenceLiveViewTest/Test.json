@@ -1,0 +1,24 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.example.actsgeofenceliveview",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNotificationGeofenceLiveViewTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "power-shell timeout -o 864000000"
+            ]
+        }
+    ]
+}

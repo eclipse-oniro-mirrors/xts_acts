@@ -1,0 +1,134 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+#ifndef NNRT_UTILS_TEST_H
+#define NNRT_UTILS_TEST_H
+
+#include <cstdio>
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <map>
+#include <stdexcept>
+#include <string>
+#include <vector>
+#include "napi/native_api.h"
+#include <neural_network_runtime/neural_network_runtime.h>
+
+void OHPrintf(const char* fmt, ...);
+
+int SafeMemcpy(void* dst, size_t dstSize, const void* src, size_t len);
+
+struct AssertLocation {
+    const char* file;
+    int line;
+};
+
+template <typename T1, typename T2>
+inline void AssertNeImpl(const T1& v1, const T2& v2, const char* expr1, const char* expr2, const AssertLocation& loc)
+{
+    if (v1 == v2) {
+        throw std::runtime_error(std::string("Assertion failed: ") + expr1 + " != " + expr2 + ", file: " + loc.file +
+                                 ", line: " + std::to_string(loc.line));
+    }
+}
+
+template <typename T1, typename T2>
+inline void AssertEqImpl(const T1& v1, const T2& v2, const char* exp1, const char* exp2, const AssertLocation& loc)
+{
+    if (v1 != v2) {
+        throw std::runtime_error(std::string("Assertion failed: ") + exp1 + " == " + exp2 + ", file: " + loc.file +
+                                 ", line: " + std::to_string(loc.line));
+    }
+}
+
+#define ASSERT_NE(v1, v2) /* NOLINT(G.PRE.02-CPP) */ \
+    AssertNeImpl((v1), (v2), #v1, #v2, AssertLocation({ __FILE__, __LINE__ }))
+
+#define ASSERT_EQ(v1, v2) /* NOLINT(G.PRE.02-CPP) */ \
+    AssertEqImpl((v1), (v2), #v1, #v2, AssertLocation({ __FILE__, __LINE__ }))
+
+
+namespace OHOS {
+namespace NeuralNetworkRuntime {
+namespace Test {
+struct OHNNOperandTest {
+    OH_NN_DataType dataType;
+    OH_NN_TensorType type;
+    std::vector<int32_t> shape;
+    void *data{nullptr};
+    int32_t length{0};
+    const OH_NN_QuantParam *quantParam = nullptr;
+};
+
+struct OHNNGraphArgs {
+    OH_NN_OperationType operationType;
+    std::vector<OHNNOperandTest> operands;
+    std::vector<uint32_t> paramIndices;
+    std::vector<uint32_t> inputIndices;
+    std::vector<uint32_t> outputIndices;
+    bool build = true;
+    bool specifyIO = true;
+    bool addOperation = true;
+};
+
+struct OHNNGraphArgsMulti {
+    std::vector<OH_NN_OperationType> operationTypes;
+    std::vector<std::vector<OHNNOperandTest>> operands;
+    std::vector<std::vector<uint32_t>> paramIndices;
+    std::vector<std::vector<uint32_t>> inputIndices;
+    std::vector<std::vector<uint32_t>> outputIndices;
+    std::vector<uint32_t> graphInput;
+    std::vector<uint32_t> graphOutput;
+};
+
+struct OHNNCompileParam {
+    int32_t deviceId = 0;
+    std::string cacheDir;
+    uint32_t cacheVersion = 0;
+    OH_NN_PerformanceMode performanceMode = OH_NN_PERFORMANCE_NONE;
+    OH_NN_Priority priority = OH_NN_PRIORITY_NONE;
+    bool enableFp16 = false;
+};
+
+int BuildSingleOpGraph(OH_NNModel *model, const OHNNGraphArgs &graphArgs);
+
+int ExecutorWithMemory(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, OH_NN_Memory *OHNNMemory[],
+    float* expect);
+
+void Free(OH_NNModel *model = nullptr, OH_NNCompilation *compilation = nullptr, OH_NNExecutor *executor = nullptr);
+
+int CompileGraphMock(OH_NNCompilation *compilation, const OHNNCompileParam &compileParam);
+
+int ExecuteGraphMock(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, float* expect);
+
+OH_NN_ReturnCode SetDevice(OH_NNCompilation *compilation);
+int BuildMultiOpGraph(OH_NNModel *model, const OHNNGraphArgsMulti &graphArgs);
+OH_NN_UInt32Array GetUInt32Array(std::vector<uint32_t> indices);
+
+bool CheckOutput(const float* output, const float* expect);
+
+enum class PathType { FILE, DIR, UNKNOWN, NOT_FOUND };
+PathType CheckPath(const std::string &path);
+bool DeleteFile(const std::string &path);
+void CopyFile(const std::string &srcPath, const std::string &dstPath);
+std::string ConcatPath(const std::string &str1, const std::string &str2);
+void DeleteFolder(const std::string &path);
+bool CreateFolder(const std::string &path);
+
+} // namespace Test
+} // namespace NeuralNetworkRuntime
+} // namespace OHOS
+
+#endif // NNRT_UTILS_TEST_H

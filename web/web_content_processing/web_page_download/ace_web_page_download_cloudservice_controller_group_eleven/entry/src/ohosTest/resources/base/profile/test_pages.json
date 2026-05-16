@@ -1,0 +1,30 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/GetCurrentSpeed1",
+    "testability/pages/GetCurrentSpeed2",
+    "testability/pages/GetCurrentSpeed3",
+    "testability/pages/GetCurrentSpeed4",
+    "testability/pages/GetPercentComplete1",
+    "testability/pages/GetPercentComplete2",
+    "testability/pages/GetPercentComplete3",
+    "testability/pages/GetPercentComplete4",
+    "testability/pages/GetPercentComplete5",
+    "testability/pages/GetPercentComplete6",
+    "testability/pages/GetPercentComplete7",
+    "testability/pages/GetPercentComplete8",
+    "testability/pages/GetPercentComplete10",
+    "testability/pages/GetPercentComplete11",
+    "testability/pages/SetConnectionTimeOut1",
+    "testability/pages/SetConnectionTimeOut2",
+    "testability/pages/SetConnectionTimeOut3",
+    "testability/pages/SetConnectionTimeOut4",
+    "testability/pages/SetDownloadDelegate1",
+    "testability/pages/SetDownloadDelegate2",
+    "testability/pages/SetDownloadDelegate3",
+    "testability/pages/SetDownloadDelegate4",
+    "testability/pages/SetDownloadDelegate5",
+    "testability/pages/WebDownloadOperation",
+    "testability/pages/SetDownloadDelegate6"
+  ]
+}

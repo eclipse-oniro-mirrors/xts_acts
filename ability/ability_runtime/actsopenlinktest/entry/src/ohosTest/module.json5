@@ -1,0 +1,672 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+{
+  "module": {
+    "name": "entry_test",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:test_pages",
+    "abilities": [
+      {
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:TestAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SecondAbility",
+        "srcEntry": "./ets/test/secondability/SecondAbility.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "example",
+                "host": "www.example.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility01",
+        "srcEntry": "./ets/test/UiAbility/UiAbility01.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "example1",
+                "host": "www.example1.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility02",
+        "srcEntry": "./ets/test/UiAbility/UiAbility02.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example2.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility03",
+        "srcEntry": "./ets/test/UiAbility/UiAbility03.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example3.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility04",
+        "srcEntry": "./ets/test/UiAbility/UiAbility04.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example4.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility05",
+        "srcEntry": "./ets/test/UiAbility/UiAbility05.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example5.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility06",
+        "srcEntry": "./ets/test/UiAbility/UiAbility06.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example6.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility07",
+        "srcEntry": "./ets/test/UiAbility/UiAbility07.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example7.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility08",
+        "srcEntry": "./ets/test/UiAbility/UiAbility08.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example8.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility09",
+        "srcEntry": "./ets/test/UiAbility/UiAbility09.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example9.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility10",
+        "srcEntry": "./ets/test/UiAbility/UiAbility10.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example10.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility11",
+        "srcEntry": "./ets/test/UiAbility/UiAbility11.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example11.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility12",
+        "srcEntry": "./ets/test/UiAbility/UiAbility12.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example12.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility13",
+        "srcEntry": "./ets/test/UiAbility/UiAbility13.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example13.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility14",
+        "srcEntry": "./ets/test/UiAbility/UiAbility14.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example14.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility15",
+        "srcEntry": "./ets/test/UiAbility/UiAbility15.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example15.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility16",
+        "srcEntry": "./ets/test/UiAbility/UiAbility16.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example16.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility17",
+        "srcEntry": "./ets/test/UiAbility/UiAbility17.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example17.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility18",
+        "srcEntry": "./ets/test/UiAbility/UiAbility18.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example18.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility19",
+        "srcEntry": "./ets/test/UiAbility/UiAbility19.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example19.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility20",
+        "srcEntry": "./ets/test/UiAbility/UiAbility20.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example20.com"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "UiAbility21",
+        "srcEntry": "./ets/test/UiAbility/UiAbility21.ts",
+        "description": "$string:SecondAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home",
+              "ohos.want.action.viewData"
+            ],
+            "entities": [
+              "entity.system.home",
+              "entity.system.browsable"
+            ],
+            "uris": [
+              {
+                "scheme": "https",
+                "host": "www.example21.com"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ]
+  }
+}

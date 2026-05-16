@@ -1,0 +1,82 @@
+{
+  "plural": [
+    {
+      "name": "plural_0",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d apple"
+        },
+        {
+          "quantity": "other",
+          "value": "%d apples"
+        }
+      ]
+    },
+    {
+      "name": "plural_",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d apple"
+        },
+        {
+          "quantity": "other",
+          "value": "%d apples"
+        }
+      ]
+    },
+    {
+      "name": "plural_1",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d apple1"
+        },
+        {
+          "quantity": "other",
+          "value": "%d apples1"
+        }
+      ]
+    },
+    {
+      "name": "plural_2",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d apple2"
+        },
+        {
+          "quantity": "other",
+          "value": "%d apples2"
+        }
+      ]
+    },
+    {
+      "name": "plural_3",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d apple3"
+        },
+        {
+          "quantity": "other",
+          "value": "%d apples3"
+        }
+      ]
+    },
+    {
+      "name": "plural_4",
+      "value": [
+        {
+          "quantity": "one",
+          "value": "%d apple4"
+        },
+        {
+          "quantity": "other",
+          "value": "%d apples4"
+        }
+      ]
+    }
+  ]
+}

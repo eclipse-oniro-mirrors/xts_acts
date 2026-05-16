@@ -1,0 +1,89 @@
+{
+  "app": {
+    "bundleName": "com.example.actsfeatureabilitytest",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "bundleName": "com.example.actsfeatureabilitytest_entry",
+    "name": ".entry",
+    "mainAbility": "com.example.actsfeatureabilitytest.MainAbility",
+    "deviceType": [],
+    "description": "descriptionTest",
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "reqCapabilities": [
+      "reqCapabilitiesTest1",
+      "reqCapabilitiesTest2"
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.CAMERA",
+        "reason": "$string:permreason_camera",
+        "usedScene": {
+          "ability": [
+            "com.mycamera.Ability",
+            "com.mycamera.AbilityBackground"
+          ],
+          "when": "always"
+        }
+      },
+      {
+        "name": "ohos.permission.ACCELEROMETER",
+        "reason": "need use ohos.permission.ACCELEROMETER"
+      },
+      {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"
+      },
+      {
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+        "reason": "need use ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      }
+    ],
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "unspecified",
+        "formsEnabled": false,
+        "name": "com.example.actsfeatureabilitytest.MainAbility",
+        "srcLanguage": "js",
+        "srcPath": "MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:MainAbility_desc",
+        "label": "$string:MainAbility_label",
+        "type": "page",
+        "visible": true,
+        "launchType": "standard"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "com.example.actsfeatureabilitytest.MainAbility",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": false
+        }
+      }
+    ]
+  }
+}

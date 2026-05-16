@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.DistributedDataManager.RelationalStore.Core",
+                    "SystemCapability.DistributedDataManager.CloudSync.Client"
+                ]
+            }
+        ]
+    }
+}

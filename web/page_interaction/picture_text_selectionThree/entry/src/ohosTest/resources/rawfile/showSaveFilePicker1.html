@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>showSaveFilePicker 文件下载测试</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: #4a6bdf;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .editor-section, .info-section {
+            background: #f9fafc;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #4a6bdf;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e6e9f0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            border-color: #4a6bdf;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 200px;
+            resize: vertical;
+        }
+
+        button {
+            background: #4a6bdf;
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button:hover {
+            background: #3a5bc7;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            background: #b0b0b0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .button-icon {
+            margin-right: 8px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .secondary-btn {
+            background: #6c757d;
+        }
+
+        .secondary-btn:hover {
+            background: #5a6268;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4a6bdf;
+            font-weight: bold;
+        }
+
+        .compatibility-warning {
+            background: #fff4e6;
+            border-left: 4px solid #ffa94d;
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 4px;
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #edf2ff;
+            display: none;
+        }
+
+        .status.success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            display: block;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f1f3f9;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .api-badge {
+            display: inline-block;
+            background: #6c757d;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!--    <header>-->
+    <!--        <h1>showSaveFilePicker 测试页面</h1>-->
+    <!--        <p class="subtitle">测试现代浏览器的文件保存API，允许用户选择下载位置</p>-->
+    <!--    </header>-->
+
+    <div class="main-content">
+        <div class="editor-section">
+
+
+            <div class="actions">
+                <button id="saveBtn" class="primary-btn">
+                    保存文件
+                </button>
+
+                <button id="resetBtn" class="secondary-btn">
+                    重置内容
+                </button>
+            </div>
+            <button id="excludeAcceptAllOptionBtn" class="secondary-btn">
+                <span class="button-icon">🔄</span>excludeAcceptAllOption的值为：true
+            </button>
+            <h2>文件内容编辑</h2>
+            <div class="form-group">
+                <label for="filename">文件名</label>
+                <input type="text" id="filename" placeholder="输入文件名（如：example.txt）" value="test-file.txt">
+            </div>
+            <div class="form-group">
+                <label for="filename">路径</label>
+                <input type="text" id="path" placeholder="输入默认路径（如：desktop）" value="desktop">
+            </div>
+
+            <div class="form-group">
+                <label for="filecontent">文件内容</label>
+                <textarea id="filecontent" placeholder="输入文件内容">这是一个通过 showSaveFilePicker API 保存的文件示例。
+
+您可以在任何文本编辑器中打开此文件。
+
+当前时间：${new Date().toLocaleString()}</textarea>
+            </div>
+
+            <div id="statusMsg" class="status"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filenameInput = document.getElementById('filename');
+        const filecontentInput = document.getElementById('filecontent');
+        const saveBtn = document.getElementById('saveBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const savepath = document.getElementById('path');
+        const statusMsg = document.getElementById('statusMsg');
+        const excludeAcceptAllOptionBtn = document.getElementById('excludeAcceptAllOptionBtn');
+
+        // 检查浏览器是否支持 showSaveFilePicker
+        if (typeof window.showSaveFilePicker !== 'function') {
+            saveBtn.disabled = true;
+           saveBtn.textContent = '您的浏览器不支持 showSaveFilePicker';
+            showStatus('抱歉，您的浏览器不支持 showSaveFilePicker API。请使用 Chrome 86+、Edge 86+ 或 Opera 72+。', 'error');
+        }
+
+        // 改变excludeAcceptAllOption的值
+        excludeAcceptAllOptionBtn.addEventListener('click', async () => {
+            excludeAcceptAllValue = !excludeAcceptAllValue
+            excludeAcceptAllOptionBtn.innerHTML = excludeAcceptAllValue ? "excludeAcceptAllOption的值为：true" : "excludeAcceptAllOption的值为：false"
+        })
+
+        // 替换文本区域中的时间戳
+        filecontentInput.value = filecontentInput.value.replace(
+            '${new Date().toLocaleString()}',
+            new Date().toLocaleString()
+        );
+
+        // 保存文件按钮点击事件
+        saveBtn.addEventListener('click', async () => {
+            try {
+                const options = {
+                    startIn: savepath.value,
+                    suggestedName: filenameInput.value,
+                    types: [
+
+                    ],
+                    excludeAcceptAllOption: false
+                };
+
+                // 显示文件保存对话框
+                const handle = await window.showSaveFilePicker(options);
+
+                // 创建可写流
+                const writable = await handle.createWritable();
+
+                // 写入内容到文件
+                await writable.write(filecontentInput.value);
+
+                // 关闭文件
+                await writable.close();
+
+                showStatus(`文件已成功保存为: ${handle.name}`, 'success');
+            } catch (error) {
+                // 用户取消保存或不支持API不会视为错误
+                if (error.name !== 'AbortError') {
+                    console.error('保存文件时出错:', error);
+                    showStatus(`保存失败: ${error.message}`, 'error');
+                }
+            }
+        });
+
+        // 重置按钮点击事件
+        resetBtn.addEventListener('click', () => {
+            filenameInput.value = 'test-file.txt';
+            filecontentInput.value = `这是一个通过 showSaveFilePicker API 保存的文件示例。
+
+您可以在任何文本编辑器中打开此文件。
+
+当前时间：${new Date().toLocaleString()}`;
+            statusMsg.className = 'status';
+            statusMsg.textContent = '';
+        });
+
+        // 显示状态消息
+        function showStatus(message, type) {
+            statusMsg.textContent = message;
+            statusMsg.className = 'status ' + type;
+        }
+    });
+</script>
+</body>
+</html>

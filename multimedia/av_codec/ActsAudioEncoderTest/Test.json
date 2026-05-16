@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for ActsAudioenCoderTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.acts_audio_encoder_test",
+        "module-name": "audio_coder_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioEncoderTest.hap",
+                "ActsAudioEncoderMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

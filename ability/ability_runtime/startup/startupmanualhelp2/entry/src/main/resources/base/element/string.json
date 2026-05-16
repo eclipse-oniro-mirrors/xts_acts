@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "StartupManualHelp1"
+    },
+    {
+      "name": "app_name",
+      "value": "StartupManualHelp1"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+   }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/WaterFlow/waterFlowAniTrue",
+        "MainAbility/pages/WaterFlow/clipContent",
+        "MainAbility/pages/WaterFlow/cachedShowFlow"
+    ]
+}

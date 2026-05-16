@@ -1,0 +1,125 @@
+'use static';
+/**
+ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import emitter from '@ohos.events.emitter';
+import {
+  $r,
+  $rawfile,
+  Alignment,
+  Circle,
+  Color,
+  Column,
+  ColumnOptions,
+  Component,
+  Ellipse,
+  Entry,
+  Flex,
+  FlexAlign,
+  FlexDirection,
+  Image,
+  ItemAlign,
+  Line,
+  Margin,
+  Path,
+  Text,
+  TextAlign,
+  TextOverflow,
+} from '@ohos.arkui.component';
+import { Link, PropRef, State, } from '@ohos.arkui.stateManagement';
+import { RecordData } from '@ohos.base';
+
+@Entry
+@Component
+struct PathExample {
+  @State commandsOne: string = 'M0 0 L900 0';
+  @State widthOne: string = '300.00px';
+  @State heightOne: string = '10.00px';
+
+  onPageShow() {
+    console.info('[path] page show called ');
+    let stateChangeEvent: emitter.InnerEvent = {
+      eventId: 151,
+      priority: emitter.EventPriority.LOW
+    }
+    emitter.on(stateChangeEvent, this.stateChangCallBack);
+  }
+
+  build() {
+    Column({ space: 5 } as ColumnOptions) {
+      Text('Straight line').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Path()
+        .width(this.widthOne)
+        .height(this.heightOne)
+        .commands(this.commandsOne)
+        .stroke(Color.Black)
+        .key('path1')
+        .strokeWidth(3)
+
+      Text('Straight line graph')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M150 0 L300 300 L0 300 Z')
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M0 0 H300 V300 H0 Z')
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M150 0 L0 150 L60 300 L240 300 L300 150 Z')
+      }.width('100%')
+
+      Text('Curve graphics').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Flex({ justifyContent: FlexAlign.SpaceAround }) {
+        Path()
+          .width(100)
+          .height(100)
+          .commands("M0 300 S150 0 300 300 Z")
+        Path()
+          .width(100)
+          .height(100)
+          .commands('M0 150 C0 150 150 0 300 150 L150 300 Z')
+      }
+    }
+    .width('100%')
+    .margin({ top: 5 } as Margin)
+  }
+
+  private stateChangCallBack: (eventData: emitter.EventData) => void =
+    (eventData: emitter.EventData): void => {
+      console.info("[stateChangCallBack] stateChangCallBack ");
+      if (eventData != null) {
+        const data: Record<String,RecordData> =
+          eventData.data as Record<String,RecordData>
+        console.info("[stateChangCallBack] state change called: " + JSON.stringify(eventData));
+        if (data['commands'] != null) {
+          this.commandsOne = data['commands'] as string;
+        }
+        if (data['width'] != null) {
+          this.widthOne = data['width'] as string;
+        }
+        if (data['height'] != null) {
+          this.heightOne = data['height'] as string;
+        }
+
+      }
+    }
+}

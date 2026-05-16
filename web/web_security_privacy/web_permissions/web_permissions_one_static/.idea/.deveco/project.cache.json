@@ -1,0 +1,16 @@
+{
+	"CommonInfo":{
+		"crossplatform.projectType":"",
+		"project.ide.version":"6.0.0.43",
+		"current.select.product":"default",
+		"current.select.buildMode":""
+	},
+	"BuildOptions":{
+		"BUNDLE_NAME":"com.open.harmony.webpermissionsonetest.static",
+		"SELECT_BUILD_MODE":"",
+		"BUILD_PATH":{
+			"OUTPUT_PATH":"D:\\web\\so_files\\so_original\\web_permissions_one_static\\build\\outputs\\default"
+		},
+		"SELECT_BUILD_PRODUCT":"default"
+	}
+}

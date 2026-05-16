@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "my whether"
+    },
+    {
+      "name": "app_name",
+      "value": "Demo"
+    },
+    {
+      "name": "form_FormAbility_desc",
+      "value": "form_description"
+    },
+    {
+        "name": "form_FormAbility_label",
+        "value": "form_label"
+    },
+    {
+        "name": "permission_reason",
+        "value": "Need permission"
+    },
+    {
+      "name": "testModule_entry_main",
+      "value": "the testModule entry ability"
+    },
+    {
+      "name": "entry_label",
+      "value": "ActsContextTest"
+    },
+    {
+      "name": "form_description",
+      "value": "my form"
+    }
+  ]
+}

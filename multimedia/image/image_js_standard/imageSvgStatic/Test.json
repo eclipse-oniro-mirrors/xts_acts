@@ -1,0 +1,44 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.multimedia.image.Static",
+        "module-name": "entry"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageSvgJsStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files/*",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test_large.svg ->/data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.Static/haps/entry/*"
+            ],
+            "teardown-command": [
+                "rm -rf /data/app/el2/100/base/ohos.acts.multimedia.image.Static/*"
+            ]
+        }
+    ]
+}

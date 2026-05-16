@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/webInitTest",
+    "pages/componentLifeCycleTestOne",
+    "pages/webViewSharedRenderProcessToken"
+  ]
+}

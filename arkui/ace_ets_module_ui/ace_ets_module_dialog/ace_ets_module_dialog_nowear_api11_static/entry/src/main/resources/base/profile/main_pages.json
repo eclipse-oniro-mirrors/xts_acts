@@ -1,0 +1,18 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/calendarPickerDialog/calendar",
+    "MainAbility/pages/calendarPickerDialog/CalendarDialog",
+    "MainAbility/pages/calendarPickerDialog/CalendarPickerDialog",
+    "MainAbility/pages/datePickerDialog/DatePickerDialog",
+    "MainAbility/pages/datePickerDialog/DatePickerDialogOptions",
+    "MainAbility/pages/datePickerDialog/DatePickerDialogUI",
+    "MainAbility/pages/textPickerDialog/TextPickerDialog",
+    "MainAbility/pages/textPickerDialog/textPickerDialog2",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogOptions",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogUI",
+    "MainAbility/pages/timePickerDialog/TimePickerDialog",
+    "MainAbility/pages/timePickerDialog/TimePickerDialogOptions",
+    "MainAbility/pages/timePickerDialog/TimePickerDialogUI"
+  ]
+}

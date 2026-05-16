@@ -1,0 +1,12 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/drag/TestNotifyDragTest",
+    "MainAbility/pages/calendarPicker/CalendarPickerMarkTodayTest",
+    "MainAbility/pages/gestureRecognizer/PanGestureTest001",
+    "MainAbility/pages/gestureRecognizer/PanGestureTest002",
+    "MainAbility/pages/gestureRecognizer/PanGestureTest003",
+    "MainAbility/pages/gestureRecognizer/PanGestureTest004"
+  ]
+}

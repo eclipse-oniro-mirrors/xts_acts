@@ -1,0 +1,10 @@
+{
+  "src": [
+    "testability/pages/WebInitTest",
+    "testability/pages/WebAttributeTest",
+    "testability/pages/webController",
+    "testability/pages/webAttribute",
+    "testability/pages/WebAttributeEnhancedTest"
+  ]
+}
+

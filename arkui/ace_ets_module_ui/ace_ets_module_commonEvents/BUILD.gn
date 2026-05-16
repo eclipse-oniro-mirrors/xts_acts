@@ -1,0 +1,95 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+import("//foundation/arkui/ace_engine/ace_config.gni")
+
+group("ActsAceEtsModuleCommonEventsTest") {
+  testonly = true
+  if (ace_engine_feature_wearable) {
+    deps = [
+      "ace_ets_module_commonEvents_api11:ActsAceEtsModuleCommonEventsApi11Test",
+      "ace_ets_module_commonEvents_api12:ActsAceEtsModuleCommonEventsApi12Test",
+      "ace_ets_module_commonEvents_api14:ActsAceEtsModuleCommonEventsApi14Test",
+      "ace_ets_module_commonEvents_api21:ActsAceEtsModuleCommonEventsApi21Test",
+      "ace_ets_module_commonEvents_api22:ActsAceEtsModuleCommonEventsApi22Test",
+      "ace_ets_module_commonEvents_wear_api11:ActsAceEtsModuleCommonEventsApiWear11Test",
+      "ace_ets_module_commonEvents_axisEvent:ActsAceEtsModuleCommonEventsAxisEventTest",
+      "ace_ets_module_commonEvents_panGesture:ActsAceEtsModuleCommonEventsPanGestureTest",
+      "ace_ets_module_commonEvents_pinchGesture:ActsAceEtsModuleCommonEventsPinchGestureTest",
+      "ace_ets_module_commonEvents_rotationGesture:ActsAceEtsModuleCommonEventsRotationGestureTest",
+      "ace_ets_module_commonEvents_touchEvent:ActsAceEtsModuleCommonEventsTouchEventTest",
+      "ace_ets_module_commonEvents_hoverEvent:ActsAceEtsModuleCommonEventsHoverEventTest",
+      "ace_ets_module_commonEvents_keyEvent:ActsAceEtsModuleCommonEventsKeyEventTest",
+      "ace_ets_module_commonEvents_onClickEvent:ActsAceEtsModuleCommonEventsOnClickEventTest",
+      "ace_ets_module_commonEvents_shortcutEvent:ActsAceEtsModuleCommonEventsShortcutEventTest",
+      "ace_ets_module_commonEvents_customEventDistribution:ActsAceEtsModuleCommonEventsCustomEventDistributionTest",
+      "ace_ets_module_commonEvents_swipeGesture:ActsAceEtsModuleCommonEventsSwipeGestureTest",
+      "ace_ets_module_commonEvents_tapGesture:ActsAceEtsModuleCommonEventsTapGestureTest",
+      "ace_ets_module_commonEvents_longPressGesture:ActsAceEtsModuleCommonEventsLongPressGestureTest",
+      "ace_ets_module_commonEvents_gestureGroup:ActsAceEtsModuleCommonEventsGestureGroupTest",
+      "ace_ets_module_commonEvents_gestureHandler:ActsAceEtsModuleCommonEventsGestureHandlerTest",
+      "ace_ets_module_commonEvents_gestureInterceptionEnhancement:ActsAceEtsModuleCommonEventsGestureInterceptionEnhancementTest",
+      "ace_ets_module_commonEvents_customGestureRecognition:ActsAceEtsModuleCommonEventsCustomGestureRecognitionTest",
+      "ace_ets_module_commonEvents_componentAreaChange:ActsAceEtsModuleCommonEventsComponentAreaChangeTest",
+      "ace_ets_module_commonEvents_api14_static:ActsAceEtsModuleCommonEventsApi14StaticTest",
+      "ace_ets_module_commonEvents_api12_static:ActsAceEtsModuleCommonEventsApi12StaticTest",
+      "ace_ets_module_commonEvents_api11_static:ActsAceEtsModuleCommonEventsApi11StaticTest",
+    ]
+  } else {
+    deps = [
+      "ace_ets_module_commonEvents_api11:ActsAceEtsModuleCommonEventsApi11Test",
+      "ace_ets_module_commonEvents_api12:ActsAceEtsModuleCommonEventsApi12Test",
+      "ace_ets_module_commonEvents_api12None:ActsAceEtsModuleCommonEventsApi12NoneTest",
+      "ace_ets_module_commonEvents_api14:ActsAceEtsModuleCommonEventsApi14Test",
+      "ace_ets_module_commonEvents_api15:ActsAceEtsModuleCommonEventsApi15Test",
+      "ace_ets_module_commonEvents_api17:ActsAceEtsModuleCommonEventsApi17Test",
+      "ace_ets_module_commonEvents_api18:ActsAceEtsModuleCommonEventsApi18Test",
+      "ace_ets_module_commonEvents_api20:ActsAceEtsModuleCommonEventsApi20Test",
+      "ace_ets_module_commonEvents_api21:ActsAceEtsModuleCommonEventsApi21Test",
+      "ace_ets_module_commonEvents_api22:ActsAceEtsModuleCommonEventsApi22Test",
+      "ace_ets_module_commonEvents_noware_api14:ActsAceEtsModuleCommonEventsNoWearApi14Test",
+      "ace_ets_module_commonEvents_nowear_api11:ActsAceEtsModuleCommonEventsNoWearApi11Test",
+      "ace_ets_module_commonEvents_nowear_api20:ActsAceEtsModuleCommonEventsApiNowear20Test",
+      "ace_ets_module_commonEvents_axisEvent:ActsAceEtsModuleCommonEventsAxisEventTest",
+      "ace_ets_module_commonEvents_panGesture:ActsAceEtsModuleCommonEventsPanGestureTest",
+      "ace_ets_module_commonEvents_nowear:ActsAceEtsModuleCommonEventsNowearTest",
+      "ace_ets_module_commonEvents_rotationGesture:ActsAceEtsModuleCommonEventsRotationGestureTest",
+      "ace_ets_module_commonEvents_touchEvent:ActsAceEtsModuleCommonEventsTouchEventTest",
+      "ace_ets_module_commonEvents_hoverEvent:ActsAceEtsModuleCommonEventsHoverEventTest",
+      "ace_ets_module_commonEvents_keyEvent:ActsAceEtsModuleCommonEventsKeyEventTest",
+      "ace_ets_module_commonEvents_onClickEvent:ActsAceEtsModuleCommonEventsOnClickEventTest",
+      "ace_ets_module_commonEvents_shortcutEvent:ActsAceEtsModuleCommonEventsShortcutEventTest",
+      "ace_ets_module_commonEvents_customEventDistribution:ActsAceEtsModuleCommonEventsCustomEventDistributionTest",
+      "ace_ets_module_commonEvents_swipeGesture:ActsAceEtsModuleCommonEventsSwipeGestureTest",
+      "ace_ets_module_commonEvents_tapGesture:ActsAceEtsModuleCommonEventsTapGestureTest",
+      "ace_ets_module_commonEvents_pinchGesture:ActsAceEtsModuleCommonEventsPinchGestureTest",
+      "ace_ets_module_commonEvents_longPressGesture:ActsAceEtsModuleCommonEventsLongPressGestureTest",
+      "ace_ets_module_commonEvents_gestureGroup:ActsAceEtsModuleCommonEventsGestureGroupTest",
+      "ace_ets_module_commonEvents_gestureHandler:ActsAceEtsModuleCommonEventsGestureHandlerTest",
+      "ace_ets_module_commonEvents_gestureInterceptionEnhancement:ActsAceEtsModuleCommonEventsGestureInterceptionEnhancementTest",
+      "ace_ets_module_commonEvents_customGestureRecognition:ActsAceEtsModuleCommonEventsCustomGestureRecognitionTest",
+      "ace_ets_module_commonEvents_componentAreaChange:ActsAceEtsModuleCommonEventsComponentAreaChangeTest",
+      "ace_ets_module_commonEvents_dragEvent:ActsAceEtsModuleCommonEventsDragEventTest",
+      "ace_ets_module_commonEvents_componentSnapshot:ActsAceEtsModuleCommonEventsComponentSnapshotTest",
+      "ace_ets_module_commonEvents_api14_static:ActsAceEtsModuleCommonEventsApi14StaticTest",
+      "ace_ets_module_commonEvents_api12_static:ActsAceEtsModuleCommonEventsApi12StaticTest",
+      "ace_ets_module_commonEvents_api12None_static:ActsAceEtsModuleCommonEventsApi12NoneStaticTest",
+      "ace_ets_module_commonEvents_api15_static:ActsAceEtsModuleCommonEventsApi15StaticTest",
+      "ace_ets_module_commonEvents_api17_static:ActsAceEtsModuleCommonEventsApi17StaticTest",
+      "ace_ets_module_commonEvents_api18_static:ActsAceEtsModuleCommonEventsApi18StaticTest",
+      "ace_ets_module_commonEvents_api20_static:ActsAceEtsModuleCommonEventsApi20StaticTest",
+      "ace_ets_module_commonEvents_noware_api14_static:ActsAceEtsModuleCommonEventsNoWearApi14StaticTest",
+      "ace_ets_module_commonEvents_nowear_api11_static:ActsAceEtsModuleCommonEventsNoWearApi11StaticTest",
+      "ace_ets_module_commonEvents_api11_static:ActsAceEtsModuleCommonEventsApi11StaticTest",
+    ]
+  }
+}

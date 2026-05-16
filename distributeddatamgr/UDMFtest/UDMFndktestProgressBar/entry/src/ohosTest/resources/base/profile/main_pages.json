@@ -1,0 +1,13 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/drag/DragCaseTest1",
+    "MainAbility/pages/drag/DragCaseTest2",
+    "MainAbility/pages/drag/DragCaseTest3",
+    "MainAbility/pages/drag/ContentCardTest1",
+    "MainAbility/pages/drag/ContentCardTest2",
+    "MainAbility/pages/drag/ContentCardTest3",
+    "MainAbility/pages/drag/DragCaseTest4"
+  ]
+}

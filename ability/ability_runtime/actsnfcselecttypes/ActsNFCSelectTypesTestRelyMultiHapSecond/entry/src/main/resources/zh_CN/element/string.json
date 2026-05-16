@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "SecondentryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondentryAbility_label",
+      "value": "MulHapSecond"
+    }
+  ]
+}

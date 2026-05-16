@@ -1,0 +1,87 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/acts/graphic/vkgl/comm.gni")
+
+config("deqp_platform_ohos_config") {
+  cflags_cc = deqp_common_cflags_cc
+
+  cflags_cc += [
+    # "-Wno-conversion",
+    # "-Wno-unused-function",
+    "-Wno-unused-parameter",
+  ]
+
+  defines = deqp_common_defines
+
+  # defines -=["DE_PTR_SIZE=8"]
+  #defines += [
+  #    "DE_PTR_SIZE=4",
+  #    "_XOPEN_SOURCE=600",
+  #  ]
+}
+
+ohos_static_library("libdeqpgles2func0001b") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = common_src
+  sources += [ "../Deqpgles2BaseFunc.cpp" ]
+
+  include_dirs = common_include
+  deps = common_depends_gles2
+  external_deps = [
+    "hilog:libhilog",
+    "image_framework:image_native",
+    "zlib:libz",
+  ]
+  configs = [ ":deqp_platform_ohos_config" ]
+  testonly = true
+}
+
+ohos_moduletest_suite("ActsDeqpgles2Suite0001aTest") {
+  subsystem_name = "graphic"
+  part_name = "graphic_2d"
+  sources = [
+    "../ActsDeqpgles20001TestSuite.cpp",
+    "../functional/Deqpgles2preprocessor_function_definitionsTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_function_redefinitionsTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_invalid_conditionalsTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_invalid_definitionsTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_invalid_expressionsTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_invalid_function_definitionsTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_invalid_opsTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_object_redefinitionsTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_operator_precedenceTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_pragmasTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_predefined_macrosTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_recursionTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_semanticTestCase.cpp",
+    "../functional/Deqpgles2preprocessor_undefined_identifiersTestCase.cpp",
+    "../functional/Deqpgles2shaders_constantsTestCase.cpp",
+    "../functional/Deqpgles2shaders_linkageTestCase.cpp",
+    "../functional/Deqpgles2use_index_arrayTestCase.cpp",
+    "../functional/Deqpgles2use_vertex_arrayTestCase.cpp",
+    "../functional/Deqpgles2write_basicTestCase.cpp",
+    "../functional/Deqpgles2write_basic_subdataTestCase.cpp",
+    "../functional/Deqpgles2write_partial_specifyTestCase.cpp",
+    "../functional/Deqpgles2write_randomTestCase.cpp",
+    "../functional/Deqpgles2write_recreate_storeTestCase.cpp",
+    "../info/Deqpgles2dEQP-GLES2_infoTestCase.cpp",
+  ]
+
+  include_dirs = [ "../../../src" ]
+
+  deps = [ ":libdeqpgles2func0001b" ]
+
+  cflags = [ "-Wno-error" ]
+}

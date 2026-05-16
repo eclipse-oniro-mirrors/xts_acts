@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/Index",
+    "uiextability/pages/UIExtAbilityPage",
+    "uiextability/pages/page2",
+    "uiextability/pages/page3",
+    "uiextability/pages/page4"
+  ]
+}

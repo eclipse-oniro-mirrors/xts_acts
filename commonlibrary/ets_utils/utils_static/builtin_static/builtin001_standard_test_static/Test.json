@@ -1,0 +1,25 @@
+{
+    "description": "taskpool test",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "shell-timeout": "800000",
+        "bundle-name": "builtin001.standard.test.static",
+		"module-name": "entry"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsBuiltin1StaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}
