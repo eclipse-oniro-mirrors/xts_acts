@@ -1,0 +1,354 @@
+{
+    "dbSchema": [
+        {
+            "version": 0,
+            "bundleName": "com.example.relationalstore",
+            "dbName": "RdbTest",
+            "tables": [
+                {
+                    "tableName": "EMPLOYEE",
+                    "deviceSyncFields": [
+                        "NAME",
+                        "AGE",
+                        "SALARY",
+                        "CODES"
+                    ],
+                    "fields": [
+                        {
+                            "columnName": "ID",
+                            "type": "Integer",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": true
+                        },
+                        {
+                            "columnName": "NAME",
+                            "type": "Text",
+                            "primaryKey": true,
+                            "notNull": true,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "AGE",
+                            "type": "Integer",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "SALARY",
+                            "type": "Float",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "CODES",
+                            "type": "Blob",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "version": 0,
+            "bundleName": "com.example.relationalstore1",
+            "dbName": "RdbTest1",
+            "tables": [
+                {
+                    "tableName": "EMPLOYEE",
+                    "deviceSyncFields": [
+                        "NAME",
+                        "AGE",
+                        "SALARY",
+                        "CODES"
+                    ],
+                    "fields": [
+                        {
+                            "columnName": "ID",
+                            "type": "Integer",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": true
+                        },
+                        {
+                            "columnName": "NAME",
+                            "type": "Text",
+                            "primaryKey": true,
+                            "notNull": true,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "AGE",
+                            "type": "Integer",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "SALARY",
+                            "type": "Float",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "CODES",
+                            "type": "Blob",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "version": 0,
+            "bundleName": "com.example.relationalstore",
+            "dbName": "RdbTest2",
+            "tables": [
+                {
+                    "tableName": "EMPLOYEE",
+                    "deviceSyncFields": [
+                        "NAME",
+                        "SALARY",
+                        "CODES"
+                    ],
+                    "fields": [
+                        {
+                            "columnName": "NAME",
+                            "type": "Text",
+                            "primaryKey": true,
+                            "notNull": true,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "AGE",
+                            "type": "Integer",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "SALARY",
+                            "type": "Float",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "CODES",
+                            "type": "Blob",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "version": 0,
+            "bundleName": "com.example.relationalstore",
+            "dbName": "RdbTest3",
+            "tables": [
+                {
+                    "tableName": "EMPLOYEE",
+                    "deviceSyncFields": [
+                        "AGE",
+                        "SALARY",
+                        "CODES"
+                    ],
+                    "fields": [
+                        {
+                            "columnName": "NAME",
+                            "type": "Text",
+                            "primaryKey": false,
+                            "notNull": true,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "AGE",
+                            "type": "Integer",
+                            "primaryKey": true,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "SALARY",
+                            "type": "Float",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "CODES",
+                            "type": "Blob",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "version": 0,
+            "bundleName": "com.example.relationalstore",
+            "dbName": "RdbTest4",
+            "tables": [
+                {
+                    "tableName": "EMPLOYEE",
+                    "deviceSyncFields": [
+                        "ID",
+                        "NAME",
+                        "AGE",
+                        "SALARY",
+                        "CODES"
+                    ],
+                    "fields": [
+                        {
+                            "columnName": "ID",
+                            "type": "Integer",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": true
+                        },
+                        {
+                            "columnName": "NAME",
+                            "type": "Text",
+                            "primaryKey": true,
+                            "notNull": true,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "AGE",
+                            "type": "Integer",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "SALARY",
+                            "type": "Float",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "CODES",
+                            "type": "Blob",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "version": 0,
+            "bundleName": "com.example.relationalstore",
+            "dbName": "RdbTest5",
+            "tables": [
+                {
+                    "tableName": "EMPLOYEE",
+                    "deviceSyncFields": [
+                        "NAME",
+                        "AGE",
+                        "SALARY",
+                        "CODES"
+                    ],
+                    "fields": [
+                        {
+                            "columnName": "ID",
+                            "type": "Integer",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": true
+                        },
+                        {
+                            "columnName": "NAME",
+                            "type": "Text",
+                            "primaryKey": true,
+                            "notNull": true,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "AGE",
+                            "type": "Integer",
+                            "primaryKey": true,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "SALARY",
+                            "type": "Float",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "CODES",
+                            "type": "Blob",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "version": 0,
+            "bundleName": "com.example.relationalstore",
+            "dbName": "RdbTest6",
+            "tables": [
+                {
+                    "tableName": "EMPLOYEE",
+                    "fields": [
+                        {
+                            "columnName": "ID",
+                            "type": "Integer",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": true
+                        },
+                        {
+                            "columnName": "NAME",
+                            "type": "Text",
+                            "primaryKey": true,
+                            "notNull": true,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "AGE",
+                            "type": "Integer",
+                            "primaryKey": true,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "SALARY",
+                            "type": "Float",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        },
+                        {
+                            "columnName": "CODES",
+                            "type": "Blob",
+                            "primaryKey": false,
+                            "notNull": false,
+                            "autoIncrement": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

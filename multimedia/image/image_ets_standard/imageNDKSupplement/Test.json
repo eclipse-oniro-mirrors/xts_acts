@@ -1,0 +1,52 @@
+{
+    "description": "Configuration for MemoryUitls Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.OHImageNdkSupplement",
+        "module-name": "entry_test",
+	    "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsMediaImageNDKSupplementTest.hap",
+                "ActsMediaImageNDKSupplementMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/com.example.OHImageNdkSupplement/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/com.example.OHImageNdkSupplement/haps/entry_test/files/*"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600",
+                "rm -rf /data/app/el2/100/database/com.example.OHImageNdkSupplement/*",
+                "kill -9 `pidof com.example.OHImageNdkSupplement`",
+                "scanner",
+                "sleep 5"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/com.example.OHImageNdkSupplement/haps/entry_test/files",
+                "./resource/image/4K-2160x3840.avif ->/data/app/el2/100/base/com.example.OHImageNdkSupplement/haps/entry_test/files",
+                "./resource/image/test_exif_v3.jpg ->/data/app/el2/100/base/com.example.OHImageNdkSupplement/haps/entry_test/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/com.example.OHImageNdkSupplement/haps/entry_test/files",
+                "./resource/image/test8.bmp ->/data/app/el2/100/base/com.example.OHImageNdkSupplement/haps/entry_test/files",
+                "./resource/image/test_exif_v2.png ->/data/app/el2/100/base/com.example.OHImageNdkSupplement/haps/entry_test/files",
+                "./resource/image/test_exif_v3.heic ->/data/app/el2/100/base/com.example.OHImageNdkSupplement/haps/entry_test/files",
+                "./resource/image/test_exif_v2.heic ->/data/app/el2/100/base/com.example.OHImageNdkSupplement/haps/entry_test/files"
+            ]
+        }
+    ]
+}

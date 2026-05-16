@@ -1,0 +1,24 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/WebSetAppCustomUserAgent",
+    "testability/pages/WebSetUserAgentForHosts",
+    "testability/pages/WebViewControllerRefresh",
+    "testability/pages/WebSetUserAgentClientHintsEnabled",
+    "testability/pages/WebUserAgentMetadata",
+    "testability/pages/WebSetUrlTrustList",
+    "testability/pages/WebUserAgentBrandVersion",
+    "testability/pages/WebUserAgentMetadataArch",
+    "testability/pages/WebUserAgentMetadataBitness",
+    "testability/pages/WebUserAgentMetadataBrandVersionList",
+    "testability/pages/WebUserAgentMetadataFormFactors",
+    "testability/pages/WebUserAgentMetadataFormFactorsEum",
+    "testability/pages/WebUserAgentMetadataFullVersion",
+    "testability/pages/WebUserAgentMetadataMobile",
+    "testability/pages/WebUserAgentMetadataModel",
+    "testability/pages/WebUserAgentMetadataPlatform",
+    "testability/pages/WebUserAgentMetadataPlatformVersion",
+    "testability/pages/WebUserAgentMetadataWow64"
+
+  ]
+}

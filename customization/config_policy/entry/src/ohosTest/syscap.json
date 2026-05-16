@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Customization.ConfigPolicy",
+                    "SystemCapability.Customization.CustomConfig"
+                ]
+            }
+        ]
+    }
+}

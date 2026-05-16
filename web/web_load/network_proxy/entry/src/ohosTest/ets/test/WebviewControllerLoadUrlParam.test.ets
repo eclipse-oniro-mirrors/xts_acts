@@ -1,0 +1,136 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License');
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { afterEach, beforeAll, beforeEach, expect, describe, it, TestType, Size, Level } from '@ohos/hypium';
+import router from '@ohos.router';
+import events_emitter from '@ohos.events.emitter';
+import Utils from './Utils';
+import { Driver, ON } from '@kit.TestKit';
+import { accessibility, config } from '@kit.AccessibilityKit';
+const CAPABILITY: accessibility.Capability[] = ['retrieve', 'gesture'];
+const BUNDLE_NAME = 'com.example.myaccessibilityapp/AccessibilityExtAbility';
+let driver = Driver.create();
+
+export default function webviewControllerLoadUrlParam() {
+
+  describe('webviewControllerLoadUrlParamTest', () => {
+
+    beforeAll(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: 'testability/pages/webviewControllerLoadUrlParam',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info('get webviewControllerLoadUrlParam state success ' + JSON.stringify(pages));
+        if (!('webviewControllerLoadUrlParam' == pages.name)) {
+          console.info('get webviewControllerLoadUrlParam state success ' + JSON.stringify(pages.name));
+          let result = await router.pushUrl(options);
+          console.info('push webviewControllerLoadUrlParam page success ' + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error('push webviewControllerLoadUrlParam page error: ' + err);
+      }
+      console.log('driver waitForComponent start==>');
+      await driver.waitForComponent(ON.id('webviewControllerLoadUrlParamButton'), 10000);
+      console.log('waitForComponent webviewControllerLoadUrlParamButton==>');
+      done()
+    });
+
+    beforeEach(async (done: Function) => {
+
+      config.enableAbility(BUNDLE_NAME, CAPABILITY).then(() => {
+        console.info(`enable success`);
+      }).catch((err: object) => {
+        console.error(`failed to enable, ${err}`);
+      })
+      console.info('webviewControllerLoadUrlParam beforeEach start');
+      done();
+    })
+
+    afterEach(async (done: Function) => {
+      console.info('webviewControllerLoadUrlParam afterEach start');
+      done();
+    })
+
+    /**
+     * @tc.name   testLoadUrlUrlNull001
+     * @tc.number SUB_WEB_WEBVIEWCONTROLLER_LOADURL_URL_NULL_0100
+     * @tc.desc   test WebviewController.loadUrl with null url parameter
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testLoadUrlUrlNull001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      Utils.emitEvent('emitLoadUrlUrlNull001', 183000);
+      Utils.registerBaseEvent('testLoadUrlUrlNull001', '401', 183010, done,
+        (backData: events_emitter.EventData, expected: Object) => {
+          expect(backData?.data?.ACTION).assertEqual(expected);
+        });
+      await Utils.clickComponent('webviewControllerLoadUrlParamButton');
+    })
+
+    /**
+     * @tc.name   testLoadUrlUrlUndefined001
+     * @tc.number SUB_WEB_WEBVIEWCONTROLLER_LOADURL_URL_UNDEFINED_0100
+     * @tc.desc   test WebviewController.loadUrl with undefined url parameter
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testLoadUrlUrlUndefined001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      Utils.emitEvent('emitLoadUrlUrlUndefined001', 183000);
+      Utils.registerBaseEvent('testLoadUrlUrlUndefined001', '401', 183020, done,
+        (backData: events_emitter.EventData, expected: Object) => {
+          expect(backData?.data?.ACTION).assertEqual(expected);
+        });
+      await Utils.clickComponent('webviewControllerLoadUrlParamButton');
+    })
+
+    /**
+     * @tc.name   testLoadUrlHeadersNull001
+     * @tc.number SUB_WEB_WEBVIEWCONTROLLER_LOADURL_HEADERS_NULL_0100
+     * @tc.desc   test WebviewController.loadUrl with null headers parameter
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testLoadUrlHeadersNull001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      Utils.emitEvent('emitLoadUrlHeadersNull001', 183000);
+      Utils.registerBaseEvent('testLoadUrlHeadersNull001', '401', 183030, done,
+        (backData: events_emitter.EventData, expected: Object) => {
+          expect(backData?.data?.ACTION).assertEqual(expected);
+        });
+      await Utils.clickComponent('webviewControllerLoadUrlParamButton');
+    })
+
+    /**
+     * @tc.name   testLoadUrlHeadersUndefined001
+     * @tc.number SUB_WEB_WEBVIEWCONTROLLER_LOADURL_HEADERS_UNDEFINED_0100
+     * @tc.desc   test WebviewController.loadUrl with undefined headers parameter
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testLoadUrlHeadersUndefined001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      Utils.emitEvent('emitLoadUrlHeadersUndefined001', 183000);
+      Utils.registerBaseEvent('testLoadUrlHeadersUndefined001', '401', 183040, done,
+        (backData: events_emitter.EventData, expected: Object) => {
+          expect(backData?.data?.ACTION).assertEqual(expected);
+        });
+      await Utils.clickComponent('webviewControllerLoadUrlParamButton');
+    })
+  })
+}

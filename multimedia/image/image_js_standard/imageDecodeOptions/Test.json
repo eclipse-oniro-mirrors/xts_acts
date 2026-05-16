@@ -1,0 +1,85 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1200000",
+        "shell-timeout": "1200000",
+        "bundle-name": "ohos.acts.multimedia.image.DecodeOptions",
+        "testcase-timeout": 60000,
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageDecodeOptionsJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/test.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/test.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/test.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/moving_test.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/color4.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/jpeg_test_1440x1920.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_bmp_1440x1920.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_bmp_3072x4096.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_bmp_6144x8192.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_bmp_480x360.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_bmp_481x361.bmp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_gif_1440x1920.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_gif_3072x4096.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_gif_6144x8192.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_gif_480x360.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_gif_481x361.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_heic_1440x1920.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_heic_3072x4096.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_heic_6144x8192.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_heic_480x360.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_heic_481x361.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_ico_1440x1920.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_ico_3072x4096.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_ico_6144x8192.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_ico_480x360.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_ico_481x361.ico ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_jpg_1440x1920.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_jpg_3072x4096.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_jpg_6144x8192.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_jpg_480x360.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_jpg_481x361.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_png_1440x1920.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_png_3072x4096.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_png_6144x8192.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_png_480x360.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_png_481x361.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_svg_1440x1920.svg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_svg_3072x4096.svg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_svg_6144x8192.svg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_svg_480x360.svg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_svg_481x361.svg ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_webp_1440x1920.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_webp_3072x4096.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_webp_6144x8192.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_webp_480x360.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files",
+                "./resource/image/pixel_webp_481x361.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.DecodeOptions/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": []
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div><button onclick="createIframe()">createIframe</button></div>
+    <div id="content"></div>
+</body>
+<script>
+    const src = 'second.html';
+    function createIframe() {
+        const iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.width = '500px';
+        iframe.height = '300px';
+        document.getElementById('content').appendChild(iframe);
+    }
+    function mainRefresh() {
+        window.location.reload();
+    }
+</script>
+</html>

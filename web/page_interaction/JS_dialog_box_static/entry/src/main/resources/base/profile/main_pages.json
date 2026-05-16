@@ -1,0 +1,9 @@
+{
+  "src": [
+    "pages/geolocationPermissions",
+    "pages/bindSelectionMenu",
+    "pages/WebAttributeTest",
+    "pages/WebViewEnumAndFontLibrary",
+	"pages/SaveImageMenu"
+  ]
+}

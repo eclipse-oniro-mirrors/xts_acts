@@ -1,0 +1,20 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/datePicker/datePickerCanLoop",
+    "MainAbility/pages/datePicker/DatePickerMode",
+    "MainAbility/pages/datePicker/datePickerEnableHapticFeedback",
+    "MainAbility/pages/datePicker/datePickerEnableHapticFeedbackModifier",
+    "MainAbility/pages/datePicker/datePickerOnChangeModifier",
+    "MainAbility/pages/datePicker/DatePickerIndex",
+    "MainAbility/pages/datePicker/datePickerNew",
+    "MainAbility/pages/datePicker/datePickerneww",
+    "MainAbility/pages/datePicker/datePickerUI",
+    "MainAbility/pages/datePicker/datePickerPropertiesModifier",
+    "MainAbility/pages/datePickerNullUndefined/DatePickerCanLoopNullUndefined",
+    "MainAbility/pages/datePickerNullUndefined/DatePickerDisappearTextStyleNullUndefined",
+    "MainAbility/pages/datePickerNullUndefined/DatePickerLunarNullUndefined",
+    "MainAbility/pages/datePickerNullUndefined/DatePickerSelectedTextStyleNullUndefined",
+    "MainAbility/pages/datePickerNullUndefined/DatePickerTextStyleNullUndefined"
+  ]
+}

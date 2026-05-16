@@ -1,0 +1,17 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/subHeaderV2/subHeaderV2Efficiency",
+    "MainAbility/pages/subHeaderV2/subHeaderV2DoubleLines",
+    "MainAbility/pages/subHeaderV2/subHeaderV2Spinner",
+    "MainAbility/pages/subHeaderV2/subHeaderV2LeftSymbol",
+    "MainAbility/pages/subHeaderV2/subHeaderV2RightSymbol",
+    "MainAbility/pages/subHeaderV2/subHeaderV2CustomContent",
+    "MainAbility/pages/subHeaderV2/subHeaderV2CustomStyle",
+    "MainAbility/pages/subHeaderV2/subHeaderV2LeftAccess",
+    "MainAbility/pages/subHeaderV2/subHeaderV2RightAccess"
+
+
+
+  ]
+}

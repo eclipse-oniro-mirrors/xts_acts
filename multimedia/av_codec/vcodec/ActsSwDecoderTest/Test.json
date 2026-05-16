@@ -1,0 +1,39 @@
+{
+  "description": "Config for actsswdecodertest cases",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "100000",
+    "shell-timeout": "100000",
+    "bundle-name": "com.example.actsswdecodertest",
+    "module-name": "entry_test",
+    "testcase-timeout": 100000
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsSwDecoderMainTest.hap",
+        "ActsSwDecoderHapTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "mkdir -p /data/app/el2/100/base/com.example.actsswdecodertest/haps/entry_test/files",
+        "chmod 777 -R /data/app/el2/100/base/com.example.actsswdecodertest/haps/entry_test/files",
+        "power-shell wakeup",
+        "power-shell setmode 602"
+      ]
+    },
+    {
+      "type": "PushKit",
+      "pre-push": [],
+      "push": [
+        "./resource/media/codec/video_decoder/1920_1080_10_30Mb.h264->/data/app/el2/100/base/com.example.actsswdecodertest/haps/entry_test/files/",
+        "./resource/media/codec/video_decoder/1280_720_30_10Mb.h264->/data/app/el2/100/base/com.example.actsswdecodertest/haps/entry_test/files/",
+        "./resource/media/codec/video_decoder/resolutionChange.h264->/data/app/el2/100/base/com.example.actsswdecodertest/haps/entry_test/files/"
+      ]
+    }
+  ]
+}

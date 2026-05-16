@@ -1,0 +1,19 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Progress/progressUndefined",
+    "MainAbility/pages/TimePicker/timePickerUndefined",
+    "MainAbility/pages/Progress/progressModifierUndefined",
+    "MainAbility/pages/TimePicker/timePickerModifierUndefined",
+    "MainAbility/pages/DataPanel/dataPanelUndefined",
+    "MainAbility/pages/Gauge/gaugeUndefined",
+    "MainAbility/pages/Image/imageUndefined",
+    "MainAbility/pages/Image/imageOnfinishUndefined",
+    "MainAbility/pages/Image/imageOnErrorUndefined",
+    "MainAbility/pages/DataPanel/dataPanelAttrsModifierUndefined",
+    "MainAbility/pages/Gauge/gaugeAttrsModifierUndefined",
+    "MainAbility/pages/Image/imageAttrsModifierUndefined",
+    "MainAbility/pages/Image/imageAttrsModifierOnErrorUndefined",
+    "MainAbility/pages/Image/imageAttrsModifierOnfinishUndefined"
+  ]
+}

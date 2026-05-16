@@ -1,0 +1,26 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/componentSnapshot/APIcomponentSnapshotGetSync",
+        "MainAbility/pages/componentSnapshot/APIUIContextGetSync",
+        "MainAbility/pages/UIContext/UIContextComponentSnapshot",
+        "MainAbility/pages/componentSnapshot/componentSnapshotSync",
+        "MainAbility/pages/ComponentSnapshotByUniqueId/getWithUniqueId",
+        "MainAbility/pages/componentSnapshot/componentSnapshot",
+        "MainAbility/pages/SnapshotOptions_region/SnapshotOptions_region",
+        "MainAbility/pages/componentSnapshotCreateFromBuilder/createFromBuilderCallback",
+        "MainAbility/pages/componentSnapshotCreateFromBuilder/createFromBuilder",
+        "MainAbility/pages/componentSnapshotCreateFromBuilder/createFromComponent",
+        "MainAbility/pages/componentSnapshotCreateFromBuilder/errorCreateFromBuilder",
+        "MainAbility/pages/componentSnapshot/GetCallback/GetCallbackNullAndUndefined",
+        "MainAbility/pages/componentSnapshot/GetPromise/GetPromiseNullAndUndefined",
+        "MainAbility/pages/componentSnapshot/CreateFromBuilder/CreateFromBuilderNullAndUndefined",
+        "MainAbility/pages/componentSnapshot/GetSync/GetSyncNullAndUndefined",
+        "MainAbility/pages/componentSnapshot/UIContextGet/UIContextGetNullAndUndefined",
+        "MainAbility/pages/componentSnapshot/UIContextGetPromise/UIContextGetPromiseNullAndUndefined",
+        "MainAbility/pages/componentSnapshot/UIContextGetSync/UIContextGetSyncNullAndUndefined",
+        "MainAbility/pages/componentSnapshot/GetWithUniqueId/GetWithUniqueIdNullAndUndefined",
+        "MainAbility/pages/componentSnapshot/GetSyncWithUniqueId/GetSyncWithUniqueIdNullAndUndefined",
+        "MainAbility/pages/getSizeLimitation/GetSizeLimitation"
+    ]
+}

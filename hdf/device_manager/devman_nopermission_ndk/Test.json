@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for device manager no permission js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "160000",
+        "shell-timeout": "160000",
+        "bundle-name": "ohos.acts.device_manager.nopermission.function",
+        "package-name": "ohos.acts.device_manager.nopermission.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsDeviceManagerNoPermissionJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

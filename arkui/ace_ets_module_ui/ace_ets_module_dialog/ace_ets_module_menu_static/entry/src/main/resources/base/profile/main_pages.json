@@ -1,0 +1,22 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/updateMenu/updateMenu",
+    "MainAbility/pages/openMenu/onDidAppearOpenMenu",
+    "MainAbility/pages/openMenu/onDidDisappearOpenMenu",
+    "MainAbility/pages/openMenu/onWillAppearOpenMenu",
+    "MainAbility/pages/openMenu/onWillDisappearOpenMenu",
+    "MainAbility/pages/bindMenu/onDidAppear",
+    "MainAbility/pages/bindMenu/onDidDisappear",
+    "MainAbility/pages/bindMenu/onWillAppear",
+    "MainAbility/pages/bindMenu/onWillDisappear",
+    "MainAbility/pages/bindContextMenu/bindContextMenu",
+    "MainAbility/pages/bindContextMenu/ContextMenuOptions",
+    "MainAbility/pages/promptAction/promptAction",
+    "MainAbility/pages/promptAction/getState",
+    "MainAbility/pages/menuExpandSymbol/Menu",
+    "MainAbility/pages/common/HoverScaleInterruption",
+    "MainAbility/pages/scrollBar/scrollBarTest",
+    "MainAbility/pages/maxHeight/maxHeightTest"
+  ]
+}

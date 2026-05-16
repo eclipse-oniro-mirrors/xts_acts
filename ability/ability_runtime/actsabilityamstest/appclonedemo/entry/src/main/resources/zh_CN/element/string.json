@@ -1,0 +1,29 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility_label1",
+      "value": "APPCloneDemo1"
+    },{
+      "name": "EntryAbility_label2",
+      "value": "APPCloneDemo2"
+    },{
+      "name": "EntryAbility_label3",
+      "value": "APPCloneDemo3"
+    },{
+      "name": "EntryAbility_label4",
+      "value": "APPCloneDemo4"
+    }
+  ]
+}

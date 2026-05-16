@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SharedWorker 测试页面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 16px 30px; border-bottom: 1px solid #2a2a4a; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .header h1 { font-size: 22px; color: #fff; }
+        .header p { font-size: 13px; color: #888; width: 100%; }
+        .status-indicator { display: flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 20px; background: #1e1e2e; border: 1px solid #333; }
+        .status-dot { width: 10px; height: 10px; border-radius: 50%; background: #e74c3c; }
+        .status-dot.connected { background: #2ecc71; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .status-text { font-size: 13px; color: #aaa; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+        .metric-card { background: #1a1a2e; border-radius: 8px; padding: 14px; text-align: center; border: 1px solid #2a2a4a; }
+        .metric-value { font-size: 24px; font-weight: 700; color: #fff; }
+        .metric-value.green { color: #2ecc71; }
+        .metric-value.blue { color: #3498db; }
+        .metric-value.yellow { color: #f39c12; }
+        .metric-value.purple { color: #9b59b6; }
+        .metric-label { font-size: 11px; color: #666; margin-top: 4px; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+        .panel { background: #1a1a2e; border-radius: 10px; padding: 20px; margin-bottom: 20px; border: 1px solid #2a2a4a; }
+        .panel h2 { font-size: 16px; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; color: #fff; }
+        .badge.green { background: #2ecc71; }
+        .badge.blue { background: #3498db; }
+        .badge.red { background: #e74c3c; }
+        .badge.purple { background: #9b59b6; }
+        .btn { padding: 8px 18px; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; margin-right: 8px; margin-bottom: 8px; transition: background 0.2s; }
+        .btn:hover { filter: brightness(0.85); }
+        .btn.primary { background: #0078d4; }
+        .btn.success { background: #2ecc71; }
+        .btn.danger { background: #e74c3c; }
+        .btn.warning { background: #f39c12; }
+        .btn.purple { background: #9b59b6; }
+        .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+        .log-area { background: #0d0d1a; color: #cdd6f4; padding: 14px; border-radius: 6px; font-family: 'Consolas', 'Monaco', monospace; font-size: 12px; min-height: 100px; max-height: 250px; overflow-y: auto; border: 1px solid #2a2a4a; }
+        .log-entry { padding: 2px 0; border-bottom: 1px solid #1a1a2a; }
+        .log-time { color: #555; margin-right: 8px; }
+        .log-info { color: #89b4fa; }
+        .log-success { color: #a6e3a1; }
+        .log-error { color: #f38ba8; }
+        .log-warn { color: #fab387; }
+        .client-list { display: flex; flex-direction: column; gap: 8px; }
+        .client-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: #0f0f1a; border-radius: 6px; border: 1px solid #222; }
+        .client-info { display: flex; align-items: center; gap: 10px; }
+        .client-dot { width: 10px; height: 10px; border-radius: 50%; background: #2ecc71; }
+        .client-dot.inactive { background: #e74c3c; }
+        .client-name { font-size: 13px; color: #ddd; font-weight: 500; }
+        .client-detail { font-size: 11px; color: #777; }
+        .counter-display { display: flex; align-items: center; justify-content: center; gap: 20px; padding: 20px; }
+        .counter-value { font-size: 48px; font-weight: 700; color: #3498db; min-width: 120px; text-align: center; }
+        .counter-btn { width: 50px; height: 50px; border-radius: 50%; border: none; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.15s; }
+        .counter-btn:hover { transform: scale(1.1); }
+        .counter-btn.inc { background: #2ecc71; color: #fff; }
+        .counter-btn.dec { background: #e74c3c; color: #fff; }
+        .counter-btn.reset { background: #555; color: #fff; font-size: 16px; }
+        .counter-history { margin-top: 12px; }
+        .counter-history h4 { font-size: 13px; color: #888; margin-bottom: 8px; }
+        .history-list { display: flex; flex-wrap: wrap; gap: 4px; }
+        .history-tag { padding: 2px 8px; background: #0f0f1a; border-radius: 4px; font-size: 11px; color: #888; border: 1px solid #222; }
+        .history-tag.inc { color: #2ecc71; border-color: #2ecc7144; }
+        .history-tag.dec { color: #e74c3c; border-color: #e74c3c44; }
+        .chat-container { display: flex; flex-direction: column; height: 340px; }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 10px; background: #0d0d1a; border-radius: 6px 6px 0 0; border: 1px solid #2a2a4a; min-height: 200px; }
+        .chat-msg { margin-bottom: 10px; display: flex; gap: 8px; }
+        .chat-msg-avatar { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #fff; }
+        .chat-msg-body { flex: 1; }
+        .chat-msg-author { font-size: 12px; font-weight: 600; }
+        .chat-msg-time { font-size: 10px; color: #555; margin-left: 6px; }
+        .chat-msg-text { font-size: 13px; color: #bbb; margin-top: 2px; line-height: 1.4; }
+        .chat-msg.system .chat-msg-text { color: #888; font-style: italic; }
+        .chat-input-area { display: flex; gap: 8px; margin-top: 8px; }
+        .chat-input { flex: 1; padding: 10px 14px; background: #0d0d1a; border: 1px solid #333; border-radius: 6px; color: #e0e0e0; font-size: 13px; outline: none; font-family: inherit; }
+        .chat-input:focus { border-color: #3498db; }
+        .chat-send { padding: 10px 20px; background: #3498db; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; }
+        .chat-send:hover { background: #2980b9; }
+        .state-table { width: 100%; border-collapse: collapse; }
+        .state-table th { font-size: 12px; color: #888; text-align: left; padding: 8px 12px; border-bottom: 1px solid #2a2a4a; font-weight: 500; }
+        .state-table td { font-size: 13px; color: #ccc; padding: 8px 12px; border-bottom: 1px solid #1a1a2a; }
+        .state-table tr:hover td { background: #0f0f1a; }
+        .state-key { color: #89b4fa; font-family: monospace; }
+        .state-val { color: #a6e3a1; font-family: monospace; }
+        .broadcast-bar { display: flex; gap: 8px; margin-bottom: 12px; }
+        .broadcast-bar input { flex: 1; padding: 8px 12px; background: #0d0d1a; border: 1px solid #333; border-radius: 6px; color: #e0e0e0; font-size: 13px; outline: none; }
+        .broadcast-bar input:focus { border-color: #9b59b6; }
+        .conn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+        .conn-card { background: #0f0f1a; border-radius: 8px; padding: 14px; border: 1px solid #222; text-align: center; }
+        .conn-card .conn-icon { font-size: 28px; margin-bottom: 6px; }
+        .conn-card .conn-name { font-size: 13px; color: #ddd; font-weight: 500; }
+        .conn-card .conn-status { font-size: 11px; color: #2ecc71; margin-top: 4px; }
+        .conn-card .conn-status.offline { color: #e74c3c; }
+        .conn-card .conn-latency { font-size: 11px; color: #888; margin-top: 2px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>SharedWorker Test Page</h1>
+            <p>Multi-client shared worker communication, shared state management, broadcast messaging, and chat interface</p>
+        </div>
+        <div class="status-indicator">
+            <div class="status-dot" id="statusDot"></div>
+            <span class="status-text" id="statusText">Disconnected</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="metric-grid">
+            <div class="metric-card"><div class="metric-value green" id="metricClients">0</div><div class="metric-label">Active Clients</div></div>
+            <div class="metric-card"><div class="metric-value blue" id="metricMessages">0</div><div class="metric-label">Messages Exchanged</div></div>
+            <div class="metric-card"><div class="metric-value yellow" id="metricCounter">0</div><div class="metric-label">Shared Counter</div></div>
+            <div class="metric-card"><div class="metric-value purple" id="metricBroadcasts">0</div><div class="metric-label">Broadcasts Sent</div></div>
+        </div>
+        <div class="panel">
+            <h2>Connection <span class="badge green">Control</span></h2>
+            <div class="btn-row">
+                <button class="btn success" onclick="initSharedWorker()">Initialize SharedWorker</button>
+                <button class="btn danger" onclick="disconnectWorker()">Disconnect</button>
+                <button class="btn primary" onclick="sendPing()">Ping</button>
+                <button class="btn warning" onclick="requestClientList()">Refresh Clients</button>
+            </div>
+            <div class="log-area" id="log"></div>
+        </div>
+        <div class="grid-2">
+            <div class="panel">
+                <h2>Client List <span class="badge blue">Connections</span></h2>
+                <div class="client-list" id="clientList">
+                    <div style="text-align:center;color:#555;padding:20px;font-size:13px;">No clients connected. Initialize the SharedWorker first.</div>
+                </div>
+            </div>
+            <div class="panel">
+                <h2>Connection Status <span class="badge green">Monitor</span></h2>
+                <div class="conn-grid" id="connGrid">
+                    <div class="conn-card">
+                        <div class="conn-icon">&#x1F310;</div>
+                        <div class="conn-name">Main Page</div>
+                        <div class="conn-status" id="connMain">Offline</div>
+                        <div class="conn-latency" id="latencyMain">--</div>
+                    </div>
+                    <div class="conn-card">
+                        <div class="conn-icon">&#x1F4BB;</div>
+                        <div class="conn-name">Tab Instance A</div>
+                        <div class="conn-status offline" id="connTabA">Offline</div>
+                        <div class="conn-latency" id="latencyTabA">--</div>
+                    </div>
+                    <div class="conn-card">
+                        <div class="conn-icon">&#x1F4F1;</div>
+                        <div class="conn-name">Tab Instance B</div>
+                        <div class="conn-status offline" id="connTabB">Offline</div>
+                        <div class="conn-latency" id="latencyTabB">--</div>
+                    </div>
+                    <div class="conn-card">
+                        <div class="conn-icon">&#x1F5A5;</div>
+                        <div class="conn-name">Iframe Client</div>
+                        <div class="conn-status offline" id="connIframe">Offline</div>
+                        <div class="conn-latency" id="latencyIframe">--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-2">
+            <div class="panel">
+                <h2>Shared Counter <span class="badge yellow">State</span></h2>
+                <div class="counter-display">
+                    <button class="counter-btn dec" onclick="changeCounter(-1)">-</button>
+                    <div class="counter-value" id="counterValue">0</div>
+                    <button class="counter-btn inc" onclick="changeCounter(1)">+</button>
+                    <button class="counter-btn reset" onclick="resetCounter()">R</button>
+                </div>
+                <div class="counter-history">
+                    <h4>Change History</h4>
+                    <div class="history-list" id="counterHistory">
+                        <span class="history-tag">Counter initialized at 0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <h2>Shared State <span class="badge purple">Management</span></h2>
+                <div class="btn-row">
+                    <button class="btn purple" onclick="setState()">Set Key-Value</button>
+                    <button class="btn primary" onclick="getState()">Get All State</button>
+                    <button class="btn danger" onclick="clearState()">Clear State</button>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:12px;">
+                    <input type="text" id="stateKey" placeholder="Key" style="flex:1;padding:8px 12px;background:#0d0d1a;border:1px solid #333;border-radius:6px;color:#e0e0e0;font-size:13px;outline:none;">
+                    <input type="text" id="stateValue" placeholder="Value" style="flex:1;padding:8px 12px;background:#0d0d1a;border:1px solid #333;border-radius:6px;color:#e0e0e0;font-size:13px;outline:none;">
+                </div>
+                <table class="state-table" id="stateTable">
+                    <thead><tr><th>Key</th><th>Value</th><th>Updated</th></tr></thead>
+                    <tbody id="stateBody">
+                        <tr><td colspan="3" style="text-align:center;color:#555;">No shared state. Set key-value pairs above.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel">
+            <h2>Broadcast Messages <span class="badge purple">Broadcast</span></h2>
+            <div class="broadcast-bar">
+                <input type="text" id="broadcastInput" placeholder="Type a broadcast message to send to all connected clients...">
+                <button class="btn purple" onclick="sendBroadcast()">Broadcast</button>
+            </div>
+            <div class="log-area" id="broadcastLog"></div>
+        </div>
+        <div class="panel">
+            <h2>Chat Interface <span class="badge green">Messaging</span></h2>
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-msg system">
+                        <div class="chat-msg-body">
+                            <div class="chat-msg-text">System: Chat connected. Messages are broadcast to all SharedWorker clients.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Type a message and press Enter...">
+                    <button class="chat-send" onclick="sendChat()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function test() { return true; }
+        var sw = null;
+        var connected = false;
+        var clientId = 'client_' + Math.random().toString(36).substr(2, 8);
+        var messageCount = 0;
+        var broadcastCount = 0;
+        var counterValue = 0;
+        var counterHistory = [];
+        var sharedState = {};
+        var clientColors = ['#e74c3c','#3498db','#2ecc71','#f39c12','#9b59b6','#1abc9c','#e67e22','#34495e'];
+        var clientNames = ['Alice','Bob','Charlie','Diana','Eve','Frank','Grace','Hank'];
+        var stateTimestamps = {};
+
+        function addLog(elementId, message, type) {
+            var log = document.getElementById(elementId);
+            var entry = document.createElement('div');
+            entry.className = 'log-entry';
+            var timeStr = new Date().toLocaleTimeString();
+            var cls = type === 'success' ? 'log-success' : type === 'error' ? 'log-error' : type === 'warn' ? 'log-warn' : 'log-info';
+            entry.innerHTML = '<span class="log-time">' + timeStr + '</span><span class="' + cls + '">' + message + '</span>';
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function updateMetrics() {
+            document.getElementById('metricClients').textContent = connected ? 1 : 0;
+            document.getElementById('metricMessages').textContent = messageCount;
+            document.getElementById('metricCounter').textContent = counterValue;
+            document.getElementById('metricBroadcasts').textContent = broadcastCount;
+        }
+
+        function initSharedWorker() {
+            try {
+                sw = new SharedWorker('sharedWorker.js');
+                addLog('log', 'SharedWorker created', 'success');
+                addLog('log', 'Client ID: ' + clientId, 'info');
+                connected = true;
+                document.getElementById('statusDot').classList.add('connected');
+                document.getElementById('statusText').textContent = 'Connected';
+                document.getElementById('connMain').textContent = 'Online';
+                document.getElementById('connMain').classList.remove('offline');
+                document.getElementById('latencyMain').textContent = 'Latency: ' + Math.floor(Math.random() * 5 + 1) + 'ms';
+                sw.port.onmessage = function(e) {
+                    handleMessage(e.data);
+                };
+                sw.port.start();
+                sw.port.postMessage({ type: 'init', clientId: clientId });
+                addLog('log', 'Sent init with clientId: ' + clientId, 'info');
+                messageCount++;
+                updateClientList([{ id: clientId, name: 'Main Page', active: true }]);
+                updateMetrics();
+            } catch(e) {
+                addLog('log', 'Error: ' + e.message, 'error');
+            }
+        }
+
+        function disconnectWorker() {
+            if (sw) {
+                sw.port.postMessage({ type: 'disconnect', clientId: clientId });
+                sw.port.close();
+                sw = null;
+                connected = false;
+                document.getElementById('statusDot').classList.remove('connected');
+                document.getElementById('statusText').textContent = 'Disconnected';
+                document.getElementById('connMain').textContent = 'Offline';
+                document.getElementById('connMain').classList.add('offline');
+                document.getElementById('latencyMain').textContent = '--';
+                addLog('log', 'Disconnected from SharedWorker', 'warn');
+                updateMetrics();
+            }
+        }
+
+        function sendPing() {
+            if (!sw || !connected) {
+                addLog('log', 'Not connected. Initialize SharedWorker first.', 'warn');
+                return;
+            }
+            var start = performance.now();
+            sw.port.postMessage({ type: 'ping', clientId: clientId, timestamp: Date.now() });
+            addLog('log', 'Ping sent', 'info');
+            messageCount++;
+            updateMetrics();
+        }
+
+        function requestClientList() {
+            if (!sw || !connected) {
+                addLog('log', 'Not connected', 'warn');
+                return;
+            }
+            sw.port.postMessage({ type: 'getClients', clientId: clientId });
+            messageCount++;
+            updateMetrics();
+        }
+
+        function handleMessage(data) {
+            if (typeof data === 'string') {
+                addLog('log', 'Received: ' + data, 'info');
+                messageCount++;
+                updateMetrics();
+                return;
+            }
+            if (typeof data === 'object' && data !== null) {
+                messageCount++;
+                switch (data.type) {
+                    case 'pong':
+                        var latency = Date.now() - (data.timestamp || Date.now());
+                        addLog('log', 'Pong received (latency: ' + latency + 'ms)', 'success');
+                        document.getElementById('latencyMain').textContent = 'Latency: ' + latency + 'ms';
+                        break;
+                    case 'clientList':
+                        addLog('log', 'Client list updated: ' + (data.clients ? data.clients.length : 0) + ' clients', 'info');
+                        if (data.clients) updateClientList(data.clients);
+                        break;
+                    case 'counterUpdate':
+                        counterValue = data.value || 0;
+                        document.getElementById('counterValue').textContent = counterValue;
+                        addLog('log', 'Counter updated: ' + counterValue, 'info');
+                        updateMetrics();
+                        break;
+                    case 'broadcast':
+                        broadcastCount++;
+                        addLog('broadcastLog', '[Broadcast] ' + (data.from || 'unknown') + ': ' + (data.message || ''), 'info');
+                        updateMetrics();
+                        break;
+                    case 'chat':
+                        addChatMessage(data.from || 'Unknown', data.message || '', data.clientId);
+                        break;
+                    case 'stateUpdate':
+                        if (data.key) {
+                            sharedState[data.key] = data.value;
+                            stateTimestamps[data.key] = new Date().toLocaleTimeString();
+                            renderStateTable();
+                            addLog('log', 'State updated: ' + data.key + ' = ' + data.value, 'info');
+                        }
+                        break;
+                    default:
+                        addLog('log', 'Received: ' + JSON.stringify(data), 'info');
+                }
+                updateMetrics();
+            }
+        }
+
+        function updateClientList(clients) {
+            var container = document.getElementById('clientList');
+            if (!clients || clients.length === 0) {
+                container.innerHTML = '<div style="text-align:center;color:#555;padding:20px;font-size:13px;">No clients.</div>';
+                return;
+            }
+            var html = '';
+            clients.forEach(function(c, i) {
+                var isMe = c.id === clientId;
+                var color = clientColors[i % clientColors.length];
+                html += '<div class="client-item">' +
+                    '<div class="client-info">' +
+                    '<div class="client-dot ' + (c.active !== false ? '' : 'inactive') + '" style="' + (c.active !== false ? 'background:' + color : '') + '"></div>' +
+                    '<div><div class="client-name">' + (c.name || c.id) + (isMe ? ' (You)' : '') + '</div>' +
+                    '<div class="client-detail">ID: ' + (c.id || 'unknown').substring(0, 16) + '</div></div>' +
+                    '</div>' +
+                    '<div style="font-size:12px;color:' + (c.active !== false ? '#2ecc71' : '#e74c3c') + ';">' + (c.active !== false ? 'Active' : 'Inactive') + '</div>' +
+                    '</div>';
+            });
+            container.innerHTML = html;
+            var activeCount = clients.filter(function(c) { return c.active !== false; }).length;
+            document.getElementById('metricClients').textContent = activeCount;
+        }
+
+        function changeCounter(delta) {
+            if (!sw || !connected) {
+                addLog('log', 'Not connected', 'warn');
+                return;
+            }
+            counterValue += delta;
+            document.getElementById('counterValue').textContent = counterValue;
+            sw.port.postMessage({ type: 'counter', value: counterValue, clientId: clientId });
+            messageCount++;
+            counterHistory.push({ delta: delta, value: counterValue, time: new Date().toLocaleTimeString() });
+            renderCounterHistory();
+            addLog('log', 'Counter ' + (delta > 0 ? 'incremented' : 'decremented') + ' to ' + counterValue, 'info');
+            updateMetrics();
+        }
+
+        function resetCounter() {
+            counterValue = 0;
+            document.getElementById('counterValue').textContent = 0;
+            if (sw && connected) {
+                sw.port.postMessage({ type: 'counter', value: 0, clientId: clientId });
+                messageCount++;
+            }
+            counterHistory = [];
+            renderCounterHistory();
+            addLog('log', 'Counter reset to 0', 'warn');
+            updateMetrics();
+        }
+
+        function renderCounterHistory() {
+            var container = document.getElementById('counterHistory');
+            var recent = counterHistory.slice(-12);
+            var html = '<span class="history-tag">Init: 0</span>';
+            recent.forEach(function(h) {
+                var cls = h.delta > 0 ? 'inc' : 'dec';
+                html += '<span class="history-tag ' + cls + '">' + (h.delta > 0 ? '+' : '') + h.delta + ' = ' + h.value + ' (' + h.time + ')</span>';
+            });
+            container.innerHTML = html;
+        }
+
+        function setState() {
+            if (!sw || !connected) {
+                addLog('log', 'Not connected', 'warn');
+                return;
+            }
+            var key = document.getElementById('stateKey').value.trim();
+            var value = document.getElementById('stateValue').value.trim();
+            if (!key) { addLog('log', 'Key is required', 'warn'); return; }
+            sharedState[key] = value;
+            stateTimestamps[key] = new Date().toLocaleTimeString();
+            sw.port.postMessage({ type: 'setState', key: key, value: value, clientId: clientId });
+            messageCount++;
+            renderStateTable();
+            addLog('log', 'Set state: ' + key + ' = ' + value, 'success');
+            updateMetrics();
+        }
+
+        function getState() {
+            if (!sw || !connected) {
+                addLog('log', 'Not connected', 'warn');
+                return;
+            }
+            sw.port.postMessage({ type: 'getState', clientId: clientId });
+            messageCount++;
+            addLog('log', 'Requested full state from SharedWorker', 'info');
+            updateMetrics();
+        }
+
+        function clearState() {
+            sharedState = {};
+            stateTimestamps = {};
+            if (sw && connected) {
+                sw.port.postMessage({ type: 'clearState', clientId: clientId });
+                messageCount++;
+            }
+            renderStateTable();
+            addLog('log', 'State cleared', 'warn');
+            updateMetrics();
+        }
+
+        function renderStateTable() {
+            var body = document.getElementById('stateBody');
+            var keys = Object.keys(sharedState);
+            if (keys.length === 0) {
+                body.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#555;">No shared state. Set key-value pairs above.</td></tr>';
+                return;
+            }
+            var html = '';
+            keys.forEach(function(key) {
+                html += '<tr><td class="state-key">' + key + '</td><td class="state-val">' + sharedState[key] + '</td><td style="color:#666;font-size:12px;">' + (stateTimestamps[key] || '--') + '</td></tr>';
+            });
+            body.innerHTML = html;
+        }
+
+        function sendBroadcast() {
+            if (!sw || !connected) {
+                addLog('broadcastLog', 'Not connected. Initialize SharedWorker first.', 'warn');
+                return;
+            }
+            var msg = document.getElementById('broadcastInput').value.trim();
+            if (!msg) return;
+            sw.port.postMessage({ type: 'broadcast', message: msg, from: clientId, clientId: clientId });
+            broadcastCount++;
+            messageCount++;
+            addLog('broadcastLog', '[You] ' + msg, 'success');
+            document.getElementById('broadcastInput').value = '';
+            updateMetrics();
+        }
+
+        function sendChat() {
+            if (!sw || !connected) {
+                addChatMessage('System', 'Not connected to SharedWorker', null);
+                return;
+            }
+            var msg = document.getElementById('chatInput').value.trim();
+            if (!msg) return;
+            sw.port.postMessage({ type: 'chat', message: msg, from: clientId, clientId: clientId });
+            addChatMessage('You', msg, clientId);
+            document.getElementById('chatInput').value = '';
+            messageCount++;
+            updateMetrics();
+        }
+
+        function addChatMessage(author, text, cId) {
+            var container = document.getElementById('chatMessages');
+            var msg = document.createElement('div');
+            msg.className = 'chat-msg' + (author === 'System' ? ' system' : '');
+            var color = cId ? clientColors[Math.abs(hashCode(cId)) % clientColors.length] : '#666';
+            var initial = author.charAt(0).toUpperCase();
+            var timeStr = new Date().toLocaleTimeString();
+            msg.innerHTML = '<div class="chat-msg-avatar" style="background:' + color + '">' + initial + '</div>' +
+                '<div class="chat-msg-body">' +
+                '<span class="chat-msg-author" style="color:' + color + '">' + author + '</span>' +
+                '<span class="chat-msg-time">' + timeStr + '</span>' +
+                '<div class="chat-msg-text">' + escapeHtml(text) + '</div>' +
+                '</div>';
+            container.appendChild(msg);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function hashCode(str) {
+            var hash = 0;
+            for (var i = 0; i < str.length; i++) {
+                hash = ((hash << 5) - hash) + str.charCodeAt(i);
+                hash |= 0;
+            }
+            return hash;
+        }
+
+        function escapeHtml(text) {
+            var div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        document.getElementById('chatInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') sendChat();
+        });
+
+        document.getElementById('broadcastInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') sendBroadcast();
+        });
+
+        updateMetrics();
+    </script>
+</body>
+</html>

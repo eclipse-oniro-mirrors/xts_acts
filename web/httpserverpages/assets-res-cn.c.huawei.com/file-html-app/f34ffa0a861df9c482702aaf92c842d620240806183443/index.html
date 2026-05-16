@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华为媒体播放页面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif; background: #0a0a0a; color: #e0e0e0; min-height: 100vh; overflow: hidden; }
+        .app-layout { display: flex; height: 100vh; width: 100vw; }
+        .main-area { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+        .player-page { display: flex; flex-direction: column; height: 100vh; }
+        .video-player { flex: 1; background: #000; position: relative; display: flex; align-items: center; justify-content: center; min-height: 0; overflow: hidden; }
+        .video-player video { width: 100%; height: 100%; object-fit: contain; }
+        .media-session-info { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.75); padding: 8px 14px; border-radius: 6px; font-size: 12px; color: #0f0; z-index: 20; backdrop-filter: blur(4px); }
+        .gesture-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 15; display: flex; align-items: center; justify-content: center; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
+        .gesture-overlay.visible { opacity: 1; }
+        .gesture-overlay .gesture-icon { font-size: 64px; color: rgba(255,255,255,0.85); text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
+        .gesture-overlay .gesture-label { font-size: 16px; color: rgba(255,255,255,0.7); margin-top: 8px; text-align: center; }
+        .buffering-indicator { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 18; display: none; }
+        .buffering-indicator.active { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .buffering-spinner { width: 48px; height: 48px; border: 4px solid rgba(255,255,255,0.15); border-top-color: #0078d4; border-radius: 50%; animation: spin 0.8s linear infinite; }
+        .buffering-text { font-size: 13px; color: rgba(255,255,255,0.6); }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .custom-controls { background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 12px 20px 16px; display: flex; flex-direction: column; gap: 8px; position: relative; }
+        .seek-container { position: relative; width: 100%; height: 20px; display: flex; align-items: center; cursor: pointer; }
+        .seek-bar-track { width: 100%; height: 4px; background: rgba(255,255,255,0.15); border-radius: 2px; position: relative; transition: height 0.15s; }
+        .seek-container:hover .seek-bar-track { height: 6px; }
+        .seek-bar-buffered { position: absolute; top: 0; left: 0; height: 100%; background: rgba(255,255,255,0.25); border-radius: 2px; pointer-events: none; }
+        .seek-bar-fill { position: absolute; top: 0; left: 0; height: 100%; background: #0078d4; border-radius: 2px; pointer-events: none; }
+        .seek-bar-thumb { position: absolute; top: 50%; width: 14px; height: 14px; background: #0078d4; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; box-shadow: 0 0 4px rgba(0,120,212,0.5); transition: transform 0.1s; }
+        .seek-container:hover .seek-bar-thumb { transform: translate(-50%, -50%) scale(1.3); }
+        .chapter-marker { position: absolute; top: -2px; width: 3px; height: 8px; background: #ff9500; border-radius: 1px; transform: translateX(-50%); cursor: pointer; z-index: 2; }
+        .chapter-marker:hover { height: 12px; background: #ffb340; }
+        .chapter-tooltip { position: absolute; bottom: 16px; background: rgba(0,0,0,0.85); color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 4px; white-space: nowrap; transform: translateX(-50%); pointer-events: none; display: none; }
+        .chapter-marker:hover .chapter-tooltip { display: block; }
+        .controls-row { display: flex; align-items: center; gap: 10px; }
+        .controls-left { display: flex; align-items: center; gap: 8px; flex: 1; }
+        .controls-center { display: flex; align-items: center; gap: 12px; }
+        .controls-right { display: flex; align-items: center; gap: 8px; flex: 1; justify-content: flex-end; }
+        .ctrl-btn { background: none; border: none; color: #e0e0e0; font-size: 18px; cursor: pointer; padding: 6px; border-radius: 4px; transition: background 0.15s, color 0.15s; display: flex; align-items: center; justify-content: center; line-height: 1; }
+        .ctrl-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .ctrl-btn.active { color: #0078d4; }
+        .time-display { font-size: 12px; color: #aaa; font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .volume-group { display: flex; align-items: center; gap: 4px; }
+        .volume-slider { width: 80px; height: 4px; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.2); border-radius: 2px; outline: none; cursor: pointer; }
+        .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: #fff; border-radius: 50%; cursor: pointer; }
+        .speed-selector { position: relative; }
+        .speed-menu { position: absolute; bottom: 36px; right: 0; background: rgba(20,20,20,0.95); border-radius: 8px; padding: 6px 0; display: none; min-width: 90px; box-shadow: 0 4px 16px rgba(0,0,0,0.5); backdrop-filter: blur(8px); z-index: 30; }
+        .speed-menu.open { display: block; }
+        .speed-menu-item { padding: 8px 16px; font-size: 13px; cursor: pointer; transition: background 0.15s; text-align: center; color: #ccc; }
+        .speed-menu-item:hover { background: rgba(255,255,255,0.08); }
+        .speed-menu-item.active { color: #0078d4; font-weight: 600; }
+        .info-bar { background: #141414; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #1e1e1e; }
+        .info-bar h2 { font-size: 16px; font-weight: 500; }
+        .info-bar p { font-size: 12px; color: #666; margin-top: 2px; }
+        .playlist-sidebar { width: 320px; background: #111; border-left: 1px solid #1e1e1e; display: flex; flex-direction: column; }
+        .sidebar-header { padding: 14px 16px; font-size: 14px; font-weight: 600; border-bottom: 1px solid #1e1e1e; display: flex; align-items: center; justify-content: space-between; }
+        .sidebar-tabs { display: flex; border-bottom: 1px solid #1e1e1e; }
+        .sidebar-tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; cursor: pointer; color: #888; border-bottom: 2px solid transparent; transition: all 0.2s; }
+        .sidebar-tab:hover { color: #ccc; }
+        .sidebar-tab.active { color: #0078d4; border-bottom-color: #0078d4; }
+        .sidebar-content { flex: 1; overflow-y: auto; }
+        .sidebar-content::-webkit-scrollbar { width: 4px; }
+        .sidebar-content::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+        .playlist-panel, .quality-panel, .subtitle-panel, .equalizer-panel, .metadata-panel, .history-panel { display: none; padding: 8px 0; }
+        .playlist-panel.active, .quality-panel.active, .subtitle-panel.active, .equalizer-panel.active, .metadata-panel.active, .history-panel.active { display: block; }
+        .playlist-item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; cursor: pointer; transition: background 0.15s; }
+        .playlist-item:hover { background: rgba(255,255,255,0.05); }
+        .playlist-item.active { background: rgba(0,120,212,0.12); }
+        .playlist-item .pl-thumb { width: 80px; height: 45px; background: #222; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #555; }
+        .playlist-item .pl-info { flex: 1; min-width: 0; }
+        .playlist-item .pl-title { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .playlist-item .pl-duration { font-size: 11px; color: #666; margin-top: 3px; }
+        .playlist-item.active .pl-title { color: #0078d4; }
+        .playlist-item .pl-playing { font-size: 10px; color: #0078d4; margin-top: 3px; }
+        .quality-option { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; transition: background 0.15s; }
+        .quality-option:hover { background: rgba(255,255,255,0.05); }
+        .quality-option.active { background: rgba(0,120,212,0.12); }
+        .quality-option .q-label { font-size: 14px; font-weight: 500; }
+        .quality-option .q-detail { font-size: 11px; color: #666; margin-top: 2px; }
+        .quality-option .q-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: rgba(0,120,212,0.2); color: #0078d4; }
+        .subtitle-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; transition: background 0.15s; }
+        .subtitle-item:hover { background: rgba(255,255,255,0.05); }
+        .subtitle-item.active { background: rgba(0,120,212,0.12); }
+        .subtitle-item .sub-label { font-size: 13px; }
+        .subtitle-item .sub-code { font-size: 11px; color: #666; margin-top: 2px; }
+        .toggle-switch { width: 36px; height: 20px; background: #333; border-radius: 10px; position: relative; cursor: pointer; transition: background 0.2s; }
+        .toggle-switch.on { background: #0078d4; }
+        .toggle-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; background: #fff; border-radius: 50%; transition: transform 0.2s; }
+        .toggle-switch.on::after { transform: translateX(16px); }
+        .eq-container { padding: 16px; }
+        .eq-canvas { width: 100%; height: 120px; background: #0a0a0a; border-radius: 8px; margin-bottom: 16px; }
+        .eq-sliders { display: flex; gap: 8px; justify-content: space-between; }
+        .eq-band { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+        .eq-band label { font-size: 10px; color: #888; }
+        .eq-band input[type="range"] { width: 100%; height: 80px; -webkit-appearance: none; appearance: none; writing-mode: vertical-lr; direction: rtl; background: transparent; }
+        .eq-band input[type="range"]::-webkit-slider-runnable-track { width: 4px; background: #333; border-radius: 2px; }
+        .eq-band input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; background: #0078d4; border-radius: 50%; cursor: pointer; }
+        .eq-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+        .eq-preset-btn { padding: 6px 12px; font-size: 11px; background: #222; border: 1px solid #333; color: #aaa; border-radius: 14px; cursor: pointer; transition: all 0.15s; }
+        .eq-preset-btn:hover { border-color: #0078d4; color: #0078d4; }
+        .eq-preset-btn.active { background: rgba(0,120,212,0.15); border-color: #0078d4; color: #0078d4; }
+        .meta-section { padding: 14px 16px; border-bottom: 1px solid #1a1a1a; }
+        .meta-section:last-child { border-bottom: none; }
+        .meta-section-title { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .meta-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 13px; }
+        .meta-row .meta-key { color: #888; }
+        .meta-row .meta-value { color: #e0e0e0; text-align: right; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .history-item { display: flex; align-items: center; gap: 10px; padding: 10px 16px; transition: background 0.15s; }
+        .history-item:hover { background: rgba(255,255,255,0.03); }
+        .history-item .hi-index { font-size: 12px; color: #555; width: 20px; text-align: center; }
+        .history-item .hi-info { flex: 1; min-width: 0; }
+        .history-item .hi-title { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .history-item .hi-time { font-size: 11px; color: #555; margin-top: 2px; }
+        .history-item .hi-progress { width: 40px; height: 3px; background: #222; border-radius: 2px; flex-shrink: 0; }
+        .history-item .hi-progress-fill { height: 100%; background: #0078d4; border-radius: 2px; }
+        .pip-indicator { position: absolute; top: 10px; right: 10px; background: rgba(0,120,212,0.85); color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 12px; z-index: 20; display: none; backdrop-filter: blur(4px); }
+        .pip-indicator.active { display: flex; align-items: center; gap: 4px; }
+        .screenshot-flash { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: #fff; opacity: 0; pointer-events: none; z-index: 25; }
+        .screenshot-flash.active { animation: flash 0.3s ease-out; }
+        @keyframes flash { 0% { opacity: 0.6; } 100% { opacity: 0; } }
+        .cast-menu { position: absolute; bottom: 40px; right: 20px; background: rgba(20,20,20,0.95); border-radius: 8px; padding: 6px 0; display: none; min-width: 200px; box-shadow: 0 4px 16px rgba(0,0,0,0.5); backdrop-filter: blur(8px); z-index: 30; }
+        .cast-menu.open { display: block; }
+        .cast-menu-item { padding: 10px 16px; font-size: 13px; cursor: pointer; transition: background 0.15s; display: flex; align-items: center; gap: 10px; color: #ccc; }
+        .cast-menu-item:hover { background: rgba(255,255,255,0.08); }
+        .cast-menu-item .cast-icon { font-size: 18px; }
+        .cast-menu-item .cast-name { flex: 1; }
+        .cast-menu-item .cast-status { font-size: 11px; color: #666; }
+        .toast-notification { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; z-index: 100; opacity: 0; transition: opacity 0.3s; pointer-events: none; backdrop-filter: blur(8px); }
+        .toast-notification.show { opacity: 1; }
+        .fullscreen .video-player { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 50; }
+        .fullscreen .info-bar { display: none; }
+        .fullscreen .playlist-sidebar { display: none; }
+        .fullscreen .custom-controls { position: fixed; bottom: 0; left: 0; right: 0; z-index: 51; background: linear-gradient(transparent, rgba(0,0,0,0.9)); }
+    </style>
+</head>
+<body>
+    <div class="app-layout" id="appLayout">
+        <div class="main-area">
+            <div class="player-page" id="playerPage">
+                <div class="video-player" id="videoContainer">
+                    <video id="mediaPlayer" preload="metadata" playsinline crossorigin="anonymous">
+                        <source src="video.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-session-info" id="mediaSessionInfo">
+                        <div>MediaSession: <span id="sessionStatus">Active</span></div>
+                        <div>Title: <span id="mediaTitle">Huawei Media Content</span></div>
+                    </div>
+                    <div class="gesture-overlay" id="gestureOverlay">
+                        <div style="text-align:center">
+                            <div class="gesture-icon" id="gestureIcon">&#9654;</div>
+                            <div class="gesture-label" id="gestureLabel">播放</div>
+                        </div>
+                    </div>
+                    <div class="buffering-indicator" id="bufferingIndicator">
+                        <div class="buffering-spinner"></div>
+                        <div class="buffering-text">缓冲中...</div>
+                    </div>
+                    <div class="pip-indicator" id="pipIndicator">&#9646;&#9646; 画中画</div>
+                    <div class="screenshot-flash" id="screenshotFlash"></div>
+                </div>
+                <div class="custom-controls" id="customControls">
+                    <div class="seek-container" id="seekContainer">
+                        <div class="seek-bar-track" id="seekTrack">
+                            <div class="seek-bar-buffered" id="seekBuffered"></div>
+                            <div class="seek-bar-fill" id="seekFill"></div>
+                            <div class="seek-bar-thumb" id="seekThumb"></div>
+                            <div class="chapter-marker" style="left:15%"><div class="chapter-tooltip">第一章: 开场介绍</div></div>
+                            <div class="chapter-marker" style="left:35%"><div class="chapter-tooltip">第二章: 核心内容</div></div>
+                            <div class="chapter-marker" style="left:55%"><div class="chapter-tooltip">第三章: 深入讲解</div></div>
+                            <div class="chapter-marker" style="left:75%"><div class="chapter-tooltip">第四章: 案例分析</div></div>
+                            <div class="chapter-marker" style="left:90%"><div class="chapter-tooltip">第五章: 总结回顾</div></div>
+                        </div>
+                    </div>
+                    <div class="controls-row">
+                        <div class="controls-left">
+                            <button class="ctrl-btn" id="btnPrev" title="上一个">&#9198;</button>
+                            <button class="ctrl-btn" id="btnPlay" title="播放/暂停">&#9654;</button>
+                            <button class="ctrl-btn" id="btnNext" title="下一个">&#9199;</button>
+                            <div class="volume-group">
+                                <button class="ctrl-btn" id="btnVolume" title="音量">&#128266;</button>
+                                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.7">
+                            </div>
+                            <span class="time-display" id="timeDisplay">00:00 / 00:00</span>
+                        </div>
+                        <div class="controls-right">
+                            <div class="speed-selector">
+                                <button class="ctrl-btn" id="btnSpeed" title="播放速度">1x</button>
+                                <div class="speed-menu" id="speedMenu">
+                                    <div class="speed-menu-item" data-speed="0.25">0.25x</div>
+                                    <div class="speed-menu-item" data-speed="0.5">0.5x</div>
+                                    <div class="speed-menu-item" data-speed="0.75">0.75x</div>
+                                    <div class="speed-menu-item active" data-speed="1">1x</div>
+                                    <div class="speed-menu-item" data-speed="1.25">1.25x</div>
+                                    <div class="speed-menu-item" data-speed="1.5">1.5x</div>
+                                    <div class="speed-menu-item" data-speed="2">2x</div>
+                                </div>
+                            </div>
+                            <button class="ctrl-btn" id="btnScreenshot" title="截图">&#128247;</button>
+                            <button class="ctrl-btn" id="btnPip" title="画中画">&#128425;</button>
+                            <button class="ctrl-btn" id="btnCast" title="投屏">&#128225;</button>
+                            <button class="ctrl-btn" id="btnFullscreen" title="全屏">&#9974;</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-bar">
+                    <div>
+                        <h2 id="textContent">enableWebAVSession</h2>
+                        <p>华为媒体内容展示页面 - 支持AVSession媒体控制</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="playlist-sidebar" id="playlistSidebar">
+            <div class="sidebar-header">
+                <span>媒体面板</span>
+                <button class="ctrl-btn" id="btnToggleSidebar" title="收起面板" style="font-size:14px">&#10094;</button>
+            </div>
+            <div class="sidebar-tabs">
+                <div class="sidebar-tab active" data-panel="playlist">播放列表</div>
+                <div class="sidebar-tab" data-panel="quality">画质</div>
+                <div class="sidebar-tab" data-panel="subtitle">字幕</div>
+                <div class="sidebar-tab" data-panel="equalizer">均衡器</div>
+                <div class="sidebar-tab" data-panel="metadata">详情</div>
+                <div class="sidebar-tab" data-panel="history">历史</div>
+            </div>
+            <div class="sidebar-content">
+                <div class="playlist-panel active" id="panelPlaylist">
+                    <div class="playlist-item active" data-index="0">
+                        <div class="pl-thumb">&#9654;</div>
+                        <div class="pl-info">
+                            <div class="pl-title">Huawei Media Content</div>
+                            <div class="pl-duration">09:47</div>
+                            <div class="pl-playing">正在播放...</div>
+                        </div>
+                    </div>
+                    <div class="playlist-item" data-index="1">
+                        <div class="pl-thumb">02</div>
+                        <div class="pl-info">
+                            <div class="pl-title">HarmonyOS 系统介绍视频</div>
+                            <div class="pl-duration">12:30</div>
+                        </div>
+                    </div>
+                    <div class="playlist-item" data-index="2">
+                        <div class="pl-thumb">03</div>
+                        <div class="pl-info">
+                            <div class="pl-title">华为开发者大会主题演讲</div>
+                            <div class="pl-duration">45:18</div>
+                        </div>
+                    </div>
+                    <div class="playlist-item" data-index="3">
+                        <div class="pl-thumb">04</div>
+                        <div class="pl-info">
+                            <div class="pl-title">AVSession 技术详解</div>
+                            <div class="pl-duration">22:05</div>
+                        </div>
+                    </div>
+                    <div class="playlist-item" data-index="4">
+                        <div class="pl-thumb">05</div>
+                        <div class="pl-info">
+                            <div class="pl-title">分布式媒体能力演示</div>
+                            <div class="pl-duration">08:42</div>
+                        </div>
+                    </div>
+                    <div class="playlist-item" data-index="5">
+                        <div class="pl-thumb">06</div>
+                        <div class="pl-info">
+                            <div class="pl-title">鸿蒙生态应用展示</div>
+                            <div class="pl-duration">15:33</div>
+                        </div>
+                    </div>
+                    <div class="playlist-item" data-index="6">
+                        <div class="pl-thumb">07</div>
+                        <div class="pl-info">
+                            <div class="pl-title">跨设备协同播放测试</div>
+                            <div class="pl-duration">06:20</div>
+                        </div>
+                    </div>
+                    <div class="playlist-item" data-index="7">
+                        <div class="pl-thumb">08</div>
+                        <div class="pl-info">
+                            <div class="pl-title">媒体会话控制协议解析</div>
+                            <div class="pl-duration">18:55</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="quality-panel" id="panelQuality">
+                    <div class="quality-option" data-quality="480p">
+                        <div>
+                            <div class="q-label">480p</div>
+                            <div class="q-detail">标清 854x480 - 约 2Mbps</div>
+                        </div>
+                    </div>
+                    <div class="quality-option" data-quality="720p">
+                        <div>
+                            <div class="q-label">720p</div>
+                            <div class="q-detail">高清 1280x720 - 约 5Mbps</div>
+                        </div>
+                        <span class="q-badge">推荐</span>
+                    </div>
+                    <div class="quality-option active" data-quality="1080p">
+                        <div>
+                            <div class="q-label">1080p</div>
+                            <div class="q-detail">全高清 1920x1080 - 约 8Mbps</div>
+                        </div>
+                        <span class="q-badge">当前</span>
+                    </div>
+                    <div class="quality-option" data-quality="4k">
+                        <div>
+                            <div class="q-label">4K Ultra HD</div>
+                            <div class="q-detail">超高清 3840x2160 - 约 25Mbps</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="subtitle-panel" id="panelSubtitle">
+                    <div class="subtitle-item active" data-sub="off">
+                        <div>
+                            <div class="sub-label">关闭字幕</div>
+                            <div class="sub-code">无</div>
+                        </div>
+                        <div class="toggle-switch on"></div>
+                    </div>
+                    <div class="subtitle-item" data-sub="zh">
+                        <div>
+                            <div class="sub-label">中文简体</div>
+                            <div class="sub-code">zh-CN</div>
+                        </div>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    <div class="subtitle-item" data-sub="en">
+                        <div>
+                            <div class="sub-label">English</div>
+                            <div class="sub-code">en-US</div>
+                        </div>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    <div class="subtitle-item" data-sub="zh-tw">
+                        <div>
+                            <div class="sub-label">中文繁體</div>
+                            <div class="sub-code">zh-TW</div>
+                        </div>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    <div class="subtitle-item" data-sub="ja">
+                        <div>
+                            <div class="sub-label">日本語</div>
+                            <div class="sub-code">ja-JP</div>
+                        </div>
+                        <div class="toggle-switch"></div>
+                    </div>
+                    <div class="subtitle-item" data-sub="ko">
+                        <div>
+                            <div class="sub-label">한국어</div>
+                            <div class="sub-code">ko-KR</div>
+                        </div>
+                        <div class="toggle-switch"></div>
+                    </div>
+                </div>
+                <div class="equalizer-panel" id="panelEqualizer">
+                    <div class="eq-container">
+                        <canvas class="eq-canvas" id="eqCanvas"></canvas>
+                        <div class="eq-sliders">
+                            <div class="eq-band">
+                                <label>60Hz</label>
+                                <input type="range" min="-12" max="12" value="0" data-freq="60">
+                            </div>
+                            <div class="eq-band">
+                                <label>230Hz</label>
+                                <input type="range" min="-12" max="12" value="0" data-freq="230">
+                            </div>
+                            <div class="eq-band">
+                                <label>910Hz</label>
+                                <input type="range" min="-12" max="12" value="0" data-freq="910">
+                            </div>
+                            <div class="eq-band">
+                                <label>4kHz</label>
+                                <input type="range" min="-12" max="12" value="0" data-freq="4000">
+                            </div>
+                            <div class="eq-band">
+                                <label>14kHz</label>
+                                <input type="range" min="-12" max="12" value="0" data-freq="14000">
+                            </div>
+                        </div>
+                        <div class="eq-presets">
+                            <div class="eq-preset-btn active" data-preset="flat">平坦</div>
+                            <div class="eq-preset-btn" data-preset="bass">低音增强</div>
+                            <div class="eq-preset-btn" data-preset="treble">高音增强</div>
+                            <div class="eq-preset-btn" data-preset="vocal">人声</div>
+                            <div class="eq-preset-btn" data-preset="rock">摇滚</div>
+                            <div class="eq-preset-btn" data-preset="classical">古典</div>
+                            <div class="eq-preset-btn" data-preset="jazz">爵士</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metadata-panel" id="panelMetadata">
+                    <div class="meta-section">
+                        <div class="meta-section-title">基本信息</div>
+                        <div class="meta-row"><span class="meta-key">标题</span><span class="meta-value" id="metaTitle">Huawei Media Content</span></div>
+                        <div class="meta-row"><span class="meta-key">艺术家</span><span class="meta-value" id="metaArtist">Huawei</span></div>
+                        <div class="meta-row"><span class="meta-key">专辑</span><span class="meta-value" id="metaAlbum">Media Collection</span></div>
+                    </div>
+                    <div class="meta-section">
+                        <div class="meta-section-title">视频信息</div>
+                        <div class="meta-row"><span class="meta-key">分辨率</span><span class="meta-value" id="metaResolution">1920x1080</span></div>
+                        <div class="meta-row"><span class="meta-key">时长</span><span class="meta-value" id="metaDuration">09:47</span></div>
+                        <div class="meta-row"><span class="meta-key">容器格式</span><span class="meta-value">MP4</span></div>
+                        <div class="meta-row"><span class="meta-key">视频编码</span><span class="meta-value">H.264/AVC</span></div>
+                        <div class="meta-row"><span class="meta-key">音频编码</span><span class="meta-value">AAC-LC</span></div>
+                        <div class="meta-row"><span class="meta-key">帧率</span><span class="meta-value">30fps</span></div>
+                    </div>
+                    <div class="meta-section">
+                        <div class="meta-section-title">MediaSession</div>
+                        <div class="meta-row"><span class="meta-key">会话状态</span><span class="meta-value" id="metaSessionStatus">Active</span></div>
+                        <div class="meta-row"><span class="meta-key">播放状态</span><span class="meta-value" id="metaPlaybackState">Paused</span></div>
+                        <div class="meta-row"><span class="meta-key">播放位置</span><span class="meta-value" id="metaPosition">00:00</span></div>
+                    </div>
+                </div>
+                <div class="history-panel" id="panelHistory">
+                    <div class="history-item">
+                        <div class="hi-index">1</div>
+                        <div class="hi-info">
+                            <div class="hi-title">HarmonyOS 系统介绍视频</div>
+                            <div class="hi-time">今天 10:32</div>
+                        </div>
+                        <div class="hi-progress"><div class="hi-progress-fill" style="width:100%"></div></div>
+                    </div>
+                    <div class="history-item">
+                        <div class="hi-index">2</div>
+                        <div class="hi-info">
+                            <div class="hi-title">华为开发者大会主题演讲</div>
+                            <div class="hi-time">今天 09:15</div>
+                        </div>
+                        <div class="hi-progress"><div class="hi-progress-fill" style="width:65%"></div></div>
+                    </div>
+                    <div class="history-item">
+                        <div class="hi-index">3</div>
+                        <div class="hi-info">
+                            <div class="hi-title">AVSession 技术详解</div>
+                            <div class="hi-time">昨天 16:40</div>
+                        </div>
+                        <div class="hi-progress"><div class="hi-progress-fill" style="width:42%"></div></div>
+                    </div>
+                    <div class="history-item">
+                        <div class="hi-index">4</div>
+                        <div class="hi-info">
+                            <div class="hi-title">分布式媒体能力演示</div>
+                            <div class="hi-time">昨天 14:20</div>
+                        </div>
+                        <div class="hi-progress"><div class="hi-progress-fill" style="width:100%"></div></div>
+                    </div>
+                    <div class="history-item">
+                        <div class="hi-index">5</div>
+                        <div class="hi-info">
+                            <div class="hi-title">鸿蒙生态应用展示</div>
+                            <div class="hi-time">3天前</div>
+                        </div>
+                        <div class="hi-progress"><div class="hi-progress-fill" style="width:28%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cast-menu" id="castMenu">
+        <div class="cast-menu-item" data-device="huawei-tv">
+            <span class="cast-icon">&#128225;</span>
+            <span class="cast-name">华为智慧屏</span>
+            <span class="cast-status">可用</span>
+        </div>
+        <div class="cast-menu-item" data-device="soundbox">
+            <span class="cast-icon">&#128264;</span>
+            <span class="cast-name">华为Sound音箱</span>
+            <span class="cast-status">可用</span>
+        </div>
+        <div class="cast-menu-item" data-device="tablet">
+            <span class="cast-icon">&#128241;</span>
+            <span class="cast-name">华为MatePad</span>
+            <span class="cast-status">可用</span>
+        </div>
+    </div>
+    <div class="toast-notification" id="toast"></div>
+    <script>
+        function test() { return true; }
+        (function() {
+            var mediaPlayer = document.getElementById('mediaPlayer');
+            var btnPlay = document.getElementById('btnPlay');
+            var btnPrev = document.getElementById('btnPrev');
+            var btnNext = document.getElementById('btnNext');
+            var btnVolume = document.getElementById('btnVolume');
+            var volumeSlider = document.getElementById('volumeSlider');
+            var btnSpeed = document.getElementById('btnSpeed');
+            var speedMenu = document.getElementById('speedMenu');
+            var btnScreenshot = document.getElementById('btnScreenshot');
+            var btnPip = document.getElementById('btnPip');
+            var btnCast = document.getElementById('btnCast');
+            var castMenu = document.getElementById('castMenu');
+            var btnFullscreen = document.getElementById('btnFullscreen');
+            var btnToggleSidebar = document.getElementById('btnToggleSidebar');
+            var seekContainer = document.getElementById('seekContainer');
+            var seekFill = document.getElementById('seekFill');
+            var seekBuffered = document.getElementById('seekBuffered');
+            var seekThumb = document.getElementById('seekThumb');
+            var timeDisplay = document.getElementById('timeDisplay');
+            var bufferingIndicator = document.getElementById('bufferingIndicator');
+            var gestureOverlay = document.getElementById('gestureOverlay');
+            var gestureIcon = document.getElementById('gestureIcon');
+            var gestureLabel = document.getElementById('gestureLabel');
+            var pipIndicator = document.getElementById('pipIndicator');
+            var screenshotFlash = document.getElementById('screenshotFlash');
+            var toast = document.getElementById('toast');
+            var eqCanvas = document.getElementById('eqCanvas');
+            var sessionStatusEl = document.getElementById('sessionStatus');
+            var mediaTitleEl = document.getElementById('mediaTitle');
+            var metaPlaybackState = document.getElementById('metaPlaybackState');
+            var metaPosition = document.getElementById('metaPosition');
+            var playlistItems = document.querySelectorAll('.playlist-item');
+            var qualityOptions = document.querySelectorAll('.quality-option');
+            var subtitleItems = document.querySelectorAll('.subtitle-item');
+            var speedItems = document.querySelectorAll('.speed-menu-item');
+            var sidebarTabs = document.querySelectorAll('.sidebar-tab');
+            var castMenuItems = document.querySelectorAll('.cast-menu-item');
+            var eqPresetBtns = document.querySelectorAll('.eq-preset-btn');
+            var gestureTimeout = null;
+            var controlsTimeout = null;
+            var isPlaying = false;
+            var isPipActive = false;
+            var isSeeking = false;
+            var isDragging = false;
+            mediaPlayer.volume = 0.7;
+            function formatTime(seconds) {
+                if (isNaN(seconds) || !isFinite(seconds)) return '00:00';
+                var m = Math.floor(seconds / 60);
+                var s = Math.floor(seconds % 60);
+                return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+            }
+            function showToast(msg) {
+                toast.textContent = msg;
+                toast.classList.add('show');
+                setTimeout(function() { toast.classList.remove('show'); }, 2000);
+            }
+            function showGesture(icon, label) {
+                gestureIcon.innerHTML = icon;
+                gestureLabel.textContent = label;
+                gestureOverlay.classList.add('visible');
+                clearTimeout(gestureTimeout);
+                gestureTimeout = setTimeout(function() { gestureOverlay.classList.remove('visible'); }, 800);
+            }
+            function updateSeekBar() {
+                if (isSeeking || isDragging) return;
+                var current = mediaPlayer.currentTime;
+                var duration = mediaPlayer.duration || 1;
+                var pct = (current / duration) * 100;
+                seekFill.style.width = pct + '%';
+                seekThumb.style.left = pct + '%';
+                timeDisplay.textContent = formatTime(current) + ' / ' + formatTime(duration);
+                metaPosition.textContent = formatTime(current);
+            }
+            function updateBuffered() {
+                if (mediaPlayer.buffered.length > 0) {
+                    var buffEnd = mediaPlayer.buffered.end(mediaPlayer.buffered.length - 1);
+                    var duration = mediaPlayer.duration || 1;
+                    seekBuffered.style.width = ((buffEnd / duration) * 100) + '%';
+                }
+            }
+            function togglePlay() {
+                if (mediaPlayer.paused || mediaPlayer.ended) {
+                    mediaPlayer.play().catch(function() {});
+                    isPlaying = true;
+                    btnPlay.innerHTML = '&#9646;&#9646;';
+                    showGesture('&#9654;', '播放');
+                    metaPlaybackState.textContent = 'Playing';
+                } else {
+                    mediaPlayer.pause();
+                    isPlaying = false;
+                    btnPlay.innerHTML = '&#9654;';
+                    showGesture('&#9646;&#9646;', '暂停');
+                    metaPlaybackState.textContent = 'Paused';
+                }
+            }
+            btnPlay.addEventListener('click', togglePlay);
+            mediaPlayer.addEventListener('click', togglePlay);
+            mediaPlayer.addEventListener('play', function() {
+                isPlaying = true;
+                btnPlay.innerHTML = '&#9646;&#9646;';
+                metaPlaybackState.textContent = 'Playing';
+                if ('mediaSession' in navigator) {
+                    navigator.mediaSession.playbackState = 'playing';
+                }
+            });
+            mediaPlayer.addEventListener('pause', function() {
+                isPlaying = false;
+                btnPlay.innerHTML = '&#9654;';
+                metaPlaybackState.textContent = 'Paused';
+                if ('mediaSession' in navigator) {
+                    navigator.mediaSession.playbackState = 'paused';
+                }
+            });
+            mediaPlayer.addEventListener('ended', function() {
+                isPlaying = false;
+                btnPlay.innerHTML = '&#9654;';
+                metaPlaybackState.textContent = 'Ended';
+                showGesture('&#8634;', '播放结束');
+            });
+            mediaPlayer.addEventListener('timeupdate', updateSeekBar);
+            mediaPlayer.addEventListener('progress', updateBuffered);
+            mediaPlayer.addEventListener('waiting', function() { bufferingIndicator.classList.add('active'); });
+            mediaPlayer.addEventListener('canplay', function() { bufferingIndicator.classList.remove('active'); });
+            mediaPlayer.addEventListener('playing', function() { bufferingIndicator.classList.remove('active'); });
+            mediaPlayer.addEventListener('volumechange', function() {
+                var v = mediaPlayer.volume;
+                var muted = mediaPlayer.muted;
+                if (muted || v === 0) { btnVolume.innerHTML = '&#128263;'; }
+                else if (v < 0.5) { btnVolume.innerHTML = '&#128265;'; }
+                else { btnVolume.innerHTML = '&#128266;'; }
+                if (!muted) volumeSlider.value = v;
+            });
+            btnVolume.addEventListener('click', function() {
+                mediaPlayer.muted = !mediaPlayer.muted;
+                showGesture(mediaPlayer.muted ? '&#128263;' : '&#128266;', mediaPlayer.muted ? '静音' : '取消静音');
+            });
+            volumeSlider.addEventListener('input', function() {
+                mediaPlayer.volume = parseFloat(this.value);
+                mediaPlayer.muted = false;
+            });
+            seekContainer.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                updateSeekFromEvent(e);
+            });
+            document.addEventListener('mousemove', function(e) {
+                if (isDragging) updateSeekFromEvent(e);
+            });
+            document.addEventListener('mouseup', function() {
+                if (isDragging) {
+                    isDragging = false;
+                    isSeeking = false;
+                }
+            });
+            function updateSeekFromEvent(e) {
+                var rect = seekContainer.getBoundingClientRect();
+                var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+                isSeeking = true;
+                seekFill.style.width = (pct * 100) + '%';
+                seekThumb.style.left = (pct * 100) + '%';
+                if (mediaPlayer.duration) {
+                    mediaPlayer.currentTime = pct * mediaPlayer.duration;
+                }
+            }
+            document.querySelectorAll('.chapter-marker').forEach(function(marker) {
+                marker.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var pct = parseFloat(this.style.left) / 100;
+                    if (mediaPlayer.duration) {
+                        mediaPlayer.currentTime = pct * mediaPlayer.duration;
+                        showGesture('&#128214;', this.querySelector('.chapter-tooltip').textContent);
+                    }
+                });
+            });
+            btnSpeed.addEventListener('click', function(e) {
+                e.stopPropagation();
+                speedMenu.classList.toggle('open');
+            });
+            speedItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    var speed = parseFloat(this.dataset.speed);
+                    mediaPlayer.playbackRate = speed;
+                    btnSpeed.textContent = speed + 'x';
+                    speedItems.forEach(function(i) { i.classList.remove('active'); });
+                    this.classList.add('active');
+                    speedMenu.classList.remove('open');
+                    showToast('播放速度: ' + speed + 'x');
+                });
+            });
+            btnScreenshot.addEventListener('click', function() {
+                screenshotFlash.classList.add('active');
+                setTimeout(function() { screenshotFlash.classList.remove('active'); }, 300);
+                try {
+                    var canvas = document.createElement('canvas');
+                    canvas.width = mediaPlayer.videoWidth || 1920;
+                    canvas.height = mediaPlayer.videoHeight || 1080;
+                    var ctx = canvas.getContext('2d');
+                    ctx.drawImage(mediaPlayer, 0, 0, canvas.width, canvas.height);
+                    canvas.toBlob(function(blob) {
+                        if (blob) {
+                            var url = URL.createObjectURL(blob);
+                            var a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'screenshot_' + Date.now() + '.png';
+                            a.click();
+                            URL.revokeObjectURL(url);
+                            showToast('截图已保存');
+                        }
+                    }, 'image/png');
+                } catch (err) {
+                    showToast('截图失败: 跨域限制');
+                }
+            });
+            btnPip.addEventListener('click', function() {
+                if (document.pictureInPictureElement) {
+                    document.exitPictureInPicture().then(function() {
+                        isPipActive = false;
+                        pipIndicator.classList.remove('active');
+                        btnPip.classList.remove('active');
+                        showToast('已退出画中画');
+                    }).catch(function() {});
+                } else if (document.pictureInPictureEnabled) {
+                    mediaPlayer.requestPictureInPicture().then(function() {
+                        isPipActive = true;
+                        pipIndicator.classList.add('active');
+                        btnPip.classList.add('active');
+                        showToast('已进入画中画模式');
+                    }).catch(function() {
+                        showToast('画中画不可用');
+                    });
+                } else {
+                    showToast('浏览器不支持画中画');
+                }
+            });
+            mediaPlayer.addEventListener('enterpictureinpicture', function() {
+                isPipActive = true;
+                pipIndicator.classList.add('active');
+                btnPip.classList.add('active');
+            });
+            mediaPlayer.addEventListener('leavepictureinpicture', function() {
+                isPipActive = false;
+                pipIndicator.classList.remove('active');
+                btnPip.classList.remove('active');
+            });
+            btnCast.addEventListener('click', function(e) {
+                e.stopPropagation();
+                castMenu.classList.toggle('open');
+            });
+            castMenuItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    var name = this.querySelector('.cast-name').textContent;
+                    showToast('正在连接 ' + name + '...');
+                    castMenu.classList.remove('open');
+                });
+            });
+            btnFullscreen.addEventListener('click', function() {
+                var container = document.getElementById('videoContainer');
+                if (!document.fullscreenElement) {
+                    (container.requestFullscreen || container.webkitRequestFullscreen || container.msRequestFullscreen).call(container);
+                    btnFullscreen.innerHTML = '&#9973;';
+                    showToast('已进入全屏');
+                } else {
+                    (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen).call(document);
+                    btnFullscreen.innerHTML = '&#9974;';
+                }
+            });
+            document.addEventListener('fullscreenchange', function() {
+                if (!document.fullscreenElement) {
+                    btnFullscreen.innerHTML = '&#9974;';
+                }
+            });
+            sidebarTabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    var panel = this.dataset.panel;
+                    sidebarTabs.forEach(function(t) { t.classList.remove('active'); });
+                    this.classList.add('active');
+                    document.querySelectorAll('.playlist-panel,.quality-panel,.subtitle-panel,.equalizer-panel,.metadata-panel,.history-panel').forEach(function(p) { p.classList.remove('active'); });
+                    var target = document.getElementById('panel' + panel.charAt(0).toUpperCase() + panel.slice(1));
+                    if (target) target.classList.add('active');
+                });
+            });
+            playlistItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    playlistItems.forEach(function(i) {
+                        i.classList.remove('active');
+                        var playing = i.querySelector('.pl-playing');
+                        if (playing) playing.remove();
+                    });
+                    this.classList.add('active');
+                    var title = this.querySelector('.pl-title').textContent;
+                    mediaTitleEl.textContent = title;
+                    document.getElementById('metaTitle').textContent = title;
+                    var info = this.querySelector('.pl-info');
+                    if (info && !info.querySelector('.pl-playing')) {
+                        var playingDiv = document.createElement('div');
+                        playingDiv.className = 'pl-playing';
+                        playingDiv.textContent = '正在播放...';
+                        info.appendChild(playingDiv);
+                    }
+                    showToast('正在播放: ' + title);
+                });
+            });
+            qualityOptions.forEach(function(opt) {
+                opt.addEventListener('click', function() {
+                    qualityOptions.forEach(function(o) {
+                        o.classList.remove('active');
+                        var badge = o.querySelector('.q-badge');
+                        if (badge) badge.remove();
+                    });
+                    this.classList.add('active');
+                    var badge = document.createElement('span');
+                    badge.className = 'q-badge';
+                    badge.textContent = '当前';
+                    this.appendChild(badge);
+                    var q = this.dataset.quality;
+                    showToast('画质已切换为 ' + q.toUpperCase());
+                    var resMap = { '480p': '854x480', '720p': '1280x720', '1080p': '1920x1080', '4k': '3840x2160' };
+                    document.getElementById('metaResolution').textContent = resMap[q] || q;
+                });
+            });
+            subtitleItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    subtitleItems.forEach(function(i) {
+                        i.classList.remove('active');
+                        i.querySelector('.toggle-switch').classList.remove('on');
+                    });
+                    this.classList.add('active');
+                    this.querySelector('.toggle-switch').classList.add('on');
+                    var label = this.querySelector('.sub-label').textContent;
+                    showToast('字幕: ' + label);
+                });
+            });
+            btnToggleSidebar.addEventListener('click', function() {
+                var sidebar = document.getElementById('playlistSidebar');
+                if (sidebar.style.display === 'none') {
+                    sidebar.style.display = 'flex';
+                    this.innerHTML = '&#10094;';
+                } else {
+                    sidebar.style.display = 'none';
+                    this.innerHTML = '&#10095;';
+                }
+            });
+            var eqPresets = {
+                flat: [0, 0, 0, 0, 0],
+                bass: [8, 6, 2, -1, -2],
+                treble: [-2, -1, 2, 6, 8],
+                vocal: [-2, 0, 6, 4, -1],
+                rock: [5, 3, -1, 3, 6],
+                classical: [4, 2, 0, 3, 5],
+                jazz: [3, 1, -2, 2, 5]
+            };
+            eqPresetBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    eqPresetBtns.forEach(function(b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+                    var preset = eqPresets[this.dataset.preset];
+                    if (preset) {
+                        var sliders = document.querySelectorAll('.eq-band input[type="range"]');
+                        sliders.forEach(function(slider, i) {
+                            if (preset[i] !== undefined) slider.value = preset[i];
+                        });
+                        showToast('均衡器: ' + this.textContent);
+                    }
+                });
+            });
+            var eqCtx = eqCanvas.getContext('2d');
+            var eqAnimId = null;
+            function drawEqualizer() {
+                var w = eqCanvas.width = eqCanvas.offsetWidth * 2;
+                var h = eqCanvas.height = eqCanvas.offsetHeight * 2;
+                eqCtx.clearRect(0, 0, w, h);
+                var barCount = 32;
+                var barWidth = w / barCount - 2;
+                var now = Date.now() / 1000;
+                for (var i = 0; i < barCount; i++) {
+                    var val = 0;
+                    var sliders = document.querySelectorAll('.eq-band input[type="range"]');
+                    var eqValues = [];
+                    sliders.forEach(function(s) { eqValues.push(parseFloat(s.value)); });
+                    var freqIdx = Math.min(Math.floor(i / (barCount / 5)), 4);
+                    var eqBoost = eqValues[freqIdx] || 0;
+                    val = (Math.sin(now * 3 + i * 0.5) * 0.3 + 0.5) * 0.6 + (Math.sin(now * 1.7 + i * 0.8) * 0.2 + 0.4) * 0.4;
+                    val = Math.max(0.05, Math.min(1, val + eqBoost / 24));
+                    if (!isPlaying) val *= 0.15;
+                    var barH = val * h * 0.85;
+                    var x = i * (barWidth + 2) + 1;
+                    var gradient = eqCtx.createLinearGradient(x, h, x, h - barH);
+                    gradient.addColorStop(0, '#0078d4');
+                    gradient.addColorStop(0.5, '#00a4ef');
+                    gradient.addColorStop(1, '#7fdbff');
+                    eqCtx.fillStyle = gradient;
+                    eqCtx.fillRect(x, h - barH, barWidth, barH);
+                    eqCtx.fillStyle = 'rgba(127,219,255,0.4)';
+                    eqCtx.fillRect(x, h - barH, barWidth, 2);
+                }
+                eqAnimId = requestAnimationFrame(drawEqualizer);
+            }
+            drawEqualizer();
+            var videoContainer = document.getElementById('videoContainer');
+            var touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+            var swipeHandled = false;
+            videoContainer.addEventListener('touchstart', function(e) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                touchStartTime = Date.now();
+                swipeHandled = false;
+            }, { passive: true });
+            videoContainer.addEventListener('touchmove', function(e) {
+                if (swipeHandled) return;
+                var dx = e.touches[0].clientX - touchStartX;
+                var dy = e.touches[0].clientY - touchStartY;
+                if (Math.abs(dx) > 30 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+                    swipeHandled = true;
+                    if (dx > 0) {
+                        mediaPlayer.currentTime = Math.max(0, mediaPlayer.currentTime - 10);
+                        showGesture('&#9194;', '-10秒');
+                    } else {
+                        mediaPlayer.currentTime = Math.min(mediaPlayer.duration || 0, mediaPlayer.currentTime + 10);
+                        showGesture('&#9193;', '+10秒');
+                    }
+                }
+                if (Math.abs(dy) > 40 && Math.abs(dy) > Math.abs(dx) * 1.5) {
+                    swipeHandled = true;
+                    if (dy < 0) {
+                        mediaPlayer.volume = Math.min(1, mediaPlayer.volume + 0.1);
+                        showGesture('&#128266;', '音量 +');
+                    } else {
+                        mediaPlayer.volume = Math.max(0, mediaPlayer.volume - 0.1);
+                        showGesture('&#128263;', '音量 -');
+                    }
+                }
+            }, { passive: true });
+            videoContainer.addEventListener('touchend', function(e) {
+                var elapsed = Date.now() - touchStartTime;
+                if (elapsed < 200 && !swipeHandled) {
+                    togglePlay();
+                }
+            }, { passive: true });
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.speed-selector')) speedMenu.classList.remove('open');
+                if (!e.target.closest('#btnCast') && !e.target.closest('.cast-menu')) castMenu.classList.remove('open');
+            });
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: 'Huawei Media Content',
+                    artist: 'Huawei',
+                    album: 'Media Collection'
+                });
+                navigator.mediaSession.setActionHandler('play', function() {
+                    mediaPlayer.play().catch(function() {});
+                });
+                navigator.mediaSession.setActionHandler('pause', function() {
+                    mediaPlayer.pause();
+                });
+                navigator.mediaSession.setActionHandler('seekbackward', function(details) {
+                    mediaPlayer.currentTime = Math.max(0, mediaPlayer.currentTime - (details.seekOffset || 10));
+                });
+                navigator.mediaSession.setActionHandler('seekforward', function(details) {
+                    mediaPlayer.currentTime = Math.min(mediaPlayer.duration || 0, mediaPlayer.currentTime + (details.seekOffset || 10));
+                });
+                navigator.mediaSession.setActionHandler('previoustrack', function() {
+                    if (btnPrev) btnPrev.click();
+                });
+                navigator.mediaSession.setActionHandler('nexttrack', function() {
+                    if (btnNext) btnNext.click();
+                });
+                navigator.mediaSession.setActionHandler('stop', function() {
+                    mediaPlayer.pause();
+                    mediaPlayer.currentTime = 0;
+                });
+            }
+            btnPrev.addEventListener('click', function() {
+                var activeItem = document.querySelector('.playlist-item.active');
+                if (activeItem) {
+                    var idx = parseInt(activeItem.dataset.index);
+                    if (idx > 0) {
+                        var prev = document.querySelector('.playlist-item[data-index="' + (idx - 1) + '"]');
+                        if (prev) prev.click();
+                    } else {
+                        mediaPlayer.currentTime = 0;
+                        showToast('已经是第一个');
+                    }
+                }
+            });
+            btnNext.addEventListener('click', function() {
+                var activeItem = document.querySelector('.playlist-item.active');
+                if (activeItem) {
+                    var idx = parseInt(activeItem.dataset.index);
+                    var maxIdx = playlistItems.length - 1;
+                    if (idx < maxIdx) {
+                        var next = document.querySelector('.playlist-item[data-index="' + (idx + 1) + '"]');
+                        if (next) next.click();
+                    } else {
+                        showToast('已经是最后一个');
+                    }
+                }
+            });
+            document.addEventListener('keydown', function(e) {
+                switch(e.key) {
+                    case ' ':
+                    case 'k':
+                        e.preventDefault();
+                        togglePlay();
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        mediaPlayer.currentTime = Math.max(0, mediaPlayer.currentTime - 5);
+                        showGesture('&#9194;', '-5秒');
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        mediaPlayer.currentTime = Math.min(mediaPlayer.duration || 0, mediaPlayer.currentTime + 5);
+                        showGesture('&#9193;', '+5秒');
+                        break;
+                    case 'ArrowUp':
+                        e.preventDefault();
+                        mediaPlayer.volume = Math.min(1, mediaPlayer.volume + 0.1);
+                        break;
+                    case 'ArrowDown':
+                        e.preventDefault();
+                        mediaPlayer.volume = Math.max(0, mediaPlayer.volume - 0.1);
+                        break;
+                    case 'f':
+                        btnFullscreen.click();
+                        break;
+                    case 'm':
+                        btnVolume.click();
+                        break;
+                    case 'p':
+                        btnPip.click();
+                        break;
+                    case 'n':
+                        btnNext.click();
+                        break;
+                    case 'b':
+                        btnPrev.click();
+                        break;
+                    case 'Escape':
+                        if (document.fullscreenElement) document.exitFullscreen();
+                        break;
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

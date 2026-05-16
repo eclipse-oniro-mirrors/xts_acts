@@ -1,0 +1,96 @@
+{
+    "string":  [
+        {
+            "name": "module_desc",
+            "value": "module description"
+        },
+        {
+            "name": "EntryAbility_desc",
+            "value": "description"
+        },
+        {
+            "name": "EntryAbility_label",
+            "value": "label"
+        },
+        {
+            "name": "phone_entry_dsc",
+            "value": "i am an entry for phone"
+        },
+        {
+            "name": "phone_entry_main",
+            "value": "the phone entry ability"
+        },
+        {
+            "name": "entry_label",
+            "value": "ActsContextTest"
+        },
+        {
+            "name": "form_description",
+            "value": "my form"
+        },
+        {
+            "name": "serviceability_description",
+            "value": "my whether"
+        },
+        {
+            "name": "description_application",
+            "value": "demo for test"
+        },
+        {
+            "name": "app_name",
+            "value": "Demo"
+        },
+        {
+          "name": "MenuItem2_labelInfo",
+          "value": "labelInfo2"
+        },
+        {
+          "name": "MenuItemGroup2_footer",
+          "value": "footer2"
+        },
+        {
+            "name": "nextMargin",
+            "value": "20"
+        },
+        {
+            "name": "prevMargin",
+            "value": "20"
+        },
+        {
+            "name": "nextMarginString",
+            "value": "20px"
+        },
+        {
+            "name": "prevMarginString",
+            "value": "20px"
+        },
+        {
+            "name": "gutter_10",
+            "value": "10"
+        },
+        {
+            "name": "string_1",
+            "value": "1"
+        },
+        {
+            "name": "string_2",
+            "value": "2"
+        },
+        {
+            "name": "string_3",
+            "value": "3"
+        },
+        {
+            "name": "string_4",
+            "value": "4"
+        },
+        {
+            "name": "string_",
+            "value": "default"
+        },
+        {
+            "name": "string_0",
+            "value": "default"
+        }
+    ]
+}

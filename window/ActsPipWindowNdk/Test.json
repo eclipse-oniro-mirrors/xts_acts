@@ -1,0 +1,31 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.example.myapplication",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsPipWindowNdkTest.hap",
+                "ActsPipWindowNdkMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "power-shell timeout -o 864000000",
+                "param set persist.sys.abilityms.support.ecologicalrulemgrservice false"
+            ],
+            "teardown-command": [
+              "param set persist.sys.abilityms.support.ecologicalrulemgrservice true"
+          ]
+        }
+    ]
+}

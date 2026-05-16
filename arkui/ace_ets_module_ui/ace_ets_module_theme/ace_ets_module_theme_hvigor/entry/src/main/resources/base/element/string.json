@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+        "name": "entry_label",
+        "value": "ActsContextTest"
+    },
+    {
+        "name": "description_application",
+        "value": "demo for test"
+    },
+    {
+        "name": "app_name",
+        "value": "Demo"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    }
+  ]
+}

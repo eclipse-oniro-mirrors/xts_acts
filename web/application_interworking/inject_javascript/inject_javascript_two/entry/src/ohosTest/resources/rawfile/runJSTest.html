@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>run javascript demo</title>
+</head>
+<body>
+<h1>run JavaScript  demo</h1>
+<p id="webDemo"></p>
+<br>
+<button type="button" style="height:30px;width:200px" onclick="testNdkProxyObjMethod1()">test ndk method1 ! </button>
+<br>
+<br>
+<button type="button" style="height:30px;width:200px" onclick="testNdkProxyObjMethod2()">test ndk method2 ! </button>
+<br>
+
+</body>
+<script type="text/javascript">
+
+    function testNdkProxyObjMethod1() {
+          if (window.ndkProxy === undefined) {
+                document.getElementById('webDemo').innerHTML = 'ndkProxy undefined';
+                return 'objName undefined';
+          }
+
+          if (window.ndkProxy.method1 === undefined) {
+                document.getElementById('webDemo').innerHTML = 'ndkProxy method1 undefined';
+                return 'objName  test undefined';
+          }
+
+          if (window.ndkProxy.method2 === undefined) {
+                document.getElementById('webDemo').innerHTML = 'ndkProxy method2 undefined';
+                return 'objName  test undefined';
+          }
+          return window.ndkProxy.method1('hello', 'world', [1.2, -3.4, 123.456], ['Saab', 'Volvo', 'BMW', undefined], 1.23456, 123789, true, false, 0, undefined);
+    }
+
+    function testNdkProxyObjMethod2() {
+          if (window.ndkProxy === undefined) {
+                document.getElementById('webDemo').innerHTML = 'ndkProxy undefined';
+                return 'objName undefined';
+          }
+
+          if (window.ndkProxy.method1 === undefined) {
+                document.getElementById('webDemo').innerHTML = 'ndkProxy method1 undefined';
+                return 'objName  test undefined';
+          }
+
+          if (window.ndkProxy.method2 === undefined) {
+                document.getElementById('webDemo').innerHTML = 'ndkProxy method2 undefined';
+                return 'objName  test undefined';
+          }
+
+        let student = {
+                name:'zhang',
+                sex:'man',
+                age:25
+        };
+        let cars = [student, 456, false, 4.567];
+        let params = '[\"{\\\"scope\\\"]';
+
+        return window.ndkProxy.method2('hello', 'world', false, cars, params);
+    }
+
+    function runJSRetStr(data) {
+        const d = new Date();
+        let time = d.getTime();
+        return JSON.stringify(time);
+    }
+</script>
+</html>

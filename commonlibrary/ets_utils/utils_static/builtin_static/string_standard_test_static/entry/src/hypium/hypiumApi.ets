@@ -1,0 +1,138 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { Core } from './core';
+import { AnyType, HookFuncType, ItfnType } from './module/types/common';
+
+const hypiumDescribe = (desc: string, func: () => void): void => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).describe(desc, func);
+  }
+};
+
+const hypiumIt = (desc: string, filter: int, func: ItfnType, timeout?: number, tag?: string) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).it(desc, filter, func, timeout, tag);
+  }
+};
+const hypiumBeforeItSpecified = (itDescs: string | string[], func: HookFuncType) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).beforeItSpecified(itDescs, func);
+  }
+};
+
+const hypiumAfterItSpecified = (itDescs: string | string[], func: HookFuncType) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).afterItSpecified(itDescs, func);
+  }
+};
+const hypiumBeforeEach = (func: HookFuncType) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).beforeEach(func);
+  }
+};
+const hypiumBeforeEachIt = (func: HookFuncType) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).beforeEachIt(func);
+  }
+};
+const hypiumAfterEach = (func: HookFuncType) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).afterEach(func);
+  }
+};
+const hypiumAfterEachIt = (func: HookFuncType) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).afterEachIt(func);
+  }
+};
+const hypiumBeforeAll = (func: HookFuncType) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).beforeAll(func);
+  }
+};
+const hypiumAfterAll = (func: HookFuncType) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).afterAll(func);
+  }
+};
+const hypiumExpect = (actualValue?: AnyType) => {
+  const core = Core.getInstance();
+  if (core) {
+    const expect = (core as Core).expect;
+    if (expect) {
+      return expect(actualValue);
+    }
+    throw new Error('[hypium] expect() used before initialization');
+  }
+  throw new Error('[hypium] core not initialized');
+};
+
+const hypiumXdescribe = (desc: string, func: () => void) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).xdescribe(desc, func, '');
+  }
+};
+const hypiumXdescribeReason = (reason: string) => {
+  const core = Core.getInstance();
+  return (desc: string, func: () => void) => {
+    if (core) {
+      return (core as Core).xdescribe(desc, func, reason);
+    }
+  };
+};
+const hypiumXit = (desc: string, filter: int, func: ItfnType) => {
+  const core = Core.getInstance();
+  if (core) {
+    return (core as Core).xit(desc, filter, func, '');
+  }
+};
+const hypiumXitReason = (reason: string) => {
+  const core = Core.getInstance();
+  return (desc: string, filter: int, func: (() => void) | (() => Promise<void>)) => {
+    if (core) {
+      return (core as Core).xit(desc, filter, func, reason);
+    }
+  };
+};
+
+export {
+  hypiumDescribe,
+  hypiumIt,
+  hypiumBeforeAll,
+  hypiumBeforeEach,
+  hypiumBeforeEachIt,
+  hypiumAfterEach,
+  hypiumAfterEachIt,
+  hypiumAfterAll,
+  hypiumExpect,
+  hypiumBeforeItSpecified,
+  hypiumAfterItSpecified,
+  hypiumXdescribe,
+  hypiumXit,
+  hypiumXdescribeReason,
+  hypiumXitReason,
+};

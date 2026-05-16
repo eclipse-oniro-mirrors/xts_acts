@@ -1,0 +1,10 @@
+{
+    "content_embed_config": {
+        "oeid": "000209FF-0000-0000-C000-000000000046",
+        "file_exts": ".ole",
+        "name": "$string:ole_name",
+        "description": "$string:ole_description",
+        "icon": "$media:icon"
+    }
+}
+

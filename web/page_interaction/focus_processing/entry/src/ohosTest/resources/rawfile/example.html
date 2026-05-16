@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>示例页面</title>
+    <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background-color: #f0f2f5;
+          font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .card {
+          background: #fff;
+          border-radius: 12px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          padding: 40px 48px;
+          width: 100%;
+          max-width: 420px;
+        }
+
+        h1 {
+          font-size: 1.6rem;
+          color: #1a1a1a;
+          margin-bottom: 8px;
+        }
+
+        p {
+          font-size: 0.9rem;
+          color: #666;
+          margin-bottom: 28px;
+        }
+
+        .form-group {
+          margin-bottom: 20px;
+        }
+
+        label {
+          display: block;
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: #333;
+          margin-bottom: 6px;
+        }
+
+        input[type="text"] {
+          width: 100%;
+          padding: 10px 14px;
+          border: 1.5px solid #d0d0d0;
+          border-radius: 8px;
+          font-size: 0.95rem;
+          color: #1a1a1a;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus {
+          border-color: #4f8ef7;
+          box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.15);
+        }
+
+        button {
+          width: 100%;
+          padding: 11px;
+          background-color: #4f8ef7;
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+
+        button:hover {
+          background-color: #2f72e0;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>欢迎使用</h1>
+    <p>请在下方输入框中输入内容，页面加载后将自动聚焦。</p>
+    <form>
+        <div class="form-group">
+            <label for="main-input">关键词</label>
+            <input
+                    type="text"
+                    id="main-input"
+                    name="keyword"
+                    placeholder="请输入关键词..."
+                    autofocus
+            >
+        </div>
+        <button type="submit">提交</button>
+    </form>
+</div>
+</body>
+</html>

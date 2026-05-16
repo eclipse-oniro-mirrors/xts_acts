@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/webClearAllCookiesCharacter",
+    "pages/webClearAllCookiesSyncCharacter",
+    "pages/webConfigCookieCharacter",
+    "pages/webConfigCookieSyncCharacter"
+  ]
+}

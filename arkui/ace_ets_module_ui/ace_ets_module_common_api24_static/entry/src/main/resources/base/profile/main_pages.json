@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/CommonPage/CommonPage",
+    "MainAbility/pages/Enums/Enums"
+  ]
+}

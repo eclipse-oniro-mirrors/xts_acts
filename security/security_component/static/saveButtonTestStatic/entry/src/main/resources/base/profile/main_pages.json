@@ -1,0 +1,10 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/saveButtonUserCancel",
+    "pages/saveButton",
+    "pages/saveDescription",
+    "pages/saveButtonScenario",
+    "pages/saveButtonCustomize"
+  ]
+}

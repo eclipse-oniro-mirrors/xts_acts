@@ -1,0 +1,22 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/ResponseRegion/ResponseRegionIndex",
+    "MainAbility/pages/ContentCoverOptions/ContentCoverOptionsIndex",
+    "MainAbility/pages/SweepGradientOptions/SweepGradientOptionsIndex",
+    "MainAbility/pages/RotateAngleOptions/RotateAngleOptionsIndex",
+    "MainAbility/pages/DrawModifier/DrawModifierIndex",
+    "MainAbility/pages/TransitionEffect/TransitionEffectIndex",
+    "MainAbility/pages/SourceType/SourceTypeIndex",
+    "MainAbility/pages/AxisEvent/AxisEventIndex",
+    "MainAbility/pages/DragEvent/DragEventIndex",
+    "MainAbility/pages/DismissReason/DismissReasonIndex",
+    "MainAbility/pages/Common/CommonIndex",
+    "MainAbility/pages/CommonMethod/CommonMethodIndex",
+    "MainAbility/pages/TextContentControllerBase/TextContentControllerBaseIndex",
+    "MainAbility/pages/ScrollableCommonMethod/ScrollableCommonMethodIndex",
+    "MainAbility/pages/ScrollResult/ScrollResultIndex",
+    "MainAbility/pages/ChildrenMainSize/ChildrenMainSizeIndex",
+    "MainAbility/pages/LayoutPolicy/LayoutPolicyIndex"
+  ]
+}

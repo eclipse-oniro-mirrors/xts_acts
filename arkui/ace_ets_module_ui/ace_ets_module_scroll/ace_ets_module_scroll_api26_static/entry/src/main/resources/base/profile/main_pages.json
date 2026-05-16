@@ -1,0 +1,12 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Grid/gridScrollBarWidth",
+    "MainAbility/pages/List/listScrollBarWidth",
+    "MainAbility/pages/List/ListSpaceWidth",
+    "MainAbility/pages/Refresh/RefreshMaxPullDownDistance",
+    "MainAbility/pages/Refresh/RefreshRefreshOffset",
+    "MainAbility/pages/Scroll/scrollScrollBarWidth",
+    "MainAbility/pages/WaterFlow/waterFlowScrollBarWidth"
+  ]
+}

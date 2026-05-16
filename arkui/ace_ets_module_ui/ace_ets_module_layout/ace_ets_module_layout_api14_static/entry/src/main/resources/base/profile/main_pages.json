@@ -1,0 +1,12 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/ChainWeight/ChainWeight",
+    "MainAbility/pages/Stack/StackAlignContent",
+    "MainAbility/pages/Stack/StackAttrsAlignContent",
+    "MainAbility/pages/Row/RowSpace",
+    "MainAbility/pages/CommonAttrs/CommonIgnoreLayoutSafeArea",
+    "MainAbility/pages/CommonAttrs/CommonLayoutGravity",
+    "MainAbility/pages/CommonAttrs/CommonWidthHeight"
+  ]
+}

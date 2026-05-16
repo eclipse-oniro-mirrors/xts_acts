@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/calendarPicker/CalendarPickerMarkTodayTest",
+    "pages/drag/TestNotifyDragTest",
+    "pages/gestureRecognizer/PanGestureTest001",
+    "pages/gestureRecognizer/PanGestureTest002",
+    "pages/gestureRecognizer/PanGestureTest003",
+    "pages/gestureRecognizer/PanGestureTest004"
+  ]
+}

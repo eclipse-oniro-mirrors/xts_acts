@@ -1,0 +1,45 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "bundle-name": "ohos.acts.multimedia.image.imageXMPMetadata",
+        "module-name": "entry_test",
+        "shell-timeout": "300000",
+        "testcase-timeout": "180000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageXMPMetadataTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.imageXMPMetadata/haps/entry_test/files/"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/jpeg_xmp.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageXMPMetadata/haps/entry_test/files",
+                "./resource/image/jpeg_xmp.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageXMPMetadata/haps/entry_test/files/jpeg_xmp_v2.jpg",
+                "./resource/image/png_xmp.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageXMPMetadata/haps/entry_test/files",
+                "./resource/image/3gif_xmp.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageXMPMetadata/haps/entry_test/files",
+                "./resource/image/dng_xmp.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageXMPMetadata/haps/entry_test/files",
+                "./resource/image/tiff_xmp.tiff ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageXMPMetadata/haps/entry_test/files",
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.imageXMPMetadata/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.imageXMPMetadata/haps/entry_test/*"
+            ]
+        }
+    ]
+}

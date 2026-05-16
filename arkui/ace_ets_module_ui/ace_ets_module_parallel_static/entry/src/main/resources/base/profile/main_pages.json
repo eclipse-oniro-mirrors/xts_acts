@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Parallelization/SetUIStates",
+    "MainAbility/pages/Parallelization/TestBuilderNode",
+    "MainAbility/pages/Parallelization/TestParallelize"
+  ]
+}

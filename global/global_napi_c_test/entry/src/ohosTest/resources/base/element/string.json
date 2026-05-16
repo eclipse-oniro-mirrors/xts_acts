@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "test_stringLoopA",
+      "value": "$string:test_stringLoopA"
+    },
+    {
+      "name": "symbol_A_ref",
+      "value": "$string:symbol_B_ref"
+    },
+    {
+      "name": "symbol_B_ref",
+      "value": "$string:symbol_A_ref"
+    },
+    {
+      "name": "format",
+      "value": "format:%d"
+    },
+    {
+      "name": "test_stringTwentyThree",
+      "value": "%200$d %300$s %400$f"
+    },
+    {
+      "name": "test_stringTwentyFive",
+      "value": "%4s %d %f"
+    },
+    {
+      "name": "test1",
+      "value": "entry_test"
+    }
+  ]
+}

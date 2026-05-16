@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Navigation/ReplaceDestination1",
+    "MainAbility/pages/Navigation/ReplaceDestination2"
+  ]
+}

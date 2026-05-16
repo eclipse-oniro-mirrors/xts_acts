@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/TextCommon/TextCommonIndex",
+    "MainAbility/pages/EditCommon/EditDecorationThicknessScale",
+    "MainAbility/pages/UIContext/SetTextSelectionClearPolicy"
+  ]
+}

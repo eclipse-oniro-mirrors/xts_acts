@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for ActsMindSporeNdkTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+	"test-timeout": "180000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.test.calendarManager",
+        "module-name": "phone"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+              "ActsCalendarManagerEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

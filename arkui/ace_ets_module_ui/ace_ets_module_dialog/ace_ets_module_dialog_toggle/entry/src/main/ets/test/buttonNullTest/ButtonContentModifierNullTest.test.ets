@@ -1,0 +1,83 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import router from '@ohos.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
+import Utils from '../../MainAbility/common/Utils';
+import { Driver, ON } from '@ohos.UiTest';
+
+export default function buttonContentModifierNullTest() {
+  describe('buttonContentModifierNullTest', () => {
+    beforeEach(async (done: Function) => {
+      console.info("buttonContentModifierNullTest beforeEach start");
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/buttonNull/ButtonContentModifierNullTest',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info("get buttonContentModifierNullTest state pages:" + JSON.stringify(pages));
+        if (!("ButtonContentModifierNullTest" == pages.name)) {
+          console.info("get buttonContentModifierNullTest pages.name:" + JSON.stringify(pages.name));
+          let result = await router.push(options);
+          await Utils.sleep(2000);
+          console.info("push buttonContentModifierNullTest page result:" + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error("push buttonContentModifierNullTest page error:" + err);
+        expect().assertFail();
+      }
+      console.info("buttonContentModifierNullTest beforeEach end");
+      done();
+    });
+
+    /**
+     * @tc.name   buttonContentModifier_Null_001
+     * @tc.number SUB_ARKUI_BUTTON_CONTENTMODIFIER_PARAM_001
+     * @tc.desc   Test Button contentModifier with null value
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('buttonContentModifier_Null_001', Level.LEVEL1, async (done: Function) => {
+      console.info('buttonContentModifier_Null_001 START');
+      await Utils.sleep(1000);
+      let strJson = getInspectorByKey('button_contentModifier_null');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      expect(obj.$attrs.contentModifier).assertTrue();
+      console.info('buttonContentModifier_Null_001 END');
+      done();
+    });
+
+    /**
+     * @tc.name   buttonContentModifier_Undefined_002
+     * @tc.number SUB_ARKUI_BUTTON_CONTENTMODIFIER_PARAM_002
+     * @tc.desc   Test Button contentModifier with undefined value
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('buttonContentModifier_Undefined_002', Level.LEVEL1, async (done: Function) => {
+      console.info('buttonContentModifier_Undefined_002 START');
+      await Utils.sleep(1000);
+      let strJson = getInspectorByKey('button_contentModifier_undefined');
+      let obj: Record<string, ESObject> = JSON.parse(strJson);
+      expect(obj.$attrs.contentModifier).assertTrue();
+      console.info('buttonContentModifier_Undefined_002 END');
+      done();
+    });
+
+  })
+}

@@ -1,0 +1,17 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/GestureGroup/gesture",
+        "MainAbility/pages/addGestureApplyGesture",
+        "MainAbility/pages/GestureType/BoxSelect",
+        "MainAbility/pages/GestureType/WebTextMenuGesture",
+        "MainAbility/pages/uIContext/GestureNullandundefined/UIContextGestureTestPage",
+        "MainAbility/pages/AddGesture/AddGestureNullAndUndefined",
+        "MainAbility/pages/RemoveGestureByTag/RemoveGestureByTagNullAndUndefined",
+        "MainAbility/pages/Gesture/GestureNullAndUndefined",
+        "MainAbility/pages/GestureInterface/Tag/TagNullAndUndefined",
+        "MainAbility/pages/GestureInterface/AllowedTypes/AllowedTypesNullAndUndefined",
+        "MainAbility/pages/GestureHandler/Tag/TagHandlerNullAndUndefined",
+        "MainAbility/pages/GestureHandler/AllowedTypes/AllowedTypesHandlerNullAndUndefined"
+    ]
+}

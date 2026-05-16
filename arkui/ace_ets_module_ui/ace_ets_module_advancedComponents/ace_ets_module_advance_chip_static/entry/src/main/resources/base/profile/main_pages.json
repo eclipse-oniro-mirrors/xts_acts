@@ -1,0 +1,30 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/ChipGroup/ChipGroupItemOptionsPage2",
+    "MainAbility/pages/ChipGroup/ChipGroupIconItemOptionsPage",
+    "MainAbility/pages/ChipGroup/ChipGroupItemOptionsPage",
+    "MainAbility/pages/ChipGroup/ChipGroupSymbolItemOptionsPage",
+    "MainAbility/pages/Chip/ChipPage",
+    "MainAbility/pages/Chip/chipSizeTest",
+    "MainAbility/pages/Chip/prefixIconTest",
+    "MainAbility/pages/Chip/ChipApi1",
+    "MainAbility/pages/Chip/labelOptionsTest",
+    "MainAbility/pages/Chip/localizedLabelMargin",
+    "MainAbility/pages/Chip/ChipOptionsLabelTest",
+    "MainAbility/pages/Chip/ChipOptionsSuffixIconTest",
+    "MainAbility/pages/Chip/ChipOptionsSuffixSymbolTest",
+    "MainAbility/pages/Chip/ChipOptionsAllowCloseTest",
+    "MainAbility/pages/Chip/ChipOptionsCloseOptionsTest",
+    "MainAbility/pages/Chip/ChipOptionsEnabledTest",
+    "MainAbility/pages/Chip/ChipOptionsActivatedBackgroundColorTest",
+    "MainAbility/pages/Chip/ChipOptionsBorderRadiusTest",
+    "MainAbility/pages/Chip/ChipOptionsSizeTest",
+    "MainAbility/pages/Chip/ChipOptionsAccessibilityTest",
+    "MainAbility/pages/Chip/ChipOptionsMethodTest",
+    "MainAbility/pages/Chip/ChipOptionsDirectionTest",
+    "MainAbility/pages/Chip/ChipOptionsFontScaleTest",
+    "MainAbility/pages/Chip/ChipOptionsPaddingTest",
+    "MainAbility/pages/Chip/ChipOptionsFontSizeTest"
+  ]
+}

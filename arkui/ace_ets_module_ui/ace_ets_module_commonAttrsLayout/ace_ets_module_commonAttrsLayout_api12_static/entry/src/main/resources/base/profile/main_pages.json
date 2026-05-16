@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/borderRadius/LocalizedBorderRadiuses",
+    "MainAbility/pages/borderRadius/BorderRadiusRenderStrategy",
+    "MainAbility/pages/BorderOptions/BorderOptionsTest1",
+    "MainAbility/pages/onSizeChange/onSizeChange"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "description": "Configuration for camera python test",
+  "environment": [
+      {
+          "type": "device"
+      }
+  ],
+  "driver": {
+      "type": "DeviceTestSuite",
+      "testsuite": "ActsCameraGrayBoxGTest.py",
+      "suitecases": [
+          "./ActsCameraPhotoAiTest.py",
+          "./ActsCameraVideoAiTest.py"
+      ]
+  }
+}

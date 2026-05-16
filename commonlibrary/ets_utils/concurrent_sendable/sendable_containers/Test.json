@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for Sendable Containers Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.sendableContainers",
+        "module-name": "entry_test",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsSendableContainersTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

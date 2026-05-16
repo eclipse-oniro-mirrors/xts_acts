@@ -1,0 +1,24 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/ArcScrollBar/arcScrollBar",
+        "MainAbility/pages/ArcList/ArcList",
+        "MainAbility/pages/ArcList/childrenSizeArcList",
+        "MainAbility/pages/ArcList/swipeActionArcList",
+        "MainAbility/pages/arcListDefault/digitalCrownSensitivityNullUndefined",
+        "MainAbility/pages/arcListDefault/scrollBarNullUndefined",
+        "MainAbility/pages/arcListDefault/scrollBarColorNullUndefined",
+        "MainAbility/pages/arcListDefault/scrollBarWidthNullUndefined",
+        "MainAbility/pages/arcListDefault/chainAnimationNullUndefined",
+        "MainAbility/pages/arcListDefault/childrenMainSizeNullUndefined",
+        "MainAbility/pages/arcListDefault/enableScrollInteractionNullUndefined",
+        "MainAbility/pages/arcListDefault/fadingEdgeNullUndefined",
+        "MainAbility/pages/arcListDefault/frictionNullUndefined",
+        "MainAbility/pages/arcListDefault/flingSpeedLimitNullUndefined",
+        "MainAbility/pages/arcListDefault/onScrollIndexNullUndefined",
+        "MainAbility/pages/arcListDefault/cachedCountNullUndefined",
+        "MainAbility/pages/arcListDefault/spaceNullUndefined",
+        "MainAbility/pages/arcListItemDefault/autoScaleNullUndefined",
+        "MainAbility/pages/arcListItemDefault/swipeActionNullUndefined"
+    ]
+}

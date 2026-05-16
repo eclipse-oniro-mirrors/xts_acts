@@ -1,0 +1,37 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "com.location.napitest.static"
+    },
+    {
+      "name": "location_reason",
+      "value": "location reason"
+    },
+    {
+      "name":"back_location_reason",
+      "value":"backgroud location reason"
+
+    },
+    {
+      "name":"approxi_location_reason",
+      "value":"approxi location reason"
+    },
+    {
+      "name":"file_manager_reason",
+      "value":"file manager reason"
+    },
+    {
+      "name":"get_bundle_info_reason",
+      "value":"get bundle info reason"
+    }
+  ]
+}

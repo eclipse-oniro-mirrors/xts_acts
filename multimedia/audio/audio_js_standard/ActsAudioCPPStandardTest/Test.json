@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for ActsAudioCPPStandardTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "net.openvalley.audio_cpp_standard_test",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioCPPStandardTest.hap",
+                "ActsAudioCPPStandardMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

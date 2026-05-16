@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>untrusted-root.badssl.com</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #e2e3e5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #383d41;
+        }
+        .container { max-width: 800px; width: 100%; }
+        .warning-icon { font-size: 64px; margin-bottom: 20px; text-align: center; }
+        h1 { font-size: 28px; margin-bottom: 15px; text-align: center; }
+        h2 { font-size: 22px; margin: 30px 0 15px; color: #383d41; border-bottom: 2px solid #d6d8db; padding-bottom: 8px; }
+        h3 { font-size: 18px; margin: 20px 0 10px; color: #383d41; }
+        p { font-size: 16px; line-height: 1.6; max-width: 800px; text-align: left; margin-bottom: 15px; }
+        .cert-info {
+            background: white;
+            border: 1px solid #d6d8db;
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        .cert-info table { width: 100%; border-collapse: collapse; }
+        .cert-info td { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+        .cert-info td:first-child { font-weight: bold; width: 180px; color: #666; }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #dc3545;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-badge.warn { background: #fd7e14; }
+        .status-badge.ok { background: #28a745; }
+        .section-box {
+            background: white;
+            border: 1px solid #d6d8db;
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        table.compat-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        table.compat-table th, table.compat-table td {
+            padding: 10px 12px;
+            border: 1px solid #d6d8db;
+            text-align: left;
+            font-size: 14px;
+        }
+        table.compat-table th { background: #d6d8db; color: #383d41; font-weight: bold; }
+        table.compat-table tr:nth-child(even) { background: #f8f9fa; }
+        .chain-box {
+            background: #f8f9fa;
+            border: 2px solid #d6d8db;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+        }
+        .chain-level {
+            background: white;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin: 8px 0;
+        }
+        .chain-level.root { border-left: 4px solid #dc3545; }
+        .chain-level.intermediate { border-left: 4px solid #fd7e14; }
+        .chain-level.leaf { border-left: 4px solid #28a745; }
+        .chain-arrow { text-align: center; font-size: 20px; color: #383d41; margin: 4px 0; }
+        .trust-indicator {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        .trust-indicator.trusted { background: #d4edda; color: #155724; }
+        .trust-indicator.untrusted { background: #f8d7da; color: #721c24; }
+        .handshake-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        .faq-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #d6d8db;
+            border-radius: 0 6px 6px 0;
+        }
+        .faq-item strong { display: block; margin-bottom: 6px; }
+        .error-type-list { list-style: none; padding: 0; }
+        .error-type-list li {
+            padding: 10px 15px;
+            margin: 6px 0;
+            background: white;
+            border: 1px solid #d6d8db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .error-type-list li code {
+            background: #d6d8db;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #383d41;
+        }
+        .fix-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 12px 0;
+        }
+        .fix-step-num {
+            background: #d6d8db;
+            color: #383d41;
+            font-weight: bold;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        .fix-step-text { font-size: 14px; line-height: 1.6; padding-top: 4px; }
+        .troubleshoot-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #ced4da;
+        }
+        .troubleshoot-item strong { color: #383d41; }
+        .trust-store-box {
+            background: #f8f9fa;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+        }
+        .trust-store-box table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .trust-store-box td { padding: 6px 0; font-size: 13px; border-bottom: 1px solid #eee; }
+        .trust-store-box td:first-child { font-weight: bold; width: 200px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="warning-icon">&#9888;&#65039;</div>
+        <h1>untrusted-root.badssl.com</h1>
+        <p>This page is served with a certificate signed by an <strong>untrusted root certificate authority</strong>. The root CA that signed this certificate is not in the trusted certificate store. This domain intentionally uses a certificate chain rooted in an untrusted CA to help developers test SSL/TLS trust validation errors.</p>
+
+        <h2>Certificate Chain Details</h2>
+        <div class="cert-info">
+            <table>
+                <tr><td>Domain:</td><td>untrusted-root.badssl.com</td></tr>
+                <tr><td>Leaf Certificate:</td><td><span class="status-badge ok">VALID</span></td></tr>
+                <tr><td>Intermediate CA:</td><td>BadSSL Untrusted Intermediate CA</td></tr>
+                <tr><td>Root CA:</td><td>BadSSL Untrusted Root CA (Self-Signed)</td></tr>
+                <tr><td>Root Trust Status:</td><td><span class="status-badge">NOT IN TRUST STORE</span></td></tr>
+                <tr><td>Error Code:</td><td><span class="status-badge">ERR_CERT_AUTHORITY_INVALID</span></td></tr>
+                <tr><td>Error Type:</td><td>CERT_AUTHORITY_INVALID</td></tr>
+                <tr><td>Leaf Valid From:</td><td>2024-01-01 00:00:00 UTC</td></tr>
+                <tr><td>Leaf Valid Until:</td><td>2026-01-01 00:00:00 UTC</td></tr>
+                <tr><td>Leaf Serial Number:</td><td>0xC1D2E3F4A5B6</td></tr>
+                <tr><td>Leaf SHA-256:</td><td>22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22</td></tr>
+                <tr><td>Intermediate SHA-256:</td><td>33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33</td></tr>
+                <tr><td>Root SHA-256:</td><td>44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44</td></tr>
+                <tr><td>Signature Algorithm:</td><td>SHA256withRSA</td></tr>
+                <tr><td>Public Key (Leaf):</td><td>RSA 2048 bits</td></tr>
+                <tr><td>Public Key (Root):</td><td>RSA 4096 bits</td></tr>
+                <tr><td>Key Usage (Leaf):</td><td>Digital Signature, Key Encipherment</td></tr>
+                <tr><td>Key Usage (Root):</td><td>Certificate Sign, CRL Sign</td></tr>
+                <tr><td>Basic Constraints (Root):</td><td>CA:TRUE, pathlen:none</td></tr>
+                <tr><td>Hostname Match:</td><td><span class="status-badge ok">MATCH</span></td></tr>
+                <tr><td>Revocation Status:</td><td><span class="status-badge ok">NOT REVOKED</span></td></tr>
+            </table>
+        </div>
+
+        <h2>SSL Error Explanation</h2>
+        <div class="section-box">
+            <h3>What is an Untrusted Root Certificate Error?</h3>
+            <p>Every SSL/TLS certificate chain must be anchored to a <strong>trusted root certificate authority (CA)</strong>. Root certificates are pre-installed in your operating system or browser's trust store. When a server presents its certificate, the browser verifies that every certificate in the chain leads back to a trusted root. If the root CA is not in the trust store, the entire chain is considered untrusted.</p>
+            <p>The error <code>ERR_CERT_AUTHORITY_INVALID</code> (or <code>CERT_AUTHORITY_INVALID</code>) means the certificate chain could not be built to a trusted root. This can happen because the root CA is genuinely untrusted, the intermediate certificates are missing, or the server is misconfigured.</p>
+            <h3>How Certificate Trust Works</h3>
+            <p>The PKI (Public Key Infrastructure) trust model works as follows:</p>
+            <ul style="margin: 10px 0 10px 25px; line-height: 2;">
+                <li>Root CAs are self-signed and pre-installed in trust stores by OS vendors and browser makers</li>
+                <li>Root CAs issue certificates to Intermediate CAs, which in turn issue end-entity certificates</li>
+                <li>Browsers validate the chain by checking each signature and verifying the root is trusted</li>
+                <li>If any link in the chain is broken or untrusted, the entire chain fails validation</li>
+                <li>Trust stores are maintained by Microsoft, Apple, Google, and Mozilla with regular updates</li>
+            </ul>
+            <h3>Common Error Codes</h3>
+            <ul style="margin: 10px 0 10px 25px; line-height: 2;">
+                <li><code>ERR_CERT_AUTHORITY_INVALID</code> (Chrome/Chromium)</li>
+                <li><code>SEC_ERROR_UNKNOWN_ISSUER</code> (Firefox)</li>
+                <li><code>CERT_E_UNTRUSTEDROOT</code> (Windows/Edge)</li>
+                <li><code>NSURLErrorServerCertificateUntrusted</code> (iOS/macOS)</li>
+                <li><code>X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY</code> (OpenSSL)</li>
+                <li><code>X509_V_ERR_SELF_SIGNED_CERT_IN_CHAIN</code> (OpenSSL)</li>
+            </ul>
+        </div>
+
+        <h2>Certificate Chain Visualization</h2>
+        <div class="section-box">
+            <div class="chain-box">
+                <div class="chain-level root">
+                    <strong>Root CA</strong> (Self-Signed, Untrusted)<br>
+                    <span style="color:#666; font-size:13px;">BadSSL Untrusted Root CA &mdash; Self-Signed, Not in Trust Store</span><br>
+                    <span class="trust-indicator untrusted">NOT IN TRUST STORE</span>
+                    <span style="font-size:12px; color:#999;"> SHA-256: 44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33:44</span>
+                </div>
+                <div class="chain-arrow">&darr; Signs</div>
+                <div class="chain-level intermediate">
+                    <strong>Intermediate CA</strong><br>
+                    <span style="color:#666; font-size:13px;">BadSSL Untrusted Intermediate CA &mdash; Valid until 2030-01-01</span><br>
+                    <span class="trust-indicator untrusted">UNTRUSTED (chain broken)</span>
+                    <span style="font-size:12px; color:#999;"> SHA-256: 33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22:33</span>
+                </div>
+                <div class="chain-arrow">&darr; Signs</div>
+                <div class="chain-level leaf">
+                    <strong>Leaf Certificate (This Server)</strong><br>
+                    <span style="color:#666; font-size:13px;">untrusted-root.badssl.com &mdash; Valid until 2026-01-01</span><br>
+                    <span class="trust-indicator untrusted">UNTRUSTED (no trusted anchor)</span>
+                    <span style="font-size:12px; color:#999;"> SHA-256: 22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11:22</span>
+                </div>
+            </div>
+            <p style="font-size:14px; margin-top:10px;">The entire chain is untrusted because the root CA is not present in any standard trust store. Even though the leaf and intermediate certificates are properly signed and valid, the lack of a trusted anchor causes the validation to fail.</p>
+        </div>
+
+        <h2>TLS Handshake Diagram</h2>
+        <div class="section-box">
+            <p>The following diagram shows where the trust chain verification occurs in the TLS 1.2 handshake:</p>
+            <div class="handshake-box">Client                                    Server
+  |                                         |
+  |  1. ClientHello                         |
+  |  -------------------------------------> |
+  |                                         |
+  |  2. ServerHello + Certificate Chain     |
+  |  [Leaf] untrusted-root.badssl.com       |
+  |  [Intermediate] BadSSL Untrusted Int CA |
+  |  <------------------------------------- |
+  |                                         |
+  |  3. Chain Verification                  |
+  |  [i] Verifying leaf signature...        |
+  |  [i] Verifying intermediate signature...|
+  |  [i] Looking up root in trust store...  |
+  |  [!] Root CA not found in trust store   |
+  |  [!] BadSSL Untrusted Root CA           |
+  |  ===================================   |
+  |  RESULT: HANDSHAKE FAILURE              |
+  |  ERROR: ERR_CERT_AUTHORITY_INVALID      |
+  |                                         |
+  |  4. TLS Alert: Unknown CA               |
+  |  <------------------------------------- |
+  |                                         |</div>
+            <p style="font-size:14px;">Note: The server may or may not send the root certificate. Even if the root is sent, the client only trusts roots that are in its pre-installed trust store. A self-signed root sent by the server is not automatically trusted.</p>
+        </div>
+
+        <h2>Browser Compatibility</h2>
+        <div class="section-box">
+            <table class="compat-table">
+                <thead>
+                    <tr>
+                        <th>Browser</th>
+                        <th>Version</th>
+                        <th>Error Display</th>
+                        <th>Bypass Available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Chrome</td><td>120+</td><td>Your connection is not private (NET::ERR_CERT_AUTHORITY_INVALID)</td><td>Advanced &rarr; Proceed</td></tr>
+                    <tr><td>Firefox</td><td>121+</td><td>Warning: Potential Security Risk Ahead (SEC_ERROR_UNKNOWN_ISSUER)</td><td>Advanced &rarr; Accept Risk</td></tr>
+                    <tr><td>Safari</td><td>17+</td><td>This Connection Is Not Private</td><td>Show Details &rarr; Visit Website</td></tr>
+                    <tr><td>Edge</td><td>120+</td><td>Your connection is not private</td><td>Advanced &rarr; Proceed</td></tr>
+                    <tr><td>Opera</td><td>105+</td><td>Your connection is not private</td><td>Advanced &rarr; Proceed</td></tr>
+                    <tr><td>Samsung Internet</td><td>23+</td><td>Security warning</td><td>Details &rarr; Proceed</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Related Error Types</h2>
+        <div class="section-box">
+            <p>The following SSL/TLS errors are related to certificate trust and chain issues:</p>
+            <ul class="error-type-list">
+                <li><code>ERR_CERT_AUTHORITY_INVALID</code> &mdash; Certificate signed by an untrusted authority.</li>
+                <li><code>ERR_CERT_COMMON_NAME_INVALID</code> &mdash; Certificate hostname does not match the requested domain.</li>
+                <li><code>ERR_CERT_DATE_INVALID</code> &mdash; Certificate has expired or is not yet valid.</li>
+                <li><code>ERR_CERT_REVOKED</code> &mdash; Certificate has been revoked by the issuing authority.</li>
+                <li><code>ERR_CERT_CONTAINS_ERRORS</code> &mdash; Certificate contains structural or encoding errors.</li>
+                <li><code>ERR_CERT_WEAK_SIGNATURE_ALGORITHM</code> &mdash; Certificate uses a weak or deprecated signature algorithm.</li>
+                <li><code>ERR_SSL_PINNED_KEY_NOT_IN_CERT_CHAIN</code> &mdash; Certificate does not match expected public key pins.</li>
+                <li><code>ERR_CERT_NO_REVOCATION_MECHANISM</code> &mdash; Certificate has no OCSP or CRL endpoint.</li>
+                <li><code>ERR_CERT_UNABLE_TO_CHECK_REVOCATION</code> &mdash; Unable to verify certificate revocation status.</li>
+                <li><code>ERR_CERT_SELF_SIGNED</code> &mdash; Certificate is self-signed and not in the trust store.</li>
+            </ul>
+        </div>
+
+        <h2>Troubleshooting Guide</h2>
+        <div class="section-box">
+            <div class="troubleshoot-item">
+                <strong>1. Check for Missing Intermediate Certificates</strong><br>
+                <span style="font-size:14px;">The most common cause of untrusted root errors is missing intermediate certificates. The server must send the full chain (leaf + intermediates). Use <code>openssl s_client -showcerts</code> to verify all chain certificates are being sent.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>2. Verify the CA is Trusted</strong><br>
+                <span style="font-size:14px;">Check if the CA that issued the certificate is in your trust store. Internal CAs (corporate, development) need to be manually installed. Public CAs should be in the trust store automatically.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>3. Install the Root Certificate</strong><br>
+                <span style="font-size:14px;">For internal or development CAs, install the root certificate in the system trust store. On Windows, use certmgr.msc. On macOS, add to Keychain Access. On Linux, update the ca-certificates package.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>4. Check Certificate Order</strong><br>
+                <span style="font-size:14px;">Ensure certificates are sent in the correct order: leaf first, then intermediate(s). Some servers require explicit configuration of the certificate chain file. Apache uses SSLCertificateChainFile; Nginx concatenates certs in the ssl_certificate file.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>5. Cross-Signing Issues</strong><br>
+                <span style="font-size:14px;">Some CAs use cross-signing where a certificate is signed by multiple roots. If the wrong cross-signed intermediate is sent, the chain may not build to a trusted root. Ensure the server sends the correct cross-signed intermediate.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>6. Update Trust Store</strong><br>
+                <span style="font-size:14px;">Outdated operating systems may have stale trust stores. Update your OS to receive the latest root CA certificates. Windows, macOS, and major Linux distributions push trust store updates regularly.</span>
+            </div>
+        </div>
+
+        <h2>Fix Suggestions</h2>
+        <div class="section-box">
+            <h3>For Website Administrators</h3>
+            <div class="fix-step">
+                <div class="fix-step-num">1</div>
+                <div class="fix-step-text"><strong>Use a Publicly Trusted CA</strong> &mdash; Obtain a certificate from a publicly trusted CA like Let's Encrypt, DigiCert, GlobalSign, Sectigo, or Cloudflare. These CAs are in the trust stores of all major browsers and operating systems.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">2</div>
+                <div class="fix-step-text"><strong>Include Full Certificate Chain</strong> &mdash; Configure your server to send the complete certificate chain. For Nginx, concatenate the leaf and intermediate certificates into one file. For Apache, use the SSLCertificateChainFile directive.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">3</div>
+                <div class="fix-step-text"><strong>Test with SSL Tools</strong> &mdash; Use SSL Labs (ssllabs.com) to test your certificate chain. It will report any missing intermediates or chain issues. Aim for an A rating.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">4</div>
+                <div class="fix-step-text"><strong>Monitor CA Trust Status</strong> &mdash; Occasionally CAs lose their trusted status due to misissuance or compliance issues. Monitor the CA/Browser Forum and Mozilla's root store policy for changes. Have a plan to switch CAs if needed.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">5</div>
+                <div class="fix-step-text"><strong>For Internal CAs, Distribute the Root</strong> &mdash; If you must use an internal CA, deploy the root certificate to all clients via group policy (Windows), MDM (macOS/iOS), or configuration management tools (Linux).</div>
+            </div>
+            <h3>For Developers Testing SSL Errors</h3>
+            <div class="fix-step">
+                <div class="fix-step-num">1</div>
+                <div class="fix-step-text"><strong>Implement Proper Trust Validation</strong> &mdash; Use the platform's built-in TLS libraries which handle trust validation automatically. Never implement custom certificate validation unless absolutely necessary.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">2</div>
+                <div class="fix-step-text"><strong>Test with Various Trust Scenarios</strong> &mdash; Use this untrusted root test page and other badssl.com test domains to verify your application handles different trust failure scenarios correctly.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">3</div>
+                <div class="fix-step-text"><strong>Support Custom Trust Anchors</strong> &mdash; If your app needs to support custom CAs, provide a secure mechanism for users to install additional trust anchors. Never silently accept all certificates.</div>
+            </div>
+        </div>
+
+        <h2>FAQ</h2>
+        <div class="section-box">
+            <div class="faq-item">
+                <strong>Q: What is a trust store?</strong>
+                <p>A trust store is a collection of pre-installed root CA certificates that your operating system or browser uses to validate SSL/TLS certificate chains. Different platforms maintain their own trust stores: Microsoft (Windows), Apple (macOS/iOS), Google (Android/Chrome), and Mozilla (Firefox).</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: How do root CAs get into the trust store?</strong>
+                <p>Root CAs must pass rigorous audits and comply with CA/Browser Forum guidelines. Browser and OS vendors evaluate CA applications and add approved roots to their trust stores. Roots can also be removed if they violate trust requirements.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: What is a self-signed certificate?</strong>
+                <p>A self-signed certificate is one where the issuer and subject are the same entity. Self-signed certificates are not inherently trusted because there is no third-party CA to vouch for the identity of the certificate holder. They are commonly used in development and internal networks.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Can I add my own root CA to the trust store?</strong>
+                <p>Yes. You can manually install root certificates in the system trust store. This is common for corporate environments with internal CAs. However, this must be done on every client device, and users must trust the entity managing the CA.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: What happens when a CA is distrusted?</strong>
+                <p>When a root CA is removed from trust stores (e.g., DigiNotar in 2011), all certificates issued by that CA become invalid. Websites must obtain new certificates from a different CA. This can cause widespread outages if not planned for.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: What is certificate transparency (CT)?</strong>
+                <p>Certificate Transparency is a system that publicly logs all issued SSL certificates. This allows domain owners to monitor for unauthorized certificates and helps browsers detect misissued certificates. Google Chrome requires CT log entries for all publicly trusted certificates.</p>
+            </div>
+        </div>
+
+        <div class="help-text" style="text-align: center; margin-top: 30px;">
+            <p>This site intentionally uses an untrusted root certificate for testing SSL error handling. It helps developers verify that their applications correctly reject connections with untrusted certificate authorities.</p>
+            <p><a href="/">Return to BadSSL Home</a></p>
+        </div>
+    </div>
+    <script>function test() { return true; }</script>
+</body>
+</html>

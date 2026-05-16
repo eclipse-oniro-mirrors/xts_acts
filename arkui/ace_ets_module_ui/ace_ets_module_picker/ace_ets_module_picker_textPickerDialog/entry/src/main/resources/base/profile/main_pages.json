@@ -1,0 +1,28 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/textPickerDialog/textPickerDialogBGBlurStyle",
+    "MainAbility/pages/textPickerDialog/textPickerDialogBgColor",
+    "MainAbility/pages/textPickerDialog/textPickerDialogDefaultTextStyle",
+    "MainAbility/pages/textPickerDialog/textPickerDialogDisableTextStyleAnimation",
+    "MainAbility/pages/textPickerDialog/textPickerDialogDisappearTextStyle",
+    "MainAbility/pages/textPickerDialog/textPickerDialogEnableHapticFeedback",
+    "MainAbility/pages/textPickerDialog/textPickerDialogSelectedArea",
+    "MainAbility/pages/textPickerDialog/textPickerDialogSelectedBgColor",
+    "MainAbility/pages/textPickerDialog/textPickerDialogSelectedTextStyle",
+    "MainAbility/pages/textPickerDialog/textPickerDialogShadow",
+    "MainAbility/pages/textPickerDialog/textPickerDialogTextStyle",
+    "MainAbility/pages/textPickerDialog/showTextPickerDialogBackgroundEffect",
+    "MainAbility/pages/textPickerDialog/showTextPickerDialogBlurStyleOptions",
+    "MainAbility/pages/textPickerDialog/textPickerDialogBackgroundEffect",
+    "MainAbility/pages/textPickerDialog/textPickerDialogBlurStyleOptions",
+    "MainAbility/pages/textPickerDialog/textPickerDialogAcceptButtonStyle",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogAppearText",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogCallback",
+    "MainAbility/pages/textPickerDialog/textPickerDialogCancelButtonStyle",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogOptions",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogUI",
+    "MainAbility/pages/textPickerDialog/textPickerDialogWindowProperties",
+    "MainAbility/pages/textPickerDialog/textPickerDialogOnScrollStop"
+  ]
+}

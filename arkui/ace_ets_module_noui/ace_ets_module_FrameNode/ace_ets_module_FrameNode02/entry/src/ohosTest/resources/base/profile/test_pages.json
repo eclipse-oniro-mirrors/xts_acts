@@ -1,0 +1,24 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/frameNode/APIsetOnclick",
+        "MainAbility/pages/frameNode/APIsetOnTouch",
+        "MainAbility/pages/frameNode/frameNode",
+        "MainAbility/pages/frameNode/nodeContainer",
+        "MainAbility/pages/frameNode/frameNodeTestGetInterface",
+        "MainAbility/pages/frameNode/APIsetOnFocus",
+        "MainAbility/pages/frameNode/APIsetOnHover",
+        "MainAbility/pages/frameNode/nodeList",
+        "MainAbility/pages/frameNode/nodeListItemGroup",
+        "MainAbility/pages/frameNode/IsOnMainTreeMethodPage",
+        "MainAbility/pages/frameNode/isInRenderStateTest",
+        "MainAbility/pages/nodeAdapter/NodeAdapter001",
+        "MainAbility/pages/frameNode/FrameNodeMethodNullUndefined",
+        "MainAbility/pages/frameNode/CustomPropertyNullUndefined",
+        "MainAbility/pages/frameNode/AddComponentContentNullUndefined",
+        "MainAbility/pages/frameNode/createFrameNodesUIContextInt",
+        "MainAbility/pages/frameNode/GetFrameNodeById",
+        "MainAbility/pages/frameNode/GetFrameNodeByUniqueId",
+        "MainAbility/pages/frameNode/LazyForEachReleaseStrategy"
+    ]
+}

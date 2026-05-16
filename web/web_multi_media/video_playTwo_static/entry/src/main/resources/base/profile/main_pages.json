@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/webMediaOption",
+    "pages/WebOnFullScreenEnter",
+    "pages/WebMediaPlayGestureAccess",
+    "pages/WebKeyBoardAvoidMode"
+  ]
+}

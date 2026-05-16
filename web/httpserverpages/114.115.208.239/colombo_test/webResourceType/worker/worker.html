@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker 测试页面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 16px 30px; border-bottom: 1px solid #2a2a4a; }
+        .header h1 { font-size: 22px; color: #fff; }
+        .header p { font-size: 13px; color: #888; margin-top: 4px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .panel { background: #1a1a2e; border-radius: 10px; padding: 20px; margin-bottom: 20px; border: 1px solid #2a2a4a; }
+        .panel h2 { font-size: 16px; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .panel h2 .badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #e74c3c; color: #fff; }
+        .panel h2 .badge.green { background: #2ecc71; }
+        .panel h2 .badge.blue { background: #3498db; }
+        .btn { padding: 8px 18px; background: #0078d4; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; margin-right: 8px; margin-bottom: 8px; transition: background 0.2s; }
+        .btn:hover { background: #005a9e; }
+        .btn.danger { background: #e74c3c; }
+        .btn.danger:hover { background: #c0392b; }
+        .btn.success { background: #2ecc71; }
+        .btn.success:hover { background: #27ae60; }
+        .btn.warning { background: #f39c12; }
+        .btn.warning:hover { background: #e67e22; }
+        .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+        .log-area { background: #0d0d1a; color: #cdd6f4; padding: 14px; border-radius: 6px; font-family: 'Consolas', 'Monaco', monospace; font-size: 12px; min-height: 100px; max-height: 250px; overflow-y: auto; border: 1px solid #2a2a4a; }
+        .log-entry { padding: 2px 0; border-bottom: 1px solid #1a1a2a; }
+        .log-entry:last-child { border-bottom: none; }
+        .log-time { color: #666; margin-right: 8px; }
+        .log-info { color: #89b4fa; }
+        .log-success { color: #a6e3a1; }
+        .log-error { color: #f38ba8; }
+        .log-warn { color: #fab387; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+        .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+        .metric-card { background: #0f0f1a; border-radius: 8px; padding: 12px; text-align: center; border: 1px solid #222; }
+        .metric-value { font-size: 22px; font-weight: 700; color: #fff; }
+        .metric-value.green { color: #2ecc71; }
+        .metric-value.red { color: #e74c3c; }
+        .metric-value.blue { color: #3498db; }
+        .metric-value.yellow { color: #f39c12; }
+        .metric-label { font-size: 11px; color: #666; margin-top: 4px; }
+        .worker-pool { display: flex; flex-direction: column; gap: 8px; }
+        .pool-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: #0f0f1a; border-radius: 6px; border: 1px solid #222; }
+        .pool-item-info { display: flex; align-items: center; gap: 10px; }
+        .pool-status { width: 10px; height: 10px; border-radius: 50%; background: #555; }
+        .pool-status.active { background: #2ecc71; animation: pulse 1.5s infinite; }
+        .pool-status.error { background: #e74c3c; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .pool-name { font-size: 13px; color: #ddd; font-weight: 500; }
+        .pool-msgs { font-size: 11px; color: #888; }
+        .pool-actions { display: flex; gap: 6px; }
+        .pool-btn { padding: 4px 10px; font-size: 11px; background: #2a2a4a; color: #ccc; border: none; border-radius: 4px; cursor: pointer; }
+        .pool-btn:hover { background: #3a3a5a; }
+        .pool-btn.kill { background: #e74c3c; color: #fff; }
+        .benchmark-result { display: flex; align-items: center; gap: 12px; padding: 10px; background: #0f0f1a; border-radius: 6px; margin-top: 8px; }
+        .benchmark-label { font-size: 13px; color: #aaa; min-width: 140px; }
+        .benchmark-bar-wrap { flex: 1; height: 20px; background: #1a1a2a; border-radius: 4px; overflow: hidden; }
+        .benchmark-bar { height: 100%; border-radius: 4px; transition: width 0.5s; }
+        .benchmark-val { font-size: 13px; color: #fff; font-weight: 600; min-width: 80px; text-align: right; }
+        .lifecycle-timeline { position: relative; padding: 14px 0; }
+        .lifecycle-event { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; position: relative; }
+        .lifecycle-dot { width: 12px; height: 12px; border-radius: 50%; background: #3498db; flex-shrink: 0; margin-top: 3px; }
+        .lifecycle-dot.green { background: #2ecc71; }
+        .lifecycle-dot.red { background: #e74c3c; }
+        .lifecycle-dot.yellow { background: #f39c12; }
+        .lifecycle-line { position: absolute; left: 5px; top: 15px; width: 2px; height: calc(100% - 15px); background: #2a2a4a; }
+        .lifecycle-content { flex: 1; }
+        .lifecycle-title { font-size: 13px; color: #ddd; font-weight: 500; }
+        .lifecycle-desc { font-size: 12px; color: #888; margin-top: 2px; }
+        .transfer-result { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .transfer-box { background: #0f0f1a; padding: 12px; border-radius: 6px; border: 1px solid #222; }
+        .transfer-box h4 { font-size: 13px; color: #aaa; margin-bottom: 8px; }
+        .transfer-box pre { font-size: 11px; color: #89b4fa; overflow-x: auto; max-height: 80px; }
+        .input-row { display: flex; gap: 8px; margin-bottom: 12px; align-items: center; }
+        .input-row input { flex: 1; padding: 8px 12px; background: #0f0f1a; border: 1px solid #333; border-radius: 6px; color: #e0e0e0; font-size: 13px; outline: none; }
+        .input-row input:focus { border-color: #0078d4; }
+        .input-row label { font-size: 13px; color: #888; white-space: nowrap; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Web Worker Test Page</h1>
+        <p>Dedicated Worker management, performance benchmarks, pool control, lifecycle visualization, and typed array transfer testing</p>
+    </div>
+    <div class="container">
+        <div class="metric-grid" id="metricsGrid">
+            <div class="metric-card"><div class="metric-value green" id="metricActive">0</div><div class="metric-label">Active Workers</div></div>
+            <div class="metric-card"><div class="metric-value blue" id="metricMessages">0</div><div class="metric-label">Messages Sent</div></div>
+            <div class="metric-card"><div class="metric-value yellow" id="metricErrors">0</div><div class="metric-label">Errors</div></div>
+            <div class="metric-card"><div class="metric-value red" id="metricTerminated">0</div><div class="metric-label">Terminated</div></div>
+        </div>
+        <div class="panel">
+            <h2>Dedicated Worker <span class="badge">Core</span></h2>
+            <div class="btn-row">
+                <button class="btn success" onclick="startWorker()">Start Worker</button>
+                <button class="btn danger" onclick="stopWorker()">Stop Worker</button>
+                <button class="btn" onclick="sendMessage()">Send Message</button>
+                <button class="btn warning" onclick="triggerError()">Trigger Error</button>
+            </div>
+            <div class="input-row">
+                <label>Message:</label>
+                <input type="text" id="msgInput" placeholder="Type a message to send to worker..." value="hello from main thread">
+            </div>
+            <div class="log-area" id="workerLog"></div>
+        </div>
+        <div class="grid-2">
+            <div class="panel">
+                <h2>Worker Pool <span class="badge blue">Management</span></h2>
+                <div class="btn-row">
+                    <button class="btn success" onclick="addToPool()">Add Worker</button>
+                    <button class="btn danger" onclick="clearPool()">Clear All</button>
+                    <button class="btn" onclick="broadcastToPool()">Broadcast</button>
+                </div>
+                <div class="worker-pool" id="workerPool">
+                    <div style="text-align:center;color:#555;padding:20px;font-size:13px;">No workers in pool. Click "Add Worker" to create instances.</div>
+                </div>
+            </div>
+            <div class="panel">
+                <h2>Worker Lifecycle <span class="badge green">Visualization</span></h2>
+                <div class="lifecycle-timeline" id="lifecycleTimeline">
+                    <div class="lifecycle-event">
+                        <div class="lifecycle-line"></div>
+                        <div class="lifecycle-dot" id="lcDot0"></div>
+                        <div class="lifecycle-content">
+                            <div class="lifecycle-title" id="lcTitle0">Waiting for initialization</div>
+                            <div class="lifecycle-desc" id="lcDesc0">Start a worker to begin lifecycle tracking</div>
+                        </div>
+                    </div>
+                    <div class="lifecycle-event">
+                        <div class="lifecycle-line"></div>
+                        <div class="lifecycle-dot" id="lcDot1"></div>
+                        <div class="lifecycle-content">
+                            <div class="lifecycle-title" id="lcTitle1">Pending</div>
+                            <div class="lifecycle-desc" id="lcDesc1">Worker creation not yet triggered</div>
+                        </div>
+                    </div>
+                    <div class="lifecycle-event">
+                        <div class="lifecycle-line"></div>
+                        <div class="lifecycle-dot" id="lcDot2"></div>
+                        <div class="lifecycle-content">
+                            <div class="lifecycle-title" id="lcTitle2">Pending</div>
+                            <div class="lifecycle-desc" id="lcDesc2">Awaiting worker state change</div>
+                        </div>
+                    </div>
+                    <div class="lifecycle-event">
+                        <div class="lifecycle-line"></div>
+                        <div class="lifecycle-dot" id="lcDot3"></div>
+                        <div class="lifecycle-content">
+                            <div class="lifecycle-title" id="lcTitle3">Pending</div>
+                            <div class="lifecycle-desc" id="lcDesc3">Final state not reached</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel">
+            <h2>Message Passing Benchmark <span class="badge">Performance</span></h2>
+            <div class="btn-row">
+                <button class="btn" onclick="runBenchmark(100)">100 Messages</button>
+                <button class="btn" onclick="runBenchmark(1000)">1,000 Messages</button>
+                <button class="btn" onclick="runBenchmark(10000)">10,000 Messages</button>
+                <button class="btn warning" onclick="runBenchmark(50000)">50,000 Messages</button>
+            </div>
+            <div class="benchmark-result" id="benchResult" style="display:none;">
+                <div class="benchmark-label" id="benchLabel">--</div>
+                <div class="benchmark-bar-wrap"><div class="benchmark-bar" id="benchBar" style="width:0%;background:#3498db;"></div></div>
+                <div class="benchmark-val" id="benchVal">--</div>
+            </div>
+            <div class="log-area" id="benchLog" style="margin-top:10px;"></div>
+        </div>
+        <div class="panel">
+            <h2>Typed Array Transfer <span class="badge blue">Transferable</span></h2>
+            <div class="btn-row">
+                <button class="btn success" onclick="startTransferWorker()">Start Transfer Worker</button>
+                <button class="btn" onclick="transferArray()">Transfer Int32Array (10K)</button>
+                <button class="btn" onclick="transferLargeArray()">Transfer Float64Array (100K)</button>
+                <button class="btn danger" onclick="stopTransferWorker()">Stop Transfer Worker</button>
+            </div>
+            <div class="transfer-result" id="transferResult" style="display:none;">
+                <div class="transfer-box">
+                    <h4>Sent Data (first 20 elements)</h4>
+                    <pre id="transferSent">--</pre>
+                </div>
+                <div class="transfer-box">
+                    <h4>Received Data (first 20 elements)</h4>
+                    <pre id="transferReceived">--</pre>
+                </div>
+            </div>
+            <div class="log-area" id="transferLog" style="margin-top:10px;"></div>
+        </div>
+        <div class="panel">
+            <h2>Error Handling <span class="badge" style="background:#e74c3c;">Demo</span></h2>
+            <div class="btn-row">
+                <button class="btn danger" onclick="throwWorkerError()">Throw Runtime Error</button>
+                <button class="btn warning" onclick="loadBadWorker()">Load Invalid Worker</button>
+                <button class="btn" onclick="sendUndefined()">Send Undefined Data</button>
+                <button class="btn" onclick="clearErrorLog()">Clear Log</button>
+            </div>
+            <div class="log-area" id="errorLog"></div>
+        </div>
+    </div>
+    <script>
+        function test() { return true; }
+        var worker = null;
+        var totalMessages = 0;
+        var totalErrors = 0;
+        var totalTerminated = 0;
+        var workerPool = [];
+        var poolIdCounter = 0;
+        var transferWorker = null;
+        var lifecycleSteps = [];
+
+        function addLog(elementId, message, type) {
+            var log = document.getElementById(elementId);
+            var entry = document.createElement('div');
+            entry.className = 'log-entry';
+            var timeStr = new Date().toLocaleTimeString();
+            var cls = type === 'success' ? 'log-success' : type === 'error' ? 'log-error' : type === 'warn' ? 'log-warn' : 'log-info';
+            entry.innerHTML = '<span class="log-time">' + timeStr + '</span><span class="' + cls + '">' + message + '</span>';
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function updateMetrics() {
+            var activeCount = 0;
+            if (worker) activeCount++;
+            workerPool.forEach(function(w) { if (w.alive) activeCount++; });
+            if (transferWorker) activeCount++;
+            document.getElementById('metricActive').textContent = activeCount;
+            document.getElementById('metricMessages').textContent = totalMessages;
+            document.getElementById('metricErrors').textContent = totalErrors;
+            document.getElementById('metricTerminated').textContent = totalTerminated;
+        }
+
+        function setLifecycle(idx, title, desc, color) {
+            var dot = document.getElementById('lcDot' + idx);
+            var t = document.getElementById('lcTitle' + idx);
+            var d = document.getElementById('lcDesc' + idx);
+            if (dot) { dot.className = 'lifecycle-dot ' + (color || ''); }
+            if (t) t.textContent = title;
+            if (d) d.textContent = desc + ' [' + new Date().toLocaleTimeString() + ']';
+        }
+
+        function startWorker() {
+            try {
+                worker = new Worker('worker.js');
+                addLog('workerLog', 'Dedicated Worker started', 'success');
+                setLifecycle(0, 'Worker Created', 'new Worker("worker.js") called successfully', 'green');
+                setLifecycle(1, 'Script Loading', 'Worker script loading in background', 'yellow');
+                worker.onmessage = function(e) {
+                    addLog('workerLog', 'Received: ' + e.data, 'info');
+                    totalMessages++;
+                    updateMetrics();
+                    setLifecycle(2, 'Message Received', 'Worker sent: ' + String(e.data).substring(0, 50), 'green');
+                };
+                worker.onerror = function(e) {
+                    addLog('workerLog', 'Error: ' + e.message, 'error');
+                    totalErrors++;
+                    updateMetrics();
+                    setLifecycle(3, 'Error Occurred', e.message, 'red');
+                };
+                worker.postMessage(document.getElementById('msgInput').value || 'hello');
+                totalMessages++;
+                updateMetrics();
+                addLog('workerLog', 'Sent: ' + (document.getElementById('msgInput').value || 'hello'), 'info');
+            } catch(e) {
+                addLog('workerLog', 'Failed: ' + e.message, 'error');
+                totalErrors++;
+                updateMetrics();
+            }
+        }
+
+        function stopWorker() {
+            if (worker) {
+                worker.terminate();
+                worker = null;
+                totalTerminated++;
+                addLog('workerLog', 'Worker terminated', 'warn');
+                setLifecycle(3, 'Worker Terminated', 'worker.terminate() was called', 'red');
+                updateMetrics();
+            }
+        }
+
+        function sendMessage() {
+            if (worker) {
+                var msg = document.getElementById('msgInput').value || 'ping';
+                worker.postMessage(msg);
+                totalMessages++;
+                addLog('workerLog', 'Sent: ' + msg, 'info');
+                updateMetrics();
+            } else {
+                addLog('workerLog', 'No active worker. Start a worker first.', 'warn');
+            }
+        }
+
+        function triggerError() {
+            if (worker) {
+                worker.postMessage({ action: 'error' });
+                totalMessages++;
+                addLog('workerLog', 'Sent error trigger to worker', 'warn');
+                updateMetrics();
+            }
+        }
+
+        function addToPool() {
+            try {
+                poolIdCounter++;
+                var id = poolIdCounter;
+                var w = new Worker('worker.js');
+                var item = { id: id, worker: w, alive: true, messages: 0 };
+                workerPool.push(item);
+                w.onmessage = function(e) {
+                    item.messages++;
+                    totalMessages++;
+                    updatePoolDisplay();
+                    updateMetrics();
+                };
+                w.onerror = function(e) {
+                    item.alive = false;
+                    totalErrors++;
+                    updatePoolDisplay();
+                    updateMetrics();
+                };
+                addLog('workerLog', 'Pool Worker #' + id + ' added', 'success');
+                updatePoolDisplay();
+                updateMetrics();
+            } catch(e) {
+                addLog('workerLog', 'Pool add failed: ' + e.message, 'error');
+                totalErrors++;
+                updateMetrics();
+            }
+        }
+
+        function killPoolWorker(id) {
+            var item = workerPool.find(function(w) { return w.id === id; });
+            if (item && item.alive) {
+                item.worker.terminate();
+                item.alive = false;
+                totalTerminated++;
+                addLog('workerLog', 'Pool Worker #' + id + ' terminated', 'warn');
+                updatePoolDisplay();
+                updateMetrics();
+            }
+        }
+
+        function clearPool() {
+            workerPool.forEach(function(item) {
+                if (item.alive) {
+                    item.worker.terminate();
+                    totalTerminated++;
+                }
+            });
+            workerPool = [];
+            addLog('workerLog', 'All pool workers cleared', 'warn');
+            updatePoolDisplay();
+            updateMetrics();
+        }
+
+        function broadcastToPool() {
+            var msg = document.getElementById('msgInput').value || 'broadcast';
+            var count = 0;
+            workerPool.forEach(function(item) {
+                if (item.alive) {
+                    item.worker.postMessage(msg);
+                    item.messages++;
+                    totalMessages++;
+                    count++;
+                }
+            });
+            addLog('workerLog', 'Broadcast to ' + count + ' workers: ' + msg, 'info');
+            updateMetrics();
+        }
+
+        function updatePoolDisplay() {
+            var container = document.getElementById('workerPool');
+            if (workerPool.length === 0) {
+                container.innerHTML = '<div style="text-align:center;color:#555;padding:20px;font-size:13px;">No workers in pool. Click "Add Worker" to create instances.</div>';
+                return;
+            }
+            var html = '';
+            workerPool.forEach(function(item) {
+                var statusClass = item.alive ? 'active' : (item.messages > 0 ? 'error' : '');
+                html += '<div class="pool-item">' +
+                    '<div class="pool-item-info">' +
+                    '<div class="pool-status ' + statusClass + '"></div>' +
+                    '<div><div class="pool-name">Worker #' + item.id + '</div>' +
+                    '<div class="pool-msgs">' + item.messages + ' messages | ' + (item.alive ? 'Running' : 'Stopped') + '</div></div>' +
+                    '</div>' +
+                    '<div class="pool-actions">' +
+                    '<button class="pool-btn" onclick="pingPoolWorker(' + item.id + ')">Ping</button>' +
+                    (item.alive ? '<button class="pool-btn kill" onclick="killPoolWorker(' + item.id + ')">Kill</button>' : '') +
+                    '</div></div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function pingPoolWorker(id) {
+            var item = workerPool.find(function(w) { return w.id === id; });
+            if (item && item.alive) {
+                item.worker.postMessage('ping');
+                item.messages++;
+                totalMessages++;
+                updatePoolDisplay();
+                updateMetrics();
+            }
+        }
+
+        function runBenchmark(count) {
+            if (!worker) {
+                addLog('benchLog', 'Start a worker first before running benchmarks', 'warn');
+                return;
+            }
+            addLog('benchLog', 'Starting benchmark: ' + count + ' messages...', 'info');
+            var start = performance.now();
+            var received = 0;
+            var origHandler = worker.onmessage;
+            worker.onmessage = function(e) {
+                received++;
+                if (received === count) {
+                    var elapsed = performance.now() - start;
+                    var rate = Math.round(count / (elapsed / 1000));
+                    var resultDiv = document.getElementById('benchResult');
+                    resultDiv.style.display = 'flex';
+                    document.getElementById('benchLabel').textContent = count.toLocaleString() + ' msgs';
+                    var maxRate = 200000;
+                    var pct = Math.min(100, (rate / maxRate) * 100);
+                    document.getElementById('benchBar').style.width = pct + '%';
+                    document.getElementById('benchBar').style.background = pct > 70 ? '#2ecc71' : pct > 30 ? '#f39c12' : '#e74c3c';
+                    document.getElementById('benchVal').textContent = rate.toLocaleString() + ' msg/s';
+                    addLog('benchLog', 'Benchmark complete: ' + count + ' messages in ' + elapsed.toFixed(1) + 'ms (' + rate.toLocaleString() + ' msg/s)', 'success');
+                    totalMessages += count;
+                    updateMetrics();
+                    worker.onmessage = origHandler;
+                }
+            };
+            for (var i = 0; i < count; i++) {
+                worker.postMessage('bench-' + i);
+            }
+        }
+
+        function startTransferWorker() {
+            try {
+                transferWorker = new Worker('worker.js');
+                addLog('transferLog', 'Transfer worker started', 'success');
+                transferWorker.onmessage = function(e) {
+                    addLog('transferLog', 'Received array with ' + (e.data.length || 0) + ' elements', 'success');
+                    var received = document.getElementById('transferReceived');
+                    if (e.data && e.data.length) {
+                        var arr = Array.from(e.data).slice(0, 20);
+                        received.textContent = '[' + arr.join(', ') + ']';
+                    }
+                    document.getElementById('transferResult').style.display = 'grid';
+                    updateMetrics();
+                };
+                transferWorker.onerror = function(e) {
+                    addLog('transferLog', 'Error: ' + e.message, 'error');
+                    totalErrors++;
+                    updateMetrics();
+                };
+                updateMetrics();
+            } catch(e) {
+                addLog('transferLog', 'Failed: ' + e.message, 'error');
+                totalErrors++;
+                updateMetrics();
+            }
+        }
+
+        function stopTransferWorker() {
+            if (transferWorker) {
+                transferWorker.terminate();
+                transferWorker = null;
+                totalTerminated++;
+                addLog('transferLog', 'Transfer worker terminated', 'warn');
+                updateMetrics();
+            }
+        }
+
+        function transferArray() {
+            if (!transferWorker) {
+                addLog('transferLog', 'Start transfer worker first', 'warn');
+                return;
+            }
+            var arr = new Int32Array(10000);
+            for (var i = 0; i < arr.length; i++) arr[i] = i * 2;
+            addLog('transferLog', 'Transferring Int32Array with ' + arr.length + ' elements', 'info');
+            var sent = document.getElementById('transferSent');
+            sent.textContent = '[' + Array.from(arr.slice(0, 20)).join(', ') + ']';
+            transferWorker.postMessage(arr, [arr.buffer]);
+            addLog('transferLog', 'Array buffer transferred (zero-copy)', 'success');
+            totalMessages++;
+            updateMetrics();
+        }
+
+        function transferLargeArray() {
+            if (!transferWorker) {
+                addLog('transferLog', 'Start transfer worker first', 'warn');
+                return;
+            }
+            var arr = new Float64Array(100000);
+            for (var i = 0; i < arr.length; i++) arr[i] = Math.sin(i * 0.01) * 100;
+            addLog('transferLog', 'Transferring Float64Array with ' + arr.length + ' elements', 'info');
+            var sent = document.getElementById('transferSent');
+            sent.textContent = '[' + Array.from(arr.slice(0, 20)).map(function(v) { return v.toFixed(2); }).join(', ') + ']';
+            transferWorker.postMessage(arr, [arr.buffer]);
+            addLog('transferLog', 'Large array buffer transferred (zero-copy)', 'success');
+            totalMessages++;
+            updateMetrics();
+        }
+
+        function throwWorkerError() {
+            if (worker) {
+                worker.postMessage('throw error');
+                totalMessages++;
+                addLog('errorLog', 'Sent error trigger to main worker', 'warn');
+                updateMetrics();
+            } else {
+                addLog('errorLog', 'No active worker to send error trigger', 'warn');
+            }
+        }
+
+        function loadBadWorker() {
+            try {
+                var badW = new Worker('nonexistent_worker.js');
+                addLog('errorLog', 'Attempting to load nonexistent_worker.js...', 'warn');
+                badW.onerror = function(e) {
+                    addLog('errorLog', 'Caught error for bad worker: ' + e.message, 'error');
+                    totalErrors++;
+                    updateMetrics();
+                };
+            } catch(e) {
+                addLog('errorLog', 'Exception: ' + e.message, 'error');
+                totalErrors++;
+                updateMetrics();
+            }
+        }
+
+        function sendUndefined() {
+            if (worker) {
+                worker.postMessage(undefined);
+                totalMessages++;
+                addLog('errorLog', 'Sent undefined to worker', 'warn');
+                updateMetrics();
+            }
+        }
+
+        function clearErrorLog() {
+            document.getElementById('errorLog').innerHTML = '';
+        }
+
+        updateMetrics();
+    </script>
+</body>
+</html>

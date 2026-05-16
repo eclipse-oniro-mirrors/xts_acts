@@ -1,0 +1,131 @@
+'use static';
+
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { describe, it, expect, beforeAll, afterEach, Level, beforeEach } from '../../../../hypium/index';
+import router from '@ohos.router';
+import Utils from '../../../ets/MainAbility/common/Utils';
+import CommonFunc from '../../../ets/MainAbility/common/Common';
+import { Router } from '@ohos.arkui.UIContext';
+import { AppStorage } from '@ohos.arkui.stateManagement';
+import { UtilsTest } from '../Util.test';
+import inspector from '@ohos.arkui.inspector';
+
+const SLEEP_TIME = 1000;
+const LOG_CHUNK_SIZE = 500;
+
+function logLongString(tag: string, longStr: string): void {
+  let len = longStr.length;
+  let part = 1;
+  for (let i = 0; i < len; i += LOG_CHUNK_SIZE) {
+    let end = i + LOG_CHUNK_SIZE;
+    if (end > len) {
+      end = len;
+    }
+    console.info(`${tag} [${part}] ${longStr.substring(i, end)}`);
+    part++;
+  }
+}
+
+export default function TipsOptionsTest() {
+  describe('TipsOptionsTest', () => {
+    beforeAll(async (): Promise<void> => {
+      console.info('TipsOptionsTest beforeAll start');
+      await UtilsTest.startAbility('com.arkui.ace.scroll.api23.static', 'EntryAbility');
+    });
+
+    beforeEach((): void => {
+      console.info('TipsOptionsTest beforeEach start');
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/TipsOptions/TipsOptions',
+      };
+      try {
+        const routerInstance = AppStorage.get<Router>('router') as Router;
+        routerInstance.clear();
+        let pages = routerInstance.getState();
+        console.info('TipsOptionsTest state pages: ' + JSON.stringify(pages));
+        if (pages.name !== 'TipsOptions') {
+          routerInstance.replaceUrl(options);
+        }
+      } catch (err) {
+        console.error('TipsOptionsTest replaceUrl error: ' + err);
+        expect().assertFail();
+      }
+    });
+
+    afterEach((): void => {
+      console.info('TipsOptionsTest after each called');
+    });
+
+    /**
+     * @tc.number TipsOptionsTest_001
+     * @tc.name tipsOptionsShowAtAnchor1
+     * @tc.desc Test TipsOptions showAtAnchor property for tips1 button, read from component and print component tree
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('tipsOptionsShowAtAnchor1', Level.LEVEL1, async (done: () => void): Promise<void> => {
+      console.info('TipsOptionsTest execute: tipsOptionsShowAtAnchor1 START');
+      try {
+        await CommonFunc.sleep(SLEEP_TIME);
+
+        let node = JSON.parseJsonElement(inspector.getInspectorByKey('tips1'));
+        console.info('TipsOptionsTest tips1 inspector node not null: ' + (node != null));
+        logLongString('TipsOptionsTest: tipsOptionsShowAtAnchor1 node =', JSON.stringifyJsonElement(node));
+        expect(node != null).assertTrue();
+        let stateSnapshot = AppStorage.get<string>('TipsOptionsPageState') ?? '';
+        expect(stateSnapshot.includes('tips1ShowAtAnchor')).assertEqual(true);
+
+        console.info('TipsOptionsTest execute: tipsOptionsShowAtAnchor1 END');
+        done();
+      } catch (error) {
+        console.error('TipsOptionsTest execute: tipsOptionsShowAtAnchor1 error:' + error);
+        expect().assertFail();
+        done();
+      }
+    });
+
+    /**
+     * @tc.number TipsOptionsTest_002
+     * @tc.name tipsOptionsShowAtAnchor2
+     * @tc.desc Test TipsOptions showAtAnchor property for tips2 button, read from component and print component tree
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('tipsOptionsShowAtAnchor2', Level.LEVEL1, async (done: () => void): Promise<void> => {
+      console.info('TipsOptionsTest execute: tipsOptionsShowAtAnchor2 START');
+      try {
+        await CommonFunc.sleep(SLEEP_TIME);
+
+        let node = JSON.parseJsonElement(inspector.getInspectorByKey('tips2'));
+        console.info('TipsOptionsTest tips2 inspector node not null: ' + (node != null));
+        logLongString('TipsOptionsTest: tipsOptionsShowAtAnchor2 node =', JSON.stringifyJsonElement(node));
+        expect(node != null).assertTrue();
+        let stateSnapshot = AppStorage.get<string>('TipsOptionsPageState') ?? '';
+        expect(stateSnapshot.includes('tips2ShowAtAnchor')).assertEqual(true);
+
+        console.info('TipsOptionsTest execute: tipsOptionsShowAtAnchor2 END');
+        done();
+      } catch (error) {
+        console.error('TipsOptionsTest execute: tipsOptionsShowAtAnchor2 error:' + error);
+        expect().assertFail();
+        done();
+      }
+    });
+  });
+}

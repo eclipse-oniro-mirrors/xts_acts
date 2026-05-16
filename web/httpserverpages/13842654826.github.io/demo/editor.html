@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线文档编辑器</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f5f5f5; min-height: 100vh; }
+        .app-header { background: #1a1a2e; color: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .app-header h1 { font-size: 18px; font-weight: 500; }
+        .app-header-actions { display: flex; gap: 8px; align-items: center; }
+        .app-header-actions button { padding: 5px 14px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .app-header-actions button:hover { background: rgba(255,255,255,0.2); }
+        .app-header-actions .save-indicator { font-size: 11px; color: #4ecdc4; display: flex; align-items: center; gap: 4px; }
+        .app-header-actions .save-indicator .dot { width: 6px; height: 6px; background: #4ecdc4; border-radius: 50%; display: inline-block; }
+        .app-header-actions .save-indicator.saving .dot { background: #f39c12; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .main-layout { display: flex; height: calc(100vh - 44px); }
+        .sidebar-left { width: 220px; background: white; border-right: 1px solid #ddd; overflow-y: auto; display: flex; flex-direction: column; }
+        .sidebar-panel { padding: 12px; border-bottom: 1px solid #eee; }
+        .sidebar-panel h4 { font-size: 12px; color: #888; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .toc-list { list-style: none; font-size: 13px; }
+        .toc-list li { padding: 4px 8px; cursor: pointer; border-radius: 3px; color: #555; margin-bottom: 2px; }
+        .toc-list li:hover { background: #f0f4ff; color: #0078d4; }
+        .toc-list li.level-2 { padding-left: 20px; }
+        .toc-list li.level-3 { padding-left: 32px; font-size: 12px; }
+        .toc-list li.active { background: #e8f0fe; color: #0078d4; font-weight: 500; }
+        .history-list { list-style: none; font-size: 12px; }
+        .history-list li { padding: 6px 8px; cursor: pointer; border-radius: 3px; color: #555; margin-bottom: 2px; display: flex; justify-content: space-between; align-items: center; }
+        .history-list li:hover { background: #f5f5f5; }
+        .history-list li .time { color: #aaa; font-size: 11px; }
+        .history-list li.current { background: #e8f0fe; color: #0078d4; }
+        .comment-list { list-style: none; font-size: 12px; }
+        .comment-item { padding: 8px; border: 1px solid #eee; border-radius: 6px; margin-bottom: 8px; }
+        .comment-item .author { font-weight: 600; color: #333; margin-bottom: 3px; }
+        .comment-item .text { color: #555; margin-bottom: 3px; }
+        .comment-item .meta { color: #aaa; font-size: 11px; }
+        .center-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .toolbar { background: white; padding: 6px 12px; border-bottom: 1px solid #ddd; display: flex; gap: 3px; align-items: center; flex-wrap: wrap; }
+        .toolbar button { padding: 5px 10px; background: #f8f8f8; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; font-size: 13px; color: #333; }
+        .toolbar button:hover { background: #e8e8e8; }
+        .toolbar button.active { background: #d0e0f0; border-color: #0078d4; color: #0078d4; }
+        .toolbar select { padding: 5px 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; background: #f8f8f8; cursor: pointer; }
+        .toolbar select:hover { border-color: #0078d4; }
+        .toolbar .separator { width: 1px; height: 22px; background: #ddd; margin: 0 4px; }
+        .toolbar .color-input { width: 28px; height: 28px; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; padding: 2px; }
+        .toolbar .btn-icon { font-size: 15px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; padding: 0; }
+        .find-replace-bar { background: #fffde7; border-bottom: 1px solid #f0e68c; padding: 8px 12px; display: none; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .find-replace-bar.show { display: flex; }
+        .find-replace-bar input { padding: 5px 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; width: 180px; }
+        .find-replace-bar button { padding: 5px 12px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .find-replace-bar button:hover { background: #e0e0e0; }
+        .find-replace-bar .match-count { font-size: 11px; color: #888; }
+        .editor-wrapper { flex: 1; overflow-y: auto; background: #f5f5f5; display: flex; justify-content: center; padding: 20px; }
+        .editor-container { max-width: 860px; width: 100%; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); overflow: hidden; display: flex; flex-direction: column; }
+        .editor { min-height: 500px; padding: 30px 40px; outline: none; font-size: 15px; line-height: 1.8; flex: 1; overflow-y: auto; }
+        .editor:focus { box-shadow: inset 0 0 0 2px #0078d4; }
+        .editor h1 { font-size: 28px; margin-bottom: 10px; border-bottom: 2px solid #eee; padding-bottom: 8px; }
+        .editor h2 { font-size: 22px; margin: 20px 0 10px; color: #333; }
+        .editor h3 { font-size: 18px; margin: 15px 0 8px; color: #444; }
+        .editor p { margin-bottom: 10px; color: #444; }
+        .editor ul, .editor ol { margin: 10px 0 10px 30px; }
+        .editor li { margin-bottom: 5px; }
+        .editor blockquote { border-left: 4px solid #0078d4; margin: 12px 0; padding: 10px 16px; background: #f8f9fa; color: #555; font-style: italic; }
+        .editor pre { background: #282c34; color: #abb2bf; padding: 16px; border-radius: 6px; margin: 12px 0; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.6; }
+        .editor code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 13px; }
+        .editor pre code { background: none; padding: 0; }
+        .editor table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+        .editor th, .editor td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; font-size: 14px; }
+        .editor th { background: #f5f7fa; font-weight: 600; }
+        .editor img { max-width: 100%; border-radius: 4px; margin: 8px 0; }
+        .editor a { color: #0078d4; text-decoration: underline; }
+        .status-bar { background: #f0f0f0; padding: 6px 16px; font-size: 12px; color: #888; border-top: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }
+        .status-bar .stats { display: flex; gap: 16px; }
+        .status-bar .stats span { display: flex; align-items: center; gap: 4px; }
+        .collab-bar { background: #1a1a2e; padding: 4px 16px; font-size: 11px; color: #aaa; display: flex; justify-content: space-between; align-items: center; }
+        .collab-bar .avatars { display: flex; gap: 2px; }
+        .collab-bar .avatar { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #1a1a2e; display: flex; align-items: center; justify-content: center; font-size: 10px; color: white; font-weight: 600; }
+        .sidebar-right { width: 240px; background: white; border-left: 1px solid #ddd; overflow-y: auto; }
+        .sidebar-right .panel { padding: 12px; border-bottom: 1px solid #eee; }
+        .sidebar-right .panel h4 { font-size: 12px; color: #888; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .comment-input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 12px; resize: none; height: 50px; outline: none; }
+        .comment-input:focus { border-color: #0078d4; }
+        .comment-add-btn { width: 100%; padding: 6px; background: #0078d4; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; margin-top: 6px; }
+        .comment-add-btn:hover { background: #005a9e; }
+        .form-area { max-width: 860px; margin: 20px auto; background: white; border-radius: 8px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .form-area h3 { margin-bottom: 16px; font-size: 16px; color: #333; }
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; }
+        .form-group { flex: 1; position: relative; }
+        .form-group label { display: block; font-size: 13px; color: #666; margin-bottom: 5px; }
+        .form-group label .required { color: #e74c3c; margin-left: 2px; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; outline: none; transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: #0078d4; box-shadow: 0 0 0 2px rgba(0,120,212,0.2); }
+        .form-group textarea { height: 80px; resize: vertical; }
+        .form-group .error-msg { color: #e74c3c; font-size: 11px; margin-top: 4px; display: none; }
+        .form-group.has-error input, .form-group.has-error select { border-color: #e74c3c; }
+        .form-group.has-error .error-msg { display: block; }
+        .form-group .hint { color: #999; font-size: 11px; margin-top: 4px; }
+        .form-actions { display: flex; gap: 10px; align-items: center; margin-top: 5px; }
+        .submit-btn { padding: 10px 30px; background: #0078d4; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; transition: background 0.2s; }
+        .submit-btn:hover { background: #005a9e; }
+        .reset-btn { padding: 10px 20px; background: #f0f0f0; color: #666; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; font-size: 14px; }
+        .reset-btn:hover { background: #e0e0e0; }
+        .form-extras { margin-top: 15px; }
+        .remember-row { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #666; margin-bottom: 10px; }
+        .remember-row input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
+        .forgot-link { font-size: 13px; color: #0078d4; text-decoration: none; margin-left: auto; }
+        .forgot-link:hover { text-decoration: underline; }
+        .social-login { margin-top: 16px; padding-top: 16px; border-top: 1px solid #eee; }
+        .social-login p { font-size: 12px; color: #999; text-align: center; margin-bottom: 12px; }
+        .social-buttons { display: flex; gap: 10px; justify-content: center; }
+        .social-btn { padding: 8px 20px; border: 1px solid #ddd; border-radius: 20px; background: white; cursor: pointer; font-size: 13px; color: #555; display: flex; align-items: center; gap: 6px; }
+        .social-btn:hover { background: #f5f5f5; }
+        .social-btn.wechat { color: #07c160; border-color: #07c160; }
+        .social-btn.qq { color: #12b7f5; border-color: #12b7f5; }
+        .social-btn.weibo { color: #e6162d; border-color: #e6162d; }
+        .captcha-row { display: flex; gap: 10px; align-items: flex-end; }
+        .captcha-row .form-group { flex: 1; }
+        .captcha-img { width: 120px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; font-weight: 700; letter-spacing: 4px; cursor: pointer; user-select: none; }
+        .terms-row { display: flex; align-items: flex-start; gap: 6px; font-size: 13px; color: #666; margin-top: 15px; }
+        .terms-row input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; margin-top: 2px; }
+        .terms-row a { color: #0078d4; text-decoration: none; }
+        .terms-row a:hover { text-decoration: underline; }
+        .fullscreen .app-header, .fullscreen .sidebar-left, .fullscreen .sidebar-right, .fullscreen .collab-bar { display: none; }
+        .fullscreen .main-layout { height: 100vh; }
+        .fullscreen .editor-wrapper { padding: 0; }
+        .fullscreen .editor-container { border-radius: 0; max-width: 100%; }
+        .link-dialog { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); display: none; align-items: center; justify-content: center; z-index: 1000; }
+        .link-dialog.show { display: flex; }
+        .link-dialog-content { background: white; border-radius: 10px; padding: 24px; width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); }
+        .link-dialog-content h3 { margin-bottom: 16px; font-size: 16px; }
+        .link-dialog-content input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; margin-bottom: 12px; outline: none; }
+        .link-dialog-content input:focus { border-color: #0078d4; }
+        .link-dialog-actions { display: flex; gap: 10px; justify-content: flex-end; }
+        .link-dialog-actions button { padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 13px; border: 1px solid #ddd; }
+        .link-dialog-actions .btn-ok { background: #0078d4; color: white; border-color: #0078d4; }
+        .image-placeholder { display: inline-block; width: 300px; height: 160px; background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); border: 2px dashed #818cf8; border-radius: 8px; text-align: center; line-height: 160px; color: #6366f1; font-size: 14px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="app-header">
+        <h1>在线文档编辑器</h1>
+        <div class="app-header-actions">
+            <div class="save-indicator" id="saveIndicator"><span class="dot"></span>已自动保存</div>
+            <button onclick="window.print()">打印</button>
+            <button onclick="exportHTML()">导出 HTML</button>
+            <button onclick="exportText()">导出文本</button>
+            <button onclick="toggleFullscreen()">全屏</button>
+        </div>
+    </div>
+    <div class="main-layout" id="mainLayout">
+        <div class="sidebar-left">
+            <div class="sidebar-panel">
+                <h4>目录</h4>
+                <ul class="toc-list" id="tocList">
+                    <li class="level-1 active">在线文档编辑器</li>
+                    <li class="level-2">功能特性</li>
+                    <li class="level-2">编辑器功能</li>
+                    <li class="level-3">文本格式化</li>
+                    <li class="level-3">插入功能</li>
+                    <li class="level-2">示例表格</li>
+                    <li class="level-2">代码示例</li>
+                    <li class="level-2">引用示例</li>
+                </ul>
+            </div>
+            <div class="sidebar-panel">
+                <h4>历史版本</h4>
+                <ul class="history-list">
+                    <li class="current"><span>当前版本</span><span class="time">刚刚</span></li>
+                    <li><span>v2.3 修订</span><span class="time">2分钟前</span></li>
+                    <li><span>v2.2 修订</span><span class="time">15分钟前</span></li>
+                    <li><span>v2.1 修订</span><span class="time">1小时前</span></li>
+                    <li><span>v2.0 初始版本</span><span class="time">昨天</span></li>
+                    <li><span>v1.0 草稿</span><span class="time">3天前</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="center-area">
+            <div class="toolbar">
+                <select id="fontFamily" onchange="changeFontFamily(this.value)">
+                    <option value="">字体</option>
+                    <option value="SimSun, serif">宋体</option>
+                    <option value="Microsoft YaHei, sans-serif">微软雅黑</option>
+                    <option value="KaiTi, serif">楷体</option>
+                    <option value="FangSong, serif">仿宋</option>
+                    <option value="SimHei, sans-serif">黑体</option>
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Times New Roman, serif">Times New Roman</option>
+                    <option value="Georgia, serif">Georgia</option>
+                    <option value="Courier New, monospace">Courier New</option>
+                    <option value="Verdana, sans-serif">Verdana</option>
+                </select>
+                <select onchange="document.execCommand('fontSize', false, this.value); this.value='';">
+                    <option value="">字号</option>
+                    <option value="1">12px</option>
+                    <option value="2">14px</option>
+                    <option value="3">16px</option>
+                    <option value="4">18px</option>
+                    <option value="5">24px</option>
+                    <option value="6">32px</option>
+                    <option value="7">48px</option>
+                </select>
+                <select onchange="document.execCommand('formatBlock', false, this.value); this.value='';">
+                    <option value="">段落</option>
+                    <option value="h1">标题 1</option>
+                    <option value="h2">标题 2</option>
+                    <option value="h3">标题 3</option>
+                    <option value="p">正文</option>
+                </select>
+                <div class="separator"></div>
+                <button onclick="document.execCommand('bold')" title="粗体 Ctrl+B"><b>B</b></button>
+                <button onclick="document.execCommand('italic')" title="斜体 Ctrl+I"><i>I</i></button>
+                <button onclick="document.execCommand('underline')" title="下划线 Ctrl+U"><u>U</u></button>
+                <button onclick="document.execCommand('strikeThrough')" title="删除线"><s>S</s></button>
+                <button onclick="document.execCommand('subscript')" title="下标">X<sub>2</sub></button>
+                <button onclick="document.execCommand('superscript')" title="上标">X<sup>2</sup></button>
+                <div class="separator"></div>
+                <input type="color" class="color-input" id="fontColor" value="#000000" onchange="document.execCommand('foreColor', false, this.value)" title="字体颜色">
+                <input type="color" class="color-input" id="hiliteColor" value="#ffff00" onchange="document.execCommand('hiliteColor', false, this.value)" title="背景高亮">
+                <div class="separator"></div>
+                <button onclick="document.execCommand('justifyLeft')" title="左对齐">&#8676;</button>
+                <button onclick="document.execCommand('justifyCenter')" title="居中">&#8596;</button>
+                <button onclick="document.execCommand('justifyRight')" title="右对齐">&#8677;</button>
+                <button onclick="document.execCommand('justifyFull')" title="两端对齐">&#8678;</button>
+                <div class="separator"></div>
+                <button onclick="document.execCommand('insertUnorderedList')" title="无序列表">&#8226; 列表</button>
+                <button onclick="document.execCommand('insertOrderedList')" title="有序列表">1. 列表</button>
+                <button onclick="document.execCommand('indent')" title="增加缩进">&#8594; 缩进</button>
+                <button onclick="document.execCommand('outdent')" title="减少缩进">&#8592; 缩进</button>
+                <div class="separator"></div>
+                <button onclick="showLinkDialog()" title="插入链接">&#128279; 链接</button>
+                <button onclick="insertImage()" title="插入图片">&#128247; 图片</button>
+                <button onclick="insertTable()" title="插入表格">&#9638; 表格</button>
+                <button onclick="insertCodeBlock()" title="代码块">&lt;/&gt;</button>
+                <button onclick="document.execCommand('formatBlock', false, 'blockquote')" title="引用">&#10077; 引用</button>
+                <button onclick="document.execCommand('insertHorizontalRule')" title="分割线">&#8213; 分割线</button>
+                <div class="separator"></div>
+                <button onclick="document.execCommand('removeFormat')" title="清除格式">清除</button>
+                <button onclick="document.execCommand('undo')" title="撤销 Ctrl+Z">撤销</button>
+                <button onclick="document.execCommand('redo')" title="重做 Ctrl+Y">重做</button>
+                <div class="separator"></div>
+                <button onclick="toggleFindReplace()" title="查找替换 Ctrl+H">&#128269; 查找</button>
+            </div>
+            <div class="find-replace-bar" id="findReplaceBar">
+                <input type="text" id="findInput" placeholder="查找内容..." oninput="performFind()">
+                <button onclick="findNext()">下一个</button>
+                <span class="match-count" id="matchCount"></span>
+                <input type="text" id="replaceInput" placeholder="替换为...">
+                <button onclick="replaceNext()">替换</button>
+                <button onclick="replaceAll()">全部替换</button>
+                <button onclick="toggleFindReplace()" style="margin-left:auto;">关闭</button>
+            </div>
+            <div class="editor-wrapper">
+                <div class="editor-container">
+                    <div class="editor" contenteditable="true" id="editor">
+                        <h1>在线文档编辑器</h1>
+                        <p>欢迎使用在线文档编辑器！这是一个功能丰富的富文本编辑器，支持多种格式化操作和协作编辑功能。您可以使用上方工具栏来格式化文本、插入各种元素。</p>
+                        <h2>功能特性</h2>
+                        <ul>
+                            <li><b>文本格式化</b>：粗体、斜体、下划线、删除线、上标、下标</li>
+                            <li><b>字体样式</b>：字体族选择、字号调节、字体颜色、背景高亮</li>
+                            <li><b>段落排版</b>：标题层级、对齐方式、缩进控制、行距调节</li>
+                            <li><b>列表功能</b>：有序列表、无序列表、多级嵌套</li>
+                            <li><b>插入元素</b>：链接、图片、表格、代码块、引用、分割线</li>
+                            <li><b>编辑工具</b>：撤销/重做、查找替换、清除格式</li>
+                            <li><b>文档管理</b>：自动保存、历史版本、导出打印、全屏模式</li>
+                        </ul>
+                        <h2>编辑器功能</h2>
+                        <h3>文本格式化</h3>
+                        <p>编辑器支持丰富的文本格式化选项。您可以选中文字后使用工具栏按钮进行格式设置。例如：<b>粗体文字</b>、<i>斜体文字</i>、<u>下划线文字</u>、<s>删除线文字</s>。</p>
+                        <p>支持上标和下标：水的化学式是 H<sub>2</sub>O，数学公式 E=mc<sup>2</sup>。</p>
+                        <p>字体颜色和背景高亮：<span style="color:#e74c3c;">红色文字</span>、<span style="background-color:#fff3cd;">高亮标注</span>。</p>
+                        <h3>插入功能</h3>
+                        <p>您可以插入各种内容元素，包括表格、代码块和引用。</p>
+                        <h2>示例表格</h2>
+                        <table>
+                            <thead>
+                                <tr><th>功能</th><th>快捷键</th><th>描述</th><th>状态</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>粗体</td><td>Ctrl+B</td><td>将选中文字设为粗体</td><td>已支持</td></tr>
+                                <tr><td>斜体</td><td>Ctrl+I</td><td>将选中文字设为斜体</td><td>已支持</td></tr>
+                                <tr><td>下划线</td><td>Ctrl+U</td><td>为选中文字添加下划线</td><td>已支持</td></tr>
+                                <tr><td>撤销</td><td>Ctrl+Z</td><td>撤销上一步操作</td><td>已支持</td></tr>
+                                <tr><td>重做</td><td>Ctrl+Y</td><td>重做上一步撤销的操作</td><td>已支持</td></tr>
+                                <tr><td>查找</td><td>Ctrl+H</td><td>打开查找替换面板</td><td>已支持</td></tr>
+                            </tbody>
+                        </table>
+                        <h2>代码示例</h2>
+                        <p>编辑器支持代码块插入，方便展示代码片段：</p>
+                        <pre><code>function test() { return true; }
+
+function greet(name) {
+    return "Hello, " + name + "!";
+}
+
+const editor = document.getElementById('editor');
+editor.addEventListener('input', function() {
+    updateStats();
+});</code></pre>
+                        <p>行内代码同样支持：<code>document.getElementById('editor')</code> 用于获取编辑器元素。</p>
+                        <h2>引用示例</h2>
+                        <blockquote>
+                            <p>好的工具应该是透明的——它不会让你注意到工具本身，而是专注于你要完成的工作。</p>
+                            <p>—— 在线文档编辑器设计理念</p>
+                        </blockquote>
+                        <p>这是另一个引用示例：</p>
+                        <blockquote>代码是写给人看的，附带能在机器上运行。 —— Harold Abelson</blockquote>
+                        <p>文档内容到此结束，您可以在上方继续编辑和添加更多内容。</p>
+                    </div>
+                    <div class="status-bar">
+                        <div class="stats">
+                            <span id="charCount">字符: 0</span>
+                            <span id="wordCount">字数: 0</span>
+                            <span id="paraCount">段落: 0</span>
+                            <span id="readTime">阅读: 0分钟</span>
+                        </div>
+                        <span>在线编辑器 v3.0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="collab-bar">
+                <span id="collabStatus">当前在线: 您</span>
+                <div class="avatars">
+                    <div class="avatar" style="background:#0078d4;">我</div>
+                    <div class="avatar" style="background:#e74c3c;">张</div>
+                    <div class="avatar" style="background:#2ecc71;">李</div>
+                    <div class="avatar" style="background:#f39c12;">王</div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-right">
+            <div class="panel">
+                <h4>评论与批注</h4>
+                <ul class="comment-list">
+                    <li class="comment-item">
+                        <div class="author">张三</div>
+                        <div class="text">这段功能描述很清晰，建议补充快捷键说明。</div>
+                        <div class="meta">10分钟前 · 功能特性</div>
+                    </li>
+                    <li class="comment-item">
+                        <div class="author">李四</div>
+                        <div class="text">表格中的快捷键信息非常实用！</div>
+                        <div class="meta">25分钟前 · 示例表格</div>
+                    </li>
+                    <li class="comment-item">
+                        <div class="author">王五</div>
+                        <div class="text">代码示例可以考虑增加更多语言的支持。</div>
+                        <div class="meta">1小时前 · 代码示例</div>
+                    </li>
+                </ul>
+                <textarea class="comment-input" placeholder="添加评论..."></textarea>
+                <button class="comment-add-btn">发表评论</button>
+            </div>
+            <div class="panel">
+                <h4>文档信息</h4>
+                <div style="font-size:12px; color:#666; line-height:2;">
+                    <div>创建者: 当前用户</div>
+                    <div>创建时间: 2026-04-28 10:00</div>
+                    <div>最后编辑: 刚刚</div>
+                    <div>总字数: <span id="totalWords">0</span></div>
+                    <div>版本: v3.0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-area">
+        <h3>登录表单（用于密码自动填充测试）</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label>用户名 <span class="required">*</span></label>
+                <input type="text" name="username" placeholder="请输入用户名" autocomplete="username" required>
+                <div class="error-msg">请输入用户名</div>
+            </div>
+            <div class="form-group">
+                <label>邮箱 <span class="required">*</span></label>
+                <input type="email" name="email" placeholder="请输入邮箱地址" autocomplete="email" required>
+                <div class="error-msg">请输入有效的邮箱地址</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>手机号 <span class="required">*</span></label>
+                <input type="tel" name="phone" placeholder="请输入手机号码" autocomplete="tel" required>
+                <div class="error-msg">请输入有效的手机号码</div>
+                <div class="hint">格式：11位手机号码</div>
+            </div>
+            <div class="form-group">
+                <label>性别</label>
+                <select name="gender" autocomplete="sex">
+                    <option value="">请选择</option>
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                    <option value="other">其他</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>出生日期</label>
+                <input type="date" name="birthday" autocomplete="bday">
+            </div>
+            <div class="form-group">
+                <label>所在地区</label>
+                <input type="text" name="address" placeholder="请输入所在地区" autocomplete="address-level1">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>密码 <span class="required">*</span></label>
+                <input type="password" name="password" id="passwordInput" placeholder="请输入密码" autocomplete="current-password" required>
+                <div class="error-msg">密码不能为空</div>
+                <div class="hint">至少8位，包含字母和数字</div>
+            </div>
+            <div class="form-group">
+                <label>确认密码 <span class="required">*</span></label>
+                <input type="password" name="confirm_password" id="confirmPasswordInput" placeholder="请再次输入密码" autocomplete="new-password" required>
+                <div class="error-msg">两次密码输入不一致</div>
+            </div>
+        </div>
+        <div class="form-row captcha-row">
+            <div class="form-group">
+                <label>验证码 <span class="required">*</span></label>
+                <input type="text" name="captcha" placeholder="请输入验证码" autocomplete="off" required>
+                <div class="error-msg">请输入验证码</div>
+            </div>
+            <div class="captcha-img" id="captchaImg" onclick="refreshCaptcha()" title="点击刷新">A3xK</div>
+        </div>
+        <div class="form-group" style="margin-bottom:15px;">
+            <label>备注</label>
+            <textarea name="notes" placeholder="请输入备注信息" autocomplete="off"></textarea>
+        </div>
+        <div class="form-extras">
+            <div class="remember-row">
+                <input type="checkbox" name="remember" id="rememberMe">
+                <label for="rememberMe">记住我</label>
+                <a href="javascript:void(0)" class="forgot-link">忘记密码？</a>
+            </div>
+            <div class="terms-row">
+                <input type="checkbox" name="terms" id="agreeTerms">
+                <label for="agreeTerms">我已阅读并同意 <a href="javascript:void(0)">服务协议</a> 和 <a href="javascript:void(0)">隐私政策</a></label>
+            </div>
+        </div>
+        <div class="social-login">
+            <p>其他登录方式</p>
+            <div class="social-buttons">
+                <button type="button" class="social-btn wechat">&#128172; 微信</button>
+                <button type="button" class="social-btn qq">&#128172; QQ</button>
+                <button type="button" class="social-btn weibo">&#128172; 微博</button>
+            </div>
+        </div>
+        <div class="form-actions" style="margin-top: 20px;">
+            <button class="submit-btn" onclick="submitForm()">提交</button>
+            <button class="reset-btn" type="button" onclick="resetForm()">重置</button>
+        </div>
+    </div>
+    <div class="link-dialog" id="linkDialog">
+        <div class="link-dialog-content">
+            <h3>插入链接</h3>
+            <input type="text" id="linkUrl" placeholder="请输入链接地址，如 https://example.com">
+            <div class="link-dialog-actions">
+                <button onclick="closeLinkDialog()">取消</button>
+                <button class="btn-ok" onclick="insertLink()">确定</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function test() { return true; }
+        var editor = document.getElementById('editor');
+        var autoSaveTimer = null;
+        function updateStats() {
+            var text = editor.innerText || '';
+            var chars = text.length;
+            var trimmed = text.trim();
+            var words = trimmed.length === 0 ? 0 : trimmed.replace(/\s+/g, ' ').split(' ').length;
+            var paras = trimmed.length === 0 ? 0 : trimmed.split(/\n\s*\n/).filter(function(p) { return p.trim().length > 0; }).length;
+            var readMin = Math.max(1, Math.ceil(words / 300));
+            document.getElementById('charCount').textContent = '字符: ' + chars;
+            document.getElementById('wordCount').textContent = '字数: ' + words;
+            document.getElementById('paraCount').textContent = '段落: ' + paras;
+            document.getElementById('readTime').textContent = '阅读: ' + readMin + '分钟';
+            var totalWordsEl = document.getElementById('totalWords');
+            if (totalWordsEl) totalWordsEl.textContent = words;
+        }
+        editor.addEventListener('input', function() {
+            updateStats();
+            triggerAutoSave();
+        });
+        updateStats();
+        function triggerAutoSave() {
+            var indicator = document.getElementById('saveIndicator');
+            indicator.className = 'save-indicator saving';
+            indicator.innerHTML = '<span class="dot"></span>保存中...';
+            clearTimeout(autoSaveTimer);
+            autoSaveTimer = setTimeout(function() {
+                indicator.className = 'save-indicator';
+                indicator.innerHTML = '<span class="dot"></span>已自动保存';
+            }, 1500);
+        }
+        function changeFontFamily(font) {
+            if (font) {
+                document.execCommand('fontName', false, font);
+            }
+            document.getElementById('fontFamily').value = '';
+        }
+        function showLinkDialog() {
+            document.getElementById('linkDialog').classList.add('show');
+            document.getElementById('linkUrl').value = '';
+            document.getElementById('linkUrl').focus();
+        }
+        function closeLinkDialog() {
+            document.getElementById('linkDialog').classList.remove('show');
+        }
+        function insertLink() {
+            var url = document.getElementById('linkUrl').value.trim();
+            if (url) {
+                if (url.indexOf('://') === -1) url = 'https://' + url;
+                editor.focus();
+                document.execCommand('createLink', false, url);
+            }
+            closeLinkDialog();
+        }
+        function insertImage() {
+            var url = 'https://via.placeholder.com/400x200?text=Image+Placeholder';
+            editor.focus();
+            document.execCommand('insertHTML', false, '<div class="image-placeholder">&#128247; 图片占位符 - 点击此处插入图片</div>');
+        }
+        function insertTable() {
+            var html = '<table><thead><tr><th>列 1</th><th>列 2</th><th>列 3</th></tr></thead><tbody>';
+            html += '<tr><td>内容</td><td>内容</td><td>内容</td></tr>';
+            html += '<tr><td>内容</td><td>内容</td><td>内容</td></tr>';
+            html += '</tbody></table><p><br></p>';
+            editor.focus();
+            document.execCommand('insertHTML', false, html);
+        }
+        function insertCodeBlock() {
+            var html = '<pre><code>// 在此输入代码\n</code></pre><p><br></p>';
+            editor.focus();
+            document.execCommand('insertHTML', false, html);
+        }
+        function toggleFindReplace() {
+            var bar = document.getElementById('findReplaceBar');
+            bar.classList.toggle('show');
+            if (bar.classList.contains('show')) {
+                document.getElementById('findInput').focus();
+            }
+        }
+        function performFind() {
+            var keyword = document.getElementById('findInput').value;
+            var countEl = document.getElementById('matchCount');
+            if (!keyword) {
+                countEl.textContent = '';
+                return;
+            }
+            var text = editor.innerText;
+            var regex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+            var matches = text.match(regex);
+            countEl.textContent = matches ? matches.length + ' 个匹配' : '无匹配';
+        }
+        function findNext() {
+            var keyword = document.getElementById('findInput').value;
+            if (!keyword) return;
+            window.find(keyword);
+        }
+        function replaceNext() {
+            var find = document.getElementById('findInput').value;
+            var replace = document.getElementById('replaceInput').value;
+            if (!find) return;
+            var sel = window.getSelection();
+            if (sel.toString().toLowerCase() === find.toLowerCase()) {
+                document.execCommand('insertText', false, replace);
+            }
+            window.find(find);
+            performFind();
+        }
+        function replaceAll() {
+            var find = document.getElementById('findInput').value;
+            var replace = document.getElementById('replaceInput').value;
+            if (!find) return;
+            var html = editor.innerHTML;
+            var regex = new RegExp(find.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+            var count = (html.match(regex) || []).length;
+            editor.innerHTML = html.replace(regex, replace);
+            performFind();
+            triggerAutoSave();
+        }
+        function toggleFullscreen() {
+            document.body.classList.toggle('fullscreen');
+            if (document.body.classList.contains('fullscreen')) {
+                if (document.documentElement.requestFullscreen) {
+                    document.documentElement.requestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+        function exportHTML() {
+            var content = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>导出文档</title></head><body>' + editor.innerHTML + '</body></html>';
+            var blob = new Blob([content], { type: 'text/html' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'document.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        function exportText() {
+            var text = editor.innerText;
+            var blob = new Blob([text], { type: 'text/plain' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'document.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        function refreshCaptcha() {
+            var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+            var code = '';
+            for (var i = 0; i < 4; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            var colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#fee140'];
+            var c1 = colors[Math.floor(Math.random() * colors.length)];
+            var c2 = colors[Math.floor(Math.random() * colors.length)];
+            var el = document.getElementById('captchaImg');
+            el.textContent = code;
+            el.style.background = 'linear-gradient(135deg, ' + c1 + ' 0%, ' + c2 + ' 100%)';
+        }
+        function resetForm() {
+            var form = document.querySelector('.form-area');
+            var inputs = form.querySelectorAll('input, textarea, select');
+            inputs.forEach(function(el) {
+                if (el.type === 'checkbox') el.checked = false;
+                else el.value = '';
+            });
+            form.querySelectorAll('.form-group').forEach(function(g) {
+                g.classList.remove('has-error');
+            });
+        }
+        function submitForm() {
+            var inputs = document.querySelectorAll('.form-area input');
+            var values = [];
+            inputs.forEach(function(input) { values.push(input.name + '=' + (input.value || '(empty)')); });
+            console.log('Form submitted: ' + values.join(', '));
+            var form = document.querySelector('.form-area');
+            form.querySelectorAll('.form-group').forEach(function(g) { g.classList.remove('has-error'); });
+            var username = form.querySelector('[name="username"]');
+            if (!username.value.trim()) username.closest('.form-group').classList.add('has-error');
+            var email = form.querySelector('[name="email"]');
+            if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) email.closest('.form-group').classList.add('has-error');
+            var phone = form.querySelector('[name="phone"]');
+            if (!phone.value.trim() || !/^1[3-9]\d{9}$/.test(phone.value)) phone.closest('.form-group').classList.add('has-error');
+            var password = form.querySelector('[name="password"]');
+            if (!password.value.trim()) password.closest('.form-group').classList.add('has-error');
+            var confirm = form.querySelector('[name="confirm_password"]');
+            if (confirm.value !== password.value) confirm.closest('.form-group').classList.add('has-error');
+            var captcha = form.querySelector('[name="captcha"]');
+            if (!captcha.value.trim()) captcha.closest('.form-group').classList.add('has-error');
+        }
+        var tocItems = document.querySelectorAll('.toc-list li');
+        tocItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                tocItems.forEach(function(i) { i.classList.remove('active'); });
+                this.classList.add('active');
+            });
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'h') {
+                e.preventDefault();
+                toggleFindReplace();
+            }
+        });
+    </script>
+</body>
+</html>

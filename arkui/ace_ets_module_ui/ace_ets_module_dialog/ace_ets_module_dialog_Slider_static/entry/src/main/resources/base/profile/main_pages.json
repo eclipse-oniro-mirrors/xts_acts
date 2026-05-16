@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/slider/trackColorMetrics",
+    "MainAbility/pages/slider/SliderIndex",
+    "MainAbility/pages/slider/SliderCustomContentOptionsIndex",
+    "MainAbility/pages/ArcSlider/ArcSliderIndex"
+  ]
+}

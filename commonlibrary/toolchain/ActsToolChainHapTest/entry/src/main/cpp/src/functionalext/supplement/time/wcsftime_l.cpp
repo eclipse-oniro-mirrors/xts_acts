@@ -1,0 +1,89 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <clocale>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <cwchar>
+#include "test.h"
+
+/**
+ * @tc.name      : WcsftimeL0100
+ * @tc.desc      : Format system time
+ * @tc.level     : Level 0
+ */
+void WcsftimeL0100(void)
+{
+    time_t rtime;
+    struct tm* timeinfo;
+    wchar_t buffer[80];
+    (void)time(&rtime);
+    timeinfo = localtime(&rtime);
+    locale_t localeNew = newlocale(LC_ALL_MASK, "en_US", nullptr);
+    size_t result = wcsftime_l(buffer, 80, L"%I:%M%p", timeinfo, localeNew);
+    if (!result) {
+        t_error("%s wcsftime_l failed\n", __func__);
+    }
+    if (localeNew) {
+        freelocale(localeNew);
+        localeNew = nullptr;
+    }
+}
+
+/**
+ * @tc.name      : WcsftimeL0200
+ * @tc.desc      : Format the given tm time
+ * @tc.level     : Level 1
+ */
+void WcsftimeL0200(void)
+{
+    wchar_t buff[40];
+    struct tm mtime = {
+        .tm_year = 122,
+        .tm_mon = 5,
+        .tm_mday = 6,
+        .tm_hour = 8,
+        .tm_min = 10,
+        .tm_sec = 20,
+    };
+    locale_t localeNew = newlocale(LC_ALL_MASK, "en_US", nullptr);
+    size_t result = wcsftime_l(buff, sizeof buff, L"%A %c", &mtime, localeNew);
+    if (!result) {
+        t_error("%s wcsftime_l failed\n", __func__);
+    }
+    if (wcscmp(buff, L"Sunday Sun Jun  6 08:10:20 2022")) {
+        t_error("%s wrong format result is %ls\n", __func__, buff);
+    }
+    if (localeNew) {
+        freelocale(localeNew);
+        localeNew = nullptr;
+    }
+}
+
+static int WcsftimeLTestImpl(int argc, char* argv[])
+{
+    WcsftimeL0100();
+    WcsftimeL0200();
+    return T_STATUS;
+}
+
+int WcsftimeLTest(void)
+{
+    static char libcProgStub[] = "libc_test";
+    char* libcArgvStub[] = { libcProgStub, nullptr };
+    return WcsftimeLTestImpl(1, libcArgvStub);
+}

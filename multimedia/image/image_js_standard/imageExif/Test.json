@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for Image Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "120000",
+        "bundle-name": "ohos.acts.multimedia.image.Exif",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsImageExifJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.Exif/haps/entry_test/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.multimedia.image.Exif/haps/entry_test/files/*"
+            ],
+            "teardown-command": []
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/test_exif.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.Exif/haps/entry_test/files",
+                "./resource/image/test_exif1.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.Exif/haps/entry_test/files"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": []
+        }
+    ]
+}

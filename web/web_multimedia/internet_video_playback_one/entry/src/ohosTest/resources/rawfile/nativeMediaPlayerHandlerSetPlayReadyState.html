@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>视频托管测试ReadyState</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+<div>
+    <button onclick="buttonLoad()">load()</button>
+    <button id="playButton" onclick="getVideo('bodyId').play()">play()</button>
+    <button onclick="getVideo('bodyId').pause()">pause()</button>
+
+</div>
+<video  id='bodyId' controls preload='none' muted autoplay
+        controlslist='noremoteplayback'
+        onloadedmetadata="console.log('Video loaded metadata event')"
+        onloadeddata="console.log('Video loaded data event')"
+        oncanplay="console.log('Video can play event')"
+        oncanplaythrough="console.log('Video can play through event')">
+    <source id='mp4'
+            src='https://www.runoob.com/try/demo_source/movie.mp4'
+            type='video/mp4'>
+    <source  src='https://www-file.huawei.com/-/media/corp2020/videos/giv/2030/green-ict/green-ict-cn-1080p.mp4' >
+</video>
+
+</body>
+</html>
+<script>
+
+function myFunction() {
+    var element = document.getElementById('bodyId');
+    element.remove();
+}
+function resize() {
+    resizeDom('bodyId');
+    console.log('resizeDom');
+    return 'resizeDom';
+}
+function resizeDom(id) {
+    var element = document.getElementById(id);
+    element.style.width = '180px';
+    element.style.height = '190px';
+}
+
+function getSize() {
+    var element = document.getElementById('bodyId');
+    return element.style.width + element.style.height;
+}
+
+
+
+</script>
+<script>
+    function getVideo(id) {
+        return document.getElementById(id);
+    }
+    function buttonLoad() {
+        getVideo('bodyId').load();
+        return true;
+    }
+     function buttonPlay() {
+      document.getElementById('playButton').click();
+      return 'play';
+    }
+     function buttonPause() {
+        getVideo('bodyId').pause();
+        return 'pause';
+    }
+
+    function setPlaybackRate(number) {
+        getVideo('bodyId').playbackRate = number;
+        return 'setPlaybackRate: ' + number;
+    }
+
+    function setReadyState(state) {
+        console.log('Setting ready state to: ' + state);
+        var video = document.getElementById('bodyId');
+        
+        // Trigger events based on the state
+        if (state == 0) { // HAVE_NOTHING
+            console.log('Triggering HAVE_NOTHING state');
+            // Simulate having no data
+        } else if (state == 1) { // HAVE_METADATA
+            console.log('Triggering HAVE_METADATA state');
+            // Fire loadedmetadata event
+            var event = new Event('loadedmetadata');
+            video.dispatchEvent(event);
+        } else if (state == 2) { // HAVE_CURRENT_DATA
+            console.log('Triggering HAVE_CURRENT_DATA state');
+            // Fire loadeddata event
+            var event = new Event('loadeddata');
+            video.dispatchEvent(event);
+        } else if (state == 3) { // HAVE_FUTURE_DATA
+            console.log('Triggering HAVE_FUTURE_DATA state');
+            // Fire canplay event
+            var event = new Event('canplay');
+            video.dispatchEvent(event);
+        } else if (state == 4) { // HAVE_ENOUGH_DATA
+            console.log('Triggering HAVE_ENOUGH_DATA state');
+            // Fire canplaythrough event
+            var event = new Event('canplaythrough');
+            video.dispatchEvent(event);
+        }
+        
+        return 'setReadyState: ' + state;
+    }
+
+</script>
+
+<style>
+    .btnGroup{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .object-container{
+        margin-bottom: 10px;
+    }
+</style>
+<style>
+
+    a { color: #ffffe0;}
+   video {
+      border: 1px solid black;
+      padding: 0; margin: 0;
+      width: 427px;
+      height: 240px;
+      background-color: black;
+      margin: auto;
+    }
+    table { border: none;  margin-top: 1ex;}
+    th {  text-align: right; }
+    caption { background-color: #ffffe0; color: black;}
+    td th { 80 background-color: #ffffe0; color: black;}
+    #events td { text-align: right; width: 4ex;}
+    #properties td { }
+    hr { clear: both; margin-top: 2em;}
+    .true { background-color: #360; color: #ffffe0; }
+    .false { background-color: #603; color: #ffffe0; }
+
+</style>

@@ -1,0 +1,24 @@
+{
+    "description": "Configuration for ecma_new_features Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "1800000",
+        "bundle-name": "com.acts.arktsnapiloadtest",
+        "module-name": "entry_test",
+        "shell-timeout": "180000",
+        "compile-mode": "esmodule"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsArkTsNapiLoadLibTest-hspTwo-default-signed.hsp",
+                "ActsArkTsNapiLoadLibTest-hspOne-default-signed.hsp",
+                "ActsArkTsNapiLoadLibTest-sharedHspOne-default-signed.hsp",
+                "ActsArkTsNapiLoadLibTest-entry-default-signed.hap",
+                "ActsArkTsNapiLoadTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

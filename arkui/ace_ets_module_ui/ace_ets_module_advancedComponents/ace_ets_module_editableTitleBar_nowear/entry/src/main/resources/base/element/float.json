@@ -1,0 +1,28 @@
+{
+  "float": [
+    {
+      "name": "textShadowRadius",
+      "value": "5.0"
+    },
+    {
+      "name": "textShadowOffset",
+      "value": "6.0"
+    }
+    ,
+    {
+      "name": "textLineHeight",
+      "value": "25.5fp"
+    }
+    ,
+    {
+      "name": "maxFontSize",
+      "value": "35.00fp"
+    }
+    ,
+    {
+      "name": "minFontSize",
+      "value": "12.00fp"
+    } 
+   
+  ]
+}

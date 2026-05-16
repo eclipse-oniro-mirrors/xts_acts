@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewriter API 测试</title>
+    <a href="navigation.html">返回导航页</a>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+          padding: 20px;
+        }
+
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+          background: white;
+          border-radius: 16px;
+          padding: 30px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+          color: #333;
+          margin-bottom: 10px;
+          font-size: 28px;
+        }
+
+        .status {
+          padding: 12px 16px;
+          border-radius: 8px;
+          margin-bottom: 20px;
+          font-size: 14px;
+        }
+
+        .status.unavailable {
+          background: #fee;
+          color: #c33;
+        }
+
+        .status.available {
+          background: #efe;
+          color: #3c3;
+        }
+
+        .status.downloadable {
+          background: #ffd;
+          color: #c93;
+        }
+
+        .progress-bar {
+          width: 100%;
+          height: 8px;
+          background: #e0e0e0;
+          border-radius: 4px;
+          overflow: hidden;
+          margin-top: 10px;
+        }
+
+        .progress-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #667eea, #764ba2);
+          transition: width 0.3s ease;
+        }
+
+        .section {
+          margin-bottom: 25px;
+        }
+
+        .section h2 {
+          color: #555;
+          font-size: 18px;
+          margin-bottom: 12px;
+        }
+
+        textarea {
+          width: 100%;
+          min-height: 120px;
+          padding: 12px;
+          border: 2px solid #e0e0e0;
+          border-radius: 8px;
+          font-size: 14px;
+          resize: vertical;
+          transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+          outline: none;
+          border-color: #667eea;
+        }
+
+        .options {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 15px;
+          margin-bottom: 20px;
+        }
+
+        .option-group {
+          background: #f8f9fa;
+          padding: 15px;
+          border-radius: 8px;
+        }
+
+        .option-group label {
+          display: block;
+          color: #666;
+          font-size: 13px;
+          margin-bottom: 8px;
+          font-weight: 500;
+        }
+
+        select, input[type="text"] {
+          width: 100%;
+          padding: 8px 12px;
+          border: 2px solid #e0e0e0;
+          border-radius: 6px;
+          font-size: 14px;
+          background: white;
+        }
+
+        select:focus, input[type="text"]:focus {
+          outline: none;
+          border-color: #667eea;
+        }
+
+        .buttons {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+
+        button {
+          flex: 1;
+          padding: 12px 24px;
+          border: none;
+          border-radius: 8px;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        button:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        .btn-primary {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+          background: #f0f0f0;
+          color: #333;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+          background: #e0e0e0;
+        }
+
+        .result {
+          background: #f8f9fa;
+          padding: 20px;
+          border-radius: 8px;
+          min-height: 100px;
+          border-left: 4px solid #667eea;
+        }
+
+        .result h3 {
+          color: #333;
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
+
+        .result-content {
+          color: #555;
+          line-height: 1.6;
+          white-space: pre-wrap;
+        }
+
+        .info {
+          background: #e3f2fd;
+          padding: 15px;
+          border-radius: 8px;
+          margin-top: 20px;
+          font-size: 13px;
+          color: #1976d2;
+        }
+
+        .info h3 {
+          margin-bottom: 8px;
+          font-size: 14px;
+        }
+
+        .info ul {
+          margin-left: 20px;
+        }
+
+        .info li {
+          margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Rewriter API 测试</h1>
+    <div class="buttons">
+        <button id="rewriteBtn" class="btn-primary" disabled>重写 (非流式)</button>
+        <button id="streamBtn" class="btn-secondary" disabled>重写 (流式)</button>
+    </div>
+
+    <div id="status" class="status">检查 API 可用性...</div>
+    <div id="progress-container" style="display: none;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+            <span style="font-size: 13px; color: #666;">模型下载中...</span>
+            <span id="progress-text" style="font-size: 13px; color: #666;">0%</span>
+        </div>
+        <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>输入文本</h2>
+        <textarea id="inputText" placeholder="请输入要重写的文本...">你好，我想咨询一下产品的问题。这个产品看起来不错，但是价格有点贵。能不能给个优惠？</textarea>
+    </div>
+
+    <div class="section">
+        <h2>重写选项</h2>
+        <div class="options">
+            <div class="option-group">
+                <label>语气 (Tone)</label>
+                <select id="tone">
+                    <option value="as-is">保持原样</option>
+                    <option value="more-formal">更正式</option>
+                    <option value="more-casual">更随意</option>
+                </select>
+            </div>
+
+            <div class="option-group">
+                <label>格式 (Format)</label>
+                <select id="format">
+                    <option value="as-is">保持原样</option>
+                    <option value="markdown">Markdown</option>
+                    <option value="plain-text">纯文本</option>
+                </select>
+            </div>
+
+            <div class="option-group">
+                <label>长度 (Length)</label>
+                <select id="length">
+                    <option value="as-is">保持原样</option>
+                    <option value="shorter">更短</option>
+                    <option value="longer">更长</option>
+                </select>
+            </div>
+
+            <div class="option-group">
+                <label>输出语言</label>
+                <select id="outputLanguage">
+                    <option value="zh-CN">中文</option>
+                    <option value="en">英语</option>
+                    <option value="ja">日语</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="option-group" style="margin-bottom: 20px;">
+            <label>共享上下文 (Shared Context)</label>
+            <input type="text" id="sharedContext" placeholder="例如：这是一封客户服务邮件..." value="这是一封客户服务邮件">
+        </div>
+
+        <div class="option-group">
+            <label>本次上下文 (Context)</label>
+            <input type="text" id="context" placeholder="本次重写的具体上下文..." value="需要礼貌且专业的回复">
+        </div>
+    </div>
+
+
+
+    <div class="section">
+        <h2>重写结果</h2>
+        <div class="result">
+            <h3>输出：</h3>
+            <div id="result" class="result-content">等待重写...</div>
+        </div>
+    </div>
+
+    <div class="info">
+        <h3>使用说明：</h3>
+        <ul>
+            <li>此功能需要 Chrome 137+ 并启用 Rewriter API</li>
+            <li>首次使用需要下载 Gemini Nano 模型（约 2GB）</li>
+            <li>如需本地测试，请在 chrome://flags/ 中启用相关标志</li>
+            <li>需要至少 22GB 可用存储空间和 16GB+ RAM</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    let rewriter = null;
+    const statusEl = document.getElementById('status');
+    const progressContainer = document.getElementById('progress-container');
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+    const rewriteBtn = document.getElementById('rewriteBtn');
+    function rewriteClick() {
+       rewriteBtn.click()
+    }
+    const streamBtn = document.getElementById('streamBtn');
+    const resultEl = document.getElementById('result');
+
+    async function checkAvailability() {
+      if (!('Rewriter' in self)) {
+        statusEl.textContent = '❌ 您的浏览器不支持 Rewriter API';
+        statusEl.className = 'status unavailable';
+        return false;
+      }
+
+      const availability = await Rewriter.availability();
+
+      switch (availability) {
+        case 'available':
+          statusEl.textContent = '✅ Rewriter API 已就绪';
+          statusEl.className = 'status available';
+          rewriteBtn.disabled = false;
+          streamBtn.disabled = false;
+          return true;
+
+        case 'downloadable':
+          statusEl.textContent = '⏳ 需要下载模型，请点击按钮开始';
+          statusEl.className = 'status downloadable';
+          rewriteBtn.textContent = '下载模型并重写';
+          streamBtn.textContent = '下载模型并流式重写';
+          rewriteBtn.disabled = false;
+          streamBtn.disabled = false;
+          return true;
+
+        case 'unavailable':
+          statusEl.textContent = '❌ Rewriter API 不可用';
+          statusEl.className = 'status unavailable';
+          return false;
+      }
+    }
+
+    async function createRewriter() {
+      const options = {
+        tone: document.getElementById('tone').value,
+        format: document.getElementById('format').value,
+        length: document.getElementById('length').value,
+        expectedInputLanguages: ['zh', 'en'],
+        expectedContextLanguages: ['zh', 'en'],
+        outputLanguage: document.getElementById('outputLanguage').value,
+        sharedContext: document.getElementById('sharedContext').value,
+        monitor(m) {
+          m.addEventListener('downloadprogress', (e) => {
+            const percent = Math.round(e.loaded * 100);
+            progressFill.style.width = `${percent}%`;
+            progressText.textContent = `${percent}%`;
+          });
+        }
+      };
+
+      try {
+        rewriter = await Rewriter.create(options);
+        progressContainer.style.display = 'none';
+        return rewriter;
+      } catch (error) {
+        console.error('创建 Rewriter 失败:', error);
+        resultEl.textContent = `错误: ${error.message}`;
+        return null;
+      }
+    }
+
+    async function handleRewrite(streaming = false) {
+      const inputText = document.getElementById('inputText').value.trim();
+      const context = document.getElementById('context').value;
+
+      if (!inputText) {
+        resultEl.textContent = '请输入要重写的文本';
+        return;
+      }
+
+      resultEl.textContent = streaming ? '正在流式重写...' : '正在重写...';
+      rewriteBtn.disabled = true;
+      streamBtn.disabled = true;
+
+      try {
+        if (!rewriter) {
+          const availability = await Rewriter.availability();
+          if (availability === 'downloadable') {
+            progressContainer.style.display = 'block';
+          }
+
+          rewriter = await createRewriter();
+          if (!rewriter) {
+            rewriteBtn.disabled = false;
+            streamBtn.disabled = false;
+            return;
+          }
+        }
+
+        if (streaming) {
+          resultEl.textContent = '';
+          const stream = rewriter.rewriteStreaming(inputText, { context });
+
+          for await (const chunk of stream) {
+            resultEl.textContent += chunk;
+          }
+        } else {
+          const result = await rewriter.rewrite(inputText, { context });
+          resultEl.textContent = result;
+        }
+
+      } catch (error) {
+        console.error('重写失败:', error);
+        resultEl.textContent = `错误: ${error.message}`;
+      } finally {
+        rewriteBtn.disabled = false;
+        streamBtn.disabled = false;
+      }
+    }
+
+    rewriteBtn.addEventListener('click', () => handleRewrite(false));
+    streamBtn.addEventListener('click', () => handleRewrite(true));
+
+    checkAvailability();
+</script>
+</body>
+</html>

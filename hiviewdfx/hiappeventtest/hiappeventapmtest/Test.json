@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "270000",
+        "shell-timeout": "270000",
+        "bundle-name": "ohos.acts.hiviewdfx.hiappeventapm.function",
+        "package-name": "ohos.acts.hiviewdfx.hiappeventapm.function"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHiAppEventJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

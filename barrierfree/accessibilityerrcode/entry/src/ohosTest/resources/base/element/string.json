@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "phone_entry_dsc",
+      "value": "i am an entry for phone"
+    },
+    {
+        "name": "phone_entry_main",
+        "value": "the phone entry ability"
+    },
+    {
+        "name": "entry_label",
+        "value": "ActsAccessibilityErrCodeTest"
+    },
+    {
+        "name": "form_description",
+        "value": "my form"
+    },
+    {
+        "name": "serviceability_description",
+        "value": "my whether"
+    },
+    {
+        "name": "description_application",
+        "value": "demo for test"
+    },
+    {
+        "name": "app_name",
+        "value": "Demo"
+    },
+    {
+        "name": "Accessibility_desc",
+        "value": "accessibility_description"
+    },
+    {
+        "name": "Accessibility_label",
+        "value": "accessibility_label"
+    }
+  ]
+}

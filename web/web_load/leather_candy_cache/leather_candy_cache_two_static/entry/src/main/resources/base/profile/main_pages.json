@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/ClearPrefetchedResourceTest",
+    "pages/InjectOfflineResourcesTest",
+    "pages/SetBlanklessLoadingWithParamsTest",
+    "pages/SetBlanklessLoadingWithKeyTest"
+  ]
+}

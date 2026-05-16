@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for wifi js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "testcase-timeout": "600000",
+        "bundle-name": "ohos.acts.communication.wifi.wifidevice",
+        "package-name": "ohos.acts.communication.wifi.wifidevice"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsP2PJSApiTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell timeout -o 864000000"
+            ]
+        }
+    ]
+}

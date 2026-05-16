@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Language Detector API 测试</title>
+    <a href="navigation.html" id="navigationId">返回导航页</a>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .status {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .status-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .status-label {
+            font-weight: 600;
+            width: 120px;
+            color: #495057;
+        }
+
+        .status-value {
+            flex: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .input-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #212529;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .quick-tests {
+            margin-top: 20px;
+        }
+
+        .quick-tests h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #212529;
+        }
+
+        .test-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .test-btn {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .test-btn:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .results h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #212529;
+        }
+
+        .result-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+            .result-item:last-child {
+                margin-bottom: 0;
+            }
+
+        .result-language {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .result-confidence {
+            font-size: 13px;
+            color: #6c757d;
+        }
+
+        .confidence-bar {
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+        }
+
+        .progress {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .progress.active {
+            display: block;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error.active {
+            display: block;
+        }
+
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🌐 Chrome Language Detector API</h1>
+        <p>使用内置AI检测文本语言（需要 Chrome 138+）</p>
+    </div>
+
+    <div class="status">
+        <div class="status-item">
+            <span class="status-label">API 支持:</span>
+            <span class="status-value" id="apiSupport">
+                    <span class="badge badge-warning">检测中...</span>
+                </span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">模型状态:</span>
+            <span class="status-value" id="modelStatus">
+                    <span class="badge badge-warning">检测中...</span>
+                </span>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="input-section">
+            <label for="textInput">输入要检测的文本:</label>
+            <textarea id="textInput" placeholder="请输入要检测语言的文本..."></textarea>
+        </div>
+
+        <button class="btn" id="detectBtn" disabled>检测语言</button>
+
+        <div class="progress" id="progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-text" id="progressText">正在下载模型...</div>
+        </div>
+
+        <div class="error" id="error"></div>
+
+        <div class="quick-tests">
+            <h3>📝 快速测试用例:</h3>
+            <div class="test-buttons">
+                <button class="test-btn" data-text="你好，欢迎使用语言检测API！">中文</button>
+                <button class="test-btn" data-text="Hello, welcome to the language detection API!">英语</button>
+                <button class="test-btn" data-text="Hallo und herzlich willkommen!">德语</button>
+                <button class="test-btn" data-text="Bonjour et bienvenue!">法语</button>
+                <button class="test-btn" data-text="¡Hola y bienvenido!">西班牙语</button>
+                <button class="test-btn" data-text="こんにちは！ようこそ！">日语</button>
+                <button class="test-btn" data-text="안녕하세요! 환영합니다!">韩语</button>
+                <button class="test-btn" data-text="Привет и добро пожаловать!">俄语</button>
+                <button class="test-btn" data-text="Ciao e benvenuto!">意大利语</button>
+                <button class="test-btn" data-text="Olá e bem-vindo!">葡萄牙语</button>
+            </div>
+        </div>
+
+        <div class="results" id="results" style="display: none;">
+            <h3>📊 检测结果:</h3>
+            <div id="resultsList"></div>
+        </div>
+
+        <div class="info">
+            <strong>ℹ️ 说明:</strong> Language Detector API 在客户端运行，保护用户隐私。首次使用时需要下载模型（约几MB）。检测结果按置信度从高到低排序。
+        </div>
+    </div>
+</div>
+
+<script>
+    let detector = null;
+    let isModelDownloading = false;
+    const apiSupportEl = document.getElementById('apiSupport');
+    const modelStatusEl = document.getElementById('modelStatus');
+    const textInput = document.getElementById('textInput');
+    const detectBtn = document.getElementById('detectBtn');
+    const progress = document.getElementById('progress');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const error = document.getElementById('error');
+    const results = document.getElementById('results');
+    const resultsList = document.getElementById('resultsList');
+    const detectButton = document.getElementById('detectBtn');
+    function destroyButton() {
+        detector = null;
+    }
+    function detectClick() {
+         detectButton.click();
+      }
+    const navigationButton = document.getElementById('navigationId');
+    function navigationClick() {
+         navigationButton.click();
+      }
+    async function init() {
+        if ('LanguageDetector' in self) {
+            apiSupportEl.innerHTML = '<span class="badge badge-success">✓ 支持</span>';
+            await checkModelAvailability();
+        } else {
+            apiSupportEl.innerHTML = '<span class="badgebadge-danger">✗ 不支持</span>';
+            modelStatusEl.innerHTML = '<span class="badge badge-danger">不可用</span>';
+            showError('您的浏览器不支持 Language Detector API。请使用 Chrome 138 或更高版本。');
+        }
+    }
+
+    async function checkModelAvailability() {
+        try {
+            const availability = await LanguageDetector.availability();
+
+            if (availability === 'available') {
+                modelStatusEl.innerHTML = '<span class="badge badge-success">✓ 已就绪</span>';
+                detectBtn.disabled = false;
+            } else if (availability === 'downloadable') {
+                modelStatusEl.innerHTML = '<span class="badge badge-warning">⬇️ 需要下载</span>';
+                detectBtn.disabled = false;
+            } else {
+                modelStatusEl.innerHTML = '<span class="badge badge-danger">✗ 不可用</span>';
+                showError('语言检测模型不可用。');
+            }
+        } catch (err) {
+            modelStatusEl.innerHTML = '<span class="badge badge-danger">✗ 错误</span>';
+            showError('检查模型可用性时出错: ' + err.message);
+        }
+    }
+
+    async function createDetector() {
+        if (detector) return detector;
+
+        try {
+            const availability = await LanguageDetector.availability();
+
+            if (availability === 'downloadable') {
+                isModelDownloading = true;
+                progress.classList.add('active');
+                detectBtn.disabled = true;
+            }
+
+            detector = await LanguageDetector.create({
+                monitor(m) {
+                    m.addEventListener('downloadprogress', (e) => {
+                        const percent = Math.round(e.loaded * 100);
+                        progressFill.style.width = percent + '%';
+                        progressText.textContent = `正在下载模型... ${percent}%`;
+                    });
+                },
+            });
+
+            isModelDownloading = false;
+            progress.classList.remove('active');
+            modelStatusEl.innerHTML = '<span class="badge badge-success">✓ 已就绪</span>';
+            detectBtn.disabled = false;
+
+            return detector;
+        } catch (err) {
+            isModelDownloading = false;
+            progress.classList.remove('active');
+            showError('创建语言检测器失败: ' + err);
+            throw err;
+        }
+    }
+
+    async function detectLanguage() {
+        const text = textInput.value.trim();
+
+        if (!text) {
+            showError('请输入要检测的文本');
+            return;
+        }
+
+        if (text.length < 10) {
+            showError('文本太短，建议使用更长的文本以提高检测准确性');
+            return;
+        }
+
+        hideError();
+        detectBtn.disabled = true;
+        detectBtn.textContent = '检测中...';
+
+        try {
+            await createDetector();
+
+            const detectionResults = await detector.detect(text);
+
+            console.log('lichenwei'+ detectionResults.toString());
+
+            displayResults(detectionResults);
+        } catch (err) {
+            showError('语言检测失败: ' + err);
+        } finally {
+            detectBtn.disabled = false;
+            detectBtn.textContent = '检测语言';
+        }
+    }
+
+    function displayResults(detectionResults) {
+        results.style.display = 'block';
+        resultsList.innerHTML = '';
+
+        const topResults = detectionResults.slice(0, 5);
+
+        topResults.forEach((result, index) => {
+            const item = document.createElement('div');
+            item.className = 'result-item';
+
+            const confidencePercent = (result.confidence * 100).toFixed(2);
+            const languageName = getLanguageName(result.detectedLanguage);
+
+            item.innerHTML = `
+                <div class="result-language">
+                    ${index + 1}. ${languageName} (${result.detectedLanguage})
+                </div>
+                <div class="result-confidence">置信度: ${confidencePercent}%</div>
+                <div class="confidence-bar">
+                    <div class="confidence-fill" style="width: ${confidencePercent}%"></div>
+                </div>
+            `;
+
+            resultsList.appendChild(item);
+        });
+    }
+
+    function getLanguageName(code) {
+        const languageNames = {
+            'zh': '中文',
+            'en': '英语',
+            'de': '德语',
+            'fr': '法语',
+            'es': '西班牙语',
+            'ja': '日语',
+            'ko': '韩语',
+            'ru': '俄语',
+            'it': '意大利语',
+            'pt': '葡萄牙语',
+            'nl': '荷兰语',
+            'pl': '波兰语',
+            'sv': '瑞典语',
+            'da': '丹麦语',
+            'no': '挪威语',
+            'fi': '芬兰语',
+            'ar': '阿拉伯语',
+            'hi': '印地语',
+            'th': '泰语',
+            'vi': '越南语',
+            'id': '印尼语',
+            'tr': '土耳其语',
+            'uk': '乌克兰语',
+            'cs': '捷克语',
+            'ro': '罗马尼亚语',
+            'hu': '匈牙利语',
+            'el': '希腊语',
+            'he': '希伯来语',
+            'bn': '孟加拉语',
+            'ta': '泰米尔语',
+            'te': '泰卢固语',
+            'mr': '马拉地语',
+            'ur': '乌尔都语'
+        };
+
+        return languageNames[code] || code;
+    }
+
+    function showError(message) {
+        error.textContent = message;
+        error.classList.add('active');
+    }
+
+    function hideError() {
+        error.classList.remove('active');
+    }
+
+    detectBtn.addEventListener('click', detectLanguage);
+
+    document.querySelectorAll('.test-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            textInput.value = btn.dataset.text;
+            hideError();
+            results.style.display = 'none';
+        });
+    });
+
+    init();
+</script>
+</body>
+</html>

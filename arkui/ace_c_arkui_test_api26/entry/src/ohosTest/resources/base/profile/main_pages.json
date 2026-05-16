@@ -1,0 +1,12 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/onAreaChange/RegisterCommonAreaApproximateChangeEventTest",
+    "MainAbility/pages/onAreaChange/UnregisterCommonAreaApproximateChangeEventTest",
+    "MainAbility/pages/orphanCharOptimization/orphanCharOptimizationTest",
+    "MainAbility/pages/gestureIntercept/GestureInterceptTest",
+    "MainAbility/pages/passThrough/PassThroughTest",
+    "MainAbility/pages/getSizeLimitation/GetSizeLimitationTest"
+  ]
+}

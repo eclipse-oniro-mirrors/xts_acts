@@ -1,0 +1,36 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<script>
+    let uploaded = 0;
+    let buf = new Uint8Array(1024 * 50);
+    let start = Date.now();
+    var rs = new ReadableStream({
+        pull(ctrl) {
+            uploaded += buf.byteLength;
+            crypto.getRandomValues(buf);
+            ctrl.enqueue(buf);
+            if ((start + 1000) < Date.now()) ctrl.close();
+        }
+    });
+
+    function test() {
+        fetch('custom://www.example.com/xhr', {
+            method: 'POST',
+            body: rs,
+            duplex: 'half'
+        }).then(r => JSON.stringify(r.json()) ).then(console.log);
+    }
+    function testError() {
+        fetch('custom://www.example.com/xhrError', {
+            method: 'POST',
+            body: rs,
+            duplex: 'half'
+        }).then(r => JSON.stringify(r.json()) ).then(console.log);
+    }
+</script>
+<body>
+<div onclick="test()">test post chunked http body.</div>
+</body>
+</html>

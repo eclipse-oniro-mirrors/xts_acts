@@ -1,0 +1,49 @@
+{
+    "name": "awq",
+    "type": "qwen2",
+    "format": "gewu",
+    "tokenizer": {
+        "model_path": "/data/service/el1/public/gewu/Qwen2.5-0.5B-CPU-Q4/tokenizer.json"
+    },
+    "params_path": "/data/service/el1/public/gewu/Qwen2.5-0.5B-CPU-Q4/params",
+    "hparams": {
+        "n_vocab": 151936,
+        "n_embed": 896,
+        "n_head": 14,
+        "n_kv_head": 2,
+        "n_layer": 24,
+        "n_ffn": 4864,
+        "rms_norm_eps": 1.0e-06,
+        "rope_freq_base": 1000000.0,
+        "rope_freq_scale": 1.0
+    },
+    "esets": {
+        "im_type": "fp16",
+        "backend": "cpu",
+        "comp_on_core": [
+            -1,
+            -1
+        ],
+        "max_ctx": 8192,
+        "n_batched": 128,
+        "low_mem_m": 1,
+        "low_mem_n": 0,
+        "low_mem_k": 0,
+        "load_embed_on_request": false,
+        "io_on_core": 0,
+        "iobackend": "sync",
+        "iouring_on_core": -1,
+        "direct_io": false,
+        "layers_selected": [],
+        "cache_layout": "knvt",
+        "k_cache_type": "fp16",
+        "v_cache_type": "fp16"
+    },
+    "text": [
+        "<|im_start|>system\n",
+        "You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>\n",
+        "<|im_start|>user\n",
+        "介绍5种杭州的特色美食<|im_end|>\n",
+        "<|im_start|>assistant\n"
+    ]
+}

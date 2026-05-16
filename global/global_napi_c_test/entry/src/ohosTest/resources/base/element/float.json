@@ -1,0 +1,16 @@
+{
+  "float": [
+    {
+      "name": "float_one",
+      "value": "30.6"
+    },
+    {
+      "name": "float_oneA",
+      "value": "$float:float_oneB"
+    },
+    {
+      "name": "float_oneB",
+      "value": "$float:float_oneA"
+    }
+  ]
+}

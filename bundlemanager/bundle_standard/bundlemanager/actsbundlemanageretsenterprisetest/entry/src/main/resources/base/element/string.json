@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "mainability_description",
+      "value": "eTS_Empty Ability"
+    },
+    {
+      "name": "description_serviceability",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "entry_description",
+      "value": "entry_description"
+    },
+    {
+      "name": "PageAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "PageAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "DataAbility_desc",
+      "value": "hap sample empty provider"
+    }
+  ]
+}

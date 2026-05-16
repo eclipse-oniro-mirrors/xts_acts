@@ -1,0 +1,7 @@
+﻿{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/StyledString/StyledStringIndex",
+ 	  "MainAbility/pages/StyledString/CustomSpanMeasureInfo"
+  ]
+}

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proofreader API 测试</title>
+    <a href="navigation.html">返回导航页</a>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .input-section label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-section textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        .input-section textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .language-selector {
+            margin-bottom: 20px;
+        }
+
+        .language-selector label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .language-selector select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .progress-bar.active {
+            display: block;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .result-section {
+            display: none;
+        }
+
+        .result-section.active {
+            display: block;
+        }
+
+        .result-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .result-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .result-box h3 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .corrected-text {
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 2px 4px;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .error:hover {
+            background: #ffcdd2;
+        }
+
+        .corrections-list {
+            list-style: none;
+        }
+
+        .corrections-list li {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+
+        .corrections-list .correction-type {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .corrections-list .correction-text {
+            margin-bottom: 8px;
+        }
+
+        .corrections-list .correction-explanation {
+            color: #666;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-box .label {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📝 Proofreader API 测试</h1>
+        <p>使用 Chrome 内置 AI 进行智能文本校对</p>
+    </div>
+
+    <div class="content">
+        <div id="status" class="status info">
+            正在检查 Proofreader API 可用性...
+        </div>
+
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill" style="width: 0%">0%</div>
+        </div>
+
+        <div class="button-group">
+            <button id="proofreadBtn" class="btn-primary" onclick="proofreadText()">
+                开始校对
+            </button>
+            <button id="clearBtn" class="btn-secondary" onclick="clearAll()">
+                清空
+            </button>
+        </div>
+
+        <div class="input-section">
+            <div class="language-selector">
+                <label for="language">选择语言：</label>
+                <select id="language">
+                    <option value="en">英语 (English)</option>
+                    <option value="zh">中文 (Chinese)</option>
+                    <option value="es">西班牙语 (Español)</option>
+                    <option value="fr">法语 (Français)</option>
+                    <option value="de">德语 (Deutsch)</option>
+                    <option value="ja">日语 (日本語)</option>
+                </select>
+            </div>
+
+            <label for="inputText">输入需要校对的文本：</label>
+            <textarea id="inputText" placeholder="请输入需要校对的文本...&#10;&#10;示例：&#10;I seen him yesterday at the store, and he bought two loafs of bread.">This are a radnom text with a few classic common, and typicla typso and grammar issus. the Proofreader API hopefuly finds them all. Knocking at wood and crossed.</textarea>
+        </div>
+
+
+
+        <div id="resultSection" class="result-section">
+            <h2>校对结果</h2>
+
+            <div class="result-box">
+                <h3>✨ 校对后的文本</h3>
+                <div id="correctedText" class="corrected-text"></div>
+            </div>
+
+            <div class="result-box">
+                <h3>📋 更正详情</h3>
+                <ul id="correctionsList" class="corrections-list"></ul>
+            </div>
+
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="number" id="totalCorrections">0</div>
+                    <div class="label">更正数量</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number" id="originalLength">0</div>
+                    <div class="label">原文长度</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number" id="correctedLength">0</div>
+                    <div class="label">校对后长度</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>基于 Chrome 内置 AI (Gemini Nano) |
+            <a href="https://developer.chrome.google.cn/docs/ai/proofreader-api" target="_blank">查看文档</a>
+        </p>
+    </div>
+</div>
+
+<script>
+    let proofreader = null;
+    let isDownloading = false;
+    const proofreadButton = document.getElementById('proofreadBtn');
+    function proofreadClick() {
+        proofreadButton.click();
+    }
+    // 页面加载时检查 API 可用性
+    window.addEventListener('load', async () => {
+        await checkAvailability();
+    });
+
+    // 检查 Proofreader API 可用性
+    async function checkAvailability() {
+        const statusEl = document.getElementById('status');
+        const proofreadBtn = document.getElementById('proofreadBtn');
+
+        try {
+            if (!window.Proofreader) {
+                statusEl.className = 'status error';
+                statusEl.textContent = '❌ Proofreader API 不可用。请确保使用 Chrome 141+ 并启用相关标志。';
+                proofreadBtn.disabled = true;
+;
+                return;
+            }
+
+            const availability = await Proofreader.availability();
+            console.log('Proofreader availability:', availability);
+
+            if (availability === 'readily') {
+                statusEl.className = 'status success';
+                statusEl.textContent = '✅ Proofreader API 已就绪，可以开始使用！';
+                proofreadBtn.disabled = false;
+            } else if (availability === 'downloadable') {
+                statusEl.className = 'status warning';
+                statusEl.textContent = '⚠️ 模型需要下载，点击"开始校对"按钮将自动下载模型。';
+                proofreadBtn.disabled = false;
+            } else if (availability === 'after-download') {
+                statusEl.className = 'status info';
+                statusEl.textContent = '📥 模型正在下载中，请稍候...';
+                proofreadBtn.disabled = true;
+            } else {
+                statusEl.className = 'status error';
+                statusEl.textContent = '❌ Proofreader API 不可用。';
+                proofreadBtn.disabled = true;
+            }
+        } catch (error) {
+            console.error('检查可用性时出错:', error);
+            statusEl.className = 'status error';
+            statusEl.textContent = `❌ 检查 API 可用性时出错: ${error.message}`;
+            proofreadBtn.disabled = true;
+        }
+    }
+
+    // 创建 Proofreader 实例
+    async function createProofreader(language) {
+        const statusEl = document.getElementById('status');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+
+        try {
+            statusEl.className = 'status info';
+            statusEl.textContent = '🔄 正在初始化 Proofreader...';
+            progressBar.classList.add('active');
+
+            proofreader = await Proofreader.create({
+                expectedInputLanguages: [language],
+                includeCorrectionTypes: false,
+                monitor(m) {
+                    m.addEventListener('downloadprogress', (e) => {
+                        const percentage = Math.round(e.loaded * 100);
+                        progressFill.style.width = `${percentage}%`;
+                        progressFill.textContent = `${percentage}%`;
+                        console.log(`下载进度: ${percentage}%`);
+                    });
+                }
+            });
+
+            statusEl.className = 'status success';
+            statusEl.textContent = '✅ Proofreader 初始化成功！';
+            progressBar.classList.remove('active');
+
+            return proofreader;
+        } catch (error) {
+            console.error('创建 Proofreader 时出错:', error);
+            statusEl.className = 'status error';
+            statusEl.textContent = `❌ 初始化失败: ${error.message}`;
+            progressBar.classList.remove('active');
+            throw error;
+        }
+    }
+
+    // 执行文本校对
+    async function proofreadText() {
+        const inputText = document.getElementById('inputText').value.trim();
+        const language = document.getElementById('language').value;
+        const statusEl = document.getElementById('status');
+        const proofreadBtn = document.getElementById('proofreadBtn');
+        const resultSection = document.getElementById('resultSection');
+
+        if (!inputText) {
+            statusEl.className = 'status warning';
+            statusEl.textContent = '⚠️ 请输入需要校对的文本。';
+            return;
+        }
+
+        try {
+            proofreadBtn.disabled = true;
+            proofreadBtn.innerHTML = '<span class="loading"></span>校对中...';
+
+            // 如果还没有创建 proofreader 实例，先创建
+            if (!proofreader) {
+                await createProofreader(language);
+            }
+
+            statusEl.className = 'status info';
+            statusEl.textContent = '🔄 正在校对文本...';
+
+            // 执行校对
+            const result = await proofreader.proofread(inputText);
+            console.log('校对结果:', result);
+
+            // 显示结果
+            displayResults(result, inputText);
+
+            statusEl.className = 'status success';
+            statusEl.textContent = '✅ 校对完成！';
+            resultSection.classList.add('active');
+
+        } catch (error) {
+            console.error('校对时出错:', error);
+            statusEl.className = 'status error';
+            statusEl.textContent = `❌ 校对失败: ${error.message}`;
+            resultSection.classList.remove('active');
+        } finally {
+            proofreadBtn.disabled = false;
+            proofreadBtn.textContent = '开始校对';
+        }
+    }
+
+    // 显示校对结果
+    function displayResults(result, originalText) {
+        const correctedTextEl = document.getElementById('correctedText');
+        const correctionsListEl = document.getElementById('correctionsList');
+
+        // 显示校对后的文本，高亮显示错误部分
+        let inputRenderIndex = 0;
+        let html = '';
+
+        if (result.corrections && result.corrections.length > 0) {
+            for (const correction of result.corrections) {
+                // 渲染没有错误的部分
+                if (correction.startIndex > inputRenderIndex) {
+                    const unchangedText = originalText.substring(inputRenderIndex, correction.startIndex);
+                    html += `<span>${escapeHtml(unchangedText)}</span>`;
+                }
+
+                // 渲染有错误的部分并高亮
+                const errorText = originalText.substring(correction.startIndex, correction.endIndex);
+                html += `<span class="error" title="${escapeHtml(correction.explanation || '无说明')}">${escapeHtml(errorText)}</span>`;
+
+                inputRenderIndex = correction.endIndex;
+            }
+
+            // 渲染剩余没有错误的部分
+            if (inputRenderIndex < originalText.length) {
+                const unchangedText = originalText.substring(inputRenderIndex, originalText.length);
+                html += `<span>${escapeHtml(unchangedText)}</span>`;
+            }
+        } else {
+            html = `<span>${escapeHtml(result.correctedInput || originalText)}</span>`;
+        }
+
+        correctedTextEl.innerHTML = html;
+
+        // 显示更正列表
+        correctionsListEl.innerHTML = '';
+        if (result.corrections && result.corrections.length > 0) {
+            result.corrections.forEach((correction, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div class="correction-type">🔍 更正 ${index + 1}: ${escapeHtml(correction.type || '未知类型')}</div>
+                    <div class="correction-text">
+                        <strong>原文:</strong> "${escapeHtml(originalText.substring(correction.startIndex, correction.endIndex))}"<br>
+                        <strong>建议:</strong> "${escapeHtml(correction.correction ?? '未提供')}"
+                    </div>
+                    <div class="correction-explanation">
+                        💡 ${escapeHtml(correction.explanation || '无说明')}
+                    </div>
+                `;
+                correctionsListEl.appendChild(li);
+            });
+        } else {
+            correctionsListEl.innerHTML = '<li>🎉 没有发现需要更正的错误！</li>';
+        }
+
+        // 更新统计信息
+        document.getElementById('totalCorrections').textContent = result.corrections ? result.corrections.length : 0;
+        document.getElementById('originalLength').textContent = originalText.length;
+        document.getElementById('correctedLength').textContent = result.correctedInput ? result.correctedInput.length : 0;
+    }
+
+    // 清空所有内容
+    function clearAll() {
+        document.getElementById('inputText').value = '';
+        document.getElementById('resultSection').classList.remove('active');
+        document.getElementById('status').className = 'status info';
+        document.getElementById('status').textContent = '已清空，请输入新的文本。';
+    }
+
+    // HTML 转义函数
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // 监听语言选择变化，重新创建 proofreader
+    document.getElementById('language').addEventListener('change', () => {
+        proofreader = null;
+        checkAvailability();
+    });
+</script>
+</body>
+</html>

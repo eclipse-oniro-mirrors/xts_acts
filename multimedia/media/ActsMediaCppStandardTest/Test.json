@@ -1,0 +1,38 @@
+{
+  "description": "Config for ActsMediaCppStandardTest cases",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "100000",
+    "shell-timeout": "100000",
+    "bundle-name": "com.example.actsmediacppstandardtest",
+    "module-name": "entry_test",
+    "testcase-timeout": 100000
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsMediaCppStandardMainTest.hap",
+        "ActsMediaCppStandardHapTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "mkdir -p /data/app/el2/100/base/com.example.actsmediacppstandardtest/haps/entry_test/files",
+        "chmod 777 -R /data/app/el2/100/base/com.example.actsmediacppstandardtest/haps/entry_test/files",
+        "power-shell wakeup",
+        "power-shell setmode 602"
+      ]
+    },
+    {
+      "type": "PushKit",
+      "pre-push": [],
+      "push": [
+        "./resource/media/AAC_48000_32_1.aac->/data/app/el2/100/base/com.example.actsmediacppstandardtest/haps/entry_test/files/",
+        "./resource/media/es/out_320_240_10s.h264->/data/app/el2/100/base/com.example.actsmediacppstandardtest/haps/entry_test/files/"
+      ]
+    }
+  ]
+}

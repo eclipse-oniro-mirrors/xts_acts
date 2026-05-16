@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example Domains</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f8f9fa; color: #333; min-height: 100vh; }
+        .header { background: #003366; color: white; padding: 16px 30px; display: flex; align-items: center; justify-content: space-between; }
+        .header h1 { font-size: 18px; font-weight: 600; }
+        .header-nav { display: flex; gap: 20px; }
+        .header-nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; }
+        .header-nav a:hover { color: #fff; }
+        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+        .hero { background: linear-gradient(135deg, #003366, #0056b3); color: white; border-radius: 12px; padding: 40px; margin-bottom: 30px; }
+        .hero h2 { font-size: 28px; margin-bottom: 12px; font-weight: 600; }
+        .hero p { font-size: 15px; line-height: 1.7; opacity: 0.9; max-width: 600px; }
+        .card { background: white; border-radius: 10px; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .card h2 { font-size: 22px; margin-bottom: 16px; color: #003366; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; }
+        .card h3 { font-size: 17px; margin: 18px 0 10px; color: #0056b3; }
+        .card p { line-height: 1.8; margin-bottom: 14px; font-size: 14px; color: #555; }
+        .card a { color: #0056b3; text-decoration: none; }
+        .card a:hover { text-decoration: underline; }
+        .domain-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        .domain-table th { background: #003366; color: #fff; padding: 10px 14px; text-align: left; font-size: 13px; }
+        .domain-table th:first-child { border-radius: 6px 0 0 0; }
+        .domain-table th:last-child { border-radius: 0 6px 0 0; }
+        .domain-table td { padding: 10px 14px; border-bottom: 1px solid #eee; font-size: 13px; }
+        .domain-table tr:hover { background: #f8f9fa; }
+        .domain-table .domain-name { font-family: "SFMono-Regular", Consolas, monospace; color: #0056b3; font-weight: 500; }
+        .status-badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; }
+        .status-reserved { background: #fff3cd; color: #856404; }
+        .status-special { background: #d4edda; color: #155724; }
+        .status-testing { background: #cce5ff; color: #004085; }
+        .rfc-list { list-style: none; }
+        .rfc-list li { padding: 10px 0; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
+        .rfc-list li:last-child { border-bottom: none; }
+        .rfc-title { font-size: 14px; color: #333; }
+        .rfc-tag { background: #e9ecef; padding: 3px 10px; border-radius: 4px; font-size: 12px; color: #666; font-family: monospace; }
+        .dns-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        .dns-table th { background: #f0f4f8; padding: 10px 14px; text-align: left; font-size: 13px; color: #333; border-bottom: 2px solid #dee2e6; }
+        .dns-table td { padding: 10px 14px; border-bottom: 1px solid #eee; font-size: 13px; }
+        .dns-table tr:hover { background: #f8f9fa; }
+        .dns-type { font-family: monospace; color: #0056b3; font-weight: 600; }
+        .usage-block { background: #f8f9fa; border-left: 4px solid #003366; padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+        .usage-block code { background: #e9ecef; padding: 2px 6px; border-radius: 3px; font-size: 13px; font-family: monospace; }
+        .usage-block pre { background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 6px; margin-top: 10px; overflow-x: auto; font-size: 13px; line-height: 1.6; }
+        .tld-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+        .tld-item { background: #f8f9fa; border-radius: 6px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+        .tld-item .tld-name { font-family: monospace; color: #0056b3; font-weight: 500; }
+        .tld-item .tld-desc { color: #888; font-size: 12px; }
+        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0; }
+        .info-item { background: #f8f9fa; border-radius: 8px; padding: 20px; text-align: center; }
+        .info-item .num { font-size: 28px; font-weight: 700; color: #003366; }
+        .info-item .label { font-size: 12px; color: #888; margin-top: 4px; }
+        .timeline { position: relative; padding-left: 24px; margin: 16px 0; }
+        .timeline::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #dee2e6; }
+        .timeline-item { position: relative; margin-bottom: 20px; }
+        .timeline-item::before { content: ""; position: absolute; left: -20px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: #003366; }
+        .timeline-item .year { font-size: 13px; color: #0056b3; font-weight: 600; margin-bottom: 4px; }
+        .timeline-item .desc { font-size: 13px; color: #555; line-height: 1.6; }
+        .footer { background: #003366; color: rgba(255,255,255,0.7); padding: 24px 30px; margin-top: 30px; text-align: center; }
+        .footer p { font-size: 12px; line-height: 2; }
+        .footer a { color: rgba(255,255,255,0.9); text-decoration: none; margin: 0 8px; }
+        .footer a:hover { color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>IANA - Internet Assigned Numbers Authority</h1>
+        <div class="header-nav">
+            <a href="#">Protocols</a>
+            <a href="#">Numbers</a>
+            <a href="#">Domains</a>
+            <a href="#">About</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="hero">
+            <h2>IANA-managed Reserved Domains</h2>
+            <p>These domains are reserved by IANA for use in documentation, example code, and testing purposes. They are intentionally not registered to any entity to ensure they remain available for their designated use.</p>
+        </div>
+        <div class="card">
+            <h2>Reserved Domain Names</h2>
+            <p>The following domain names are reserved by IANA as specified in RFC 2606. These domains should never be installed in the DNS root zone and are guaranteed to be available for documentation and example usage.</p>
+            <table class="domain-table">
+                <thead>
+                    <tr><th>Domain</th><th>Type</th><th>Status</th><th>Purpose</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="domain-name">example.com</td><td>Second Level</td><td><span class="status-badge status-reserved">Reserved</span></td><td>Documentation and examples</td></tr>
+                    <tr><td class="domain-name">example.net</td><td>Second Level</td><td><span class="status-badge status-reserved">Reserved</span></td><td>Documentation and examples</td></tr>
+                    <tr><td class="domain-name">example.org</td><td>Second Level</td><td><span class="status-badge status-reserved">Reserved</span></td><td>Documentation and examples</td></tr>
+                    <tr><td class="domain-name">example.edu</td><td>Second Level</td><td><span class="status-badge status-reserved">Reserved</span></td><td>Documentation and examples</td></tr>
+                    <tr><td class="domain-name">test</td><td>Top Level</td><td><span class="status-badge status-testing">Testing</span></td><td>Testing and documentation</td></tr>
+                    <tr><td class="domain-name">invalid</td><td>Top Level</td><td><span class="status-badge status-reserved">Reserved</span></td><td>Invalid domain examples</td></tr>
+                    <tr><td class="domain-name">localhost</td><td>Top Level</td><td><span class="status-badge status-special">Special Use</span></td><td>Local loopback address</td></tr>
+                    <tr><td class="domain-name">example</td><td>Top Level</td><td><span class="status-badge status-reserved">Reserved</span></td><td>Documentation and examples</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card">
+            <h2>DNS Record Types Reference</h2>
+            <p>Understanding DNS record types is essential for managing domain names and network infrastructure. Below are the most commonly used DNS record types.</p>
+            <table class="dns-table">
+                <thead>
+                    <tr><th>Record Type</th><th>Full Name</th><th>Description</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="dns-type">A</td><td>Address Record</td><td>Maps a domain name to an IPv4 address (e.g., 93.184.216.34)</td></tr>
+                    <tr><td class="dns-type">AAAA</td><td>IPv6 Address Record</td><td>Maps a domain name to an IPv6 address</td></tr>
+                    <tr><td class="dns-type">CNAME</td><td>Canonical Name Record</td><td>Alias of one domain name to another</td></tr>
+                    <tr><td class="dns-type">MX</td><td>Mail Exchange Record</td><td>Maps a domain name to mail exchange servers</td></tr>
+                    <tr><td class="dns-type">NS</td><td>Name Server Record</td><td>Delegates a DNS zone to authoritative name servers</td></tr>
+                    <tr><td class="dns-type">TXT</td><td>Text Record</td><td>Stores text-based information for various purposes</td></tr>
+                    <tr><td class="dns-type">SOA</td><td>Start of Authority Record</td><td>Specifies authoritative DNS information about a zone</td></tr>
+                    <tr><td class="dns-type">PTR</td><td>Pointer Record</td><td>Reverse DNS lookup, maps IP address to domain name</td></tr>
+                    <tr><td class="dns-type">SRV</td><td>Service Locator Record</td><td>Specifies the location of services (hosts and ports)</td></tr>
+                    <tr><td class="dns-type">CAA</td><td>CA Authorization Record</td><td>Specifies which CAs are allowed to issue certificates</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card">
+            <h2>Usage Examples</h2>
+            <p>Reserved domains are widely used in documentation, tutorials, and software development. Here are common usage scenarios:</p>
+            <div class="usage-block">
+                <p><strong>Web Documentation:</strong> When writing documentation that references URLs, use <code>example.com</code> instead of real domains to avoid confusion and potential legal issues.</p>
+                <pre>&lt;a href="https://www.example.com/page"&gt;Visit our example&lt;/a&gt;
+&lt;img src="https://images.example.com/logo.png" alt="Logo"&gt;</pre>
+            </div>
+            <div class="usage-block">
+                <p><strong>Email Examples:</strong> Use <code>example.com</code> email addresses in documentation and test data.</p>
+                <pre>Contact: john.doe@example.com
+Reply-To: support@example.org
+Documentation: docs@example.net</pre>
+            </div>
+            <div class="usage-block">
+                <p><strong>Configuration Files:</strong> Reserved domains are safe to use in configuration examples and test environments.</p>
+                <pre>{
+  "api_endpoint": "https://api.example.com/v1",
+  "cdn_base": "https://cdn.example.net/assets",
+  "callback_url": "https://webhook.example.org/callback"
+}</pre>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Reserved Top-Level Domains (TLDs)</h2>
+            <p>In addition to the specific domain names above, IANA maintains a list of reserved and special-use top-level domains that are not available for registration.</p>
+            <div class="tld-grid">
+                <div class="tld-item"><span class="tld-name">.test</span><span class="tld-desc">Testing purposes</span></div>
+                <div class="tld-item"><span class="tld-name">.example</span><span class="tld-desc">Documentation</span></div>
+                <div class="tld-item"><span class="tld-name">.invalid</span><span class="tld-desc">Invalid domain use</span></div>
+                <div class="tld-item"><span class="tld-name">.localhost</span><span class="tld-desc">Local host resolution</span></div>
+                <div class="tld-item"><span class="tld-name">.onion</span><span class="tld-desc">Tor hidden services</span></div>
+                <div class="tld-item"><span class="tld-name">.arpa</span><span class="tld-desc">Infrastructure use</span></div>
+                <div class="tld-item"><span class="tld-name">.internal</span><span class="tld-desc">Private internal use</span></div>
+                <div class="tld-item"><span class="tld-name">.alt</span><span class="tld-desc">Non-DNS resolution</span></div>
+                <div class="tld-item"><span class="tld-name">.example</span><span class="tld-desc">RFC-compliant docs</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Historical Background</h2>
+            <p>The reservation of example domains dates back to the early days of the Internet when the need for safe, reusable domain names in documentation became apparent. The IETF formalized these reservations to prevent conflicts and ensure documentation clarity.</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">1999 - RFC 2606</div>
+                    <div class="desc">Reserved top-level DNS names for testing and documentation, establishing example.com, example.net, example.org, and test/invalid/localhost TLDs.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2003 - RFC 3172</div>
+                    <div class="desc">Defined the .arpa infrastructure domain for reverse DNS resolution and IANA management purposes.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2006 - RFC 4343</div>
+                    <div class="desc">Clarified case-insensitive handling of domain names in DNS protocols.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2015 - RFC 7686</div>
+                    <div class="desc">Reserved the .onion TLD for Tor hidden services and special-use domain registration.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2020 - RFC 8736</div>
+                    <div class="desc">Updated special-use domain considerations and added new reserved entries for internal network use.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2024 - RFC 9461</div>
+                    <div class="desc">Further refined the handling of special-use domain names in DNS resolution and validation.</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Referenced RFC Documents</h2>
+            <p>The reservation and management of example domains are defined in the following Internet Engineering Task Force (IETF) Request for Comments documents.</p>
+            <ul class="rfc-list">
+                <li><span class="rfc-title"><a href="#">RFC 2606</a> - Reserved Top Level DNS Names</span><span class="rfc-tag">Primary</span></li>
+                <li><span class="rfc-title"><a href="#">RFC 6761</a> - Special-Use Domain Names</span><span class="rfc-tag">Updated</span></li>
+                <li><span class="rfc-title"><a href="#">RFC 3172</a> - Management Guidelines &amp; Operational Requirements</span><span class="rfc-tag">Related</span></li>
+                <li><span class="rfc-title"><a href="#">RFC 7686</a> - The .onion Special-Use Top-Level Domain</span><span class="rfc-tag">Extension</span></li>
+                <li><span class="rfc-title"><a href="#">RFC 8434</a> - DNS Reverse Mappings</span><span class="rfc-tag">Related</span></li>
+                <li><span class="rfc-title"><a href="#">RFC 8736</a> - Using Special-Use Domain Names</span><span class="rfc-tag">Updated</span></li>
+                <li><span class="rfc-title"><a href="#">RFC 9461</a> - DNS SVCB and HTTPS RRs</span><span class="rfc-tag">Related</span></li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>Domain Registration Information</h2>
+            <p>Reserved domains cannot be registered through any domain registrar. They are permanently reserved by IANA and ICANN to ensure their availability for documentation and testing purposes worldwide.</p>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="num">8</div>
+                    <div class="label">Reserved Domain Names</div>
+                </div>
+                <div class="info-item">
+                    <div class="num">9+</div>
+                    <div class="label">Reserved TLDs</div>
+                </div>
+                <div class="info-item">
+                    <div class="num">7</div>
+                    <div class="label">Related RFCs</div>
+                </div>
+            </div>
+            <h3>Key Points</h3>
+            <p>Reserved domains will never resolve to actual web servers. DNS resolvers are configured to treat these domains specially. Software developers should use these domains exclusively in documentation, test cases, and configuration examples.</p>
+            <p>IANA operates under ICANN and is responsible for the global coordination of the DNS Root, IP addressing, and other Internet protocol resources. For more information, visit the <a href="#">IANA website</a>.</p>
+        </div>
+    </div>
+        <div class="card">
+            <h2>Domain Registration Policies</h2>
+            <p>Understanding the domain registration ecosystem helps clarify why reserved domains occupy a special place in the DNS architecture. Domain registration is governed by a multi-layered system of policies, contracts, and technical protocols.</p>
+            <h3>Registration Hierarchy</h3>
+            <p>The domain registration system operates through a hierarchical model. ICANN accredits registrars, who register domains on behalf of registrants under the rules established by each TLD registry. IANA manages the root zone and coordinates the delegation of TLDs to their respective registries.</p>
+            <h3>Reserved Domain Protection</h3>
+            <p>Reserved domains are protected at multiple levels. They are not delegated in the root zone, registrars are contractually prohibited from registering them, and DNS software implementations are expected to handle them as special cases according to RFC 6761.</p>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="num">1500+</div>
+                    <div class="label">TLDs in Root Zone</div>
+                </div>
+                <div class="info-item">
+                    <div class="num">2000+</div>
+                    <div class="label">Accredited Registrars</div>
+                </div>
+                <div class="info-item">
+                    <div class="num">370M+</div>
+                    <div class="label">Registered Domains</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Technical Specifications</h2>
+            <p>The DNS system operates as a hierarchical distributed database. Understanding its technical foundations helps explain why reserved domains are necessary and how they function within the global Internet infrastructure.</p>
+            <h3>DNS Resolution Process</h3>
+            <p>When a client requests resolution of a reserved domain like example.com, the DNS resolver handles the request according to the special-use domain rules defined in RFC 6761. The key steps include checking local configuration, consulting the root hints, and applying special-use exceptions.</p>
+            <h3>Root Zone Management</h3>
+            <p>The DNS root zone is managed by IANA under contract with ICANN. It contains pointers to all top-level domain registries. Reserved domains are explicitly excluded from delegation in the root zone, ensuring they remain available for their designated purposes.</p>
+            <h3>Zone File Format</h3>
+            <div class="usage-block">
+                <p>Below is an example zone file entry for a reserved domain, showing how it is excluded from normal resolution:</p>
+                <pre>; Reserved domain - example.com
+; This domain is reserved per RFC 2606
+; and should NOT be delegated in the root zone
+
+$ORIGIN example.com.
+$TTL 86400
+@   IN  SOA  ns.icann.org. noc.icann.org. (
+            2026042801  ; Serial
+            7200        ; Refresh
+            3600        ; Retry
+            1209600     ; Expire
+            3600 )      ; Minimum TTL
+
+    IN  NS   ns.icann.org.
+    IN  NS   ns2.icann.org.
+    IN  A    93.184.216.34
+    IN  AAAA 2606:2800:220:1:248:1893:25c8:1946</pre>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Best Practices for Developers</h2>
+            <p>When writing documentation, creating test environments, or building applications that reference domain names, following these best practices ensures compatibility and prevents unintended side effects.</p>
+            <h3>In Documentation</h3>
+            <p>Always use example.com, example.net, or example.org when demonstrating URL patterns, API endpoints, or web concepts. This prevents your documentation from accidentally referencing real websites and keeps examples stable over time.</p>
+            <h3>In Test Environments</h3>
+            <p>Use the .test TLD or localhost for local testing. These domains are guaranteed to never resolve to real servers, making them safe for automated testing, CI/CD pipelines, and development environments.</p>
+            <h3>In Configuration Templates</h3>
+            <p>When providing configuration file templates, use example domains as placeholder values. This clearly communicates that the value needs to be replaced while avoiding any real-world conflicts.</p>
+            <h3>In Email Addresses</h3>
+            <p>Use example.com email addresses in sample data, test fixtures, and documentation. Real email addresses should never appear in documentation or public code repositories.</p>
+        </div>
+        <div class="card">
+            <h2>Frequently Asked Questions</h2>
+            <h3>Can I register example.com or example.net?</h3>
+            <p>No. These domains are permanently reserved by IANA and are not available for registration through any domain registrar. They are maintained as reserved entries in the DNS root zone.</p>
+            <h3>What happens if someone tries to resolve example.com?</h3>
+            <p>DNS resolvers treat reserved domains specially per RFC 6761. While some resolvers may return NXDOMAIN, others may return a synthesized response. Application developers should not rely on these domains being resolvable.</p>
+            <h3>Are reserved domains available in IDN (Internationalized Domain Name) format?</h3>
+            <p>No. Reserved domain names apply only to their ASCII representations. Internationalized domain names are handled separately through the IDNA protocol (RFC 5890 and related RFCs).</p>
+            <h3>What is the difference between reserved and special-use domains?</h3>
+            <p>Reserved domains (RFC 2606) are set aside for documentation and testing. Special-use domains (RFC 6761) have broader protocol-level significance, such as localhost, which must always resolve to the loopback address 127.0.0.1.</p>
+            <h3>Can I use reserved domains in my application tests?</h3>
+            <p>Yes, absolutely. This is their intended purpose. Using reserved domains in test suites, documentation, examples, and configuration templates ensures you will not accidentally interfere with real domain operations.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p><a href="#">Home</a><a href="#">Protocols</a><a href="#">Numbers</a><a href="#">Domains</a><a href="#">About</a><a href="#">Contact</a></p>
+        <p>&copy; 2026 Internet Assigned Numbers Authority (IANA). All rights reserved.</p>
+    </div>
+    <script>function test() { return true; }</script>
+</body>
+</html>

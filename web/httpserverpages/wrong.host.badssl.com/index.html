@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wrong.host.badssl.com</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f8d7da;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #721c24;
+        }
+        .container { max-width: 800px; width: 100%; }
+        .error-icon { font-size: 64px; margin-bottom: 20px; text-align: center; }
+        h1 { font-size: 28px; margin-bottom: 15px; text-align: center; }
+        h2 { font-size: 22px; margin: 30px 0 15px; color: #721c24; border-bottom: 2px solid #f5c6cb; padding-bottom: 8px; }
+        h3 { font-size: 18px; margin: 20px 0 10px; color: #721c24; }
+        p { font-size: 16px; line-height: 1.6; max-width: 800px; text-align: left; margin-bottom: 15px; }
+        .cert-info {
+            background: white;
+            border: 1px solid #f5c6cb;
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        .cert-info table { width: 100%; border-collapse: collapse; }
+        .cert-info td { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+        .cert-info td:first-child { font-weight: bold; width: 180px; color: #666; }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #dc3545;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-badge.warn { background: #fd7e14; }
+        .status-badge.ok { background: #28a745; }
+        .section-box {
+            background: white;
+            border: 1px solid #f5c6cb;
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        table.compat-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        table.compat-table th, table.compat-table td {
+            padding: 10px 12px;
+            border: 1px solid #f5c6cb;
+            text-align: left;
+            font-size: 14px;
+        }
+        table.compat-table th { background: #f5c6cb; color: #721c24; font-weight: bold; }
+        table.compat-table tr:nth-child(even) { background: #fff5f5; }
+        .chain-box {
+            background: #fff5f5;
+            border: 2px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+        }
+        .chain-level {
+            background: white;
+            border: 1px solid #e0a0a8;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin: 8px 0;
+        }
+        .chain-level.root { border-left: 4px solid #dc3545; }
+        .chain-level.leaf { border-left: 4px solid #dc3545; }
+        .chain-arrow { text-align: center; font-size: 20px; color: #721c24; margin: 4px 0; }
+        .mismatch-box {
+            background: #fff5f5;
+            border: 2px dashed #dc3545;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-size: 16px;
+        }
+        .mismatch-host {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .mismatch-host.requested { background: #dc3545; color: white; }
+        .mismatch-host.cert { background: #28a745; color: white; }
+        .mismatch-arrow { font-size: 24px; color: #dc3545; }
+        .handshake-box {
+            background: #fff5f5;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        .faq-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #fff5f5;
+            border-left: 4px solid #f5c6cb;
+            border-radius: 0 6px 6px 0;
+        }
+        .faq-item strong { display: block; margin-bottom: 6px; }
+        .error-type-list { list-style: none; padding: 0; }
+        .error-type-list li {
+            padding: 10px 15px;
+            margin: 6px 0;
+            background: white;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .error-type-list li code {
+            background: #f5c6cb;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #721c24;
+        }
+        .fix-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 12px 0;
+        }
+        .fix-step-num {
+            background: #f5c6cb;
+            color: #721c24;
+            font-weight: bold;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        .fix-step-text { font-size: 14px; line-height: 1.6; padding-top: 4px; }
+        .troubleshoot-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e0a0a8;
+        }
+        .troubleshoot-item strong { color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-icon">&#128274;</div>
+        <h1>wrong.host.badssl.com</h1>
+        <p>This page is served with a certificate that has a <strong>hostname mismatch</strong>. The certificate is valid for a different domain than the one being accessed. This domain intentionally presents a mismatched certificate to help developers test SSL/TLS hostname verification errors.</p>
+
+        <div class="mismatch-box">
+            <div class="mismatch-host requested">
+                Requested<br>wrong.host.badssl.com
+            </div>
+            <div class="mismatch-arrow">&#8800;</div>
+            <div class="mismatch-host cert">
+                Certificate For<br>right.host.badssl.com
+            </div>
+        </div>
+
+        <h2>Error Details</h2>
+        <div class="cert-info">
+            <table>
+                <tr><td>Requested Host:</td><td>wrong.host.badssl.com</td></tr>
+                <tr><td>Certificate CN:</td><td>right.host.badssl.com</td></tr>
+                <tr><td>Certificate SANs:</td><td>DNS:right.host.badssl.com, DNS:www.right.host.badssl.com</td></tr>
+                <tr><td>Error Code:</td><td><span class="status-badge">ERR_CERT_COMMON_NAME_INVALID</span></td></tr>
+                <tr><td>Error Type:</td><td>Certificate Hostname Mismatch</td></tr>
+                <tr><td>Issuer:</td><td>BadSSL CA</td></tr>
+                <tr><td>Valid From:</td><td>2024-01-01 00:00:00 UTC</td></tr>
+                <tr><td>Valid Until:</td><td>2026-01-01 00:00:00 UTC</td></tr>
+                <tr><td>Serial Number:</td><td>0xF1E2D3C4B5A6</td></tr>
+                <tr><td>SHA-256 Fingerprint:</td><td>11:22:33:44:55:66:77:88:99:AA:BB:CC:DD:EE:FF:00:11</td></tr>
+                <tr><td>Signature Algorithm:</td><td>SHA256withRSA</td></tr>
+                <tr><td>Public Key:</td><td>RSA 2048 bits</td></tr>
+                <tr><td>Cert Validity:</td><td><span class="status-badge ok">VALID</span></td></tr>
+                <tr><td>Host Match:</td><td><span class="status-badge">MISMATCH</span></td></tr>
+                <tr><td>Trust Chain:</td><td><span class="status-badge ok">VALID</span></td></tr>
+                <tr><td>Revocation Status:</td><td><span class="status-badge ok">NOT REVOKED</span></td></tr>
+            </table>
+        </div>
+
+        <h2>SSL Error Explanation</h2>
+        <div class="section-box">
+            <h3>What is a Hostname Mismatch Error?</h3>
+            <p>A hostname mismatch occurs when the domain name you typed in the browser's address bar does not match the domain name listed in the server's SSL/TLS certificate. The browser checks the certificate's <strong>Common Name (CN)</strong> field and the <strong>Subject Alternative Names (SAN)</strong> extension. If the requested hostname is not found in either, the connection is rejected.</p>
+            <p>This is a critical security check. Without hostname verification, an attacker with a valid certificate for any domain could serve it on a different domain, potentially impersonating a legitimate site. The <code>ERR_CERT_COMMON_NAME_INVALID</code> error prevents this type of attack.</p>
+            <h3>How Hostname Verification Works</h3>
+            <p>Modern TLS implementations follow RFC 6125 for hostname verification. The process involves:</p>
+            <ul style="margin: 10px 0 10px 25px; line-height: 2;">
+                <li>Extract the hostname from the request URL</li>
+                <li>Check if it matches any DNS name in the SAN extension (preferred method)</li>
+                <li>Fallback to checking the CN field only if no SAN exists (legacy support)</li>
+                <li>Support wildcard matching (e.g., <code>*.example.com</code> matches <code>sub.example.com</code>)</li>
+                <li>Reject the connection if no match is found</li>
+            </ul>
+            <h3>Common Error Codes</h3>
+            <ul style="margin: 10px 0 10px 25px; line-height: 2;">
+                <li><code>ERR_CERT_COMMON_NAME_INVALID</code> (Chrome/Chromium)</li>
+                <li><code>SSL_ERROR_BAD_CERT_DOMAIN</code> (Firefox)</li>
+                <li><code>CERT_E_CN_NO_MATCH</code> (Windows/Edge)</li>
+                <li><code>NSURLErrorServerCertificateUntrusted</code> (iOS/macOS)</li>
+                <li><code>X509_V_ERR_HOSTNAME_MISMATCH</code> (OpenSSL)</li>
+            </ul>
+        </div>
+
+        <h2>Certificate Chain Visualization</h2>
+        <div class="section-box">
+            <div class="chain-box">
+                <div class="chain-level root">
+                    <strong>Root CA</strong> (Trusted)<br>
+                    <span style="color:#666; font-size:13px;">BadSSL Root CA X1 &mdash; Valid until 2035-01-01</span><br>
+                    <span class="status-badge ok">TRUSTED</span>
+                </div>
+                <div class="chain-arrow">&darr; Signs</div>
+                <div class="chain-level leaf">
+                    <strong>Leaf Certificate (Wrong Host)</strong><br>
+                    <span style="color:#666; font-size:13px;">right.host.badssl.com &mdash; Valid until 2026-01-01</span><br>
+                    <span style="color:#666; font-size:13px;">SANs: DNS:right.host.badssl.com, DNS:www.right.host.badssl.com</span><br>
+                    <span style="color:#dc3545; font-weight:bold;">Requested: wrong.host.badssl.com &mdash; NO MATCH</span><br>
+                    <span class="status-badge">HOSTNAME MISMATCH</span>
+                </div>
+            </div>
+            <p style="font-size:14px; margin-top:10px;">The certificate chain itself is valid and trusted. However, the leaf certificate was issued for <code>right.host.badssl.com</code> but is being presented for <code>wrong.host.badssl.com</code>, causing the hostname verification to fail.</p>
+        </div>
+
+        <h2>TLS Handshake Diagram</h2>
+        <div class="section-box">
+            <p>The following diagram shows where hostname verification occurs in the TLS 1.2 handshake:</p>
+            <div class="handshake-box">Client                                    Server
+  |                                         |
+  |  1. ClientHello                         |
+  |  SNI: wrong.host.badssl.com             |
+  |  -------------------------------------> |
+  |                                         |
+  |  2. ServerHello + Certificate           |
+  |  CN: right.host.badssl.com              |
+  |  <------------------------------------- |
+  |                                         |
+  |  3. Certificate Verification            |
+  |  [i] Checking hostname match...         |
+  |  [i] Requested: wrong.host.badssl.com   |
+  |  [i] Cert CN:    right.host.badssl.com  |
+  |  [i] Cert SANs:  right.host.badssl.com  |
+  |  [!] NO MATCH FOUND                     |
+  |  ===================================   |
+  |  RESULT: HANDSHAKE FAILURE              |
+  |  ERROR: ERR_CERT_COMMON_NAME_INVALID    |
+  |                                         |
+  |  4. TLS Alert: Bad Certificate          |
+  |  <------------------------------------- |
+  |                                         |</div>
+            <p style="font-size:14px;">Note: The ClientHello includes the SNI (Server Name Indication) extension, which tells the server which hostname the client is trying to reach. The server responds with a certificate that must match this hostname.</p>
+        </div>
+
+        <h2>Browser Compatibility</h2>
+        <div class="section-box">
+            <table class="compat-table">
+                <thead>
+                    <tr>
+                        <th>Browser</th>
+                        <th>Version</th>
+                        <th>Error Display</th>
+                        <th>Bypass Available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Chrome</td><td>120+</td><td>Your connection is not private (NET::ERR_CERT_COMMON_NAME_INVALID)</td><td>Advanced &rarr; Proceed</td></tr>
+                    <tr><td>Firefox</td><td>121+</td><td>Warning: Potential Security Risk Ahead (SSL_ERROR_BAD_CERT_DOMAIN)</td><td>Advanced &rarr; Accept Risk</td></tr>
+                    <tr><td>Safari</td><td>17+</td><td>This Connection Is Not Private</td><td>Show Details &rarr; Visit Website</td></tr>
+                    <tr><td>Edge</td><td>120+</td><td>Your connection is not private</td><td>Advanced &rarr; Proceed</td></tr>
+                    <tr><td>Opera</td><td>105+</td><td>Your connection is not private</td><td>Advanced &rarr; Proceed</td></tr>
+                    <tr><td>Samsung Internet</td><td>23+</td><td>Security warning</td><td>Details &rarr; Proceed</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Related Error Types</h2>
+        <div class="section-box">
+            <p>The following SSL/TLS errors are related to certificate hostname and identity issues:</p>
+            <ul class="error-type-list">
+                <li><code>ERR_CERT_COMMON_NAME_INVALID</code> &mdash; Certificate hostname does not match the requested domain.</li>
+                <li><code>ERR_CERT_AUTHORITY_INVALID</code> &mdash; Certificate is signed by an untrusted authority.</li>
+                <li><code>ERR_CERT_DATE_INVALID</code> &mdash; Certificate has expired or is not yet valid.</li>
+                <li><code>ERR_CERT_REVOKED</code> &mdash; Certificate has been revoked by the issuing CA.</li>
+                <li><code>ERR_CERT_CONTAINS_ERRORS</code> &mdash; Certificate has structural or encoding errors.</li>
+                <li><code>ERR_CERT_WEAK_KEY</code> &mdash; Certificate uses a key that is too short or weak.</li>
+                <li><code>ERR_SSL_PINNED_KEY_NOT_IN_CERT_CHAIN</code> &mdash; Certificate does not match HPKP pins.</li>
+                <li><code>ERR_NAME_NOT_RESOLVED</code> &mdash; DNS resolution failed for the hostname.</li>
+                <li><code>ERR_CONNECTION_REFUSED</code> &mdash; Server refused the connection entirely.</li>
+                <li><code>ERR_SSL_PROTOCOL_ERROR</code> &mdash; TLS protocol negotiation failed.</li>
+            </ul>
+        </div>
+
+        <h2>Troubleshooting Guide</h2>
+        <div class="section-box">
+            <div class="troubleshoot-item">
+                <strong>1. Verify the URL</strong><br>
+                <span style="font-size:14px;">Check for typos in the URL. A common cause of hostname mismatch is simply typing the wrong domain name. Ensure you are accessing the correct domain.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>2. Check Certificate SANs</strong><br>
+                <span style="font-size:14px;">Use <code>openssl s_client -connect wrong.host.badssl.com:443 | openssl x509 -noout -text</code> to inspect the certificate's Subject Alternative Names. Verify that the domain you are accessing is listed.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>3. Check Server Configuration</strong><br>
+                <span style="font-size:14px;">If you manage the server, ensure each virtual host has the correct SSL certificate assigned. A common misconfiguration is sharing one certificate across multiple domains. Use SNI (Server Name Indication) to serve the correct certificate for each domain.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>4. Check Wildcard Certificates</strong><br>
+                <span style="font-size:14px;">Wildcard certificates only match one level of subdomain. <code>*.example.com</code> matches <code>sub.example.com</code> but not <code>sub.sub.example.com</code>. If you need multi-level subdomain coverage, use a SAN certificate with all required domains.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>5. Clear DNS Cache</strong><br>
+                <span style="font-size:14px;">DNS changes or misconfigurations could route you to the wrong server. Clear your DNS cache with <code>ipconfig /flushdns</code> (Windows) or <code>sudo systemd-resolve --flush-caches</code> (Linux).</span>
+            </div>
+        </div>
+
+        <h2>Fix Suggestions</h2>
+        <div class="section-box">
+            <h3>For Website Administrators</h3>
+            <div class="fix-step">
+                <div class="fix-step-num">1</div>
+                <div class="fix-step-text"><strong>Obtain a Correct Certificate</strong> &mdash; Request a new certificate that includes all domains and subdomains your server hosts. Use the SAN extension to list all required hostnames. Let's Encrypt supports up to 100 names per certificate.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">2</div>
+                <div class="fix-step-text"><strong>Configure Virtual Hosts Correctly</strong> &mdash; In Apache, use separate <code>&lt;VirtualHost&gt;</code> blocks with <code>ServerName</code> directives. In Nginx, use separate <code>server</code> blocks. Ensure each block references the correct certificate files.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">3</div>
+                <div class="fix-step-text"><strong>Enable SNI</strong> &mdash; Server Name Indication (SNI) allows multiple SSL certificates on the same IP address. Ensure your web server has SNI enabled and your clients support it (virtually all modern browsers do).</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">4</div>
+                <div class="fix-step-text"><strong>Use a Wildcard Certificate</strong> &mdash; If you host many subdomains, a wildcard certificate (<code>*.example.com</code>) can simplify management. Note that it only covers one level of subdomains.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">5</div>
+                <div class="fix-step-text"><strong>Test with Multiple Tools</strong> &mdash; Use SSL Labs (ssllabs.com) and other SSL testing tools to verify your certificate configuration across different clients and scenarios.</div>
+            </div>
+            <h3>For Developers Testing SSL Errors</h3>
+            <div class="fix-step">
+                <div class="fix-step-num">1</div>
+                <div class="fix-step-text"><strong>Implement Proper Hostname Verification</strong> &mdash; Always verify the certificate hostname in your application code. Use built-in TLS libraries that perform this check automatically. Never disable hostname verification.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">2</div>
+                <div class="fix-step-text"><strong>Handle Mismatch Errors Gracefully</strong> &mdash; Catch hostname mismatch errors and display clear messages to users. Provide actionable guidance, such as checking the URL for typos.</div>
+            </div>
+        </div>
+
+        <h2>FAQ</h2>
+        <div class="section-box">
+            <div class="faq-item">
+                <strong>Q: What is the difference between CN and SAN?</strong>
+                <p>The Common Name (CN) is a field in the certificate's Subject distinguished name. Subject Alternative Names (SAN) is a separate extension that can list multiple domain names. Modern browsers and RFC 6125 require using SAN for hostname matching. The CN field is deprecated for this purpose in modern certificates.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Can one certificate cover multiple domains?</strong>
+                <p>Yes. Multi-domain (SAN/UCC) certificates can include up to 100 different domain names. Wildcard certificates cover all subdomains at one level (e.g., <code>*.example.com</code>). Combined SAN + wildcard certificates are also available.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Does SNI affect hostname mismatch errors?</strong>
+                <p>SNI tells the server which hostname the client is requesting, allowing it to serve the correct certificate. Without SNI, the server can only serve one certificate per IP address, which may not match the requested hostname. SNI is supported by 99.9% of modern clients.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: What is a wildcard certificate?</strong>
+                <p>A wildcard certificate uses an asterisk (<code>*</code>) as a placeholder in the hostname. For example, <code>*.example.com</code> matches <code>www.example.com</code>, <code>mail.example.com</code>, etc. It does not match <code>example.com</code> itself or multi-level subdomains like <code>sub.mail.example.com</code>.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Can IP addresses be used in certificates?</strong>
+                <p>Yes. IP addresses can be listed in the SAN extension using the iPAddress type (not DNS). However, using IP addresses in certificates is uncommon and not recommended for public-facing services. Use domain names instead.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: How does this relate to security?</strong>
+                <p>Hostname verification prevents man-in-the-middle attacks where an attacker could use a valid certificate for a different domain to impersonate your target site. Without this check, TLS encryption alone does not guarantee you are communicating with the intended server.</p>
+            </div>
+        </div>
+
+        <div class="help-text" style="text-align: center; margin-top: 30px;">
+            <p>This site intentionally uses a wrong certificate for testing SSL error handling. It helps developers verify their applications correctly handle hostname mismatch errors.</p>
+            <p><a href="/">Return to BadSSL Home</a></p>
+        </div>
+    </div>
+    <script>function test() { return true; }</script>
+</body>
+</html>

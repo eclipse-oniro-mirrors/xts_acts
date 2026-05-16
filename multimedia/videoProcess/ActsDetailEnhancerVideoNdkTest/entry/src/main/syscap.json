@@ -1,0 +1,17 @@
+{
+  "devices": {
+    "general": [],
+    "custom": [
+      {
+        "xts": [
+          "SystemCapability.Graphic.Graphic2D.NativeBuffer",
+          "SystemCapability.Multimedia.VideoProcessingEngine",
+          "SystemCapability.Graphic.Graphic2D.NativeWindow",
+          "SystemCapability.Multimedia.Media.Core",
+          "SystemCapability.Graphic.Graphic2D.NativeDrawing",
+          "SystemCapability.Graphic.Graphic2D.NativeImage"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>databaseAccess</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .status-box {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .result {
+            font-size: 16px;
+            color: #666;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="title">📱 数据库访问测试</div>
+<div class="status-box">
+    <div id="status" class="result">正在检测数据库状态...</div>
+</div>
+
+<script>
+    let res = '';
+    try {
+        if (openDatabase) {
+            res = 'openDatabase';
+            console.log('数据库API可用');
+        } else {
+            res = '❌ openDatabase API 不可用';
+            console.log('数据库API不可用');
+        }
+    } catch(e) {
+        console.log('检测错误:' + e);
+        res = '❌ 检测异常: ' + e.message;
+    }
+
+    // 显示结果到页面
+    document.getElementById('status').innerText = res;
+
+    // 定义返回函数
+    function getDataResult() {
+        return res;
+    }
+
+    console.log('页面加载完成，状态:', res);
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+         "MainAbility/pages/window/GetWindowWidthAndHeight",
+ 	    "MainAbility/pages/uicontext/getUIContextStatic"
+    ]
+}

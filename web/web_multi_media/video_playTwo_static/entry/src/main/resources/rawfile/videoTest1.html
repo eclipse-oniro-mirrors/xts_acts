@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>videoTest - 全屏控制</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+        }
+
+        .video-container {
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        video {
+            display: block;
+            width: 800px;
+            max-width: 90vw;
+            height: auto;
+        }
+
+        .fullscreen-btn {
+            position: absolute;
+            bottom: 10%;
+            right: 10%;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50px;
+            padding: 100px 200px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(0,0,0,0.9);
+            transform: scale(1.05);
+        }
+
+        .fullscreen-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+    </style>
+</head>
+<body>
+<div class="video-container">
+    <video controls autoplay loop name="media" id="myVideo">
+        <source src="02.mp4" type="video/mp4">
+        您的浏览器不支持 video 标签。
+    </video>
+
+    <!-- 自定义全屏按钮 -->
+    <button class="fullscreen-btn" onclick="toggleFullScreen()">
+        <svg viewBox="0 0 24 24">
+            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+        </svg>
+        全屏
+    </button>
+</div>
+
+<script>
+    const video = document.getElementById('myVideo');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    // 全屏切换函数
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            // 进入全屏
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { /* Safari */
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { /* IE11 */
+                video.msRequestFullscreen();
+            }
+            fullscreenBtn.innerHTML = `
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                </svg>
+                退出全屏
+            `;
+        } else {
+            // 退出全屏
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+            fullscreenBtn.innerHTML = `
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                </svg>
+                全屏
+            `;
+        }
+    }
+
+    // 监听全屏变化事件
+    document.addEventListener('fullscreenchange', updateButton);
+    document.addEventListener('webkitfullscreenchange', updateButton);
+    document.addEventListener('mozfullscreenchange', updateButton);
+    document.addEventListener('MSFullscreenChange', updateButton);
+
+    function updateButton() {
+        if (document.fullscreenElement) {
+            fullscreenBtn.innerHTML = `
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                </svg>
+                退出全屏
+            `;
+        } else {
+            fullscreenBtn.innerHTML = `
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                </svg>
+                全屏
+            `;
+        }
+    }
+    
+</script>
+</body>
+</html>

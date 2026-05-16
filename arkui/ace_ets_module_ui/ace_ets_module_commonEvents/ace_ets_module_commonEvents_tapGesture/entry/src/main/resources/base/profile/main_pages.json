@@ -1,0 +1,31 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/TapGesture/GestureTag",
+        "MainAbility/pages/TapGesture/TapGesture1",
+        "MainAbility/pages/TapGesture/TapGesture2",
+        "MainAbility/pages/TapGesture/TapGesture3",
+        "MainAbility/pages/TapGesture/tapGesture",
+        "MainAbility/pages/TapGesture/priorityGesture",
+        "MainAbility/pages/TapGesture/parallelGesture",
+        "MainAbility/pages/TapGesture/TapGestureTemplate",
+        "MainAbility/pages/TapGesture/TapGestureBasicClickMouse",
+        "MainAbility/pages/TapGesture/TapGestureBasicDoubleClickMouse",
+        "MainAbility/pages/TapGesture/TapGestureBasicClick",
+        "MainAbility/pages/TapGesture/TapGestureBasicDoubleClick",
+        "MainAbility/pages/tapGestureAddInterface/tapgestures",
+        "MainAbility/pages/TapGesture/tapLocation",
+        "MainAbility/pages/TapGesture/tapLocation2",
+        "MainAbility/pages/getCurrentLocalPosition/getCurrentLocalPosition_ClickEvent",
+        "MainAbility/pages/getCurrentLocalPosition/getCurrentLocalPosition_TouchEvent",
+        "MainAbility/pages/getCurrentLocalPosition/getCurrentLocalPosition_MouseEvent",
+        "MainAbility/pages/getCurrentLocalPosition/getCurrentLocalPosition_AxisEvent",
+        "MainAbility/pages/getCurrentLocalPosition/getCurrentLocalPosition_EventLocationInfo",
+        "MainAbility/pages/getHistoricalPoints/getHistoricalPoints",
+        "MainAbility/pages/getCurrentLocalPosition/getCurrentLocalPosition_FingerInfo",
+        "MainAbility/pages/getHistoricalPoints/getHistoricalPoints_displayX",
+        "MainAbility/pages/getHistoricalPoints/getHistoricalPoints_windowX",
+        "MainAbility/pages/getHistoricalPoints/getHistoricalPoints_globalDisplayX",
+        "MainAbility/pages/getHistoricalPoints/getHistoricalPoints_undefined"
+    ]
+}

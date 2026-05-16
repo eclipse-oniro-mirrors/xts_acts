@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .box {
+          width: 150px;
+          height: 150px;
+          background: red;
+          text-align: center;
+          line-height: 150px;
+          color: white;
+          cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="log">Ready</div>
+<div class="box" draggable="true" id="drag">DragMe</div>
+
+
+<script>
+    const box = document.getElementById('drag');
+    const log = document.getElementById('log');
+
+    box.ondragstart = () => { log.innerText = 'Ready' };
+    document.body.ondragover = (e) => e.preventDefault();
+    document.body.ondrop = (e) => {
+      e.preventDefault();
+      isDragSuccess = true; // 拖拽成功
+      log.innerText = 'Dragging'
+    };
+</script>
+</body>
+</html>

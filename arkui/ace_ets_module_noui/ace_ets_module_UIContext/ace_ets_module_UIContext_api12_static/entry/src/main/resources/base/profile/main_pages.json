@@ -1,0 +1,17 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/UIContext/UIContextComponentSnapshot",
+    "MainAbility/pages/UIContext/UIcontextTestPage",
+    "MainAbility/pages/UIContext/UIContextApi1",
+    "MainAbility/pages/UIContext/onFrameTest1",
+    "MainAbility/pages/componentSnapshot/componentSnapshotSync",
+    "MainAbility/pages/atomicservice/PageTwo",
+    "MainAbility/pages/atomicservice/PageOne",
+    "MainAbility/pages/atomicservice/InterstitialDialogAction",
+    "MainAbility/pages/atomicservice/Index",
+    "MainAbility/pages/atomicservice/EntryAbility",
+    "MainAbility/pages/atomicservice/AtomicServiceWeb",
+    "MainAbility/pages/atomicservice/AtomicServiceNavigation"
+  ]
+}

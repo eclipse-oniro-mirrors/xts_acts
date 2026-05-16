@@ -1,0 +1,16 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/@state/StateNumber",
+    "MainAbility/pages/@state/StateColor",
+    "MainAbility/pages/@state/StateArray1",
+    "MainAbility/pages/@state/StateArray",
+    "MainAbility/pages/@state/PropColor",
+    "MainAbility/pages/@state/PropArray",
+    "MainAbility/pages/@state/LinkNumber",
+    "MainAbility/pages/@state/LinkColor",
+    "MainAbility/pages/@state/LinkArray",
+    "MainAbility/pages/@state/PropArray1",
+    "MainAbility/pages/@state/ConsumeArray"
+  ]
+}

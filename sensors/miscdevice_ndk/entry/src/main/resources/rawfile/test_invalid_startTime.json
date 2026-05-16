@@ -1,0 +1,28 @@
+{
+    "MetaData": {
+        "Create": "2023-02-01",
+        "Description": "a json file format demo",
+        "Version": 1.0,
+        "ChannelNumber": 1
+    },
+    "Channels": [
+        {
+            "Parameters": {
+                "Index": 1
+            },
+            "Pattern": [
+                {
+                    "Event": {
+                        "Type": "continuous",
+                        "StartTime": -1,
+                        "Duration": 75,
+                        "Parameters": {
+                            "Intensity": 100,
+                            "Frequency": 50
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

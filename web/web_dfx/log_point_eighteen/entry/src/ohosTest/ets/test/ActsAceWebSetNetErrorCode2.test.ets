@@ -1,0 +1,407 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { beforeAll, beforeEach, describe, it, TestType, Size, Level } from '@ohos/hypium';
+import Utils from './Utils.test';
+import router from '@ohos.router';
+import { accessibility, config } from '@kit.AccessibilityKit';
+import { Driver, ON } from '@kit.TestKit';
+
+const CAPACITY: accessibility.Capability[] = ['retrieve', 'gesture'];
+const BUNDLE_NAME = 'com.example.myaccessibilityapp/AccessibilityExtAbility';
+// @ts-nocheck
+let emitKey = ''
+const EVENT_ID_SET_EIMIT_KEY = 100000;
+const driver = Driver.create();
+
+export default function ActsAceWebSetNetErrorCode2() {
+  describe('ActsAceWebSetNetErrorCode2', () => {
+
+    beforeAll(async (done: Function) => {
+      await driver.waitForComponent(ON.id("webSetNetErrorCode2Button"), 10000);
+      console.log('waitForComponent webSetNetErrorCode2Button');
+      done()
+    });
+
+    beforeEach(async (done: Function) => {
+      config.enableAbility(BUNDLE_NAME, CAPACITY).then(() => {
+        console.info(`enable success`);
+        }).catch((err: object) => {
+        console.error(`failed to enable, ${err}`);
+      })
+      done();
+    })
+
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0026
+     *@tc.name   testWebSetNetErrorCode_ERR_CONTEXT_SHUT_DOWN
+     *@tc.desc   test WebSetNetErrorCode_ERR_CONTEXT_SHUT_DOWN (-26)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_CONTEXT_SHUT_DOWN', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_CONTEXT_SHUT_DOWN"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_CONTEXT_SHUT_DOWN", true, 100260, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0027
+     *@tc.name   testWebSetNetErrorCode_ERR_BLOCKED_BY_RESPONSE
+     *@tc.desc  test WebSetNetErrorCode_ERR_BLOCKED_BY_RESPONSE (-27)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_BLOCKED_BY_RESPONSE', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_BLOCKED_BY_RESPONSE"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_BLOCKED_BY_RESPONSE", true, 100270, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0028
+     *@tc.name   testWebSetNetErrorCode_ERR_CLEARTEXT_NOT_PERMITTED
+     *@tc.desc   test WebSetNetErrorCode_ERR_CLEARTEXT_NOT_PERMITTED (-29)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_CLEARTEXT_NOT_PERMITTED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_CLEARTEXT_NOT_PERMITTED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_CLEARTEXT_NOT_PERMITTED", true, 100280, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0029
+     *@tc.name   testWebSetNetErrorCode_ERR_BLOCKED_BY_CSP
+     *@tc.desc   test WebSetNetErrorCode_ERR_BLOCKED_BY_CSP (-30)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_BLOCKED_BY_CSP', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_BLOCKED_BY_CSP"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_BLOCKED_BY_CSP", true, 100290, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0030
+     *@tc.name   testWebSetNetErrorCode_ERR_H2_OR_QUIC_REQUIRED
+     *@tc.desc   test WebSetNetErrorCode_ERR_H2_OR_QUIC_REQUIRED (-31)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_H2_OR_QUIC_REQUIRED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_H2_OR_QUIC_REQUIRED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_H2_OR_QUIC_REQUIRED", true, 100300, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0031
+     *@tc.name   testWebSetNetErrorCode_ERR_BLOCKED_BY_ORB
+     *@tc.desc   test WebSetNetErrorCode_ERR_BLOCKED_BY_ORB (-32)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_BLOCKED_BY_ORB', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_BLOCKED_BY_ORB"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_BLOCKED_BY_ORB", true, 100310, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0032
+     *@tc.name   testWebSetNetErrorCode_ERR_CONNECTION_CLOSED
+     *@tc.desc   test WebSetNetErrorCode_ERR_CONNECTION_CLOSED (-100)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_CONNECTION_CLOSED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_CONNECTION_CLOSED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_CONNECTION_CLOSED", true, 100320  , done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0033
+     *@tc.name   testWebSetNetErrorCode_ERR_CONNECTION_RESET
+     *@tc.desc  test WebSetNetErrorCode_ERR_CONNECTION_RESET (-101)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_CONNECTION_RESET', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_CONNECTION_RESET"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_CONNECTION_RESET", true, 100330  , done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0034
+     *@tc.name   testWebSetNetErrorCode_ERR_CONNECTION_REFUSED
+     *@tc.desc   test WebSetNetErrorCode_ERR_CONNECTION_REFUSED (-102)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_CONNECTION_REFUSED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_CONNECTION_REFUSED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_CONNECTION_REFUSED", true, 100340, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0035
+     *@tc.name   testWebSetNetErrorCode_ERR_CONNECTION_ABORTED
+     *@tc.desc  test WebSetNetErrorCode_ERR_CONNECTION_ABORTED (-103)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_CONNECTION_ABORTED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_CONNECTION_ABORTED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_CONNECTION_ABORTED", true, 100350, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0036
+     *@tc.name   testWebSetNetErrorCode_ERR_CONNECTION_FAILED
+     *@tc.desc   test WebSetNetErrorCode_ERR_CONNECTION_FAILED (-104)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_CONNECTION_FAILED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_CONNECTION_FAILED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_CONNECTION_FAILED", true, 100360, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0037
+     *@tc.name   testWebSetNetErrorCode_ERR_NAME_NOT_RESOLVED
+     *@tc.desc   test WebSetNetErrorCode_ERR_NAME_NOT_RESOLVED (-105)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_NAME_NOT_RESOLVED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_NAME_NOT_RESOLVED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_NAME_NOT_RESOLVED", true, 100370, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0038
+     *@tc.name   testWebSetNetErrorCode_ERR_INTERNET_DISCONNECTED
+     *@tc.desc   test WebSetNetErrorCode_ERR_INTERNET_DISCONNECTED (-106)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_INTERNET_DISCONNECTED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_INTERNET_DISCONNECTED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_INTERNET_DISCONNECTED", true, 100380, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0039
+     *@tc.name   testWebSetNetErrorCode_ERR_SSL_PROTOCOL_ERROR
+     *@tc.desc   test WebSetNetErrorCode_ERR_SSL_PROTOCOL_ERROR (-107)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_SSL_PROTOCOL_ERROR', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_SSL_PROTOCOL_ERROR"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_SSL_PROTOCOL_ERROR", true, 100390, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0040
+     *@tc.name   testWebSetNetErrorCode_ERR_ADDRESS_INVALID
+     *@tc.desc   test WebSetNetErrorCode_ERR_ADDRESS_INVALID (-108)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_ADDRESS_INVALID', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_ADDRESS_INVALID"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_ADDRESS_INVALID", true, 100400, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0041
+     *@tc.name   testWebSetNetErrorCode_ERR_ADDRESS_UNREACHABLE
+     *@tc.desc   test WebSetNetErrorCode_ERR_ADDRESS_UNREACHABLE (-109)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_ADDRESS_UNREACHABLE', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_ADDRESS_UNREACHABLE"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_ADDRESS_UNREACHABLE", true, 100410, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0042
+     *@tc.name   testWebSetNetErrorCode_ERR_SSL_CLIENT_AUTH_CERT_NEEDED
+     *@tc.desc   test WebSetNetErrorCode_ERR_SSL_CLIENT_AUTH_CERT_NEEDED (-110)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_SSL_CLIENT_AUTH_CERT_NEEDED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_SSL_CLIENT_AUTH_CERT_NEEDED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_SSL_CLIENT_AUTH_CERT_NEEDED", true, 100420, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0043
+     *@tc.name   testWebSetNetErrorCode_ERR_TUNNEL_CONNECTION_FAILED
+     *@tc.desc   test WebSetNetErrorCode_ERR_TUNNEL_CONNECTION_FAILED (-111)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_TUNNEL_CONNECTION_FAILED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_TUNNEL_CONNECTION_FAILED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_TUNNEL_CONNECTION_FAILED", true, 100430, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0044
+     *@tc.name   testWebSetNetErrorCode_ERR_NO_SSL_VERSIONS_ENABLED
+     *@tc.desc   test WebSetNetErrorCode_ERR_NO_SSL_VERSIONS_ENABLED (-112)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_NO_SSL_VERSIONS_ENABLED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_NO_SSL_VERSIONS_ENABLED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_NO_SSL_VERSIONS_ENABLED", true, 100440, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+
+    /**
+     *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0045
+     *@tc.name   testWebSetNetErrorCode_ERR_SSL_VERSION_OR_CIPHER_MISMATCH
+     *@tc.desc   test WebSetNetErrorCode_ERR_SSL_VERSION_OR_CIPHER_MISMATCH (-113)
+     *@tc.size   MediumTest
+     *@tc.type   Function
+     *@tc.level  Level 1
+     */
+    it('testWebSetNetErrorCode_ERR_SSL_VERSION_OR_CIPHER_MISMATCH', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_SSL_VERSION_OR_CIPHER_MISMATCH"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_SSL_VERSION_OR_CIPHER_MISMATCH", true, 100450, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+
+    /**
+    *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0046
+    *@tc.name   testWebSetNetErrorCode_ERR_SSL_RENEGOTIATION_REQUESTED
+    *@tc.desc   test WebSetNetErrorCode_ERR_SSL_RENEGOTIATION_REQUESTED (-114)
+    *@tc.size   MediumTest
+    *@tc.type   Function
+    *@tc.level  Level 1
+    */
+    it('testWebSetNetErrorCode_ERR_SSL_RENEGOTIATION_REQUESTED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_SSL_RENEGOTIATION_REQUESTED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_SSL_RENEGOTIATION_REQUESTED", true, 100460, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+
+    /**
+    *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0047
+    *@tc.name   testWebSetNetErrorCode_ERR_PROXY_AUTH_UNSUPPORTED
+    *@tc.desc   test WebSetNetErrorCode_ERR_PROXY_AUTH_UNSUPPORTED (-115)
+    *@tc.size   MediumTest
+    *@tc.type   Function
+    *@tc.level  Level 1
+    */
+    it('testWebSetNetErrorCode_ERR_PROXY_AUTH_UNSUPPORTED', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_PROXY_AUTH_UNSUPPORTED"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_PROXY_AUTH_UNSUPPORTED", true, 100470, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+
+    /**
+    *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0048
+    *@tc.name   testWebSetNetErrorCode_ERR_BAD_SSL_CLIENT_AUTH_CERT
+    *@tc.desc   test WebSetNetErrorCode_ERR_BAD_SSL_CLIENT_AUTH_CERT (-117)
+    *@tc.size   MediumTest
+    *@tc.type   Function
+    *@tc.level  Level 1
+    */
+    it('testWebSetNetErrorCode_ERR_BAD_SSL_CLIENT_AUTH_CERT', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_BAD_SSL_CLIENT_AUTH_CERT"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_BAD_SSL_CLIENT_AUTH_CERT", true, 100480, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+
+    /**
+    *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0049
+    *@tc.name   testWebSetNetErrorCode_ERR_CONNECTION_TIMED_OUT
+    *@tc.desc   test WebSetNetErrorCode_ERR_CONNECTION_TIMED_OUT (-118)
+    *@tc.size   MediumTest
+    *@tc.type   Function
+    *@tc.level  Level 1
+    */
+    it('testWebSetNetErrorCode_ERR_CONNECTION_TIMED_OUT', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_CONNECTION_TIMED_OUT"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_CONNECTION_TIMED_OUT", true, 100490, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+
+    /**
+    *@tc.number SUB_ACE_WEB_SET_NET_ERROR_CODE_API_TWO_PART_0050
+    *@tc.name   testWebSetNetErrorCode_ERR_HOST_RESOLVER_QUEUE_TOO_LARGE
+    *@tc.desc   test WebSetNetErrorCode_ERR_HOST_RESOLVER_QUEUE_TOO_LARGE (-119)
+    *@tc.size   MediumTest
+    *@tc.type   Function
+    *@tc.level  Level 1
+    */
+    it('testWebSetNetErrorCode_ERR_HOST_RESOLVER_QUEUE_TOO_LARGE', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done: Function) => {
+      emitKey = "emitWebSetNetErrorCode_ERR_HOST_RESOLVER_QUEUE_TOO_LARGE"
+      Utils.emitEvent(emitKey, EVENT_ID_SET_EIMIT_KEY);
+      Utils.registerEvent("testWebSetNetErrorCode_ERR_HOST_RESOLVER_QUEUE_TOO_LARGE", true, 100500, done);
+      Utils.waitAndClickComponent(driver, "webSetNetErrorCode2Button");
+    })
+  })
+}

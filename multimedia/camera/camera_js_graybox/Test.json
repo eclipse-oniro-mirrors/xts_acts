@@ -1,0 +1,59 @@
+{
+    "description": "Configuration for camera Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "99999999",
+        "bundle-name": "ohos.actsGrayBoxCamera.test",
+        "module-name": "entry_test",
+        "shell-timeout": "99999999",
+        "testcase-timeout": "99999999"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "sleep 1",
+                "setenforce 0"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsCameraGrayBoxATest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "chmod 777 -R /data/app/el2/100/base/ohos.actsGrayBoxCamera.test/haps/entry_test"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff",
+                "hilog -Q domainoff",
+                "hilog -b D -D 0xD002B70"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600",
+                "setenforce 1",
+                "hilog -Q pidon",
+                "hilog -Q domainon"
+            ]
+        }
+    ]
+  }

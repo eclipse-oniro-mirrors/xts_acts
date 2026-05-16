@@ -1,0 +1,22 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.acts.ace.esnapitest",
+        "testcase-timeout": "180000",
+        "module-name": "entry_test",
+        "compile-mode": "esmodule"      
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAceNapiEtsEsTestMain.hap",
+                "ActsAceNapiEtsEsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Span/SpanIndex",
+    "MainAbility/pages/Span/SpanFontVariations",
+    "MainAbility/pages/SymbolSpan/SymbolSpanFontWeight"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+    "description": "Configuration for camerapicker Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "3000000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.camerapicker.static",
+        "module-name": "entry",
+        "testcase-timeout": 100000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsCameraPickerETSStaticTest.hap"
+            ],
+            "run-command": [
+                "hilog -Q pidoff",
+                "rm -rf /storage/media/100/local/files/Videos/*",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ],
+            "teardown-command":[
+                "power-shell setmode 600",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "kill -9 `pidof com.example.camerapicker.static`",
+                "scanner",
+                "sleep 5"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

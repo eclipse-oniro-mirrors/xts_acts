@@ -1,0 +1,6 @@
+{
+  "src": [
+     "testability/pages/WebViewActiveWebEngineVersion",
+	 "testability/pages/enableAdvancedSecurityMode"
+  ]
+}

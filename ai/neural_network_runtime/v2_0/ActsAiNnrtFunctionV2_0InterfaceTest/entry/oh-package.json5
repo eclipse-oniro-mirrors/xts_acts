@@ -1,0 +1,11 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "libnnrt_function_v2_0_interface_test.so": "file:./src/main/cpp/types/libnnrt_function_v2_0_interface_test"
+  }
+}

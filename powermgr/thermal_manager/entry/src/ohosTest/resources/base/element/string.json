@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "MyThermalApp"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Phone_Empty Feature Ability"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    }
+  ]
+}

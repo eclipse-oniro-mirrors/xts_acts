@@ -1,0 +1,47 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import SwiperWithResetTest from './swiper/SwiperWithResetTest.test';
+import PublicAttributeTest from './publicAttribute/PublicAttribute.test'
+import XComponentMultiThreadTest from './xcomponent/XComponentMultiThreadTest.test'
+import XComponentTextureMultiThreadTest from './xcomponent/XComponentTextureMultiThreadTest.test'
+import buttonTest  from "./button/buttonTest.test";
+import checkBoxTest  from "./checkBox/checkBoxTest.test";
+import checkBoxGroupTest  from "./checkBoxGroup/checkBoxGroupTest.test";
+import radioTest  from "./radio/radioTest.test";
+import sliderTest  from "./slider/sliderTest.test";
+import toggleTest  from "./toggle/toggleTest.test";
+import GridAttributeTest from './grid/GridAttributeTest.test'
+import ListAttributeTest from './list/ListAttributeTest.test'
+import ScrollAttributeTest from './scroll/ScrollAttributeTest.test'
+import RefreshAttributeTest from './refresh/RefreshAttributeTest.test'
+import WaterFlowAttributeTest from './waterFlow/WaterFlowAttributeTest.test'
+
+export default function testsuite() {
+  SwiperWithResetTest();
+  PublicAttributeTest();
+  XComponentMultiThreadTest();
+  XComponentTextureMultiThreadTest();
+  buttonTest();
+  checkBoxTest();
+  checkBoxGroupTest();
+  radioTest();
+  sliderTest();
+  toggleTest();
+  GridAttributeTest();
+  ListAttributeTest();
+  ScrollAttributeTest();
+  RefreshAttributeTest();
+  WaterFlowAttributeTest();
+}

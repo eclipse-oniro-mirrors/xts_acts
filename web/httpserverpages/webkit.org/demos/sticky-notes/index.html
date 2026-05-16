@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Notes Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #e8e8e8; min-height: 100vh; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 0 10px; }
+        h1 { text-align: center; }
+        .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .toolbar button { padding: 6px 14px; border: 1px solid #ccc; background: white; border-radius: 6px; font-size: 13px; cursor: pointer; }
+        .toolbar button:hover { background: #f0f0f0; }
+        .toolbar .add-btn { background: #4caf50; color: white; border-color: #4caf50; }
+        .toolbar .add-btn:hover { background: #43a047; }
+        .toolbar .search-input { padding: 6px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; outline: none; width: 180px; }
+        .color-palette { display: flex; gap: 4px; align-items: center; }
+        .color-swatch { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
+        .color-swatch.active { border-color: #333; }
+        .color-swatch.c1 { background: #fff9c4; }
+        .color-swatch.c2 { background: #ffccbc; }
+        .color-swatch.c3 { background: #c8e6c9; }
+        .color-swatch.c4 { background: #bbdefb; }
+        .color-swatch.c5 { background: #e1bee7; }
+        .color-swatch.c6 { background: #ffecb3; }
+        .color-swatch.c7 { background: #f8bbd0; }
+        .color-swatch.c8 { background: #b2dfdb; }
+        .category-bar { display: flex; gap: 6px; margin-bottom: 15px; padding: 0 10px; flex-wrap: wrap; }
+        .cat-tag { padding: 4px 12px; background: white; border-radius: 12px; font-size: 12px; cursor: pointer; border: 1px solid #ddd; }
+        .cat-tag.active { background: #4caf50; color: white; border-color: #4caf50; }
+        .notes-container { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .note { width: 200px; min-height: 200px; padding: 15px; border-radius: 4px; box-shadow: 2px 4px 10px rgba(0,0,0,0.15); font-size: 14px; line-height: 1.6; position: relative; cursor: move; }
+        .note:nth-child(1) { background: #fff9c4; }
+        .note:nth-child(2) { background: #ffccbc; }
+        .note:nth-child(3) { background: #c8e6c9; }
+        .note:nth-child(4) { background: #bbdefb; }
+        .note:nth-child(5) { background: #e1bee7; }
+        .note:nth-child(6) { background: #ffecb3; }
+        .note:nth-child(7) { background: #f8bbd0; }
+        .note:nth-child(8) { background: #b2dfdb; }
+        .note:nth-child(9) { background: #fff9c4; }
+        .note:nth-child(10) { background: #bbdefb; }
+        .note:nth-child(11) { background: #c8e6c9; }
+        .note:nth-child(12) { background: #ffccbc; }
+        .note h3 { font-size: 15px; margin-bottom: 8px; }
+        .note-actions { position: absolute; top: 6px; right: 6px; display: flex; gap: 3px; opacity: 0; transition: opacity 0.2s; }
+        .note:hover .note-actions { opacity: 1; }
+        .note-actions button { width: 22px; height: 22px; border: none; background: rgba(0,0,0,0.1); border-radius: 4px; cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+        .note-actions button:hover { background: rgba(0,0,0,0.2); }
+        .note-pin { position: absolute; top: -6px; left: 50%; transform: translateX(-50%); font-size: 16px; display: none; }
+        .note.pinned .note-pin { display: block; }
+        .note.pinned { box-shadow: 2px 4px 10px rgba(0,0,0,0.25); }
+        .note-timestamp { position: absolute; bottom: 6px; right: 8px; font-size: 10px; color: rgba(0,0,0,0.3); }
+        .note-category { position: absolute; top: 6px; left: 8px; font-size: 10px; padding: 1px 6px; background: rgba(0,0,0,0.1); border-radius: 8px; color: rgba(0,0,0,0.5); }
+        .note-resize { position: absolute; bottom: 4px; right: 4px; width: 12px; height: 12px; cursor: nwse-resize; opacity: 0.3; }
+        .note-content { outline: none; min-height: 80px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Sticky Notes</h1>
+        <div class="toolbar">
+            <button class="add-btn" onclick="addNote()">+ New Note</button>
+            <input class="search-input" placeholder="Search notes..." oninput="searchNotes(this.value)">
+            <div class="color-palette">
+                <div class="color-swatch c1 active" onclick="selectColor(this, '#fff9c4')"></div>
+                <div class="color-swatch c2" onclick="selectColor(this, '#ffccbc')"></div>
+                <div class="color-swatch c3" onclick="selectColor(this, '#c8e6c9')"></div>
+                <div class="color-swatch c4" onclick="selectColor(this, '#bbdefb')"></div>
+                <div class="color-swatch c5" onclick="selectColor(this, '#e1bee7')"></div>
+                <div class="color-swatch c6" onclick="selectColor(this, '#ffecb3')"></div>
+                <div class="color-swatch c7" onclick="selectColor(this, '#f8bbd0')"></div>
+                <div class="color-swatch c8" onclick="selectColor(this, '#b2dfdb')"></div>
+            </div>
+            <button onclick="deleteSelected()">Delete</button>
+            <button onclick="pinSelected()">Pin</button>
+        </div>
+    </div>
+    <div class="category-bar">
+        <div class="cat-tag active" onclick="filterCategory(this, 'all')">All</div>
+        <div class="cat-tag" onclick="filterCategory(this, 'work')">Work</div>
+        <div class="cat-tag" onclick="filterCategory(this, 'personal')">Personal</div>
+        <div class="cat-tag" onclick="filterCategory(this, 'ideas')">Ideas</div>
+        <div class="cat-tag" onclick="filterCategory(this, 'todo')">To-Do</div>
+    </div>
+    <div class="notes-container" id="notesContainer">
+        <div class="note" data-category="work">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">Work</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 1</h3>
+            <div class="note-content">This is a sticky note demo page used for testing purposes. You can move the notes around.</div>
+            <div class="note-timestamp">10:30 AM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="personal">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">Personal</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 2</h3>
+            <div class="note-content">WebKit sticky notes demo. Each note can be dragged and positioned freely on the page.</div>
+            <div class="note-timestamp">11:15 AM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="ideas">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">Ideas</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 3</h3>
+            <div class="note-content">Supports multiple note instances with different colors.</div>
+            <div class="note-timestamp">12:00 PM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="work">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">Work</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 4</h3>
+            <div class="note-content">This page is used to test WebView page loading and interaction.</div>
+            <div class="note-timestamp">1:30 PM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="todo">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">To-Do</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 5</h3>
+            <div class="note-content">Sticky notes are a classic WebKit demo feature.</div>
+            <div class="note-timestamp">2:45 PM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="ideas">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">Ideas</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 6</h3>
+            <div class="note-content">Try dragging notes to rearrange them. Each note is independently movable.</div>
+            <div class="note-timestamp">3:20 PM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="personal">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">Personal</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 7</h3>
+            <div class="note-content">Meeting notes: discuss project timeline and resource allocation for Q1.</div>
+            <div class="note-timestamp">4:00 PM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="todo">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">To-Do</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 8</h3>
+            <div class="note-content">TODO: Fix CSS layout issues, review pull requests, update documentation.</div>
+            <div class="note-timestamp">4:30 PM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="work">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">Work</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 9</h3>
+            <div class="note-content">API integration testing checklist: authentication, data validation, error handling.</div>
+            <div class="note-timestamp">5:00 PM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="ideas">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">Ideas</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 10</h3>
+            <div class="note-content">Feature idea: Add dark mode support and customizable themes for the notes app.</div>
+            <div class="note-timestamp">5:30 PM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="personal">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">Personal</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 11</h3>
+            <div class="note-content">Grocery list: milk, bread, eggs, vegetables, fruits, coffee beans.</div>
+            <div class="note-timestamp">6:00 PM</div>
+            <div class="note-resize"></div>
+        </div>
+        <div class="note" data-category="todo">
+            <div class="note-pin">&#128204;</div>
+            <span class="note-category">To-Do</span>
+            <div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div>
+            <h3>Note 12</h3>
+            <div class="note-content">Weekly goals: finish report, prepare presentation, schedule team review.</div>
+            <div class="note-timestamp">6:30 PM</div>
+            <div class="note-resize"></div>
+        </div>
+    </div>
+    <script>
+        function test() { return true; }
+        var selectedColor = '#fff9c4';
+        var noteCount = 12;
+        var selectedNote = null;
+        document.querySelectorAll('.note').forEach(function(note) {
+            initDrag(note);
+        });
+        function initDrag(note) {
+            var isDragging = false, startX, startY, origX, origY;
+            note.addEventListener('mousedown', function(e) {
+                if (e.target.tagName === 'BUTTON' || e.target.classList.contains('note-resize')) return;
+                isDragging = true;
+                startX = e.clientX;
+                startY = e.clientY;
+                selectedNote = note;
+                var rect = note.getBoundingClientRect();
+                origX = rect.left;
+                origY = rect.top;
+                note.style.position = 'fixed';
+                note.style.left = origX + 'px';
+                note.style.top = origY + 'px';
+                note.style.zIndex = '1000';
+            });
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                note.style.left = (origX + e.clientX - startX) + 'px';
+                note.style.top = (origY + e.clientY - startY) + 'px';
+            });
+            document.addEventListener('mouseup', function() { isDragging = false; });
+            var resizer = note.querySelector('.note-resize');
+            if (resizer) {
+                var isResizing = false, startH, startW, startMY, startMX;
+                resizer.addEventListener('mousedown', function(e) {
+                    isResizing = true;
+                    e.stopPropagation();
+                    startH = note.offsetHeight;
+                    startW = note.offsetWidth;
+                    startMY = e.clientY;
+                    startMX = e.clientX;
+                });
+                document.addEventListener('mousemove', function(e) {
+                    if (!isResizing) return;
+                    note.style.height = Math.max(150, startH + e.clientY - startMY) + 'px';
+                    note.style.width = Math.max(150, startW + e.clientX - startMX) + 'px';
+                });
+                document.addEventListener('mouseup', function() { isResizing = false; });
+            }
+        }
+        function selectColor(el, color) {
+            document.querySelectorAll('.color-swatch').forEach(function(s) { s.classList.remove('active'); });
+            el.classList.add('active');
+            selectedColor = color;
+            if (selectedNote) {
+                selectedNote.style.background = color;
+            }
+        }
+        function addNote() {
+            noteCount++;
+            var container = document.getElementById('notesContainer');
+            var note = document.createElement('div');
+            note.className = 'note';
+            note.style.background = selectedColor;
+            note.setAttribute('data-category', 'personal');
+            var now = new Date();
+            var timeStr = now.getHours() + ':' + (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+            note.innerHTML = '<div class="note-pin">&#128204;</div><span class="note-category">Personal</span><div class="note-actions"><button onclick="deleteNote(this)" title="Delete">&#10005;</button><button onclick="pinNote(this)" title="Pin">&#128204;</button></div><h3>Note ' + noteCount + '</h3><div class="note-content">New note content...</div><div class="note-timestamp">' + timeStr + '</div><div class="note-resize"></div>';
+            container.appendChild(note);
+            initDrag(note);
+        }
+        function deleteNote(btn) {
+            var note = btn.closest('.note');
+            note.style.transition = 'opacity 0.3s, transform 0.3s';
+            note.style.opacity = '0';
+            note.style.transform = 'scale(0.8)';
+            setTimeout(function() { note.remove(); }, 300);
+        }
+        function deleteSelected() {
+            if (selectedNote) { selectedNote.remove(); selectedNote = null; }
+        }
+        function pinNote(btn) {
+            var note = btn.closest('.note');
+            note.classList.toggle('pinned');
+        }
+        function pinSelected() {
+            if (selectedNote) { selectedNote.classList.toggle('pinned'); }
+        }
+        function searchNotes(query) {
+            var notes = document.querySelectorAll('.note');
+            query = query.toLowerCase();
+            notes.forEach(function(note) {
+                var text = note.textContent.toLowerCase();
+                note.style.display = text.indexOf(query) !== -1 ? '' : 'none';
+            });
+        }
+        function filterCategory(el, cat) {
+            document.querySelectorAll('.cat-tag').forEach(function(t) { t.classList.remove('active'); });
+            el.classList.add('active');
+            var notes = document.querySelectorAll('.note');
+            notes.forEach(function(note) {
+                if (cat === 'all') { note.style.display = ''; }
+                else { note.style.display = note.getAttribute('data-category') === cat ? '' : 'none'; }
+            });
+        }
+    </script>
+</body>
+</html>

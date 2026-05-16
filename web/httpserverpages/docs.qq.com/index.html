@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>腾讯文档</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif; background: #f0f2f5; min-height: 100vh; }
+        .header { background: white; padding: 10px 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 20px; }
+        .logo { font-size: 20px; font-weight: bold; color: #0078d4; }
+        .search { flex: 1; max-width: 400px; padding: 8px 16px; border: 1px solid #ddd; border-radius: 20px; font-size: 14px; outline: none; }
+        .header-actions { display: flex; gap: 10px; margin-left: auto; }
+        .header-btn { padding: 6px 16px; border-radius: 6px; font-size: 13px; cursor: pointer; border: 1px solid #ddd; background: white; color: #333; }
+        .header-btn.primary { background: #0078d4; color: white; border-color: #0078d4; }
+        .toolbar { background: white; padding: 10px 30px; border-bottom: 1px solid #eee; display: flex; gap: 10px; align-items: center; }
+        .toolbar-btn { padding: 6px 14px; background: #f0f2f5; border: none; border-radius: 6px; font-size: 13px; color: #333; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+        .toolbar-btn:hover { background: #e0e3e8; }
+        .toolbar-btn.active { background: #0078d4; color: white; }
+        .toolbar-sep { width: 1px; height: 20px; background: #eee; }
+        .content { max-width: 1100px; margin: 20px auto; padding: 0 20px; }
+        .tab-bar { display: flex; gap: 0; margin-bottom: 20px; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .tab-btn { flex: 1; padding: 12px; text-align: center; font-size: 14px; cursor: pointer; border: none; background: white; color: #666; transition: all 0.2s; }
+        .tab-btn.active { background: #0078d4; color: white; }
+        .tab-btn:hover:not(.active) { background: #f5f5f5; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .section-header h2 { font-size: 18px; color: #333; }
+        .section-header a { font-size: 13px; color: #0078d4; text-decoration: none; }
+        .folder-tree { background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .folder-tree h3 { font-size: 16px; margin-bottom: 15px; }
+        .tree-item { padding: 8px 12px; display: flex; align-items: center; gap: 8px; cursor: pointer; border-radius: 6px; font-size: 14px; }
+        .tree-item:hover { background: #f0f2f5; }
+        .tree-item .icon { font-size: 18px; }
+        .tree-item .collab { margin-left: auto; display: flex; }
+        .tree-item .collab .avatar { width: 22px; height: 22px; border-radius: 50%; background: #ddd; border: 2px solid white; margin-left: -6px; }
+        .tree-item .collab .avatar:first-child { margin-left: 0; }
+        .tree-children { padding-left: 24px; }
+        .doc-card { background: white; border-radius: 10px; padding: 20px; margin-bottom: 12px; cursor: pointer; transition: box-shadow 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .doc-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+        .doc-card-header { display: flex; align-items: flex-start; gap: 12px; }
+        .doc-card-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .doc-card-body { flex: 1; }
+        .doc-card h3 { font-size: 16px; margin-bottom: 6px; }
+        .doc-card p { font-size: 13px; color: #999; }
+        .doc-type { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; margin-bottom: 8px; }
+        .doc-type.sheet { background: #e3f2fd; color: #0078d4; }
+        .doc-type.slide { background: #fff3e0; color: #e65100; }
+        .doc-type.doc { background: #e8f5e9; color: #2e7d32; }
+        .doc-type.form { background: #fce4ec; color: #c62828; }
+        .doc-type.mind { background: #f3e5f5; color: #7b1fa2; }
+        .doc-card-meta { display: flex; gap: 15px; font-size: 12px; color: #999; margin-top: 8px; align-items: center; }
+        .doc-card-meta .collab-avatars { display: flex; margin-left: auto; }
+        .doc-card-meta .collab-avatars .ca { width: 20px; height: 20px; border-radius: 50%; background: #ddd; margin-left: -4px; }
+        .doc-card-meta .collab-avatars .ca:first-child { margin-left: 0; }
+        .doc-card-meta .collab-avatars .ca.online { background: #4caf50; }
+        .shared-badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 8px; background: #e8f5e9; color: #2e7d32; border-radius: 10px; font-size: 11px; }
+        .templates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .template-card { background: white; border-radius: 10px; padding: 15px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.06); text-align: center; }
+        .template-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        .template-card .tc-icon { width: 50px; height: 60px; margin: 0 auto 10px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .template-card .tc-name { font-size: 14px; color: #333; margin-bottom: 4px; }
+        .template-card .tc-desc { font-size: 12px; color: #999; }
+        .preview-panel { background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .preview-panel h3 { font-size: 16px; margin-bottom: 15px; }
+        .preview-area { height: 300px; background: #f8f9fa; border-radius: 8px; border: 1px solid #eee; padding: 20px; position: relative; }
+        .preview-area .pa-header { height: 20px; background: #e0e3e8; border-radius: 4px; margin-bottom: 12px; width: 60%; }
+        .preview-area .pa-line { height: 10px; background: #e0e3e8; border-radius: 4px; margin-bottom: 8px; }
+        .preview-area .pa-line:nth-child(2) { width: 90%; }
+        .preview-area .pa-line:nth-child(3) { width: 75%; }
+        .preview-area .pa-line:nth-child(4) { width: 85%; }
+        .preview-area .pa-line:nth-child(5) { width: 50%; }
+        .preview-area .pa-table { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 15px; }
+        .preview-area .pa-cell { height: 24px; background: #e0e3e8; border-radius: 3px; }
+        .preview-area .pa-cell.header { background: #d0d4da; }
+        .quick-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+        .quick-action { background: white; border-radius: 10px; padding: 15px; text-align: center; cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: transform 0.2s; }
+        .quick-action:hover { transform: translateY(-2px); }
+        .quick-action .qa-icon { font-size: 28px; margin-bottom: 8px; }
+        .quick-action .qa-name { font-size: 13px; color: #333; }
+        .stats-bar { display: flex; gap: 15px; margin-bottom: 20px; }
+        .stat-card { flex: 1; background: white; border-radius: 10px; padding: 15px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .stat-card .sc-num { font-size: 24px; font-weight: bold; color: #0078d4; }
+        .stat-card .sc-label { font-size: 12px; color: #999; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">&#128196; 腾讯文档</div>
+        <input class="search" placeholder="搜索文档">
+        <div class="header-actions">
+            <button class="header-btn">+ 新建</button>
+            <button class="header-btn primary">&#128100; 登录</button>
+        </div>
+    </div>
+    <div class="toolbar">
+        <button class="toolbar-btn active">&#128193; 全部文档</button>
+        <button class="toolbar-btn">&#128278; 最近</button>
+        <button class="toolbar-btn">&#128101; 与我共享</button>
+        <button class="toolbar-btn">&#11088; 收藏</button>
+        <div class="toolbar-sep"></div>
+        <button class="toolbar-btn">&#128194; 回收站</button>
+        <button class="toolbar-btn">&#9881; 设置</button>
+    </div>
+    <div class="content">
+        <div class="stats-bar">
+            <div class="stat-card"><div class="sc-num">23</div><div class="sc-label">全部文档</div></div>
+            <div class="stat-card"><div class="sc-num">8</div><div class="sc-label">共享文档</div></div>
+            <div class="stat-card"><div class="sc-num">5</div><div class="sc-label">今日编辑</div></div>
+            <div class="stat-card"><div class="sc-num">3</div><div class="sc-label">待处理</div></div>
+        </div>
+        <div class="quick-actions">
+            <div class="quick-action"><div class="qa-icon">&#128221;</div><div class="qa-name">新建文档</div></div>
+            <div class="quick-action"><div class="qa-icon">&#128202;</div><div class="qa-name">新建表格</div></div>
+            <div class="quick-action"><div class="qa-icon">&#128247;</div><div class="qa-name">新建演示</div></div>
+            <div class="quick-action"><div class="qa-icon">&#129504;</div><div class="qa-name">新建脑图</div></div>
+        </div>
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab('recent')">最近文档</button>
+            <button class="tab-btn" onclick="switchTab('shared')">共享文档</button>
+            <button class="tab-btn" onclick="switchTab('templates')">模板中心</button>
+            <button class="tab-btn" onclick="switchTab('folders')">文件夹</button>
+        </div>
+        <div class="tab-content active" id="tab-recent">
+            <div class="section-header"><h2>最近编辑</h2><a href="#">查看全部 &gt;</a></div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#e3f2fd;">&#128202;</div>
+                    <div class="doc-card-body"><span class="doc-type sheet">表格</span><h3>2024年度工作计划表</h3><p>包含各部门年度目标、季度计划和预算分配</p><div class="doc-card-meta"><span>1小时前编辑</span><span>128 KB</span><span class="shared-badge">&#128101; 3人协作</span><div class="collab-avatars"><div class="ca online"></div><div class="ca"></div><div class="ca"></div></div></div></div>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#fff3e0;">&#128247;</div>
+                    <div class="doc-card-body"><span class="doc-type slide">演示</span><h3>项目汇报PPT模板</h3><p>季度项目汇报模板，包含数据图表和分析总结</p><div class="doc-card-meta"><span>3小时前编辑</span><span>2.4 MB</span><span class="shared-badge">&#128101; 5人协作</span><div class="collab-avatars"><div class="ca online"></div><div class="ca online"></div><div class="ca"></div><div class="ca"></div><div class="ca"></div></div></div></div>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#e8f5e9;">&#128221;</div>
+                    <div class="doc-card-body"><span class="doc-type doc">文档</span><h3>技术方案设计文档</h3><p>系统架构设计、接口规范和技术选型说明</p><div class="doc-card-meta"><span>昨天编辑</span><span>86 KB</span><div class="collab-avatars"><div class="ca"></div><div class="ca"></div></div></div></div>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#fce4ec;">&#128203;</div>
+                    <div class="doc-card-body"><span class="doc-type form">收集表</span><h3>问卷调查模板</h3><p>用户满意度调查问卷，已收集156份反馈</p><div class="doc-card-meta"><span>2天前编辑</span><span>45 KB</span><span class="shared-badge">&#128101; 公开</span></div></div>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#f3e5f5;">&#129504;</div>
+                    <div class="doc-card-body"><span class="doc-type mind">思维导图</span><h3>产品需求脑图</h3><p>V2.0版本产品功能规划和需求梳理</p><div class="doc-card-meta"><span>3天前编辑</span><span>200 KB</span><span class="shared-badge">&#128101; 2人协作</span><div class="collab-avatars"><div class="ca online"></div><div class="ca"></div></div></div></div>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#e3f2fd;">&#128202;</div>
+                    <div class="doc-card-body"><span class="doc-type sheet">表格</span><h3>销售数据统计表</h3><p>2024年各区域月度销售数据和趋势分析</p><div class="doc-card-meta"><span>4天前编辑</span><span>356 KB</span><div class="collab-avatars"><div class="ca"></div></div></div></div>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#e8f5e9;">&#128221;</div>
+                    <div class="doc-card-body"><span class="doc-type doc">文档</span><h3>会议纪要模板</h3><p>标准会议记录格式，包含参会人员和决议事项</p><div class="doc-card-meta"><span>5天前编辑</span><span>32 KB</span></div></div>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#fff3e0;">&#128247;</div>
+                    <div class="doc-card-body"><span class="doc-type slide">演示</span><h3>年度总结报告</h3><p>2024年度工作总结与2025年计划展望</p><div class="doc-card-meta"><span>1周前编辑</span><span>5.6 MB</span><span class="shared-badge">&#128101; 4人协作</span></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab-shared">
+            <div class="section-header"><h2>与我共享</h2><a href="#">查看全部 &gt;</a></div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#e8f5e9;">&#128221;</div>
+                    <div class="doc-card-body"><span class="doc-type doc">文档</span><h3>团队周报汇总</h3><p>由张三分享 | 可编辑</p><div class="doc-card-meta"><span>30分钟前更新</span><span class="shared-badge">&#128101; 8人协作</span><div class="collab-avatars"><div class="ca online"></div><div class="ca online"></div><div class="ca"></div></div></div></div>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#fff3e0;">&#128247;</div>
+                    <div class="doc-card-body"><span class="doc-type slide">演示</span><h3>年度总结报告</h3><p>由李四分享 | 仅查看</p><div class="doc-card-meta"><span>2小时前更新</span><span class="shared-badge">&#128101; 12人协作</span></div></div>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#e3f2fd;">&#128202;</div>
+                    <div class="doc-card-body"><span class="doc-type sheet">表格</span><h3>项目排期表</h3><p>由王五分享 | 可编辑</p><div class="doc-card-meta"><span>1天前更新</span><span class="shared-badge">&#128101; 6人协作</span><div class="collab-avatars"><div class="ca online"></div><div class="ca"></div></div></div></div>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-header">
+                    <div class="doc-card-icon" style="background:#fce4ec;">&#128203;</div>
+                    <div class="doc-card-body"><span class="doc-type form">收集表</span><h3>会议纪要模板</h3><p>由赵六分享 | 可编辑</p><div class="doc-card-meta"><span>3天前更新</span><span class="shared-badge">&#128101; 4人协作</span></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab-templates">
+            <div class="section-header"><h2>模板中心</h2><a href="#">更多模板 &gt;</a></div>
+            <div class="templates-grid">
+                <div class="template-card"><div class="tc-icon" style="background:#e3f2fd;">&#128202;</div><div class="tc-name">项目管理表</div><div class="tc-desc">跟踪项目进度和任务</div></div>
+                <div class="template-card"><div class="tc-icon" style="background:#fff3e0;">&#128247;</div><div class="tc-name">商务计划书</div><div class="tc-desc">专业的商业计划展示</div></div>
+                <div class="template-card"><div class="tc-icon" style="background:#e8f5e9;">&#128221;</div><div class="tc-name">会议纪要</div><div class="tc-desc">标准会议记录模板</div></div>
+                <div class="template-card"><div class="tc-icon" style="background:#fce4ec;">&#128203;</div><div class="tc-name">满意度调查</div><div class="tc-desc">用户反馈收集模板</div></div>
+                <div class="template-card"><div class="tc-icon" style="background:#f3e5f5;">&#129504;</div><div class="tc-name">头脑风暴</div><div class="tc-desc">创意收集思维导图</div></div>
+                <div class="template-card"><div class="tc-icon" style="background:#e3f2fd;">&#128202;</div><div class="tc-name">预算管理表</div><div class="tc-desc">部门预算跟踪管理</div></div>
+                <div class="template-card"><div class="tc-icon" style="background:#e8f5e9;">&#128221;</div><div class="tc-name">需求文档</div><div class="tc-desc">产品需求规格说明</div></div>
+                <div class="template-card"><div class="tc-icon" style="background:#fff3e0;">&#128247;</div><div class="tc-name">培训课件</div><div class="tc-desc">员工培训演示模板</div></div>
+                <div class="template-card"><div class="tc-icon" style="background:#fce4ec;">&#128203;</div><div class="tc-name">报名表</div><div class="tc-desc">活动报名信息收集</div></div>
+            </div>
+        </div>
+        <div class="tab-content" id="tab-folders">
+            <div class="section-header"><h2>我的文件夹</h2><a href="#">新建文件夹</a></div>
+            <div class="folder-tree">
+                <div class="tree-item"><span class="icon">&#128193;</span> 工作文档</div>
+                <div class="tree-children">
+                    <div class="tree-item"><span class="icon">&#128196;</span> 技术方案设计文档 <div class="collab"><div class="avatar"></div><div class="avatar" style="background:#4caf50;"></div></div></div>
+                    <div class="tree-item"><span class="icon">&#128202;</span> 2024年度工作计划表 <div class="collab"><div class="avatar"></div></div></div>
+                    <div class="tree-item"><span class="icon">&#128196;</span> 项目排期表 <div class="collab"><div class="avatar" style="background:#ff9800;"></div><div class="avatar"></div></div></div>
+                </div>
+                <div class="tree-item"><span class="icon">&#128193;</span> 个人文档</div>
+                <div class="tree-children">
+                    <div class="tree-item"><span class="icon">&#128196;</span> 学习笔记</div>
+                    <div class="tree-item"><span class="icon">&#129504;</span> 读书清单</div>
+                </div>
+                <div class="tree-item"><span class="icon">&#128193;</span> 共享文件夹</div>
+                <div class="tree-children">
+                    <div class="tree-item"><span class="icon">&#128247;</span> 项目汇报PPT模板 <div class="collab"><div class="avatar"></div><div class="avatar" style="background:#4caf50;"></div><div class="avatar"></div></div></div>
+                    <div class="tree-item"><span class="icon">&#128202;</span> 销售数据统计表 <div class="collab"><div class="avatar"></div></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="preview-panel">
+            <h3>&#128065; 文档预览</h3>
+            <div class="preview-area">
+                <div class="pa-header"></div>
+                <div class="pa-line"></div>
+                <div class="pa-line"></div>
+                <div class="pa-line"></div>
+                <div class="pa-line"></div>
+                <div class="pa-table">
+                    <div class="pa-cell header"></div>
+                    <div class="pa-cell header"></div>
+                    <div class="pa-cell header"></div>
+                    <div class="pa-cell"></div>
+                    <div class="pa-cell"></div>
+                    <div class="pa-cell"></div>
+                    <div class="pa-cell"></div>
+                    <div class="pa-cell"></div>
+                    <div class="pa-cell"></div>
+                    <div class="pa-cell"></div>
+                    <div class="pa-cell"></div>
+                    <div class="pa-cell"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function test() { return true; }
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(function(btn) { btn.classList.remove('active'); });
+            document.querySelectorAll('.tab-content').forEach(function(tc) { tc.classList.remove('active'); });
+            event.target.classList.add('active');
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>

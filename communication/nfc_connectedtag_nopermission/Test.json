@@ -1,0 +1,28 @@
+{
+    "description": "Configuration for nfc ConnectedTag js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "testcase-timeout": "600000",
+        "bundle-name": "ohos.acts.communication.nfc.connectedtagnp",
+        "package-name": "ohos.acts.communication.nfc.connectedtagnp"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNFCConnectedTagNoPermissionJSTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "svc nfc enable",
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

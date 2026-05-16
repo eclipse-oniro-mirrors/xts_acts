@@ -1,0 +1,104 @@
+{
+  "float": [
+    {
+      "name": "maxFontScale",
+      "value": "3.5"
+    },
+    {
+      "name": "minFontScale",
+      "value": "0.6"
+    },
+    {
+      "name": "float_1",
+      "value": "30.6"
+    },
+    {
+      "name": "font_weight",
+      "value": "500"
+    },
+    {
+      "name": "TextInput_letterSpacing",
+      "value": "0"
+    },
+    {
+      "name": "TextInput_letterSpacing2",
+      "value": "20"
+    },
+    {
+      "name": "TextInput_letterSpacing3",
+      "value": "20.5"
+    },
+    {
+      "name": "Text_letterSpacing",
+      "value": "10"
+    },
+    {
+      "name": "Span_letterSpacing",
+      "value": "10"
+    },
+    {
+      "name": "Text_fontWeight",
+      "value": "400"
+    },
+    {
+      "name": "Text_fontWeight2",
+      "value": "600.0"
+    },
+    {
+      "name": "Text_fontWeight3",
+      "value": "800"
+    },
+    {
+      "name": "TextInput_fontWeight",
+      "value": "900"
+    },
+    {
+      "name": "Text_height",
+      "value": "200"
+    },
+    {
+      "name": "Text_baseline",
+      "value": "0"
+    },
+    {
+      "name": "Text_baseline2",
+      "value": "50"
+    },
+    {
+      "name": "Text_baseline3",
+      "value": "50.5"
+    },
+    {
+      "name": "Text_baseline_negativeNumber",
+      "value": "-5"
+    },
+    {
+      "name": "TextInput_letterSpacing_negativeNumber",
+      "value": "-5"
+    },
+    {
+      "name": "SearchButton_num",
+      "value": "100"
+    },
+    {
+      "name": "RichEditor_addTextSpan_num",
+      "value": "10000000000"
+    },
+    {
+      "name": "radius_1",
+      "value": "30.6"
+    },
+    {
+      "name": "offsetX_1",
+      "value": "10"
+    },
+    {
+      "name": "offsetY_1",
+      "value": "10"
+    },
+    {
+      "name":"text_con_width",
+      "value":"200vp"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "phone_entry_dsc",
+      "value": "i am an entry for phone"
+    },
+    {
+      "name": "phone_entry_main",
+      "value": "the phone entry ability"
+    },
+    {
+      "name": "entry_label",
+      "value": "getAutoStartupStatusForSelf"
+    },
+    {
+      "name": "form_description",
+      "value": "my form"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "IsolationProcessAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "IsolationProcessAbility_label",
+      "value": "label"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/datePicker/TestDatePickerMode",
+    "MainAbility/pages/textPicker/textPickerEnableHapticFeedback",
+    "MainAbility/pages/datePicker/datePickerEnableHapticFeedback",
+    "MainAbility/pages/swiper/SwiperIndicatorDistanceTest",
+    "MainAbility/pages/ExpectedFrameRateRange/ExpectedFrameRateRangeCallback",
+    "MainAbility/pages/visibleAreaEventOptions/visibleAreaEventOptions",
+    "MainAbility/pages/gestureRecognizer/GestureInterrupterTest",
+    "MainAbility/pages/XComponent/XComponentLifeCyclePage",
+    "MainAbility/pages/button/buttonFontScale"
+  ]
+}

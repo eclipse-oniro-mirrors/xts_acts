@@ -1,0 +1,12 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Context/IsFollowingSystemFontScaleTrueTest",
+    "MainAbility/pages/getUIContext/GetUIContextTest",
+    "MainAbility/pages/uiContext/SetResourceManagerCacheNullUndefinedTest",
+    "MainAbility/pages/column/ColumnAllowForceDarkTest",
+    "MainAbility/pages/getUIContext/PostDelayedFrameCallbackParamTest",
+    "MainAbility/pages/getUIContext/GetPageRootNodeErrorCodeTest",
+    "MainAbility/pages/getUIContext/GetPageRootNodeNullTest"
+  ]
+}

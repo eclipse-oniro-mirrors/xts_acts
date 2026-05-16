@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "HookAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "HookAbility_label",
+      "value": "label"
+    }
+  ]
+}

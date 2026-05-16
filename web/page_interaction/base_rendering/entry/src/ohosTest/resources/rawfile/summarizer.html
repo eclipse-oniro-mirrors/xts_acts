@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Summarizer API 测试页面</title>
+    <a href="navigation.html">返回导航页</a>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .status {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            color: #444;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+        }
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .option-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .option-group label {
+            color: #555;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        select, input[type="text"] {
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button.primary {
+            background: #667eea;
+            color: white;
+        }
+        button.primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        button.secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        button.secondary:hover {
+            background: #e0e0e0;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .progress-container {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+        .progress-container.active {
+            display: block;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+            transition: width 0.3s;
+            width: 0%;
+        }
+        .progress-text {
+            color: #666;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        .result-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+        .result-container.active {
+            display: block;
+        }
+        .result-title {
+            color: #444;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .result-content {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .sample-texts {
+            margin-top: 15px;
+        }
+        .sample-texts button {
+            padding: 8px 16px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        .stream-output {
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🤖 Chrome Summarizer API 测试</h1>
+    <p class="subtitle">测试 Chrome 内置 AI 摘要功能 | 需要 Chrome 138+</p>
+    <div class="section">
+        <h2 class="section-title">操作</h2>
+        <div class="button-group">
+            <button class="primary" id="batchBtn" onclick="batchSummarize()">批量总结</button>
+            <button class="secondary" id="streamBtn" onclick="streamSummarize()">流式总结</button>
+            <button class="secondary" onclick="clearResults()">清除结果</button>
+        </div>
+    </div>
+    <div id="apiStatus"></div>
+    <div class="section">
+        <div class="sample-texts">
+            <button class="secondary" onclick="loadSampleText('article')">示例文章</button>
+            <button class="secondary" onclick="loadSampleText('tech')">技术文档</button>
+            <button class="secondary" onclick="loadSampleText('news')">新闻</button>
+        </div>
+        <h2 class="section-title">输入文本</h2>
+        <textarea id="inputText" placeholder="请输入要总结的文本内容..."></textarea>
+    </div>
+    <div class="section">
+        <h2 class="section-title">配置选项</h2>
+        <div class="options-grid">
+            <div class="option-group">
+                <label>摘要类型</label>
+                <select id="summaryType">
+                    <option value="key-points">关键点 (key-points)</option>
+                    <option value="tldr">TL;DR (tldr)</option>
+                    <option value="teaser">预告 (teaser)</option>
+                    <option value="headline">标题 (headline)</option>
+                </select>
+            </div>
+            <div class="option-group">
+                <label>格式</label>
+                <select id="format">
+                    <option value="markdown">Markdown</option>
+                    <option value="plain-text">纯文本</option>
+                </select>
+            </div>
+            <div class="option-group">
+                <label>长度</label>
+                <select id="length">
+                    <option value="short">短</option>
+                    <option value="medium">中</option>
+                    <option value="long">长</option>
+                </select>
+            </div>
+            <div class="option-group">
+                <label>输出语言</label>
+                <select id="outputLanguage">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                    <option value="ja">日本語</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
+        </div>
+        <div class="option-group" style="margin-bottom: 15px;">
+            <label>共享上下文</label>
+            <input type="text" id="sharedContext" placeholder="例如：这是一篇技术文章..." style="width: 100%;">
+        </div>
+    </div>
+
+    <div class="progress-container" id="progressContainer">
+        <div style="color: #666; font-size: 14px;">📥 模型下载中...</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0%</div>
+    </div>
+    <div class="result-container" id="resultContainer">
+        <div class="result-title">📝 总结结果</div>
+        <div class="result-content" id="resultContent"></div>
+    </div>
+</div>
+<script>
+    let summarizer = null;
+    const sampleTexts = {
+        article: `人工智能（Artificial Intelligence，简称AI）是计算机科学的一个分支，它企图了解智能的实质，并生产出一种新的能以人类智能相似的方式做出反应的智能机器。该领域的研究包括机器人、语言识别、图像识别、自然语言处理和专家系统等。
+人工智能从诞生以来，理论和技术日益成熟，应用领域也不断扩大，可以设想，未来人工智能带来的科技产品，将会是人类智慧的"容器"。人工智能可以对人的意识、思维的信息过程的模拟。人工智能不是人的智能，但能像人那样思考，也可能超过人的智能。
+人工智能的发展可以分为几个阶段：第一阶段是符号主义AI，主要基于逻辑推理和知识表示；第二阶段是连接主义AI，基于神经网络和深度学习；第三阶段是当前正在发展的行为主义AI，强调与环境的交互和自主学习。
+目前，人工智能已经在多个领域取得重大突破，包括图像识别、语音识别、自然语言处理、自动驾驶、医疗诊断等。随着技术的不断进步，人工智能将在更多领域发挥重要作用，为人类社会带来深远的影响。`,
+        tech: `React是一个用于构建用户界面的JavaScript库，由Facebook开发并维护。它采用组件化的开发模式，使得开发者可以构建可复用的UI组件。
+React的核心特性包括：
+1. 虚拟DOM：React使用虚拟DOM来提高性能，通过比较虚拟DOM和实际DOM的差异，只更新需要变化的部分。
+2. 组件化：React应用由多个组件组成，每个组件都有自己的状态和属性。
+3. 单向数据流：数据在React应用中单向流动，使得应用的状态管理更加清晰。
+4. JSX：JSX是一种JavaScript的语法扩展，允许在JavaScript代码中编写类似HTML的代码。
+React Hooks是React 16.8引入的新特性，它允许开发者在不编写类组件的情况下使用state和其他React特性。常用的Hooks包括useState、useEffect、useContext等。
+React生态系统非常丰富，包括React Router用于路由管理，Redux用于状态管理，React Native用于跨平台移动应用开发等。`,
+        news: `全球气候变化是当前人类面临的最大挑战之一。根据联合国政府间气候变化专门委员会（IPCC）的报告，全球平均气温已经比工业化前水平上升了约1.1°C，如果不采取有效措施，到本世纪末可能上升2.5°C甚至更高。
+气候变化带来的影响包括：海平面上升、极端天气事件增多、生物多样性减少、农业生产受影响等。这些影响对人类社会和生态系统都构成了严重威胁。
+为了应对气候变化，各国正在采取各种措施，包括减少温室气体排放、发展可再生能源、提高能源效率、保护森林等。2015年签署的《巴黎协定》是全球应对气候变化的重要框架，目标是将全球平均气温升幅控制在工业化前水平以上2°C之内，并努力限制在1.5°C之内。
+个人也可以为应对气候变化做出贡献，如减少能源消耗、选择绿色出行方式、减少废物产生等。只有全球共同努力，才能有效应对这一挑战。`
+    };
+    function loadSampleText(type) {
+        document.getElementById('inputText').value = sampleTexts[type];
+    }
+    function showStatus(message, type) {
+        const statusDiv = document.getElementById('apiStatus');
+        statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+    }
+    function showProgress(show) {
+        const container = document.getElementById('progressContainer');
+        if (show) {
+            container.classList.add('active');
+        } else {
+            container.classList.remove('active');
+        }
+    }
+    function updateProgress(percent) {
+        document.getElementById('progressFill').style.width = `${percent * 100}%`;
+        document.getElementById('progressText').textContent = `${Math.round(percent * 100)}%`;
+    }
+    function showResult(content) {
+        const container = document.getElementById('resultContainer');
+        const contentDiv = document.getElementById('resultContent');
+        container.classList.add('active');
+        contentDiv.textContent = content;
+    }
+    function clearResults() {
+        document.getElementById('resultContainer').classList.remove('active');
+        document.getElementById('resultContent').textContent = '';
+    }
+    function setButtonsDisabled(disabled) {
+        document.getElementById('batchBtn').disabled = disabled;
+        document.getElementById('streamBtn').disabled = disabled;
+    }
+    async function initSummarizer() {
+        if (summarizer) {
+            return summarizer;
+        }
+        const options = {
+            type: document.getElementById('summaryType').value,
+            format: document.getElementById('format').value,
+            length: document.getElementById('length').value,
+            sharedContext: document.getElementById('sharedContext').value,
+            expectedContextLanguages: ['zh', 'en', 'ja', 'es'],
+            expectedInputLanguages: ['zh', 'en', 'ja', 'es'],
+            outputLanguage: document.getElementById('outputLanguage').value,
+            monitor(m) {
+                m.addEventListener('downloadprogress', (e) => {
+                    updateProgress(e.loaded);
+                });
+            }
+        };
+<!--        showProgress(true);-->
+        summarizer = await Summarizer.create(options);
+<!--        showProgress(false);-->
+
+        return summarizer;
+    }
+    async function batchSummarize() {
+        const text = document.getElementById('inputText').value.trim();
+
+        if (!text) {
+            showStatus('❌ 请输入要总结的文本', 'error');
+            return;
+        }
+        try {
+            setButtonsDisabled(true);
+            showStatus('⏳ 正在生成摘要...', 'info');
+            const sum = await initSummarizer();
+            const context = document.getElementById('sharedContext').value;
+
+            const summary = await sum.summarize(text, {
+                context: context || undefined
+            });
+            showResult(summary);
+            showStatus('✅ 摘要生成成功！', 'success');
+        } catch (error) {
+            showStatus(`❌ 错误: ${error.message}`, 'error');
+            console.error('Summarization error:', error);
+        } finally {
+            setButtonsDisabled(false);
+        }
+    }
+    async function streamSummarize() {
+        const text = document.getElementById('inputText').value.trim();
+
+        if (!text) {
+            showStatus('❌ 请输入要总结的文本', 'error');
+            return;
+        }
+        try {
+            setButtonsDisabled(true);
+            showStatus('⏳ 正在生成流式摘要...', 'info');
+            const sum = await initSummarizer();
+            const context = document.getElementById('sharedContext').value;
+
+            const stream = sum.summarizeStreaming(text, {
+                context: context || undefined
+            });
+            let fullResult = '';
+            const resultContainer = document.getElementById('resultContainer');
+            const contentDiv = document.getElementById('resultContent');
+            resultContainer.classList.add('active');
+            contentDiv.innerHTML = '<div class="stream-output" id="streamOutput"></div>';
+            const streamOutput = document.getElementById('streamOutput');
+            for await (const chunk of stream) {
+                fullResult += chunk;
+                streamOutput.textContent = fullResult;
+                streamOutput.scrollTop = streamOutput.scrollHeight;
+            }
+            showStatus('✅ 流式摘要生成成功！', 'success');
+        } catch (error) {
+            showStatus(`❌ 错误: ${error.message}`, 'error');
+            console.error('Streaming error:', error);
+        } finally {
+            setButtonsDisabled(false);
+        }
+    }
+    async function checkAvailability() {
+        if (!('Summarizer' in self)) {
+            showStatus('❌ 您的浏览器不支持 Summarizer API。请使用 Chrome 138 或更高版本。', 'error');
+            setButtonsDisabled(true);
+            return;
+        }
+        try {
+            const availability = await Summarizer.availability();
+
+            if (availability === 'unavailable') {
+                showStatus('❌ Summarizer API 不可用。请确保您的设备满足硬件要求。', 'error');
+                setButtonsDisabled(true);
+            } else if (availability === 'downloadable') {
+                showStatus('✅ Summarizer API 可用！模型将在首次使用时下载。', 'success');
+            } else if (availability === 'available') {
+                showStatus('✅ Summarizer API 可用！模型已就绪。', 'success');
+            } else {
+                showStatus(`ℹ️ Summarizer API 状态: ${availability}`, 'info');
+            }
+        } catch (error) {
+            showStatus(`❌ 检查可用性时出错: ${error.message}`, 'error');
+            setButtonsDisabled(true);
+        }
+    }
+    document.addEventListener('DOMContentLoaded', checkAvailability);
+</script>
+</body>
+</html>

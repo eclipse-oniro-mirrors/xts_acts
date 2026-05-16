@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Writer API 测试</title>
+    <a href="navigation.html">返回导航页</a>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+          padding: 20px;
+        }
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+          background: white;
+          border-radius: 16px;
+          padding: 32px;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+          color: #333;
+          margin-bottom: 8px;
+          font-size: 28px;
+        }
+        .subtitle {
+          color: #666;
+          margin-bottom: 24px;
+          font-size: 14px;
+        }
+        .status {
+          padding: 12px 16px;
+          border-radius: 8px;
+          margin-bottom: 24px;
+          font-weight: 500;
+        }
+        .status.available {
+          background: #d4edda;
+          color: #155724;
+          border: 1px solid #c3e6cb;
+        }
+        .status.unavailable {
+          background: #f8d7da;
+          color: #721c24;
+          border: 1px solid #f5c6cb;
+        }
+        .status.downloadable {
+          background: #fff3cd;
+          color: #856404;
+          border: 1px solid #ffeeba;
+        }
+        .form-group {
+          margin-bottom: 20px;
+        }
+        label {
+          display: block;
+          margin-bottom: 8px;
+          color: #333;
+          font-weight: 500;
+          font-size: 14px;
+        }
+        input[type="text"],
+        textarea,
+        select {
+          width: 100%;
+          padding: 12px;
+          border: 2px solid #e0e0e0;
+          border-radius: 8px;
+          font-size: 14px;
+          transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+          outline: none;
+          border-color: #667eea;
+        }
+        textarea {
+          min-height: 100px;
+          resize: vertical;
+        }
+        .options-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 16px;
+        }
+        .buttons {
+          display: flex;
+          gap: 12px;
+          margin-top: 24px;
+        }
+        button {
+          flex: 1;
+          padding: 14px 24px;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s;
+        }
+        button.primary {
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+        }
+        button.primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        button.primary:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          transform: none;
+        }
+        button.secondary {
+          background: #f0f0f0;
+          color: #333;
+        }
+        button.secondary:hover {
+          background: #e0e0e0;
+        }
+        .output {
+          margin-top: 24px;
+          padding: 20px;
+          background: #f8f9fa;
+          border-radius: 8px;
+          border: 2px solid #e0e0e0;
+          min-height: 100px;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+        }
+        .output-placeholder {
+          color: #999;
+          font-style: italic;
+        }
+        .progress {
+          margin-top: 16px;
+          padding: 12px;
+          background: #e3f2fd;
+          border-radius: 8px;
+          color: #1565c0;
+          font-size: 14px;
+        }
+        .toggle-group {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+        }
+        .toggle-label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+        }
+        .toggle-label input[type="checkbox"] {
+          width: 18px;
+          height: 18px;
+          cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Chrome Writer API 测试</h1>
+    <p class="subtitle">使用 Gemini Nano 在浏览器中生成文本内容</p>
+
+    <div id="status" class="status unavailable">检测中...</div>
+
+    <div id="progress" class="progress" style="display: none;"></div>
+    <div class="buttons">
+        <button id="generate" class="primary" disabled>生成内容</button>
+        <button id="clear" class="secondary">清空</button>
+    </div>
+    <div class="form-group">
+        <label for="prompt">提示内容</label>
+        <textarea id="prompt" placeholder="例如：写一封给银行的邮件，询问如何启用账户的汇款功能...">111</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="context">上下文（可选）</label>
+        <textarea id="context" placeholder="例如：我是一位长期客户..." style="min-height: 60px;"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>配置选项</label>
+        <div class="options-grid">
+            <div>
+                <label for="tone">语气</label>
+                <select id="tone">
+                    <option value="neutral">中性</option>
+                    <option value="formal">正式</option>
+                    <option value="casual">随意</option>
+                </select>
+            </div>
+            <div>
+                <label for="format">格式</label>
+                <select id="format">
+                    <option value="markdown">Markdown</option>
+                    <option value="plain-text">纯文本</option>
+                </select>
+            </div>
+            <div>
+                <label for="length">长度</label>
+                <select id="length">
+                    <option value="short">短</option>
+                    <option value="medium">中</option>
+                    <option value="long">长</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>输出模式</label>
+        <div class="toggle-group">
+            <label class="toggle-label">
+                <input type="checkbox" id="streaming" checked>
+                <span>流式传输</span>
+            </label>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label>输出结果</label>
+        <div id="output" class="output">
+            <span class="output-placeholder">生成的内容将显示在这里...</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    let writer = null;
+    const statusEl = document.getElementById('status');
+    const progressEl = document.getElementById('progress');
+    const generateBtn = document.getElementById('generate');
+    const clearBtn = document.getElementById('clear');
+    const outputEl = document.getElementById('output');
+
+    async function checkAvailability() {
+      if (!('Writer' in self)) {
+        statusEl.textContent = 'Writer API 不受支持';
+        statusEl.className = 'status unavailable';
+        return false;
+      }
+
+      try {
+        const availability = await Writer.availability();
+
+        switch (availability) {
+          case 'available':
+            statusEl.textContent = 'Writer API 可用';
+            statusEl.className = 'status available';
+            generateBtn.disabled = false;
+            return true;
+          case 'downloadable':
+            statusEl.textContent = 'Writer API 可用，需要下载模型';
+            statusEl.className = 'status downloadable';
+            generateBtn.disabled = false;
+            return true;
+          case 'unavailable':
+            statusEl.textContent = 'Writer API 不可用';
+            statusEl.className = 'status unavailable';
+            return false;
+          default:
+            statusEl.textContent = '未知状态';
+            statusEl.className = 'status unavailable';
+            return false;
+        }
+      } catch (error) {
+        statusEl.textContent = '检查失败: ' + error.message;
+        statusEl.className = 'status unavailable';
+        return false;
+      }
+    }
+
+    async function createWriter() {
+      const tone = document.getElementById('tone').value;
+      const format = document.getElementById('format').value;
+      const length = document.getElementById('length').value;
+
+      const options = {
+        tone,
+        format,
+        length,
+        expectedInputLanguages: ['zh', 'en'],
+        expectedContextLanguages: ['zh', 'en'],
+        outputLanguage: 'zh',
+        sharedContext: '仅供测试'
+      };
+
+      try {
+        writer = await Writer.create({
+          ...options,
+          monitor(m) {
+            m.addEventListener('downloadprogress', (e) => {
+              const percent = Math.round(e.loaded * 100);
+              progressEl.style.display = 'block';
+              progressEl.textContent = `模型下载进度: ${percent}%`;
+            });
+          }
+        });
+
+        if (progressEl.textContent.includes('模型下载进度')) {
+          progressEl.textContent = '模型已就绪';
+          setTimeout(() => {
+            progressEl.style.display = 'none';
+          }, 2000);
+        }
+
+        return writer;
+      } catch (error) {
+        outputEl.innerHTML = `<span style="color: #dc3545;">创建 Writer 失败: ${error.message}</span>`;
+        throw error;
+      }
+    }
+
+    async function generateContent() {
+      const prompt = document.getElementById('prompt').value.trim();
+      const context = document.getElementById('context').value.trim();
+      const streaming = document.getElementById('streaming').checked;
+
+      if (!prompt) {
+        outputEl.innerHTML = '<span style="color: #dc3545;">请输入提示内容</span>';
+        return;
+      }
+
+      generateBtn.disabled = true;
+      generateBtn.textContent = '生成中...';
+      outputEl.innerHTML = '';
+
+      try {
+        if (!writer) {
+          await createWriter();
+        }
+
+        if (streaming) {
+          const stream = writer.writeStreaming(prompt, { context });
+          let fullText = '';
+
+          for await (const chunk of stream) {
+            fullText += chunk;
+            outputEl.textContent = fullText;
+          }
+        } else {
+          const result = await writer.write(prompt, { context });
+          outputEl.textContent = result;
+        }
+      } catch (error) {
+        outputEl.innerHTML = `<span style="color: #dc3545;">生成失败: ${error.message}</span>`;
+      } finally {
+        generateBtn.disabled = false;
+        generateBtn.textContent = '生成内容';
+      }
+    }
+
+    function clearOutput() {
+      outputEl.innerHTML = '<span class="output-placeholder">生成的内容将显示在这里...</span>';
+      document.getElementById('prompt').value = '';
+      document.getElementById('context').value = '';
+    }
+
+    generateBtn.addEventListener('click', generateContent);
+    clearBtn.addEventListener('click', clearOutput);
+
+    checkAvailability();
+</script>
+</body>
+</html>

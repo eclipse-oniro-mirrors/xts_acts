@@ -1,0 +1,18 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/swiper/swiperFillPolicy",
+        "MainAbility/pages/swiper/SwiperParamExample",
+        "MainAbility/pages/tabs/TabsExample1",
+        "MainAbility/pages/tabs/TabsExample2",
+        "MainAbility/pages/arcSwiper/ArcSwiperControllerFinishAnimationNull",
+        "MainAbility/pages/arcSwiper/ArcDotIndicatorNullUndefined",
+        "MainAbility/pages/arcSwiper/ArcSwiperAttributeNull",
+        "MainAbility/pages/arcSwiper/ArcSwiperAttributeUndefined",
+        "MainAbility/pages/swiper/SwiperFakeDragTest",
+        "MainAbility/pages/SwiperAttributeNullUndefined/SwiperAttributeNullUndefined",
+        "MainAbility/pages/SwiperAttributeNullUndefined/DigitIndicatorNullUndefined",
+        "MainAbility/pages/SwiperAttributeNullUndefined/DotIndicatorNullUndefined",
+        "MainAbility/pages/swiper/swiperCachedOptions"
+    ]
+}

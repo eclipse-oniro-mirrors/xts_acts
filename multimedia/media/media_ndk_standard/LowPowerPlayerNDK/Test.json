@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for OhAudioNdk Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.lowpowerplayer_xts",
+        "module-name": "entry_test",
+        "testcase-timeout": 90000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsLPPlayerNDKMainTest.hap",
+                "ActsLPPlayerNDKTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

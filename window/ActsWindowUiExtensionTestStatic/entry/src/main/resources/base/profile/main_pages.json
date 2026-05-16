@@ -1,0 +1,20 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/index2",
+    "pages/WindowTest/EmbeddedComponentPage",
+    "pages/WindowTest/extension",
+    "pages/WindowTest/extensionRect",
+    "pages/WindowTest/EmbeddedComponentRectPage",
+    "pages/WindowTest/extensionOccupy",
+    "pages/WindowTest/EmbeddedComponentOccupyPage",
+    "pages/WindowTest/extensionErrorCode",
+    "pages/WindowTest/EmbeddedComponentErrorCodePage",
+    "pages/WindowTest/EmbeddedComponentCreateSubWindowOptionsFalsePage",
+    "pages/WindowTest/extensionCreateSubWindowWithFalseOpt",
+    "pages/WindowTest/EmbeddedComponentCreateSubWindowOptionsTruePage",
+    "pages/WindowTest/extensionCreateSubWindowWithTrueOpt",
+    "pages/WindowTest/EmbeddedComponentGetWindowAvoidAreaPage",
+    "pages/WindowTest/extensionGetWindowAvoidArea"
+  ]
+}

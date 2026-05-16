@@ -1,0 +1,12 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/WebMediaOption",
+    "testability/pages/WebMediaPlayGestureAccess",
+    "testability/pages/WebOnFullScreenEnter",
+    "testability/pages/WebOnFullScreenExit",
+    "testability/pages/WebViewOnFullScreenEnterAudio",
+    "testability/pages/WebViewOnFullScreenEnterVideoInfo"
+
+  ]
+}

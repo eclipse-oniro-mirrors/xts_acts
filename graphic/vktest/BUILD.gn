@@ -1,0 +1,101 @@
+# Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+import("//test/xts/acts/graphic/vktest/comm.gni")
+
+ohos_xts_action("cpVulkan") {
+  testonly = true
+  suite_type = "bin"
+  script = "cpVulkan.sh"
+  outputs = [ "${target_out_dir}/cpVulkan.log" ]
+  root_vkgl_path = rebase_path("//")
+  args = [ "$root_vkgl_path" ]
+  deps = [
+    ":vulkanTest",
+    "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute",
+  ]
+}
+
+group("vulkanTest") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "src/api1test:ActsVulkanApi1Test",
+      "src/api2test:ActsVulkanApi2Test",
+      "src/api3test:ActsVulkanApi3Test",
+      "src/api4test:ActsVulkanApi4Test",
+      "src/bindingmodeltest:ActsVulkanBindingmodelTest",
+      "src/clippingtest:ActsVulkanClippingTest",
+      "src/computetest:ActsVulkanComputeTest",
+      "src/conditionalrenderingtest:ActsVulkanConditionalrenderingTest",
+      "src/descriptorindexingtest:ActsVulkanDescriptorindexingTest",
+      "src/devicegrouptest:ActsVulkanDevicegroupTest",
+      "src/drawtest:ActsVulkanDrawTest",
+      "src/drmformatmodifierstest:ActsVulkanDrmformatmodifiersTest",
+      "src/dynamicrenderingtest:ActsVulkanDynamicrenderingTest",
+      "src/dynamicstatetest:ActsVulkanDynamicstateTest",
+      "src/fastlinkedlibrary1:ActsVulkanFastlinkedLibrary1Test",
+      "src/fastlinkedlibrary2:ActsVulkanFastlinkedLibrary2Test",
+      "src/fastlinkedlibrary3:ActsVulkanFastlinkedLibrary3Test",
+      "src/fastlinkedlibrary4:ActsVulkanFastlinkedLibrary4Test",
+      "src/fastlinkedlibrary5:ActsVulkanFastlinkedLibrary5Test",
+      "src/fragmentoperationstest:ActsVulkanFragmentoperationsTest",
+      "src/fragmentshaderinterlocktest:ActsVulkanFragmentshaderinterlockTest",
+      "src/fragmentshadingratetest:ActsVulkanFragmentshadingrateTest",
+      "src/geometrytest:ActsVulkanGeometryTest",
+      "src/glsltest:ActsVulkanGlslTest",
+      "src/graphicsfuzztest:ActsVulkanGraphicsfuzzTest",
+      "src/imagelessframebuffertest:ActsVulkanImagelessframebufferTest",
+      "src/imagetest:ActsVulkanImageTest",
+      "src/infotest:ActsVulkanInfoTest",
+      "src/memorymodeltest:ActsVulkanMemorymodelTest",
+      "src/memorytest:ActsVulkanMemoryTest",
+      "src/meshshadertest:ActsVulkanMeshshaderTest",
+      "src/monolithic1:ActsVulkanMonolithic1Test",
+      "src/monolithic2:ActsVulkanMonolithic2Test",
+      "src/monolithic3:ActsVulkanMonolithic3Test",
+      "src/monolithic4:ActsVulkanMonolithic4Test",
+      "src/monolithic5:ActsVulkanMonolithic5Test",
+      "src/multiviewtest:ActsVulkanMultiviewTest",
+      "src/pipelinelibrary1:ActsVulkanPipelineLibrary1Test",
+      "src/pipelinelibrary2:ActsVulkanPipelineLibrary2Test",
+      "src/pipelinelibrary3:ActsVulkanPipelineLibrary3Test",
+      "src/pipelinelibrary4:ActsVulkanPipelineLibrary4Test",
+      "src/pipelinelibrary5:ActsVulkanPipelineLibrary5Test",
+      "src/protectedmemorytest:ActsVulkanProtectedmemoryTest",
+      "src/querypooltest:ActsVulkanQuerypoolTest",
+      "src/rayquerytest:ActsVulkanRayqueryTest",
+      "src/raytracingpipelinetest:ActsVulkanRaytracingpipelineTest",
+      "src/reconvergencetest:ActsVulkanReconvergenceTest",
+      "src/renderpass2test:ActsVulkanRenderpass2Test",
+      "src/renderpasstest:ActsVulkanRenderpassTest",
+      "src/robustnesstest:ActsVulkanRobustnessTest",
+      "src/sparseresourcestest:ActsVulkanSparseresourcesTest",
+      "src/spirvassemblytest:ActsVulkanSpirvassemblyTest",
+      "src/ssbotest:ActsVulkanSsboTest",
+      "src/subgroupstest:ActsVulkanSubgroupsTest",
+      "src/synchronization2test:ActsVulkanSynchronization2Test",
+      "src/synchronizationtest:ActsVulkanSynchronizationTest",
+      "src/tessellationtest:ActsVulkanTessellationTest",
+      "src/texturetest:ActsVulkanTextureTest",
+      "src/transformfeedback1test:ActsVulkanTransformfeedback1Test",
+      "src/transformfeedback2test:ActsVulkanTransformfeedback2Test",
+      "src/ubotest:ActsVulkanUboTest",
+      "src/wsitest:ActsVulkanWsiTest",
+      "src/ycbcrtest:ActsVulkanYcbcrTest",
+      "//third_party/vk-gl-cts/external/vulkancts/modules/vulkan:deqp_vk_execute",
+    ]
+  }
+}

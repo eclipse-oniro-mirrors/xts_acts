@@ -1,0 +1,104 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name":"string_hello",
+      "value":"Hello"
+    },
+    {
+      "name":"string_world",
+      "value":"World"
+    },
+    {
+      "name":"message_arrive",
+      "value":"We will arrive at %s."
+    },
+    {
+        "name": "phone_entry_dsc",
+        "value": "i am an entry for phone"
+    },
+    {
+        "name": "phone_entry_main",
+        "value": "the phone entry ability"
+    },
+    {
+        "name": "entry_label",
+        "value": "ActsContextTest"
+    },
+    {
+        "name": "form_description",
+        "value": "my form"
+    },
+    {
+        "name": "serviceability_description",
+        "value": "my whether"
+    },
+    {
+        "name": "description_application",
+        "value": "demo for test"
+    },
+    {
+        "name": "app_name",
+        "value": "Demo"
+    },
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "the test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "test label"
+    },
+    {
+      "name": "Divider_Stroke_Width",
+      "value": "10px"
+    },
+    {
+      "name": "Divider_Start_Margin",
+      "value": "5px"
+    },
+    {
+      "name": "Divider_End_Margin",
+      "value": "5px"
+    },
+    {
+      "name": "Indicator_Height",
+      "value": "10vp"
+    },
+    {
+      "name": "Indicator_Width",
+      "value": "30vp"
+    },
+    {
+      "name": "Indicator_Radius",
+      "value": "5vp"
+    },
+    {
+      "name": "Indicator_Sub_Radius",
+      "value": "20vp"
+    },
+    {
+      "name": "Indicator_Space",
+      "value": "10vp"
+    },
+    {
+      "name": "BottomTabBarStyleLabelStyle_family_Test",
+      "value": "HarmonyOS Sans"
+    }
+  ]
+}

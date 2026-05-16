@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单视频播放测试页面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+        .page-header { background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 20px 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2a2a4a; }
+        .page-header h1 { font-size: 22px; color: #fff; }
+        .page-header .header-actions { display: flex; gap: 10px; }
+        .main-layout { display: flex; max-width: 1400px; margin: 0 auto; padding: 20px; gap: 20px; }
+        .content-area { flex: 1; min-width: 0; }
+        .sidebar { width: 340px; flex-shrink: 0; }
+        .video-wrapper { position: relative; background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+        video { width: 100%; display: block; }
+        .custom-controls { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 40px 16px 12px; opacity: 0; transition: opacity 0.3s; }
+        .video-wrapper:hover .custom-controls { opacity: 1; }
+        .progress-container { width: 100%; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; cursor: pointer; margin-bottom: 10px; position: relative; }
+        .progress-bar { height: 100%; background: #e74c3c; border-radius: 2px; width: 0%; transition: width 0.1s; }
+        .progress-container:hover { height: 6px; }
+        .progress-container:hover .progress-bar { height: 100%; }
+        .buffered-bar { position: absolute; top: 0; left: 0; height: 100%; background: rgba(255,255,255,0.3); border-radius: 2px; }
+        .controls-row { display: flex; align-items: center; justify-content: space-between; }
+        .controls-left, .controls-right { display: flex; align-items: center; gap: 12px; }
+        .ctrl-btn { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 4px; transition: background 0.2s; }
+        .ctrl-btn:hover { background: rgba(255,255,255,0.15); }
+        .volume-group { display: flex; align-items: center; gap: 6px; }
+        .volume-slider { width: 70px; height: 4px; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.3); border-radius: 2px; outline: none; cursor: pointer; }
+        .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: #fff; cursor: pointer; }
+        .time-display { font-size: 13px; color: rgba(255,255,255,0.8); font-variant-numeric: tabular-nums; }
+        .video-info-panel { margin-top: 16px; }
+        .video-title { font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .video-meta { display: flex; gap: 16px; color: #888; font-size: 13px; margin-bottom: 12px; }
+        .video-description { color: #aaa; font-size: 14px; line-height: 1.7; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #2a2a4a; }
+        .action-bar { display: flex; gap: 8px; flex-wrap: wrap; }
+        .action-btn { display: flex; align-items: center; gap: 6px; padding: 8px 16px; background: #1e1e2e; border: 1px solid #333; border-radius: 20px; color: #ccc; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+        .action-btn:hover { background: #2a2a4a; color: #fff; }
+        .action-btn .count { color: #888; }
+        .speed-selector { position: relative; }
+        .speed-menu { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #1e1e2e; border: 1px solid #333; border-radius: 8px; padding: 6px 0; display: none; min-width: 100px; z-index: 10; }
+        .speed-menu.show { display: block; }
+        .speed-option { padding: 8px 16px; cursor: pointer; font-size: 13px; color: #ccc; text-align: center; transition: background 0.15s; }
+        .speed-option:hover, .speed-option.active { background: #333; color: #fff; }
+        .quality-selector { position: relative; }
+        .quality-menu { position: absolute; bottom: 100%; right: 0; background: #1e1e2e; border: 1px solid #333; border-radius: 8px; padding: 6px 0; display: none; min-width: 120px; z-index: 10; }
+        .quality-menu.show { display: block; }
+        .quality-option { padding: 8px 16px; cursor: pointer; font-size: 13px; color: #ccc; text-align: center; transition: background 0.15s; }
+        .quality-option:hover, .quality-option.active { background: #333; color: #fff; }
+        .subtitle-panel { margin-top: 16px; background: #1a1a2e; border-radius: 8px; padding: 16px; border: 1px solid #2a2a4a; }
+        .subtitle-panel h3 { font-size: 15px; margin-bottom: 10px; color: #fff; }
+        .subtitle-toggle { display: flex; gap: 8px; margin-bottom: 10px; }
+        .subtitle-toggle label { display: flex; align-items: center; gap: 4px; font-size: 13px; color: #aaa; cursor: pointer; }
+        .subtitle-toggle input { cursor: pointer; }
+        .subtitle-text { background: #000; padding: 10px; border-radius: 4px; font-size: 14px; min-height: 50px; color: #fff; line-height: 1.6; }
+        .share-section { margin-top: 16px; background: #1a1a2e; border-radius: 8px; padding: 16px; border: 1px solid #2a2a4a; }
+        .share-section h3 { font-size: 15px; margin-bottom: 12px; color: #fff; }
+        .share-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        .share-btn { display: flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 20px; border: none; cursor: pointer; font-size: 13px; color: #fff; transition: transform 0.15s; }
+        .share-btn:hover { transform: scale(1.05); }
+        .share-btn.twitter { background: #1da1f2; }
+        .share-btn.facebook { background: #4267b2; }
+        .share-btn.linkedin { background: #0077b5; }
+        .share-btn.copy { background: #555; }
+        .share-link-input { width: 100%; padding: 8px 12px; background: #0f0f1a; border: 1px solid #333; border-radius: 6px; color: #ccc; font-size: 13px; margin-top: 10px; }
+        .comments-section { margin-top: 20px; }
+        .comments-section h3 { font-size: 16px; margin-bottom: 14px; color: #fff; }
+        .comment-input-group { display: flex; gap: 10px; margin-bottom: 16px; align-items: flex-start; }
+        .comment-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #e74c3c, #9b59b6); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; }
+        .comment-input-wrap { flex: 1; }
+        .comment-input-wrap textarea { width: 100%; background: #1e1e2e; border: 1px solid #333; border-radius: 8px; padding: 10px; color: #e0e0e0; font-size: 14px; resize: vertical; min-height: 60px; font-family: inherit; }
+        .comment-input-wrap textarea:focus { outline: none; border-color: #e74c3c; }
+        .comment-submit-row { display: flex; justify-content: flex-end; margin-top: 8px; }
+        .comment-submit-btn { padding: 6px 20px; background: #e74c3c; color: #fff; border: none; border-radius: 16px; cursor: pointer; font-size: 13px; }
+        .comment-submit-btn:hover { background: #c0392b; }
+        .comment-item { display: flex; gap: 10px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #1e1e2e; }
+        .comment-body { flex: 1; }
+        .comment-author { font-size: 13px; font-weight: 600; color: #ddd; }
+        .comment-time { font-size: 11px; color: #666; margin-left: 8px; }
+        .comment-text { font-size: 14px; color: #bbb; margin-top: 4px; line-height: 1.5; }
+        .comment-actions { display: flex; gap: 14px; margin-top: 6px; }
+        .comment-action-link { font-size: 12px; color: #666; cursor: pointer; }
+        .comment-action-link:hover { color: #aaa; }
+        .sidebar-card { background: #1a1a2e; border-radius: 8px; padding: 16px; margin-bottom: 16px; border: 1px solid #2a2a4a; }
+        .sidebar-card h3 { font-size: 15px; margin-bottom: 12px; color: #fff; }
+        .related-item { display: flex; gap: 10px; margin-bottom: 12px; cursor: pointer; padding: 4px; border-radius: 6px; transition: background 0.15s; }
+        .related-item:hover { background: #2a2a4a; }
+        .related-thumb { width: 120px; height: 68px; border-radius: 6px; flex-shrink: 0; overflow: hidden; }
+        .related-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .related-thumb-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .related-info h4 { font-size: 13px; color: #ddd; line-height: 1.3; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .related-info p { font-size: 12px; color: #777; }
+        .video-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+        .stat-item { text-align: center; padding: 10px 8px; background: #0f0f1a; border-radius: 6px; }
+        .stat-value { font-size: 18px; font-weight: 700; color: #fff; }
+        .stat-label { font-size: 11px; color: #777; margin-top: 2px; }
+        @media (max-width: 900px) {
+            .main-layout { flex-direction: column; }
+            .sidebar { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>Single Video Player Test</h1>
+        <div class="header-actions">
+            <button class="ctrl-btn" onclick="document.documentElement.requestFullscreen && document.documentElement.requestFullscreen()" title="Fullscreen">&#x26F6;</button>
+        </div>
+    </div>
+    <div class="main-layout">
+        <div class="content-area">
+            <div class="video-wrapper" id="videoWrapper">
+                <video id="videoPlayer" controls autoplay preload="auto" playsinline>
+                    <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="custom-controls" id="customControls">
+                    <div class="progress-container" id="progressContainer">
+                        <div class="buffered-bar" id="bufferedBar"></div>
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="controls-row">
+                        <div class="controls-left">
+                            <button class="ctrl-btn" id="playPauseBtn" title="Play/Pause">&#x25B6;</button>
+                            <button class="ctrl-btn" id="stopBtn" title="Stop">&#x25A0;</button>
+                            <button class="ctrl-btn" id="rewindBtn" title="Rewind 10s">&#x23EA;</button>
+                            <button class="ctrl-btn" id="forwardBtn" title="Forward 10s">&#x23E9;</button>
+                            <div class="volume-group">
+                                <button class="ctrl-btn" id="volumeBtn" title="Mute">&#x1F50A;</button>
+                                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.05" value="1">
+                            </div>
+                            <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+                        </div>
+                        <div class="controls-right">
+                            <div class="speed-selector">
+                                <button class="ctrl-btn" id="speedBtn" title="Speed">1x</button>
+                                <div class="speed-menu" id="speedMenu">
+                                    <div class="speed-option" data-speed="0.25">0.25x</div>
+                                    <div class="speed-option" data-speed="0.5">0.5x</div>
+                                    <div class="speed-option" data-speed="0.75">0.75x</div>
+                                    <div class="speed-option active" data-speed="1">1x</div>
+                                    <div class="speed-option" data-speed="1.25">1.25x</div>
+                                    <div class="speed-option" data-speed="1.5">1.5x</div>
+                                    <div class="speed-option" data-speed="2">2x</div>
+                                </div>
+                            </div>
+                            <div class="quality-selector">
+                                <button class="ctrl-btn" id="qualityBtn" title="Quality">HD</button>
+                                <div class="quality-menu" id="qualityMenu">
+                                    <div class="quality-option active" data-quality="auto">Auto</div>
+                                    <div class="quality-option" data-quality="1080p">1080p</div>
+                                    <div class="quality-option" data-quality="720p">720p</div>
+                                    <div class="quality-option" data-quality="480p">480p</div>
+                                    <div class="quality-option" data-quality="360p">360p</div>
+                                </div>
+                            </div>
+                            <button class="ctrl-btn" id="pipBtn" title="Picture-in-Picture">&#x1F3AC;</button>
+                            <button class="ctrl-btn" id="fullscreenBtn" title="Fullscreen">&#x26F6;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-info-panel">
+                <div class="video-title">Test Video - Single Player</div>
+                <div class="video-meta">
+                    <span>1,234,567 views</span>
+                    <span>Jan 15, 2025</span>
+                    <span>#video #test #player</span>
+                </div>
+                <div class="video-description">
+                    This page tests single video playback functionality. The video should autoplay and be controllable via both native media controls and custom overlay controls. Features include play/pause, progress seeking, volume adjustment, playback speed, picture-in-picture mode, and fullscreen toggle.
+                </div>
+                <div class="action-bar">
+                    <button class="action-btn" onclick="this.querySelector('.count').textContent = parseInt(this.querySelector('.count').textContent) + 1">
+                        <span>&#x1F44D;</span> Like <span class="count">2.3K</span>
+                    </button>
+                    <button class="action-btn">
+                        <span>&#x1F44E;</span> Dislike <span class="count">42</span>
+                    </button>
+                    <button class="action-btn" id="shareToggle">
+                        <span>&#x1F517;</span> Share
+                    </button>
+                    <button class="action-btn">
+                        <span>&#x1F4CB;</span> Save
+                    </button>
+                </div>
+            </div>
+            <div class="subtitle-panel">
+                <h3>Subtitles & Captions</h3>
+                <div class="subtitle-toggle">
+                    <label><input type="radio" name="subtitle" value="off" checked> Off</label>
+                    <label><input type="radio" name="subtitle" value="en"> English</label>
+                    <label><input type="radio" name="subtitle" value="zh"> Chinese</label>
+                    <label><input type="radio" name="subtitle" value="auto"> Auto-generated</label>
+                </div>
+                <div class="subtitle-text" id="subtitleText">No subtitles available. Enable a subtitle track to view captions here.</div>
+            </div>
+            <div class="share-section">
+                <h3>Share this video</h3>
+                <div class="share-buttons">
+                    <button class="share-btn twitter" onclick="shareVideo('twitter')">Twitter</button>
+                    <button class="share-btn facebook" onclick="shareVideo('facebook')">Facebook</button>
+                    <button class="share-btn linkedin" onclick="shareVideo('linkedin')">LinkedIn</button>
+                    <button class="share-btn copy" onclick="copyLink()">Copy Link</button>
+                </div>
+                <input type="text" class="share-link-input" id="shareLink" readonly value="https://example.com/video/single-test">
+            </div>
+            <div class="comments-section">
+                <h3>Comments (3)</h3>
+                <div class="comment-input-group">
+                    <div class="comment-avatar">U</div>
+                    <div class="comment-input-wrap">
+                        <textarea id="commentInput" placeholder="Add a comment..."></textarea>
+                        <div class="comment-submit-row">
+                            <button class="comment-submit-btn" onclick="postComment()">Comment</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="commentsList">
+                    <div class="comment-item">
+                        <div class="comment-avatar" style="background:linear-gradient(135deg,#3498db,#2980b9)">A</div>
+                        <div class="comment-body">
+                            <span class="comment-author">Alice Chen</span><span class="comment-time">2 hours ago</span>
+                            <div class="comment-text">Great test page! The custom controls work smoothly and the video loads quickly.</div>
+                            <div class="comment-actions">
+                                <span class="comment-action-link">&#x1F44D; 12</span>
+                                <span class="comment-action-link">Reply</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-item">
+                        <div class="comment-avatar" style="background:linear-gradient(135deg,#2ecc71,#27ae60)">B</div>
+                        <div class="comment-body">
+                            <span class="comment-author">Bob Wang</span><span class="comment-time">5 hours ago</span>
+                            <div class="comment-text">The picture-in-picture feature is really useful for multitasking during video playback testing.</div>
+                            <div class="comment-actions">
+                                <span class="comment-action-link">&#x1F44D; 8</span>
+                                <span class="comment-action-link">Reply</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-item">
+                        <div class="comment-avatar" style="background:linear-gradient(135deg,#f39c12,#e67e22)">C</div>
+                        <div class="comment-body">
+                            <span class="comment-author">Charlie Liu</span><span class="comment-time">1 day ago</span>
+                            <div class="comment-text">Playback speed options are working correctly. Tested all speeds from 0.25x to 2x without issues.</div>
+                            <div class="comment-actions">
+                                <span class="comment-action-link">&#x1F44D; 5</span>
+                                <span class="comment-action-link">Reply</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <h3>Video Statistics</h3>
+                <div class="video-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="statViews">1.2M</div>
+                        <div class="stat-label">Views</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="statLikes">2.3K</div>
+                        <div class="stat-label">Likes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="statComments">3</div>
+                        <div class="stat-label">Comments</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-card">
+                <h3>Related Videos</h3>
+                <div class="related-item">
+                    <div class="related-thumb">
+                        <div class="related-thumb-placeholder" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">&#x25B6;</div>
+                    </div>
+                    <div class="related-info">
+                        <h4>Multi-Video Playback Test</h4>
+                        <p>15K views &#x2022; 2 days ago</p>
+                    </div>
+                </div>
+                <div class="related-item">
+                    <div class="related-thumb">
+                        <div class="related-thumb-placeholder" style="background:linear-gradient(135deg,#3498db,#2980b9)">&#x25B6;</div>
+                    </div>
+                    <div class="related-info">
+                        <h4>Web Worker Stress Test</h4>
+                        <p>8K views &#x2022; 3 days ago</p>
+                    </div>
+                </div>
+                <div class="related-item">
+                    <div class="related-thumb">
+                        <div class="related-thumb-placeholder" style="background:linear-gradient(135deg,#2ecc71,#27ae60)">&#x25B6;</div>
+                    </div>
+                    <div class="related-info">
+                        <h4>SharedWorker Communication Demo</h4>
+                        <p>5K views &#x2022; 5 days ago</p>
+                    </div>
+                </div>
+                <div class="related-item">
+                    <div class="related-thumb">
+                        <div class="related-thumb-placeholder" style="background:linear-gradient(135deg,#9b59b6,#8e44ad)">&#x25B6;</div>
+                    </div>
+                    <div class="related-info">
+                        <h4>Advanced Video Controls API</h4>
+                        <p>12K views &#x2022; 1 week ago</p>
+                    </div>
+                </div>
+                <div class="related-item">
+                    <div class="related-thumb">
+                        <div class="related-thumb-placeholder" style="background:linear-gradient(135deg,#f39c12,#e67e22)">&#x25B6;</div>
+                    </div>
+                    <div class="related-info">
+                        <h4>Media Source Extensions Test</h4>
+                        <p>3K views &#x2022; 1 week ago</p>
+                    </div>
+                </div>
+                <div class="related-item">
+                    <div class="related-thumb">
+                        <div class="related-thumb-placeholder" style="background:linear-gradient(135deg,#1abc9c,#16a085)">&#x25B6;</div>
+                    </div>
+                    <div class="related-info">
+                        <h4>Audio Video Sync Test</h4>
+                        <p>7K views &#x2022; 2 weeks ago</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function test() { return true; }
+        var video = document.getElementById('videoPlayer');
+        var playPauseBtn = document.getElementById('playPauseBtn');
+        var progressBar = document.getElementById('progressBar');
+        var progressContainer = document.getElementById('progressContainer');
+        var bufferedBar = document.getElementById('bufferedBar');
+        var timeDisplay = document.getElementById('timeDisplay');
+        var volumeSlider = document.getElementById('volumeSlider');
+        var volumeBtn = document.getElementById('volumeBtn');
+        var speedBtn = document.getElementById('speedBtn');
+        var speedMenu = document.getElementById('speedMenu');
+        var qualityBtn = document.getElementById('qualityBtn');
+        var qualityMenu = document.getElementById('qualityMenu');
+        var fullscreenBtn = document.getElementById('fullscreenBtn');
+        var pipBtn = document.getElementById('pipBtn');
+
+        function formatTime(s) {
+            if (isNaN(s)) return '0:00';
+            var m = Math.floor(s / 60);
+            var sec = Math.floor(s % 60);
+            return m + ':' + (sec < 10 ? '0' : '') + sec;
+        }
+        playPauseBtn.addEventListener('click', function() {
+            if (video.paused) { video.play(); } else { video.pause(); }
+        });
+        document.getElementById('stopBtn').addEventListener('click', function() {
+            video.pause(); video.currentTime = 0;
+        });
+        document.getElementById('rewindBtn').addEventListener('click', function() {
+            video.currentTime = Math.max(0, video.currentTime - 10);
+        });
+        document.getElementById('forwardBtn').addEventListener('click', function() {
+            video.currentTime = Math.min(video.duration, video.currentTime + 10);
+        });
+        video.addEventListener('play', function() { playPauseBtn.innerHTML = '&#x23F8;'; });
+        video.addEventListener('pause', function() { playPauseBtn.innerHTML = '&#x25B6;'; });
+        video.addEventListener('timeupdate', function() {
+            var pct = (video.currentTime / video.duration) * 100;
+            progressBar.style.width = pct + '%';
+            timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
+        });
+        video.addEventListener('progress', function() {
+            if (video.buffered.length > 0) {
+                var buffEnd = video.buffered.end(video.buffered.length - 1);
+                bufferedBar.style.width = (buffEnd / video.duration) * 100 + '%';
+            }
+        });
+        video.addEventListener('ended', function() { playPauseBtn.innerHTML = '&#x25B6;'; });
+        progressContainer.addEventListener('click', function(e) {
+            var rect = progressContainer.getBoundingClientRect();
+            var pct = (e.clientX - rect.left) / rect.width;
+            video.currentTime = pct * video.duration;
+        });
+        volumeSlider.addEventListener('input', function() {
+            video.volume = this.value;
+            video.muted = false;
+            volumeBtn.innerHTML = this.value == 0 ? '&#x1F507;' : '&#x1F50A;';
+        });
+        volumeBtn.addEventListener('click', function() {
+            video.muted = !video.muted;
+            this.innerHTML = video.muted ? '&#x1F507;' : '&#x1F50A;';
+        });
+        speedBtn.addEventListener('click', function() {
+            speedMenu.classList.toggle('show');
+            qualityMenu.classList.remove('show');
+        });
+        document.querySelectorAll('.speed-option').forEach(function(opt) {
+            opt.addEventListener('click', function() {
+                var speed = parseFloat(this.dataset.speed);
+                video.playbackRate = speed;
+                speedBtn.textContent = speed + 'x';
+                document.querySelectorAll('.speed-option').forEach(function(o) { o.classList.remove('active'); });
+                this.classList.add('active');
+                speedMenu.classList.remove('show');
+            });
+        });
+        qualityBtn.addEventListener('click', function() {
+            qualityMenu.classList.toggle('show');
+            speedMenu.classList.remove('show');
+        });
+        document.querySelectorAll('.quality-option').forEach(function(opt) {
+            opt.addEventListener('click', function() {
+                qualityBtn.textContent = this.dataset.quality === 'auto' ? 'Auto' : this.dataset.quality;
+                document.querySelectorAll('.quality-option').forEach(function(o) { o.classList.remove('active'); });
+                this.classList.add('active');
+                qualityMenu.classList.remove('show');
+            });
+        });
+        fullscreenBtn.addEventListener('click', function() {
+            var wrapper = document.getElementById('videoWrapper');
+            if (document.fullscreenElement) { document.exitFullscreen(); }
+            else { wrapper.requestFullscreen(); }
+        });
+        pipBtn.addEventListener('click', function() {
+            if (document.pictureInPictureElement) { document.exitPictureInPicture(); }
+            else { video.requestPictureInPicture(); }
+        });
+        document.querySelectorAll('input[name="subtitle"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                var text = document.getElementById('subtitleText');
+                if (this.value === 'off') {
+                    text.textContent = 'No subtitles available. Enable a subtitle track to view captions here.';
+                } else {
+                    text.textContent = '[' + this.value.toUpperCase() + '] Subtitle track selected. Captions will appear here when the video plays.';
+                }
+            });
+        });
+        video.addEventListener('play', function() { console.log('Video playing'); });
+        video.addEventListener('pause', function() { console.log('Video paused'); });
+        video.addEventListener('ended', function() { console.log('Video ended'); });
+        function postComment() {
+            var input = document.getElementById('commentInput');
+            var text = input.value.trim();
+            if (!text) return;
+            var list = document.getElementById('commentsList');
+            var item = document.createElement('div');
+            item.className = 'comment-item';
+            item.innerHTML = '<div class="comment-avatar">U</div><div class="comment-body"><span class="comment-author">User</span><span class="comment-time">Just now</span><div class="comment-text">' + text.replace(/</g, '&lt;') + '</div><div class="comment-actions"><span class="comment-action-link">&#x1F44D; 0</span><span class="comment-action-link">Reply</span></div></div>';
+            list.insertBefore(item, list.firstChild);
+            input.value = '';
+        }
+        function shareVideo(platform) { console.log('Sharing to ' + platform); }
+        function copyLink() {
+            var link = document.getElementById('shareLink');
+            link.select();
+            document.execCommand('copy');
+        }
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.speed-selector')) speedMenu.classList.remove('show');
+            if (!e.target.closest('.quality-selector')) qualityMenu.classList.remove('show');
+        });
+    </script>
+</body>
+</html>

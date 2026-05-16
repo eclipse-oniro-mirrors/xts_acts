@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe 测试页面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #f0f0f0; padding: 20px; color: #333; }
+        h1 { font-size: 24px; margin-bottom: 20px; color: #2c3e50; }
+        .iframe-container { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .iframe-container h2 { font-size: 18px; margin-bottom: 10px; }
+        .iframe-container p { font-size: 14px; color: #666; margin-bottom: 15px; }
+        iframe { width: 100%; height: 300px; border: 2px solid #ddd; border-radius: 4px; }
+        .info-box { background: #e3f2fd; padding: 15px; border-radius: 6px; border-left: 4px solid #2196f3; margin-top: 15px; }
+        .info-box p { font-size: 14px; color: #1565c0; margin: 0; }
+        .warning-box { background: #fff3e0; padding: 15px; border-radius: 6px; border-left: 4px solid #ff9800; margin-top: 15px; }
+        .warning-box p { font-size: 14px; color: #e65100; margin: 0; }
+        .security-box { background: #fce4ec; padding: 15px; border-radius: 6px; border-left: 4px solid #e91e63; margin-top: 15px; }
+        .security-box p { font-size: 14px; color: #c62828; margin: 0; }
+        .success-box { background: #e8f5e9; padding: 15px; border-radius: 6px; border-left: 4px solid #4caf50; margin-top: 15px; }
+        .success-box p { font-size: 14px; color: #2e7d32; margin: 0; }
+        .size-controls { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; align-items: center; }
+        .size-controls label { font-size: 14px; color: #555; }
+        .size-controls input[type="range"] { width: 150px; }
+        .size-controls select { padding: 4px 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 13px; }
+        .size-controls button { padding: 6px 14px; background: #2196f3; color: white; border: none; border-radius: 4px; font-size: 13px; cursor: pointer; }
+        .size-controls .size-value { font-size: 13px; color: #888; min-width: 80px; }
+        .attr-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        .attr-table th { background: #f5f5f5; padding: 10px 12px; text-align: left; border-bottom: 2px solid #ddd; }
+        .attr-table td { padding: 10px 12px; border-bottom: 1px solid #eee; }
+        .attr-table td:first-child { font-weight: 600; color: #1565c0; white-space: nowrap; }
+        .attr-table code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 13px; color: #c7254e; }
+        .sandbox-section { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .sandbox-section h2 { font-size: 18px; margin-bottom: 10px; }
+        .sandbox-section p { font-size: 14px; color: #666; margin-bottom: 15px; }
+        .sandbox-demo { margin-bottom: 20px; }
+        .sandbox-demo h3 { font-size: 15px; color: #333; margin-bottom: 8px; }
+        .sandbox-demo code { display: block; background: #263238; color: #aed581; padding: 10px 15px; border-radius: 4px; font-size: 13px; margin-bottom: 10px; overflow-x: auto; }
+        .nested-section { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .nested-section h2 { margin-bottom: 10px; }
+        .nested-section p { font-size: 14px; color: #666; margin-bottom: 15px; }
+        .security-section { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .security-section h2 { font-size: 18px; margin-bottom: 15px; }
+        .security-item { padding: 12px 15px; background: #f8f9fa; border-radius: 6px; margin-bottom: 10px; }
+        .security-item h4 { font-size: 15px; margin-bottom: 4px; }
+        .security-item p { font-size: 13px; color: #666; line-height: 1.6; }
+        .srcdoc-section { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .srcdoc-section h2 { font-size: 18px; margin-bottom: 10px; }
+        .srcdoc-section p { font-size: 14px; color: #666; margin-bottom: 15px; }
+        .example-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 15px; }
+        .example-card { background: #f8f9fa; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
+        .example-card h4 { font-size: 14px; margin-bottom: 8px; color: #333; }
+        .example-card p { font-size: 13px; color: #666; margin-bottom: 8px; }
+        .example-card code { display: block; background: #263238; color: #aed581; padding: 8px 12px; border-radius: 4px; font-size: 12px; overflow-x: auto; white-space: pre; }
+    </style>
+</head>
+<body>
+    <h1>HTML iframe 标签测试</h1>
+    <div class="iframe-container">
+        <h2>iframe 基本示例</h2>
+        <p>下面的iframe展示了一个嵌套的网页内容：</p>
+        <iframe src="https://www.example.com/" title="iframe test" id="basicFrame"></iframe>
+        <div class="info-box">
+            <p><strong>说明：</strong>此页面用于测试iframe标签的功能。iframe元素可以在当前页面中嵌入另一个HTML页面。</p>
+        </div>
+    </div>
+    <div class="iframe-container">
+        <h2>iframe 尺寸控制</h2>
+        <p>使用滑块和按钮控制下方iframe的大小：</p>
+        <div class="size-controls">
+            <label>宽度：</label>
+            <input type="range" id="widthSlider" min="200" max="1200" value="800">
+            <span class="size-value" id="widthValue">800px</span>
+            <label>高度：</label>
+            <input type="range" id="heightSlider" min="100" max="800" value="300">
+            <span class="size-value" id="heightValue">300px</span>
+            <button onclick="resetSize()">重置</button>
+            <button onclick="toggleBorder()">切换边框</button>
+        </div>
+        <div class="size-controls">
+            <label>预设尺寸：</label>
+            <select id="presetSize" onchange="applyPreset()">
+                <option value="">自定义</option>
+                <option value="300x200">300 x 200 (小)</option>
+                <option value="600x400">600 x 400 (中)</option>
+                <option value="800x600">800 x 600 (大)</option>
+                <option value="100x100">100 x 100 (迷你)</option>
+            </select>
+        </div>
+        <iframe src="https://www.example.com/" title="resizeable iframe" id="resizeFrame"></iframe>
+        <div class="success-box">
+            <p><strong>成功：</strong>iframe尺寸可以通过CSS或HTML属性灵活控制。推荐使用CSS控制样式。</p>
+        </div>
+    </div>
+    <div class="sandbox-section">
+        <h2>iframe sandbox 属性演示</h2>
+        <p>sandbox属性用于对iframe内容施加额外的限制，提高安全性。不同的sandbox值提供不同级别的限制。</p>
+        <div class="sandbox-demo">
+            <h3>完全限制 - sandbox=""</h3>
+            <code>&lt;iframe src="..." sandbox&gt;</code>
+            <iframe src="about:blank" title="sandbox empty" style="height:120px;"></iframe>
+            <div class="info-box"><p>最严格的限制：禁止脚本、禁止表单提交、禁止同源访问。</p></div>
+        </div>
+        <div class="sandbox-demo">
+            <h3>允许脚本 - sandbox="allow-scripts"</h3>
+            <code>&lt;iframe src="..." sandbox="allow-scripts"&gt;</code>
+            <iframe src="about:blank" title="sandbox scripts" sandbox="allow-scripts" style="height:120px;"></iframe>
+            <div class="info-box"><p>允许执行JavaScript，但仍然禁止表单提交和同源访问。</p></div>
+        </div>
+        <div class="sandbox-demo">
+            <h3>允许脚本和表单 - sandbox="allow-scripts allow-forms"</h3>
+            <code>&lt;iframe src="..." sandbox="allow-scripts allow-forms"&gt;</code>
+            <iframe src="about:blank" title="sandbox scripts forms" sandbox="allow-scripts allow-forms" style="height:120px;"></iframe>
+            <div class="warning-box"><p>允许脚本执行和表单提交，但仍然禁止同源访问。适用于大多数场景。</p></div>
+        </div>
+        <div class="sandbox-demo">
+            <h3>允许同源访问 - sandbox="allow-same-origin allow-scripts"</h3>
+            <code>&lt;iframe src="..." sandbox="allow-same-origin allow-scripts"&gt;</code>
+            <iframe src="about:blank" title="sandbox same origin" sandbox="allow-same-origin allow-scripts" style="height:120px;"></iframe>
+            <div class="security-box"><p>允许脚本执行和同源访问。仅当内容完全可信时使用此选项。</p></div>
+        </div>
+    </div>
+    <div class="nested-section">
+        <h2>嵌套iframe</h2>
+        <p>测试多层嵌套iframe的场景：</p>
+        <iframe src="about:blank" title="nested iframe test" id="nestedFrame" style="height:350px;"></iframe>
+        <div class="info-box">
+            <p>iframe支持多种属性：width、height、src、sandbox、allow等。</p>
+        </div>
+    </div>
+    <div class="srcdoc-section">
+        <h2>iframe srcdoc 属性</h2>
+        <p>srcdoc属性允许直接在iframe中嵌入HTML内容，无需额外文件：</p>
+        <iframe srcdoc="<html><body style='font-family:sans-serif;padding:20px;background:#e8f5e9;'><h3>srcdoc 示例</h3><p>这段内容由 <code>srcdoc</code> 属性直接嵌入，不需要外部文件。</p><p>当前时间：<script>document.write(new Date().toLocaleString())<\/script></p></body></html>" title="srcdoc demo" style="height:180px;"></iframe>
+        <div class="success-box"><p><strong>提示：</strong>srcdoc适合嵌入简短的静态内容或模板，避免额外的网络请求。</p></div>
+    </div>
+    <div class="iframe-container">
+        <h2>更多iframe示例</h2>
+        <p>以下展示不同场景下的iframe使用方式：</p>
+        <div class="example-grid">
+            <div class="example-card">
+                <h4>隐藏边框</h4>
+                <p>使用frameborder=0或CSS去除边框</p>
+                <code>&lt;iframe src="..." style="border:none;"&gt;</code>
+            </div>
+            <div class="example-card">
+                <h4>透明背景</h4>
+                <p>设置allowtransparency属性</p>
+                <code>&lt;iframe src="..." allowtransparency="true"&gt;</code>
+            </div>
+            <div class="example-card">
+                <h4>懒加载</h4>
+                <p>使用loading="lazy"延迟加载</p>
+                <code>&lt;iframe src="..." loading="lazy"&gt;</code>
+            </div>
+            <div class="example-card">
+                <h4>命名iframe</h4>
+                <p>使用name属性配合target跳转</p>
+                <code>&lt;iframe name="myframe" src="..."&gt;</code>
+            </div>
+        </div>
+    </div>
+    <div class="security-section">
+        <h2>iframe 安全注意事项</h2>
+        <div class="security-item">
+            <h4>1. 使用 sandbox 属性</h4>
+            <p>始终使用sandbox属性来限制iframe内容的权限，仅开放必要的功能。</p>
+        </div>
+        <div class="security-item">
+            <h4>2. 设置 CSP 头部</h4>
+            <p>使用Content-Security-Policy的frame-ancestors指令来控制哪些页面可以嵌入当前页面。</p>
+        </div>
+        <div class="security-item">
+            <h4>3. 避免嵌入不可信内容</h4>
+            <p>不要在iframe中嵌入来源不可信的内容，这可能导致点击劫持等安全风险。</p>
+        </div>
+        <div class="security-item">
+            <h4>4. 使用 allow 属性</h4>
+            <p>使用allow属性来精确控制iframe可以使用哪些Feature Policy，如autoplay、camera等。</p>
+        </div>
+    </div>
+    <div class="iframe-container">
+        <h2>iframe 属性参考表</h2>
+        <p>以下是iframe标签常用属性的完整参考：</p>
+        <table class="attr-table">
+            <thead>
+                <tr><th>属性</th><th>值</th><th>说明</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>src</td><td>URL</td><td>指定iframe中显示的文档URL</td></tr>
+                <tr><td>srcdoc</td><td>HTML</td><td>指定iframe中显示的HTML内容</td></tr>
+                <tr><td>width</td><td>pixels/%</td><td>设置iframe的宽度</td></tr>
+                <tr><td>height</td><td>pixels/%</td><td>设置iframe的高度</td></tr>
+                <tr><td>name</td><td>string</td><td>设置iframe的名称，用于target属性</td></tr>
+                <tr><td>sandbox</td><td>多个值</td><td>对iframe内容施加额外限制</td></tr>
+                <tr><td>allow</td><td>feature list</td><td>设置iframe的Feature Policy</td></tr>
+                <tr><td>allowfullscreen</td><td>boolean</td><td>是否允许全屏显示</td></tr>
+                <tr><td>loading</td><td>lazy/eager</td><td>懒加载或立即加载</td></tr>
+                <tr><td>referrerpolicy</td><td>policy</td><td>设置请求时的Referer头策略</td></tr>
+                <tr><td>title</td><td>string</td><td>设置iframe的标题，用于无障碍访问</td></tr>
+                <tr><td>style</td><td>CSS</td><td>设置iframe的内联样式</td></tr>
+                <tr><td>frameborder</td><td>0/1</td><td>是否显示边框（已废弃，推荐CSS）</td></tr>
+                <tr><td>scrolling</td><td>auto/yes/no</td><td>是否显示滚动条（已废弃，推荐CSS）</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="iframe-container">
+        <h2>iframe allow 属性演示</h2>
+        <p>allow属性控制iframe可以使用哪些浏览器功能：</p>
+        <div class="sandbox-demo">
+            <h3>允许自动播放</h3>
+            <code>&lt;iframe src="..." allow="autoplay"&gt;</code>
+            <iframe src="about:blank" title="allow autoplay" allow="autoplay" style="height:80px;"></iframe>
+        </div>
+        <div class="sandbox-demo">
+            <h3>允许摄像头和麦克风</h3>
+            <code>&lt;iframe src="..." allow="camera; microphone"&gt;</code>
+            <iframe src="about:blank" title="allow camera" allow="camera; microphone" style="height:80px;"></iframe>
+        </div>
+    </div>
+    <script>
+        function test() { return true; }
+        document.getElementById('nestedFrame').srcdoc = '<html><body style="font-family:sans-serif;padding:20px;"><h3>Nested iframe Content</h3><p>This content is loaded via srcdoc attribute.</p><iframe src="https://www.example.com/" width="100%" height="200" style="border:1px solid #ccc;"></iframe></body></html>';
+        var resizeFrame = document.getElementById('resizeFrame');
+        var widthSlider = document.getElementById('widthSlider');
+        var heightSlider = document.getElementById('heightSlider');
+        var widthValue = document.getElementById('widthValue');
+        var heightValue = document.getElementById('heightValue');
+        widthSlider.addEventListener('input', function() {
+            resizeFrame.style.width = this.value + 'px';
+            widthValue.textContent = this.value + 'px';
+        });
+        heightSlider.addEventListener('input', function() {
+            resizeFrame.style.height = this.value + 'px';
+            heightValue.textContent = this.value + 'px';
+        });
+        function resetSize() {
+            resizeFrame.style.width = '100%';
+            resizeFrame.style.height = '300px';
+            widthSlider.value = 800;
+            heightSlider.value = 300;
+            widthValue.textContent = '800px';
+            heightValue.textContent = '300px';
+        }
+        function toggleBorder() {
+            var current = resizeFrame.style.border;
+            resizeFrame.style.border = current === 'none' ? '2px solid #ddd' : 'none';
+        }
+        function applyPreset() {
+            var val = document.getElementById('presetSize').value;
+            if (val) {
+                var parts = val.split('x');
+                resizeFrame.style.width = parts[0] + 'px';
+                resizeFrame.style.height = parts[1] + 'px';
+                widthSlider.value = parts[0];
+                heightSlider.value = parts[1];
+                widthValue.textContent = parts[0] + 'px';
+                heightValue.textContent = parts[1] + 'px';
+            }
+        }
+    </script>
+</body>
+</html>

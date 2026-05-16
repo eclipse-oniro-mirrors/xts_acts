@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/webViewController",
+    "pages/terminateRenderProcess",
+    "pages/webOnFirstContFour",
+    "pages/wholeWebPageDrawing",
+    "pages/webOnFirstScreenPaint",
+    "pages/webOnLargestContentfulPaint",
+    "pages/webOnFirstMeaningfulPaint"
+  ]
+}

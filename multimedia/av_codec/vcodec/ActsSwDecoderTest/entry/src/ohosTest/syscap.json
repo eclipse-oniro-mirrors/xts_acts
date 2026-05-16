@@ -1,0 +1,14 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Multimedia.Media.VideoDecoder",
+                    "SystemCapability.Multimedia.Media.CodecBase",
+                    "SystemCapability.Multimedia.Media.Core"
+                ]
+            }
+        ]
+    }
+}

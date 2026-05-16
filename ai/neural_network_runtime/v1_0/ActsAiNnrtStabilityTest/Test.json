@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for ActsAiNnrtStabilityTest",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "3600000",
+        "shell-timeout": "3600000",
+        "bundle-name": "com.openharmony.acts_ai_nnrt_stability",
+        "module-name": "entry_test",
+        "testcase-timeout": 3600000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAiNnrtStabilityMainTest.hap",
+                "ActsAiNnrtStabilityHapTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "power-shell wakeup",
+        "power-shell setmode 602"
+      ]
+    }
+    ]
+}
+

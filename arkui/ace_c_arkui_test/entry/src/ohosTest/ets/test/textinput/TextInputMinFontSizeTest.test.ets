@@ -1,0 +1,66 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { expect, describe, it, afterEach, Level } from '@ohos/hypium';
+import Utils from '../common/Utils';
+import nativeFunc from 'libnativefunc.so'
+
+export default function textInputMinFontSizeTest() {
+
+  describe('textInputMinFontSizeTest', () => {
+
+    afterEach(async (done: Function) => {
+      await Utils.sleep(100);
+      done();
+    })
+
+    /**
+     * @tc.name   testTextInputMinFontSize001
+     * @tc.number SUB_ARKUI_CAPI_TEXTINPUT_MIN_FONT_SIZE_0001
+     * @tc.desc   testing text for textInput with normal value
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testTextInputMinFontSize001', Level.LEVEL1, async (done: Function) => {
+      expect(nativeFunc.testTextInputMinFontSize001()).assertEqual(0)
+      done();
+    });
+    /**
+     * @tc.name   testTextInputMinFontSize002
+     * @tc.number SUB_ARKUI_CAPI_TEXTINPUT_MIN_FONT_SIZE_0002
+     * @tc.desc   testing text for textInput with normal value
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testTextInputMinFontSize002', Level.LEVEL1, async (done: Function) => {
+      expect(nativeFunc.testTextInputMinFontSize002()).assertEqual(0)
+      done();
+    });
+    /**
+     * @tc.name   testTextInputMinFontSize003
+     * @tc.number SUB_ARKUI_CAPI_TEXTINPUT_MIN_FONT_SIZE_0003
+     * @tc.desc   testing text for textInput with normal value
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('testTextInputMinFontSize003', Level.LEVEL1, async (done: Function) => {
+      expect(nativeFunc.testTextInputMinFontSize003()).assertEqual(0)
+      done();
+    });
+  })
+}

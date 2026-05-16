@@ -1,0 +1,17 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "MyApplication"
+    },
+    {
+        "name": "TestAbility_label",
+        "value": "label"
+    },
+    {
+        "name": "TestAbility_desc",
+        "value": "description"
+    }
+
+  ]
+}

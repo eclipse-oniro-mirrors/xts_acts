@@ -1,0 +1,75 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <sys/eventfd.h>
+#include <unistd.h>
+#include "functionalext.h"
+
+/**
+ * @tc.name      : Eventfd0100
+ * @tc.desc      : The flags parameter is equal to EFD_SEMAPHORE, which creates an eventfd object.
+ * @tc.level     : Level 0
+ */
+void Eventfd0100(void)
+{
+    int ret = eventfd(0, EFD_SEMAPHORE);
+    EXPECT_TRUE("Eventfd0100", ret > 0);
+    if (ret > 0) {
+        (void)close(ret);
+    }
+}
+
+/**
+ * @tc.name      : Eventfd0200
+ * @tc.desc      : The flags parameter is equal to EFD_CLOEXEC, which creates an eventfd object.
+ * @tc.level     : Level 1
+ */
+void Eventfd0200(void)
+{
+    int ret = eventfd(0, EFD_CLOEXEC);
+    EXPECT_TRUE("Eventfd0200", ret > 0);
+    if (ret > 0) {
+        (void)close(ret);
+    }
+}
+
+/**
+ * @tc.name      : Eventfd0300
+ * @tc.desc      : The flags parameter is equal to EFD_NONBLOCK, which creates an eventfd object.
+ * @tc.level     : Level 1
+ */
+void Eventfd0300(void)
+{
+    int ret = eventfd(0, EFD_NONBLOCK);
+    EXPECT_TRUE("Eventfd0300", ret > 0);
+    if (ret > 0) {
+        (void)close(ret);
+    }
+}
+
+static int EventfdTestWithArgs(int argc, char* argv[])
+{
+    Eventfd0100();
+    Eventfd0200();
+    Eventfd0300();
+    return T_STATUS;
+}
+
+int EventfdTest(void)
+{
+    static char libcProgStub[] = "libc_test";
+    char* libcArgvStub[] = { libcProgStub, nullptr };
+    return EventfdTestWithArgs(1, libcArgvStub);
+}

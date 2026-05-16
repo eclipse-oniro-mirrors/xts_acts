@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打开新窗口示例</title>
+    <style>
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px;
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+        .close-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px;
+            cursor: pointer;
+        }
+        .close-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+<h1>点击链接打开新窗口</h1>
+<!-- 给按钮添加ID，方便JS定位 -->
+<a id="openWindowBtn" href="#" onclick="openNewWindow('https://www.baidu.com')">打开新窗口</a>
+<a href="#" onclick="openNewTab('https://www.baidu.com')">打开新标签</a>
+<div class="close-btn" onclick="closeWindow()">关闭窗口</div>
+
+<script>
+    // 存储新窗口的引用，方便后续操作（如关闭）
+    let newWindow = null;
+
+    function openNewWindow(url) {
+        newWindow = window.open(url, 'baiduWindow', 'width=500,height=600,left=10,top=20');
+        return false;
+    }
+
+    function openNewTab(url) {
+        window.open(url, 'baiduTab');
+        return false;
+    }
+
+    function closeWindow() {
+        // 优先关闭通过当前页面打开的新窗口
+        if (newWindow && !newWindow.closed) {
+            newWindow.close();
+            alert('已关闭自动打开的新窗口！');
+        } else {
+            // 若没有新窗口，再尝试关闭当前窗口（部分浏览器限制）
+            const isClosed = window.close();
+            if (!isClosed) {
+                alert('浏览器限制：无法关闭非脚本打开的窗口！');
+            }
+        }
+    }
+</script>
+</body>
+</html>

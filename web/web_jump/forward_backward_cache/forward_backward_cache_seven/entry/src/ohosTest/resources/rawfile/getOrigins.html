@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB Example - Store Test Data</title>
+</head>
+<body>
+<h1>IndexedDB Example - Store Test Data</h1>
+<script>
+    // 数据库名称和对象存储空间名称
+    const dbName = 'TestDatabase';
+    const storeName = 'TestStore';
+
+    // 打开或创建数据库
+    const request = indexedDB.open(dbName, 1);
+
+    // 数据库升级时创建对象存储空间
+    request.onupgradeneeded = function (event) {
+        const db = event.target.result;
+        if (!db.objectStoreNames.contains(storeName)) {
+            // 创建对象存储空间，并定义主键为自增的 `id`
+            db.createObjectStore(storeName, { keyPath: 'id', autoIncrement: true });
+            console.log('Object store created.');
+        }
+    };
+
+    // 数据库打开成功
+    request.onsuccess = function (event) {
+        const db = event.target.result;
+        console.log('Database opened successfully.');
+
+        // 插入两条测试数据
+        insertTestData(db, { name: 'Test 1', value: 100 });
+        insertTestData(db, { name: 'Test 2', value: 200 });
+
+        // 查询并显示所有测试数据
+        getAllTestData(db);
+    };
+
+    // 数据库打开失败
+    request.onerror = function (event) {
+        console.error('Error opening database:', event.target.error);
+    };
+
+    // 插入测试数据
+    function insertTestData(db, data) {
+        const transaction = db.transaction(storeName, 'readwrite');
+        const store = transaction.objectStore(storeName);
+        const request = store.add(data);
+
+        request.onsuccess = function () {
+            console.log('Data inserted:', data);
+        };
+
+        request.onerror = function (event) {
+            console.error('Error inserting data:', event.target.error);
+        };
+    }
+
+    // 查询所有测试数据
+    function getAllTestData(db) {
+        const transaction = db.transaction(storeName, 'readonly');
+        const store = transaction.objectStore(storeName);
+        const request = store.getAll();
+
+        request.onsuccess = function (event) {
+            const allData = event.target.result;
+            console.log('All test data:', allData);
+        };
+
+        request.onerror = function (event) {
+            console.error('Error fetching data:', event.target.error);
+        };
+    }
+</script>
+</body>
+</html>

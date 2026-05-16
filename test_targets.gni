@@ -1,0 +1,81 @@
+# Copyright (C) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+all_test_targets = [
+  "${ACTS_ROOT}/ai:ai",
+  "${ACTS_ROOT}/web:web",
+  "${ACTS_ROOT}/testfwk:testfwk",
+  "${ACTS_ROOT}/global:xts_global_acts",
+  "${ACTS_ROOT}/security:security",
+  "${ACTS_ROOT}/useriam:useriam",
+  "${ACTS_ROOT}/multimedia:multimedia",
+  "${ACTS_ROOT}/bundlemanager:appexecfwk",
+  "${ACTS_ROOT}/account:account",
+  "${ACTS_ROOT}/communication:communication",
+  "${ACTS_ROOT}/notification:notification",
+  "${ACTS_ROOT}/ability:ability",
+  "${ACTS_ROOT}/time:time",
+  "${ACTS_ROOT}/theme:theme",
+  "${ACTS_ROOT}/request:request",
+  "${ACTS_ROOT}/inputmethod:inputmethod",
+  "${ACTS_ROOT}/powermgr:powermgr",
+  "${ACTS_ROOT}/startup:startup",
+  "${ACTS_ROOT}/sensors:sensors",
+  "${ACTS_ROOT}/distributeddatamgr:pasteboard",
+  "${ACTS_ROOT}/distributeddatamgr:distributeddatamgr",
+  "${ACTS_ROOT}/graphic:graphic",
+  "${ACTS_ROOT}/arkui:arkui",
+  "${ACTS_ROOT}/storage:storage",
+  "${ACTS_ROOT}/commonlibrary:commonlibrary",
+  "${ACTS_ROOT}/usb:usb",
+  "${ACTS_ROOT}/multimodalinput:multimodalinput",
+  "${ACTS_ROOT}/resourceschedule:resourceschedule",
+  "${ACTS_ROOT}/telephony:telephony",
+  "${ACTS_ROOT}/hiviewdfx:hiviewdfxtestacts",
+  "${ACTS_ROOT}/location:location",
+  "${ACTS_ROOT}/settingsdata:settingsdata",
+  "${ACTS_ROOT}/barrierfree:barrierfree",
+  "${ACTS_ROOT}/applications:applications",
+  "${ACTS_ROOT}/ostest:ostest",
+  "${ACTS_ROOT}/officeservice:officeservice",
+  "${ACTS_ROOT}/validator:validator",
+  "${ACTS_ROOT}/xts:xts",
+  "${ACTS_ROOT}/hdf:hdf",
+  "${ACTS_ROOT}/msdp:msdp",
+  "${ACTS_ROOT}/arkcompiler:arkcompiler",
+  "${ACTS_ROOT}/advertising:advertising",
+  "${ACTS_ROOT}/customization:customization",
+  "${ACTS_ROOT}/pcs:pcs",
+  "${ACTS_ROOT}/window:window",
+  "${ACTS_ROOT}/print:print",
+  "${ACTS_ROOT}/distributedhardware:distributedhardware",
+  "${ACTS_ROOT}/game:game",
+  "${ACTS_ROOT}/updater:update",
+]
+
+all_test_targets_ivi = [
+  # add acts for ivi here
+  # "${ACTS_ROOT}/multimedia:multimedia_ivi",
+]
+
+all_test_targets_intellitv = [
+  # add acts for intellitv here
+  "${ACTS_ROOT}/multimedia:multimedia_intellitv",
+]
+
+all_test_targets_wearable = [
+  # add acts for wearable here
+  "${ACTS_ROOT}/multimedia:multimedia_wearable",
+]

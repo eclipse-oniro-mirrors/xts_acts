@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for ActsDemuxerTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.actsh263swdecodertest",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsH263swDecoderTest.hap",
+                "ActsH263swDecoderMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/onAppear/appear",
+        "MainAbility/pages/onAppear/aboutToAppear",
+        "MainAbility/pages/onAppear/uiAppearance",
+        "MainAbility/pages/onAreaChange/areaChange",
+        "MainAbility/pages/onAttach/onAttach",
+        "MainAbility/pages/onVisiable/onVisiable",
+        "MainAbility/pages/onVisiable/onVisibleAreaApproximateChange",
+        "MainAbility/pages/onVisiable/measureFromViewport",
+        "MainAbility/pages/measureFromViewport/measureFromViewportOnVisible",
+        "MainAbility/pages/CommonMethod/onVisibleAreaApproximateChangeNullAndUndefined",
+        "MainAbility/pages/onAreaChange/expectedUpdateInterval",
+        "MainAbility/pages/onAreaChange/expectedUpdateIntervalNull",
+        "MainAbility/pages/onAreaChange/expectedUpdateIntervalUndefined"
+    ]
+}

@@ -1,0 +1,6 @@
+{
+  "src": [
+    "pages/OnActivateContent",
+    "pages/ControllerAttachStateChange"
+  ]
+}

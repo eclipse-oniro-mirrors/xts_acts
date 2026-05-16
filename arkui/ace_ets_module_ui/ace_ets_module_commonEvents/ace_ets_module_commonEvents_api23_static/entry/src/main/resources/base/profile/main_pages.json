@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/colorModeOptions/colorModeOptions",
+    "MainAbility/pages/componentObserver/componentObserver",
+    "MainAbility/pages/snapshotOptions/snapshotOptions",
+    "MainAbility/pages/otherInterfaces/otherInterfaces"
+  ]
+}

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应用市场 - 华为</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif; background: #f5f5f5; min-height: 100vh; color: #333; }
+        .header { background: #fff; padding: 14px 30px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 4px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 100; }
+        .header-left { display: flex; align-items: center; gap: 20px; }
+        .logo { font-size: 20px; font-weight: bold; color: #c41a1a; }
+        .logo span { color: #333; font-weight: 400; font-size: 14px; margin-left: 6px; }
+        .search-box { display: flex; align-items: center; background: #f5f5f5; border-radius: 20px; padding: 8px 16px; width: 360px; }
+        .search-box input { border: none; background: none; outline: none; font-size: 13px; flex: 1; }
+        .search-box .search-icon { color: #999; font-size: 14px; margin-right: 8px; }
+        .search-box .search-btn { background: #c41a1a; color: #fff; border: none; border-radius: 14px; padding: 5px 14px; font-size: 12px; cursor: pointer; }
+        .header-right { display: flex; gap: 20px; align-items: center; }
+        .header-right a { color: #666; text-decoration: none; font-size: 13px; }
+        .banner { background: linear-gradient(135deg, #c41a1a, #ff6b6b, #ee5a24); padding: 40px 30px; color: white; position: relative; overflow: hidden; }
+        .banner-content { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+        .banner-text h2 { font-size: 28px; margin-bottom: 10px; }
+        .banner-text p { font-size: 15px; opacity: 0.9; margin-bottom: 18px; }
+        .banner-btn { background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.4); padding: 10px 28px; border-radius: 20px; text-decoration: none; font-size: 14px; }
+        .banner-dots { display: flex; gap: 8px; margin-top: 16px; }
+        .banner-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); }
+        .banner-dots span.active { background: #fff; width: 20px; border-radius: 4px; }
+        .tabs { max-width: 1200px; margin: 20px auto 0; padding: 0 30px; display: flex; gap: 0; border-bottom: 2px solid #eee; }
+        .tab { padding: 12px 20px; font-size: 14px; color: #999; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .tab.active { color: #c41a1a; border-bottom-color: #c41a1a; font-weight: 600; }
+        .tab:hover { color: #333; }
+        .main { max-width: 1200px; margin: 0 auto; padding: 20px 30px; display: grid; grid-template-columns: 1fr 300px; gap: 24px; }
+        .section-title { font-size: 18px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+        .section-title .more { font-size: 13px; color: #999; font-weight: 400; cursor: pointer; text-decoration: none; }
+        .section-title .more:hover { color: #c41a1a; }
+        .app-list { background: #fff; border-radius: 10px; overflow: hidden; margin-bottom: 24px; }
+        .app-item { display: flex; align-items: center; padding: 14px 16px; border-bottom: 1px solid #f5f5f5; transition: background 0.2s; cursor: pointer; }
+        .app-item:hover { background: #fafafa; }
+        .app-item:last-child { border-bottom: none; }
+        .app-rank { width: 24px; font-size: 16px; font-weight: 700; text-align: center; margin-right: 14px; }
+        .rank-1 { color: #c41a1a; }
+        .rank-2 { color: #ff6b35; }
+        .rank-3 { color: #ffa500; }
+        .rank-n { color: #ccc; }
+        .app-icon { width: 50px; height: 50px; border-radius: 12px; margin-right: 12px; flex-shrink: 0; }
+        .app-info { flex: 1; min-width: 0; }
+        .app-info h3 { font-size: 14px; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .app-info .app-desc { font-size: 12px; color: #999; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .app-info .app-meta { display: flex; gap: 10px; margin-top: 4px; font-size: 11px; color: #bbb; }
+        .app-action { flex-shrink: 0; }
+        .btn-download { background: #c41a1a; color: #fff; border: none; border-radius: 16px; padding: 6px 18px; font-size: 12px; cursor: pointer; }
+        .btn-download:hover { background: #a01515; }
+        .btn-installed { background: #f5f5f5; color: #999; border: none; border-radius: 16px; padding: 6px 18px; font-size: 12px; cursor: default; }
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .sidebar-card { background: #fff; border-radius: 10px; padding: 18px; }
+        .sidebar-card h3 { font-size: 15px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+        .sidebar-card h3 .more { font-size: 12px; color: #999; font-weight: 400; }
+        .trending-item { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #f8f8f8; cursor: pointer; }
+        .trending-item:last-child { border-bottom: none; }
+        .trending-num { width: 20px; font-size: 13px; font-weight: 700; color: #ccc; margin-right: 10px; text-align: center; }
+        .trending-item:nth-child(1) .trending-num { color: #c41a1a; }
+        .trending-item:nth-child(2) .trending-num { color: #ff6b35; }
+        .trending-item:nth-child(3) .trending-num { color: #ffa500; }
+        .trending-text { font-size: 13px; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .trending-hot { font-size: 11px; color: #c41a1a; background: #fff0f0; padding: 1px 6px; border-radius: 8px; }
+        .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+        .category-item { background: #fff; border-radius: 10px; padding: 18px 10px; text-align: center; cursor: pointer; transition: all 0.2s; }
+        .category-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); transform: translateY(-2px); }
+        .category-icon { width: 40px; height: 40px; border-radius: 10px; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .category-item span { font-size: 12px; color: #666; }
+        .cat-social { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+        .cat-tools { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .cat-video { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+        .cat-education { background: linear-gradient(135deg, #89f7fe, #66a6ff); }
+        .cat-game { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .cat-shop { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .cat-health { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+        .cat-finance { background: linear-gradient(135deg, #d4fc79, #96e6a1); }
+        .app-cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+        .app-card { background: #fff; border-radius: 10px; padding: 18px; text-align: center; cursor: pointer; transition: all 0.2s; }
+        .app-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .app-card .icon { width: 56px; height: 56px; border-radius: 14px; margin: 0 auto 10px; }
+        .app-card h4 { font-size: 13px; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .app-card .rating { font-size: 11px; color: #ffa500; margin-bottom: 2px; }
+        .app-card .download-count { font-size: 11px; color: #bbb; }
+        .app-card .tag { display: inline-block; padding: 2px 8px; border-radius: 8px; font-size: 10px; margin-top: 6px; }
+        .tag-hot { background: #fff0f0; color: #c41a1a; }
+        .tag-new { background: #f0f4ff; color: #0078d4; }
+        .tag-pick { background: #f0fff4; color: #38a169; }
+        .star { color: #ffa500; }
+        .star-empty { color: #ddd; }
+        .editor-picks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 24px; }
+        .editor-pick-card { background: #fff; border-radius: 10px; padding: 16px; display: flex; gap: 14px; cursor: pointer; transition: all 0.2s; }
+        .editor-pick-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .editor-pick-card .ep-icon { width: 52px; height: 52px; border-radius: 13px; flex-shrink: 0; }
+        .editor-pick-card .ep-info { flex: 1; }
+        .editor-pick-card .ep-info h4 { font-size: 14px; margin-bottom: 4px; }
+        .editor-pick-card .ep-info p { font-size: 12px; color: #999; line-height: 1.5; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .editor-pick-card .ep-info .ep-meta { display: flex; gap: 10px; font-size: 11px; color: #bbb; }
+        .footer { background: #fff; padding: 30px; margin-top: 20px; border-top: 1px solid #eee; text-align: center; }
+        .footer p { font-size: 12px; color: #999; line-height: 2; }
+        .footer a { color: #666; text-decoration: none; margin: 0 10px; }
+        .footer a:hover { color: #c41a1a; }
+        .ic-1 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .ic-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .ic-3 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .ic-4 { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .ic-5 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .ic-6 { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+        .ic-7 { background: linear-gradient(135deg, #d4fc79, #96e6a1); }
+        .ic-8 { background: linear-gradient(135deg, #89f7fe, #66a6ff); }
+        .ic-9 { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .ic-10 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .ic-11 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .ic-12 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <div class="logo">AppGallery <span>| 华为应用市场</span></div>
+        </div>
+        <div class="search-box">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" placeholder="搜索应用、游戏">
+            <button class="search-btn">搜索</button>
+        </div>
+        <div class="header-right">
+            <a href="#">分类</a>
+            <a href="#">排行</a>
+            <a href="#">管理</a>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="banner-content">
+            <div>
+                <div class="banner-text">
+                    <h2>华为应用市场 - 精品推荐</h2>
+                    <p>安全下载、极速安装，海量应用精选推荐，打造极致应用体验</p>
+                </div>
+                <a href="#" class="banner-btn">立即探索</a>
+                <div class="banner-dots">
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tabs">
+        <div class="tab active">推荐</div>
+        <div class="tab">排行</div>
+        <div class="tab">分类</div>
+        <div class="tab">新品</div>
+        <div class="tab">编辑精选</div>
+        <div class="tab">HarmonyOS专区</div>
+    </div>
+    <div class="main">
+        <div class="main-content">
+            <div class="section-title">
+                应用分类
+            </div>
+            <div class="category-grid">
+                <div class="category-item"><div class="category-icon cat-social">&#128172;</div><span>社交通讯</span></div>
+                <div class="category-item"><div class="category-icon cat-tools">&#128295;</div><span>实用工具</span></div>
+                <div class="category-item"><div class="category-icon cat-video">&#127909;</div><span>影音娱乐</span></div>
+                <div class="category-item"><div class="category-icon cat-education">&#128218;</div><span>教育学习</span></div>
+                <div class="category-item"><div class="category-icon cat-game">&#127918;</div><span>游戏</span></div>
+                <div class="category-item"><div class="category-icon cat-shop">&#128722;</div><span>购物</span></div>
+                <div class="category-item"><div class="category-icon cat-health">&#9829;</div><span>健康运动</span></div>
+                <div class="category-item"><div class="category-icon cat-finance">&#128176;</div><span>理财金融</span></div>
+            </div>
+            <div class="section-title">
+                编辑精选
+                <a href="#" class="more">查看全部 &gt;</a>
+            </div>
+            <div class="editor-picks">
+                <div class="editor-pick-card">
+                    <div class="ep-icon ic-1"></div>
+                    <div class="ep-info">
+                        <h4>华为阅读</h4>
+                        <p>海量正版图书资源，沉浸式阅读体验，AI智能推荐好书</p>
+                        <div class="ep-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>4.9分</span><span>5.2亿次下载</span></div>
+                    </div>
+                </div>
+                <div class="editor-pick-card">
+                    <div class="ep-icon ic-9"></div>
+                    <div class="ep-info">
+                        <h4>花瓣搜索</h4>
+                        <p>安全可靠的搜索引擎，AI智能摘要，精准搜索无广告</p>
+                        <div class="ep-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span>4.6分</span><span>3.8亿次下载</span></div>
+                    </div>
+                </div>
+                <div class="editor-pick-card">
+                    <div class="ep-icon ic-7"></div>
+                    <div class="ep-info">
+                        <h4>华为音乐</h4>
+                        <p>千万级曲库，Hi-Res高解析音质，个性化推荐电台</p>
+                        <div class="ep-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>4.8分</span><span>8.1亿次下载</span></div>
+                    </div>
+                </div>
+                <div class="editor-pick-card">
+                    <div class="ep-icon ic-5"></div>
+                    <div class="ep-info">
+                        <h4>华为钱包</h4>
+                        <p>集成公交卡、门禁卡、银行卡，一碰即付便捷生活</p>
+                        <div class="ep-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span>4.5分</span><span>6.7亿次下载</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-title">
+                应用排行榜
+                <a href="#" class="more">完整榜单 &gt;</a>
+            </div>
+            <div class="app-list">
+                <div class="app-item">
+                    <div class="app-rank rank-1">1</div>
+                    <div class="app-icon ic-1"></div>
+                    <div class="app-info"><h3>微信</h3><div class="app-desc">一个生活方式</div><div class="app-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>4.9</span><span>128亿下载</span><span>2.3GB</span></div></div>
+                    <div class="app-action"><button class="btn-download">下载</button></div>
+                </div>
+                <div class="app-item">
+                    <div class="app-rank rank-2">2</div>
+                    <div class="app-icon ic-2"></div>
+                    <div class="app-info"><h3>抖音</h3><div class="app-desc">记录美好生活</div><div class="app-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>4.8</span><span>95亿下载</span><span>1.8GB</span></div></div>
+                    <div class="app-action"><button class="btn-download">下载</button></div>
+                </div>
+                <div class="app-item">
+                    <div class="app-rank rank-3">3</div>
+                    <div class="app-icon ic-3"></div>
+                    <div class="app-info"><h3>支付宝</h3><div class="app-desc">生活好，支付宝</div><div class="app-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>4.9</span><span>89亿下载</span><span>1.5GB</span></div></div>
+                    <div class="app-action"><button class="btn-installed">已安装</button></div>
+                </div>
+                <div class="app-item">
+                    <div class="app-rank rank-n">4</div>
+                    <div class="app-icon ic-4"></div>
+                    <div class="app-info"><h3>淘宝</h3><div class="app-desc">太好逛了吧</div><div class="app-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span>4.7</span><span>76亿下载</span><span>2.1GB</span></div></div>
+                    <div class="app-action"><button class="btn-download">下载</button></div>
+                </div>
+                <div class="app-item">
+                    <div class="app-rank rank-n">5</div>
+                    <div class="app-icon ic-5"></div>
+                    <div class="app-info"><h3>QQ</h3><div class="app-desc">每一天，乐在沟通</div><div class="app-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span>4.6</span><span>72亿下载</span><span>1.9GB</span></div></div>
+                    <div class="app-action"><button class="btn-download">下载</button></div>
+                </div>
+                <div class="app-item">
+                    <div class="app-rank rank-n">6</div>
+                    <div class="app-icon ic-6"></div>
+                    <div class="app-info"><h3>哔哩哔哩</h3><div class="app-desc">你感兴趣的视频都在B站</div><div class="app-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>4.8</span><span>45亿下载</span><span>1.4GB</span></div></div>
+                    <div class="app-action"><button class="btn-download">下载</button></div>
+                </div>
+                <div class="app-item">
+                    <div class="app-rank rank-n">7</div>
+                    <div class="app-icon ic-8"></div>
+                    <div class="app-info"><h3>高德地图</h3><div class="app-desc">出行更准更快</div><div class="app-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span>4.9</span><span>52亿下载</span><span>980MB</span></div></div>
+                    <div class="app-action"><button class="btn-installed">已安装</button></div>
+                </div>
+                <div class="app-item">
+                    <div class="app-rank rank-n">8</div>
+                    <div class="app-icon ic-7"></div>
+                    <div class="app-info"><h3>美团</h3><div class="app-desc">美好生活小帮手</div><div class="app-meta"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span>4.7</span><span>38亿下载</span><span>1.2GB</span></div></div>
+                    <div class="app-action"><button class="btn-download">下载</button></div>
+                </div>
+            </div>
+            <div class="section-title">
+                新品推荐
+                <a href="#" class="more">更多新品 &gt;</a>
+            </div>
+            <div class="app-cards-grid">
+                <div class="app-card">
+                    <div class="icon ic-9"></div>
+                    <h4>AI绘画大师</h4>
+                    <div class="rating"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.9</div>
+                    <div class="download-count">326万下载</div>
+                    <span class="tag tag-new">新品</span>
+                </div>
+                <div class="app-card">
+                    <div class="icon ic-10"></div>
+                    <h4>智能翻译官</h4>
+                    <div class="rating"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.7</div>
+                    <div class="download-count">189万下载</div>
+                    <span class="tag tag-new">新品</span>
+                </div>
+                <div class="app-card">
+                    <div class="icon ic-11"></div>
+                    <h4>习惯养成打卡</h4>
+                    <div class="rating"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8</div>
+                    <div class="download-count">95万下载</div>
+                    <span class="tag tag-new">新品</span>
+                </div>
+                <div class="app-card">
+                    <div class="icon ic-12"></div>
+                    <h4>极简记账本</h4>
+                    <div class="rating"><span class="star">&#9733;&#9733;&#9733;&#9733;&#9734;</span> 4.6</div>
+                    <div class="download-count">67万下载</div>
+                    <span class="tag tag-new">新品</span>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <h3>热门搜索 <span class="more">换一批</span></h3>
+                <div class="trending-item"><div class="trending-num">1</div><div class="trending-text">ChatGPT</div><span class="trending-hot">热</span></div>
+                <div class="trending-item"><div class="trending-num">2</div><div class="trending-text">短视频剪辑</div><span class="trending-hot">热</span></div>
+                <div class="trending-item"><div class="trending-num">3</div><div class="trending-text">AI写真</div></div>
+                <div class="trending-item"><div class="trending-num">4</div><div class="trending-text">PDF编辑器</div></div>
+                <div class="trending-item"><div class="trending-num">5</div><div class="trending-text">屏幕录制</div></div>
+                <div class="trending-item"><div class="trending-num">6</div><div class="trending-text">文件管理器</div></div>
+                <div class="trending-item"><div class="trending-num">7</div><div class="trending-text">远程控制</div></div>
+            </div>
+            <div class="sidebar-card">
+                <h3>应用资讯 <span class="more">更多</span></h3>
+                <div style="font-size: 13px; color: #666; line-height: 1.8;">
+                    <p style="padding: 6px 0; border-bottom: 1px solid #f8f8f8; cursor: pointer;">华为应用市场安全检测机制全面升级</p>
+                    <p style="padding: 6px 0; border-bottom: 1px solid #f8f8f8; cursor: pointer;">HarmonyOS原生应用开发大赛正式启动</p>
+                    <p style="padding: 6px 0; border-bottom: 1px solid #f8f8f8; cursor: pointer;">开发者收益分成比例提升至85%</p>
+                    <p style="padding: 6px 0; cursor: pointer;">应用市场月度精选：不可错过的10款应用</p>
+                </div>
+            </div>
+            <div class="sidebar-card">
+                <h3>安全提示</h3>
+                <div style="font-size: 12px; color: #999; line-height: 1.7;">
+                    <p>&#9989; 全部应用经过安全检测</p>
+                    <p>&#9989; 隐私权限严格管控</p>
+                    <p>&#9989; 恶意软件实时拦截</p>
+                    <p>&#9989; 下载安装全程加密</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p><a href="#">关于我们</a><a href="#">用户协议</a><a href="#">隐私政策</a><a href="#">开发者服务</a><a href="#">联系我们</a></p>
+        <p>&copy; 2026 华为软件技术有限公司 版权所有</p>
+    </div>
+    <div style="background: #fff; padding: 20px 30px; border-top: 1px solid #eee;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 style="font-size: 16px; margin-bottom: 16px; color: #333;">开发者服务</h3>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+                <div style="background: #f8f8f8; border-radius: 8px; padding: 16px; text-align: center; cursor: pointer;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">&#128187;</div>
+                    <div style="font-size: 13px; color: #333; font-weight: 500;">AppGallery Connect</div>
+                    <div style="font-size: 11px; color: #999; margin-top: 4px;">一站式移动服务</div>
+                </div>
+                <div style="background: #f8f8f8; border-radius: 8px; padding: 16px; text-align: center; cursor: pointer;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">&#128640;</div>
+                    <div style="font-size: 13px; color: #333; font-weight: 500;">快速入门</div>
+                    <div style="font-size: 11px; color: #999; margin-top: 4px;">10分钟创建应用</div>
+                </div>
+                <div style="background: #f8f8f8; border-radius: 8px; padding: 16px; text-align: center; cursor: pointer;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">&#128202;</div>
+                    <div style="font-size: 13px; color: #333; font-weight: 500;">数据分析</div>
+                    <div style="font-size: 11px; color: #999; margin-top: 4px;">用户行为洞察</div>
+                </div>
+                <div style="background: #f8f8f8; border-radius: 8px; padding: 16px; text-align: center; cursor: pointer;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">&#128176;</div>
+                    <div style="font-size: 13px; color: #333; font-weight: 500;">应用变现</div>
+                    <div style="font-size: 11px; color: #999; margin-top: 4px;">多种收益模式</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>function test() { return true; }</script>
+</body>
+</html>

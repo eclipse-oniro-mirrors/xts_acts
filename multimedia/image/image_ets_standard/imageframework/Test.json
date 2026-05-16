@@ -1,0 +1,50 @@
+{
+  "description": "Configuration for ActsImageFramework20Test Tests",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "180000",
+    "bundle-name": "com.acts.imageframework20Test",
+    "module-name": "entry_test",
+    "shell-timeout": "600000",
+    "testcase-timeout": 60000
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsImageFramework20MainTest.hap",
+        "ActsImageFramework20Test.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "remount",
+        "mkdir -p /data/app/el2/100/base/com.acts.imageframework20Test/haps/entry_test/files",
+        "chmod -R 777 /data/app/el2/100/base/com.acts.imageframework20Test/haps/entry_test",
+        "chmod -R 777 /data/app/el2/100/base/com.acts.imageframework20Test/haps/entry_test/files/*",
+        "chmod -R 777 /data/app/el2/100/base/com.acts.imageframework20Test/haps/entry_test/*"
+      ]
+    },
+    {
+      "type": "PushKit",
+      "pre-push": [],
+      "push": [
+        "./resource/image/test_exif_v21.jpg ->/data/app/el2/100/base/com.acts.imageframework20Test/haps/entry_test/files/",
+        "./resource/image/test51.jpg ->/data/app/el2/100/base/com.acts.imageframework20Test/haps/entry_test/files/",
+        "./resource/image/test61.gif ->/data/app/el2/100/base/com.acts.imageframework20Test/haps/entry_test/files/"
+      ]
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+        "chmod -R 777 /data/app/el2/100/base/com.acts.imageframework20Test/haps/entry_test/files/*",
+        "power-shell wakeup",
+        "power-shell setmode 602",
+        "power-shell timeout -o 86400000",
+        "hidumper -s 3301 -a -t"
+      ]
+    }
+  ]
+}

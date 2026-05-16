@@ -1,0 +1,119 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <cerrno>
+#include <csignal>
+
+#include "test.h"
+
+/**
+ * @tc.name      : Sigignore0100
+ * @tc.desc      : sets the disposition of sig to SIG_IGN
+ * @tc.level     : Level 0
+ */
+void Sigignore0100(void)
+{
+    int sig = SIGALRM;
+    struct sigaction oldAct {};
+    errno = 0;
+    int result = sigaction(sig, nullptr, &oldAct);
+    if (result != 0 || errno != 0) {
+        t_error("%s failed: result = %d\n", __func__, result);
+        t_error("%s failed: errno = %d\n", __func__, errno);
+    }
+
+    errno = 0;
+    result = sigignore(sig);
+    if (result != 0 || errno != 0) {
+        t_error("%s failed: result = %d\n", __func__, result);
+        t_error("%s failed: errno = %d\n", __func__, errno);
+    }
+
+    struct sigaction sa;
+    errno = 0;
+    result = sigaction(SIGALRM, nullptr, &sa);
+    if (result != 0 || errno != 0) {
+        t_error("%s failed: result = %d\n", __func__, result);
+        t_error("%s failed: errno = %d\n", __func__, errno);
+    }
+
+    if (SIG_IGN != sa.sa_handler) {
+        t_error("%s failed: sa.sa_handler\n", __func__);
+    }
+}
+
+/**
+ * @tc.name      : Sigignore0200
+ * @tc.desc      : sets the disposition of the SIGKILL sig to SIG_IGN
+ * @tc.level     : Level 1
+ */
+void Sigignore0200(void)
+{
+    errno = 0;
+    int result = sigignore(SIGKILL);
+    if (result != -1 || errno != EINVAL) {
+        t_error("%s failed: result = %d\n", __func__, result);
+        t_error("%s failed: errno = %d\n", __func__, errno);
+    }
+}
+
+/**
+ * @tc.name      : Sigignore0300
+ * @tc.desc      : sets the disposition of the SIGSTOP sig to SIG_IGN
+ * @tc.level     : Level 1
+ */
+void Sigignore0300(void)
+{
+    errno = 0;
+    int result = sigignore(SIGSTOP);
+    if (result != -1 || errno != EINVAL) {
+        t_error("%s failed: result = %d\n", __func__, result);
+        t_error("%s failed: errno = %d\n", __func__, errno);
+    }
+}
+
+/**
+ * @tc.name      : Sigignore0400
+ * @tc.desc      : sets the disposition of an invalid sig to SIG_IGN
+ * @tc.level     : Level 2
+ */
+void Sigignore0400(void)
+{
+    int sig = 99999;
+
+    errno = 0;
+    int result = sigignore(sig);
+    if (result == 0 || errno != EINVAL) {
+        t_error("%s failed: result = %d\n", __func__, result);
+        t_error("%s failed: errno = %d\n", __func__, errno);
+    }
+}
+
+static int SigignoreTestImpl(int argc, char* argv[])
+{
+    Sigignore0100();
+    Sigignore0200();
+    Sigignore0300();
+    Sigignore0400();
+
+    return T_STATUS;
+}
+
+int SigignoreTest(void)
+{
+    static char libcProgStub[] = "libc_test";
+    char* libcArgvStub[] = { libcProgStub, nullptr };
+    return SigignoreTestImpl(1, libcArgvStub);
+}

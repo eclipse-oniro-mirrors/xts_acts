@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试网页</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        video {
+            width: 70%;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <button onclick="buttonLoad()">重载</button>
+    <button onclick="togglePlayPause()">开始/暂停</button>
+    <button onclick="videoPlaybackRate()">速+0.25</button>
+    <button onclick="videoCurrentTime()">快进1s</button>
+    <button onclick="videoVolume()">音量+0.1</button>
+    <button onclick="videoMuted()">设置静音</button>
+    <button onclick="toggleFullScreen()">全屏</button>
+    <button id="fullscreenTrigger" style="display: none;" onclick="toggleFullScreen()">全屏</button>
+</div>
+<video  id="videoPlayer" controls preload="metadata"
+        controlslist="nodownload noremoteplayback">
+    <source id='mp4'
+            src='https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4' type='video/mp4'>
+</video>
+</body>
+</html>
+<script>
+    function buttonLoad() {
+        document.getElementById('videoPlayer').load();
+        return true;
+    }
+    function togglePlayPause() {
+        if (document.getElementById('videoPlayer').paused) {
+            document.getElementById('videoPlayer').play();
+        } else {
+            document.getElementById('videoPlayer').pause();
+        }
+        // 状态会在事件回调中自动更新，但为了即时响应也调用一次
+    }
+    function videoPlaybackRate() {
+        document.getElementById('videoPlayer').playbackRate+=0.25;
+    }
+    function videoCurrentTime() {
+        document.getElementById('videoPlayer').currentTime+=1;
+    }
+    function videoVolume() {
+        document.getElementById('videoPlayer').volume+=0.1;
+    }
+    function videoMuted() {
+        document.getElementById('videoPlayer').muted=true;
+    }
+   function toggleFullScreen() {
+    const video = document.getElementById('videoPlayer');
+
+    if (!document.fullscreenElement) {
+        // 进入全屏
+        const enterFullscreen = () => {
+            if (video.requestFullscreen) {
+                return video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { /* Safari */
+                return video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { /* IE11 */
+                return video.msRequestFullscreen();
+            }
+        };
+
+        enterFullscreen().then(() => {
+            // 更新按钮文字为"退出全屏"（可选）
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            if (fullscreenBtn) {
+                fullscreenBtn.innerHTML = `
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                    </svg>
+                    退出全屏
+                `;
+            }
+
+            // 🔥 关键：1秒后自动退出全屏
+            setTimeout(() => {
+                if (document.fullscreenElement) {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+
+                    // 退出全屏后恢复按钮文字
+                    setTimeout(() => {
+                        if (fullscreenBtn) {
+                            fullscreenBtn.innerHTML = `
+                                <svg viewBox="0 0 24 24" width="18" height="18">
+                                    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                                </svg>
+                                全屏
+                            `;
+                        }
+                    }, 50);
+                }
+            }, 1000); // 1000毫秒 = 1秒
+        }).catch(err => {
+            console.log('全屏请求失败:', err);
+        });
+    } else {
+        // 如果已在全屏状态，直接退出
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+
+        // 更新按钮文字
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        if (fullscreenBtn) {
+            fullscreenBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                </svg>
+                全屏
+            `;
+        }
+    }
+}
+</script>

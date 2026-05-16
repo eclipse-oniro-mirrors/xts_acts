@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知乎</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f6f6f6; min-height: 100vh; }
+        .header { background: white; padding: 10px 20px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 22px; font-weight: bold; color: #0066ff; flex-shrink: 0; }
+        .search-bar { flex: 1; max-width: 420px; padding: 8px 16px; border: 1px solid #eee; border-radius: 20px; font-size: 14px; outline: none; transition: border-color 0.2s; }
+        .search-bar:focus { border-color: #0066ff; }
+        .nav-tabs { display: flex; gap: 4px; margin-left: auto; flex-shrink: 0; }
+        .nav-tab { padding: 8px 16px; font-size: 14px; color: #666; cursor: pointer; border-radius: 20px; transition: all 0.2s; text-decoration: none; }
+        .nav-tab:hover { background: #f5f5f5; }
+        .nav-tab.active { background: #0066ff; color: #fff; }
+        .header-actions { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
+        .header-actions .btn-ask { background: #0066ff; color: #fff; padding: 7px 18px; border-radius: 20px; font-size: 13px; text-decoration: none; }
+        .header-actions .btn-notify { font-size: 18px; cursor: pointer; position: relative; }
+        .header-actions .avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, #0066ff, #66b3ff); cursor: pointer; }
+        .layout { max-width: 1100px; margin: 12px auto; display: grid; grid-template-columns: 1fr 300px; gap: 16px; padding: 0 16px; }
+        .feed { display: flex; flex-direction: column; gap: 10px; }
+        .topic-tabs { display: flex; gap: 0; background: #fff; border-radius: 8px; padding: 4px; margin-bottom: 10px; }
+        .topic-tab { flex: 1; text-align: center; padding: 10px; font-size: 14px; color: #666; cursor: pointer; border-radius: 6px; transition: all 0.2s; }
+        .topic-tab.active { background: #0066ff; color: #fff; font-weight: 500; }
+        .topic-tab:hover:not(.active) { background: #f5f5f5; }
+        .question-card { background: white; border-radius: 8px; padding: 16px; cursor: pointer; transition: all 0.2s; }
+        .question-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .question-card .q-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; line-height: 1.5; color: #333; }
+        .question-card .q-title:hover { color: #0066ff; }
+        .question-card .excerpt { font-size: 14px; color: #8590a6; line-height: 1.7; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .question-card .q-actions { display: flex; gap: 20px; align-items: center; font-size: 13px; color: #8590a6; }
+        .q-actions .action-btn { display: flex; align-items: center; gap: 4px; cursor: pointer; padding: 4px 8px; border-radius: 4px; transition: all 0.2s; }
+        .q-actions .action-btn:hover { background: #f5f5f5; }
+        .q-actions .action-btn.liked { color: #0066ff; }
+        .q-actions .action-btn .count { font-weight: 500; }
+        .question-card .q-tags { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+        .q-tag { padding: 2px 8px; border-radius: 4px; font-size: 11px; background: #f5f5f5; color: #8590a6; }
+        .q-tag-hot { background: #fff0f0; color: #f44; }
+        .question-card .q-author { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+        .q-author .author-avatar { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; }
+        .av-1 { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+        .av-2 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .av-3 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .av-4 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .av-5 { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .av-6 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .av-7 { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .av-8 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .av-9 { background: linear-gradient(135deg, #89f7fe, #66a6ff); }
+        .av-10 { background: linear-gradient(135deg, #d4fc79, #96e6a1); }
+        .q-author .author-name { font-size: 13px; color: #333; font-weight: 500; }
+        .q-author .author-badge { font-size: 11px; color: #999; background: #f5f5f5; padding: 1px 6px; border-radius: 3px; }
+        .sidebar { display: flex; flex-direction: column; gap: 12px; }
+        .sidebar-card { background: #fff; border-radius: 8px; padding: 16px; }
+        .sidebar-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: #333; display: flex; align-items: center; justify-content: space-between; }
+        .sidebar-card h3 .more { font-size: 12px; color: #8590a6; font-weight: 400; cursor: pointer; }
+        .hot-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f8f8f8; cursor: pointer; align-items: flex-start; }
+        .hot-item:last-child { border-bottom: none; }
+        .hot-num { font-size: 14px; font-weight: 700; width: 20px; text-align: center; flex-shrink: 0; color: #ccc; }
+        .hot-item:nth-child(1) .hot-num { color: #f44; }
+        .hot-item:nth-child(2) .hot-num { color: #ff6b35; }
+        .hot-item:nth-child(3) .hot-num { color: #ffa500; }
+        .hot-text { font-size: 13px; line-height: 1.5; color: #333; flex: 1; }
+        .hot-text:hover { color: #0066ff; }
+        .hot-heat { font-size: 11px; color: #bbb; margin-top: 2px; }
+        .ad-card { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 8px; padding: 20px; color: white; cursor: pointer; }
+        .ad-card h4 { font-size: 16px; margin-bottom: 8px; }
+        .ad-card p { font-size: 12px; opacity: 0.8; line-height: 1.6; }
+        .ad-card .ad-btn { display: inline-block; margin-top: 12px; padding: 6px 16px; background: rgba(255,255,255,0.2); border-radius: 16px; font-size: 12px; border: 1px solid rgba(255,255,255,0.3); }
+        .creator-list { display: flex; flex-direction: column; gap: 12px; }
+        .creator-item { display: flex; align-items: center; gap: 10px; }
+        .creator-item .c-avatar { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; }
+        .creator-item .c-info { flex: 1; }
+        .creator-item .c-info .c-name { font-size: 13px; font-weight: 500; color: #333; }
+        .creator-item .c-info .c-desc { font-size: 11px; color: #999; margin-top: 2px; }
+        .creator-item .c-follow { padding: 4px 14px; border-radius: 4px; border: 1px solid #0066ff; color: #0066ff; font-size: 12px; cursor: pointer; background: #fff; transition: all 0.2s; }
+        .creator-item .c-follow:hover { background: #0066ff; color: #fff; }
+        .footer { text-align: center; padding: 24px; font-size: 12px; color: #bbb; }
+        .footer a { color: #8590a6; text-decoration: none; margin: 0 8px; }
+        .footer a:hover { color: #0066ff; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">知乎</div>
+        <input class="search-bar" placeholder="搜索知乎内容">
+        <div class="nav-tabs">
+            <a href="#" class="nav-tab active">首页</a>
+            <a href="#" class="nav-tab">关注</a>
+            <a href="#" class="nav-tab">热榜</a>
+            <a href="#" class="nav-tab">视频</a>
+        </div>
+        <div class="header-actions">
+            <a href="#" class="btn-ask">提问</a>
+            <span class="btn-notify">&#128276;</span>
+            <div class="avatar"></div>
+        </div>
+    </div>
+    <div class="layout">
+        <div class="feed">
+            <div class="topic-tabs">
+                <div class="topic-tab active">推荐</div>
+                <div class="topic-tab">关注</div>
+                <div class="topic-tab">热榜</div>
+                <div class="topic-tab">视频</div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-1"></div><span class="author-name">张明远</span><span class="author-badge">科技领域答主</span></div>
+                <div class="q-title">如何看待人工智能技术的最新发展？</div>
+                <div class="excerpt">人工智能领域近期取得了多项重大突破，大模型技术持续迭代，应用场景不断拓展。从GPT系列到多模态AI，从自动驾驶到AI辅助科研，AI正在深刻改变我们的生活方式和工作模式。未来5年，AI将在医疗、教育、制造业等领域实现更深层次的应用。</div>
+                <div class="q-tags"><span class="q-tag">人工智能</span><span class="q-tag q-tag-hot">热点</span><span class="q-tag">科技</span></div>
+                <div class="q-actions">
+                    <span class="action-btn liked">&#128077; <span class="count">2.5万</span></span>
+                    <span class="action-btn">&#128078; 89</span>
+                    <span class="action-btn">&#128172; 1.2万</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-2"></div><span class="author-name">李思琪</span><span class="author-badge">互联网观察者</span></div>
+                <div class="q-title">有哪些值得推荐的科技新闻？</div>
+                <div class="excerpt">科技产业日新月异，每天都有新的突破和创新。量子计算、脑机接口、太空探索、生物技术等前沿领域不断传来好消息。以下是一些近期值得关注的科技动态，带你了解最新的科技发展趋势。</div>
+                <div class="q-tags"><span class="q-tag">科技新闻</span><span class="q-tag">推荐</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">1.2万</span></span>
+                    <span class="action-btn">&#128078; 56</span>
+                    <span class="action-btn">&#128172; 567</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-3"></div><span class="author-name">王建国</span><span class="author-badge">编程教育者</span></div>
+                <div class="q-title">如何学习编程？给初学者的建议</div>
+                <div class="excerpt">编程是一项非常重要的技能，对于初学者来说，选择合适的学习路径和资源非常重要。建议从Python或JavaScript开始入门，它们语法简洁、应用广泛。同时要注重实践，多做项目，多看源码，多参加开源社区。</div>
+                <div class="q-tags"><span class="q-tag">编程</span><span class="q-tag">学习</span><span class="q-tag q-tag-hot">热门</span></div>
+                <div class="q-actions">
+                    <span class="action-btn liked">&#128077; <span class="count">5.8万</span></span>
+                    <span class="action-btn">&#128078; 234</span>
+                    <span class="action-btn">&#128172; 2340</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-4"></div><span class="author-name">陈雪梅</span><span class="author-badge">经济学博士</span></div>
+                <div class="q-title">2026年全球经济形势如何？普通人的投资建议</div>
+                <div class="excerpt">全球经济在经历了前几年的波动后，2026年呈现温和复苏态势。通胀逐步回落，各国央行进入降息周期。对于普通投资者，建议均衡配置资产，关注科技创新和新能源赛道，同时保持适当的现金储备以应对不确定性。</div>
+                <div class="q-tags"><span class="q-tag">经济</span><span class="q-tag">投资</span><span class="q-tag">理财</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">3.2万</span></span>
+                    <span class="action-btn">&#128078; 178</span>
+                    <span class="action-btn">&#128172; 1890</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-5"></div><span class="author-name">刘大鹏</span><span class="author-badge">摄影师</span></div>
+                <div class="q-title">手机摄影如何拍出专业级照片？</div>
+                <div class="excerpt">现在的手机摄影能力越来越强，但很多人还是拍不出满意的照片。关键在于构图、光线和后期。学会三分法构图、善用自然光、了解曝光补偿，再加上简单的后期调色，你的手机照片也能有专业相机的质感。</div>
+                <div class="q-tags"><span class="q-tag">摄影</span><span class="q-tag">手机</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">8900</span></span>
+                    <span class="action-btn">&#128078; 45</span>
+                    <span class="action-btn">&#128172; 678</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-6"></div><span class="author-name">赵小明</span><span class="author-badge">健康科普作者</span></div>
+                <div class="q-title">每天运动30分钟，身体会发生什么变化？</div>
+                <div class="excerpt">坚持每天运动30分钟，一个月后你会明显感觉精力充沛，睡眠质量改善。三个月后心肺功能显著提升，体脂率开始下降。半年后体能和免疫力都会明显增强。关键是要找到自己喜欢的运动方式，循序渐进，持之以恒。</div>
+                <div class="q-tags"><span class="q-tag">健康</span><span class="q-tag">运动</span><span class="q-tag">科学</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">4.1万</span></span>
+                    <span class="action-btn">&#128078; 156</span>
+                    <span class="action-btn">&#128172; 3210</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-7"></div><span class="author-name">黄文博</span><span class="author-badge">历史爱好者</span></div>
+                <div class="q-title">有哪些被低估的中国古代科技发明？</div>
+                <div class="excerpt">提到中国古代发明，很多人只知道四大发明。但其实中国古代还有许多被低估的科技成就，比如地动仪、水运仪象台、活字印刷术的精密版、苏颂的天文钟、古代的炼钢技术、水利工程等，都是当时世界领先的科技成就。</div>
+                <div class="q-tags"><span class="q-tag">历史</span><span class="q-tag">科技</span><span class="q-tag">文化</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">6.7万</span></span>
+                    <span class="action-btn">&#128078; 312</span>
+                    <span class="action-btn">&#128172; 4560</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-8"></div><span class="author-name">周婷婷</span><span class="author-badge">心理咨询师</span></div>
+                <div class="q-title">如何克服社交恐惧？有效的自我调节方法</div>
+                <div class="excerpt">社交恐惧是一种常见的心理困扰，可以通过系统性脱敏、认知重构、正念冥想等方法来改善。首先要接纳自己的不完美，然后从小的社交场景开始练习，逐步扩大舒适区。记住，大多数人其实都有些社恐，你并不孤单。</div>
+                <div class="q-tags"><span class="q-tag">心理学</span><span class="q-tag">社交</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">2.3万</span></span>
+                    <span class="action-btn">&#128078; 89</span>
+                    <span class="action-btn">&#128172; 1560</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-9"></div><span class="author-name">吴志强</span><span class="author-badge">航天工程师</span></div>
+                <div class="q-title">中国空间站有哪些最新进展？</div>
+                <div class="excerpt">中国空间站"天宫"目前已进入常态化运营阶段，已有多批航天员完成驻留任务。空间站上开展的太空科学实验涵盖了生命科学、材料科学、流体物理等多个领域，取得了大量有价值的研究成果。</div>
+                <div class="q-tags"><span class="q-tag">航天</span><span class="q-tag">科学</span><span class="q-tag q-tag-hot">热点</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">7.8万</span></span>
+                    <span class="action-btn">&#128078; 234</span>
+                    <span class="action-btn">&#128172; 5430</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-3"></div><span class="author-name">孙丽丽</span><span class="author-badge">美食博主</span></div>
+                <div class="q-title">一个人住如何做出好吃又省事的饭菜？</div>
+                <div class="excerpt">独居做饭的核心原则是：一次备餐多次使用、善用厨房小电器、学会几道万能菜谱。电饭煲焖饭、空气炸锅烤菜、慢炖锅煲汤，都是适合一个人的烹饪方式。周末花一小时备好一周的食材，工作日就能轻松搞定一日三餐。</div>
+                <div class="q-tags"><span class="q-tag">美食</span><span class="q-tag">生活</span><span class="q-tag">独居</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">3.5万</span></span>
+                    <span class="action-btn">&#128078; 123</span>
+                    <span class="action-btn">&#128172; 2780</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-1"></div><span class="author-name">马天宇</span><span class="author-badge">软件工程师</span></div>
+                <div class="q-title">分布式操作系统和传统操作系统有什么区别？</div>
+                <div class="excerpt">分布式操作系统的核心区别在于"分布式"三个字。传统操作系统管理单台设备，而分布式操作系统能够跨设备协同工作，实现资源共享、任务迁移和无缝体验。比如你可以在手机上开始编辑文档，在平板上继续，在电脑上完成。</div>
+                <div class="q-tags"><span class="q-tag">操作系统</span><span class="q-tag">技术</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">1.1万</span></span>
+                    <span class="action-btn">&#128078; 34</span>
+                    <span class="action-btn">&#128172; 890</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-5"></div><span class="author-name">林小雨</span><span class="author-badge">旅行达人</span></div>
+                <div class="q-title">2026年国内最值得去的旅行目的地有哪些？</div>
+                <div class="excerpt">今年国内旅游市场持续回暖，小众目的地越来越受欢迎。推荐几个值得一去的地方：云南芒市、新疆伊犁、甘肃甘南、贵州黔东南、福建泉州等。这些地方既有独特的自然风光，又有深厚的文化底蕴，而且游客相对较少。</div>
+                <div class="q-tags"><span class="q-tag">旅行</span><span class="q-tag">推荐</span><span class="q-tag q-tag-hot">热门</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">4.5万</span></span>
+                    <span class="action-btn">&#128078; 167</span>
+                    <span class="action-btn">&#128172; 3890</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-9"></div><span class="author-name">郑浩然</span><span class="author-badge">法学博士</span></div>
+                <div class="q-title">普通人应该如何保护自己的个人信息安全？</div>
+                <div class="excerpt">个人信息安全越来越重要。建议从以下几个方面入手：使用强密码并开启两步验证、不随意连接公共WiFi、谨慎授权APP权限、定期检查征信报告、不在社交媒体过度分享个人信息。遇到信息泄露要及时报警并联系相关平台。</div>
+                <div class="q-tags"><span class="q-tag">安全</span><span class="q-tag">隐私</span><span class="q-tag">法律</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">2.8万</span></span>
+                    <span class="action-btn">&#128078; 98</span>
+                    <span class="action-btn">&#128172; 1670</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-7"></div><span class="author-name">杨晓峰</span><span class="author-badge">音乐制作人</span></div>
+                <div class="q-title">如何系统地学习音乐制作？从零开始的完整路径</div>
+                <div class="excerpt">音乐制作入门需要掌握三个方面：乐理基础、DAW操作、混音母带。推荐从FL Studio或Ableton Live开始学习，它们界面直观、教程丰富。同时要学习基本的乐理知识，多听多分析优秀作品，坚持创作练习。</div>
+                <div class="q-tags"><span class="q-tag">音乐</span><span class="q-tag">学习</span><span class="q-tag">创作</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">1.6万</span></span>
+                    <span class="action-btn">&#128078; 56</span>
+                    <span class="action-btn">&#128172; 920</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-10"></div><span class="author-name">徐梦琪</span><span class="author-badge">教育工作者</span></div>
+                <div class="q-title">如何看待当前的教育内卷现象？家长应该如何应对？</div>
+                <div class="excerpt">教育内卷是当下社会普遍关注的问题。家长首先要调整心态，认识到每个孩子的成长节奏不同，不必盲目攀比。与其把精力放在无意义的竞争上，不如关注孩子的兴趣培养、身心健康和综合素养。教育应该是赋能，而不是消耗。</div>
+                <div class="q-tags"><span class="q-tag">教育</span><span class="q-tag">社会</span><span class="q-tag q-tag-hot">热议</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">3.9万</span></span>
+                    <span class="action-btn">&#128078; 245</span>
+                    <span class="action-btn">&#128172; 4120</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+            </div>
+            <div class="question-card">
+                <div class="q-author"><div class="author-avatar av-1"></div><span class="author-name">马天宇</span><span class="author-badge">软件工程师</span></div>
+                <div class="q-title">分布式操作系统和传统操作系统有什么区别？</div>
+                <div class="excerpt">分布式操作系统的核心区别在于"分布式"三个字。传统操作系统管理单台设备，而分布式操作系统能够跨设备协同工作，实现资源共享、任务迁移和无缝体验。比如你可以在手机上开始编辑文档，在平板上继续，在电脑上完成。</div>
+                <div class="q-tags"><span class="q-tag">操作系统</span><span class="q-tag">技术</span></div>
+                <div class="q-actions">
+                    <span class="action-btn">&#128077; <span class="count">1.1万</span></span>
+                    <span class="action-btn">&#128078; 34</span>
+                    <span class="action-btn">&#128172; 890</span>
+                    <span class="action-btn">&#9733; 收藏</span>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <h3>知乎热榜 <span class="more">查看全部</span></h3>
+                <div class="hot-item"><div class="hot-num">1</div><div><div class="hot-text">如何看待AI技术最新突破</div><div class="hot-heat">2.3亿热度</div></div></div>
+                <div class="hot-item"><div class="hot-num">2</div><div><div class="hot-text">2026年高校毕业生就业形势分析</div><div class="hot-heat">1.8亿热度</div></div></div>
+                <div class="hot-item"><div class="hot-num">3</div><div><div class="hot-text">新能源车市场格局变化</div><div class="hot-heat">1.5亿热度</div></div></div>
+                <div class="hot-item"><div class="hot-num">4</div><div><div class="hot-text">如何评价最新国产芯片发布</div><div class="hot-heat">1.2亿热度</div></div></div>
+                <div class="hot-item"><div class="hot-num">5</div><div><div class="hot-text">有哪些值得一看的纪录片</div><div class="hot-heat">9800万热度</div></div></div>
+                <div class="hot-item"><div class="hot-num">6</div><div><div class="hot-text">独居生活有哪些实用建议</div><div class="hot-heat">8600万热度</div></div></div>
+                <div class="hot-item"><div class="hot-num">7</div><div><div class="hot-text">远程办公的优缺点分析</div><div class="hot-heat">7200万热度</div></div></div>
+            </div>
+            <div class="ad-card">
+                <h4>知乎盐选会员</h4>
+                <p>海量精品内容无限畅读，专业课程免费学，专属身份标识</p>
+                <div class="ad-btn">立即开通</div>
+            </div>
+            <div class="sidebar-card">
+                <h3>推荐关注 <span class="more">换一批</span></h3>
+                <div class="creator-list">
+                    <div class="creator-item">
+                        <div class="c-avatar av-2"></div>
+                        <div class="c-info"><div class="c-name">科学探索者</div><div class="c-desc">物理学博士 · 12.3万关注</div></div>
+                        <button class="c-follow">关注</button>
+                    </div>
+                    <div class="creator-item">
+                        <div class="c-avatar av-4"></div>
+                        <div class="c-info"><div class="c-name">代码手艺人</div><div class="c-desc">全栈工程师 · 8.9万关注</div></div>
+                        <button class="c-follow">关注</button>
+                    </div>
+                    <div class="creator-item">
+                        <div class="c-avatar av-6"></div>
+                        <div class="c-info"><div class="c-name">旅行家老张</div><div class="c-desc">环球旅行者 · 23.5万关注</div></div>
+                        <button class="c-follow">关注</button>
+                    </div>
+                    <div class="creator-item">
+                        <div class="c-avatar av-8"></div>
+                        <div class="c-info"><div class="c-name">美食研究所</div><div class="c-desc">美食博主 · 15.7万关注</div></div>
+                        <button class="c-follow">关注</button>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-card">
+                <h3>热门话题</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <span class="q-tag" style="cursor:pointer;">人工智能</span>
+                    <span class="q-tag" style="cursor:pointer;">编程开发</span>
+                    <span class="q-tag" style="cursor:pointer;">摄影</span>
+                    <span class="q-tag" style="cursor:pointer;">读书</span>
+                    <span class="q-tag" style="cursor:pointer;">心理学</span>
+                    <span class="q-tag" style="cursor:pointer;">经济学</span>
+                    <span class="q-tag" style="cursor:pointer;">历史</span>
+                    <span class="q-tag" style="cursor:pointer;">美食</span>
+                    <span class="q-tag" style="cursor:pointer;">旅行</span>
+                    <span class="q-tag" style="cursor:pointer;">健康</span>
+                    <span class="q-tag" style="cursor:pointer;">教育</span>
+                    <span class="q-tag" style="cursor:pointer;">法律</span>
+                    <span class="q-tag" style="cursor:pointer;">音乐</span>
+                    <span class="q-tag" style="cursor:pointer;">电影</span>
+                    <span class="q-tag" style="cursor:pointer;">科技</span>
+                </div>
+            </div>
+            <div class="sidebar-card">
+                <h3>知乎日报</h3>
+                <div style="font-size: 13px; color: #666; line-height: 1.8;">
+                    <p style="padding: 8px 0; border-bottom: 1px solid #f8f8f8; cursor: pointer; color: #333;">为什么越来越多的年轻人选择独居生活？</p>
+                    <p style="padding: 8px 0; border-bottom: 1px solid #f8f8f8; cursor: pointer; color: #333;">深度解读：AI大模型背后的技术原理</p>
+                    <p style="padding: 8px 0; border-bottom: 1px solid #f8f8f8; cursor: pointer; color: #333;">一本书带你理解经济学的基本逻辑</p>
+                    <p style="padding: 8px 0; cursor: pointer; color: #333;">职场新人如何快速建立核心竞争力</p>
+                </div>
+            </div>
+            <div class="ad-card" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                <h4>知乎Live</h4>
+                <p>与行业大咖实时互动，获取一手经验和见解</p>
+                <div class="ad-btn">查看更多</div>
+            </div>
+            <div class="ad-card" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                <h4>知乎书店</h4>
+                <p>精选好书推荐，电子书限时特惠</p>
+                <div class="ad-btn">立即选购</div>
+            </div>
+            <div class="sidebar-card">
+                <h3>知乎热词</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                    <span style="background: #f0f7ff; color: #0066ff; padding: 4px 10px; border-radius: 14px; font-size: 12px; cursor: pointer;">大模型</span>
+                    <span style="background: #fff5f5; color: #f44; padding: 4px 10px; border-radius: 14px; font-size: 12px; cursor: pointer;">内卷</span>
+                    <span style="background: #f5fff5; color: #38a169; padding: 4px 10px; border-radius: 14px; font-size: 12px; cursor: pointer;">新能源</span>
+                    <span style="background: #f5f0ff; color: #7c3aed; padding: 4px 10px; border-radius: 14px; font-size: 12px; cursor: pointer;">元宇宙</span>
+                    <span style="background: #fff8f0; color: #d97706; padding: 4px 10px; border-radius: 14px; font-size: 12px; cursor: pointer;">碳中和</span>
+                    <span style="background: #f0f7ff; color: #0066ff; padding: 4px 10px; border-radius: 14px; font-size: 12px; cursor: pointer;">数字化转型</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <a href="#">关于知乎</a><a href="#">知乎协议</a><a href="#">隐私政策</a><a href="#">帮助中心</a><a href="#">联系我们</a><a href="#">举报中心</a>
+        <p style="margin-top: 8px;">&copy; 2026 知乎</p>
+    </div>
+    <script>function test() { return true; }</script>
+</body>
+</html>

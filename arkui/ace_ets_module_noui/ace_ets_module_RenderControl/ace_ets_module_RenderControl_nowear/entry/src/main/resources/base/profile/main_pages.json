@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/LazyForEach/LazyForEachReload",
+    "MainAbility/pages/RepeatMixedComponent/RepeatWaterFlowBoolean",
+    "MainAbility/pages/RepeatMixedComponent/RepeatWaterFlowNumber",
+    "MainAbility/pages/Repeat/Repeat0030"
+  ]
+}

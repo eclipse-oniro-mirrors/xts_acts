@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            var request = indexedDB.open("mydb_quota_error", 1);
+
+            request.onupgradeneeded = function(event) {
+                var db = event.target.result;
+                if (!db.objectStoreNames.contains("logs")) {
+                    var objectStore = db.createObjectStore("logs", { keyPath: "id" });
+                    var data = [
+                        {id: 1, log: "GetOriginQuota Error Test"},
+                        {id: 2, log: "OpenHarmony quota test data"}
+                    ];
+                    data.forEach(function(item) {
+                        var request = objectStore.add(item);
+                        request.onerror = function(event) {
+                            console.error("Unable to add data: ", event.target.error);
+                        };
+                    });
+                }
+            };
+
+            request.onsuccess = function(event) {
+                var db = event.target.result;
+                var transaction = db.transaction(["logs"], "readonly");
+                var objectStore = transaction.objectStore("logs");
+
+                var request = objectStore.getAll();
+                request.onsuccess = function(event) {
+                    var logs = event.target.result;
+                    var msg = "<p>Database initialized with " + logs.length + " records for quota test</p>";
+                    document.querySelector('#status').innerHTML = msg;
+
+                    logs.forEach(function(log) {
+                        msg = "<p><b>" + log.log + "</b></p>";
+                        document.querySelector('#status').innerHTML += msg;
+                    });
+                };
+
+                request.onerror = function(event) {
+                    console.error("Unable to retrieve data: ", event.target.error);
+                };
+            };
+
+            request.onerror = function(event) {
+                console.error("Database error: ", event.target.error);
+            };
+        });
+    </script>
+</head>
+<body>
+<div id="status">Initializing quota database...</div>
+</body>
+</html>

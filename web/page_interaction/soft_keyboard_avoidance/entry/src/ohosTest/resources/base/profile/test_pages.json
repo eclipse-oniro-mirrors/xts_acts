@@ -1,0 +1,8 @@
+{
+  "src": [
+    "testability/pages/WebInitTest",
+    "testability/pages/webViewMenuInputFieldType",
+    "testability/pages/WebkeyboardAvoidMode"
+  ]
+}
+

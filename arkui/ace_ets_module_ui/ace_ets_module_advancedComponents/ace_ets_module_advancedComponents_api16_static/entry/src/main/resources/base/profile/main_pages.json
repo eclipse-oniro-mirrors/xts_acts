@@ -1,0 +1,15 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/progressButton/progressButtonPage",
+    "MainAbility/pages/progressButtonV2/progressButtonV2Page",
+    "MainAbility/pages/editableTitleBar/editableTitleBarAccessibilityPage",
+    "MainAbility/pages/editableTitleBar/editableTitleBarSymbolPage",
+    "MainAbility/pages/dialogV2/selectDialogV2TestPage",
+    "MainAbility/pages/dialogV2/loadingDialogV2TestPage",
+    "MainAbility/pages/dialogV2/confirmDialogV2TestPage",
+    "MainAbility/pages/dialogV2/tipsDialogV2TestPage",
+    "MainAbility/pages/dialogV2/alertDialogV2TestPage",
+    "MainAbility/pages/dialogV2/customContentDialogV2TestPage"
+  ]
+}

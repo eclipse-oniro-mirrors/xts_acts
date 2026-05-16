@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      text-align: center;
+    }
+
+    input[type="submit"] {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<form action="http://httpbin.org/post" method="post">
+  <input type="submit" name="submit" value="提交">
+</form>
+</body>
+</html>

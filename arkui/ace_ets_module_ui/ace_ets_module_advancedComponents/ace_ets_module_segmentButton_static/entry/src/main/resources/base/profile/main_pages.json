@@ -1,0 +1,25 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/segmentButton/SegmentButtonOptionsDemo",
+    "MainAbility/pages/segmentButton/localizedButtonPadding",
+    "MainAbility/pages/segmentButton/SegmentButtonItemOptionsArray1",
+    "MainAbility/pages/segmentButton/SegmentButtonItemOptions",
+    "MainAbility/pages/segmentButton/TabSegmentButtonOptions",
+    "MainAbility/pages/segmentButton/SegBtnItem0010",
+    "MainAbility/pages/segmentButtonV2/MultiSegmentButtonV2Page",
+    "MainAbility/pages/segmentButtonV2/MultiSegmentButtonV2UndefinedPage",
+    "MainAbility/pages/capsuleSegmentButtonV2/SegmentButtonV2Test",
+    "MainAbility/pages/segmentButtonV2/SegmentButtonV20010",
+    "MainAbility/pages/SegmentButtonAttribute/CapsuleSegmentButtonAttributeTest",
+    "MainAbility/pages/SegmentButtonAttribute/TabSegmentButtonAttributeTest",
+    "MainAbility/pages/tabSegmentButtonV2/TabSegmentButtonV2Example",
+    "MainAbility/pages/segmentButtonV2/SegmentButtonV20020",
+    "MainAbility/pages/segmentButton/localizedTextPadding",
+    "MainAbility/pages/segmentButton/SegmentButtonBorder",
+    "MainAbility/pages/segmentButton/SegmentButtonDirection",
+    "MainAbility/pages/segmentButton/SegmentBtnItem0010",
+    "MainAbility/pages/segmentButton/SegmentButtonIndex",
+    "MainAbility/pages/segmentButton/segmentButtonEnableStateAnimation"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+ "description": "Configuration for ActsHevcswDecoderTest Tests",
+ "driver": {
+   "type": "OHJSUnitTest",
+   "test-timeout": "600000",
+   "shell-timeout": "600000",
+   "bundle-name": "com.example.actshevcswdecodertest",
+   "module-name": "entry_test",
+   "testcase-timeout": "60000"
+ },
+ "kits": [
+   {
+     "test-file-name": [
+       "ActsHevcswDecoderHapTest.hap",
+       "ActsHevcswDecoderMainTest.hap"
+     ],
+     "type": "AppInstallKit",
+     "cleanup-apps": true
+   },{
+     "type": "ShellKit",
+     "run-command": [
+       "mkdir -p /data/app/el2/100/base/com.example.actshevcswdecodertest/files",
+       "chmod 777 -R /data/app/el2/100/base/com.example.actshevcswdecodertest/files",
+       "power-shell wakeup",
+       "power-shell setmode 602"
+     ]
+   },{
+     "type": "PushKit",
+     "pre-push": [],
+     "push": [
+       "./resource/media/codec/video_decoder/1920_1080_30.h265 ->/data/app/el2/100/base/com.example.actshevcswdecodertest/files/",
+       "./resource/media/codec/video_decoder/hash_val.json ->/data/app/el2/100/base/com.example.actshevcswdecodertest/files/"
+     ]
+   }
+ ]
+}

@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/blurMode",
+    "pages/WebGestureFocusMode",
+    "pages/WebForceEnableZoom"
+  ]
+}

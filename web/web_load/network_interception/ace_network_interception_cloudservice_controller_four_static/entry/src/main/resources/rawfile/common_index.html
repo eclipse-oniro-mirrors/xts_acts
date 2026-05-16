@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JSBridge</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div>
+    <button id="trigger" onclick="resize()" >改变按钮</button>
+    <input id="text" type="text">
+</div>
+<div style="margin-top: 10px">
+    <button onclick="iFrameLoad()" style="width: 240px;height: 120px;font-size:32px">JS卡死</button>
+</div>
+<div style="margin-top: 10px">
+    <button onclick="blockJS()" style="width: 240px;height: 120px;font-size:32px">JS卡顿</button>
+</div>
+<div style="margin-top: 10px">
+    <button onclick="comJs()" style="width: 240px;height: 120px;font-size:32px">JS正常</button>
+</div>
+<div style="margin-top: 10px">
+    <button onclick="jumpPageStuck()" style="width: 240px;height: 120px;font-size:32px">跳转页面卡死</button>
+</div>
+<div style="margin-top: 10px">
+    <button onclick="jumpPageCaton()" style="width: 240px;height: 120px;font-size:32px">跳转页面卡顿</button>
+</div>
+<div style="margin-top: 10px">
+    <button onclick="jumpPage()" style="width: 240px;height: 120px;font-size:32px">跳转页面正常</button>
+</div>
+
+
+<div id="show-log" style="width: 100%;height: 50px;margin-top: 50px;text-align:center;font-size:32px;color: red"></div>
+</body>
+<script type="text/javascript">
+
+    function iFrameLoad() {
+        while(true){
+
+        }
+    }
+
+    function jumpPage() {
+        window.location = 'http://114.115.208.239:8070/colombo_test/testurl_index.html';
+    }
+    function jumpPageStuck() {
+        window.location = 'http://114.115.208.239:8070/colombo_test/testurl_index.html';
+        iFrameLoad();
+    }
+
+
+
+    function jumpPageCaton() {
+        window.location = 'https://www.baidu.com';
+        blockJS();
+    }
+
+    function decodeString(encodedString) {
+            // 模拟一个耗时的字符串解码操作
+            var decodedString = atob(encodedString);
+          //  console.log("字符串解码完成");
+            return decodedString;
+        }
+
+        function encodeString(decodedString) {
+            // 模拟一个耗时的字符串编码操作
+            var encodedString = btoa(decodedString);
+           // console.log("字符串编码完成");
+            return encodedString;
+        }
+
+        function comJs(decodedString) {
+              document.getElementById('show-log').innerText = '正常调用JS';
+        }
+
+        let isStop = false;
+        let str = '';
+        function blockJS() {
+            // 在循环中执行一些耗时的操作，导致 JavaScript 线程阻塞
+            var startTime = Date.now();
+            isStop = false
+             str += Date.now()
+            while (true) {
+                let collapseTime = Date.now() - startTime
+                if (isStop  || collapseTime > 15000) {
+                    break;
+                }
+               if(collapseTime % 200 === 0 ){
+                    str += Date.now()
+                    console.log("collapseTime:"+collapseTime)
+                    document.getElementById("text").value = str
+                    resize()
+                }
+            }
+            document.getElementById('show-log').innerText = '卡顿后恢复';
+        }
+
+        function stopBlockJs() {
+            isStop = true;
+        }
+
+        function resize() {
+          document.getElementById('trigger').style.width = '100px';
+          document.getElementById('trigger').style.height = '100px';
+          setTimeout(() => {
+           document.getElementById('trigger').style.width = '10px';
+            document.getElementById('trigger').style.height = '10px';
+          }, 1000)
+
+        }
+</script>
+</html>
+<style type="text/css">
+        * {
+            margin: 0
+        }
+
+        body {
+            text-align: center;
+            min-width: 760px
+        }
+
+        div {
+            padding: 3px 3px 3px 3px
+        }
+
+        #main {
+            width: 720px;
+            margin: 0 auto;
+            text-align: left;
+            margin-top: 30px
+        }
+
+        #main div span {
+            width: 50px
+        }
+
+</style>

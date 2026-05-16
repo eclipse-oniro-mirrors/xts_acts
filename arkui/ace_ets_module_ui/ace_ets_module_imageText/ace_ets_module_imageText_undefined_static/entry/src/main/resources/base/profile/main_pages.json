@@ -1,0 +1,15 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/PatternLock/patternLockUndefined",
+    "MainAbility/pages/ImageAnimator/imageAnimatorUndefined",
+    "MainAbility/pages/ImageAnimator/imageAnimatorCallbackUndefined",
+    "MainAbility/pages/ImageAnimator/imageAnimatorModifierUndefined",
+    "MainAbility/pages/ImageAnimator/imageAnimatorCallbackModifierUndefined",
+    "MainAbility/pages/PatternLock/patternLockModifierUndefined",
+    "MainAbility/pages/Image/imageUndefined",
+    "MainAbility/pages/Image/imageUndefinedModifier",
+    "MainAbility/pages/TextPicker/textPickerUndefined",
+    "MainAbility/pages/TextPicker/textPickerUndefinedModifier"
+  ]
+}

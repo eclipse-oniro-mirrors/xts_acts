@@ -1,0 +1,11 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/subHeader/subHeaderButton",
+    "MainAbility/pages/subHeader/subHeaderIconGroup",
+    "MainAbility/pages/subHeader/subHeaderSelect",
+    "MainAbility/pages/subHeader/subHeaderTitleAccessibitText",
+    "MainAbility/pages/subHeaderIdFields/subHeaderIdFields",
+    "MainAbility/pages/subHeaderV2IdFields/subHeaderV2IdFields"
+  ]
+}

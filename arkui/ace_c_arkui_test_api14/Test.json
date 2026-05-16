@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for arkui capi tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.openharmony.arkui_capi_xts_api14",
+        "testcase-timeout": "180000",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAceCArkUI14Test.hap",
+                "ActsAceCArkUI14.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

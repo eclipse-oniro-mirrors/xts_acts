@@ -1,0 +1,38 @@
+{
+    "description": "Configuration for ActsUnZipOtherOwnerTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
+        "bundle-name": "com.acts.unzipotherownertest",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsUnZipOtherOwnerTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "aa start -a TestAbility -b com.acts.unzipotherownertest"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push": [
+              "ActsUnZipOtherOwnerTest.hap->/data/app/el2/100/base/com.acts.unzipotherownertest/haps/entry_test/cache/ActsUnZipOtherOwnerTest.hap"
+            ]
+        }
+    ]
+}

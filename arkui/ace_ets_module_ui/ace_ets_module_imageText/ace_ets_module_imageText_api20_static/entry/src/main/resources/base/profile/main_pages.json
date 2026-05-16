@@ -1,0 +1,24 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Search/SearchType",
+    "MainAbility/pages/TextArea/TextAreaType",
+    "MainAbility/pages/Text/ResourceModifier",
+    "MainAbility/pages/Text/TextStrokeTest",
+    "MainAbility/pages/Search/SearchAutoCapitalizationMode",
+    "MainAbility/pages/Search/SearchAutoCapitalizationModeModifier",
+    "MainAbility/pages/TextArea/TextAreaAutoCapitalizationMode",
+    "MainAbility/pages/TextArea/TextAreaAutoCapitalizationModeModifier",
+    "MainAbility/pages/TextInput/TextInputAutoCapitalizationMode",
+    "MainAbility/pages/TextInput/TextInputAutoCapitalizationModeModifier",
+    "MainAbility/pages/Text/TextShaderStyle",
+    "MainAbility/pages/SymbolGlyph/SymbolGlyphShaderStyle",
+    "MainAbility/pages/StyledString/TextStyleSuperscript",
+    "MainAbility/pages/Text/TextLineSpacing",
+    "MainAbility/pages/ImageError/ImageOnError",
+    "MainAbility/pages/RichEditor/RichEditorUndoStyle",
+    "MainAbility/pages/UIContext/disableMenuItems",
+    "MainAbility/pages/UIContext/disableSystemServiceMenuItems",
+    "MainAbility/pages/RichEditor/setTypingParagraphStyle"
+  ]
+}

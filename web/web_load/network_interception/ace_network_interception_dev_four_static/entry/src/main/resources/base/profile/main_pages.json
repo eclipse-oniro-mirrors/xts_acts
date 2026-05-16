@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/webSchemeHandlerResponse",
+    "pages/webHttpBodyStream",
+    "pages/setAndClearServiceWorkerWebSchemeHandler",
+    "pages/webSchemeHandlerRequest"
+  ]
+}

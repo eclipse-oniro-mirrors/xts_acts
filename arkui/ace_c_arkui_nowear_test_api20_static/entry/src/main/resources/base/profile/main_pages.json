@@ -1,0 +1,7 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/dragEvent/dragEventGetDisplayId",
+    "pages/dragEvent/dragEventGetDragSource"
+  ]
+}

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多视频播放测试页面</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; }
+        .page-header { background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 16px 30px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #2a2a4a; flex-wrap: wrap; gap: 12px; }
+        .page-header h1 { font-size: 22px; color: #fff; }
+        .toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .toolbar-btn { padding: 8px 16px; background: #1e1e2e; color: #ccc; border: 1px solid #333; border-radius: 6px; cursor: pointer; font-size: 13px; transition: all 0.2s; }
+        .toolbar-btn:hover { background: #2a2a4a; color: #fff; }
+        .toolbar-btn.active { background: #e74c3c; color: #fff; border-color: #e74c3c; }
+        .toolbar-btn.master-play { background: #2ecc71; color: #fff; border-color: #2ecc71; }
+        .toolbar-btn.master-play.playing { background: #e74c3c; border-color: #e74c3c; }
+        .stats-bar { background: #1a1a2e; padding: 12px 30px; border-bottom: 1px solid #2a2a4a; display: flex; gap: 30px; flex-wrap: wrap; }
+        .stat-chip { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+        .stat-chip .label { color: #777; }
+        .stat-chip .value { color: #fff; font-weight: 600; }
+        .stat-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .stat-dot.green { background: #2ecc71; }
+        .stat-dot.red { background: #e74c3c; }
+        .stat-dot.yellow { background: #f39c12; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .grid-view { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-view.single-col { grid-template-columns: 1fr; }
+        .list-view { display: none; flex-direction: column; gap: 16px; }
+        .list-view.active { display: flex; }
+        .grid-view.hidden { display: none; }
+        .video-card { background: #1a1a2e; border-radius: 12px; overflow: hidden; border: 1px solid #2a2a4a; transition: box-shadow 0.2s; }
+        .video-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+        .video-card .video-wrap { position: relative; background: #000; }
+        .video-card video { width: 100%; display: block; display: block; }
+        .video-card .custom-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); padding: 30px 12px 8px; opacity: 0; transition: opacity 0.3s; }
+        .video-card .video-wrap:hover .custom-overlay { opacity: 1; }
+        .mini-progress { width: 100%; height: 3px; background: rgba(255,255,255,0.2); border-radius: 2px; cursor: pointer; margin-bottom: 6px; }
+        .mini-progress-fill { height: 100%; background: #e74c3c; border-radius: 2px; width: 0%; }
+        .mini-controls { display: flex; align-items: center; justify-content: space-between; }
+        .mini-controls-left, .mini-controls-right { display: flex; align-items: center; gap: 8px; }
+        .mini-btn { background: none; border: none; color: #fff; font-size: 14px; cursor: pointer; padding: 2px 6px; border-radius: 3px; }
+        .mini-btn:hover { background: rgba(255,255,255,0.15); }
+        .mini-time { font-size: 11px; color: rgba(255,255,255,0.7); font-variant-numeric: tabular-nums; }
+        .card-body { padding: 14px; }
+        .card-body h3 { font-size: 15px; color: #fff; margin-bottom: 6px; }
+        .card-body .card-desc { font-size: 12px; color: #888; line-height: 1.5; margin-bottom: 10px; }
+        .card-meta { display: flex; gap: 14px; font-size: 12px; color: #666; margin-bottom: 10px; }
+        .card-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+        .card-stat { text-align: center; padding: 6px 4px; background: #0f0f1a; border-radius: 4px; }
+        .card-stat .cv { font-size: 14px; font-weight: 600; color: #ddd; }
+        .card-stat .cl { font-size: 10px; color: #666; }
+        .list-card { display: flex; gap: 16px; background: #1a1a2e; border-radius: 10px; padding: 12px; border: 1px solid #2a2a4a; }
+        .list-card .list-video { width: 280px; flex-shrink: 0; border-radius: 8px; overflow: hidden; position: relative; background: #000; }
+        .list-card .list-video video { width: 100%; display: block; }
+        .list-card .list-info { flex: 1; display: flex; flex-direction: column; }
+        .list-card .list-info h3 { font-size: 16px; color: #fff; margin-bottom: 8px; }
+        .list-card .list-info .card-desc { font-size: 13px; color: #888; line-height: 1.6; margin-bottom: 10px; }
+        .list-card .list-info .card-meta { margin-bottom: 8px; }
+        .list-card .card-stats { grid-template-columns: repeat(4, 1fr); }
+        .list-card .list-controls { display: flex; gap: 8px; margin-top: auto; padding-top: 10px; }
+        .list-ctrl-btn { padding: 6px 14px; background: #2a2a4a; color: #ccc; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; }
+        .list-ctrl-btn:hover { background: #3a3a5a; color: #fff; }
+        .comparison-view { display: none; gap: 0; border-radius: 12px; overflow: hidden; border: 1px solid #2a2a4a; }
+        .comparison-view.active { display: grid; grid-template-columns: 1fr 1fr; }
+        .comparison-item { position: relative; background: #000; }
+        .comparison-item video { width: 100%; height: 300px; object-fit: contain; display: block; }
+        .comparison-label { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.7); color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+        .comparison-info { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); padding: 30px 12px 10px; }
+        .comparison-info h4 { font-size: 14px; color: #fff; }
+        .comparison-info p { font-size: 11px; color: #aaa; }
+        .thumbnail-timeline { background: #1a1a2e; border-radius: 8px; padding: 16px; margin-top: 20px; border: 1px solid #2a2a4a; }
+        .thumbnail-timeline h3 { font-size: 15px; margin-bottom: 12px; color: #fff; }
+        .timeline-row { display: flex; gap: 16px; margin-bottom: 12px; align-items: center; }
+        .timeline-label { width: 80px; font-size: 12px; color: #888; flex-shrink: 0; }
+        .timeline-strip { flex: 1; display: flex; gap: 2px; height: 40px; overflow-x: auto; }
+        .timeline-thumb { width: 60px; height: 40px; flex-shrink: 0; border-radius: 3px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; transition: transform 0.15s; }
+        .timeline-thumb:hover { transform: scale(1.1); }
+        .timeline-time { font-size: 11px; color: #666; margin-top: 4px; }
+        .volume-slider { width: 60px; height: 3px; -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.3); border-radius: 2px; outline: none; cursor: pointer; }
+        .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 10px; height: 10px; border-radius: 50%; background: #fff; cursor: pointer; }
+        @media (max-width: 768px) {
+            .grid-view { grid-template-columns: 1fr; }
+            .comparison-view.active { grid-template-columns: 1fr; }
+            .list-card { flex-direction: column; }
+            .list-card .list-video { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>Multi Video Player Test</h1>
+        <div class="toolbar">
+            <button class="toolbar-btn active" id="gridBtn" onclick="switchView('grid')">Grid View</button>
+            <button class="toolbar-btn" id="listBtn" onclick="switchView('list')">List View</button>
+            <button class="toolbar-btn" id="compBtn" onclick="switchView('comparison')">Compare</button>
+            <button class="toolbar-btn" id="singleColBtn" onclick="toggleSingleCol()">Single Column</button>
+            <button class="toolbar-btn master-play" id="masterPlayBtn" onclick="toggleMasterPlay()">Play All</button>
+            <button class="toolbar-btn" onclick="pauseAll()">Pause All</button>
+            <button class="toolbar-btn" onclick="resetAll()">Reset All</button>
+        </div>
+    </div>
+    <div class="stats-bar">
+        <div class="stat-chip"><span class="stat-dot green" id="statusDot"></span><span class="label">Status:</span><span class="value" id="statusText">Ready</span></div>
+        <div class="stat-chip"><span class="label">Playing:</span><span class="value" id="playingCount">0 / 4</span></div>
+        <div class="stat-chip"><span class="label">Total Duration:</span><span class="value" id="totalDuration">--:--</span></div>
+        <div class="stat-chip"><span class="label">Avg Buffer:</span><span class="value" id="avgBuffer">0s</span></div>
+        <div class="stat-chip"><span class="label">Errors:</span><span class="value" id="errorCount">0</span></div>
+    </div>
+    <div class="container">
+        <div class="grid-view" id="gridView">
+            <div class="video-card" id="card0">
+                <div class="video-wrap">
+                    <video id="video1" controls preload="auto" playsinline>
+                        <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                    </video>
+                    <div class="custom-overlay">
+                        <div class="mini-progress" data-video="video1"><div class="mini-progress-fill"></div></div>
+                        <div class="mini-controls">
+                            <div class="mini-controls-left">
+                                <button class="mini-btn" onclick="toggleVideo('video1')">&#x25B6;</button>
+                                <button class="mini-btn" onclick="seekVideo('video1',-10)">&#x23EA;</button>
+                                <button class="mini-btn" onclick="seekVideo('video1',10)">&#x23E9;</button>
+                                <span class="mini-time" data-time="video1">0:00 / 0:00</span>
+                            </div>
+                            <div class="mini-controls-right">
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="1" onchange="setVolume('video1', this.value)">
+                                <button class="mini-btn" onclick="toggleMute('video1')">&#x1F50A;</button>
+                                <button class="mini-btn" onclick="changeSpeed('video1')">1x</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Video Player 1</h3>
+                    <div class="card-desc">Primary video player instance with full custom controls overlay, volume adjustment, and playback speed control.</div>
+                    <div class="card-meta">
+                        <span>Duration: --:--</span>
+                        <span>Status: <span data-status="video1">Ready</span></span>
+                        <span>Buffer: <span data-buffer="video1">0s</span></span>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat"><div class="cv" data-res="video1">--</div><div class="cl">Resolution</div></div>
+                        <div class="card-stat"><div class="cv" data-fps="video1">--</div><div class="cl">FPS</div></div>
+                        <div class="card-stat"><div class="cv" data-bytes="video1">0</div><div class="cl">KB Loaded</div></div>
+                        <div class="card-stat"><div class="cv" data-drops="video1">0</div><div class="cl">Dropped</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-card" id="card1">
+                <div class="video-wrap">
+                    <video id="video2" controls preload="auto" playsinline>
+                        <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                    </video>
+                    <div class="custom-overlay">
+                        <div class="mini-progress" data-video="video2"><div class="mini-progress-fill"></div></div>
+                        <div class="mini-controls">
+                            <div class="mini-controls-left">
+                                <button class="mini-btn" onclick="toggleVideo('video2')">&#x25B6;</button>
+                                <button class="mini-btn" onclick="seekVideo('video2',-10)">&#x23EA;</button>
+                                <button class="mini-btn" onclick="seekVideo('video2',10)">&#x23E9;</button>
+                                <span class="mini-time" data-time="video2">0:00 / 0:00</span>
+                            </div>
+                            <div class="mini-controls-right">
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="1" onchange="setVolume('video2', this.value)">
+                                <button class="mini-btn" onclick="toggleMute('video2')">&#x1F50A;</button>
+                                <button class="mini-btn" onclick="changeSpeed('video2')">1x</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Video Player 2</h3>
+                    <div class="card-desc">Secondary video player instance. Tests concurrent playback with independent controls and state tracking.</div>
+                    <div class="card-meta">
+                        <span>Duration: --:--</span>
+                        <span>Status: <span data-status="video2">Ready</span></span>
+                        <span>Buffer: <span data-buffer="video2">0s</span></span>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat"><div class="cv" data-res="video2">--</div><div class="cl">Resolution</div></div>
+                        <div class="card-stat"><div class="cv" data-fps="video2">--</div><div class="cl">FPS</div></div>
+                        <div class="card-stat"><div class="cv" data-bytes="video2">0</div><div class="cl">KB Loaded</div></div>
+                        <div class="card-stat"><div class="cv" data-drops="video2">0</div><div class="cl">Dropped</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-card" id="card2">
+                <div class="video-wrap">
+                    <video id="video3" controls preload="auto" playsinline>
+                        <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                    </video>
+                    <div class="custom-overlay">
+                        <div class="mini-progress" data-video="video3"><div class="mini-progress-fill"></div></div>
+                        <div class="mini-controls">
+                            <div class="mini-controls-left">
+                                <button class="mini-btn" onclick="toggleVideo('video3')">&#x25B6;</button>
+                                <button class="mini-btn" onclick="seekVideo('video3',-10)">&#x23EA;</button>
+                                <button class="mini-btn" onclick="seekVideo('video3',10)">&#x23E9;</button>
+                                <span class="mini-time" data-time="video3">0:00 / 0:00</span>
+                            </div>
+                            <div class="mini-controls-right">
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="1" onchange="setVolume('video3', this.value)">
+                                <button class="mini-btn" onclick="toggleMute('video3')">&#x1F50A;</button>
+                                <button class="mini-btn" onclick="changeSpeed('video3')">1x</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Video Player 3</h3>
+                    <div class="card-desc">Tertiary video player instance. Monitors resource usage and playback performance metrics.</div>
+                    <div class="card-meta">
+                        <span>Duration: --:--</span>
+                        <span>Status: <span data-status="video3">Ready</span></span>
+                        <span>Buffer: <span data-buffer="video3">0s</span></span>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat"><div class="cv" data-res="video3">--</div><div class="cl">Resolution</div></div>
+                        <div class="card-stat"><div class="cv" data-fps="video3">--</div><div class="cl">FPS</div></div>
+                        <div class="card-stat"><div class="cv" data-bytes="video3">0</div><div class="cl">KB Loaded</div></div>
+                        <div class="card-stat"><div class="cv" data-drops="video3">0</div><div class="cl">Dropped</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="video-card" id="card3">
+                <div class="video-wrap">
+                    <video id="video4" controls preload="auto" playsinline>
+                        <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                    </video>
+                    <div class="custom-overlay">
+                        <div class="mini-progress" data-video="video4"><div class="mini-progress-fill"></div></div>
+                        <div class="mini-controls">
+                            <div class="mini-controls-left">
+                                <button class="mini-btn" onclick="toggleVideo('video4')">&#x25B6;</button>
+                                <button class="mini-btn" onclick="seekVideo('video4',-10)">&#x23EA;</button>
+                                <button class="mini-btn" onclick="seekVideo('video4',10)">&#x23E9;</button>
+                                <span class="mini-time" data-time="video4">0:00 / 0:00</span>
+                            </div>
+                            <div class="mini-controls-right">
+                                <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="1" onchange="setVolume('video4', this.value)">
+                                <button class="mini-btn" onclick="toggleMute('video4')">&#x1F50A;</button>
+                                <button class="mini-btn" onclick="changeSpeed('video4')">1x</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Video Player 4</h3>
+                    <div class="card-desc">Quaternary video player instance. Tests maximum concurrent video decoding and rendering capability.</div>
+                    <div class="card-meta">
+                        <span>Duration: --:--</span>
+                        <span>Status: <span data-status="video4">Ready</span></span>
+                        <span>Buffer: <span data-buffer="video4">0s</span></span>
+                    </div>
+                    <div class="card-stats">
+                        <div class="card-stat"><div class="cv" data-res="video4">--</div><div class="cl">Resolution</div></div>
+                        <div class="card-stat"><div class="cv" data-fps="video4">--</div><div class="cl">FPS</div></div>
+                        <div class="card-stat"><div class="cv" data-bytes="video4">0</div><div class="cl">KB Loaded</div></div>
+                        <div class="card-stat"><div class="cv" data-drops="video4">0</div><div class="cl">Dropped</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="list-view" id="listView">
+            <div class="list-card" id="listCard0">
+                <div class="list-video">
+                    <video id="lvideo1" controls preload="auto" playsinline>
+                        <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="list-info">
+                    <h3>Video Player 1</h3>
+                    <div class="card-desc">Primary video player instance in list layout with extended description area and full statistics.</div>
+                    <div class="card-meta"><span>Status: <span data-lstatus="lvideo1">Ready</span></span><span>Duration: --:--</span></div>
+                    <div class="card-stats">
+                        <div class="card-stat"><div class="cv">--</div><div class="cl">Resolution</div></div>
+                        <div class="card-stat"><div class="cv">--</div><div class="cl">FPS</div></div>
+                        <div class="card-stat"><div class="cv">0</div><div class="cl">KB</div></div>
+                        <div class="card-stat"><div class="cv">0</div><div class="cl">Dropped</div></div>
+                    </div>
+                    <div class="list-controls">
+                        <button class="list-ctrl-btn" onclick="toggleVideo('lvideo1')">Play/Pause</button>
+                        <button class="list-ctrl-btn" onclick="seekVideo('lvideo1',-10)">Rewind</button>
+                        <button class="list-ctrl-btn" onclick="seekVideo('lvideo1',10)">Forward</button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-card" id="listCard1">
+                <div class="list-video">
+                    <video id="lvideo2" controls preload="auto" playsinline>
+                        <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="list-info">
+                    <h3>Video Player 2</h3>
+                    <div class="card-desc">Secondary video player instance in list layout with independent state tracking and controls.</div>
+                    <div class="card-meta"><span>Status: <span data-lstatus="lvideo2">Ready</span></span><span>Duration: --:--</span></div>
+                    <div class="card-stats">
+                        <div class="card-stat"><div class="cv">--</div><div class="cl">Resolution</div></div>
+                        <div class="card-stat"><div class="cv">--</div><div class="cl">FPS</div></div>
+                        <div class="card-stat"><div class="cv">0</div><div class="cl">KB</div></div>
+                        <div class="card-stat"><div class="cv">0</div><div class="cl">Dropped</div></div>
+                    </div>
+                    <div class="list-controls">
+                        <button class="list-ctrl-btn" onclick="toggleVideo('lvideo2')">Play/Pause</button>
+                        <button class="list-ctrl-btn" onclick="seekVideo('lvideo2',-10)">Rewind</button>
+                        <button class="list-ctrl-btn" onclick="seekVideo('lvideo2',10)">Forward</button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-card" id="listCard2">
+                <div class="list-video">
+                    <video id="lvideo3" controls preload="auto" playsinline>
+                        <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="list-info">
+                    <h3>Video Player 3</h3>
+                    <div class="card-desc">Tertiary video player instance in list layout with comprehensive performance monitoring.</div>
+                    <div class="card-meta"><span>Status: <span data-lstatus="lvideo3">Ready</span></span><span>Duration: --:--</span></div>
+                    <div class="card-stats">
+                        <div class="card-stat"><div class="cv">--</div><div class="cl">Resolution</div></div>
+                        <div class="card-stat"><div class="cv">--</div><div class="cl">FPS</div></div>
+                        <div class="card-stat"><div class="cv">0</div><div class="cl">KB</div></div>
+                        <div class="card-stat"><div class="cv">0</div><div class="cl">Dropped</div></div>
+                    </div>
+                    <div class="list-controls">
+                        <button class="list-ctrl-btn" onclick="toggleVideo('lvideo3')">Play/Pause</button>
+                        <button class="list-ctrl-btn" onclick="seekVideo('lvideo3',-10)">Rewind</button>
+                        <button class="list-ctrl-btn" onclick="seekVideo('lvideo3',10)">Forward</button>
+                    </div>
+                </div>
+            </div>
+            <div class="list-card" id="listCard3">
+                <div class="list-video">
+                    <video id="lvideo4" controls preload="auto" playsinline>
+                        <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="list-info">
+                    <h3>Video Player 4</h3>
+                    <div class="card-desc">Quaternary video player instance in list layout with full resource usage monitoring.</div>
+                    <div class="card-meta"><span>Status: <span data-lstatus="lvideo4">Ready</span></span><span>Duration: --:--</span></div>
+                    <div class="card-stats">
+                        <div class="card-stat"><div class="cv">--</div><div class="cl">Resolution</div></div>
+                        <div class="card-stat"><div class="cv">--</div><div class="cl">FPS</div></div>
+                        <div class="card-stat"><div class="cv">0</div><div class="cl">KB</div></div>
+                        <div class="card-stat"><div class="cv">0</div><div class="cl">Dropped</div></div>
+                    </div>
+                    <div class="list-controls">
+                        <button class="list-ctrl-btn" onclick="toggleVideo('lvideo4')">Play/Pause</button>
+                        <button class="list-ctrl-btn" onclick="seekVideo('lvideo4',-10)">Rewind</button>
+                        <button class="list-ctrl-btn" onclick="seekVideo('lvideo4',10)">Forward</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="comparison-view" id="comparisonView">
+            <div class="comparison-item">
+                <video id="cvideo1" controls preload="auto" playsinline>
+                    <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">Player A</div>
+                <div class="comparison-info"><h4>Video Player 1</h4><p>Reference stream for side-by-side comparison testing</p></div>
+            </div>
+            <div class="comparison-item">
+                <video id="cvideo2" controls preload="auto" playsinline>
+                    <source src="https://www.w3cschool.cn/statics/demosource/movie.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">Player B</div>
+                <div class="comparison-info"><h4>Video Player 2</h4><p>Test stream for synchronization and quality comparison</p></div>
+            </div>
+        </div>
+        <div class="thumbnail-timeline">
+            <h3>Thumbnail Timeline</h3>
+            <div class="timeline-row">
+                <div class="timeline-label">Video 1</div>
+                <div class="timeline-strip" id="timeline1"></div>
+                <div class="timeline-time" id="tt1">0:00</div>
+            </div>
+            <div class="timeline-row">
+                <div class="timeline-label">Video 2</div>
+                <div class="timeline-strip" id="timeline2"></div>
+                <div class="timeline-time" id="tt2">0:00</div>
+            </div>
+            <div class="timeline-row">
+                <div class="timeline-label">Video 3</div>
+                <div class="timeline-strip" id="timeline3"></div>
+                <div class="timeline-time" id="tt3">0:00</div>
+            </div>
+            <div class="timeline-row">
+                <div class="timeline-label">Video 4</div>
+                <div class="timeline-strip" id="timeline4"></div>
+                <div class="timeline-time" id="tt4">0:00</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function test() { return true; }
+        var videoIds = ['video1','video2','video3','video4'];
+        var speeds = [0.5, 1, 1.5, 2];
+        var speedIdx = {};
+        videoIds.forEach(function(id) { speedIdx[id] = 1; });
+        var gradients = [
+            'linear-gradient(135deg,#e74c3c,#c0392b)',
+            'linear-gradient(135deg,#3498db,#2980b9)',
+            'linear-gradient(135deg,#2ecc71,#27ae60)',
+            'linear-gradient(135deg,#9b59b6,#8e44ad)'
+        ];
+        function formatTime(s) {
+            if (isNaN(s)) return '0:00';
+            var m = Math.floor(s / 60);
+            var sec = Math.floor(s % 60);
+            return m + ':' + (sec < 10 ? '0' : '') + sec;
+        }
+        function toggleVideo(id) {
+            var v = document.getElementById(id);
+            if (!v) return;
+            if (v.paused) { v.play(); } else { v.pause(); }
+        }
+        function seekVideo(id, delta) {
+            var v = document.getElementById(id);
+            if (!v) return;
+            v.currentTime = Math.max(0, Math.min(v.duration || 0, v.currentTime + delta));
+        }
+        function setVolume(id, val) {
+            var v = document.getElementById(id);
+            if (v) { v.volume = parseFloat(val); v.muted = false; }
+        }
+        function toggleMute(id) {
+            var v = document.getElementById(id);
+            if (v) v.muted = !v.muted;
+        }
+        function changeSpeed(id) {
+            speedIdx[id] = (speedIdx[id] + 1) % speeds.length;
+            var v = document.getElementById(id);
+            if (v) v.playbackRate = speeds[speedIdx[id]];
+        }
+        function toggleMasterPlay() {
+            var btn = document.getElementById('masterPlayBtn');
+            var allPaused = videoIds.every(function(id) { return document.getElementById(id).paused; });
+            if (allPaused) {
+                videoIds.forEach(function(id) { document.getElementById(id).play(); });
+                btn.textContent = 'Pause All';
+                btn.classList.add('playing');
+            } else {
+                videoIds.forEach(function(id) { document.getElementById(id).pause(); });
+                btn.textContent = 'Play All';
+                btn.classList.remove('playing');
+            }
+        }
+        function pauseAll() {
+            videoIds.forEach(function(id) { document.getElementById(id).pause(); });
+            var btn = document.getElementById('masterPlayBtn');
+            btn.textContent = 'Play All';
+            btn.classList.remove('playing');
+        }
+        function resetAll() {
+            videoIds.forEach(function(id) {
+                var v = document.getElementById(id);
+                v.pause(); v.currentTime = 0; v.playbackRate = 1;
+                speedIdx[id] = 1;
+            });
+        }
+        function switchView(view) {
+            var grid = document.getElementById('gridView');
+            var list = document.getElementById('listView');
+            var comp = document.getElementById('comparisonView');
+            grid.classList.add('hidden'); grid.classList.remove('active');
+            list.classList.remove('active');
+            comp.classList.remove('active');
+            document.getElementById('gridBtn').classList.remove('active');
+            document.getElementById('listBtn').classList.remove('active');
+            document.getElementById('compBtn').classList.remove('active');
+            if (view === 'grid') { grid.classList.remove('hidden'); document.getElementById('gridBtn').classList.add('active'); }
+            if (view === 'list') { list.classList.add('active'); document.getElementById('listBtn').classList.add('active'); }
+            if (view === 'comparison') { comp.classList.add('active'); document.getElementById('compBtn').classList.add('active'); }
+        }
+        function toggleSingleCol() {
+            var grid = document.getElementById('gridView');
+            grid.classList.toggle('single-col');
+            document.getElementById('singleColBtn').classList.toggle('active');
+        }
+        function buildTimelines() {
+            videoIds.forEach(function(id, idx) {
+                var strip = document.getElementById('timeline' + (idx + 1));
+                for (var t = 0; t < 10; t++) {
+                    var thumb = document.createElement('div');
+                    thumb.className = 'timeline-thumb';
+                    thumb.style.background = gradients[idx];
+                    thumb.textContent = formatTime(t * 5);
+                    (function(vid, time) {
+                        thumb.addEventListener('click', function() {
+                            var v = document.getElementById(vid);
+                            if (v) v.currentTime = time;
+                        });
+                    })(id, t * 5);
+                    strip.appendChild(thumb);
+                }
+            });
+        }
+        buildTimelines();
+        function updateStats() {
+            var playing = 0;
+            var totalDur = 0;
+            var totalBuff = 0;
+            var durCount = 0;
+            videoIds.forEach(function(id, i) {
+                var v = document.getElementById(id);
+                if (!v) return;
+                if (!v.paused) playing++;
+                if (!isNaN(v.duration) && v.duration > 0) { totalDur += v.duration; durCount++; }
+                if (v.buffered.length > 0) {
+                    var buff = v.buffered.end(v.buffered.length - 1) - v.currentTime;
+                    totalBuff += Math.max(0, buff);
+                }
+                var statusEl = document.querySelector('[data-status="' + id + '"]');
+                if (statusEl) statusEl.textContent = v.paused ? 'Paused' : 'Playing';
+                var bufferEl = document.querySelector('[data-buffer="' + id + '"]');
+                if (bufferEl) {
+                    var bf = 0;
+                    if (v.buffered.length > 0) bf = v.buffered.end(v.buffered.length - 1) - v.currentTime;
+                    bufferEl.textContent = Math.max(0, bf).toFixed(1) + 's';
+                }
+                var resEl = document.querySelector('[data-res="' + id + '"]');
+                if (resEl && v.videoWidth) resEl.textContent = v.videoWidth + 'x' + v.videoHeight;
+                var bytesEl = document.querySelector('[data-bytes="' + id + '"]');
+                if (bytesEl && v.bytesLoaded !== undefined) bytesEl.textContent = Math.round(v.bytesLoaded / 1024);
+                var timeEl = document.querySelector('[data-time="' + id + '"]');
+                if (timeEl) timeEl.textContent = formatTime(v.currentTime) + ' / ' + formatTime(v.duration);
+                var progressFill = document.querySelector('.mini-progress[data-video="' + id + '"] .mini-progress-fill');
+                if (progressFill && v.duration) progressFill.style.width = (v.currentTime / v.duration * 100) + '%';
+                var ttEl = document.getElementById('tt' + (i + 1));
+                if (ttEl) ttEl.textContent = formatTime(v.currentTime);
+            });
+            document.getElementById('playingCount').textContent = playing + ' / 4';
+            document.getElementById('totalDuration').textContent = formatTime(durCount > 0 ? totalDur / durCount : 0);
+            document.getElementById('avgBuffer').textContent = (totalBuff / 4).toFixed(1) + 's';
+            document.getElementById('statusText').textContent = playing > 0 ? 'Playing' : 'Idle';
+            document.getElementById('statusDot').className = 'stat-dot ' + (playing > 0 ? 'green' : 'yellow');
+            requestAnimationFrame(updateStats);
+        }
+        videoIds.forEach(function(id, i) {
+            var v = document.getElementById(id);
+            v.addEventListener('play', function() { console.log('Video ' + (i+1) + ' playing'); });
+            v.addEventListener('pause', function() { console.log('Video ' + (i+1) + ' paused'); });
+            v.addEventListener('error', function() {
+                var ec = document.getElementById('errorCount');
+                ec.textContent = parseInt(ec.textContent) + 1;
+            });
+        });
+        document.querySelectorAll('.mini-progress').forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                var vid = this.dataset.video;
+                var v = document.getElementById(vid);
+                if (!v || !v.duration) return;
+                var rect = this.getBoundingClientRect();
+                var pct = (e.clientX - rect.left) / rect.width;
+                v.currentTime = pct * v.duration;
+            });
+        });
+        requestAnimationFrame(updateStats);
+    </script>
+</body>
+</html>

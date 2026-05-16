@@ -1,0 +1,5 @@
+
+import actsNotificationAnsThreePartyWatchStaticWithOutAbilityNoPermissionTest from './ActsNotificationAnsThreePartyWatchStaticWithOutAbilityNoPermissionTest.test';
+export default function testsuite() {
+  actsNotificationAnsThreePartyWatchStaticWithOutAbilityNoPermissionTest();
+}

@@ -1,0 +1,90 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+  "module": {
+    "name": "entry",
+    "type": "entry",
+    "description": "$string:module_desc",
+    "mainElement": "EntryAbility",
+    "deviceTypes": [],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "StandardAbility",
+        "srcEntry": "./ets/standardability/StandardAbility.ets",
+        "description": "$string:StandardAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:StandardAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "standard"
+      },
+      {
+        "name": "ProtectAbility",
+        "srcEntry": "./ets/protectability/ProtectAbility.ets",
+        "description": "$string:ProtectAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:ProtectAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "ShortAbility",
+        "srcEntry": "./ets/shortability/ShortAbility.ets",
+        "description": "$string:ShortAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:ShortAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "AnotherAbility",
+        "srcEntry": "./ets/anotherability/AnotherAbility.ets",
+        "description": "$string:AnotherAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:AnotherAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ]
+  }
+}

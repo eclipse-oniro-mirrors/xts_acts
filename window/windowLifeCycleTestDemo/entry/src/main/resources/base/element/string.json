@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility_0400_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_0400_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility2_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility2_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility3_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility3_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility4_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility4_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility13_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility13_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbility14_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility14_label",
+      "value": "label"
+    }
+  ]
+}

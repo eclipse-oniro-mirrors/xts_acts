@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "color_test1",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "color_loop",
+      "value": "$color:color_loop"
+    }
+  ]
+}

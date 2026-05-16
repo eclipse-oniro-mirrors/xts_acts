@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for bytrace demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "package-name": "ohos.bytrace.test",
+        "bundle-name": "ohos.bytrace.test",
+        "shell-timeout": "300000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsByTraceJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

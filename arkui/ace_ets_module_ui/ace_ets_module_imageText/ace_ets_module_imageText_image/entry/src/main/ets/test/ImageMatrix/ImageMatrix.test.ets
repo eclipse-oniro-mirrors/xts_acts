@@ -1,0 +1,83 @@
+/**
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from "@ohos/hypium"
+import router from '@ohos.router';
+import {
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
+import CommonFunc from '../../MainAbility/common/Common';
+
+export default function ImageMatrixTest() {
+  describe('ImageMatrixTest', () => {
+    beforeEach(async (done: Function) => {
+      console.info('ImageMatrixTest beforeEach start');
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/ImageMatrix/ImageMatrix',
+      }
+      try {
+        router.clear();
+        let pages = router.getState();
+        console.info('get ImageMatrixTest state pages: ' + JSON.stringify(pages));
+        if (!('ImageMatrix' == pages.name)) {
+          console.info('get ImageMatrixTest state pages.name: ' + JSON.stringify(pages.name));
+          let result = await router.pushUrl(options);
+          await CommonFunc.sleep(2000);
+          console.info('push ImageMatrixTest success: ' + JSON.stringify(result));
+        }
+      } catch (err) {
+        console.error('push ImageMatrixTest page error: ' + err);
+        expect().assertFail();
+      }
+      done();
+    });
+
+    /**
+     * @tc.name   ImageMatrixTest_0100
+     * @tc.number ImageMatrixTest_0100
+     * @tc.desc   test the onKeyEvent api16 CallBack  child & parent component response when child component return false and  child component return false when trigger 'TAB' key
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('ImageMatrixTest_0100', Level.LEVEL0, async (done: Function) => {
+      console.info('[ImageMatrixTest_0100] START');
+      let driver: Driver = Driver.create();
+      let button1 = await driver.findComponent(ON.id('button1'));
+      await button1.click();
+      await CommonFunc.sleep(2000);
+
+      // test the child component response
+      let strJson = getInspectorByKey('imageMatrix');
+      let obj: ESObject = JSON.parse(strJson);
+      console.info('[ImageMatrixTest_0100] strJson is: ' + strJson);
+      console.info('[ImageMatrixTest_0100] ImageMatrixTest obj is: ' + JSON.stringify(obj.$attrs.ImageMatrixTest));
+      expect(obj.$attrs.imageMatrix).assertEqual(
+        '4.532353,2.110965,-0.040063,0.000000,\n' +
+        '-2.009852,4.342766,1.449440,0.000000,\n' +
+        '0.129348,-0.259554,0.957027,0.000000,\n' +
+        '30.180006,61.629848,11.275022,1.000000,\n');
+      console.info('[ImageMatrixTest_0100] END');
+      done();
+    });
+  })
+}

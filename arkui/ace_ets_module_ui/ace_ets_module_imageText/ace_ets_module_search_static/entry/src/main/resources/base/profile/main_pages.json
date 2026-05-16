@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/SearchStyle/SearchStyle",
+ 	  "MainAbility/pages/SearchApi26/SearchOnWillCopy",
+ 	  "MainAbility/pages/SearchApi26/SearchOnWillCut"
+  ]
+}

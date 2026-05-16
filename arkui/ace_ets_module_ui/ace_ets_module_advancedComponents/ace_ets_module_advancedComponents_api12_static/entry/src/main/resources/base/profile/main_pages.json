@@ -1,0 +1,12 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/dialog/alertDialogTest",
+    "MainAbility/pages/dialog/confirmDialogTest",
+    "MainAbility/pages/dialog/customContentDialogTest",
+    "MainAbility/pages/dialog/selectDialogTest",
+    "MainAbility/pages/dialog/tipsDialogTest",
+    "MainAbility/pages/counter/CounterDirection",
+    "MainAbility/pages/dialog/loadingDialogTest"
+  ]
+}

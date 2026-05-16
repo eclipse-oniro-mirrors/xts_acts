@@ -1,0 +1,40 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.edm.acts.test7x",
+        "module-name": "entry_test",
+        "testcase-timeout": "30000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir -p /data/app/el2/100/base/com.edm.acts.test7x/haps/entry",
+                "mkdir -p /data/app/el2/100/base/com.edm.acts.test7x/haps/entry/testinstall"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "push":[
+                "ExtensionZeroTest.hap->/data/app/el2/100/base/com.edm.acts.test7x/haps/entry/testinstall/ExtensionZeroTest.hap"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsEdm7xTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

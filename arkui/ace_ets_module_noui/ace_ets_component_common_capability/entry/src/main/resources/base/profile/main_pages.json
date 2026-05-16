@@ -1,0 +1,27 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/EmbeddedComponent/onTerminated",
+    "MainAbility/pages/EmbeddedComponent/extension",
+    "MainAbility/pages/inspectorTest/inspector",
+    "MainAbility/pages/layoutInspector/layoutInspector",
+    "MainAbility/pages/pluginComponent",
+    "MainAbility/pages/assemblyCallback",
+    "MainAbility/pages/enumTest/enumTest",
+    "MainAbility/pages/LayoutChildren",
+    "MainAbility/pages/CreateComponentObserver/drawChildren",
+    "MainAbility/pages/nullandundefinedcoverage/accessibility/AccessibilityTextNullUndefined",
+    "MainAbility/pages/nullandundefinedcoverage/accessibility/AccessibilityStateDescriptionNullUndefined",
+    "MainAbility/pages/nullandundefinedcoverage/accessibility/AccessibilityActionOptionsNullUndefined",
+    "MainAbility/pages/nullandundefinedcoverage/accessibility/AccessibilityDefaultFocusFalse",
+    "MainAbility/pages/nullandundefinedcoverage/accessibility/AccessibilityGroupNullUndefined",
+    "MainAbility/pages/nullandundefinedcoverage/accessibility/AccessibilityFocusDrawLevelNullUndefined",
+    "MainAbility/pages/nullandundefinedcoverage/pluginComponentManager/PluginComponentManagerNullUndefined",
+    "MainAbility/pages/nullandundefinedcoverage/ComponentObserver/ComponentObserverTest",
+    "MainAbility/pages/nullandundefinedcoverage/UIInspector/UIInspectorNullUndefined",
+    "MainAbility/pages/nullandundefinedcoverage/inspector/InspectorCreateComponentObserverNullUndefined",
+    "MainAbility/pages/EmbeddedComponent/EmbeddedComponentTerminationInfo",
+    "MainAbility/pages/UIContext/UIContextTest",
+    "MainAbility/pages/inspectorLabel/inspectorLabelTest"
+  ]
+}

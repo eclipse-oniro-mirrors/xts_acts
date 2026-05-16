@@ -1,0 +1,13 @@
+{
+  "src": [
+    "pages/EmbedVisibilityChange",
+    "pages/webViewControllerPart2",
+    "pages/webViewObjectEmbed",
+    "pages/webViewRegisterNativeEmbedRule",
+    "pages/NativeEmbedParamStatusUpdate",
+    "pages/webDefaultTextEncodingFormat",
+    "pages/webOnNativeEmbedObjectParamChange",
+    "pages/webViewEventResult",
+    "pages/webViewInitTest"
+  ]
+}

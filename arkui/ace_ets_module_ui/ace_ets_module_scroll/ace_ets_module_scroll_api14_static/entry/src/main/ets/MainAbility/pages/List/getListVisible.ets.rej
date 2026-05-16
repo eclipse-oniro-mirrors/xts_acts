@@ -1,0 +1,9 @@
+diff a/arkui/ace_ets_module_ui/ace_ets_module_scroll/ace_ets_module_scroll_api14_static/entry/src/main/ets/MainAbility/pages/List/getListVisible.ets b/arkui/ace_ets_module_ui/ace_ets_module_scroll/ace_ets_module_scroll_api14_static/entry/src/main/ets/MainAbility/pages/List/getListVisible.ets	(rejected hunks)
+@@ -1,6 +1,6 @@
+ 'use static';
+ /**
+- * Copyright (c) 2025 Huawei Device Co., Ltd.
++ * Copyright (c) 2025-2026 Huawei Device Co., Ltd.
+  * Licensed under the Apache License, Version 2.0 (the "License");
+  * you may not use this file except in compliance with the License.
+  * You may obtain a copy of the License at

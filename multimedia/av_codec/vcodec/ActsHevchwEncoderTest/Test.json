@@ -1,0 +1,44 @@
+{
+ "description": "Configuration for ActsHevchwEncoderTest Tests",
+ "driver": {
+   "type": "OHJSUnitTest",
+   "test-timeout": "600000",
+   "shell-timeout": "600000",
+   "bundle-name": "com.example.actshevchwencodertest",
+   "module-name": "entry_test",
+   "testcase-timeout": "60000"
+ },
+ "kits": [
+   {
+     "test-file-name": [
+       "ActsHevchwEncoderHapTest.hap",
+       "ActsHevchwEncoderMainTest.hap"
+     ],
+     "type": "AppInstallKit",
+     "cleanup-apps": true
+   },{
+     "type": "ShellKit",
+     "run-command": [
+       "mkdir -p /data/app/el2/100/base/com.example.actshevchwencodertest/files",
+       "chmod 777 -R /data/app/el2/100/base/com.example.actshevchwencodertest/files",
+       "power-shell wakeup",
+       "power-shell setmode 602"
+     ]
+   },{
+     "type": "PushKit",
+     "pre-push": [],
+     "push": [
+       "./resource/media/codec/video_encoder/1080_1920_nv12.yuv ->/data/app/el2/100/base/com.example.actshevchwencodertest/files/",
+       "./resource/media/codec/video_encoder/1280_720_nv.yuv ->/data/app/el2/100/base/com.example.actshevchwencodertest/files/",
+       "./resource/media/codec/video_encoder/1280_720_yuv420p_01.yuv ->/data/app/el2/100/base/com.example.actshevchwencodertest/files/",
+       "./resource/media/codec/video_encoder/1920_1080_nv21.yuv ->/data/app/el2/100/base/com.example.actshevchwencodertest/files/",
+       "./resource/media/codec/video_encoder/xtscase_01_sqr_buffer.txt ->/data/app/el2/100/base/com.example.actshevchwencodertest/files/",
+       "./resource/media/codec/video_encoder/xtscase_01_sqr_surface.txt ->/data/app/el2/100/base/com.example.actshevchwencodertest/files/",
+       "./resource/media/codec/video_encoder/xtscase_04_sqr_buffer.txt ->/data/app/el2/100/base/com.example.actshevchwencodertest/files/",
+       "./resource/media/codec/video_encoder/xtscase_04_sqr_surface.txt ->/data/app/el2/100/base/com.example.actshevchwencodertest/files/",
+       "./resource/media/codec/video_encoder/xtscase_07_sqr_buffer.txt ->/data/app/el2/100/base/com.example.actshevchwencodertest/files/",
+       "./resource/media/codec/video_encoder/xtscase_07_sqr_surface.txt ->/data/app/el2/100/base/com.example.actshevchwencodertest/files/"
+     ]
+   }
+ ]
+}

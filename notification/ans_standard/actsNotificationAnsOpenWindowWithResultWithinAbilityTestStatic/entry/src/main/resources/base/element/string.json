@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "zzztest"
+    },
+    {
+      "name": "notification",
+      "value": "NOTIFICATION_CONTROLLER"
+    },
+    {
+      "name": "access_bluetooth",
+      "value": "ACCESS_BLUETOOTH"
+    },
+    {
+      "name": "NotificationSubscriberExtAbility_desc",
+      "value": "getNotificationSubscriberExtAbility"
+    },
+    {
+      "name": "NotificationSubscriberExtAbility_label",
+      "value": "getNotificationSubscriberExtAbility_label"
+    }
+  ]
+}

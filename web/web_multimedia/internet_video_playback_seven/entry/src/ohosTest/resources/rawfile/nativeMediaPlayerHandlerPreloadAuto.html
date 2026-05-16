@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单个播放源：preload-metadata</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+<div class="btnGroup">
+    <button onclick="deleteDom('bodyId')">删除</button>
+    <button onclick="moveElementRight()">moveRight</button>
+    <button onclick="moveElementDown()">moveDown</button>
+    <button onclick="moveElementUp()">moveUp</button>
+    <button onclick="resize()">resize</button>
+    <button onclick="fullScreenDom('bodyId')">全屏</button>
+</div>
+<div>
+    <button onclick="buttonLoad()">load()</button>
+    <button id="playButton" onclick="getVideo('bodyId').play()">play()</button>
+    <button onclick="getVideo('bodyId').pause()">pause()</button>
+    <button onclick="getVideo('bodyId').currentTime+=10">currentTime+=10</button>
+    <button onclick="getVideo('bodyId').currentTime-=10">currentTime-=10</button>
+    <button onclick="getVideo('bodyId').currentTime=50">currentTime=50</button>
+    <button onclick="getVideo('bodyId').playbackRate++">playbackRate++</button>
+    <button onclick="getVideo('bodyId').playbackRate--">playbackRate--</button>
+    <button onclick="getVideo('bodyId').playbackRate+=0.1">playbackRate+=0.1</button>
+    <button onclick="getVideo('bodyId').playbackRate-=0.1">playbackRate-=0.1</button>
+    <button onclick="getVideo('bodyId').volume+=0.1">volume+=0.1</button>
+    <button onclick="getVideo('bodyId').volume-=0.1">volume-=0.1</button>
+    <button onclick="getVideo('bodyId').muted=true">muted=true</button>
+    <button onclick="getVideo('bodyId').muted=false">muted=false</button>
+    <button onclick="showProps('props')">显示属性</button>
+    <button onclick="hideProps('props')">隐藏属性</button>
+
+</div>
+<video  id='bodyId' controls preload='auto' muted autoplay
+        poster='https://www.runoob.com/try/demo_source/smiley-2.gif'>
+    <source id='mp4'
+            src='http://vjs.zencdn.net/v/oceans.mp4'
+            type='video/mp4'>
+</video>
+
+</body>
+</html>
+<script>
+
+function myFunction() {
+    var element = document.getElementById('bodyId');
+    element.remove();
+}
+function resize() {
+    resizeDom('bodyId');
+    return 'resizeDom';
+}
+function resizeDom(id) {
+    var element = document.getElementById(id);
+    element.style.width = '180px';
+    element.style.height = '190px';
+}
+
+function deleteDom(id) {
+    var element = document.getElementById(id);
+    element.remove();
+}
+function moveElementRight() {
+    moveElementRightDom('bodyId');
+}
+function moveElementRightDom(id) {
+    var element = document.getElementById(id);
+    element.style.marginLeft = computeNum(element.style.marginLeft) + 10 + 'px';
+}
+function moveElementDown() {
+    var element = document.getElementById('bodyId');
+    element.style.marginTop = computeNum(element.style.marginTop) + 10 + 'px';
+}
+function moveElementUp() {
+    var element = document.getElementById('bodyId');
+    element.style.marginTop = computeNum(element.style.marginTop) - 10 + 'px';
+}
+function computeNum(value) {
+    if (!value || value === '') {
+        return 0;
+    } else {
+        return parseFloat(value);
+    }
+}
+function myFunction4() {
+    fullScreenDom('cameraTest');
+}
+function fullScreenDom(id) {
+    const cameraTest = document.getElementById(id);
+    cameraTest.requestFullscreen();
+}
+
+</script>
+<script>
+    function getVideo(id) {
+        return document.getElementById(id);
+    }
+    function buttonLoad() {
+        getVideo('bodyId').load();
+        return true;
+    }
+     function buttonPlay() {
+      document.getElementById('playButton').click();
+        return 'play';
+    }
+     function buttonPause() {
+        getVideo('bodyId').pause();
+        return 'pause';
+    }
+    function setVolume() {
+        getVideo('bodyId').muted = false;
+        getVideo('bodyId').volume = 0.5;
+        return 'volume h5';
+    }
+
+    function setVolumeNumber(number) {
+        getVideo('bodyId').muted = false;
+        getVideo('bodyId').volume = number;
+        return 'volume: ' + number;
+    }
+    function jumpToEnd() {
+        let durationTime = getVideo('bodyId').duration;
+        if (durationTime > 0) {
+            getVideo('bodyId').currentTime = durationTime - 2;
+        }
+
+    }
+     function setCurrentTime() {
+        getVideo('bodyId').currentTime = 1;
+    }
+    function setMutedFalse() {
+        getVideo('bodyId').muted = false;
+        getVideo('bodyId').volume = 0.5;
+        getVideo('bodyId').muted = true;
+        return 'setMuted';
+    }
+     function setSeek() {
+        getVideo('bodyId').currentTime = 50;
+        return 'setSeek';
+    }
+     function setPlayBackRate() {
+        getVideo('bodyId').playbackRate = 2;
+        return 'setPlayBackRate';
+    }
+
+    function switchVideo(n) {
+        if (n >= videos.length) {
+            n = 0;
+        }
+
+        var mp4 = document.getElementById('mp4');
+        var parent = mp4.parentNode;
+
+        document._video.setAttribute('poster', videos[n][0]);
+        mp4.setAttribute('src', videos[n][1]);
+
+        if (videos[n][2]) {
+            if (webm.parentNode === null) {
+                parent.insertBefore(webm, mp4);
+            }
+            webm.setAttribute('src', videos[n][2]);
+        } else {
+            if (webm.parentNode !== null) {
+                parent.removeChild(webm);
+            }
+        }
+        document._video.width = 0;
+        document._video.height = 0;
+        document._video.load();
+    }
+    function showProps(id) {
+        document.getElementById(id).style.display = 'initial';
+    }
+    function hideProps(id) {
+        document.getElementById(id).style.display = 'none';
+    }
+
+</script>
+
+<style>
+    .btnGroup{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .object-container{
+        margin-bottom: 10px;
+    }
+</style>
+<style>
+
+    a { color: #ffffe0;}
+   video {
+      border: 1px solid black;
+      padding: 0; margin: 0;
+      width: 427px;
+      height: 240px;
+      background-color: black;
+      margin: auto;
+    }
+    table { border: none;  margin-top: 1ex;}
+    th {  text-align: right; }
+    caption { background-color: #ffffe0; color: black;}
+    thead th {  background-color: #ffffe0; color: black;}
+    #events td { text-align: right; width: 4ex;}
+    #properties td { }
+    hr { clear: both; margin-top: 2em;}
+    .true { background-color: #360; color: #ffffe0; }
+    .false { background-color: #603; color: #ffffe0; }
+
+</style>

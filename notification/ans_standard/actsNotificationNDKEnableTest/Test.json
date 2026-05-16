@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for global_idna_test Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "testcase-timeout": "600000",
+        "bundle-name": "com.example.ndk.enable",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsNotificationNDKEnableTest.hap",
+                "ActsNotificationNDKEnablemainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

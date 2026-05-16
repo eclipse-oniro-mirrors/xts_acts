@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Translator API 测试</title>
+    <a href="navigation.html">返回导航页</a>
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          min-height: 100vh;
+          padding: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .container {
+          max-width: 600px;
+          width: 100%;
+          background: white;
+          border-radius: 20px;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+          padding: 30px;
+        }
+
+        h1 {
+          text-align: center;
+          color: #333;
+          margin-bottom: 10px;
+          font-size: 24px;
+        }
+
+        .subtitle {
+          text-align: center;
+          color: #666;
+          margin-bottom: 25px;
+          font-size: 14px;
+        }
+
+        .status {
+          padding: 12px;
+          border-radius: 8px;
+          margin-bottom: 20px;
+          font-size: 14px;
+          text-align: center;
+        }
+
+        .status.supported {
+          background: #d4edda;
+          color: #155724;
+          border: 1px solid #c3e6cb;
+        }
+
+        .status.not-supported {
+          background: #f8d7da;
+          color: #721c24;
+          border: 1px solid #f5c6cb;
+        }
+
+        .form-group {
+          margin-bottom: 20px;
+        }
+
+        label {
+          display: block;
+          margin-bottom: 8px;
+          color: #333;
+          font-weight: 500;
+          font-size: 14px;
+        }
+
+        select, textarea {
+          width: 100%;
+          padding: 12px;
+          border: 2px solid #e0e0e0;
+          border-radius: 8px;
+          font-size: 14px;
+          transition: border-color 0.3s;
+        }
+
+        select:focus, textarea:focus {
+          outline: none;
+          border-color: #667eea;
+        }
+
+        textarea {
+          min-height: 120px;
+          resize: vertical;
+          font-family: inherit;
+        }
+
+        .language-row {
+          display: flex;
+          gap: 15px;
+          align-items: center;
+        }
+
+        .language-row .form-group {
+          flex: 1;
+        }
+
+        .swap-btn {
+          background: #667eea;
+          color: white;
+          border: none;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 18px;
+          transition: transform 0.3s, background 0.3s;
+          margin-top: 28px;
+        }
+
+        .swap-btn:hover {
+          background: #5568d3;
+          transform: rotate(180deg);
+        }
+
+        .translate-btn {
+          width: 100%;
+          padding: 14px;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .translate-btn:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .translate-btn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        .result {
+          margin-top: 25px;
+          padding: 15px;
+          background: #f8f9fa;
+          border-radius: 8px;
+          border-left: 4px solid #667eea;
+        }
+
+        .result h3 {
+          color: #333;
+          margin-bottom: 10px;
+          font-size: 14px;
+        }
+
+        .result p {
+          color: #555;
+          line-height: 1.6;
+          font-size: 14px;
+          white-space: pre-wrap;
+        }
+
+        .progress {
+          margin-top: 15px;
+          padding: 10px;
+          background: #e9ecef;
+          border-radius: 8px;
+          display: none;
+        }
+
+        .progress.active {
+          display: block;
+        }
+
+        .progress-bar {
+          height: 8px;
+          background: #dee2e6;
+          border-radius: 4px;
+          overflow: hidden;
+          margin-top: 8px;
+        }
+
+        .progress-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+          width: 0%;
+          transition: width 0.3s;
+        }
+
+        .progress-text {
+          font-size: 12px;
+          color: #666;
+          text-align: center;
+        }
+
+        .availability-status {
+          font-size: 12px;
+          color: #666;
+          margin-top: 5px;
+        }
+
+        .error {
+          color: #dc3545;
+          font-size: 13px;
+          margin-top: 10px;
+          display: none;
+        }
+
+        .error.show {
+          display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🌐 Chrome Translator API</h1>
+    <p class="subtitle">测试 Chrome 内置 AI 翻译功能</p>
+
+    <div id="status" class="status">检测中...</div>
+
+    <div id="form">
+        <div class="language-row">
+            <div class="form-group">
+                <label for="sourceLanguage">源语言</label>
+                <select id="sourceLanguage">
+                    <option value="en">英语</option>
+                    <option value="zh" selected>中文</option>
+                    <option value="ja">日语</option>
+                    <option value="ko">韩语</option>
+                    <option value="fr">法语</option>
+                    <option value="de">德语</option>
+                    <option value="es">西班牙语</option>
+                    <option value="ru">俄语</option>
+                    <option value="pt">葡萄牙语</option>
+                    <option value="it">意大利语</option>
+                </select>
+                <div id="sourceAvailability" class="availability-status"></div>
+            </div>
+
+            <button id="swapBtn" class="swap-btn">⇄</button>
+
+            <div class="form-group">
+                <label for="targetLanguage">目标语言</label>
+                <select id="targetLanguage">
+                    <option value="en" selected>英语</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日语</option>
+                    <option value="ko">韩语</option>
+                    <option value="fr">法语</option>
+                    <option value="de">德语</option>
+                    <option value="es">西班牙语</option>
+                    <option value="ru">俄语</option>
+                    <option value="pt">葡萄牙语</option>
+                    <option value="it">意大利语</option>
+                </select>
+                <div id="targetAvailability" class="availability-status"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputText">输入文本</label>
+            <textarea id="inputText" placeholder="请输入要翻译的文本...">你好，世界！这是一个使用 Chrome 内置 AI 进行翻译的测试。</textarea>
+        </div>
+
+        <button id="translateBtn" class="translate-btn">开始翻译</button>
+
+        <div id="progress" class="progress">
+            <div class="progress-text">下载翻译模型中...</div>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div id="error" class="error"></div>
+
+        <div id="result" class="result" style="display: none;">
+            <h3>翻译结果：</h3>
+            <p id="resultText"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const statusEl = document.getElementById('status');
+    const formEl = document.getElementById('form');
+    const sourceLangEl = document.getElementById('sourceLanguage');
+    const targetLangEl = document.getElementById('targetLanguage');
+    const swapBtn = document.getElementById('swapBtn');
+    const inputTextEl = document.getElementById('inputText');
+    const translateBtn = document.getElementById('translateBtn');
+    const progressEl = document.getElementById('progress');
+    const progressFill = document.getElementById('progressFill');
+    const errorEl = document.getElementById('error');
+    const resultEl = document.getElementById('result');
+    const resultTextEl = document.getElementById('resultText');
+    const sourceAvailability = document.getElementById('sourceAvailability');
+    const targetAvailability = document.getElementById('targetAvailability');
+
+    let translator = null;
+
+    async function checkAvailability() {
+      const sourceLang = sourceLangEl.value;
+      const targetLang = targetLangEl.value;
+
+      try {
+        const availability = await Translator.availability({
+          sourceLanguage: sourceLang,
+          targetLanguage: targetLang
+        });
+
+        sourceAvailability.textContent = `状态: ${availability}`;
+        targetAvailability.textContent = `状态: ${availability}`;
+
+        return availability;
+      } catch (error) {
+        console.error('检查可用性失败:', error);
+        return 'error';
+      }
+    }
+
+    async function createTranslator() {
+      const sourceLang = sourceLangEl.value;
+      const targetLang = targetLangEl.value;
+
+      try {
+        translator = await Translator.create({
+          sourceLanguage: sourceLang,
+          targetLanguage: targetLang,
+          monitor(m) {
+            m.addEventListener('downloadprogress', (e) => {
+              progressEl.classList.add('active');
+              const percent = Math.round(e.loaded * 100);
+              progressFill.style.width = `${percent}%`;
+            });
+          }
+        });
+
+        progressEl.classList.remove('active');
+        return translator;
+      } catch (error) {
+        console.error('创建翻译器失败:', error);
+        throw error;
+      }
+    }
+
+    async function translate() {
+      const text = inputTextEl.value.trim();
+
+      if (!text) {
+        showError('请输入要翻译的文本');
+        return;
+      }
+
+      try {
+        translateBtn.disabled = true;
+        errorEl.classList.remove('show');
+        resultEl.style.display = 'none';
+
+        const availability = await checkAvailability();
+
+        if (availability === 'no') {
+          showError('不支持此语言对的翻译');
+          return;
+        }
+
+        if (!translator) {
+          await createTranslator();
+        }
+
+        const result = await translator.translate(text);
+        resultTextEl.textContent = result;
+        resultEl.style.display = 'block';
+
+      } catch (error) {
+        console.error('翻译失败:', error);
+        showError(`翻译失败: ${error.message}`);
+      } finally {
+        translateBtn.disabled = false;
+        progressEl.classList.remove('active');
+      }
+    }
+
+    function showError(message) {
+      errorEl.textContent = message;
+      errorEl.classList.add('show');
+    }
+
+    function init() {
+      if ('Translator' in self) {
+        statusEl.textContent = '✓ Translator API 已支持';
+        statusEl.className = 'status supported';
+        formEl.style.display = 'block';
+        checkAvailability();
+      } else {
+        statusEl.textContent = '✗ 您的浏览器不支持 Translator API';
+        statusEl.className = 'status not-supported';
+        formEl.style.display = 'none';
+      }
+    }
+
+    swapBtn.addEventListener('click', () => {
+      const temp = sourceLangEl.value;
+      sourceLangEl.value = targetLangEl.value;
+      targetLangEl.value = temp;
+      translator = null;
+      checkAvailability();
+    });
+
+    sourceLangEl.addEventListener('change', () => {
+      translator = null;
+      checkAvailability();
+    });
+
+    targetLangEl.addEventListener('change', () => {
+      translator = null;
+      checkAvailability();
+    });
+
+    translateBtn.addEventListener('click', translate);
+
+    init();
+</script>
+</body>
+</html>

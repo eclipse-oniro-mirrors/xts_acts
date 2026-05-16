@@ -1,0 +1,16 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/PersistenceV2/PerGlobalConnect",
+        "MainAbility/pages/ReuseV2/ReuseV20030",
+        "MainAbility/pages/v1tov2/VOneToVTwo0010",
+        "MainAbility/pages/v2tov1/VTwoToVOne0070",
+		"MainAbility/pages/ArrayLike/ArrayLikeString",
+        "MainAbility/pages/Reusable/repeatReusableFalse",
+        "MainAbility/pages/Reusable/repeatReusableTrue",
+        "MainAbility/pages/consumer/Consumer0130",
+        "MainAbility/pages/consumer/Consumer0140",
+        "MainAbility/pages/consumer/Consumer0170",
+        "MainAbility/pages/useRes/Rawfile0140"
+    ]
+}

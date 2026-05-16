@@ -1,0 +1,51 @@
+{
+    "description": "Configuration for ActsAudioenCoderTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "testcase-timeout": 600000,
+        "bundle-name": "com.example.actshwdecoderhaptest",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHwdecoderHapTest.hap",
+                "ActsHwdecoderMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/com.example.actshwdecoderhaptest/files",
+                "chmod 777 -R /data/app/el2/100/base/com.example.actshwdecoderhaptest/files",
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/media/codec/video_decoder/176_144_Main10.h265 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/720_1280_25_8bit.h265 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/720_1280_25_avcc.h264 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/1104x622.h265 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/1280_720_30_10Mb.h264 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/1920_1080_10_30Mb.h264 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/1920_1080_10bit.vvc ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/1920_1080_20M_30.h265 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/1920x1080.h264 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/1920x1080.h265 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/3840x2160.h264 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/3840x2160.h265 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/hash_val.json ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/hlg_vivid_4k.h265 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/",
+                "./resource/media/codec/video_decoder/resolutionChange.h264 ->/data/app/el2/100/base/com.example.actshwdecoderhaptest/files/"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+{
+  "description": "Config for actsmpeg2swdecodertest cases",
+  "driver": {
+    "type": "OHJSUnitTest",
+    "test-timeout": "1000000",
+    "shell-timeout": "1000000",
+    "bundle-name": "com.example.actsmpeg2swdecodertest",
+    "module-name": "entry_test",
+    "testcase-timeout": 1000000
+  },
+  "kits": [
+    {
+      "test-file-name": [
+        "ActsMpeg2SwDecoderMainTest.hap",
+        "ActsMpeg2SwDecoderHapTest.hap"
+      ],
+      "type": "AppInstallKit",
+      "cleanup-apps": true
+    },
+    {
+      "type": "ShellKit",
+      "run-command": [
+	    "mkdir -p /data/app/el2/100/base/com.example.actsmpeg2swdecodertest/haps/entry_test/files",
+ 	    "chmod 777 -R /data/app/el2/100/base/com.example.actsmpeg2swdecodertest/haps/entry_test/files",
+        "power-shell wakeup",
+        "power-shell setmode 602"
+      ]
+    },
+    {
+      "type": "PushKit",
+      "pre-push": [],
+      "push": [
+ 	       "./resource/media/codec/video_decoder/main@high_level_1920_1080_60.m2v->/data/app/el2/100/base/com.example.actsmpeg2swdecodertest/haps/entry_test/files/"
+      ]
+    }
+  ]
+}

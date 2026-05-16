@@ -1,0 +1,26 @@
+{
+    "description": "Configuration for actschecksumtest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.actschecksumtest.test",
+        "module-name": "entry_test",
+        "testcase-timeout": 240000
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsChecksumTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

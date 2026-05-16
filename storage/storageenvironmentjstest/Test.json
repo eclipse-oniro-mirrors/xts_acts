@@ -1,0 +1,25 @@
+{
+    "description": "Configuration for storage environment Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "bundle-name": "ohos.acts.storage.environment",
+        "package-name": "ohos.acts.storage.environment"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsStorageEnvironmentJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

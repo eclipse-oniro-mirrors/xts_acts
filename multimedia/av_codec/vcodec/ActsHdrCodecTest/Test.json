@@ -1,0 +1,39 @@
+{
+    "description": "Configuration for ActsHdrCodecHapTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.ActsHdrCodecHapTest",
+        "module-name": "entry_test",
+        "testcase-timeout": "60000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHdrCodecHapTest.hap",
+                "ActsHdrCodecMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/com.example.ActsHdrCodecHapTest/haps/entry_test/files",
+                "chmod 777 -R /data/app/el2/100/base/com.example.ActsHdrCodecHapTest/haps/entry_test/files",
+                "power-shell wakeup",
+                "power-shell setmode 602"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/media/codec/video_decoder/pq_vivid.h265->/data/app/el2/100/base/com.example.ActsHdrCodecHapTest/haps/entry_test/files/",
+                "./resource/media/codec/video_decoder/hlg_vivid_4k.h265->/data/app/el2/100/base/com.example.ActsHdrCodecHapTest/haps/entry_test/files/",
+                "./resource/media/codec/video_decoder/hlg_vivid_1080p.h265->/data/app/el2/100/base/com.example.ActsHdrCodecHapTest/haps/entry_test/files/"
+            ]
+        }
+    ]
+}

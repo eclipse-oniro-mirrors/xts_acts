@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/filter/filterPage",
+    "MainAbility/pages/filter/filterPageTwo"
+  ]
+}

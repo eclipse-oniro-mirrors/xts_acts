@@ -1,0 +1,14 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/index/second",
+    "MainAbility/pages/Button/ButtonIndex",
+    "MainAbility/pages/Button/modifier",
+    "MainAbility/pages/ArcButton/ArcButtonIndex",
+    "MainAbility/pages/buttonLabelStyle/buttonLabelStyle",
+    "MainAbility/pages/dialogButtonOptionsTextAlign/dialogButtonOptionsTextAlign",
+    "MainAbility/pages/dialogV2ButtonTextAlign/dialogV2ButtonTextAlign",
+    "MainAbility/pages/segmentButtonEnableStateAnimation/segmentButtonEnableStateAnimation",
+    "MainAbility/pages/segmentButtonV2EnableStateAnimation/segmentButtonV2EnableStateAnimation"
+  ]
+}

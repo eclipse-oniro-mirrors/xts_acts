@@ -1,0 +1,128 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { FrameNode, NodeController, typeNode } from '@kit.ArkUI'
+
+class SetOnDisappearNullController extends NodeController {
+  public node: FrameNode | null = null;
+  public disappearResult: string = 'Init';
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.node = new FrameNode(uiContext);
+    this.node.commonAttribute
+      .width('100%')
+      .height('5%')
+      .backgroundColor('#FF0000FF')
+      .align(Alignment.Center);
+    
+    let text = typeNode.createNode(uiContext, 'Text');
+    text.initialize('setOnDisappear null');
+    this.node.appendChild(text);
+
+    this.node.commonEvent.setOnDisappear(() => {
+      this.disappearResult = 'setOnDisappearNullTriggered';
+    });
+    
+    this.node.commonEvent.setOnDisappear(null);
+    
+    return this.node;
+  }
+}
+
+class SetOnDisappearUndefinedController extends NodeController {
+  public node: FrameNode | null = null;
+  public disappearResult: string = 'Init';
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    this.node = new FrameNode(uiContext);
+    this.node.commonAttribute
+      .width('100%')
+      .height('5%')
+      .backgroundColor('#FF00FF00')
+      .align(Alignment.Center);
+    
+    let text = typeNode.createNode(uiContext, 'Text');
+    text.initialize('setOnDisappear undefined');
+    this.node.appendChild(text);
+
+    this.node.commonEvent.setOnDisappear(() => {
+      this.disappearResult = 'setOnDisappearUndefinedTriggered';
+    });
+    
+    this.node.commonEvent.setOnDisappear(undefined);
+    
+    return this.node;
+  }
+}
+
+@Entry
+@Component
+struct SetOnDisappearPropertyTest {
+  @State setOnDisappearNullResult: string = 'Init';
+  @State setOnDisappearUndefinedResult: string = 'Init';
+  
+  private nodeNull: SetOnDisappearNullController = new SetOnDisappearNullController();
+  private nodeUndefined: SetOnDisappearUndefinedController = new SetOnDisappearUndefinedController();
+
+  build() {
+    Column() {
+      Text('SetOnDisappear Property Test')
+        .fontWeight(FontWeight.Bold)
+        .width('100%')
+        .textAlign(TextAlign.Center)
+
+      Text(this.setOnDisappearNullResult)
+        .id('setOnDisappearNullResult')
+        .width('100%')
+        .height('5%')
+        .backgroundColor('#FFCCCCCC')
+        .textAlign(TextAlign.Center)
+
+      Text(this.setOnDisappearUndefinedResult)
+        .id('setOnDisappearUndefinedResult')
+        .width('100%')
+        .height('5%')
+        .backgroundColor('#FFCCCCCC')
+        .textAlign(TextAlign.Center)
+
+      NodeContainer(this.nodeNull)
+        .id('setOnDisappearNullBtn')
+        .width('100%')
+        .height('5%')
+
+      NodeContainer(this.nodeUndefined)
+        .id('setOnDisappearUndefinedBtn')
+        .width('100%')
+        .height('5%')
+
+      Button('Check Null')
+        .id('checkNullBtn')
+        .width('100%')
+        .height('5%')
+        .onClick(() => {
+          this.setOnDisappearNullResult = this.nodeNull.disappearResult;
+        })
+
+      Button('Check Undefined')
+        .id('checkUndefinedBtn')
+        .width('100%')
+        .height('5%')
+        .onClick(() => {
+          this.setOnDisappearUndefinedResult = this.nodeUndefined.disappearResult;
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}

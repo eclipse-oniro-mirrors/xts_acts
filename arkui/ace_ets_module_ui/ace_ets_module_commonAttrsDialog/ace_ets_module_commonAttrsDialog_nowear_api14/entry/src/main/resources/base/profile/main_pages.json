@@ -1,0 +1,10 @@
+{
+    "src": [
+      "MainAbility/pages/index/index",
+      "MainAbility/pages/DatePickerDialog/lunarSwitchStyleTest",
+      "MainAbility/pages/TextPickerDialog/TextPickerDialogHoverMode",
+      "MainAbility/pages/TimePickerDialog/timePickerDialogHoverMode",
+      "MainAbility/pages/DatePickerDialog/datePickerDialogHoverMode",
+      "MainAbility/pages/CalendarPickerDialog/calendarPickerDialogHoverMode"
+    ]
+}

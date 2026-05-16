@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>麦克风测试（无权限+无麦克风适配版）</title>
+    <style>
+        body { padding: 20px; font-family: Arial, sans-serif; }
+        button { padding: 10px 20px; margin: 0 10px 10px 0; cursor: pointer; }
+        #status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .success { background: #f0fdf4; color: #16a34a; }
+        .warning { background: #fef2f2; color: #dc2626; }
+        .info { background: #f5f5f5; color: #666; }
+    </style>
+</head>
+<body>
+<h1>麦克风测试</h1>
+<button id="startBtn">开启麦克风</button>
+<button id="stopBtn">停止麦克风</button>
+<div id="status" class="info">🔍 正在检测设备和权限...</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const status = document.getElementById('status');
+        let isMockMode = true; // 默认直接进入模拟模式（双无场景）
+        let isMicOpened = false; // 模拟麦克风开启状态
+
+        // 状态更新工具函数
+        function updateStatus(text, type = 'info') {
+            status.textContent = text;
+            status.className = type; // success/warning/info
+            console.log(`[麦克风测试] ${text}`);
+        }
+
+        // 第一步：预检测（仅日志输出，不触发权限请求）
+        async function preCheck() {
+            try {
+                // 检测浏览器是否支持API
+                if (!navigator.mediaDevices) {
+                    updateStatus('⚠️ 浏览器不支持媒体设备API，进入纯模拟模式', 'warning');
+                    return;
+                }
+
+                // 检测麦克风设备（不触发权限弹窗）
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const audioInputs = devices.filter(d => d.kind === 'audioinput');
+
+                if (audioInputs.length === 0) {
+                    updateStatus('⚠️ 未检测到麦克风设备，进入纯模拟模式', 'warning');
+                } else {
+                    updateStatus(`✅ 检测到${audioInputs.length}个麦克风设备，但权限受限，进入模拟模式`, 'warning');
+                }
+            } catch (err) {
+                // 捕获权限/设备检测错误（直接判定为双无场景）
+                updateStatus('⚠️ 设备/权限检测失败（无权限+无麦克风），进入纯模拟模式', 'warning');
+            }
+        }
+
+        // 第二步：模拟开启麦克风（无任何真实操作）
+        function mockStartMicrophone() {
+            if (isMicOpened) {
+                alert('⚠️ 麦克风已处于开启状态！');
+                updateStatus('⚠️ 麦克风已处于开启状态（模拟模式）', 'warning');
+                return;
+            }
+            isMicOpened = true;
+            updateStatus('✅ 麦克风开启成功（纯模拟模式：无权限+无麦克风）', 'success');
+            alert('✅ 模拟开启麦克风成功！\n（当前环境：无麦克风设备 + 无麦克风权限）');
+        }
+
+        // 第三步：模拟停止麦克风（无任何真实操作）
+        function mockStopMicrophone() {
+            if (!isMicOpened) {
+                alert('⚠️ 麦克风尚未开启！');
+                updateStatus('⚠️ 麦克风尚未开启（模拟模式）', 'warning');
+                return;
+            }
+            isMicOpened = false;
+            updateStatus('🔴 麦克风已停止（纯模拟模式：无权限+无麦克风）', 'success');
+            alert('🔴 模拟停止麦克风成功！');
+        }
+
+        // 第四步：绑定事件（纯模拟逻辑）
+        startBtn.addEventListener('click', mockStartMicrophone);
+        stopBtn.addEventListener('click', mockStopMicrophone);
+
+        // 第五步：自动点击逻辑（模拟模式下正常执行）
+        setTimeout(() => {
+            console.log('[自动点击] 触发开启麦克风（模拟模式）');
+            startBtn.click();
+
+            // 5秒后自动停止
+            setTimeout(() => {
+                console.log('[自动点击] 触发停止麦克风（模拟模式）');
+                stopBtn.click();
+            }, 5000);
+        }, 2000);
+
+        // 初始化：执行预检测并进入模拟模式
+        preCheck();
+        updateStatus('✅ 已进入纯模拟模式（适配无权限+无麦克风）', 'success');
+    });
+</script>
+</body>
+</html>

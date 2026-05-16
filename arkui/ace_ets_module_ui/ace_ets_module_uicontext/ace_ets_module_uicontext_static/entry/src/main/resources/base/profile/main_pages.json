@@ -1,0 +1,16 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/OverlayManager/OverlayManagerIndex",
+    "MainAbility/pages/Magnifier/MagnifierIndex",
+    "MainAbility/pages/MeasureUtils/MeasureUtilsIndex",
+    "MainAbility/pages/ResolveStrategy/ResolveStrategyIndex",
+    "MainAbility/pages/ResolvedUIContext/ResolvedUIContextIndex",
+    "MainAbility/pages/CustomKeyboardContinueFeature/CustomKeyboardContinueFeatureIndex",
+    "MainAbility/pages/UIContext/UIContextIndex",
+    "MainAbility/pages/arkuiObserverScrollEvent/arkuiObserverScrollEvent",
+    "MainAbility/pages/uiObserverTextChange/uiObserverTextChange",
+    "MainAbility/pages/uiContextStaticMethods/uiContextStaticMethods",
+    "MainAbility/pages/window/GetWindowIdTest"
+  ]
+}

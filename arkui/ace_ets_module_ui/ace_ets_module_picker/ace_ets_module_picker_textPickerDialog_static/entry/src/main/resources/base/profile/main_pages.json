@@ -1,0 +1,31 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogCallBack",
+    "MainAbility/pages/textPickerDialog/TextPickerOnChange",
+    "MainAbility/pages/textPickerDialog/TextPickerOnScrollStop",
+    "MainAbility/pages/textPickerDialog/TextPickerOnEnterSelectedArea",
+    "MainAbility/pages/textPickerDialog/TextPickerOnAccept",
+    "MainAbility/pages/textPickerDialog/TextPickerOnCancel",
+    "MainAbility/pages/textPickerDialog/offset",
+    "MainAbility/pages/textPickerDialog/disappearTextStyle",
+    "MainAbility/pages/textPickerDialog/canLoop",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogBackgroundColor",
+    "MainAbility/pages/textPickerDialog/TextPickerDialog_alignment",
+    "MainAbility/pages/textPickerDialog/TextPickerDialog_hoverModeArea",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogBGBlurStyle",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogDefaultTextStyle",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogDisableTextStyleAnimation",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogEnableHapticFeedback",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogSelectedTextStyle",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogShadow",
+    "MainAbility/pages/textPickerDialog/TextPickerDialog_acceptButtonStyle",
+    "MainAbility/pages/textPickerDialog/TextPickerDialog_enableHoverMode",
+    "MainAbility/pages/textPickerDialog/TextPickerDialog_defaultPickerItemHeight",
+    "MainAbility/pages/textPickerDialog/selectedBackgroundStyle",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogBackgroundEffect",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogCancelButtonStyle",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogTextStyle",
+    "MainAbility/pages/textPickerDialog/TextPickerDialogDisappearTextStyle"
+  ]
+}

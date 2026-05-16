@@ -1,0 +1,36 @@
+{
+  "float":[
+    {
+      "name":"font_hello",
+      "value":"15px"
+    },
+    {
+      "name":"font_world",
+      "value":"20.0fp"
+    },
+    {
+      "name": "BarMode_Test",
+      "value": "8.00fp"
+    },
+    {
+      "name": "Padding_Test",
+      "value": "10.00vp"
+    },
+    {
+      "name": "Margin_Test",
+      "value": "20"
+    },
+    {
+      "name": "strokeWidth",
+      "value": "20"
+    },
+    {
+        "name": "gutter_10",
+        "value": "10"
+    },
+    {
+      "name": "actionAreaDistance1",
+      "value": "50vp"
+    }
+  ]
+}

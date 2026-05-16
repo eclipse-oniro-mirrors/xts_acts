@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>client.badssl.com</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #d1ecf1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #0c5460;
+        }
+        .container { max-width: 800px; width: 100%; }
+        .lock-icon { font-size: 64px; margin-bottom: 20px; text-align: center; }
+        h1 { font-size: 28px; margin-bottom: 15px; text-align: center; }
+        h2 { font-size: 22px; margin: 30px 0 15px; color: #0c5460; border-bottom: 2px solid #bee5eb; padding-bottom: 8px; }
+        h3 { font-size: 18px; margin: 20px 0 10px; color: #0c5460; }
+        p { font-size: 16px; line-height: 1.6; max-width: 800px; text-align: left; margin-bottom: 15px; }
+        .cert-info {
+            background: white;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        .cert-info table { width: 100%; border-collapse: collapse; }
+        .cert-info td { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+        .cert-info td:first-child { font-weight: bold; width: 180px; color: #666; }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #fd7e14;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-badge.warn { background: #fd7e14; }
+        .status-badge.ok { background: #28a745; }
+        .status-badge.info { background: #17a2b8; }
+        .section-box {
+            background: white;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        table.compat-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        table.compat-table th, table.compat-table td {
+            padding: 10px 12px;
+            border: 1px solid #bee5eb;
+            text-align: left;
+            font-size: 14px;
+        }
+        table.compat-table th { background: #bee5eb; color: #0c5460; font-weight: bold; }
+        table.compat-table tr:nth-child(even) { background: #f0f9fb; }
+        .handshake-box {
+            background: #f0f9fb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        .faq-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f0f9fb;
+            border-left: 4px solid #bee5eb;
+            border-radius: 0 6px 6px 0;
+        }
+        .faq-item strong { display: block; margin-bottom: 6px; }
+        .error-type-list { list-style: none; padding: 0; }
+        .error-type-list li {
+            padding: 10px 15px;
+            margin: 6px 0;
+            background: white;
+            border: 1px solid #bee5eb;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .error-type-list li code {
+            background: #bee5eb;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #0c5460;
+        }
+        .fix-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 12px 0;
+        }
+        .fix-step-num {
+            background: #bee5eb;
+            color: #0c5460;
+            font-weight: bold;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        .fix-step-text { font-size: 14px; line-height: 1.6; padding-top: 4px; }
+        .troubleshoot-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #7cc6cc;
+        }
+        .troubleshoot-item strong { color: #0c5460; }
+        .auth-flow-box {
+            background: #f0f9fb;
+            border: 2px solid #bee5eb;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+        }
+        .auth-flow-step {
+            background: white;
+            border: 1px solid #7cc6cc;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin: 8px 0;
+        }
+        .auth-flow-step .step-num {
+            font-weight: bold;
+            color: #0c5460;
+            margin-right: 8px;
+        }
+        .cert-type-box {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .cert-type-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .cert-type-card h4 { color: #0c5460; margin-bottom: 8px; }
+        .cert-type-card p { font-size: 13px; text-align: center; color: #666; }
+        .cert-type-card .icon { font-size: 32px; margin-bottom: 8px; }
+        .use-case-box {
+            background: #f0f9fb;
+            border: 1px solid #7cc6cc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .use-case-box h4 { color: #0c5460; margin-bottom: 8px; }
+        .use-case-box ul { margin: 5px 0 5px 20px; line-height: 1.8; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lock-icon">&#128274;</div>
+        <h1>client.badssl.com</h1>
+        <p>This page requires a <strong>client certificate</strong> for authentication. The server requests a client certificate during the TLS handshake. This domain intentionally requires client certificate authentication to help developers test mutual TLS (mTLS) scenarios and client authentication handling.</p>
+
+        <h2>Authentication Requirements</h2>
+        <div class="cert-info">
+            <table>
+                <tr><td>Domain:</td><td>client.badssl.com</td></tr>
+                <tr><td>Auth Type:</td><td>TLS Client Certificate (mTLS)</td></tr>
+                <tr><td>Client Cert Required:</td><td><span class="status-badge">REQUIRED</span></td></tr>
+                <tr><td>Server Cert:</td><td><span class="status-badge ok">VALID</span></td></tr>
+                <tr><td>Accepted Client CAs:</td><td>BadSSL Client CA</td></tr>
+                <tr><td>Client Cert Key Type:</td><td>RSA 2048 bits</td></tr>
+                <tr><td>Client Cert Signature:</td><td>SHA256withRSA</td></tr>
+                <tr><td>TLS Version:</td><td>TLS 1.2 / TLS 1.3</td></tr>
+                <tr><td>Cipher Suites:</td><td>TLS_AES_128_GCM_SHA256, TLS_AES_256_GCM_SHA384, ECDHE-RSA-AES128-GCM-SHA256</td></tr>
+                <tr><td>Certificate Request:</td><td>CertificateRequest message sent</td></tr>
+                <tr><td>Accepted EKU:</td><td>Client Authentication (OID: 1.3.6.1.5.5.7.3.2)</td></tr>
+                <tr><td>OCSP Stapling:</td><td>Supported</td></tr>
+                <tr><td>Session Resumption:</td><td>Not available (requires re-auth)</td></tr>
+                <tr><td>Server Name Indication:</td><td>Supported</td></tr>
+                <tr><td>Description:</td><td>This server requires a valid client certificate signed by the BadSSL Client CA to establish a TLS connection.</td></tr>
+            </table>
+        </div>
+
+        <h2>Client Certificate vs Server Certificate</h2>
+        <div class="cert-type-box">
+            <div class="cert-type-card">
+                <div class="icon">&#128274;</div>
+                <h4>Server Certificate</h4>
+                <p>Authenticates the <strong>server</strong> to the client. Every HTTPS website has one. The browser verifies it automatically.</p>
+                <p style="margin-top:8px;"><strong>Direction:</strong> Server &rarr; Client<br><strong>Common:</strong> All HTTPS sites</p>
+            </div>
+            <div class="cert-type-card">
+                <div class="icon">&#128100;</div>
+                <h4>Client Certificate</h4>
+                <p>Authenticates the <strong>client</strong> to the server. Less common. Used for high-security applications.</p>
+                <p style="margin-top:8px;"><strong>Direction:</strong> Client &rarr; Server<br><strong>Common:</strong> Enterprise, APIs, IoT</p>
+            </div>
+            <div class="cert-type-card">
+                <div class="icon">&#128272;</div>
+                <h4>Mutual TLS (mTLS)</h4>
+                <p>Both server and client certificates are required. Both parties authenticate each other.</p>
+                <p style="margin-top:8px;"><strong>Direction:</strong> Bidirectional<br><strong>Common:</strong> Zero-trust, microservices</p>
+            </div>
+        </div>
+
+        <h2>SSL Error Explanation</h2>
+        <div class="section-box">
+            <h3>What is Client Certificate Authentication?</h3>
+            <p>Client certificate authentication (also known as mutual TLS or mTLS) is a TLS feature where the server requests the client to present a certificate during the handshake. This provides strong, certificate-based authentication that is more secure than passwords or API keys.</p>
+            <p>When you visit this page without a client certificate, the TLS handshake fails. The browser may display an error like <code>ERR_SSL_CLIENT_AUTH_CERT_NEEDED</code> or prompt you to select a client certificate. If no suitable certificate is available, the connection cannot be established.</p>
+            <h3>How Client Certificate Authentication Works</h3>
+            <ul style="margin: 10px 0 10px 25px; line-height: 2;">
+                <li>The server sends a <strong>CertificateRequest</strong> message during the TLS handshake</li>
+                <li>The message lists acceptable Certificate Authorities (CAs)</li>
+                <li>The client selects a certificate issued by one of the accepted CAs</li>
+                <li>The client sends its certificate and proves possession of the private key</li>
+                <li>The server validates the client certificate (chain, expiration, revocation, EKU)</li>
+                <li>If validation succeeds, the handshake completes and the application layer begins</li>
+            </ul>
+            <h3>Common Error Codes</h3>
+            <ul style="margin: 10px 0 10px 25px; line-height: 2;">
+                <li><code>ERR_SSL_CLIENT_AUTH_CERT_NEEDED</code> (Chrome/Chromium)</li>
+                <li><code>SSL_ERROR_BAD_CERT_ALERT</code> (Firefox)</li>
+                <li><code>ERR_BAD_SSL_CLIENT_AUTH_CERT</code> (Chrome - rejected cert)</li>
+                <li><code>NSURLErrorClientCertificateRequired</code> (iOS/macOS)</li>
+                <li><code>SSL_ERROR_NO_CERTIFICATE</code> (OpenSSL - client has no cert)</li>
+                <li><code>SSL_ERROR_CERTIFICATE_UNKNOWN</code> (OpenSSL - server rejected cert)</li>
+            </ul>
+        </div>
+
+        <h2>TLS Handshake Diagram (mTLS)</h2>
+        <div class="section-box">
+            <p>The following diagram shows the full mutual TLS handshake with client certificate authentication:</p>
+            <div class="handshake-box">Client                                    Server
+  |                                         |
+  |  1. ClientHello                         |
+  |  (supported ciphers, TLS version)       |
+  |  -------------------------------------> |
+  |                                         |
+  |  2. ServerHello + Certificate           |
+  |  (server cert)                          |
+  |  <------------------------------------- |
+  |                                         |
+  |  3. CertificateRequest                  |
+  |  Accepted CAs: [BadSSL Client CA]       |
+  |  <------------------------------------- |
+  |                                         |
+  |  4. ServerHelloDone                     |
+  |  <------------------------------------- |
+  |                                         |
+  |  5. Client Certificate                  |
+  |  [!] No client cert available           |
+  |  [!] Or cert not signed by accepted CA  |
+  |  ===================================   |
+  |  RESULT: HANDSHAKE FAILURE              |
+  |  ERROR: ERR_SSL_CLIENT_AUTH_CERT_NEEDED |
+  |                                         |
+  |  --- IF CLIENT CERT IS AVAILABLE ---    |
+  |                                         |
+  |  5. Client Certificate + Verify         |
+  |  Client sends cert signed by BadSSL CA  |
+  |  -------------------------------------> |
+  |                                         |
+  |  6. ClientKeyExchange + Finished        |
+  |  -------------------------------------> |
+  |                                         |
+  |  7. Finished (HANDSHAKE COMPLETE)       |
+  |  <------------------------------------- |
+  |                                         |
+  |  8. Application Data (Encrypted)        |
+  |  <------------------------------------> |
+  |                                         |</div>
+            <p style="font-size:14px;">Note: In TLS 1.3, the handshake is simplified but still supports client certificate authentication via the CertificateRequest message after the server's Finished message.</p>
+        </div>
+
+        <h2>Authentication Flow</h2>
+        <div class="section-box">
+            <div class="auth-flow-box">
+                <div class="auth-flow-step">
+                    <span class="step-num">Step 1:</span> Client initiates TLS connection to client.badssl.com
+                </div>
+                <div class="auth-flow-step">
+                    <span class="step-num">Step 2:</span> Server presents its valid server certificate (standard TLS)
+                </div>
+                <div class="auth-flow-step">
+                    <span class="step-num">Step 3:</span> Server sends CertificateRequest listing accepted CAs
+                </div>
+                <div class="auth-flow-step">
+                    <span class="step-num">Step 4:</span> Browser prompts user to select a client certificate
+                </div>
+                <div class="auth-flow-step">
+                    <span class="step-num">Step 5:</span> If no certificate is available, connection fails with error
+                </div>
+                <div class="auth-flow-step">
+                    <span class="step-num">Step 6:</span> If certificate is selected, client sends it to the server
+                </div>
+                <div class="auth-flow-step">
+                    <span class="step-num">Step 7:</span> Server validates the client certificate chain and EKU
+                </div>
+                <div class="auth-flow-step">
+                    <span class="step-num">Step 8:</span> If valid, server grants access; if invalid, connection is terminated
+                </div>
+            </div>
+        </div>
+
+        <h2>Browser Compatibility</h2>
+        <div class="section-box">
+            <table class="compat-table">
+                <thead>
+                    <tr>
+                        <th>Browser</th>
+                        <th>Version</th>
+                        <th>Behavior</th>
+                        <th>Cert Selection UI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Chrome</td><td>120+</td><td>Prompts for certificate selection; error if none available</td><td>System certificate picker dialog</td></tr>
+                    <tr><td>Firefox</td><td>121+</td><td>Prompts for certificate selection; error if none available</td><td>Built-in certificate selection dialog</td></tr>
+                    <tr><td>Safari</td><td>17+</td><td>Prompts for certificate; may fail silently</td><td>Keychain Access integration</td></tr>
+                    <tr><td>Edge</td><td>120+</td><td>Prompts for certificate selection; error if none available</td><td>System certificate picker dialog</td></tr>
+                    <tr><td>Opera</td><td>105+</td><td>Prompts for certificate selection; error if none available</td><td>System certificate picker dialog</td></tr>
+                    <tr><td>Samsung Internet</td><td>23+</td><td>Limited support; may not prompt</td><td>System keystore</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Related Error Types</h2>
+        <div class="section-box">
+            <p>The following SSL/TLS errors are related to client certificate authentication:</p>
+            <ul class="error-type-list">
+                <li><code>ERR_SSL_CLIENT_AUTH_CERT_NEEDED</code> &mdash; Server requires a client certificate but none was provided.</li>
+                <li><code>ERR_BAD_SSL_CLIENT_AUTH_CERT</code> &mdash; The provided client certificate was rejected by the server.</li>
+                <li><code>SSL_ERROR_BAD_CERT_ALERT</code> &mdash; Server rejected the client certificate (Firefox).</li>
+                <li><code>SSL_ERROR_NO_CERTIFICATE</code> &mdash; Client has no certificate to send (OpenSSL).</li>
+                <li><code>SSL_ERROR_CERTIFICATE_UNKNOWN</code> &mdash; Server could not process the client certificate.</li>
+                <li><code>ERR_CERT_AUTHORITY_INVALID</code> &mdash; Client certificate is signed by an untrusted CA.</li>
+                <li><code>ERR_CERT_DATE_INVALID</code> &mdash; Client certificate has expired or is not yet valid.</li>
+                <li><code>ERR_CERT_REVOKED</code> &mdash; Client certificate has been revoked.</li>
+                <li><code>NSURLErrorClientCertificateRequired</code> &mdash; Server requires client certificate (iOS/macOS).</li>
+                <li><code>ERR_SSL_PROTOCOL_ERROR</code> &mdash; TLS protocol negotiation failed during mTLS.</li>
+            </ul>
+        </div>
+
+        <h2>Use Cases</h2>
+        <div class="section-box">
+            <div class="use-case-box">
+                <h4>Enterprise & Corporate Networks</h4>
+                <ul>
+                    <li>VPN authentication with client certificates</li>
+                    <li>Internal portal access control</li>
+                    <li>Wi-Fi authentication (EAP-TLS)</li>
+                    <li>Email encryption (S/MIME)</li>
+                    <li>Code signing for internal applications</li>
+                </ul>
+            </div>
+            <div class="use-case-box">
+                <h4>API & Microservice Authentication</h4>
+                <ul>
+                    <li>Service-to-service authentication in microservices</li>
+                    <li>API gateway with mTLS termination</li>
+                    <li>IoT device authentication</li>
+                    <li>Kubernetes mTLS (Istio, Linkerd)</li>
+                    <li>gRPC with mutual TLS</li>
+                </ul>
+            </div>
+            <div class="use-case-box">
+                <h4>Regulatory & Compliance</h4>
+                <ul>
+                    <li>Financial services (PSD2, Strong Customer Authentication)</li>
+                    <li>Healthcare (HIPAA-compliant access control)</li>
+                    <li>Government systems (FIPS 140-2 compliance)</li>
+                    <li>Payment Card Industry (PCI DSS)</li>
+                    <li>Smart card / PIV card authentication</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Troubleshooting Guide</h2>
+        <div class="section-box">
+            <div class="troubleshoot-item">
+                <strong>1. Install the Client Certificate</strong><br>
+                <span style="font-size:14px;">If you have a client certificate (.p12/.pfx or .pem), install it in your system's certificate store. On Windows, double-click the .p12 file and import it. On macOS, add it to Keychain Access. On Linux, configure your browser's SSL directory.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>2. Check Certificate Format</strong><br>
+                <span style="font-size:14px;">Client certificates typically come in PKCS#12 (.p12/.pfx) format containing both the certificate and private key. Ensure the file is not corrupted and the password is correct. Convert between formats using OpenSSL: <code>openssl pkcs12 -in cert.p12 -out cert.pem -clcerts</code></span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>3. Verify the Issuing CA</strong><br>
+                <span style="font-size:14px;">The client certificate must be issued by a CA that the server accepts. Check the server's CertificateRequest message to see which CAs are accepted. Use <code>openssl s_client -connect client.badssl.com:443</code> to inspect the accepted CA list.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>4. Check Extended Key Usage</strong><br>
+                <span style="font-size:14px;">The client certificate must have the Client Authentication EKU (OID: 1.3.6.1.5.5.7.3.2). Certificates with only Server Authentication EKU will be rejected. Verify with: <code>openssl x509 -in cert.pem -noout -text | grep "Client Authentication"</code></span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>5. Check Certificate Validity</strong><br>
+                <span style="font-size:14px;">Ensure the client certificate has not expired and is within its validity period. Also verify that the issuing CA's certificate chain is intact and trusted.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>6. Configure Browser Certificate Selection</strong><br>
+                <span style="font-size:14px;">In Chrome, navigate to chrome://settings/certificates to manage client certificates. In Firefox, go to Settings &rarr; Privacy & Security &rarr; View Certificates. Ensure the certificate is in the correct store and marked as usable for client authentication.</span>
+            </div>
+        </div>
+
+        <h2>Fix Suggestions</h2>
+        <div class="section-box">
+            <h3>For Website Administrators</h3>
+            <div class="fix-step">
+                <div class="fix-step-num">1</div>
+                <div class="fix-step-text"><strong>Set Up a Client CA</strong> &mdash; Create or obtain a CA for issuing client certificates. For internal use, OpenSSL can create a private CA. For production, use a commercial CA or your organization's PKI infrastructure.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">2</div>
+                <div class="fix-step-text"><strong>Configure Server for mTLS</strong> &mdash; In Nginx, use <code>ssl_client_certificate</code> and <code>ssl_verify_client on</code>. In Apache, use <code>SSLVerifyClient require</code> and <code>SSLCACertificateFile</code>. Specify the CA that signed the client certificates.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">3</div>
+                <div class="fix-step-text"><strong>Issue Client Certificates</strong> &mdash; Generate client certificates signed by your CA. Each user or device should receive a unique certificate. Include the Client Authentication EKU. Set appropriate validity periods and enforce renewal policies.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">4</div>
+                <div class="fix-step-text"><strong>Implement Certificate Revocation</strong> &mdash; Set up OCSP stapling or CRL distribution to revoke compromised or expired client certificates. Configure the server to check revocation status during the handshake.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">5</div>
+                <div class="fix-step-text"><strong>Monitor and Audit</strong> &mdash; Log all client certificate authentication events. Monitor for unusual patterns, such as certificate reuse across devices or authentication from unexpected locations.</div>
+            </div>
+            <h3>For Developers Testing Client Auth</h3>
+            <div class="fix-step">
+                <div class="fix-step-num">1</div>
+                <div class="fix-step-text"><strong>Handle Client Auth Errors</strong> &mdash; Detect when a server requires a client certificate and prompt the user appropriately. Provide clear error messages explaining what a client certificate is and how to obtain one.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">2</div>
+                <div class="fix-step-text"><strong>Implement Certificate Selection UI</strong> &mdash; When multiple client certificates are available, present a selection interface. Show the certificate subject, issuer, and expiration to help users choose the right one.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">3</div>
+                <div class="fix-step-text"><strong>Test with This Page</strong> &mdash; Use client.badssl.com to test your application's behavior when encountering a server that requires client certificates. Verify that the correct error handling is in place.</div>
+            </div>
+        </div>
+
+        <h2>FAQ</h2>
+        <div class="section-box">
+            <div class="faq-item">
+                <strong>Q: What is the difference between client certificates and passwords?</strong>
+                <p>Client certificates provide stronger authentication than passwords. They use public-key cryptography, are resistant to phishing (the browser handles them automatically), and support fine-grained revocation. Unlike passwords, private keys never leave the client device.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Can client certificates be used on mobile devices?</strong>
+                <p>Yes. Both iOS and Android support client certificates. On iOS, install via mobile device management (MDM) profiles. On Android, install via the Security settings or through enterprise management. Some browsers on mobile have limited client certificate UI.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: How do I get a client certificate for testing?</strong>
+                <p>You can create your own test client certificate using OpenSSL: generate a private key, create a CSR, sign it with a test CA, and export as PKCS#12. For testing with badssl.com, you would need a certificate signed by their test CA.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: What is certificate pinning in the context of client certificates?</strong>
+                <p>Certificate pinning for client certificates means the server expects a specific client certificate (or public key) rather than any certificate from a trusted CA. This provides the strongest authentication but requires careful management of certificate distribution and rotation.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Does mTLS impact performance?</strong>
+                <p>mTLS adds minimal overhead to the TLS handshake (one additional round trip for the client certificate exchange). The cryptographic operations for verifying the client certificate add a small amount of CPU time. For most applications, this overhead is negligible.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: How do I revoke a client certificate?</strong>
+                <p>Client certificates can be revoked through OCSP (Online Certificate Status Protocol) or CRL (Certificate Revocation List). The server should check the revocation status during the handshake. For large deployments, short-lived certificates (hours or days) with automated renewal are a modern alternative to revocation.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: What is the relationship between client certificates and smart cards?</strong>
+                <p>Smart cards and hardware security tokens (like YubiKey) store client certificate private keys in secure hardware. The private key never leaves the device, providing the highest level of security. The browser communicates with the smart card via PKCS#11 or platform APIs to perform the TLS handshake.</p>
+            </div>
+        </div>
+
+        <div class="help-text" style="text-align: center; margin-top: 30px;">
+            <p>This site intentionally requires client certificate authentication for testing purposes. It helps developers verify that their applications correctly handle client authentication requests.</p>
+            <p><a href="/">Return to BadSSL Home</a></p>
+        </div>
+    </div>
+    <script>function test() { return true; }</script>
+</body>
+</html>

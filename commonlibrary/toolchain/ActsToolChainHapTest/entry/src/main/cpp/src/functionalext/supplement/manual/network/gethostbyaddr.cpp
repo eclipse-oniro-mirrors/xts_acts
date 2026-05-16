@@ -1,0 +1,73 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <sys/socket.h>
+#include "functionalext.h"
+
+namespace {
+constexpr socklen_t K_IPV6_ADDR_BYTE_LENGTH = 16;
+} // namespace
+
+/**
+ * @tc.name      : Gethostbyaddre0100
+ * @tc.desc      : Can get host information through an IPv4 address.
+ * @tc.level     : Level 0
+ */
+void Gethostbyaddre0100(void)
+{
+    char* ptr = "127.0.0.1";
+    struct hostent* hptr = nullptr;
+    struct in_addr addr;
+    if (inet_pton(AF_INET, ptr, &addr) <= 0) {
+        t_error("%s inet_pton error:%s\n", __func__, strerror(errno));
+    }
+    hptr = gethostbyaddr(reinterpret_cast<const char*>(&addr), sizeof(addr), AF_INET);
+    if (hptr == nullptr) {
+        t_error("%s gethostbyaddr error:%s\n", __func__, strerror(h_errno));
+    }
+    EXPECT_TRUE("Gethostbyaddre0100", hptr != nullptr);
+    EXPECT_STREQ("Gethostbyaddre0100", hptr->h_name, "localhost");
+}
+
+/**
+ * @tc.name      : Gethostbyaddre0200
+ * @tc.desc      : Can obtain host information through an IPv6 address.
+ * @tc.level     : Level 0
+ */
+void Gethostbyaddre0200(void)
+{
+    char* ptr = "fe80::bed5:4695:6cac:bef8";
+    struct hostent* hptr = nullptr;
+    struct in_addr addr;
+    addr.s_addr = inet_addr(ptr);
+    hptr = gethostbyaddr(reinterpret_cast<void*>(&addr.s_addr), K_IPV6_ADDR_BYTE_LENGTH, AF_INET6);
+    EXPECT_TRUE("Gethostbyaddre0200", hptr != nullptr);
+}
+
+static int GethostbyaddrTestImpl(int argc, char* argv[])
+{
+    Gethostbyaddre0100();
+    Gethostbyaddre0200();
+    return T_STATUS;
+}
+
+int GethostbyaddrTest(void)
+{
+    static char libcProgStub[] = "libc_test";
+    char* libcArgvStub[] = { libcProgStub, nullptr };
+    return GethostbyaddrTestImpl(1, libcArgvStub);
+}

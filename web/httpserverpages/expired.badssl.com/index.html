@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>expired.badssl.com</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #fff3cd;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            color: #856404;
+        }
+        .container { max-width: 800px; width: 100%; }
+        .warning-icon { font-size: 64px; margin-bottom: 20px; text-align: center; }
+        h1 { font-size: 28px; margin-bottom: 15px; color: #856404; text-align: center; }
+        h2 { font-size: 22px; margin: 30px 0 15px; color: #856404; border-bottom: 2px solid #ffc107; padding-bottom: 8px; }
+        h3 { font-size: 18px; margin: 20px 0 10px; color: #856404; }
+        p { font-size: 16px; line-height: 1.6; max-width: 800px; text-align: left; margin-bottom: 15px; }
+        .cert-info {
+            background: white;
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        .cert-info table { width: 100%; border-collapse: collapse; }
+        .cert-info td { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+        .cert-info td:first-child { font-weight: bold; width: 180px; color: #666; }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #dc3545;
+            color: white;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-badge.warn {
+            background: #fd7e14;
+        }
+        .status-badge.ok {
+            background: #28a745;
+        }
+        .help-text { font-size: 14px; color: #856404; margin-top: 20px; }
+        .help-text a { color: #0d6efd; }
+        .section-box {
+            background: white;
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px 30px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        table.compat-table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        table.compat-table th, table.compat-table td {
+            padding: 10px 12px;
+            border: 1px solid #ffc107;
+            text-align: left;
+            font-size: 14px;
+        }
+        table.compat-table th { background: #ffc107; color: #856404; font-weight: bold; }
+        table.compat-table tr:nth-child(even) { background: #fffdf5; }
+        .chain-box {
+            background: #fff8e1;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin: 10px 0;
+        }
+        .chain-level {
+            background: white;
+            border: 1px solid #e0c36a;
+            border-radius: 6px;
+            padding: 10px 15px;
+            margin: 8px 0;
+        }
+        .chain-level.root { border-left: 4px solid #dc3545; }
+        .chain-level.intermediate { border-left: 4px solid #fd7e14; }
+        .chain-level.leaf { border-left: 4px solid #28a745; }
+        .chain-arrow { text-align: center; font-size: 20px; color: #856404; margin: 4px 0; }
+        .handshake-box {
+            background: #fff8e1;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        .faq-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: #fffdf5;
+            border-left: 4px solid #ffc107;
+            border-radius: 0 6px 6px 0;
+        }
+        .faq-item strong { display: block; margin-bottom: 6px; }
+        .error-type-list { list-style: none; padding: 0; }
+        .error-type-list li {
+            padding: 10px 15px;
+            margin: 6px 0;
+            background: white;
+            border: 1px solid #ffc107;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .error-type-list li code {
+            background: #ffc107;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #856404;
+        }
+        .fix-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 12px 0;
+        }
+        .fix-step-num {
+            background: #ffc107;
+            color: #856404;
+            font-weight: bold;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        .fix-step-text { font-size: 14px; line-height: 1.6; padding-top: 4px; }
+        .troubleshoot-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #e0c36a;
+        }
+        .troubleshoot-item strong { color: #856404; }
+        .timestamp-box {
+            background: #fff3cd;
+            border: 1px dashed #856404;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="warning-icon">&#9888;&#65039;</div>
+        <h1>expired.badssl.com</h1>
+        <p>This page is served with an <strong>expired</strong> TLS certificate. The certificate has expired. and is no longer valid. This domain intentionally uses an expired certificate to help developers test SSL/TLS error handling in their applications.</p>
+
+        <h2>Certificate Details</h2>
+        <div class="cert-info">
+            <table>
+                <tr><td>Domain:</td><td>expired.badssl.com</td></tr>
+                <tr><td>Issuer:</td><td>BadSSL (expired)</td></tr>
+                <tr><td>Status:</td><td><span class="status-badge">EXPIRED</span></td></tr>
+                <tr><td>Valid From:</td><td>2020-01-01 00:00:00 UTC</td></tr>
+                <tr><td>Valid Until:</td><td>2021-01-01 00:00:00 UTC</td></tr>
+                <tr><td>Days Expired:</td><td><span class="status-badge">1950+ days</span></td></tr>
+                <tr><td>Serial Number:</td><td>0xA1B2C3D4E5F6</td></tr>
+                <tr><td>SHA-256 Fingerprint:</td><td>AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99</td></tr>
+                <tr><td>SHA-1 Fingerprint:</td><td>AA:BB:CC:DD:EE:FF:00:11:22:33:44:55:66:77:88:99</td></tr>
+                <tr><td>Signature Algorithm:</td><td>SHA256withRSA</td></tr>
+                <tr><td>Public Key:</td><td>RSA 2048 bits</td></tr>
+                <tr><td>Key Usage:</td><td>Digital Signature, Key Encipherment</td></tr>
+                <tr><td>Extended Key Usage:</td><td>Server Authentication</td></tr>
+                <tr><td>Subject Alternative Names:</td><td>DNS:expired.badssl.com</td></tr>
+                <tr><td>OCSP Status:</td><td><span class="status-badge warn">STALE</span></td></tr>
+                <tr><td>CRL Status:</td><td><span class="status-badge">REVOKED</span></td></tr>
+                <tr><td>CT Log Entries:</td><td>0 entries found</td></tr>
+            </table>
+        </div>
+
+        <div class="timestamp-box">
+            <strong>Current Server Time:</strong> <span id="currentTime"></span><br>
+            <strong>Certificate Expired:</strong> January 1, 2021 00:00:00 UTC
+        </div>
+
+        <h2>SSL Error Explanation</h2>
+        <div class="section-box">
+            <h3>What is a Certificate Expiration Error?</h3>
+            <p>When you visit a website secured with HTTPS, your browser verifies the SSL/TLS certificate presented by the server. One of the critical checks is whether the certificate is still within its validity period. Every certificate has a <strong>Not Before</strong> and <strong>Not After</strong> date. If the current time falls outside this window, the certificate is considered expired.</p>
+            <p>The error <code>ERR_CERT_DATE_INVALID</code> indicates that the certificate's validity period has ended. This is one of the most common SSL errors encountered on the web, affecting millions of websites each year when administrators forget to renew their certificates.</p>
+            <h3>Why Do Certificates Expire?</h3>
+            <p>Certificates have expiration dates as a security measure. This limits the damage if a private key is compromised, ensures organizations regularly re-validate their identity, and encourages the use of up-to-date cryptographic algorithms. Modern best practices recommend certificates with lifetimes of 90 days or less, with automated renewal via ACME protocols like Let's Encrypt.</p>
+            <h3>Common Error Codes</h3>
+            <p>Across different platforms, expired certificate errors may appear as:</p>
+            <ul style="margin: 10px 0 10px 25px; line-height: 2;">
+                <li><code>ERR_CERT_DATE_INVALID</code> (Chrome/Chromium)</li>
+                <li><code>SEC_ERROR_EXPIRED_CERTIFICATE</code> (Firefox)</li>
+                <li><code>CERT_DATE_INVALID</code> (Edge/Internet Explorer)</li>
+                <li><code>NSURLErrorServerCertificateUntrusted</code> (iOS/macOS)</li>
+                <li><code>SSL_ERROR_EXPIRED_CERT_ALERT</code> (OpenSSL)</li>
+            </ul>
+        </div>
+
+        <h2>Certificate Chain Visualization</h2>
+        <div class="section-box">
+            <div class="chain-box">
+                <div class="chain-level root">
+                    <strong>Root CA</strong> (Self-Signed, Trusted)<br>
+                    <span style="color:#666; font-size:13px;">BadSSL Intermediate Root CA X1 &mdash; Valid until 2035-01-01</span><br>
+                    <span class="status-badge ok">TRUSTED</span>
+                </div>
+                <div class="chain-arrow">&darr; Signs</div>
+                <div class="chain-level intermediate">
+                    <strong>Intermediate CA</strong><br>
+                    <span style="color:#666; font-size:13px;">BadSSL Intermediate CA &mdash; Valid until 2030-06-01</span><br>
+                    <span class="status-badge ok">VALID</span>
+                </div>
+                <div class="chain-arrow">&darr; Signs</div>
+                <div class="chain-level leaf">
+                    <strong>Leaf Certificate (This Server)</strong><br>
+                    <span style="color:#666; font-size:13px;">expired.badssl.com &mdash; Valid until 2021-01-01</span><br>
+                    <span class="status-badge">EXPIRED</span>
+                </div>
+            </div>
+            <p style="font-size:14px; margin-top:10px;">The chain above shows that while the root and intermediate certificates are valid and trusted, the leaf certificate has expired. This causes the entire chain to be considered invalid for establishing a secure connection.</p>
+        </div>
+
+        <h2>TLS Handshake Diagram</h2>
+        <div class="section-box">
+            <p>The following diagram shows the TLS 1.2 handshake flow and where the expiration check occurs:</p>
+            <div class="handshake-box">Client                                    Server
+  |                                         |
+  |  1. ClientHello                         |
+  |  (supported ciphers, TLS version)       |
+  |  -------------------------------------> |
+  |                                         |
+  |  2. ServerHello                         |
+  |  (chosen cipher, TLS version)           |
+  |  <------------------------------------- |
+  |                                         |
+  |  3. Certificate (SERVER CERT)           |
+  |  <------------------------------------- |
+  |                                         |
+  |  4. Certificate + Expiration Check      |
+  |  [!] EXPIRED - Valid Until: 2021-01-01 |
+  |  [!] Current date exceeds Not After     |
+  |  ===================================   |
+  |  RESULT: HANDSHAKE FAILURE              |
+  |  ERROR: ERR_CERT_DATE_INVALID           |
+  |                                         |
+  |  5. TLS Alert: Certificate Expired      |
+  |  <------------------------------------- |
+  |                                         |</div>
+            <p style="font-size:14px;">Note: The expiration check happens at step 4, during certificate verification. If the certificate were valid, the handshake would continue with the CertificateVerify and Finished messages.</p>
+        </div>
+
+        <h2>Browser Compatibility</h2>
+        <div class="section-box">
+            <table class="compat-table">
+                <thead>
+                    <tr>
+                        <th>Browser</th>
+                        <th>Version</th>
+                        <th>Error Display</th>
+                        <th>Bypass Available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Chrome</td><td>120+</td><td>Your connection is not private (NET::ERR_CERT_DATE_INVALID)</td><td>Advanced &rarr; Proceed</td></tr>
+                    <tr><td>Firefox</td><td>121+</td><td>Warning: Potential Security Risk Ahead (SEC_ERROR_EXPIRED_CERTIFICATE)</td><td>Advanced &rarr; Accept Risk</td></tr>
+                    <tr><td>Safari</td><td>17+</td><td>This Connection Is Not Private</td><td>Show Details &rarr; Visit Website</td></tr>
+                    <tr><td>Edge</td><td>120+</td><td>Your connection is not private</td><td>Advanced &rarr; Proceed</td></tr>
+                    <tr><td>Opera</td><td>105+</td><td>Your connection is not private</td><td>Advanced &rarr; Proceed</td></tr>
+                    <tr><td>Samsung Internet</td><td>23+</td><td>Security warning</td><td>Details &rarr; Proceed</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Related Error Types</h2>
+        <div class="section-box">
+            <p>The following SSL/TLS errors are related to certificate validation failures:</p>
+            <ul class="error-type-list">
+                <li><code>ERR_CERT_AUTHORITY_INVALID</code> &mdash; The certificate is signed by an untrusted certificate authority.</li>
+                <li><code>ERR_CERT_COMMON_NAME_INVALID</code> &mdash; The certificate hostname does not match the requested domain.</li>
+                <li><code>ERR_CERT_DATE_INVALID</code> &mdash; The certificate has expired or is not yet valid.</li>
+                <li><code>ERR_CERT_REVOKED</code> &mdash; The certificate has been revoked by the issuing authority.</li>
+                <li><code>ERR_CERT_PINNED_KEY_NOT_IN_CERT_CHAIN</code> &mdash; The certificate does not match the expected public key pin.</li>
+                <li><code>ERR_CERT_WEAK_SIGNATURE_ALGORITHM</code> &mdash; The certificate uses a weak or deprecated signature algorithm.</li>
+                <li><code>ERR_SSL_PROTOCOL_ERROR</code> &mdash; The TLS protocol version negotiation failed.</li>
+                <li><code>ERR_SSL_VERSION_OR_CIPHER_MISMATCH</code> &mdash; No common TLS version or cipher suite exists.</li>
+                <li><code>ERR_CERT_NO_REVOCATION_MECHANISM</code> &mdash; The certificate has no OCSP or CRL endpoint.</li>
+                <li><code>ERR_CERT_UNABLE_TO_CHECK_REVOCATION</code> &mdash; Unable to verify the certificate revocation status.</li>
+            </ul>
+        </div>
+
+        <h2>Troubleshooting Guide</h2>
+        <div class="section-box">
+            <div class="troubleshoot-item">
+                <strong>1. Verify System Clock</strong><br>
+                <span style="font-size:14px;">An incorrect system clock is the most common cause of false expiration errors. Ensure your device's date and time are set correctly. Enable automatic time synchronization (NTP) to prevent drift.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>2. Clear Browser Cache and Certificates</strong><br>
+                <span style="font-size:14px;">Cached certificates or intermediate CA certificates may cause validation issues. Clear your browser cache and the local certificate store. In Chrome, navigate to chrome://settings/certificates to manage stored certificates.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>3. Check for Intermediates</strong><br>
+                <span style="font-size:14px;">Missing intermediate certificates can cause chain validation failures. Ensure the server presents the full certificate chain. Use tools like SSL Labs (ssllabs.com) to verify the chain is complete.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>4. Inspect with OpenSSL</strong><br>
+                <span style="font-size:14px;">Use <code>openssl s_client -connect expired.badssl.com:443 -showcerts</code> to inspect the certificate chain. Check the <code>notAfter</code> field to confirm expiration dates.</span>
+            </div>
+            <div class="troubleshoot-item">
+                <strong>5. Disable Antivirus/Proxy Interference</strong><br>
+                <span style="font-size:14px;">Some antivirus software and corporate proxies perform SSL interception, which can replace or modify certificates. Temporarily disable these to check if they are causing the issue.</span>
+            </div>
+        </div>
+
+        <h2>Fix Suggestions</h2>
+        <div class="section-box">
+            <h3>For Website Administrators</h3>
+            <div class="fix-step">
+                <div class="fix-step-num">1</div>
+                <div class="fix-step-text"><strong>Renew the Certificate</strong> &mdash; Contact your certificate authority or use an automated tool like certbot (Let's Encrypt) to obtain a new certificate. Most CAs send expiration reminders 30, 14, and 7 days before expiry.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">2</div>
+                <div class="fix-step-text"><strong>Install the New Certificate</strong> &mdash; Replace the expired certificate on your web server. Ensure you install both the leaf certificate and any intermediate certificates in the correct order.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">3</div>
+                <div class="fix-step-text"><strong>Set Up Automated Renewal</strong> &mdash; Use ACME clients like certbot, acme.sh, or Caddy's built-in certificate management to automate renewal. Configure a cron job or systemd timer to run renewal checks weekly.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">4</div>
+                <div class="fix-step-text"><strong>Monitor Expiration</strong> &mdash; Set up monitoring tools (Nagios, Datadog, UptimeRobot) to alert you before certificates expire. Use the <code>openssl x509 -checkend 2592000</code> command to check if a cert expires within 30 days.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">5</div>
+                <div class="fix-step-text"><strong>Use Certificate Transparency</strong> &mdash; Subscribe to CT log monitoring to detect unauthorized certificates and track your domain's certificate issuance. Google's Certificate Transparency logs provide public visibility into all issued certificates.</div>
+            </div>
+            <h3>For Developers Testing SSL Errors</h3>
+            <div class="fix-step">
+                <div class="fix-step-num">1</div>
+                <div class="fix-step-text"><strong>Handle Errors Gracefully</strong> &mdash; Catch SSL errors in your application and display user-friendly messages. Never silently ignore certificate errors in production code.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">2</div>
+                <div class="fix-step-text"><strong>Implement Certificate Pinning Carefully</strong> &mdash; When using certificate pinning, ensure you have a backup pin and a mechanism to update pins without requiring an app update.</div>
+            </div>
+            <div class="fix-step">
+                <div class="fix-step-num">3</div>
+                <div class="fix-step-text"><strong>Test with Real-World Scenarios</strong> &mdash; Use badssl.com test domains to verify your application handles various SSL errors. Test with this expired. certificate page and other error scenarios.</div>
+            </div>
+        </div>
+
+        <h2>FAQ</h2>
+        <div class="section-box">
+            <div class="faq-item">
+                <strong>Q: Can I still access a website with an expired certificate?</strong>
+                <p>Technically yes, by manually bypassing the browser warning, but this is highly discouraged. The expired certificate means the connection cannot be verified as secure. Sensitive data transmitted may be intercepted.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: How long are SSL certificates valid?</strong>
+                <p>As of September 2020, publicly trusted certificates can have a maximum validity of 398 days (approximately 13 months). Apple, Google, and Mozilla have further reduced this to 397 days. Industry best practice recommends 90-day certificates with automated renewal.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: What happens if I ignore the expiration warning?</strong>
+                <p>Your browser will establish the connection, but the security guarantees of TLS are compromised. You cannot verify the server's identity, making you vulnerable to man-in-the-middle attacks. The encryption itself may still work, but authentication fails.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Does an expired certificate mean the website is hacked?</strong>
+                <p>Not necessarily. An expired certificate usually indicates administrative oversight rather than a security breach. However, you should be cautious as attackers could exploit the expired certificate window.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Can expired certificates be renewed?</strong>
+                <p>Certificates cannot be renewed in-place. You must obtain a new certificate from the CA. The term "renewal" typically refers to re-issuing a certificate with the same or similar parameters, often with the same private key or a newly generated one.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: How does HSTS interact with expired certificates?</strong>
+                <p>If HSTS (HTTP Strict Transport Security) is enabled and the certificate expires, users may be completely unable to access the site since HSTS prevents fallback to HTTP. This is why automated renewal is critical for HSTS-enabled sites.</p>
+            </div>
+        </div>
+
+        <div class="help-text" style="text-align: center; margin-top: 30px;">
+            <p>If you are a developer testing SSL errors, you can use this page to verify that your application correctly handles expired certificates.</p>
+            <p>The expired. certificate on this domain intentionally expired. for testing purposes.</p>
+            <p><a href="/">Return to BadSSL Home</a></p>
+        </div>
+    </div>
+    <script>function test() { return true; }</script>
+    <script>
+        document.getElementById('currentTime').textContent = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+    </script>
+</body>
+</html>

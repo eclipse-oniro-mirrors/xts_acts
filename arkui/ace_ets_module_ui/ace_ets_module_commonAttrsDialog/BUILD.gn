@@ -1,0 +1,49 @@
+# Copyright (c) 2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//foundation/arkui/ace_engine/ace_config.gni")
+group("ActsAceEtsModuleCommonAttrsDialogTest") {
+  testonly = true
+  if (ace_engine_feature_wearable) {
+    deps = [
+      "ace_ets_module_commonAttrsDialog_api11:ActsAceEtsModuleCommonAttrsDialogApi11Test",
+      "ace_ets_module_commonAttrsDialog_api12:ActsAceEtsModuleCommonAttrsDialogApi12Test",
+      "ace_ets_module_commonAttrsDialog_api13:ActsAceEtsModuleCommonAttrsDialogApi13Test",
+      "ace_ets_module_commonAttrsDialog_api14:ActsAceEtsModuleCommonAttrsDialogApi14Test",
+      "ace_ets_module_commonAttrsDialog_api11_static:ActsAceEtsModuleCommonAttrsDialogApi11StaticTest",
+      "ace_ets_module_commonAttrsDialog_api13_static:ActsAceEtsModuleCommonAttrsDialogApi13StaticTest",
+      "ace_ets_module_commonAttrsDialog_api12_static:ActsAceEtsModuleCommonAttrsDialogApi12StaticTest",
+      "ace_ets_module_commonAttrsDialog_api14_static:ActsAceEtsModuleCommonAttrsDialogApi14StaticTest",
+    ]
+  } else {
+    deps = [
+      "ace_ets_module_commonAttrsDialog_api11:ActsAceEtsModuleCommonAttrsDialogApi11Test",
+      "ace_ets_module_commonAttrsDialog_api12:ActsAceEtsModuleCommonAttrsDialogApi12Test",
+      "ace_ets_module_commonAttrsDialog_api13:ActsAceEtsModuleCommonAttrsDialogApi13Test",
+      "ace_ets_module_commonAttrsDialog_api14:ActsAceEtsModuleCommonAttrsDialogApi14Test",
+      "ace_ets_module_commonAttrsDialog_api16:ActsAceEtsModuleCommonAttrsDialogApi16Test",
+      "ace_ets_module_commonAttrsDialog_api20:ActsAceEtsModuleCommonAttrsDialogApi20Test",
+      "ace_ets_module_commonAttrsDialog_nowear_api13:ActsAceEtsModuleCommonAttrsDialogNoWearApi13Test",
+      "ace_ets_module_commonAttrsDialog_nowear_api14:ActsAceEtsModuleCommonAttrsDialogNoWearApi14Test",
+      "ace_ets_module_commonAttrsDialog_nowear_api20:ActsAceEtsModuleCommonAttrsDialogNoWearApi20Test",
+      "ace_ets_module_commonAttrsDialog_api11_static:ActsAceEtsModuleCommonAttrsDialogApi11StaticTest",
+      "ace_ets_module_commonAttrsDialog_api12_static:ActsAceEtsModuleCommonAttrsDialogApi12StaticTest",
+      "ace_ets_module_commonAttrsDialog_api13_static:ActsAceEtsModuleCommonAttrsDialogApi13StaticTest",
+      "ace_ets_module_commonAttrsDialog_api14_static:ActsAceEtsModuleCommonAttrsDialogApi14StaticTest",
+      "ace_ets_module_commonAttrsDialog_nowear_api13_static:ActsAceEtsModuleCommonAttrsDialogNoWearApi13StaticTest",
+      "ace_ets_module_commonAttrsDialog_nowear_api14_static:ActsAceEtsModuleCommonAttrsDialogNoWearApi14StaticTest",
+      "ace_ets_module_commonAttrsDialog_api16_static:ActsAceEtsModuleCommonAttrsDialogApi16StaticTest",
+      "ace_ets_module_commonAttrsDialog_api20_static:ActsAceEtsModuleCommonAttrsDialogApi20StaticTest",
+    ]
+  }
+}

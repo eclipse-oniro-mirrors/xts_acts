@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/Index",
+    "MainAbility/pages/aspectRatio/AspectRatioWidthPage",
+    "MainAbility/pages/aspectRatio/AspectRatioHeightPage"
+  ]
+}

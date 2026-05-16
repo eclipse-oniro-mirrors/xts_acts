@@ -1,0 +1,20 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Multimedia.Media.Muxer",
+                    "SystemCapability.Multimedia.Media.Spliter",
+                    "SystemCapability.Multimedia.Media.AudioCodec",
+                    "SystemCapability.Multimedia.Media.AudioDecoder",
+                    "SystemCapability.Multimedia.Media.AudioEncoder",
+                    "SystemCapability.Multimedia.Media.VideoDecoder",
+                    "SystemCapability.Multimedia.Media.VideoEncoder",
+                    "SystemCapability.Multimedia.Media.CodecBase",
+                    "SystemCapability.Startup.SystemInfo"
+                ]
+            }
+        ]
+    }
+}

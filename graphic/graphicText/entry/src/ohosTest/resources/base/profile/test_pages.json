@@ -1,0 +1,12 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "MainAbility/pages/second/second",
+    "MainAbility/pages/second/pageOne",
+    "MainAbility/pages/second/pageTwo",
+    "MainAbility/pages/LineMetrics",
+    "MainAbility/pages/LineMetricsTwo",
+    "MainAbility/pages/FontDescriptor",
+    "MainAbility/pages/FontDescriptor1"
+  ]
+}

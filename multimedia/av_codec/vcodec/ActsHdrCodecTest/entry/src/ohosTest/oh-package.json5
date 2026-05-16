@@ -1,0 +1,11 @@
+{
+  "name": "entry_test",
+  "version": "1.0.0",
+  "description": "Test module for ActsHdrCodecTest",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "libhdrcodec.so": "file:../main/cpp/types/libhdrcodec"
+  }
+}

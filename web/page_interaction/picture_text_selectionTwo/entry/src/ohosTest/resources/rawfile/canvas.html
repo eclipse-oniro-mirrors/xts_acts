@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas长按保存/复制图片测试</title>
+    <style>
+        .canvas-container {
+          display: flex;
+          justify-content: center; /* 水平居中 */
+          align-items: center;     /* 垂直居中 */
+          height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<div class="canvas-container">
+    <canvas id="testCanvas" width="300" height="200"></canvas>
+</div>
+
+
+
+<script>
+    // 获取canvas元素和绘图上下文
+    const canvas = document.getElementById('testCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // 绘制测试图形
+    function drawTestImage() {
+        // 清除画布
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // 绘制渐变背景
+        const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        gradient.addColorStop(0, '#4facfe');
+        gradient.addColorStop(1, '#00f2fe');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // 绘制文字
+        ctx.font = 'bold 20px Arial';
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+        ctx.fillText('长按测试图片', canvas.width/2, canvas.height/2);
+
+        // 绘制一个小图形
+        ctx.beginPath();
+        ctx.arc(canvas.width/2, canvas.height/2 + 30, 20, 0, Math.PI * 2);
+        ctx.fillStyle = '#ff6b6b';
+        ctx.fill();
+    }
+
+    // 初始化绘制
+    drawTestImage();
+
+    // 可选：添加点击重新绘制功能
+    //canvas.addEventListener('click', function() {
+    //    drawTestImage();
+    //});
+</script>
+</body>
+</html>

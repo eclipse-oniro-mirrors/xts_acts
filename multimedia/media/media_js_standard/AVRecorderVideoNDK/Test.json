@@ -1,0 +1,40 @@
+{
+    "description": "Configuration for OhAudioNdk Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.avrecorderndk.avrecorderndktest",
+        "module-name": "entry_test",
+        "testcase-timeout": 90000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "uitest screenCap -p /data/local/tmp/testActsOhAVRecorderVideoNDKTest.png",
+                "param set persist.usb.setting.gadget_conn_prompt false",
+                "param set persist.skip_scb_charging 1"
+            ],
+            "teardown-command": [
+                "param set persist.usb.settings.gadget_conn_prompt true"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsOhAVRecorderVideoNDKMainTest.hap",
+                "ActsOhAVRecorderVideoNDKTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "power-shell setmode 602"
+            ]
+        }
+    ]
+}

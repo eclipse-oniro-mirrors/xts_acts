@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱奇艺-在线视频网站</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #000; color: #fff; min-height: 100vh; }
+        .header { background: #1a1a1a; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 22px; font-weight: bold; color: #00be06; }
+        .search-box { display: flex; border-radius: 20px; overflow: hidden; }
+        .search-box input { padding: 8px 16px; border: none; background: #333; color: #fff; font-size: 14px; outline: none; width: 300px; }
+        .search-box button { padding: 8px 20px; background: #00be06; color: #fff; border: none; }
+        .user-area { display: flex; align-items: center; gap: 15px; }
+        .user-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #00be06, #00d68f); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+        .user-name { font-size: 13px; color: #ccc; }
+        .nav-bar { background: #1a1a1a; display: flex; padding: 0 20px; gap: 20px; border-top: 1px solid #333; }
+        .nav-bar a { color: #ccc; text-decoration: none; font-size: 14px; padding: 10px 0; }
+        .nav-bar a.active { color: #00be06; }
+        .banner { height: 300px; background: linear-gradient(135deg, #0a1628, #1a3a5c, #00be06); display: flex; align-items: center; justify-content: center; }
+        .banner-text { text-align: center; }
+        .banner-text h2 { font-size: 28px; margin-bottom: 10px; }
+        .banner-text p { color: #ccc; }
+        .content-section { padding: 20px; }
+        .section-title { font-size: 18px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .section-title a { color: #00be06; font-size: 13px; text-decoration: none; }
+        .video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .video-card { cursor: pointer; }
+        .video-card .thumb { aspect-ratio: 16/9; border-radius: 8px; margin-bottom: 8px; position: relative; overflow: hidden; }
+        .video-card .thumb::after { content: '\25B6'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; opacity: 0.8; }
+        .video-card:nth-child(1) .thumb { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .video-card:nth-child(2) .thumb { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .video-card:nth-child(3) .thumb { background: linear-gradient(135deg, #e67e22, #d35400); }
+        .video-card:nth-child(4) .thumb { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .video-card .title { font-size: 14px; color: #eee; line-height: 1.4; }
+        .video-card .meta { font-size: 12px; color: #888; margin-top: 4px; }
+        .vip-banner { background: linear-gradient(135deg, #f39c12, #e67e22); padding: 15px 20px; margin: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; }
+        .vip-banner h3 { font-size: 18px; }
+        .vip-banner p { font-size: 13px; opacity: 0.9; }
+        .footer { text-align: center; padding: 30px 20px; color: #666; font-size: 12px; border-top: 1px solid #333; margin-top: 30px; }
+        .rating { display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+        .rating .star { color: #f39c12; font-size: 12px; }
+        .rating .score { font-size: 12px; color: #f39c12; margin-left: 4px; }
+        .video-card .duration { position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.7); color: white; font-size: 11px; padding: 1px 6px; border-radius: 3px; z-index: 1; }
+        .video-card .vip-tag { position: absolute; top: 6px; left: 6px; background: #f39c12; color: white; font-size: 10px; padding: 1px 6px; border-radius: 3px; z-index: 1; }
+        .category-tabs { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .category-tabs .tab { padding: 6px 16px; background: #222; color: #ccc; border-radius: 20px; font-size: 13px; cursor: pointer; border: none; }
+        .category-tabs .tab.active { background: #00be06; color: white; }
+        .category-tabs .tab:hover { background: #333; }
+        .profile-section { background: #1a1a1a; padding: 20px; margin: 20px; border-radius: 10px; display: flex; gap: 20px; align-items: center; }
+        .profile-avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #00be06, #00d68f); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .profile-info h3 { font-size: 16px; margin-bottom: 6px; }
+        .profile-info p { font-size: 13px; color: #888; }
+        .profile-stats { display: flex; gap: 20px; margin-top: 8px; }
+        .profile-stats .stat { text-align: center; }
+        .profile-stats .stat-num { font-size: 18px; color: #00be06; font-weight: bold; }
+        .profile-stats .stat-label { font-size: 11px; color: #888; }
+        .vip-features { background: linear-gradient(135deg, #2c1810, #3d2317); padding: 20px; margin: 20px; border-radius: 10px; }
+        .vip-features h3 { font-size: 18px; color: #f39c12; margin-bottom: 15px; }
+        .vip-features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .vip-feature { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; text-align: center; }
+        .vip-feature .vf-icon { font-size: 24px; margin-bottom: 8px; }
+        .vip-feature .vf-title { font-size: 14px; color: #f39c12; margin-bottom: 4px; }
+        .vip-feature .vf-desc { font-size: 12px; color: #888; }
+        .episode-list { background: #1a1a1a; padding: 20px; margin: 20px; border-radius: 10px; }
+        .episode-list h3 { font-size: 18px; margin-bottom: 15px; }
+        .episodes { display: flex; flex-wrap: wrap; gap: 8px; }
+        .episode-btn { padding: 8px 16px; background: #222; border: 1px solid #333; color: #ccc; border-radius: 6px; font-size: 13px; cursor: pointer; }
+        .episode-btn.active { background: #00be06; color: white; border-color: #00be06; }
+        .episode-btn.vip { position: relative; }
+        .episode-btn.vip::after { content: 'VIP'; position: absolute; top: -4px; right: -4px; background: #f39c12; color: white; font-size: 8px; padding: 1px 3px; border-radius: 2px; }
+        .comment-section { background: #1a1a1a; padding: 20px; margin: 20px; border-radius: 10px; }
+        .comment-section h3 { font-size: 18px; margin-bottom: 15px; }
+        .comment-input { display: flex; gap: 10px; margin-bottom: 20px; }
+        .comment-input textarea { flex: 1; background: #222; border: 1px solid #333; color: white; padding: 10px; border-radius: 8px; font-size: 14px; resize: none; height: 60px; outline: none; }
+        .comment-input button { padding: 10px 20px; background: #00be06; color: white; border: none; border-radius: 8px; cursor: pointer; }
+        .comment-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #222; }
+        .comment-avatar { width: 36px; height: 36px; border-radius: 50%; background: #333; flex-shrink: 0; }
+        .comment-body { flex: 1; }
+        .comment-body .cb-user { font-size: 13px; color: #00be06; margin-bottom: 4px; }
+        .comment-body .cb-text { font-size: 14px; color: #ddd; line-height: 1.6; }
+        .comment-body .cb-meta { font-size: 11px; color: #666; margin-top: 6px; display: flex; gap: 15px; }
+        .actor-cards { background: #1a1a1a; padding: 20px; margin: 20px; border-radius: 10px; }
+        .actor-cards h3 { font-size: 18px; margin-bottom: 15px; }
+        .actors-grid { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; }
+        .actor-card { text-align: center; flex-shrink: 0; width: 80px; }
+        .actor-card .actor-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #444, #666); margin: 0 auto 6px; }
+        .actor-card .actor-name { font-size: 12px; color: #ccc; }
+        .actor-card .actor-role { font-size: 11px; color: #888; }
+        .video-card .thumb.c1 { background: linear-gradient(135deg, #1abc9c, #16a085); }
+        .video-card .thumb.c2 { background: linear-gradient(135deg, #e74c3c, #e67e22); }
+        .video-card .thumb.c3 { background: linear-gradient(135deg, #3498db, #2ecc71); }
+        .video-card .thumb.c4 { background: linear-gradient(135deg, #9b59b6, #3498db); }
+        .video-card .thumb.c5 { background: linear-gradient(135deg, #e91e63, #ff5722); }
+        .video-card .thumb.c6 { background: linear-gradient(135deg, #00bcd4, #4caf50); }
+        .video-card .thumb.c7 { background: linear-gradient(135deg, #ff9800, #ffc107); }
+        .video-card .thumb.c8 { background: linear-gradient(135deg, #673ab7, #3f51b5); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">爱奇艺</div>
+        <div class="search-box">
+            <input type="text" placeholder="搜索影片、综艺、动漫">
+            <button>搜索</button>
+        </div>
+        <div class="user-area">
+            <div class="user-avatar">&#128100;</div>
+            <div class="user-name">爱奇艺用户</div>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <a href="#" class="active">首页</a>
+        <a href="#">电视剧</a>
+        <a href="#">电影</a>
+        <a href="#">综艺</a>
+        <a href="#">动漫</a>
+        <a href="#">少儿</a>
+        <a href="#">纪录片</a>
+    </div>
+    <div class="banner">
+        <div class="banner-text">
+            <h2>热门推荐</h2>
+            <p>精彩内容 尽在爱奇艺</p>
+        </div>
+    </div>
+    <div class="profile-section">
+        <div class="profile-avatar">&#128100;</div>
+        <div class="profile-info">
+            <h3>爱奇艺用户</h3>
+            <p>普通会员 | 已登录</p>
+            <div class="profile-stats">
+                <div class="stat"><div class="stat-num">128</div><div class="stat-label">观看记录</div></div>
+                <div class="stat"><div class="stat-num">56</div><div class="stat-label">收藏</div></div>
+                <div class="stat"><div class="stat-num">23</div><div class="stat-label">关注</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="section-title">
+            <span>热播电视剧</span>
+            <a href="#">查看更多 &gt;</a>
+        </div>
+        <div class="category-tabs">
+            <button class="tab active">全部</button>
+            <button class="tab">古装</button>
+            <button class="tab">都市</button>
+            <button class="tab">悬疑</button>
+            <button class="tab">爱情</button>
+            <button class="tab">科幻</button>
+        </div>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="thumb"><span class="vip-tag">VIP</span><span class="duration">45:22</span></div>
+                <div class="title">国产精品剧集热播中</div>
+                <div class="meta">更新至第24集</div>
+                <div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">9.2</span></div>
+            </div>
+            <div class="video-card">
+                <div class="thumb"><span class="duration">42:15</span></div>
+                <div class="title">都市情感剧精彩上映</div>
+                <div class="meta">全40集</div>
+                <div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">8.5</span></div>
+            </div>
+            <div class="video-card">
+                <div class="thumb"><span class="vip-tag">VIP</span><span class="duration">48:30</span></div>
+                <div class="title">古装传奇大剧推荐</div>
+                <div class="meta">更新至第16集</div>
+                <div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">9.5</span></div>
+            </div>
+            <div class="video-card">
+                <div class="thumb"><span class="duration">39:18</span></div>
+                <div class="title">悬疑推理烧脑之作</div>
+                <div class="meta">全12集</div>
+                <div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9734;</span><span class="score">7.8</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="vip-banner">
+        <div><h3>爱奇艺VIP会员</h3><p>海量高清视频免费看，无广告畅享</p></div>
+        <div style="padding: 8px 24px; background: rgba(255,255,255,0.2); border-radius: 20px; cursor: pointer;">立即开通</div>
+    </div>
+    <div class="vip-features">
+        <h3>VIP会员专属特权</h3>
+        <div class="vip-features-grid">
+            <div class="vip-feature"><div class="vf-icon">&#127916;</div><div class="vf-title">跳过广告</div><div class="vf-desc">视频免广告播放</div></div>
+            <div class="vip-feature"><div class="vf-icon">&#127910;</div><div class="vf-title">独家内容</div><div class="vf-desc">VIP专属影视资源</div></div>
+            <div class="vip-feature"><div class="vf-icon">&#128253;</div><div class="vf-title">杜比音效</div><div class="vf-desc">影院级音质体验</div></div>
+            <div class="vip-feature"><div class="vf-icon">&#128250;</div><div class="vf-title">4K超清</div><div class="vf-desc">极致高清画质</div></div>
+            <div class="vip-feature"><div class="vf-icon">&#128241;</div><div class="vf-title">多端同步</div><div class="vf-desc">手机电视随时看</div></div>
+            <div class="vip-feature"><div class="vf-icon">&#9889;</div><div class="vf-title">抢先看</div><div class="vf-desc">新剧提前观看</div></div>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="section-title"><span>热门电影</span><a href="#">查看更多 &gt;</a></div>
+        <div class="video-grid">
+            <div class="video-card"><div class="thumb c1"><span class="duration">1:52:30</span></div><div class="title">科幻大片震撼上映</div><div class="meta">9.2分</div></div>
+            <div class="video-card"><div class="thumb c2"><span class="duration">2:05:18</span></div><div class="title">动作冒险巨制</div><div class="meta">8.8分</div></div>
+            <div class="video-card"><div class="thumb c3"><span class="duration">1:45:22</span></div><div class="title">温情治愈系佳作</div><div class="meta">8.5分</div></div>
+            <div class="video-card"><div class="thumb c4"><span class="duration">1:38:50</span></div><div class="title">动画电影年度推荐</div><div class="meta">9.0分</div></div>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="section-title"><span>热门综艺</span><a href="#">查看更多 &gt;</a></div>
+        <div class="video-grid">
+            <div class="video-card"><div class="thumb c5"><span class="duration">1:30:00</span></div><div class="title">明星户外竞技真人秀</div><div class="meta">更新至第8期</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">8.9</span></div></div>
+            <div class="video-card"><div class="thumb c6"><span class="duration">1:45:20</span></div><div class="title">音乐竞演节目</div><div class="meta">更新至第12期</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">9.1</span></div></div>
+            <div class="video-card"><div class="thumb c7"><span class="duration">2:00:15</span></div><div class="title">脱口秀大会年度总决赛</div><div class="meta">全10期</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9734;</span><span class="score">7.6</span></div></div>
+            <div class="video-card"><div class="thumb c8"><span class="duration">1:20:00</span></div><div class="title">美食探店真人秀</div><div class="meta">更新至第6期</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">8.7</span></div></div>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="section-title"><span>热播动漫</span><a href="#">查看更多 &gt;</a></div>
+        <div class="video-grid">
+            <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#e91e63,#9c27b0);"><span class="vip-tag">VIP</span><span class="duration">24:30</span></div><div class="title">国产3D动画巨作</div><div class="meta">更新至第52集</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">9.4</span></div></div>
+            <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#2196f3,#00bcd4);"><span class="duration">24:00</span></div><div class="title">热血少年番剧</div><div class="meta">更新至第100集</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">9.0</span></div></div>
+            <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#4caf50,#8bc34a);"><span class="duration">23:45</span></div><div class="title">奇幻冒险动画</div><div class="meta">全26集</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9734;</span><span class="score">8.2</span></div></div>
+            <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#ff5722,#ff9800);"><span class="duration">25:10</span></div><div class="title">经典日漫引进</div><div class="meta">更新至第200集</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">9.6</span></div></div>
+        </div>
+    </div>
+    <div class="content-section">
+        <div class="section-title"><span>精品纪录片</span><a href="#">查看更多 &gt;</a></div>
+        <div class="video-grid">
+            <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#37474f,#546e7a);"><span class="duration">48:30</span></div><div class="title">自然生态纪录片</div><div class="meta">全6集</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">9.8</span></div></div>
+            <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#5d4037,#795548);"><span class="duration">50:20</span></div><div class="title">历史文化纪录片</div><div class="meta">全10集</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">9.3</span></div></div>
+            <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#0277bd,#0288d1);"><span class="duration">45:00</span></div><div class="title">宇宙探索纪录片</div><div class="meta">全8集</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="score">9.1</span></div></div>
+            <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#1b5e20,#388e3c);"><span class="duration">52:15</span></div><div class="title">美食文化纪录片</div><div class="meta">更新至第4集</div><div class="rating"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9734;</span><span class="score">8.6</span></div></div>
+        </div>
+    </div>
+    <div class="episode-list">
+        <h3>选集 - 国产精品剧集热播中</h3>
+        <div class="episodes">
+            <button class="episode-btn active">1</button>
+            <button class="episode-btn">2</button>
+            <button class="episode-btn">3</button>
+            <button class="episode-btn">4</button>
+            <button class="episode-btn">5</button>
+            <button class="episode-btn">6</button>
+            <button class="episode-btn">7</button>
+            <button class="episode-btn">8</button>
+            <button class="episode-btn">9</button>
+            <button class="episode-btn">10</button>
+            <button class="episode-btn">11</button>
+            <button class="episode-btn">12</button>
+            <button class="episode-btn vip">13</button>
+            <button class="episode-btn vip">14</button>
+            <button class="episode-btn vip">15</button>
+            <button class="episode-btn vip">16</button>
+            <button class="episode-btn vip">17</button>
+            <button class="episode-btn vip">18</button>
+            <button class="episode-btn vip">19</button>
+            <button class="episode-btn vip">20</button>
+        </div>
+    </div>
+    <div class="actor-cards">
+        <h3>主要演员</h3>
+        <div class="actors-grid">
+            <div class="actor-card"><div class="actor-avatar"></div><div class="actor-name">张明宇</div><div class="actor-role">饰 男主</div></div>
+            <div class="actor-card"><div class="actor-avatar" style="background:linear-gradient(135deg,#e91e63,#f06292);"></div><div class="actor-name">李雨桐</div><div class="actor-role">饰 女主</div></div>
+            <div class="actor-card"><div class="actor-avatar" style="background:linear-gradient(135deg,#2196f3,#64b5f6);"></div><div class="actor-name">王志远</div><div class="actor-role">饰 反派</div></div>
+            <div class="actor-card"><div class="actor-avatar" style="background:linear-gradient(135deg,#ff9800,#ffb74d);"></div><div class="actor-name">陈思思</div><div class="actor-role">饰 配角</div></div>
+            <div class="actor-card"><div class="actor-avatar" style="background:linear-gradient(135deg,#4caf50,#81c784);"></div><div class="actor-name">刘浩然</div><div class="actor-role">饰 男二</div></div>
+            <div class="actor-card"><div class="actor-avatar" style="background:linear-gradient(135deg,#9c27b0,#ba68c8);"></div><div class="actor-name">赵小棠</div><div class="actor-role">饰 女二</div></div>
+        </div>
+    </div>
+    <div class="comment-section">
+        <h3>热门评论</h3>
+        <div class="comment-input">
+            <textarea placeholder="说说你的看法..."></textarea>
+            <button>发表评论</button>
+        </div>
+        <div class="comment-item">
+            <div class="comment-avatar"></div>
+            <div class="comment-body">
+                <div class="cb-user">影迷小王</div>
+                <div class="cb-text">这部剧太好看了，剧情紧凑，演员演技在线，强烈推荐！</div>
+                <div class="cb-meta"><span>2小时前</span><span>&#128077; 256</span><span>&#128172; 回复 12</span></div>
+            </div>
+        </div>
+        <div class="comment-item">
+            <div class="comment-avatar" style="background:linear-gradient(135deg,#e91e63,#f06292);"></div>
+            <div class="comment-body">
+                <div class="cb-user">追剧达人</div>
+                <div class="cb-text">特效很棒，国产剧越来越好了，期待后续更新！</div>
+                <div class="cb-meta"><span>5小时前</span><span>&#128077; 189</span><span>&#128172; 回复 8</span></div>
+            </div>
+        </div>
+        <div class="comment-item">
+            <div class="comment-avatar" style="background:linear-gradient(135deg,#2196f3,#64b5f6);"></div>
+            <div class="comment-body">
+                <div class="cb-user">电影爱好者</div>
+                <div class="cb-text">配乐很好听，场景也很精美，每个演员都很用心。</div>
+                <div class="cb-meta"><span>1天前</span><span>&#128077; 132</span><span>&#128172; 回复 5</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 爱奇艺 iqiyi.com 版权所有</p>
+    </div>
+    <script>function test() { return true; }</script>
+</body>
+</html>

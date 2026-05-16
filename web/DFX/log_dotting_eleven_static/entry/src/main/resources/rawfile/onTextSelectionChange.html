@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>设置选区并优化文字大小</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center; /* 水平居中 */
+      align-items: center;     /* 垂直居中 */
+      flex-direction: column;  /* 上下堆叠内容 */
+    }
+
+    #content {
+      font-size: 24px;
+      margin-bottom: 40px; /* 文字与按钮间距 */
+      text-align: center;   /* 段落文字居中 */
+    }
+
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+    }
+  </style>
+  <script>
+    function setSelection() {
+      const paragraph = document.getElementById("content");
+      const range = document.createRange();
+      range.selectNodeContents(paragraph);
+
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+
+      console.info('setSelection: ' + selection.toString());
+    }
+  </script>
+</head>
+<body>
+
+<p id="content">这是一段用于自动化测试的可选中文本</p>
+<button onclick="setSelection()">设置选区</button>
+
+</body>
+</html>

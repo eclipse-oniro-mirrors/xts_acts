@@ -1,0 +1,27 @@
+{
+    "description": "Configuration for hitracendk Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.hitrace.napitest",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsHitraceNdkTest.hap",
+                "ActsHitraceNdkOtherTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },{
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "hitrace --start_bgsrv"
+            ]
+        }
+    ]
+}

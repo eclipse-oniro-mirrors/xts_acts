@@ -1,0 +1,41 @@
+{
+    "description": "Configuration for audio manager Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "550000",
+        "shell-timeout": "60000",
+        "testcase-timeout": 60000,
+        "bundle-name": "ohos.acts.multimedia.audio.audiovoip",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsAudioVOIPJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.audiovoip/haps/entry_test/files",
+                "chmod 777 -R /data/app/el2/100/base/ohos.acts.multimedia.audio.audiovoip/haps/entry_test",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "power-shell setmode 600"
+            ],
+            "cleanup-apps": true
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/audio/audioManager/StarWars10s-1C-44100-2SW.wav ->/data/app/el2/100/base/ohos.acts.multimedia.audio.audiovoip/haps/entry_test/files/"
+            ]
+        }
+    ]
+}

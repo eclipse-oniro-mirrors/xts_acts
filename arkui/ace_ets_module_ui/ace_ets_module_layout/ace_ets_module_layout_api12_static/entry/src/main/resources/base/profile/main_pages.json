@@ -1,0 +1,16 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Column/APIaccessibilityTextHint",
+    "MainAbility/pages/Column/APIremoveGestureByTag",
+    "MainAbility/pages/Flex/SpaceMainNumber",
+    "MainAbility/pages/Flex/SpaceCross5AlignItems",
+    "MainAbility/pages/Flex/SpaceMain5JustifyContent",
+    "MainAbility/pages/RelativeContainer/RelativeContainerApi",
+    "MainAbility/pages/RelativeContainer/RelativeContainerLocalizedDirectionStartPage",
+    "MainAbility/pages/Flex/FlexSpaceTest",
+    "MainAbility/pages/Column/ColumnReversePage",
+    "MainAbility/pages/Row/RowReversePage",
+    "MainAbility/pages/RelativeContainerStart/RelativeContainerStartApi"
+  ]
+}

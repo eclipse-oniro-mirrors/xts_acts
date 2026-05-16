@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试用例1: 基本功能验证</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h1>测试用例1: 基本功能验证</h1>
+<button onclick="addParam()">增加Param</button>
+<button onclick="removeParam()">删除最后一个Param</button>
+<button onclick="modifyLastParamValue()">修改最后一个Param的Value</button>
+<button onclick="modifyLastParamName()">修改最后一个Param的Name</button>
+
+<object id="test-object" type="test/view" style="width: 300px; height: 50px; border: 1px solid black;">
+    <param id="p1" name="initialName" value="initialValue">
+</object>
+
+<div id="status-log" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;"></div>
+
+<script>
+    let paramCounter = 0;
+    const objectEl = document.getElementById('test-object');
+    const logEl = document.getElementById('status-log');
+
+    function log(message) {
+        logEl.innerHTML = message + '<br>' + logEl.innerHTML;
+    }
+
+    function addParam() {
+        const newParam = document.createElement('param');
+        paramCounter++;
+        newParam.id = 'param-' + paramCounter;
+        newParam.name = "newName" + paramCounter;
+        newParam.value = "newValue" + paramCounter;
+        objectEl.appendChild(newParam);
+        log(`操作: 增加 Param (id=${newParam.id}, name=${newParam.name})`);
+    }
+
+    function removeParam() {
+        const params = objectEl.getElementsByTagName('param');
+        if (params.length > 0) {
+            const paramToRemove = params[params.length - 1];
+            log(`操作: 删除 Param (id=${paramToRemove.id}, name=${paramToRemove.name})`);
+            objectEl.removeChild(paramToRemove);
+        } else {
+            log("操作: 删除失败，没有Param可以删除");
+        }
+    }
+
+    function modifyLastParamValue() {
+        const params = objectEl.getElementsByTagName('param');
+        if (params.length > 0) {
+            const paramToModify = params[params.length - 1];
+            const oldValue = paramToModify.value;
+            paramToModify.value = "updatedValue_" + Date.now();
+            log(`操作: 修改Value (id=${paramToModify.id}, 从'${oldValue}'变为'${paramToModify.value}')`);
+        } else {
+            log("操作: 修改Value失败，没有Param可以修改");
+        }
+    }
+
+    function modifyLastParamName() {
+        const params = objectEl.getElementsByTagName('param');
+        if (params.length > 0) {
+            const paramToModify = params[params.length - 1];
+            const oldName = paramToModify.name;
+            paramToModify.name = "updatedName_" + Date.now();
+            log(`操作: 修改Name (id=${paramToModify.id}, 从'${oldName}'变为'${paramToModify.name}')`);
+        } else {
+            log("操作: 修改Name失败，没有Param可以修改");
+        }
+    }
+</script>
+</body>
+</html>

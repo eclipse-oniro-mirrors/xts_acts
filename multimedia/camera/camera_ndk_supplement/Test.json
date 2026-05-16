@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for MemoryUitls Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.ohcameraxtstest",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsMediaCameraXtsTest.hap",
+                "ActsMediaCameraXtsMainTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "power-shell timeout -o 86400000",
+                "hidumper -s 3301 -a -t"
+            ]
+        }
+    ]
+}

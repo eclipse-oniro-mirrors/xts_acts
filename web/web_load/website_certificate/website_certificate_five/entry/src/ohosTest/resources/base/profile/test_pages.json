@@ -1,0 +1,12 @@
+{
+  "src": [
+    "testability/pages/web",
+	"testability/pages/certChainData",
+    "testability/pages/clientAuthenticationHandler",
+    "testability/pages/clientAuthenticationHandlerTwo",
+    "testability/pages/clientAuthenticationHandlerThree",
+    "testability/pages/clientAuthenticationHandlerFour",
+    "testability/pages/clientAuthenticationHandlerFive",
+    "testability/pages/clientAuthenticationHandlerSix"
+  ]
+}

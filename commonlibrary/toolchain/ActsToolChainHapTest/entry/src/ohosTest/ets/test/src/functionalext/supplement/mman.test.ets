@@ -1,0 +1,89 @@
+/*
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import * as testNapi from "libentry.so";
+import { describe, expect, it, Level } from "@ohos/hypium";
+
+export default function FunctionalextSupplementMmanTestGroupTest() {
+  describe("ActsToolChainHapTest_src_functionalext_supplement_mman", () => {
+    /**
+     * @tc.name   mlock
+     * @tc.number SUB_THIRDPARTY_MUSL_MLOCK_0100
+     * @tc.desc   libc-test mlock
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it("mlock", Level.LEVEL1, async (done: Function) => {
+      const result = await testNapi.runTest("mlock");
+      expect(result).assertEqual(0);
+      done();
+    });
+    /**
+     * @tc.name   mprotect
+     * @tc.number SUB_THIRDPARTY_MUSL_MPROTECT_0100
+     * @tc.desc   libc-test mprotect
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it("mprotect", Level.LEVEL1, async (done: Function) => {
+      const result = await testNapi.runTest("mprotect");
+      expect(result).assertEqual(0);
+      done();
+    });
+    /**
+     * @tc.name   munlock
+     * @tc.number SUB_THIRDPARTY_MUSL_MUNLOCK_0100
+     * @tc.desc   libc-test munlock
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it("munlock", Level.LEVEL1, async (done: Function) => {
+      const result = await testNapi.runTest("munlock");
+      expect(result).assertEqual(0);
+      done();
+    });
+    /**
+     * @tc.name   mmap
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     * @tc.number SUB_THIRDPARTY_MUSL_MMAP_0100
+     * @tc.desc   libc-test mmap
+     */
+    it("mmap", Level.LEVEL1, async (done: Function) => {
+      const result = await testNapi.runTest("mmap");
+      expect(result).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.name   munmap
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     * @tc.number SUB_THIRDPARTY_MUSL_MUNMAP_0100
+     * @tc.desc   libc-test munmap
+     */
+    it("munmap", Level.LEVEL1, async (done: Function) => {
+      const result = await testNapi.runTest("munmap");
+      expect(result).assertEqual(0);
+      done();
+    });
+
+  });
+}

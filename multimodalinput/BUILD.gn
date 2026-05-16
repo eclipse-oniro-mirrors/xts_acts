@@ -1,0 +1,38 @@
+# Copyright (c) 2022-2024 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//build/ohos_var.gni")
+
+group("multimodalinput") {
+  testonly = true
+  if (is_standard_system) {
+    deps = [
+      "input_js_standard:multimodalinput_js_test",
+      "multimodalinput_ets_hvigor/CapsLock:ActsMultimodalInputCapsLockTest",
+      "multimodalinput_ets_hvigor/InfraredEmitter/InfraredEmitterTest:ActsMultimodalInputInfraredEmitterTest",
+      "multimodalinput_ets_hvigor/InputDevice/InputDeviceTest:ActsMultimodalInputDeviceTest",
+      "multimodalinput_ets_hvigor/KeyCode/KeyCodeTest:ActsMultimodalInputKeyCodeTest",
+      "multimodalinput_ets_hvigor/NoPermission/NoPermissionTest:ActsMultimodalInputNoPermissionTest",
+      "multimodalinput_ets_hvigor/Pointer/PointerTest:ActsMultimodalInputPointerTest",
+      "multimodalinput_ets_standard:ActsMultimodalInputEtsTest",
+      "multimodalinput_ndk_hvigor/InputNdkNormal:ActsMultimodalInputNdkTest",
+      "multimodalinput_ndk_hvigor/InputNdkSystem:ActsMultimodalInputNdkSystemTest",
+      "multimodalinput_ets_hvigor/InputDevice/InputDeviceTest_static:ActsMultimodalInputDeviceStaticTest",
+      "multimodalinput_ets_hvigor/KeyCode/KeyCodeTest_static:ActsMultimodalKeyCodeStaticTest",
+      "multimodalinput_ets_hvigor/Pointer/PointerTest_static:ActsMultimodalPointerStaticTest",
+      "multimodalinput_ets_hvigor/NoPermission/NoPermissionTest_static:ActsMultimodalNoPermissionStaticTest",  
+      "multimodalinput_ets_hvigor/InfraredEmitter/InfraredEmitterTest_static:ActsMultimodalInfraredEmitterStaticTest",
+      "multimodalinput_ndk_hvigor/InputInjectKeyEventNoPermission:ActsInputInjectNoPermissionTest",
+    ]
+  }
+}

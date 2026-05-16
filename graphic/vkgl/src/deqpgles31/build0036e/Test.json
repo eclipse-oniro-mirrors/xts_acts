@@ -1,0 +1,49 @@
+{
+    "description": "Config for ActsDeqpgles31Suite0036eTest test cases",
+    "driver": {
+        "module-name": "ActsDeqpgles31Suite0036eTest",
+        "native-test-timeout": "120000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "100s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "pre-push" : [
+            ],
+            "post-push" : [
+                "chmod -R 777 /data/local/tmp/*",
+                "mkdir /data/local/tmp/gl_cts",
+                "tar zxvf /data/local/tmp/vkgldata.tar.gz -C /data/local/tmp/gl_cts",
+                "cp -r /data/local/tmp/gl_cts/data/gles2 /data/local/tmp",
+                "cp -r /data/local/tmp/gl_cts/data/gles3 /data/local/tmp",
+                "cp -r /data/local/tmp/gl_cts/data/gles31 /data/local/tmp"
+            ],
+            "push": [
+                "ActsDeqpgles31Suite0036eTest->/data/local/tmp/ActsDeqpgles31Suite0036eTest",
+                "vkgldata/libdeqp_ohos_platform.z.so->/data/local/tmp/",
+                "vkgldata/librosen_context.z.so->/data/local/tmp/",
+                "vkgldata/libdeqp_spirv.z.so->/data/local/tmp/",
+                "vkgldata/libdeqp_spvremapper.z.so->/data/local/tmp/",
+                "vkgldata/vkgldata.tar.gz->/data/local/tmp/"
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "cd /data/local/tmp",
+                "rm -rf libdeqp_ohos_platform.z.so",
+                "rm -rf librosen_context.z.so",
+                "rm -rf libdeqp_spirv.z.so",
+                "rm -rf libdeqp_spvremapper.z.so",
+                "ln -s /data/local/tmp/libdeqp_ohos_platform.z.so /system/lib/libdeqp_ohos_platform.z.so",
+                "ln -s /data/local/tmp/librosen_context.z.so /system/lib/librosen_context.z.so",
+                "ln -s /data/local/tmp/libdeqp_spirv.z.so /system/lib/libdeqp_spirv.z.so",
+                "ln -s /data/local/tmp/libdeqp_spvremapper.z.so /system/lib/libdeqp_spvremapper.z.so"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+  "float":[
+    {
+      "name":"font_hello",
+      "value":"28.0fp"
+    },
+    {
+      "name":"font_world",
+      "value":"20.0fp"
+    },
+    {
+      "name": "BarGridAlign_Test",
+      "value": "15px"
+    },
+    {
+      "name": "BarHeight_Test",
+      "value": "55.00vp"
+    },
+    {
+      "name": "BarMode_Test",
+      "value": "8.00px"
+    },
+    {
+      "name": "float_1",
+      "value": "10vp"
+    },
+    {
+      "name": "prevMargin",
+      "value": "30"
+    },
+    {
+      "name": "nextMargin",
+      "value": "30"
+    }
+  ]
+}

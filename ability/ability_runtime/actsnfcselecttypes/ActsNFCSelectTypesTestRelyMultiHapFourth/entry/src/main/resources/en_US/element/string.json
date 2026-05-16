@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "FourthentryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "FourthentryAbility_label",
+      "value": "label"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "ActsWebZoomAccessTest"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "ActsWebZoomAccessTest EntryAbility"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "ActsWebZoomAccessTest"
+    }
+  ]
+}

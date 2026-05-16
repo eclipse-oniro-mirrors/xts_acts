@@ -1,0 +1,89 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name":"string_hello",
+      "value":"Hello"
+    },
+    {
+      "name":"string_world",
+      "value":"World"
+    },
+    {
+      "name":"message_arrive",
+      "value":"We will arrive at %s."
+    },
+    {
+      "name": "phone_entry_dsc",
+      "value": "i am an entry for phone"
+    },
+    {
+      "name": "phone_entry_main",
+      "value": "the phone entry ability"
+    },
+    {
+      "name": "entry_label",
+      "value": "ActsContextTest"
+    },
+    {
+      "name": "form_description",
+      "value": "my form"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "my whether"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "app_name",
+      "value": "Demo"
+    },
+    {
+      "name": "refreshOffset_Normal",
+      "value": "50"
+    },
+    {
+      "name": "refreshOffset_Error",
+      "value": "这是一个错误的资源值"
+    },
+    {
+      "name": "maxPullDownDistance_Normal",
+      "value": "200"
+    },
+    {
+      "name": "maxPullDownDistance_Error",
+      "value": "这是一个错误的资源值"
+    },
+    {
+      "name": "scrollBarWidth_Normal",
+      "value": "50"
+    },
+    {
+      "name": "scrollBarWidth_Error",
+      "value": "这是一个错误的资源值"
+    }
+    
+  ]
+}

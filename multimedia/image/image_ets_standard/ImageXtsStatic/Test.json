@@ -1,0 +1,67 @@
+{
+    "description": "Configuration for camerastandard Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "3000000",
+        "bundle-name": "ohos.acts.multimedia.image.xts.static",
+        "shell-timeout": "600000",
+        "testcase-timeout": 300000,
+        "module-name": "entry"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+
+
+            "run-command": [
+                "hilog -Q pidoff",
+                "rm -rf /storage/media/100/local/files/Videos/*",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files/",
+                "mkdir -p /data/tmp/case",
+                "chmod -R 777 /data/tmp/case "
+            ],
+
+
+
+            "teardown-command": [
+                "power-shell setmode 600",
+                "rm -rf /data/app/el2/100/database/ohos.acts.multimedia.image.xts.static/*",
+                "kill -9 `pidof ohos.acts.multimedia.image.xts.static`",
+                "scanner",
+                "sleep 5"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/image/C025.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/C027.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/food.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/test6.gif ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/bluesky.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/test.jpeg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/test_exif_v3.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/test_exif_v2.png ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/AllAuxiliaryPictures.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/AllAuxiliaryPictures_exclude_fragment.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/all_auxtype.heic ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/moving_test.webp ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files",
+                "./resource/image/meta.dng ->/data/app/el2/100/base/ohos.acts.multimedia.image.xts.static/haps/entry/files"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsImageXtsStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

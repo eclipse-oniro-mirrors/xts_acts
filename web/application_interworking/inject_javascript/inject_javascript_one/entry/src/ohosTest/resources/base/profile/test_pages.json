@@ -1,0 +1,19 @@
+{
+  "src": [
+      "testability/pages/web",
+      "testability/pages/webtwo",
+      "testability/pages/webAttribute",
+      "testability/pages/webController",
+      "testability/pages/WebJavaScriptOnDocumentStartTest",
+      "testability/pages/Index",
+      "testability/pages/WebviewDeleteJavaScriptRegister",
+      "testability/pages/WebviewRegisterJavaScriptProxy",
+      "testability/pages/WebViewControllerPart3",
+      "testability/pages/webViewJsBridgeLastJsProxyCallingFrameUrl",
+      "testability/pages/webViewMetaViewportFalse",
+      "testability/pages/webViewJavaScriptPermission",
+      "testability/pages/IndexOthers",
+      "testability/pages/webViewApiOne",
+      "testability/pages/RegisterJavaScriptProxy"
+  ]
+}

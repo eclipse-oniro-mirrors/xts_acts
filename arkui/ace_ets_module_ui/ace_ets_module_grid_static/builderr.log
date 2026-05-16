@@ -1,0 +1,546 @@
+> hvigor [32mFinished :entry:default@PreBuild... after 389 ms [39m
+> hvigor [32mFinished :entry:default@CreateModuleInfo... after 3 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@GenerateMetadata...  [39m
+> hvigor [32mFinished :entry:default@ConfigureCmake... after 1 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@MergeProfile...  [39m
+> hvigor [32mFinished :entry:default@PreCheckSyscap... after 3 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@GeneratePkgContextInfo...  [39m
+> hvigor [32mFinished :entry:default@ProcessIntegratedHsp... after 2 ms [39m
+> hvigor [32mFinished :entry:default@BuildNativeWithCmake... after 1 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@MakePackInfo...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@SyscapTransform...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@ProcessProfile...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@ProcessRouterMap...  [39m
+> hvigor [32mFinished :entry:default@ProcessStartupConfig... after 8 ms [39m
+> hvigor [32mFinished :entry:default@BuildNativeWithNinja... after 2 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@ProcessResource...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@GenerateLoaderJson...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@ProcessLibs...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@CompileResource...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@DoNativeStrip...  [39m
+> hvigor [32mUP-TO-DATE :entry:default@CacheNativeLibs...  [39m
+InitModule: INTEROP_LIBRARY_NAME
+
+1 ERROR: Warning W71336
+Error Message: Exported function 'NavigationBuilderRegister' requires type annotation. At File: F:\deveco4.0\sdk\24\ets\static\api\arkui\component\customComponent.d.ets:1:1
+
+2 ERROR: Warning W71336
+Error Message: Exported function 'RegisterNamedRouter' requires type annotation. At File: F:\deveco4.0\sdk\24\ets\static\api\arkui\component\customComponent.d.ets:1:1
+
+3 ERROR: Warning W71336
+Error Message: Exported function 'getInstance' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\core.ets:42:17
+
+4 ERROR: Warning W71336
+Error Message: Exported function 'addService' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\core.ets:92:3
+
+5 ERROR: Warning W71336
+Error Message: Exported function 'getServices' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\core.ets:110:3
+
+6 ERROR: Warning W71336
+Error Message: Exported function 'registerEvent' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\core.ets:114:3
+
+7 ERROR: Warning W71336
+Error Message: Exported function 'unRegisterEvent' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\core.ets:123:3
+
+8 ERROR: Warning W71336
+Error Message: Exported function 'subscribeEvent' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\core.ets:130:3
+
+9 ERROR: Warning W71336
+Error Message: Exported function 'subscribeEvent' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\core.ets:145:3
+
+10 ERROR: Warning W71336
+Error Message: Exported function 'addToGlobal' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\core.ets:200:3
+
+11 ERROR: Warning W71336
+Error Message: Exported function 'init' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\core.ets:255:3
+
+12 ERROR: Warning W71336
+Error Message: Exported class property 'context' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:34:17
+
+13 ERROR: Warning W71336
+Error Message: Exported function 'parseValue' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:38:10
+
+14 ERROR: Warning W71336
+Error Message: Exported function 'parseParams' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:67:10
+
+15 ERROR: Warning W71336
+Error Message: Exported function 'setData' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:145:10
+
+16 ERROR: Warning W71336
+Error Message: Exported function 'setTimeConfig' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:189:10
+
+17 ERROR: Warning W71336
+Error Message: Exported function 'set' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:193:10
+
+18 ERROR: Warning W71336
+Error Message: Exported function 'get' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:197:10
+
+19 ERROR: Warning W71336
+Error Message: Exported function 'hypiumTest' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:201:10
+
+20 ERROR: Warning W71336
+Error Message: Exported function 'handleWorkerTestResult' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:320:10
+
+21 ERROR: Warning W71336
+Error Message: Exported function 'handleItResult' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:332:10
+
+22 ERROR: Warning W71336
+Error Message: Exported function 'configWorkerItTestResult' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:354:10
+
+23 ERROR: Warning W71336
+Error Message: Exported function 'printWorkerTestResult' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypium.ets:372:10
+
+24 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumDescribe' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:19:7
+
+25 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumIt' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:26:7
+
+26 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumBeforeItSpecified' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:32:7
+
+27 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumAfterItSpecified' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:39:7
+
+28 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumBeforeEach' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:45:7
+
+29 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumBeforeEachIt' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:51:7
+
+30 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumAfterEach' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:57:7
+
+31 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumAfterEachIt' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:63:7
+
+32 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumBeforeAll' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:69:7
+
+33 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumAfterAll' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:75:7
+
+34 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumExpect' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:81:7
+
+35 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumXdescribe' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:93:7
+
+36 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumXdescribeReason' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:99:7
+
+37 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumXit' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:107:7
+
+38 ERROR: Warning W71336
+Error Message: Exported variable 'hypiumXitReason' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\hypiumApi.ets:113:7
+
+39 ERROR: Warning W71336
+Error Message: Exported function 'extendsMatchers' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\assert\ExpectExtend.ets:55:3
+
+40 ERROR: Warning W71336
+Error Message: Exported function 'init' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\assert\ExpectExtend.ets:86:3
+
+41 ERROR: Warning W1236581
+Error Message: Type 'MatchIF' used in export declaration(s) is not exported. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\assert\deepEquals\DeepTypeUtils.ets:16:1
+
+42 ERROR: Warning W1236581
+Error Message: Type 'DomNode' used in export declaration(s) is not exported. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\assert\deepEquals\DeepTypeUtils.ets:20:1
+
+43 ERROR: Warning W1236581
+Error Message: Type 'MapKey' used in export declaration(s) is not exported. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:23:1
+
+44 ERROR: Warning W1236581
+Error Message: Type 'MockFuncResult' used in export declaration(s) is not exported. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:29:1
+
+45 ERROR: Warning W71336
+Error Message: Exported function 'mockProperty' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:58:3
+
+46 ERROR: Warning W71336
+Error Message: Exported function 'mockPrivateFunc' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:110:3
+
+47 ERROR: Warning W71336
+Error Message: Exported function 'mockFunc' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:126:3
+
+48 ERROR: Warning W71336
+Error Message: Exported function 'setMockerOfUserClass' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:133:3
+
+49 ERROR: Warning W71336
+Error Message: Exported function 'checkIsEqualOfArgs' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:152:3
+
+50 ERROR: Warning W71336
+Error Message: Exported function 'setCountInfo' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:187:3
+
+51 ERROR: Warning W71336
+Error Message: Exported function 'getReturnInfo' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:209:3
+
+52 ERROR: Warning W71336
+Error Message: Exported function 'verify' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:252:3
+
+53 ERROR: Warning W71336
+Error Message: Exported function 'clear' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:263:3
+
+54 ERROR: Warning W71336
+Error Message: Exported function 'ignoreMockProperty' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:297:3
+
+55 ERROR: Warning W71336
+Error Message: Exported function 'ignoreMock' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:328:3
+
+56 ERROR: Warning W1236581
+Error Message: Type 'VerificationMode' used in export declaration(s) is not exported. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:352:24
+
+57 ERROR: Warning W1236581
+Error Message: Type 'AfterWhen' used in export declaration(s) is not exported. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:383:16
+
+58 ERROR: Warning W71336
+Error Message: Exported function 'when' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:493:8
+
+59 ERROR: Warning W71336
+Error Message: Exported class property 'MATCH_REGEXS' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:510:3
+
+60 ERROR: Warning W71336
+Error Message: Exported function 'any' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:517:10
+
+61 ERROR: Warning W71336
+Error Message: Exported function 'anyString' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:520:10
+
+62 ERROR: Warning W71336
+Error Message: Exported function 'anyBoolean' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:523:10
+
+63 ERROR: Warning W71336
+Error Message: Exported function 'anyNumber' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:526:10
+
+64 ERROR: Warning W71336
+Error Message: Exported function 'anyObj' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:529:10
+
+65 ERROR: Warning W71336
+Error Message: Exported function 'anyFunction' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:532:10
+
+66 ERROR: Warning W71336
+Error Message: Exported function 'matchRegexs' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\mock\MockKit.ets:535:10
+
+67 ERROR: Warning W71336
+Error Message: Exported function 'init' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\report\OhReport.ets:51:3
+
+68 ERROR: Warning W71336
+Error Message: Exported function 'taskStart' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\report\OhReport.ets:70:3
+
+69 ERROR: Warning W71336
+Error Message: Exported function 'incorrectFormat' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\report\OhReport.ets:128:3
+
+70 ERROR: Warning W71336
+Error Message: Exported function 'incorrectTestSuiteFormat' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\report\OhReport.ets:143:3
+
+71 ERROR: Warning W71336
+Error Message: Exported function 'init' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:60:3
+
+72 ERROR: Warning W71336
+Error Message: Exported function 'addMatchers' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:64:3
+
+73 ERROR: Warning W71336
+Error Message: Exported function 'addCustomMatchers' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:68:3
+
+74 ERROR: Warning W71336
+Error Message: Exported function 'removeCustomMatchers' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:79:3
+
+75 ERROR: Warning W71336
+Error Message: Exported function 'not' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:184:3
+
+76 ERROR: Warning W71336
+Error Message: Exported function 'message' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:189:3
+
+77 ERROR: Warning W71336
+Error Message: Exported function 'addCustomAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:195:3
+
+78 ERROR: Warning W71336
+Error Message: Exported function 'addCloseAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:227:3
+
+79 ERROR: Warning W71336
+Error Message: Exported function 'addNumAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:255:3
+
+80 ERROR: Warning W71336
+Error Message: Exported function 'addFailAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:298:3
+
+81 ERROR: Warning W71336
+Error Message: Exported function 'addNumWithoutExpectAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:326:3
+
+82 ERROR: Warning W71336
+Error Message: Exported function 'addBooleanAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:363:3
+
+83 ERROR: Warning W71336
+Error Message: Exported function 'addAnytypeAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:395:3
+
+84 ERROR: Warning W71336
+Error Message: Exported function 'addInstanceOfAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:433:3
+
+85 ERROR: Warning W71336
+Error Message: Exported function 'addUndefinedAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:461:3
+
+86 ERROR: Warning W71336
+Error Message: Exported function 'addThrowAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:492:3
+
+87 ERROR: Warning W71336
+Error Message: Exported function 'addPromiseAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:527:3
+
+88 ERROR: Warning W71336
+Error Message: Exported function 'addPromiseWithAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:562:3
+
+89 ERROR: Warning W71336
+Error Message: Exported function 'addPromiseWithError' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:596:3
+
+90 ERROR: Warning W71336
+Error Message: Exported function 'addAssert' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ExpectService.ets:634:3
+
+91 ERROR: Warning W71336
+Error Message: Exported function 'init' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:39:3
+
+92 ERROR: Warning W71336
+Error Message: Exported function 'taskStart' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:52:3
+
+93 ERROR: Warning W71336
+Error Message: Exported function 'suiteStart' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:56:3
+
+94 ERROR: Warning W71336
+Error Message: Exported function 'specStart' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:60:3
+
+95 ERROR: Warning W71336
+Error Message: Exported function 'specDone' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:69:3
+
+96 ERROR: Warning W71336
+Error Message: Exported function 'suiteDone' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:89:3
+
+97 ERROR: Warning W71336
+Error Message: Exported function 'taskDone' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:95:3
+
+98 ERROR: Warning W71336
+Error Message: Exported function 'incorrectFormat' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:104:3
+
+99 ERROR: Warning W71336
+Error Message: Exported function 'incorrectTestSuiteFormat' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:116:3
+
+100 ERROR: Warning W71336
+Error Message: Exported function 'formatPrint' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:128:3
+
+101 ERROR: Warning W71336
+Error Message: Exported function 'sleep' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\ReportService.ets:148:3
+
+102 ERROR: Warning W71336
+Error Message: Exported function 'handleHookFunction' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:168:3
+
+103 ERROR: Warning W71336
+Error Message: Exported function 'beforeAll' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:179:3
+
+104 ERROR: Warning W71336
+Error Message: Exported function 'beforeEach' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:187:3
+
+105 ERROR: Warning W71336
+Error Message: Exported function 'beforeEachIt' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:195:3
+
+106 ERROR: Warning W71336
+Error Message: Exported function 'beforeItSpecified' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:202:3
+
+107 ERROR: Warning W71336
+Error Message: Exported function 'afterItSpecified' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:210:3
+
+108 ERROR: Warning W71336
+Error Message: Exported function 'afterAll' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:218:3
+
+109 ERROR: Warning W71336
+Error Message: Exported function 'afterEach' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:226:3
+
+110 ERROR: Warning W71336
+Error Message: Exported function 'afterEachIt' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:234:3
+
+111 ERROR: Warning W71336
+Error Message: Exported function 'getCurrentRunningSuite' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:242:3
+
+112 ERROR: Warning W71336
+Error Message: Exported function 'setCurrentRunningSuite' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:246:3
+
+113 ERROR: Warning W71336
+Error Message: Exported function 'getRootSuite' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:250:3
+
+114 ERROR: Warning W71336
+Error Message: Exported function 'getCurrentRunningSuiteDesc' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:254:3
+
+115 ERROR: Warning W71336
+Error Message: Exported function 'setCurrentRunningSuiteDesc' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:257:3
+
+116 ERROR: Warning W71336
+Error Message: Exported function 'analyzeConfigServiceClass' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:270:3
+
+117 ERROR: Warning W71336
+Error Message: Exported function 'traversalResults' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:297:3
+
+118 ERROR: Warning W71336
+Error Message: Exported function 'init' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:399:3
+
+119 ERROR: Warning W71336
+Error Message: Exported function 'getDryResultStr' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:403:3
+
+120 ERROR: Warning W71336
+Error Message: Exported function 'analyzeSuitesArray' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:480:3
+
+121 ERROR: Warning W71336
+Error Message: Exported function 'getAllChildSuiteNum' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:519:3
+
+122 ERROR: Warning W71336
+Error Message: Exported function 'execute' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\SuiteService.ets:538:3
+
+123 ERROR: Warning W71336
+Error Message: Exported function 'subscribeEvent' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\event.ets:29:3
+
+124 ERROR: Warning W71336
+Error Message: Exported function 'subscribeEvent' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\event.ets:33:3
+
+125 ERROR: Warning W71336
+Error Message: Exported function 'subscribeEvent' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\event.ets:66:3
+
+126 ERROR: Warning W71336
+Error Message: Exported function 'subscribeEvent' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\event.ets:70:3
+
+127 ERROR: Warning W71336
+Error Message: Exported function 'subscribeEvent' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\event.ets:103:3
+
+128 ERROR: Warning W71336
+Error Message: Exported function 'subscribeEvent' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\event.ets:107:3
+
+129 ERROR: Warning W71336
+Error Message: Exported function 'incorrectFormat' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\event.ets:129:3
+
+130 ERROR: Warning W71336
+Error Message: Exported function 'incorrectTestSuiteFormat' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\module\service\event.ets:138:3
+
+131 ERROR: Warning W71336
+Error Message: Exported function 'getFuncWithArgsZero' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\util.ets:20:8
+
+132 ERROR: Warning W71336
+Error Message: Exported function 'getFuncWithArgsOne' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\util.ets:54:8
+
+133 ERROR: Warning W71336
+Error Message: Exported function 'getFuncWithArgsTwo' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\util.ets:89:8
+
+134 ERROR: Warning W71336
+Error Message: Exported function 'processFunc' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\util.ets:129:8
+
+135 ERROR: Warning W71336
+Error Message: Exported function 'processFuncWithArgOne' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\util.ets:153:8
+
+136 ERROR: Warning W71336
+Error Message: Exported function 'processFuncWithArgTwo' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\hypium\util.ets:169:8
+
+137 ERROR: Warning W71336
+Error Message: Exported function 'sleep' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Common.ets:28:10
+
+138 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Common.ets:49:7
+
+139 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Common.ets:50:7
+
+140 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Common.ets:51:7
+
+141 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Common.ets:52:7
+
+142 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Common.ets:72:7
+
+143 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Common.ets:73:7
+
+144 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Common.ets:74:7
+
+145 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Common.ets:75:7
+
+146 ERROR: Warning W71336
+Error Message: Exported function 'showInfo' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Log.ets:29:10
+
+147 ERROR: Warning W71336
+Error Message: Exported function 'showDebug' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Log.ets:39:10
+
+148 ERROR: Warning W71336
+Error Message: Exported function 'showError' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Log.ets:49:10
+
+149 ERROR: Warning W71336
+Error Message: Exported function 'registerCallback' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\MessageManager.ets:39:3
+
+150 ERROR: Warning W71336
+Error Message: Exported function 'notify' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\MessageManager.ets:48:3
+
+151 ERROR: Warning W71336
+Error Message: Exported function 'clear' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\MessageManager.ets:64:3
+
+152 ERROR: Warning W71336
+Error Message: Exported function 'registerCallback' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\MessageManager1.ets:37:3
+
+153 ERROR: Warning W71336
+Error Message: Exported function 'notify' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\MessageManager1.ets:46:3
+
+154 ERROR: Warning W71336
+Error Message: Exported function 'clear' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\MessageManager1.ets:60:3
+
+155 ERROR: Warning W71336
+Error Message: Exported function 'getComponentRect' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Utils.ets:31:10
+
+156 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Utils.ets:47:7
+
+157 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Utils.ets:48:7
+
+158 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Utils.ets:49:7
+
+159 ERROR: Warning W98268
+Error Message: Key in class composite should be identifier, the use of strings as keys will be deprecated soon At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Utils.ets:50:7
+
+160 ERROR: Warning W71336
+Error Message: Exported function 'sleep' re> hvigor [32m[34mINFO: [32m[ID:30744] [time:1775126416570] projectionConfig.json is up to date.[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126416571] Updated PATH: C:\Program Files\PowerShell\7;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\kaihong\AppData\Local\HarmonyOS\Sdk\toolchains\3.1.1.1;F:\oh314\suites\acts;F:\oh322\windows\suites\acts;F:\wukong_pc\wukong_pc;C:\Users\kaihong\AppData\Roaming\nvm;C:\Program Files\nodejs;F:\deveco4.0\sdk\16\toolchains;C:\Program Files\TortoiseSVN\bin;C:\Program Files\PowerShell\7\;F:\cursor\cursor\resources\app\bin;f:\cursor\cursor\resources\app\codeBin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\kaihong\AppData\Local\HarmonyOS\Sdk\toolchains\3.1.1.1;F:\oh314\suites\acts;F:\oh322\windows\suites\acts;F:\wukong_pc\wukong_pc;C:\Users\kaihong\AppData\Roaming\nvm;C:\Program Files\nodejs;F:\deveco4.0\sdk\16\toolchain;C:\Program Files\TortoiseSVN\bin;C:\Program Files\PowerShell\7\;C:\Users\kaihong\AppData\Local\Programs\oh-my-posh\bin\;C:\Users\kaihong\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\kaihong\AppData\Local\Programs\Python\Python311\;C:\Users\kaihong\AppData\Local\Microsoft\WindowsApps;C:\Users\kaihong\AppData\Local\Programs\Microsoft VS Code\bin;F:\deveco5.0\DevEco Studio\bin;F:\oh314\suites\acts;C:\Users\kaihong\AppData\Roaming\npm;C:\Users\kaihong\AppData\Roaming\nvm;C:\Program Files\nodejs;C;;%DevEco Studio%;F:\ai\cursor\resources\app\bin;F:\deveco4.0\sdk\24\ets\static\build-tools\ets2panda\lib[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126418137] [Plugin Driver] Loaded plugin: ', ArkUI, F:\deveco4.0\sdk\24\ets\static\build-tools\ui-plugins\lib\ui-plugins\index.js[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126418173] [Plugin Driver] Loaded plugin: ', ArkUI-Memo, F:\deveco4.0\sdk\24\ets\static\build-tools\ui-plugins\lib\memo-plugins\index.js[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126418731] just build[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126418731] Run parallel (default)[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126418732] [Plugin Driver] Loaded plugin: ', ArkUI, F:\deveco4.0\sdk\24\ets\static\build-tools\ui-plugins\lib\ui-plugins\index.js[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126418732] [Plugin Driver] Loaded plugin: ', ArkUI-Memo, F:\deveco4.0\sdk\24\ets\static\build-tools\ui-plugins\lib\memo-plugins\index.js[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126418793] [Ets2panda] Created instance[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126419757] [Ets2panda] Parsed[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126419759] [Plugin Driver] executing plugin: ui-plugin[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126421270] [Ets2panda] Parser plugins finished[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126422913] [Ets2panda] Checked[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126422914] [Plugin Driver] executing plugin: ui-plugin[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126429352] [Plugin Driver] executing plugin: memo-plugin[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126432089] [Ets2panda] Checker plugins finished[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126433311] [Ets2panda] Compiled abc file for cycle SimultaneousBuildId[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126433311] [Plugin Driver] executing plugin: ui-plugin[39m[39m
+[34mINFO: [32m[ID:30744] [time:1775126433311] [Plugin Driver] executing plugin: memo-plugin[39m[39m
+[39m
+> hvigor [32mFinished :entry:default@CompileArkTSEvolution... after 17 s 677 ms [39m
+> hvigor [32mUP-TO-DATE :entry:default@GeneratePkgModuleJson...  [39m
+> hvigor [32mFinished :entry:default@PackageHap... after 1 s 718 ms [39m
+> hvigor ERROR: Failed :entry:default@SignHap... 
+> hvigor ERROR: 00303107 Configuration Error
+Error Message: Invalid storeFile value. Make sure it is not null or empty. The file must be included in 'C:/Users/kaihong/.ohos/config/openharmony/default_ace_ets_module_grid_static_8ZWRtd-gDlllD_OtrxeI2h8MNS9dGipjxA9ViEhA_70=.p12'. At file: F:\strongerxts\2\ace_ets_module_grid_static\build-profile.json5
+
+* Try the following:
+  > Please check signingConfigs in root project file
+
+> hvigor ERROR: BUILD FAILED in 31 s 649 ms 
+quires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\ets\MainAbility\common\Utils.ets:54:10
+
+161 ERROR: Warning W71336
+Error Message: Exported function 'GridTest' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\src\test\GridTest\Grid.test.ets:29:16
+
+162 ERROR: Warning W71336
+Error Message: Exported function 'testsuite' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\src\test\List.test.ets:4:16
+
+163 ERROR: Warning W71336
+Error Message: Exported class property 'isloadAndSetUpUiTest' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\src\test\Util.test.ets:24:10
+
+164 ERROR: Warning W71336
+Error Message: Exported class property 'isStartedAbility' requires type annotation. At File: F:\strongerxts\2\ace_ets_module_grid_static\entry\src\main\src\test\Util.test.ets:25:10
+

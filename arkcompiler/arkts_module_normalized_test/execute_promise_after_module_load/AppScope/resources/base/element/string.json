@@ -1,0 +1,8 @@
+{
+  "string": [
+    {
+      "name": "app_name",
+      "value": "execute_promise_after_module_load"
+    }
+  ]
+}

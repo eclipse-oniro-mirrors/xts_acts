@@ -1,0 +1,16 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/consume/Consume0020",
+    "MainAbility/pages/consume/Consume0030",
+    "MainAbility/pages/consume/Consume0040",
+    "MainAbility/pages/consume/Consume0050",
+    "MainAbility/pages/consume/Consume0060",
+    "MainAbility/pages/consume/ConsumeDefault0240",
+    "MainAbility/pages/uiutils/AddMonitor001",
+    "MainAbility/pages/uiutils/AddMonitor002",
+    "MainAbility/pages/uiutils/MakeBinding001",
+    "MainAbility/pages/uiutils/AddMonitor003",
+    "MainAbility/pages/uiutils/AddMonitorErrorCode001"
+  ]
+}

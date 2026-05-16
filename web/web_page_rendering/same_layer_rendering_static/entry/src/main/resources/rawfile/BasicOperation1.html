@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试用例1: 基本功能验证</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 全局红色主题样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fdf2f2; /* 浅红背景 */
+            color: #7f1d1d; /* 深红文字 */
+            padding: 20px;
+        }
+
+        h1 {
+            color: #b91c1c; /* 主红色标题 */
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 2px rgba(127, 29, 29, 0.2);
+        }
+
+        /* 红色主题按钮样式 */
+        button {
+            background-color: #dc2626; /* 按钮主色 */
+            color: white; /* 按钮文字白色 */
+            border: none;
+            padding: 12px 24px;
+            margin: 0 8px 15px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+        }
+
+        button:hover {
+            background-color: #b91c1c; /*  hover加深红色 */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+        }
+
+        /* 红色主题object容器 */
+        #test-object {
+            width: 300px;
+            height: 50px;
+            border: 2px solid #ef4444; /* 红色边框 */
+            background-color: white;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f1d1d;
+        }
+
+        /* 红色主题日志区域 */
+        #status-log {
+            margin-top: 20px;
+            border: 1px solid #fca5a5; /* 浅红边框 */
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            min-height: 200px;
+            max-height: 300px;
+            overflow-y: auto;
+            color: #7f1d1d;
+            box-shadow: 0 1px 3px rgba(248, 113, 113, 0.1);
+        }
+
+        /* 日志文字样式优化 */
+        #status-log br {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>测试用例1: 基本功能验证</h1>
+<button onclick="addParam()">增加Param</button>
+<button onclick="removeParam()">删除最后一个Param</button>
+<button onclick="modifyLastParamValue()">修改最后一个Param的Value</button>
+<button onclick="modifyLastParamName()">修改最后一个Param的Name</button>
+
+<object id="test-object" type="test/view">
+    <param id="p1" name="initialName" value="initialValue">
+</object>
+
+<div id="status-log"></div>
+
+<script>
+    let paramCounter = 0;
+    const objectEl = document.getElementById('test-object');
+    const logEl = document.getElementById('status-log');
+
+    function log(message) {
+        logEl.innerHTML = message + '<br>' + logEl.innerHTML;
+    }
+
+    function addParam() {
+        const newParam = document.createElement('param');
+        paramCounter++;
+        newParam.id = 'param-' + paramCounter;
+        newParam.name = "newName" + paramCounter;
+        newParam.value = "newValue" + paramCounter;
+        objectEl.appendChild(newParam);
+        log(`操作: 增加 Param (id=${newParam.id}, name=${newParam.name})`);
+    }
+
+    function removeParam() {
+        const params = objectEl.getElementsByTagName('param');
+        if (params.length > 0) {
+            const paramToRemove = params[params.length - 1];
+            log(`操作: 删除 Param (id=${paramToRemove.id}, name=${paramToRemove.name})`);
+            objectEl.removeChild(paramToRemove);
+        } else {
+            log("操作: 删除失败，没有Param可以删除");
+        }
+    }
+
+    function modifyLastParamValue() {
+        const params = objectEl.getElementsByTagName('param');
+        if (params.length > 0) {
+            const paramToModify = params[params.length - 1];
+            const oldValue = paramToModify.value;
+            paramToModify.value = "updatedValue_" + Date.now();
+            log(`操作: 修改Value (id=${paramToModify.id}, 从'${oldValue}'变为'${paramToModify.value}')`);
+        } else {
+            log("操作: 修改Value失败，没有Param可以修改");
+        }
+    }
+
+    function modifyLastParamName() {
+        const params = objectEl.getElementsByTagName('param');
+        if (params.length > 0) {
+            const paramToModify = params[params.length - 1];
+            const oldName = paramToModify.name;
+            paramToModify.name = "updatedName_" + Date.now();
+            log(`操作: 修改Name (id=${paramToModify.id}, 从'${oldName}'变为'${paramToModify.name}')`);
+        } else {
+            log("操作: 修改Name失败，没有Param可以修改");
+        }
+    }
+
+    <!-- 若需要自动点击，可保留之前的自动点击函数 -->
+    // window.onload = function() {
+    //     // 自动点击逻辑（按需启用）
+    //     setTimeout(() => addParam(), 1000);
+    //     setTimeout(() => modifyLastParamValue(), 3000);
+    //     setTimeout(() => modifyLastParamName(), 5000);
+    //     setTimeout(() => removeParam(), 7000);
+    // };
+</script>
+</body>
+</html>

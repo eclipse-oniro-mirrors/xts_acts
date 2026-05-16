@@ -1,0 +1,45 @@
+# Copyright (c) 2021 Huawei Device Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import("//test/xts/tools/build/suite.gni")
+
+ohos_js_app_suite("ActsBmsAccessTokenTest") {
+ 
+  test_hap = true
+  testonly = true
+  certificate_profile = "./signature/openharmony_sx.p7b"
+  hap_name = "ActsBmsAccessTokenTest"
+  subsystem_name = "bundlemanager"
+  part_name = "bundle_framework"
+  deps = [
+  "../sceneProject/bmsaccesstokenone:bmsAccessTokenTest1",
+  "../sceneProject/bmsaccesstokentwo:bmsAccessTokenTest2",
+  "../sceneProject/bmsaccesstokenthree:bmsAccessTokenTest3",
+  "../sceneProject/bmsaccesstokenfour:bmsAccessTokenTest4",
+  "../sceneProject/bmsaccesstokenfive:bmsAccessTokenTest5",
+  "../actsbmsatomicserviceetstest/bmsatomicserviceone:BmsAtomicService1",
+  "../actsbmsatomicserviceetstest/bmsatomicserviceshared:BmsAtomicServiceShared",
+  "../sceneProject/bmsgetinfosscenesystem:bmsSystemBundleTest1",
+  "../sceneProject/bmsgetinfosscenesystemtwo:bmsSystemBundleTest2",
+  "../sceneProject/bmsgetinfosscenevendor:bmsVendorBundleTest1",
+  "../sceneProject/bmsgetinfosfirstscene:bmsThirdBundleTest1",
+  "../sceneProject/bmsgetinfossecondscene:bmsThirdBundleTest2",
+  "../sceneProject/bmsgetinfosthirdscene:bmsThirdBundleTest3",
+  "../sceneProject/bmsgetinfosfourthscene:bmsThirdBundleTest4",
+  "../sceneProject/bmsgetinfosfifthscene:bmsThirdBundleTest5",
+  "../sceneProject/bmsgetinfossixthscene:bmsThirdBundleTest6",
+  "../sceneProject/bmsgetinfosseventhscene:bmsThirdBundleTest7",
+  "../sceneProject/bmsgetinfosfirstsceneupdate:bmsThirdBundleTestA1",
+  ]
+
+}

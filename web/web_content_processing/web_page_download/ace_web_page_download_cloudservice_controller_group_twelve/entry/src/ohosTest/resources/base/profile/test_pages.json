@@ -1,0 +1,15 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/GetPercentComplete1",
+    "testability/pages/GetPercentComplete2",
+    "testability/pages/GetPercentComplete3",
+    "testability/pages/GetPercentComplete4",
+    "testability/pages/GetPercentComplete5",
+    "testability/pages/GetPercentComplete6",
+    "testability/pages/GetPercentComplete7",
+    "testability/pages/GetPercentComplete8",
+    "testability/pages/GetPercentComplete10",
+    "testability/pages/GetPercentComplete11"
+  ]
+}

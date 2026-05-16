@@ -1,0 +1,8 @@
+{
+  "src": [
+    "pages/WebUserAgentMetadata",
+    "pages/WebSetUserAgentClientHintsEnabled",
+    "pages/WebSetAppCustomUserAgent",
+    "pages/geolocationPermissions"
+  ]
+}

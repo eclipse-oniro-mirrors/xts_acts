@@ -1,0 +1,70 @@
+/*
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <cerrno>
+#include <cstdio>
+#include <cstdlib>
+#include <sys/swap.h>
+
+#include "filepath_util.h"
+
+/**
+ * @tc.name      : Swapoff0100
+ * @tc.desc      : Stop swapping to file/device
+ * @tc.level     : Level 0
+ */
+void Swapoff0100(void)
+{
+    char dir_path[PATH_MAX] = {0};
+    if (!FileAbsoluteDir(dir_path, sizeof(dir_path))) {
+        return;
+    }
+    errno = 0;
+    char cmd[PATH_MAX] = {0};
+    (void)snprintf(cmd, sizeof(cmd), "cd %s; dd if=/dev/zero of=swapfile count=1 bs=1k; mkswap swapfile", dir_path);
+    system(cmd);
+
+    char path[PATH_MAX] = {0};
+    if (!FileAbsolutePath(STR_FILE_SWAP, path, sizeof(path))) {
+        return;
+    }
+    int result = swapon(path, SWAP_FLAG_PREFER);
+    if (result == -1) {
+        t_error("%s swapon failed\n", __func__);
+        (void)remove(path);
+        return;
+    }
+    if (errno == ENOSYS) {
+        t_error("%s errno is %d\n", __func__, errno);
+        return;
+    }
+
+    result = swapoff(path);
+    if (result == -1) {
+        t_error("%s swapoff failed", __func__);
+    }
+}
+
+static int SwapoffTestImpl(int argc, char *argv[])
+{
+    return T_STATUS;
+}
+
+int SwapoffTest(void)
+{
+    static char libcProg[] = "libc_test";
+    char *libcArgv[] = { libcProg, nullptr };
+    return SwapoffTestImpl(1, libcArgv);
+}

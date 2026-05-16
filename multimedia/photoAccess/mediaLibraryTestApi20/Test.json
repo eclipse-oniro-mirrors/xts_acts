@@ -1,0 +1,81 @@
+{
+    "description": "Configuration for ActsMediaLibraryTest Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.acts.actsmedialibrarytest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 60000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "rm -rf /storage/media/100/local/files/Pictures",
+                "rm -rf /storage/media/100/local/files/Videos",
+                "rm -rf /storage/media/100/local/files/Camera",
+                "rm -rf /storage/media/100/local/files/Audios",
+                "rm -rf /storage/media/100/local/files/Docs/Documents/*",
+                "rm -rf /storage/media/100/local/files/Docs/Documents/.*",
+                "rm -rf /storage/media/100/local/files/Photo/*",
+                "sleep 5",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "kill -9 `pidof com.ohos.medialibrary.medialibrarydata`"
+            ]
+        },
+        {
+        "test-file-name": [
+            "ActsMediaLibraryApi20Test.hap",
+            "ActsMediaLibraryMainApi20Test.hap"
+
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+        }, 
+        {
+            "type": "ShellKit",
+            "pre-push": [],
+            "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /storage/media/100/local/files/Pictures",
+                "mkdir -p /storage/media/100/local/files/Videos",
+                "mkdir -p /storage/media/100/local/files/Camera",
+                "mkdir -p /storage/media/100/local/files/Audios",
+                "mkdir /storage/media/100/local/files/Pictures/Screenshots",
+                "mkdir -p /data/app/el2/100/base/com.acts.actsmedialibrarytest/haps/entry_test/files/",
+                "chmod -R 777 /data/app/el2/100/base/com.acts.actsmedialibrarytest/haps/entry_test/files/"
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/medialibrary/01.jpg ->/data/app/el2/100/base/com.acts.actsmedialibrarytest/haps/entry_test/files/",
+                "./resource/medialibrary/01.dat ->/data/app/el2/100/base/com.acts.actsmedialibrarytest/haps/entry_test/files/"
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [],
+            "teardown-command": [
+                "power-shell setmode 600",
+                "rm -rf /storage/media/100/local/files/Pictures",
+                "rm -rf /storage/media/100/local/files/Videos",
+                "rm -rf /storage/media/100/local/files/Camera",
+                "rm -rf /storage/media/100/local/files/Audios",
+                "rm -rf /storage/media/100/local/files/Docs/Documents/*",
+                "rm -rf /storage/media/100/local/files/Docs/Documents/.*",
+                "rm -rf /storage/media/100/local/files/Photo/*",
+                "sleep 5",
+                "rm -rf /data/app/el2/100/database/com.ohos.medialibrary.medialibrarydata/*",
+                "kill -9 `pidof com.ohos.medialibrary.medialibrarydata`"
+            ]
+        }
+    ]
+}

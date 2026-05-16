@@ -1,0 +1,20 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/calendarPicker/TestCalendarPickerDate",
+    "MainAbility/pages/slider/SliderEnableHapticFeedbackTest",
+    "MainAbility/pages/dragEndPending/dragEndPending",
+    "MainAbility/pages/swiperIndicator/swiperIndicator",
+    "MainAbility/pages/swiperDigitIndicator/swiperDigitIndicator",
+    "MainAbility/pages/pointerEvent/pointerEvent",
+    "MainAbility/pages/getGestureParam/getGestureParam",
+    "MainAbility/pages/layoutCallbackOnNodeHandle/layoutCallbackOnNodeHandle",
+    "MainAbility/pages/swiperArrowStyle/swiperArrowStyle",
+    "MainAbility/pages/arkuiXComponent/arkuiXComponent",
+    "MainAbility/pages/accessibilityValue/accessibilityValue",
+    "MainAbility/pages/surfaceHolder/surfaceHolder",
+    "MainAbility/pages/textPickerCascade/textPickerCascade",
+    "MainAbility/pages/customDialog/customDialog"
+  ]
+}

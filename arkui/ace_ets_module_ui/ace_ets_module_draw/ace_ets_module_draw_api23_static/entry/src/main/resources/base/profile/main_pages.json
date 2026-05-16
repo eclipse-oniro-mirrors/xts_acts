@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/drawableDescriptor/drawableDescriptor",
+    "MainAbility/pages/animationOptions/animationOptions",
+    "MainAbility/pages/measureUtilsGetParagraphs/measureUtilsGetParagraphs",
+    "MainAbility/pages/Canvas/CanvasRoundRectErrorCode"
+  ]
+}

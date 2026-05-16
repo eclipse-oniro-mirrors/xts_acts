@@ -1,0 +1,20 @@
+{
+  "routerMap": [
+    {
+      "name": "NavDestinationTest",
+      "pageSourceFile": "src/ohosTest/ets/MainAbility/pages/nodenapitest/navdestinationTest.ets",
+      "buildFunction": "NavDestinationTestBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    },
+    {
+      "name": "NavDestinationTests",
+      "pageSourceFile": "src/ohosTest/ets/MainAbility/pages/NativeType/NavDestinationTests.ets",
+      "buildFunction": "NavDestinationTestBuilder",
+      "data": {
+        "description": "this is pageOne"
+      }
+    }
+  ]
+}

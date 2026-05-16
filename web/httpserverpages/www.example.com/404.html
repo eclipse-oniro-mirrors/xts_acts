@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #333;
+            overflow-x: hidden;
+        }
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.03);
+            animation: bgFloat 20s infinite ease-in-out;
+        }
+        .bg-circle:nth-child(1) { width: 300px; height: 300px; top: -50px; left: -80px; animation-duration: 18s; }
+        .bg-circle:nth-child(2) { width: 200px; height: 200px; top: 30%; right: -40px; animation-duration: 22s; animation-delay: -3s; }
+        .bg-circle:nth-child(3) { width: 400px; height: 400px; bottom: -100px; left: 30%; animation-duration: 25s; animation-delay: -7s; }
+        .bg-circle:nth-child(4) { width: 150px; height: 150px; top: 60%; left: 10%; animation-duration: 16s; animation-delay: -5s; }
+        .bg-circle:nth-child(5) { width: 250px; height: 250px; top: 10%; right: 20%; animation-duration: 20s; animation-delay: -10s; }
+        .bg-circle:nth-child(6) { width: 180px; height: 180px; bottom: 20%; right: 10%; animation-duration: 19s; animation-delay: -2s; }
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -30px) scale(1.05); }
+            50% { transform: translate(-20px, 20px) scale(0.95); }
+            75% { transform: translate(15px, 15px) scale(1.02); }
+        }
+        .stars {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .star {
+            position: absolute;
+            width: 2px; height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: starTwinkle 3s infinite ease-in-out;
+        }
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        .breadcrumb {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 15px 30px;
+            background: rgba(0,0,0,0.2);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .breadcrumb ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .breadcrumb li {
+            font-size: 0.9em;
+        }
+        .breadcrumb a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .breadcrumb a:hover { color: #fff; }
+        .breadcrumb .separator { color: rgba(255,255,255,0.4); }
+        .breadcrumb .current { color: rgba(255,255,255,0.4); }
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+        .error-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .error-code {
+            font-size: 10em;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 10px;
+            display: inline-block;
+            position: relative;
+        }
+        .error-code .digit {
+            display: inline-block;
+            color: #ff6b6b;
+            text-shadow: 0 0 20px rgba(255,107,107,0.5), 0 0 40px rgba(255,107,107,0.3);
+            animation: digitBounce 2s infinite ease-in-out;
+        }
+        .error-code .digit:nth-child(1) { animation-delay: 0s; }
+        .error-code .digit:nth-child(2) { animation-delay: 0.15s; }
+        .error-code .digit:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes digitBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            15% { transform: translateY(-25px) scale(1.1); }
+            30% { transform: translateY(0) scale(1); }
+            45% { transform: translateY(-10px) scale(1.05); }
+            60% { transform: translateY(0) scale(1); }
+        }
+        .error-code .glitch-wrapper {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+        }
+        .error-code .glitch-wrapper .digit {
+            position: absolute;
+            top: 0;
+            animation: glitch1 3s infinite linear;
+            opacity: 0.08;
+            color: #00ffff;
+        }
+        .error-code .glitch-wrapper .digit:nth-child(1) { left: 0; animation-delay: 0.1s; }
+        .error-code .glitch-wrapper .digit:nth-child(2) { left: 33.33%; animation-delay: 0.2s; }
+        .error-code .glitch-wrapper .digit:nth-child(3) { left: 66.66%; animation-delay: 0.3s; }
+        @keyframes glitch1 {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-3px, 2px); }
+            94% { transform: translate(3px, -2px); }
+            96% { transform: translate(-2px, -3px); }
+            98% { transform: translate(2px, 3px); }
+        }
+        .error-message {
+            font-size: 1.8em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        .error-submessage {
+            font-size: 1em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 30px;
+        }
+        .error-details {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 550px;
+            text-align: left;
+            margin: 0 auto 30px;
+        }
+        .error-details p {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.75);
+            font-size: 0.95em;
+        }
+        .error-details p:last-child { border-bottom: none; }
+        .error-details strong { color: rgba(255,255,255,0.95); }
+        .back-link {
+            display: inline-block;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+        }
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.6);
+        }
+        .section {
+            margin-top: 50px;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px;
+        }
+        .section-title {
+            font-size: 1.3em;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .search-bar {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 16px 50px 16px 20px;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08);
+            color: white;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .search-bar input::placeholder { color: rgba(255,255,255,0.4); }
+        .search-bar input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.2);
+        }
+        .search-bar button {
+            position: absolute;
+            right: 5px; top: 5px;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .search-bar button:hover { transform: scale(1.05); }
+        .search-suggestions {
+            margin-top: 15px;
+            text-align: center;
+        }
+        .search-suggestions span {
+            display: inline-block;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .suggestion-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .suggestion-tag {
+            padding: 6px 16px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .suggestion-tag:hover {
+            background: rgba(102,126,234,0.2);
+            border-color: rgba(102,126,234,0.4);
+            color: white;
+        }
+        .popular-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .popular-link-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            text-decoration: none;
+            color: rgba(255,255,255,0.85);
+            transition: all 0.3s;
+        }
+        .popular-link-item:hover {
+            background: rgba(102,126,234,0.15);
+            border-color: rgba(102,126,234,0.3);
+            transform: translateY(-2px);
+        }
+        .link-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+        .link-icon.home { background: rgba(102,126,234,0.2); }
+        .link-icon.docs { background: rgba(255,107,107,0.2); }
+        .link-icon.api { background: rgba(78,205,196,0.2); }
+        .link-icon.blog { background: rgba(255,217,61,0.2); }
+        .link-icon.contact { background: rgba(162,155,254,0.2); }
+        .link-icon.faq { background: rgba(0,210,211,0.2); }
+        .link-text {
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+        .link-desc {
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.45);
+            margin-top: 2px;
+        }
+        .recent-pages {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .recent-page-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 8px;
+            text-decoration: none;
+            color: rgba(255,255,255,0.75);
+            transition: all 0.3s;
+        }
+        .recent-page-item:hover {
+            background: rgba(255,255,255,0.08);
+            color: white;
+        }
+        .recent-page-icon {
+            width: 32px; height: 32px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            flex-shrink: 0;
+        }
+        .recent-page-info {
+            flex: 1;
+        }
+        .recent-page-title {
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        .recent-page-time {
+            font-size: 0.75em;
+            color: rgba(255,255,255,0.35);
+            margin-top: 2px;
+        }
+        .error-code-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .error-code-table th,
+        .error-code-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.9em;
+        }
+        .error-code-table th {
+            color: rgba(255,255,255,0.95);
+            font-weight: 600;
+            background: rgba(255,255,255,0.04);
+        }
+        .error-code-table td {
+            color: rgba(255,255,255,0.65);
+        }
+        .error-code-table tr:hover td {
+            background: rgba(255,255,255,0.04);
+        }
+        .code-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+        .code-badge.info { background: rgba(102,126,234,0.2); color: #a8b8ff; }
+        .code-badge.success { background: rgba(78,205,196,0.2); color: #6ee7de; }
+        .code-badge.warning { background: rgba(255,217,61,0.2); color: #ffd93d; }
+        .code-badge.error { background: rgba(255,107,107,0.2); color: #ff8a8a; }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .faq-item {
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .faq-item.active {
+            border-color: rgba(102,126,234,0.3);
+        }
+        .faq-question {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.04);
+            border: none;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95em;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        .faq-question:hover { background: rgba(255,255,255,0.06); }
+        .faq-arrow {
+            transition: transform 0.3s;
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.4);
+        }
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+            color: #667eea;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+        .faq-answer-inner {
+            padding: 0 20px 16px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9em;
+            line-height: 1.7;
+        }
+        .report-form {
+            display: grid;
+            gap: 16px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-group.full-width { grid-column: 1 / -1; }
+        .form-group label {
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.7);
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.06);
+            color: white;
+            font-size: 0.9em;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .form-group select option { background: #302b63; color: white; }
+        .form-submit {
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            justify-self: start;
+        }
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+        }
+        .form-note {
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.35);
+        }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 24px;
+            background: rgba(78,205,196,0.9);
+            color: white;
+            border-radius: 10px;
+            font-weight: 500;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s ease;
+            z-index: 100;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            margin-top: 50px;
+        }
+        .footer p {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85em;
+        }
+        .footer a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+        }
+        .footer a:hover { color: rgba(255,255,255,0.8); }
+        @media (max-width: 600px) {
+            .error-code { font-size: 6em; }
+            .form-row { grid-template-columns: 1fr; }
+            .popular-links { grid-template-columns: 1fr; }
+            .content-wrapper { padding: 20px 15px 40px; }
+            .section { padding: 20px; }
+            .error-code-table { font-size: 0.8em; }
+            .error-code-table th, .error-code-table td { padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+    <div class="stars" id="stars"></div>
+    <nav class="breadcrumb">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li class="separator">/</li>
+            <li><a href="/docs">Documentation</a></li>
+            <li class="separator">/</li>
+            <li class="current">404 Not Found</li>
+        </ul>
+    </nav>
+    <div class="content-wrapper">
+        <div class="error-container">
+            <div class="error-code">
+                <span class="digit">4</span><span class="digit">0</span><span class="digit">4</span>
+                <div class="glitch-wrapper">
+                    <span class="digit">4</span><span class="digit">0</span><span class="digit">4</span>
+                </div>
+            </div>
+            <div class="error-message">Page Not Found</div>
+            <div class="error-submessage">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</div>
+            <div class="error-details">
+                <p><strong>Request URL:</strong> <span id="requestUrl">-</span></p>
+                <p><strong>Server:</strong> example.com</p>
+                <p><strong>Date:</strong> <span id="currentDate">-</span></p>
+                <p><strong>Status Code:</strong> 404</p>
+                <p><strong>Description:</strong> The requested resource was not found on this server.</p>
+            </div>
+            <a href="/" class="back-link">Go to Homepage</a>
+        </div>
+        <div class="section">
+            <div class="section-title">Search Our Site</div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for pages, articles, or resources...">
+                <button onclick="handleSearch()">&#x1F50D;</button>
+            </div>
+            <div class="search-suggestions">
+                <span>Suggested:</span>
+                <div class="suggestion-tags">
+                    <a href="/docs" class="suggestion-tag">Documentation</a>
+                    <a href="/api" class="suggestion-tag">API Reference</a>
+                    <a href="/blog" class="suggestion-tag">Blog</a>
+                    <a href="/tutorials" class="suggestion-tag">Tutorials</a>
+                    <a href="/downloads" class="suggestion-tag">Downloads</a>
+                    <a href="/support" class="suggestion-tag">Support</a>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">Popular Pages</div>
+            <div class="popular-links">
+                <a href="/" class="popular-link-item">
+                    <div class="link-icon home">&#x1F3E0;</div>
+                    <div>
+                        <div class="link-text">Homepage</div>
+                        <div class="link-desc">Main landing page</div>
+                    </div>
+                </a>
+                <a href="/docs" class="popular-link-item">
+                    <div class="link-icon docs">&#x1F4D6;</div>
+                    <div>
+                        <div class="link-text">Documentation</div>
+                        <div class="link-desc">Guides and references</div>
+                    </div>
+                </a>
+                <a href="/api" class="popular-link-item">
+                    <div class="link-icon api">&#x2699;</div>
+                    <div>
+                        <div class="link-text">API Reference</div>
+                        <div class="link-desc">Technical specifications</div>
+                    </div>
+                </a>
+                <a href="/blog" class="popular-link-item">
+                    <div class="link-icon blog">&#x1F4DD;</div>
+                    <div>
+                        <div class="link-text">Blog</div>
+                        <div class="link-desc">Latest news and updates</div>
+                    </div>
+                </a>
+                <a href="/contact" class="popular-link-item">
+                    <div class="link-icon contact">&#x2709;</div>
+                    <div>
+                        <div class="link-text">Contact Us</div>
+                        <div class="link-desc">Get in touch</div>
+                    </div>
+                </a>
+                <a href="/faq" class="popular-link-item">
+                    <div class="link-icon faq">&#x2753;</div>
+                    <div>
+                        <div class="link-text">FAQ</div>
+                        <div class="link-desc">Common questions</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">Recently Visited Pages</div>
+            <div class="recent-pages">
+                <a href="/docs/getting-started" class="recent-page-item">
+                    <div class="recent-page-icon">&#x1F4C4;</div>
+                    <div class="recent-page-info">
+                        <div class="recent-page-title">Getting Started Guide</div>
+                        <div class="recent-page-time">Visited 5 minutes ago</div>
+                    </div>
+                </a>
+                <a href="/docs/configuration" class="recent-page-item">
+                    <div class="recent-page-icon">&#x1F4C4;</div>
+                    <div class="recent-page-info">
+                        <div class="recent-page-title">Configuration Reference</div>
+                        <div class="recent-page-time">Visited 20 minutes ago</div>
+                    </div>
+                </a>
+                <a href="/api/v2/endpoints" class="recent-page-item">
+                    <div class="recent-page-icon">&#x1F4C4;</div>
+                    <div class="recent-page-info">
+                        <div class="recent-page-title">API v2 Endpoints</div>
+                        <div class="recent-page-time">Visited 1 hour ago</div>
+                    </div>
+                </a>
+                <a href="/blog/release-notes" class="recent-page-item">
+                    <div class="recent-page-icon">&#x1F4C4;</div>
+                    <div class="recent-page-info">
+                        <div class="recent-page-title">Release Notes v3.2</div>
+                        <div class="recent-page-time">Visited 2 hours ago</div>
+                    </div>
+                </a>
+                <a href="/tutorials/advanced" class="recent-page-item">
+                    <div class="recent-page-icon">&#x1F4C4;</div>
+                    <div class="recent-page-info">
+                        <div class="recent-page-title">Advanced Tutorials</div>
+                        <div class="recent-page-time">Visited yesterday</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">HTTP Error Code Reference</div>
+            <table class="error-code-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-badge info">200</span></td>
+                        <td>OK</td>
+                        <td>Request succeeded</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge info">301</span></td>
+                        <td>Moved Permanently</td>
+                        <td>Resource has been permanently moved</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge info">302</span></td>
+                        <td>Found</td>
+                        <td>Resource temporarily moved to a different URL</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge info">304</span></td>
+                        <td>Not Modified</td>
+                        <td>Cached version is still valid</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge error">400</span></td>
+                        <td>Bad Request</td>
+                        <td>The server could not understand the request</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge error">401</span></td>
+                        <td>Unauthorized</td>
+                        <td>Authentication is required</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge error">403</span></td>
+                        <td>Forbidden</td>
+                        <td>You do not have permission to access this resource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge error">404</span></td>
+                        <td>Not Found</td>
+                        <td>The requested resource could not be found</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge error">405</span></td>
+                        <td>Method Not Allowed</td>
+                        <td>The HTTP method is not supported for this resource</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge error">408</span></td>
+                        <td>Request Timeout</td>
+                        <td>The server timed out waiting for the request</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge error">429</span></td>
+                        <td>Too Many Requests</td>
+                        <td>Rate limit has been exceeded</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge warning">500</span></td>
+                        <td>Internal Server Error</td>
+                        <td>An unexpected server error occurred</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge warning">502</span></td>
+                        <td>Bad Gateway</td>
+                        <td>Invalid response from upstream server</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-badge warning">503</span></td>
+                        <td>Service Unavailable</td>
+                        <td>Server is temporarily unavailable</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="section">
+            <div class="section-title">Frequently Asked Questions</div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What does a 404 error mean?</span>
+                        <span class="faq-arrow">&#9660;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            A 404 error means the server could not find the requested resource. This typically happens when a page has been moved, deleted, or the URL was typed incorrectly. It is one of the most common HTTP errors encountered while browsing the web.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Why am I seeing this page?</span>
+                        <span class="faq-arrow">&#9660;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            You are seeing this page because the URL you entered does not correspond to any existing page on our server. This could be due to a broken link, a mistyped address, or content that has been relocated without a proper redirect.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What should I do if I keep getting 404 errors?</span>
+                        <span class="faq-arrow">&#9660;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Try double-checking the URL for typos, clearing your browser cache, or navigating from the homepage. If the problem persists, use the search bar above or report the issue using the form below so our team can investigate.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Will this affect my data or account?</span>
+                        <span class="faq-arrow">&#9660;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            No, a 404 error only means the specific page you requested was not found. Your account and data remain completely safe and unaffected. You can log in and access all other pages normally.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How can I report a broken link?</span>
+                        <span class="faq-arrow">&#9660;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Use the "Report Broken Link" form below to notify our team. Please include the URL you were trying to reach, where you found the link, and any other relevant details. We appreciate your help in keeping our site up to date.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-title">Report Broken Link</div>
+            <form class="report-form" onsubmit="handleReportSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reportName">Your Name</label>
+                        <input type="text" id="reportName" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="reportEmail">Your Email</label>
+                        <input type="email" id="reportEmail" placeholder="Enter your email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reportBrokenUrl">Broken URL</label>
+                    <input type="text" id="reportBrokenUrl" placeholder="The URL that returned 404">
+                </div>
+                <div class="form-group">
+                    <label for="reportSourceUrl">Where did you find this link?</label>
+                    <input type="text" id="reportSourceUrl" placeholder="Page or site where the broken link was located">
+                </div>
+                <div class="form-group">
+                    <label for="reportCategory">Issue Category</label>
+                    <select id="reportCategory">
+                        <option value="moved">Page has moved</option>
+                        <option value="deleted">Page has been deleted</option>
+                        <option value="typo">URL has a typo</option>
+                        <option value="external">External broken link</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group full-width">
+                    <label for="reportDescription">Additional Details</label>
+                    <textarea id="reportDescription" placeholder="Provide any additional information that might help us resolve this issue..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Submit Report</button>
+                <div class="form-note">Your report will be reviewed by our team. We typically resolve reported issues within 48 hours.</div>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2026 example.com &mdash; <a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms of Service</a> &middot; <a href="/contact">Contact</a></p>
+    </div>
+    <div class="toast" id="toast"></div>
+    <script>
+        document.getElementById('currentDate').textContent = new Date().toISOString();
+        document.getElementById('requestUrl').textContent = window.location.href;
+        function test() { return true; }
+        function toggleFaq(btn) {
+            var item = btn.parentElement;
+            var wasActive = item.classList.contains('active');
+            var allItems = document.querySelectorAll('.faq-item');
+            for (var i = 0; i < allItems.length; i++) {
+                allItems[i].classList.remove('active');
+            }
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+        function handleSearch() {
+            var query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                showToast('Searching for: ' + query);
+            } else {
+                showToast('Please enter a search term');
+            }
+        }
+        document.getElementById('searchInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') { handleSearch(); }
+        });
+        function handleReportSubmit(e) {
+            e.preventDefault();
+            var name = document.getElementById('reportName').value.trim();
+            var email = document.getElementById('reportEmail').value.trim();
+            var brokenUrl = document.getElementById('reportBrokenUrl').value.trim();
+            if (!name || !email || !brokenUrl) {
+                showToast('Please fill in all required fields');
+                return;
+            }
+            showToast('Thank you! Your report has been submitted successfully.');
+            e.target.reset();
+            document.getElementById('reportBrokenUrl').value = window.location.href;
+        }
+        function showToast(message) {
+            var toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        (function() {
+            var starsContainer = document.getElementById('stars');
+            for (var i = 0; i < 80; i++) {
+                var star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = (Math.random() * 3) + 's';
+                star.style.animationDuration = (2 + Math.random() * 3) + 's';
+                var size = (1 + Math.random() * 2) + 'px';
+                star.style.width = size;
+                star.style.height = size;
+                starsContainer.appendChild(star);
+            }
+        })();
+        document.getElementById('reportBrokenUrl').value = window.location.href;
+    </script>
+</body>
+</html>

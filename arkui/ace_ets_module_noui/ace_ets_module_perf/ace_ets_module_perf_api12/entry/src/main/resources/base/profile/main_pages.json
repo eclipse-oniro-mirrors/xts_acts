@@ -1,0 +1,11 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/LazyForEach/LazyForEachInterface",
+    "MainAbility/pages/LazyForEach/LazyForEachAboutToReuseUndefined",
+    "MainAbility/pages/LazyForEach/LazyForEachAboutToReuseNull",
+    "MainAbility/pages/LazyForEach/LazyForEachAboutToReuseObject",
+    "MainAbility/pages/Reusable/ReuseIdNullUndefined",
+    "MainAbility/pages/Reusable/AboutToReuseNullUndefined"
+  ]
+}

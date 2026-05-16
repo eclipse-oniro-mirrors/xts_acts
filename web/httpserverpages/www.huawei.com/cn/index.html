@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华为 - 构建万物互联的智能世界</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif; background: #fff; min-height: 100vh; color: #333; }
+        .top-bar { background: #111; color: #999; font-size: 12px; padding: 6px 30px; display: flex; justify-content: space-between; }
+        .top-bar a { color: #ccc; text-decoration: none; margin-left: 15px; }
+        .header { background: #c41a1a; color: white; padding: 12px 30px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; }
+        .nav { display: flex; gap: 24px; }
+        .nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; padding: 6px 0; transition: color 0.2s; }
+        .nav a:hover { color: #fff; }
+        .hero { padding: 100px 30px 80px; text-align: center; color: white; background: linear-gradient(135deg, #c41a1a 0%, #8b0000 50%, #4a0000 100%); position: relative; overflow: hidden; }
+        .hero::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.05) 0%, transparent 50%); }
+        .hero h1 { font-size: 42px; margin-bottom: 20px; font-weight: 300; letter-spacing: 1px; }
+        .hero p { font-size: 17px; opacity: 0.9; max-width: 640px; margin: 0 auto 35px; line-height: 1.7; }
+        .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 12px 32px; border-radius: 4px; font-size: 14px; text-decoration: none; display: inline-block; transition: all 0.3s; cursor: pointer; border: none; }
+        .btn-primary { background: #fff; color: #c41a1a; font-weight: 600; }
+        .btn-primary:hover { background: #f5f5f5; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .btn-secondary { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.5); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+        .btn-dark { background: #333; color: #fff; }
+        .btn-dark:hover { background: #555; }
+        .btn-red { background: #c41a1a; color: #fff; }
+        .btn-red:hover { background: #a01515; }
+        .section { padding: 70px 30px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 45px; }
+        .section-title h2 { font-size: 30px; color: #222; margin-bottom: 12px; font-weight: 600; }
+        .section-title p { font-size: 15px; color: #888; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+        .section-dark { background: #f7f7f7; max-width: 100%; padding: 70px 30px; }
+        .section-dark .section { padding: 0; }
+        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .product-card { background: #fafafa; border-radius: 12px; overflow: hidden; transition: all 0.3s; cursor: pointer; }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+        .product-img { height: 200px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .product-img .icon { font-size: 64px; }
+        .product-card .info { padding: 20px; }
+        .product-card .info h3 { font-size: 18px; margin-bottom: 8px; color: #222; }
+        .product-card .info p { font-size: 13px; color: #888; line-height: 1.6; margin-bottom: 14px; }
+        .product-card .info .price { font-size: 20px; color: #c41a1a; font-weight: 600; }
+        .product-card .info .link { display: inline-block; color: #c41a1a; font-size: 13px; text-decoration: none; margin-top: 10px; }
+        .product-card .info .link:hover { text-decoration: underline; }
+        .p-phone { background: linear-gradient(135deg, #e8e8e8, #f5f5f5); }
+        .p-laptop { background: linear-gradient(135deg, #dce6f5, #eef2f9); }
+        .p-tablet { background: linear-gradient(135deg, #e5f0e8, #f0f7f2); }
+        .p-watch { background: linear-gradient(135deg, #f0e8f5, #f7f2fa); }
+        .p-earbuds { background: linear-gradient(135deg, #f5e8e8, #faf0f0); }
+        .p-wearable { background: linear-gradient(135deg, #e8f0f5, #f0f5fa); }
+        .tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .tech-card { background: white; border-radius: 10px; padding: 30px 20px; text-align: center; transition: all 0.3s; }
+        .tech-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        .tech-icon { width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        .ti-5g { background: linear-gradient(135deg, #ff6b6b, #c41a1a); }
+        .ti-ai { background: linear-gradient(135deg, #4facfe, #0078d4); }
+        .ti-cloud { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .ti-chip { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .tech-card h3 { font-size: 16px; margin-bottom: 8px; color: #222; }
+        .tech-card p { font-size: 13px; color: #888; line-height: 1.6; }
+        .enterprise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .enterprise-card { border: 1px solid #eee; border-radius: 10px; padding: 28px; transition: all 0.3s; cursor: pointer; }
+        .enterprise-card:hover { border-color: #c41a1a; box-shadow: 0 6px 20px rgba(196,26,26,0.08); }
+        .enterprise-card h3 { font-size: 17px; margin-bottom: 10px; color: #222; }
+        .enterprise-card p { font-size: 13px; color: #888; line-height: 1.7; margin-bottom: 14px; }
+        .enterprise-card .learn-more { color: #c41a1a; font-size: 13px; text-decoration: none; font-weight: 500; }
+        .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .service-card { text-align: center; padding: 30px 15px; }
+        .service-card .s-icon { width: 50px; height: 50px; border-radius: 12px; margin: 0 auto 14px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+        .service-card h3 { font-size: 15px; margin-bottom: 6px; color: #222; }
+        .service-card p { font-size: 12px; color: #999; line-height: 1.5; }
+        .about-section { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-text h2 { font-size: 28px; margin-bottom: 18px; color: #222; }
+        .about-text p { font-size: 15px; color: #666; line-height: 1.8; margin-bottom: 14px; }
+        .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+        .stat-item { text-align: center; }
+        .stat-item .num { font-size: 32px; font-weight: 700; color: #c41a1a; }
+        .stat-item .label { font-size: 13px; color: #999; margin-top: 4px; }
+        .about-visual { background: linear-gradient(135deg, #c41a1a, #8b0000); border-radius: 16px; height: 350px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; text-align: center; padding: 40px; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .news-card { cursor: pointer; transition: all 0.3s; }
+        .news-card:hover { transform: translateY(-2px); }
+        .news-img { height: 180px; border-radius: 10px; margin-bottom: 14px; }
+        .n-img-1 { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+        .n-img-2 { background: linear-gradient(135deg, #0f3460, #533483); }
+        .n-img-3 { background: linear-gradient(135deg, #e94560, #c41a1a); }
+        .news-card .date { font-size: 12px; color: #bbb; margin-bottom: 6px; }
+        .news-card h3 { font-size: 16px; line-height: 1.5; color: #222; margin-bottom: 8px; }
+        .news-card p { font-size: 13px; color: #888; line-height: 1.6; }
+        .footer { background: #222; color: #aaa; padding: 50px 30px 30px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer h4 { color: #fff; font-size: 15px; margin-bottom: 18px; }
+        .footer a { display: block; color: #888; text-decoration: none; font-size: 13px; margin-bottom: 10px; transition: color 0.2s; }
+        .footer a:hover { color: #fff; }
+        .footer-bottom { max-width: 1200px; margin: 30px auto 0; padding-top: 20px; border-top: 1px solid #333; text-align: center; font-size: 12px; color: #666; }
+        .footer-social { display: flex; gap: 16px; margin-top: 12px; }
+        .footer-social a { width: 36px; height: 36px; border-radius: 50%; background: #333; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 14px; margin-bottom: 0; }
+        .footer-social a:hover { background: #c41a1a; color: #fff; }
+        .tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; background: #fff0f0; color: #c41a1a; margin-right: 6px; }
+        .tag-blue { background: #f0f4ff; color: #0078d4; }
+        .tag-green { background: #f0fff4; color: #38a169; }
+        .divider { height: 1px; background: #eee; margin: 0 30px; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <span>华为官网</span>
+        <div>
+            <a href="#">华为商城</a>
+            <a href="#">华为云</a>
+            <a href="#">开发者联盟</a>
+            <a href="#">华为服务</a>
+        </div>
+    </div>
+    <div class="header">
+        <div class="logo">HUAWEI</div>
+        <div class="nav">
+            <a href="#">消费者业务</a>
+            <a href="#">企业业务</a>
+            <a href="#">技术</a>
+            <a href="#">服务与支持</a>
+            <a href="#">关于华为</a>
+        </div>
+    </div>
+    <div class="hero">
+        <h1>构建万物互联的智能世界</h1>
+        <p>华为致力于把数字世界带入每个人、每个家庭、每个组织，构建万物互联的智能世界。我们以技术创新为驱动，为全球客户提供领先的ICT基础设施和智能终端。</p>
+        <div class="hero-ctas">
+            <a href="#" class="btn btn-primary">探索产品</a>
+            <a href="#" class="btn btn-secondary">了解更多</a>
+            <a href="#" class="btn btn-secondary">技术白皮书</a>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">
+            <h2>热门产品</h2>
+            <p>探索华为全场景智慧生活，体验科技之美</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img p-phone"><div class="icon">&#128241;</div></div>
+                <div class="info">
+                    <h3>HUAWEI Mate 60 Pro</h3>
+                    <p>搭载麒麟芯片，支持卫星通话，超可靠玄武架构，XMAGE影像系统</p>
+                    <span class="price">¥6999起</span>
+                    <a href="#" class="link">了解详情 &gt;</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img p-laptop"><div class="icon">&#128187;</div></div>
+                <div class="info">
+                    <h3>HUAWEI MateBook X Pro</h3>
+                    <p>全新柔性OLED屏，超轻薄机身，酷睿Ultra处理器，超级终端互联</p>
+                    <span class="price">¥10999起</span>
+                    <a href="#" class="link">了解详情 &gt;</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img p-tablet"><div class="icon">&#128242;</div></div>
+                <div class="info">
+                    <h3>HUAWEI MatePad Pro</h3>
+                    <p>13.2英寸OLED柔性屏，星闪连接，PC级应用体验，专业创作利器</p>
+                    <span class="price">¥4699起</span>
+                    <a href="#" class="link">了解详情 &gt;</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img p-watch"><div class="icon">&#9201;</div></div>
+                <div class="info">
+                    <h3>HUAWEI WATCH GT 4</h3>
+                    <p>经典圆形设计，14天超长续航，健康监测全面升级，百种运动模式</p>
+                    <span class="price">¥1488起</span>
+                    <a href="#" class="link">了解详情 &gt;</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img p-earbuds"><div class="icon">&#127911;</div></div>
+                <div class="info">
+                    <h3>FreeBuds Pro 3</h3>
+                    <p>华为星闪连接技术，智慧降噪3.0，超感知原声双单元，高清空间音频</p>
+                    <span class="price">¥1499起</span>
+                    <a href="#" class="link">了解详情 &gt;</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-img p-wearable"><div class="icon">&#128084;</div></div>
+                <div class="info">
+                    <h3>HUAWEI FreeBuds Studio</h3>
+                    <p>头戴式降噪耳机，Hi-Res认证音质，智慧动态降噪，智慧连接多设备</p>
+                    <span class="price">¥1999起</span>
+                    <a href="#" class="link">了解详情 &gt;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-dark">
+        <div class="section">
+            <div class="section-title">
+                <h2>技术创新</h2>
+                <p>持续投入研发创新，引领ICT产业发展</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon ti-5g">&#128225;</div>
+                    <h3>5G技术</h3>
+                    <p>全球领先的5G端到端解决方案，推动5G商用化进程，覆盖全球170多个国家和地区</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon ti-ai">&#129302;</div>
+                    <h3>人工智能</h3>
+                    <p>Pangu大模型系列，全栈AI解决方案，赋能千行百业智能化升级转型</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon ti-cloud">&#9729;</div>
+                    <h3>云计算</h3>
+                    <p>华为云Stack，鲲鹏+昇腾双引擎，提供稳定可靠、安全可信的云服务</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon ti-chip">&#128268;</div>
+                    <h3>自研芯片</h3>
+                    <p>麒麟、鲲鹏、昇腾、天罡全系列芯片，自主可控，算力强劲</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">
+            <h2>企业解决方案</h2>
+            <p>为千行百业提供数字化转型解决方案</p>
+        </div>
+        <div class="enterprise-grid">
+            <div class="enterprise-card">
+                <span class="tag">热门</span>
+                <h3>智慧城市</h3>
+                <p>构建城市智能体，融合AI、云计算、物联网技术，打造城市治理、民生服务、产业发展一体化解决方案。</p>
+                <a href="#" class="learn-more">了解解决方案 &gt;</a>
+            </div>
+            <div class="enterprise-card">
+                <span class="tag tag-blue">新品</span>
+                <h3>智慧金融</h3>
+                <p>分布式架构转型，智能风控系统，全渠道银行解决方案，助力金融行业数字化升级。</p>
+                <a href="#" class="learn-more">了解解决方案 &gt;</a>
+            </div>
+            <div class="enterprise-card">
+                <span class="tag tag-green">推荐</span>
+                <h3>智慧教育</h3>
+                <p>智慧课堂、在线教育平台、教育云解决方案，推动教育公平与教学质量提升。</p>
+                <a href="#" class="learn-more">了解解决方案 &gt;</a>
+            </div>
+            <div class="enterprise-card">
+                <h3>智慧医疗</h3>
+                <p>医疗影像AI辅助诊断、远程医疗、医院信息化平台，提升医疗服务效率与质量。</p>
+                <a href="#" class="learn-more">了解解决方案 &gt;</a>
+            </div>
+            <div class="enterprise-card">
+                <h3>智慧能源</h3>
+                <p>智能电网、油气数字化、新能源管理，助力能源行业绿色低碳转型。</p>
+                <a href="#" class="learn-more">了解解决方案 &gt;</a>
+            </div>
+            <div class="enterprise-card">
+                <h3>智慧交通</h3>
+                <p>智慧公路、城市交通大脑、港口自动化，构建安全高效的交通基础设施。</p>
+                <a href="#" class="learn-more">了解解决方案 &gt;</a>
+            </div>
+        </div>
+    </div>
+    <div class="section-dark">
+        <div class="section">
+            <div class="section-title">
+                <h2>服务与支持</h2>
+                <p>专业服务团队，全方位保障您的使用体验</p>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="s-icon">&#128222;</div>
+                    <h3>在线客服</h3>
+                    <p>7x24小时在线咨询<br>智能客服快速响应</p>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">&#128205;</div>
+                    <h3>服务网点</h3>
+                    <p>全国2000+服务网点<br>就近享受专业服务</p>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">&#128736;</div>
+                    <h3>维修服务</h3>
+                    <p>原厂配件品质保证<br>透明报价放心维修</p>
+                </div>
+                <div class="service-card">
+                    <div class="s-icon">&#128218;</div>
+                    <h3>技术支持</h3>
+                    <p>开发者技术文档<br>API参考与SDK下载</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="about-section">
+            <div class="about-text">
+                <h2>关于华为</h2>
+                <p>华为创立于1987年，是全球领先的ICT（信息与通信）基础设施和智能终端提供商。我们致力于把数字世界带入每个人、每个家庭、每个组织，构建万物互联的智能世界。</p>
+                <p>目前华为约有19.5万员工，业务遍及170多个国家和地区，服务全球30多亿人口。华为在通信网络、IT、智能终端和云服务等领域为客户提供有竞争力、安全可信赖的产品、解决方案与服务。</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="num">19.5万+</div>
+                        <div class="label">全球员工</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num">170+</div>
+                        <div class="label">服务国家与地区</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="num">30亿+</div>
+                        <div class="label">服务人口</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div>
+                    <h3 style="font-size: 24px; margin-bottom: 12px;">华为愿景与使命</h3>
+                    <p style="opacity: 0.9; line-height: 1.7;">把数字世界带入每个人、每个家庭、每个组织，构建万物互联的智能世界</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+        <div class="section-title">
+            <h2>新闻资讯</h2>
+            <p>了解华为最新动态与行业洞察</p>
+        </div>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-img n-img-1"></div>
+                <div class="date">2026-04-25</div>
+                <h3>华为发布新一代AI芯片，算力提升300%</h3>
+                <p>华为在深圳总部举行新品发布会，正式推出全新昇腾系列AI处理器，在大模型训练推理场景下性能实现重大突破。</p>
+            </div>
+            <div class="news-card">
+                <div class="news-img n-img-2"></div>
+                <div class="date">2026-04-20</div>
+                <h3>华为云Stack 3.0发布，加速政企数字化转型</h3>
+                <p>全新华为云Stack 3.0版本带来更强大的混合云管理能力，支持鲲鹏、昇腾多元算力统一调度。</p>
+            </div>
+            <div class="news-card">
+                <div class="news-img n-img-3"></div>
+                <div class="date">2026-04-15</div>
+                <h3>华为联合全球运营商完成5.5G商用验证</h3>
+                <p>华为与全球多家领先运营商合作，在多个城市完成5.5G（5G-Advanced）技术商用验证测试。</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4>消费者业务</h4>
+                <a href="#">手机</a>
+                <a href="#">笔记本电脑</a>
+                <a href="#">平板电脑</a>
+                <a href="#">智能穿戴</a>
+                <a href="#">智能音频</a>
+                <a href="#">智能家居</a>
+            </div>
+            <div>
+                <h4>企业业务</h4>
+                <a href="#">行业解决方案</a>
+                <a href="#">企业网络</a>
+                <a href="#">数据中心</a>
+                <a href="#">云计算</a>
+                <a href="#">人工智能</a>
+                <a href="#">安全服务</a>
+            </div>
+            <div>
+                <h4>关于华为</h4>
+                <a href="#">公司简介</a>
+                <a href="#">管理层信息</a>
+                <a href="#">企业文化</a>
+                <a href="#">可持续发展</a>
+                <a href="#">社会责任</a>
+                <a href="#">加入华为</a>
+            </div>
+            <div>
+                <h4>关注华为</h4>
+                <div class="footer-social">
+                    <a href="#">微</a>
+                    <a href="#">博</a>
+                    <a href="#">视</a>
+                    <a href="#">号</a>
+                </div>
+                <a href="#" style="margin-top: 16px;">新闻中心</a>
+                <a href="#">华为商城</a>
+                <a href="#">华为社区</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 华为技术有限公司 版权所有 | 粤ICP备XXXXXXXX号 | 隐私政策 | 法律声明</p>
+        </div>
+    </div>
+    <script>function test() { return true; }</script>
+</body>
+</html>

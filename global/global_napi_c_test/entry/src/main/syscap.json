@@ -1,0 +1,14 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Global.ResourceManager",
+                    "SystemCapability.WindowManager.WindowManager.Core",
+                    "SystemCapability.Ability.AbilityRuntime.Core"
+                ]
+            }
+        ]
+    }
+}

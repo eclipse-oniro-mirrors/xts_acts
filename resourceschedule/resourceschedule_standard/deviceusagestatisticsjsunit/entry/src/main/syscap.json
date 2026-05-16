@@ -1,0 +1,13 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.ResourceSchedule.UsageStatistics.AppGroup",
+                    "SystemCapability.ResourceSchedule.UsageStatistics.App"
+                ]
+            }
+        ]
+    }
+}

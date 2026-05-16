@@ -1,0 +1,22 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/imageSpan/imageSpan",
+    "MainAbility/pages/Marquee/MarqueeDynamicSyncSceneType",
+    "MainAbility/pages/Marquee/marqueeFrame",
+    "MainAbility/pages/Marquee/marqueeNode",
+    "MainAbility/pages/SymbolGlyph/SymbolGlyphNode",
+    "MainAbility/pages/Text/textAreaInputTest",
+    "MainAbility/pages/Text/textCaretColor",
+    "MainAbility/pages/TextArea/textAreaNode",
+    "MainAbility/pages/RichEditor/getRectsForRange",
+    "MainAbility/pages/RichEditor/onDoubleClickOnHover",
+    "MainAbility/pages/RichEditor/onHover",
+    "MainAbility/pages/RichEditor/onWillChange",
+    "MainAbility/pages/ImageOrientation/ImageOrientation",
+    "MainAbility/pages/onSubmit/onSubmitTest",
+    "MainAbility/pages/styledString/StyledString",
+    "MainAbility/pages/styledString/StyledStringURL",
+    "MainAbility/pages/UIContext/KeyboardAvoidMode"
+  ]
+}

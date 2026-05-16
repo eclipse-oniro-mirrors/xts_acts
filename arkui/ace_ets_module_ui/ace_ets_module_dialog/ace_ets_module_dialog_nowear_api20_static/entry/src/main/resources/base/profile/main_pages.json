@@ -1,0 +1,18 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/customDialog/customDialogGetState",
+    "MainAbility/pages/popup/bindPopupAvoidTarget",
+    "MainAbility/pages/promptAction/openCustomDialogWithControllerGetState",
+    "MainAbility/pages/promptAction/openPopupAvoidTarget",
+    "MainAbility/pages/promptAction/presentCustomDialogGetState",
+    "MainAbility/pages/promptAction/showActionMenuLife",
+    "MainAbility/pages/rating/ratingStarStyleOptions",
+    "MainAbility/pages/select/selectModifier",
+    "MainAbility/pages/select/selectOptionSymbolIcon",
+    "MainAbility/pages/select/selectShowDefaultSelectedIcon",
+    "MainAbility/pages/select/selectShowInSubWindow",
+    "MainAbility/pages/slider/slider",
+    "MainAbility/pages/slider/sliderBlockColor"
+  ]
+}

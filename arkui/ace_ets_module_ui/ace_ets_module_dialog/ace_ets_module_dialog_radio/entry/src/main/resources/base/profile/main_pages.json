@@ -1,0 +1,15 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Radio/Radio",
+	"MainAbility/pages/Radio/RadioPage",
+        "MainAbility/pages/Radio/radioFirst",
+	"MainAbility/pages/Radio/radio2",
+
+        "MainAbility/pages/Radio/RadioContentModifier",
+        "MainAbility/pages/Radio/RadioIndicatorType",
+
+        "MainAbility/pages/Radio/radioNode",
+        "MainAbility/pages/Radio/radioOnChangeModifier"
+    ]
+}

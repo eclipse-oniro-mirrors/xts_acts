@@ -1,0 +1,12 @@
+{
+  "src": [
+    "testability/pages/web",
+    "testability/pages/WebOnOffOne",
+    "testability/pages/WebOnOffTwo",
+    "testability/pages/WaitForAttached",
+    "testability/pages/OnActivateContent",
+    "testability/pages/OnControllerAttachStateChangeError",
+    "testability/pages/OffControllerAttachStateChangeError",
+    "testability/pages/WaitForAttachedError"
+  ]
+}

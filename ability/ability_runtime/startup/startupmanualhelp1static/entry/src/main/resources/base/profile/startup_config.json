@@ -1,0 +1,62 @@
+{
+  "startupTasks": [
+    {
+      "name": "Sample001",
+      "srcEntry": "./ets/startup/Sample001.ets",
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample002",
+      "srcEntry": "./ets/startup/Sample002.ets",
+      "dependencies": [
+        "Sample003"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample003",
+      "srcEntry": "./ets/startup/Sample003.ets",
+      "dependencies": [
+        "Sample001"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample004",
+      "srcEntry": "./ets/startup/Sample004.ets",
+      "dependencies": [
+        "Sample005",
+        "Sample007"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample005",
+      "srcEntry": "./ets/startup/Sample005.ets",
+      "dependencies": [
+        "Sample006"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample006",
+      "srcEntry": "./ets/startup/Sample006.ets",
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample007",
+      "srcEntry": "./ets/startup/Sample007.ets",
+      "dependencies": [
+        "Sample008",
+        "Sample001"
+      ],
+      "excludeFromAutoStart": true
+    },
+    {
+      "name": "Sample008",
+      "srcEntry": "./ets/startup/Sample008.ets",
+      "excludeFromAutoStart": true
+    }
+  ],
+  "configEntry": "./ets/startup/MyStartupConfigEntry.ets"
+}

@@ -1,0 +1,11 @@
+{
+    "src": [
+      "testability/pages/Index",
+      "testability/pages/webViewGetAccessibleGeolocation",
+      "testability/pages/GeolocationPermissionsAllowGeolocation",
+      "testability/pages/GeolocationPermissionsDeleteGeolocation",
+      "testability/pages/GeolocationPermissionsDeleteAllGeolocation",
+      "testability/pages/GeolocationPermissionsGetAccessibleGeolocation",
+      "testability/pages/GeolocationPermissionsGetAccessibleGeolocationCallback"
+    ]
+}

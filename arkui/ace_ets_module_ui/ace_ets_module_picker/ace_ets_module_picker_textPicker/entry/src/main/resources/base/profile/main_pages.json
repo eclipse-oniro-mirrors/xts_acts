@@ -1,0 +1,33 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/textPicker/textPickerSelectedBackgroundStyle",
+        "MainAbility/pages/textPicker/textPickerPropertiesModifier",
+        "MainAbility/pages/textPicker/textPickerDefaultPickerItemHeight",
+        "MainAbility/pages/textPicker/textPickerDefaultTextStyle",
+        "MainAbility/pages/textPicker/textPickerDefaultTextStyleModifier",
+        "MainAbility/pages/textPicker/textPickerDisableTextStyleAnimation",
+        "MainAbility/pages/textPicker/textPickerDivider",
+        "MainAbility/pages/textPicker/textPickerEnableHapticFeedback",
+        "MainAbility/pages/textPicker/textPickerGradientHeight",
+        "MainAbility/pages/textPicker/textPickerJsunit",
+        "MainAbility/pages/textPicker/textPickerMultiRange",
+        "MainAbility/pages/textPicker/textPickerOnChangeModifier",
+        "MainAbility/pages/textPicker/textPickerOnScrollStopTest",
+        "MainAbility/pages/textPicker/textPickerSec",
+        "MainAbility/pages/textPicker/textPickerSelectedArea",
+        "MainAbility/pages/textPicker/textPickerTextStyleThree",
+        "MainAbility/pages/textPicker/textPickerValue",
+        "MainAbility/pages/textPickerUndefinedNull/TextPickerDefaultPickerItemHeightNullUndefined",
+        "MainAbility/pages/textPickerUndefinedNull/TextPickerDisappearTextStyleNullUndefined",
+        "MainAbility/pages/textPickerUndefinedNull/TextPickerGradientHeightNullUndefined",
+        "MainAbility/pages/textPickerUndefinedNull/TextPickerSelectedBackgroundStyleNullUndefined",
+        "MainAbility/pages/textPickerUndefinedNull/TextPickerSelectedTextStyleNullUndefined",
+        "MainAbility/pages/textPickerUndefinedNull/TextPickerTextStyleNullUndefined",
+        "MainAbility/pages/textPickerUndefinedNull/textPickerCanLoopUndefinedNull",
+        "MainAbility/pages/textPickerUndefinedNull/textPickerDisableTextStyleAnimationUndefinedNull",
+        "MainAbility/pages/textPickerUndefinedNull/textPickerSelectedIndexUndefinedNull",
+        "MainAbility/pages/textPickerUndefinedNull/textPickerDefaultTextStyleUndefinedNull",
+        "MainAbility/pages/textPickerUndefinedNull/textPickerDividerUndefinedNull"
+    ]
+}

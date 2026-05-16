@@ -1,0 +1,10 @@
+	<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 定义裁剪路径 -->
+  <defs>
+    <clipPath id="clipPolygon" clip-rule="evenodd" clipPathUnits="objectBoundingBox" fill-rule="evenodd">
+        <polygon points="0.5,0.05 0.2,1 0.9,0.4 0.05,0.4 0.8,1" />
+    </clipPath>
+  </defs>
+  <rect x="0" y="0" width="200" height="200" fill="blue" />
+  <rect x="0" y="0" width="200" height="200" fill="red"  clip-path="url(#clipPolygon)" />
+</svg>

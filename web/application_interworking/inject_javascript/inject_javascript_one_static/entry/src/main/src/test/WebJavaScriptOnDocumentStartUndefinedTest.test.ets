@@ -1,0 +1,74 @@
+/*
+ * Copyright (c) 2025 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the 'License');
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an 'AS IS' BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { beforeAll, beforeEach, describe, it, TestType, Size, Level } from '../../../hypium/index';
+import router from '@ohos.router';
+import Utils from './Util.test';
+import inspector from '@ohos.arkui.inspector';
+import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
+import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let testAbilityContext:common.UIAbilityContext;
+
+export default function webJavaScriptOnDocumentStartUndefined() {
+  describe('ActsAceWebJavaScriptOnDoucmentStartUndefined', ():void => {
+    beforeAll(async (): Promise<void> => {
+      console.log('App start')
+    });
+
+
+    beforeEach(async () => {
+      await Utils.msSleep(2000);
+    })
+
+    /**
+     * @tc.name   testJavaScriptOnDocumentStartUndefinedStatic001
+     * @tc.number SUB_WEB_JAVASCRIPTONDOCUMENTSTART_01001
+     * @tc.desc   test javaScriptOnDocumentStart
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it('testJavaScriptOnDocumentStartUndefinedStatic001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: () => void): Promise<void> => {
+        Utils.emitEvent("testJavaScriptOnDocumentStartUndefined001", 10)
+        await Utils.msSleep(2000);
+        Utils.registerEvent("testJavaScriptOnDocumentStartUndefined001", true, 25112602, done);
+        await Utils.msSleep(2000);
+        inspector.sendEventByKey('webJavaScriptOnDocumentStartUndefinedTestButton', 10, '');
+        await Utils.msSleep(6000);
+        done();
+      })
+
+    /**
+     * @tc.name        SwitchNextPageStatic
+     * @tc.number      SwitchNextPageStatic5555
+     * @tc.desc        test SwitchNextPageStatic
+     * @tc.size        MediumTest
+     * @tc.type        Function
+     * @tc.level       LEVEL0
+     */
+    it('SwitchNextPageStatic', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0,
+      async (done: () => void): Promise<void> => {
+        await Utils.msSleep(2000);
+        Utils.emitEvent('SwitchNextPageStatic', 10)
+        await Utils.msSleep(3000);
+        inspector.sendEventByKey('webJavaScriptOnDocumentStartUndefinedTestButton', 10, '');
+        await Utils.msSleep(6000);
+        done();
+      })
+  })
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>videoTest</title>
+</head>
+<body>
+<video controls autoplay loop name="media" id="my-bgm">
+    <source src="./02.mp4" type="audio/mpeg">
+</video>
+</body>
+<script>
+    let ele=document.getElementById("my-bgm");
+    let loadAudio;
+    ele.onload=function(){
+        loadAudio="load complete"
+    }
+    function test(){
+        backToEts.test("backToEts")
+    }
+    function enableMute() {
+        var myVid = document.getElementById("my-bgm");
+        myVid.muted = true;
+        return myVid.muted
+    }
+    function disableMute() {
+        var myVid = document.getElementById("my-bgm");
+        myVid.muted = false;
+        return myVid.muted
+    }
+    function checkMute() {
+        var myVid = document.getElementById("my-bgm");
+        if ( myVid.muted ) {
+            return "muted"
+        } else {
+            return "unmuted"
+        }
+    }
+    function play() {
+        var myVid = document.getElementById("my-bgm");
+        if (myVid.paused) {
+            myVid.play()
+        }
+        return myVid.paused
+    }
+    function pause() {
+        var myVid = document.getElementById("my-bgm");
+        myVid.pause()
+        return myVid.paused
+    }
+    function checkState() {
+        var myVid = document.getElementById("my-bgm");
+        return myVid.paused
+    }
+</script>
+</html>

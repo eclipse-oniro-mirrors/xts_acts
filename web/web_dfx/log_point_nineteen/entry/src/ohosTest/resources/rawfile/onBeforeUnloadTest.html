@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="10; URL=//rawfile/onBeforeUnloadTest.html">
+<title>W3Cschool在线教程(w3cschool.cn)</title>
+</head>
+<body onbeforeunload="return myFunction()">
+
+<p>关闭当前窗口，按下 F5 或点击以下链接触发 onbeforeunload 事件。</p>
+<a href="http://www.w3cschool.cn">点击跳转到W3Cschool在线教程</a>
+    <img src="icon.png" alt="icon" id="imgs">
+</body>
+<script>
+    let ele=document.getElementById("imgs");
+    let loadImage;
+    ele.onload=function(){
+        loadImage=ele.click()
+    }
+    function test(){
+        backToEts.test("backToEts")
+    }
+    function myFunction() {
+        document.getElementById("imgs").click()
+        return "我在这写点东西...";
+    }
+    function myRefresh() {
+        return window.location.reload();
+    }
+    function myNewPage() {
+        return window.location.replace("http://www.w3cschool.cn")
+    }
+    myFunction()
+</script>
+</html>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200"
+     xmlns="http://www.w3.org/2000/svg"
+     style="background:#111">
+
+  <!-- 粒子颜色 -->
+  <defs>
+    <style>
+      .p{opacity:0}
+    </style>
+  </defs>
+
+  <!-- 12 条粒子 -->
+  <g transform="translate(100,100)">
+    <!-- 0° -->
+    <circle class="p" r="3" fill="#ff0080">
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 30° -->
+    <circle class="p" r="3" fill="#ffc000">
+      <animateTransform attributeName="transform" type="rotate" values="0;30" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 60° -->
+    <circle class="p" r="3" fill="#40ff00">
+      <animateTransform attributeName="transform" type="rotate" values="0;60" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 90° -->
+    <circle class="p" r="3" fill="#00ffff">
+      <animateTransform attributeName="transform" type="rotate" values="0;90" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 120° -->
+    <circle class="p" r="3" fill="#0080ff">
+      <animateTransform attributeName="transform" type="rotate" values="0;120" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 150° -->
+    <circle class="p" r="3" fill="#8000ff">
+      <animateTransform attributeName="transform" type="rotate" values="0;150" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 180° -->
+    <circle class="p" r="3" fill="#ff00ff">
+      <animateTransform attributeName="transform" type="rotate" values="0;180" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 210° -->
+    <circle class="p" r="3" fill="#ff0080">
+      <animateTransform attributeName="transform" type="rotate" values="0;210" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 240° -->
+    <circle class="p" r="3" fill="#ff4040">
+      <animateTransform attributeName="transform" type="rotate" values="0;240" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 270° -->
+    <circle class="p" r="3" fill="#ffff00">
+      <animateTransform attributeName="transform" type="rotate" values="0;270" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 300° -->
+    <circle class="p" r="3" fill="#80ff00">
+      <animateTransform attributeName="transform" type="rotate" values="0;300" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+    <!-- 330° -->
+    <circle class="p" r="3" fill="#00ff80">
+      <animateTransform attributeName="transform" type="rotate" values="0;330" dur="0.8s" additive="sum" fill="freeze"/>
+      <animate attributeName="cy" from="0" to="-80" dur="0.8s" fill="freeze"/>
+      <animate attributeName="opacity" values="1;0" dur="0.8s" fill="freeze"/>
+    </circle>
+  </g>
+</svg>

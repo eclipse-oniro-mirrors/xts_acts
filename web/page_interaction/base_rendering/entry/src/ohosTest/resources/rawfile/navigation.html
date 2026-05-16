@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>导航页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .link-item {
+            display: block;
+            text-decoration: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .link-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .link-item:active {
+            transform: translateY(0);
+        }
+
+        .link-item:nth-child(7) {
+            grid-column: span 2;
+        }
+
+        .link-item:nth-child(8) {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>页面导航</h1>
+    <div class="link-grid">
+        <a href="summarizer.html" class="link-item">Summarizer API</a>
+        <a href="prompt.html" class="link-item">Prompt API</a>
+        <a href="multimodal.html" class="link-item">Prompt API 2</a>
+        <a href="translator.html" class="link-item">Translator API</a>
+        <a href="writer.html" class="link-item">Writer API</a>
+        <a href="rewriter.html" class="link-item">Rewriter API</a>
+        <a href="proofreader.html" class="link-item">Proofreader API</a>
+        <a href="language_detector.html" class="link-item">Language Detector API</a>
+    </div>
+</div>
+</body>
+</html>
+

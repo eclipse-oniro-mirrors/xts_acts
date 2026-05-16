@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 页面未找到</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            min-height: 100vh;
+            background: #f5f5f5;
+            overflow-x: hidden;
+        }
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            background: white;
+            animation: float 20s infinite;
+        }
+        .s1 { width: 200px; height: 200px; top: 10%; left: 5%; animation-delay: 0s; }
+        .s2 { width: 150px; height: 150px; top: 60%; right: 10%; animation-delay: -5s; }
+        .s3 { width: 100px; height: 100px; bottom: 10%; left: 30%; animation-delay: -10s; }
+        .s4 { width: 180px; height: 180px; top: 20%; right: 20%; animation-delay: -7s; }
+        .s5 { width: 120px; height: 120px; bottom: 30%; left: 10%; animation-delay: -3s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-30px) rotate(5deg); }
+            50% { transform: translateY(-15px) rotate(-3deg); }
+            75% { transform: translateY(-25px) rotate(3deg); }
+        }
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 0 10px;
+        }
+        .top-nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.15);
+            transition: background 0.3s;
+        }
+        .top-nav a:hover { background: rgba(255,255,255,0.3); }
+        .error-page {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+        }
+        .error-code {
+            font-size: 140px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #4e6ef2, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .error-title {
+            font-size: 24px;
+            color: #333;
+            margin: 20px 0;
+        }
+        .error-desc {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        .search-bar {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            border-radius: 25px;
+            overflow: hidden;
+            border: 2px solid #4e6ef2;
+            box-shadow: 0 4px 15px rgba(78,110,242,0.2);
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            font-size: 14px;
+            outline: none;
+        }
+        .search-bar button {
+            padding: 12px 30px;
+            background: #4e6ef2;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .search-bar button:hover { background: #3d5bd9; }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+        .btn-home {
+            display: inline-block;
+            padding: 10px 40px;
+            background: #4e6ef2;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-home:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(78,110,242,0.4); }
+        .btn-secondary {
+            display: inline-block;
+            padding: 10px 40px;
+            background: white;
+            color: #4e6ef2;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 14px;
+            border: 1px solid #4e6ef2;
+            transition: background 0.3s;
+        }
+        .btn-secondary:hover { background: #f0f3ff; }
+        .section-title {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 3px solid #4e6ef2;
+        }
+        .suggested-pages {
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .suggested-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .suggested-list a {
+            display: inline-block;
+            padding: 8px 20px;
+            background: white;
+            color: #4e6ef2;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid #e0e5f5;
+            transition: all 0.2s;
+        }
+        .suggested-list a:hover { background: #4e6ef2; color: white; }
+        .popular-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .popular-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #eee;
+        }
+        .popular-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        .popular-card .icon { font-size: 28px; margin-bottom: 8px; }
+        .popular-card .label { font-size: 13px; color: #555; }
+        .error-details {
+            background: #fff3e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .error-details h3 {
+            font-size: 14px;
+            color: #e65100;
+            margin-bottom: 12px;
+        }
+        .error-details table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .error-details td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #ffe0b2;
+        }
+        .error-details td:first-child { color: #888; width: 120px; font-weight: 500; }
+        .error-details td:last-child { color: #555; word-break: break-all; }
+        .error-details tr:last-child td { border-bottom: none; }
+        .help-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .help-section h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .help-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .help-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f8f9ff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .help-item:hover { background: #eef1ff; }
+        .help-item .hi-icon { font-size: 20px; }
+        .help-item .hi-text { font-size: 13px; color: #333; }
+        .help-item .hi-desc { font-size: 11px; color: #999; margin-top: 2px; }
+        .nav-footer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+        .nav-footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+        .nav-footer a:hover { color: white; }
+        .copyright {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 12px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="floating-shape s1"></div>
+        <div class="floating-shape s2"></div>
+        <div class="floating-shape s3"></div>
+        <div class="floating-shape s4"></div>
+        <div class="floating-shape s5"></div>
+    </div>
+    <div class="page-wrapper">
+        <div class="top-nav">
+            <a href="/">百度首页</a>
+            <a href="#">帮助中心</a>
+            <a href="#">反馈</a>
+        </div>
+        <div class="error-page">
+            <div class="error-code">404</div>
+            <div class="error-title">抱歉，您访问的页面不存在</div>
+            <div class="error-desc">您可能输入了错误的网址，或者该页面已被删除或移动。<br>请检查网址是否正确，或尝试以下搜索。</div>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索您想要的内容...">
+                <button>百度一下</button>
+            </div>
+            <div class="btn-group">
+                <a href="/" class="btn-home">返回百度首页</a>
+                <a href="#" class="btn-secondary">查看历史记录</a>
+            </div>
+            <div class="suggested-pages">
+                <div class="section-title">推荐页面</div>
+                <div class="suggested-list">
+                    <a href="#">百度搜索</a>
+                    <a href="#">百度地图</a>
+                    <a href="#">百度贴吧</a>
+                    <a href="#">百度百科</a>
+                    <a href="#">百度知道</a>
+                    <a href="#">百度文库</a>
+                    <a href="#">百度翻译</a>
+                    <a href="#">百度网盘</a>
+                </div>
+            </div>
+            <div class="popular-links">
+                <a href="#" class="popular-card">
+                    <div class="icon">&#128269;</div>
+                    <div class="label">百度搜索</div>
+                </a>
+                <a href="#" class="popular-card">
+                    <div class="icon">&#128506;</div>
+                    <div class="label">百度地图</div>
+                </a>
+                <a href="#" class="popular-card">
+                    <div class="icon">&#128218;</div>
+                    <div class="label">百度百科</div>
+                </a>
+                <a href="#" class="popular-card">
+                    <div class="icon">&#128172;</div>
+                    <div class="label">百度知道</div>
+                </a>
+                <a href="#" class="popular-card">
+                    <div class="icon">&#127916;</div>
+                    <div class="label">百度贴吧</div>
+                </a>
+                <a href="#" class="popular-card">
+                    <div class="icon">&#128196;</div>
+                    <div class="label">百度文库</div>
+                </a>
+                <a href="#" class="popular-card">
+                    <div class="icon">&#127760;</div>
+                    <div class="label">百度翻译</div>
+                </a>
+                <a href="#" class="popular-card">
+                    <div class="icon">&#128193;</div>
+                    <div class="label">百度网盘</div>
+                </a>
+            </div>
+            <div class="error-details">
+                <h3>&#9888; 错误详情</h3>
+                <table>
+                    <tr><td>请求地址</td><td>https://www.baidu.com/123</td></tr>
+                    <tr><td>服务器</td><td>www.baidu.com</td></tr>
+                    <tr><td>状态码</td><td>404 Not Found</td></tr>
+                    <tr><td>请求方法</td><td>GET</td></tr>
+                    <tr><td>内容类型</td><td>text/html; charset=utf-8</td></tr>
+                    <tr><td>时间</td><td id="errorTime"></td></tr>
+                    <tr><td>用户代理</td><td>Mozilla/5.0 WebKit</td></tr>
+                </table>
+            </div>
+            <div class="help-section">
+                <h3>&#10067; 需要帮助？</h3>
+                <div class="help-items">
+                    <div class="help-item">
+                        <div class="hi-icon">&#128270;</div>
+                        <div><div class="hi-text">重新搜索</div><div class="hi-desc">使用搜索框查找内容</div></div>
+                    </div>
+                    <div class="help-item">
+                        <div class="hi-icon">&#128259;</div>
+                        <div><div class="hi-text">返回上一页</div><div class="hi-desc">回到之前浏览的页面</div></div>
+                    </div>
+                    <div class="help-item">
+                        <div class="hi-icon">&#127968;</div>
+                        <div><div class="hi-text">回到首页</div><div class="hi-desc">访问百度首页</div></div>
+                    </div>
+                    <div class="help-item">
+                        <div class="hi-icon">&#128221;</div>
+                        <div><div class="hi-text">帮助中心</div><div class="hi-desc">查看常见问题解答</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-footer">
+            <a href="#">关于百度</a>
+            <a href="#">About Baidu</a>
+            <a href="#">百度推广</a>
+            <a href="#">使用百度前必读</a>
+            <a href="#">意见反馈</a>
+            <a href="#">帮助中心</a>
+        </div>
+        <div class="copyright">&copy; 2024 Baidu 使用百度前必读 京ICP证030173号</div>
+    </div>
+    <script>
+        function test() { return true; }
+        document.getElementById('errorTime').textContent = new Date().toLocaleString('zh-CN');
+    </script>
+</body>
+</html>

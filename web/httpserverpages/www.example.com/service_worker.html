@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Worker Test Page</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0f172a;
+            min-height: 100vh;
+            padding: 20px;
+            color: #e2e8f0;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto 20px;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            border-radius: 12px;
+            border: 1px solid #475569;
+        }
+        .header h1 { color: #f8fafc; font-size: 1.4em; }
+        .header .online-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .header .online-badge.online { background: #065f46; color: #6ee7b7; }
+        .header .online-badge.offline { background: #7f1d1d; color: #fca5a5; }
+        .header .online-badge .dot {
+            width: 10px; height: 10px; border-radius: 50%;
+        }
+        .header .online-badge.online .dot { background: #34d399; animation: pulse 2s infinite; }
+        .header .online-badge.offline .dot { background: #f87171; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .panel {
+            background: #1e293b;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            overflow: hidden;
+        }
+        .panel.full-width { grid-column: 1 / -1; }
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: #0f172a;
+            border-bottom: 1px solid #334155;
+        }
+        .panel-header h2 { font-size: 0.95em; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+        .panel-header .badge {
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+        .badge-green { background: #065f46; color: #6ee7b7; }
+        .badge-yellow { background: #78350f; color: #fcd34d; }
+        .badge-red { background: #7f1d1d; color: #fca5a5; }
+        .badge-blue { background: #1e3a5f; color: #93c5fd; }
+        .panel-body { padding: 16px 20px; }
+        .status-card {
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .status-card.registered {
+            background: #064e3b;
+            border: 1px solid #065f46;
+            color: #6ee7b7;
+        }
+        .status-card.active {
+            background: #164e63;
+            border: 1px solid #155e75;
+            color: #67e8f9;
+        }
+        .status-card.error {
+            background: #7f1d1d;
+            border: 1px solid #991b1b;
+            color: #fca5a5;
+        }
+        .status-card .label { font-weight: 600; font-size: 0.9em; }
+        .status-card .value { font-size: 0.85em; opacity: 0.85; }
+        .lifecycle-steps {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        .lifecycle-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+        }
+        .lifecycle-step .step-circle {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            font-weight: 700;
+            border: 2px solid #475569;
+            color: #64748b;
+            background: #1e293b;
+            transition: all 0.4s ease;
+        }
+        .lifecycle-step .step-circle.done {
+            background: #065f46;
+            border-color: #34d399;
+            color: #6ee7b7;
+            box-shadow: 0 0 12px rgba(52, 211, 153, 0.3);
+        }
+        .lifecycle-step .step-circle.current {
+            background: #1e3a5f;
+            border-color: #60a5fa;
+            color: #93c5fd;
+            box-shadow: 0 0 12px rgba(96, 165, 250, 0.3);
+            animation: pulse 1.5s infinite;
+        }
+        .lifecycle-step .step-label { font-size: 0.75em; color: #94a3b8; }
+        .lifecycle-step .step-time { font-size: 0.7em; color: #64748b; }
+        .lifecycle-arrow { color: #475569; font-size: 1.2em; }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .metric-card {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 14px;
+            border: 1px solid #1e293b;
+            text-align: center;
+        }
+        .metric-card .metric-value {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 4px;
+        }
+        .metric-card .metric-label { font-size: 0.75em; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+        .metric-card .metric-bar {
+            height: 4px;
+            border-radius: 2px;
+            background: #334155;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .metric-card .metric-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.6s ease;
+        }
+        .fill-green { background: #34d399; }
+        .fill-blue { background: #60a5fa; }
+        .fill-yellow { background: #fbbf24; }
+        .fill-red { background: #f87171; }
+        .log {
+            background: #0c1222;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: "Cascadia Code", "Fira Code", monospace;
+            font-size: 0.8em;
+            max-height: 260px;
+            overflow-y: auto;
+            border: 1px solid #1e293b;
+        }
+        .log-entry { padding: 5px 0; border-bottom: 1px solid #1e293b; line-height: 1.5; }
+        .log-entry .time { color: #64748b; }
+        .log-entry .info { color: #34d399; }
+        .log-entry .warn { color: #fbbf24; }
+        .log-entry .error { color: #f87171; }
+        .log-entry .fetch { color: #60a5fa; }
+        .log-entry .cache { color: #c084fc; }
+        .intercept-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8em;
+        }
+        .intercept-table th {
+            text-align: left;
+            padding: 8px 10px;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #334155;
+        }
+        .intercept-table td {
+            padding: 7px 10px;
+            border-bottom: 1px solid #1e293b;
+            color: #cbd5e1;
+        }
+        .intercept-table tr:hover td { background: #1e293b; }
+        .method-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 700;
+        }
+        .method-get { background: #065f46; color: #6ee7b7; }
+        .method-post { background: #1e3a5f; color: #93c5fd; }
+        .source-badge {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+        }
+        .source-cache { background: #3b0764; color: #d8b4fe; }
+        .source-network { background: #78350f; color: #fcd34d; }
+        .source-fallback { background: #7f1d1d; color: #fca5a5; }
+        .cache-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .cache-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin: 4px 0;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            font-size: 0.85em;
+        }
+        .cache-item .cache-url { color: #93c5fd; word-break: break-all; flex: 1; margin-right: 10px; }
+        .cache-item .cache-meta { color: #64748b; font-size: 0.8em; white-space: nowrap; }
+        .cache-item .cache-del {
+            background: none; border: none; color: #f87171; cursor: pointer; font-size: 1.1em; padding: 0 4px;
+        }
+        .btn {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary { background: #2563eb; color: white; }
+        .btn-primary:hover { background: #1d4ed8; }
+        .btn-danger { background: #dc2626; color: white; }
+        .btn-danger:hover { background: #b91c1c; }
+        .btn-secondary { background: #475569; color: #e2e8f0; }
+        .btn-secondary:hover { background: #64748b; }
+        .btn-success { background: #059669; color: white; }
+        .btn-success:hover { background: #047857; }
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+        .push-config {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .push-config label {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 0.8em;
+            color: #94a3b8;
+        }
+        .push-config input, .push-config textarea, .push-config select {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: #e2e8f0;
+            font-size: 0.9em;
+            outline: none;
+        }
+        .push-config input:focus, .push-config textarea:focus, .push-config select:focus {
+            border-color: #60a5fa;
+        }
+        .push-config textarea { resize: vertical; min-height: 60px; }
+        .sync-tasks { list-style: none; }
+        .sync-task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin: 6px 0;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+        }
+        .sync-task .task-info { flex: 1; }
+        .sync-task .task-name { font-weight: 600; font-size: 0.9em; color: #e2e8f0; }
+        .sync-task .task-status { font-size: 0.8em; color: #64748b; }
+        .sync-task .task-status.pending { color: #fbbf24; }
+        .sync-task .task-status.completed { color: #34d399; }
+        .sync-task .task-status.failed { color: #f87171; }
+        .empty-state {
+            text-align: center;
+            padding: 30px 20px;
+            color: #475569;
+            font-size: 0.85em;
+        }
+        .empty-state .empty-icon { font-size: 2em; margin-bottom: 8px; }
+        .sw-controls {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .sw-controls .btn { width: 100%; text-align: center; }
+        @media (max-width: 768px) {
+            .dashboard { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .push-config { grid-template-columns: 1fr; }
+            .sw-controls { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Service Worker Monitor</h1>
+        <div class="online-badge online" id="onlineBadge">
+            <span class="dot"></span>
+            <span id="onlineText">Online</span>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Service Worker Status</h2>
+                <span class="badge badge-blue" id="swStateBadge">Idle</span>
+            </div>
+            <div class="panel-body">
+                <div id="statusArea">
+                    <div class="status-card" id="swStatus">
+                        <span class="label">Registration</span>
+                        <span class="value" id="swStatusText">Checking...</span>
+                    </div>
+                    <div class="status-card" id="cacheStatus">
+                        <span class="label">Cache</span>
+                        <span class="value" id="cacheStatusText">Not cached</span>
+                    </div>
+                </div>
+                <div class="sw-controls">
+                    <button class="btn btn-primary" onclick="updateSW()">Update SW</button>
+                    <button class="btn btn-secondary" onclick="unregisterSW()">Unregister</button>
+                    <button class="btn btn-success" onclick="skipWaiting()">Skip Waiting</button>
+                    <button class="btn btn-danger" onclick="claimClients()">Claim Clients</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <h2>SW Lifecycle</h2>
+                <span class="badge badge-green" id="lifecyclePhase">Installing</span>
+            </div>
+            <div class="panel-body">
+                <div class="lifecycle-steps">
+                    <div class="lifecycle-step">
+                        <div class="step-circle current" id="lcInstall">1</div>
+                        <span class="step-label">Install</span>
+                        <span class="step-time" id="lcInstallTime">--</span>
+                    </div>
+                    <span class="lifecycle-arrow">&#8594;</span>
+                    <div class="lifecycle-step">
+                        <div class="step-circle" id="lcWait">2</div>
+                        <span class="step-label">Waiting</span>
+                        <span class="step-time" id="lcWaitTime">--</span>
+                    </div>
+                    <span class="lifecycle-arrow">&#8594;</span>
+                    <div class="lifecycle-step">
+                        <div class="step-circle" id="lcActivate">3</div>
+                        <span class="step-label">Activate</span>
+                        <span class="step-time" id="lcActivateTime">--</span>
+                    </div>
+                    <span class="lifecycle-arrow">&#8594;</span>
+                    <div class="lifecycle-step">
+                        <div class="step-circle" id="lcActive">4</div>
+                        <span class="step-label">Active</span>
+                        <span class="step-time" id="lcActiveTime">--</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel full-width">
+            <div class="panel-header">
+                <h2>Performance Metrics</h2>
+                <span class="badge badge-blue" id="metricsUpdate">Live</span>
+            </div>
+            <div class="panel-body">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value" id="metricCacheHit">0</div>
+                        <div class="metric-label">Cache Hits</div>
+                        <div class="metric-bar"><div class="metric-bar-fill fill-green" id="barCacheHit" style="width:0%"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="metricCacheMiss">0</div>
+                        <div class="metric-label">Cache Misses</div>
+                        <div class="metric-bar"><div class="metric-bar-fill fill-red" id="barCacheMiss" style="width:0%"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="metricHitRate">0%</div>
+                        <div class="metric-label">Hit Rate</div>
+                        <div class="metric-bar"><div class="metric-bar-fill fill-blue" id="barHitRate" style="width:0%"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="metricAvgResp">0ms</div>
+                        <div class="metric-label">Avg Response</div>
+                        <div class="metric-bar"><div class="metric-bar-fill fill-yellow" id="barAvgResp" style="width:0%"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="metricTotalReq">0</div>
+                        <div class="metric-label">Total Requests</div>
+                        <div class="metric-bar"><div class="metric-bar-fill fill-blue" id="barTotalReq" style="width:0%"></div></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="metricCacheSize">0 KB</div>
+                        <div class="metric-label">Cache Size</div>
+                        <div class="metric-bar"><div class="metric-bar-fill fill-green" id="barCacheSize" style="width:0%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel full-width">
+            <div class="panel-header">
+                <h2>Request Interception Log</h2>
+                <span class="badge badge-yellow" id="interceptCount">0 events</span>
+            </div>
+            <div class="panel-body" style="padding: 0;">
+                <div id="interceptArea">
+                    <div class="empty-state" id="interceptEmpty">
+                        <div class="empty-icon">&#128269;</div>
+                        Waiting for intercepted requests...
+                    </div>
+                    <table class="intercept-table" id="interceptTable" style="display:none;">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Method</th>
+                                <th>URL</th>
+                                <th>Source</th>
+                                <th>Duration</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="interceptBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Cache Management</h2>
+                <span class="badge badge-green" id="cacheCountBadge">0 entries</span>
+            </div>
+            <div class="panel-body">
+                <div class="cache-list" id="cacheList">
+                    <div class="empty-state" id="cacheEmpty">
+                        <div class="empty-icon">&#128451;</div>
+                        No cached resources
+                    </div>
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-primary" onclick="precacheResources()">Precache</button>
+                    <button class="btn btn-secondary" onclick="refreshCacheList()">Refresh</button>
+                    <button class="btn btn-danger" onclick="clearAllCache()">Clear All</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Event Log</h2>
+                <span class="badge badge-blue" id="logCountBadge">0 entries</span>
+            </div>
+            <div class="panel-body">
+                <div class="log" id="logArea">
+                    <div class="log-entry"><span class="time">[Init]</span> <span class="info">Page loaded, checking service worker registration...</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Push Notification Simulator</h2>
+                <span class="badge badge-blue">Simulate</span>
+            </div>
+            <div class="panel-body">
+                <div class="push-config">
+                    <label>
+                        Title
+                        <input type="text" id="pushTitle" value="Test Notification" placeholder="Notification title">
+                    </label>
+                    <label>
+                        Icon
+                        <input type="text" id="pushIcon" value="/icon.png" placeholder="Icon URL">
+                    </label>
+                    <label>
+                        Tag
+                        <input type="text" id="pushTag" value="test-tag-1" placeholder="Notification tag">
+                    </label>
+                    <label>
+                        Priority
+                        <select id="pushPriority">
+                            <option value="default">Default</option>
+                            <option value="high">High</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </label>
+                </div>
+                <label style="display:flex;flex-direction:column;gap:4px;font-size:0.8em;color:#94a3b8;margin-bottom:12px;">
+                    Body
+                    <textarea id="pushBody" placeholder="Notification body text...">This is a simulated push notification for XTS testing.</textarea>
+                </label>
+                <div class="btn-row">
+                    <button class="btn btn-primary" onclick="simulatePush()">Send Push</button>
+                    <button class="btn btn-secondary" onclick="clearNotifications()">Clear All</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <h2>Background Sync Test</h2>
+                <span class="badge badge-yellow" id="syncBadge">Ready</span>
+            </div>
+            <div class="panel-body">
+                <ul class="sync-tasks" id="syncTaskList">
+                    <li class="sync-task">
+                        <div class="task-info">
+                            <div class="task-name">Post Analytics Data</div>
+                            <div class="task-status pending" id="syncStatus0">Pending</div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="runSyncTask(0)" style="padding:5px 12px;font-size:0.8em;">Run</button>
+                    </li>
+                    <li class="sync-task">
+                        <div class="task-info">
+                            <div class="task-name">Upload Offline Form</div>
+                            <div class="task-status pending" id="syncStatus1">Pending</div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="runSyncTask(1)" style="padding:5px 12px;font-size:0.8em;">Run</button>
+                    </li>
+                    <li class="sync-task">
+                        <div class="task-info">
+                            <div class="task-name">Sync User Preferences</div>
+                            <div class="task-status pending" id="syncStatus2">Pending</div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="runSyncTask(2)" style="padding:5px 12px;font-size:0.8em;">Run</button>
+                    </li>
+                    <li class="sync-task">
+                        <div class="task-info">
+                            <div class="task-name">Refresh Auth Token</div>
+                            <div class="task-status pending" id="syncStatus3">Pending</div>
+                        </div>
+                        <button class="btn btn-secondary" onclick="runSyncTask(3)" style="padding:5px 12px;font-size:0.8em;">Run</button>
+                    </li>
+                </ul>
+                <div class="btn-row">
+                    <button class="btn btn-success" onclick="runAllSyncTasks()">Run All</button>
+                    <button class="btn btn-secondary" onclick="resetSyncTasks()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var swRegistration = null;
+        var metrics = { cacheHits: 0, cacheMisses: 0, totalRequests: 0, totalResponseTime: 0, cacheSizeBytes: 0 };
+        var interceptEvents = [];
+        var logEntryCount = 1;
+
+        window.addEventListener('online', function() {
+            document.getElementById('onlineBadge').className = 'online-badge online';
+            document.getElementById('onlineText').textContent = 'Online';
+            addLog('Network status: Online', 'info');
+        });
+        window.addEventListener('offline', function() {
+            document.getElementById('onlineBadge').className = 'online-badge offline';
+            document.getElementById('onlineText').textContent = 'Offline';
+            addLog('Network status: Offline', 'warn');
+        });
+
+        function updateLifecycle(phase) {
+            var phases = ['lcInstall', 'lcWait', 'lcActivate', 'lcActive'];
+            var phaseNames = ['Installing', 'Waiting', 'Activating', 'Active'];
+            var idx = phases.indexOf(phase);
+            var now = new Date().toLocaleTimeString();
+            for (var i = 0; i < phases.length; i++) {
+                var el = document.getElementById(phases[i]);
+                var timeEl = document.getElementById(phases[i] + 'Time');
+                if (i < idx) {
+                    el.className = 'step-circle done';
+                    if (!timeEl.textContent || timeEl.textContent === '--') timeEl.textContent = now;
+                } else if (i === idx) {
+                    el.className = 'step-circle current';
+                    timeEl.textContent = now;
+                } else {
+                    el.className = 'step-circle';
+                }
+            }
+            if (idx >= 0) {
+                document.getElementById('lifecyclePhase').textContent = phaseNames[idx];
+                if (idx === 3) document.getElementById('lifecyclePhase').className = 'badge badge-green';
+                else document.getElementById('lifecyclePhase').className = 'badge badge-yellow';
+            }
+        }
+
+        function updateMetrics() {
+            var total = metrics.cacheHits + metrics.cacheMisses;
+            var hitRate = total > 0 ? Math.round((metrics.cacheHits / total) * 100) : 0;
+            var avgResp = total > 0 ? Math.round(metrics.totalResponseTime / total) : 0;
+            document.getElementById('metricCacheHit').textContent = metrics.cacheHits;
+            document.getElementById('metricCacheMiss').textContent = metrics.cacheMisses;
+            document.getElementById('metricHitRate').textContent = hitRate + '%';
+            document.getElementById('metricAvgResp').textContent = avgResp + 'ms';
+            document.getElementById('metricTotalReq').textContent = metrics.totalRequests;
+            var cacheKB = Math.round(metrics.cacheSizeBytes / 1024);
+            document.getElementById('metricCacheSize').textContent = cacheKB + ' KB';
+            document.getElementById('barCacheHit').style.width = (total > 0 ? (metrics.cacheHits / total) * 100 : 0) + '%';
+            document.getElementById('barCacheMiss').style.width = (total > 0 ? (metrics.cacheMisses / total) * 100 : 0) + '%';
+            document.getElementById('barHitRate').style.width = hitRate + '%';
+            document.getElementById('barAvgResp').style.width = Math.min(avgResp / 5, 100) + '%';
+            document.getElementById('barTotalReq').style.width = Math.min(metrics.totalRequests / 2, 100) + '%';
+            document.getElementById('barCacheSize').style.width = Math.min(cacheKB / 500, 100) + '%';
+        }
+
+        function addInterceptEvent(method, url, source, duration, status) {
+            var time = new Date().toLocaleTimeString();
+            interceptEvents.push({ time: time, method: method, url: url, source: source, duration: duration, status: status });
+            var table = document.getElementById('interceptTable');
+            var empty = document.getElementById('interceptEmpty');
+            table.style.display = 'table';
+            if (empty) empty.style.display = 'none';
+            var tbody = document.getElementById('interceptBody');
+            var tr = document.createElement('tr');
+            var methodClass = method === 'GET' ? 'method-get' : 'method-post';
+            var sourceClass = 'source-' + source;
+            tr.innerHTML = '<td style="color:#64748b;">' + time + '</td>' +
+                '<td><span class="method-badge ' + methodClass + '">' + method + '</span></td>' +
+                '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + url + '</td>' +
+                '<td><span class="source-badge ' + sourceClass + '">' + source + '</span></td>' +
+                '<td style="color:#94a3b8;">' + duration + 'ms</td>' +
+                '<td style="color:#34d399;">' + status + '</td>';
+            tbody.insertBefore(tr, tbody.firstChild);
+            document.getElementById('interceptCount').textContent = interceptEvents.length + ' events';
+        }
+
+        function simulateInterceptEvents() {
+            var urls = ['/index.html', '/style.css', '/app.js', '/api/user', '/image/logo.png', '/font/main.woff2'];
+            var sources = ['cache', 'network', 'cache', 'network', 'cache', 'cache'];
+            for (var i = 0; i < urls.length; i++) {
+                (function(idx) {
+                    setTimeout(function() {
+                        var dur = sources[idx] === 'cache' ? Math.floor(Math.random() * 10 + 2) : Math.floor(Math.random() * 200 + 50);
+                        addInterceptEvent('GET', urls[idx], sources[idx], dur, '200');
+                        if (sources[idx] === 'cache') metrics.cacheHits++;
+                        else metrics.cacheMisses++;
+                        metrics.totalRequests++;
+                        metrics.totalResponseTime += dur;
+                        updateMetrics();
+                        addLog('Intercepted: GET ' + urls[idx] + ' [' + sources[idx] + '] ' + dur + 'ms', 'fetch');
+                    }, idx * 400);
+                })(i);
+            }
+        }
+
+        if ('serviceWorker' in navigator) {
+            addLog('Service Worker API is available', 'info');
+            updateLifecycle('lcInstall');
+            navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                swRegistration = registration;
+                addLog('Service Worker registered with scope: ' + registration.scope, 'info');
+                document.getElementById('swStatus').className = 'status-card registered';
+                document.getElementById('swStatusText').textContent = 'Registered (Scope: ' + registration.scope + ')';
+                document.getElementById('cacheStatusText').textContent = 'Ready for caching';
+                document.getElementById('swStateBadge').textContent = 'Registered';
+                document.getElementById('swStateBadge').className = 'badge badge-green';
+                updateLifecycle('lcActivate');
+                setTimeout(function() { updateLifecycle('lcActive'); }, 800);
+                addLog('SW lifecycle: Installed -> Activated -> Active', 'info');
+                setTimeout(simulateInterceptEvents, 1500);
+            }).catch(function(error) {
+                addLog('Service Worker registration failed: ' + error, 'error');
+                document.getElementById('swStatus').className = 'status-card error';
+                document.getElementById('swStatusText').textContent = 'Registration failed';
+                document.getElementById('swStateBadge').textContent = 'Error';
+                document.getElementById('swStateBadge').className = 'badge badge-red';
+            });
+        } else {
+            addLog('Service Worker API is not available in this browser', 'warn');
+            document.getElementById('swStatus').className = 'status-card error';
+            document.getElementById('swStatusText').textContent = 'Not supported';
+            document.getElementById('swStateBadge').textContent = 'Unsupported';
+            document.getElementById('swStateBadge').className = 'badge badge-red';
+        }
+
+        function addLog(message, level) {
+            var logArea = document.getElementById('logArea');
+            var entry = document.createElement('div');
+            entry.className = 'log-entry';
+            var time = new Date().toLocaleTimeString();
+            entry.innerHTML = '<span class="time">[' + time + ']</span> <span class="' + (level || 'info') + '">' + message + '</span>';
+            logArea.appendChild(entry);
+            logArea.scrollTop = logArea.scrollHeight;
+            logEntryCount++;
+            document.getElementById('logCountBadge').textContent = logEntryCount + ' entries';
+        }
+
+        function updateSW() {
+            if (swRegistration) {
+                addLog('Requesting service worker update...', 'info');
+                swRegistration.update().then(function() {
+                    addLog('Service worker update check completed', 'info');
+                });
+            } else {
+                addLog('No service worker registration to update', 'warn');
+            }
+        }
+
+        function unregisterSW() {
+            if (swRegistration) {
+                addLog('Unregistering service worker...', 'warn');
+                swRegistration.unregister().then(function(ok) {
+                    if (ok) {
+                        addLog('Service worker unregistered successfully', 'info');
+                        document.getElementById('swStatus').className = 'status-card error';
+                        document.getElementById('swStatusText').textContent = 'Unregistered';
+                        document.getElementById('swStateBadge').textContent = 'Unregistered';
+                        document.getElementById('swStateBadge').className = 'badge badge-red';
+                        swRegistration = null;
+                    }
+                });
+            } else {
+                addLog('No service worker registration found', 'warn');
+            }
+        }
+
+        function skipWaiting() {
+            addLog('skipWaiting() called on active service worker', 'info');
+            if (swRegistration && swRegistration.waiting) {
+                swRegistration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                addLog('SKIP_WAITING message sent to waiting SW', 'info');
+            } else {
+                addLog('No waiting service worker to skip', 'warn');
+            }
+        }
+
+        function claimClients() {
+            addLog('claimClients() requested', 'info');
+            if (swRegistration && swRegistration.active) {
+                swRegistration.active.postMessage({ type: 'CLAIM_CLIENTS' });
+                addLog('CLAIM_CLIENTS message sent to active SW', 'info');
+            } else {
+                addLog('No active service worker to claim clients', 'warn');
+            }
+        }
+
+        function precacheResources() {
+            addLog('Precaching resources...', 'cache');
+            var resources = ['/index.html', '/style.css', '/app.js', '/sw.js'];
+            var cacheName = 'xts-precache-v1';
+            caches.open(cacheName).then(function(cache) {
+                cache.addAll(resources).then(function() {
+                    addLog('Precached ' + resources.length + ' resources into ' + cacheName, 'cache');
+                    refreshCacheList();
+                }).catch(function(err) {
+                    addLog('Precache failed: ' + err, 'error');
+                });
+            });
+        }
+
+        function refreshCacheList() {
+            var listEl = document.getElementById('cacheList');
+            var emptyEl = document.getElementById('cacheEmpty');
+            if ('caches' in window) {
+                caches.keys().then(function(names) {
+                    var allEntries = [];
+                    var count = 0;
+                    var promises = names.map(function(name) {
+                        return caches.open(name).then(function(cache) {
+                            return cache.keys().then(function(keys) {
+                                keys.forEach(function(req) {
+                                    count++;
+                                    allEntries.push({ url: req.url, cache: name });
+                                });
+                            });
+                        });
+                    });
+                    Promise.all(promises).then(function() {
+                        document.getElementById('cacheCountBadge').textContent = count + ' entries';
+                        if (count === 0) {
+                            listEl.innerHTML = '<div class="empty-state" id="cacheEmpty"><div class="empty-icon">&#128451;</div>No cached resources</div>';
+                            return;
+                        }
+                        listEl.innerHTML = '';
+                        allEntries.forEach(function(entry, i) {
+                            var item = document.createElement('div');
+                            item.className = 'cache-item';
+                            item.innerHTML = '<span class="cache-url">' + entry.url + '</span>' +
+                                '<span class="cache-meta">' + entry.cache + '</span>' +
+                                '<button class="cache-del" onclick="deleteCacheItem(\'' + entry.cache + '\',\'' + entry.url + '\')">&#10005;</button>';
+                            listEl.appendChild(item);
+                        });
+                    });
+                });
+            } else {
+                addLog('Cache API not available', 'warn');
+            }
+        }
+
+        function deleteCacheItem(cacheName, url) {
+            caches.open(cacheName).then(function(cache) {
+                cache.delete(url).then(function(deleted) {
+                    if (deleted) {
+                        addLog('Deleted from cache: ' + url, 'cache');
+                        refreshCacheList();
+                    }
+                });
+            });
+        }
+
+        function clearAllCache() {
+            if ('caches' in window) {
+                caches.keys().then(function(names) {
+                    names.forEach(function(name) {
+                        caches.delete(name);
+                        addLog('Deleted cache: ' + name, 'cache');
+                    });
+                    setTimeout(refreshCacheList, 300);
+                    document.getElementById('cacheStatusText').textContent = 'All caches cleared';
+                });
+            }
+        }
+
+        function simulatePush() {
+            var title = document.getElementById('pushTitle').value || 'Test Notification';
+            var body = document.getElementById('pushBody').value || '';
+            var icon = document.getElementById('pushIcon').value || '';
+            var tag = document.getElementById('pushTag').value || '';
+            addLog('Simulating push notification: ' + title, 'info');
+            if ('Notification' in window && Notification.permission === 'granted') {
+                var opts = { body: body, icon: icon, tag: tag };
+                new Notification(title, opts);
+                addLog('Push notification displayed: ' + title, 'info');
+            } else if ('Notification' in window && Notification.permission !== 'denied') {
+                Notification.requestPermission().then(function(perm) {
+                    if (perm === 'granted') {
+                        new Notification(title, { body: body, icon: icon, tag: tag });
+                        addLog('Push notification displayed after permission grant', 'info');
+                    } else {
+                        addLog('Push notification permission denied', 'warn');
+                    }
+                });
+            } else {
+                addLog('Push notifications not available (permission: ' + Notification.permission + ')', 'warn');
+            }
+        }
+
+        function clearNotifications() {
+            if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.ready.then(function(reg) {
+                    reg.getNotifications().then(function(notifications) {
+                        notifications.forEach(function(n) { n.close(); });
+                        addLog('Cleared ' + notifications.length + ' notifications', 'info');
+                    });
+                });
+            }
+        }
+
+        function runSyncTask(idx) {
+            var statusEl = document.getElementById('syncStatus' + idx);
+            statusEl.textContent = 'Running...';
+            statusEl.className = 'task-status pending';
+            addLog('Background sync task ' + idx + ' started', 'info');
+            var delay = Math.floor(Math.random() * 1500 + 500);
+            setTimeout(function() {
+                var success = Math.random() > 0.2;
+                if (success) {
+                    statusEl.textContent = 'Completed';
+                    statusEl.className = 'task-status completed';
+                    addLog('Background sync task ' + idx + ' completed successfully', 'info');
+                } else {
+                    statusEl.textContent = 'Failed';
+                    statusEl.className = 'task-status failed';
+                    addLog('Background sync task ' + idx + ' failed (will retry)', 'error');
+                }
+                checkSyncBadge();
+            }, delay);
+        }
+
+        function runAllSyncTasks() {
+            for (var i = 0; i < 4; i++) {
+                (function(idx) {
+                    setTimeout(function() { runSyncTask(idx); }, idx * 300);
+                })(i);
+            }
+        }
+
+        function resetSyncTasks() {
+            for (var i = 0; i < 4; i++) {
+                var statusEl = document.getElementById('syncStatus' + i);
+                statusEl.textContent = 'Pending';
+                statusEl.className = 'task-status pending';
+            }
+            addLog('All sync tasks reset to pending', 'info');
+            checkSyncBadge();
+        }
+
+        function checkSyncBadge() {
+            var allDone = true;
+            var anyFailed = false;
+            for (var i = 0; i < 4; i++) {
+                var statusEl = document.getElementById('syncStatus' + i);
+                var text = statusEl.textContent;
+                if (text === 'Pending' || text === 'Running...') allDone = false;
+                if (text === 'Failed') anyFailed = true;
+            }
+            var badge = document.getElementById('syncBadge');
+            if (allDone && !anyFailed) {
+                badge.textContent = 'All Done';
+                badge.className = 'badge badge-green';
+            } else if (allDone && anyFailed) {
+                badge.textContent = 'Has Failures';
+                badge.className = 'badge badge-red';
+            } else {
+                badge.textContent = 'Running';
+                badge.className = 'badge badge-yellow';
+            }
+        }
+
+        function test() { return true; }
+    </script>
+</body>
+</html>

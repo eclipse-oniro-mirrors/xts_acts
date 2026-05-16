@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "spaceWidth_error",
+      "value": "这是一个错误的资源值"
+    },
+    {
+      "name": "spaceWidth_normal",
+      "value": "200"
+    },
+    {
+      "name": "refreshOffset_Normal",
+      "value": "50"
+    },
+    {
+      "name": "refreshOffset_Error",
+      "value": "这是一个错误的资源值"
+    },
+    {
+      "name": "maxPullDownDistance_Normal",
+      "value": "200"
+    },
+    {
+      "name": "maxPullDownDistance_Error",
+      "value": "-50"
+    },
+    {
+      "name": "scrollBarWidth_Normal",
+      "value": "50"
+    },
+    {
+      "name": "scrollBarWidth_Error",
+      "value": "这是一个错误的资源值"
+    }
+  ]
+}

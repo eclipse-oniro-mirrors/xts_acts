@@ -1,0 +1,14 @@
+{
+  "devices": {
+    "general": [],
+    "custom": [
+      {
+        "xts": [
+            "SystemCapability.Security.CryptoFramework",
+            "SystemCapability.Graphic.Graphic2D.NativeDrawing",
+            "SystemCapability.HiviewDFX.HiLog"
+        ]
+      }
+    ]
+  }
+}

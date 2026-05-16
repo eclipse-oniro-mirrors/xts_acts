@@ -1,0 +1,16 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/UIPickerComponent/UIPickerCanLoop",
+    "MainAbility/pages/UIPickerComponent/UIPickerEnableHap",
+    "MainAbility/pages/UIPickerComponent/UIPickerOptions",
+    "MainAbility/pages/UIPickerComponent/UIPickerOnChange",
+    "MainAbility/pages/UIPickerComponent/UIPickerOnScrollStop",
+    "MainAbility/pages/UIPickerComponent/UIPickerIndicator",
+    "MainAbility/pages/UIPickerComponent/UIPickerCanLoopModifier",
+    "MainAbility/pages/UIPickerComponent/UIPickerEnableHapModifier",
+    "MainAbility/pages/UIPickerComponent/UIPickerOnChangeModifier",
+    "MainAbility/pages/UIPickerComponent/UIPickerOnScrollStopModifier",
+    "MainAbility/pages/UIPickerComponent/UIPickerIndicatorModifier"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+    "description": "Configuration for photoAccessXtsStatic Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "3000000",
+        "bundle-name": "ohos.acts.multimedia.photoaccess.xts.static",
+        "shell-timeout": "600000",
+        "testcase-timeout": 300000,
+        "module-name": "entry"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "hilog -Q pidoff",
+                "rm -rf /storage/media/100/local/files/Videos/*",
+                "power-shell wakeup",
+                "power-shell timeout -o 2147483647",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.photoaccess.xts.static/haps/entry/files/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.multimedia.photoaccess.xts.static/haps/entry/files/",
+                "mkdir -p /data/tmp/case",
+                "chmod -R 777 /data/tmp/case "
+            ],
+            "teardown-command": [
+                "power-shell setmode 600",
+                "rm -rf /data/app/el2/100/database/ohos.acts.multimedia.photoaccess.xts.static/*",
+				"rm -rf /data/tmp/case/*",
+                "kill -9 `pidof ohos.acts.multimedia.photoaccess.xts.static`",
+                "scanner",
+                "sleep 5"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsPhotoAccessXtsStaticTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": [
+                "./resource/medialibrary/test_mov_1.jpg ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess.xts.static/haps/entry/files/",
+                "./resource/medialibrary/test_mov_1.mp4 ->/data/app/el2/100/base/ohos.acts.multimedia.photoaccess.xts.static/haps/entry/files/",
+				"./resource/medialibrary/01.jpg ->/data/tmp/case",
+				"./resource/medialibrary/01.mp4 ->/data/tmp/case"
+            ]
+        },
+		{
+            "type": "ShellKit",
+            "run-command": [
+                "mediatool send /data/tmp/case/01.jpg",
+				"mediatool send /data/tmp/case/01.mp4"
+            ]
+        }
+    ]
+}

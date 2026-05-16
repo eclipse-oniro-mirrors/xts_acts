@@ -1,0 +1,7 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/CustomComponent/CustomComponentIndex",
+    "MainAbility/pages/CustomComponent/CustomComponentLifecycleIndex"
+  ]
+}

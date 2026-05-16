@@ -1,0 +1,248 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility2_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility2_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility3_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility3_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility4_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility4_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility5_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility5_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility6_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility6_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility7_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility7_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility8_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility8_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility9_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility9_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility10_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility10_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility11_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility11_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility12_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility12_label",
+      "value": "label"
+    },
+    {
+      "name": "ThirdPartyMainAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThirdPartyMainAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "ThirdPartySecondAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThirdPartySecondAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "ThirdPartyThirdAbility1_desc",
+      "value": "description"
+    },
+    {
+      "name": "ThirdPartyThirdAbility1_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility13_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility13_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility14_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility14_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility15_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility15_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility16_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility16_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility17_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility17_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility18_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility18_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility19_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility19_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility14B_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility14B_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility20_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility20_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility20b_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility20b_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility21_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility21_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility21b_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility21b_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility12b_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility12b_label",
+      "value": "label"
+    },
+    {
+      "name": "MainAbility19b_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility19b_label",
+      "value": "label"
+    }
+  ]
+}

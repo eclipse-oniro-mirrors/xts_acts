@@ -1,0 +1,40 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.acts.storage.filefs",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": 70000
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "pre-push":[],
+            "run-command":[
+                "setenforce 1",
+                "power-shel1 setmode602",
+                "hilog -Q pidoff",
+                "hilog -p off",
+                "hilog -b I",
+                "hilog -b D -D 0xD002B70",
+                "sleep 2"
+            ],
+            "teardown-command":[
+            ]
+        },
+        {
+            "type": "PushKit",
+            "pre-push": [],
+            "push": []
+        },
+        {
+            "test-file-name": [
+                "ActsStorageFilefsJsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

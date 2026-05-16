@@ -1,0 +1,78 @@
+'use static';
+/**
+ * Copyright (c) 2026 Shenzhen Kaihong Digital Industry Development Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { Entry, Component, Column, Text, Button, ContentSlot } from '@ohos.arkui.component';
+import { AppStorage, State } from '@ohos.arkui.stateManagement';
+import { Router } from '@ohos.arkui.UIContext';
+import { NodeContent } from '@ohos.arkui.node';
+
+@Entry
+@Component
+struct ContentSlotIndex {
+  private nodeContent: NodeContent = new NodeContent();
+  @State slotStatus: string = 'empty';
+  @State nodeCount: int = 0;
+
+  aboutToAppear() {
+    try {
+      let routerInstance = this.getUIContext().getRouter();
+      AppStorage.setOrCreate<Router>('router', routerInstance);
+    } catch (error) {
+      console.info('[ARKUI_NEW] ContentSlotIndex error ' + error);
+    }
+  }
+
+  onPageShow() {
+    try {
+      this.nodeCount = 0;
+      this.slotStatus = 'nodeAdded';
+      AppStorage.setOrCreate<string>('contentSlotNodeAdded', 'true');
+      AppStorage.setOrCreate<string>('contentSlotStatus', this.slotStatus);
+      console.info('[ARKUI_NEW] ContentSlotIndex onPageShow done');
+    } catch (error) {
+      this.slotStatus = 'error:' + error;
+      AppStorage.setOrCreate<string>('contentSlotStatus', this.slotStatus);
+      console.error('[ARKUI_NEW] ContentSlotIndex onPageShow error: ' + error);
+    }
+  }
+
+  build() {
+    Column() {
+      Text('ContentSlot Test Page')
+        .key('contentSlotRoot').id('contentSlotRoot').fontSize(20).fontWeight(500)
+
+      Text('Slot Status: ' + this.slotStatus)
+        .key('csSlotStatus').id('csSlotStatus').fontSize(14).margin({ top: 8 })
+
+      Text('Node Count: ' + this.nodeCount)
+        .key('csNodeCount').id('csNodeCount').fontSize(14).margin({ top: 4 })
+
+      ContentSlot(this.nodeContent)
+        .debugLine('ContentSlotIndex.ets:48', 'entry')
+
+      Button('Add Node')
+        .key('csAddBtn').id('csAddBtn')
+        .fontSize(14).width('60%').margin({ top: 10 })
+        .onClick(() => {
+          this.nodeCount++;
+          this.slotStatus = 'nodes:' + this.nodeCount;
+          AppStorage.setOrCreate<string>('contentSlotStatus', this.slotStatus);
+        })
+
+      Text('ContentSlot Target')
+        .key('contentSlotTarget').id('contentSlotTarget').fontSize(16).margin({ top: 10 })
+    }.width('100%').height('100%').padding(16)
+  }
+}

@@ -1,0 +1,138 @@
+/*
+ * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import formHost from '@ohos.application.formHost';
+import formProvider from '@ohos.application.formProvider';
+import { describe, expect, it, TestType, Size, Level } from '@ohos/hypium';
+import { BusinessError } from '@ohos.base';
+
+export const getAllFormsInfoTest = (describeName:string, filterParameter:number) => {
+  const ERR_CODE1 = 1;
+  const ERR_OK_CODE = 2;
+  const ERR_CODE7 = 7;
+  const ERR_OK = `success`;
+
+  describe(`${describeName}`, () => {
+    const callbackName = `FMS_getFormsInfo_0200 callback`;
+    const promiseName = `FMS_getFormsInfo_0200 promise`;
+
+    /**
+     * @tc.name   GetAllFormsInfoTest_001
+     * @tc.number GetAllFormsInfoTest_001
+     * @tc.desc   setFormNextRefreshTime
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('GetAllFormsInfoTest_001', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done:Function) => {
+      let name: string = 'GetAllFormsInfoTest_001';
+      console.log(`==========${name} start==========`);
+      let onCallBack = () => {
+        console.log(`==========${name} onCallBack==========`);
+      };
+      formProvider.setFormNextRefreshTime(null, null, onCallBack);
+      console.log(`==========${name} start 1==========`);
+      formProvider.setFormNextRefreshTime(null, null)
+        .then((data) => {
+          console.log(`==========${name} then==========${JSON.stringify(data)}`);
+        })
+        .catch((error:BusinessError) => {
+          expect(error.code).assertEqual(ERR_CODE1);
+          console.log(`==========${name} catch==========${JSON.stringify(error)}`);
+      });
+      console.log(`==========${name} end==========`);
+      done();
+    });
+
+    /**
+     * @tc.name   GetAllFormsInfoTest_002
+     * @tc.number GetAllFormsInfoTest_002
+     * @tc.desc   updateForm
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL1
+     */
+    it('GetAllFormsInfoTest_002', TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL1, async (done:Function) => {
+      let name: string = 'GetAllFormsInfoTest_002';
+      console.log(`==========${name} start==========`);
+      let onCallBack = () => {
+        console.log(`==========${name} onCallBack==========`);
+      };
+      formProvider.updateForm(null, null, onCallBack);
+      console.log(`==========${name} start 1==========`);
+      formProvider.updateForm(null, null)
+        .then((data) => {
+          console.log(`==========${name} then==========${JSON.stringify(data)}`);
+        })
+        .catch((error:BusinessError) => {
+          expect(error.code).assertEqual(ERR_CODE7);
+          console.log(`==========${name} catch==========${JSON.stringify(error)}`);
+      });
+      console.log(`==========${name} end==========`);
+      done();
+    });
+
+    /**
+     * @tc.name   ${callbackName}
+     * @tc.number FMS_getFormsInfo_0200
+     * @tc.desc   Query all form configuration information without permission (by AsyncCallback)
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it(`${callbackName}`, TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done:Function) => {
+      console.log(`==========${callbackName} ${describeName} start==========`);
+
+      try {
+        formHost.getAllFormsInfo((error, data) => {
+          console.log(`${callbackName} getAllFormsInfo data: ${JSON.stringify(data)} error: ${JSON.stringify(error)}`);
+          expect(JSON.stringify(data)).assertEqual(undefined);
+          expect(error.code).assertEqual(ERR_OK_CODE);
+          done();
+          console.log(`==========${callbackName} ${describeName} end==========`);
+        });
+      } catch (error) {
+        console.log(`${callbackName} exception caught: ${JSON.stringify(error)})`);
+        console.log(`${callbackName} should not reach here`);
+        expect().assertFail();
+      }
+    });
+
+    /**
+     * @tc.name   ${promiseName}
+     * @tc.number FMS_getFormsInfo_0200
+     * @tc.desc   Query all form configuration information without permission (by Promise)
+     * @tc.type   FUNCTION
+     * @tc.size   MEDIUMTEST
+     * @tc.level  LEVEL0
+     */
+    it(`${promiseName}`, TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async (done:Function) => {
+      console.log(`==========${promiseName} ${describeName} start==========`);
+
+      try {
+        const data = await formHost.getAllFormsInfo();
+        console.log(`${promiseName} getAllFormsInfo data: ${JSON.stringify(data)}`);
+        expect().assertFail();
+        done();
+        console.log(`==========${promiseName} ${describeName} end==========`);
+      } catch (error) {
+        console.log(`${promiseName} exception caught: ${JSON.stringify(error)})`);
+        console.log(`${promiseName} should not reach here`);
+        expect(error.code).assertEqual(ERR_OK_CODE);
+        done()
+      }
+    });
+  });
+};

@@ -1,0 +1,18 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Shape/shapeUndefined",
+    "MainAbility/pages/Shape/shapeModifierUndefined",
+    "MainAbility/pages/Polygon/polygonUndefined",
+    "MainAbility/pages/Rect/rectModifierUndefined",
+    "MainAbility/pages/Rect/rectUndefined",
+    "MainAbility/pages/XComponent/xComponentUndefined",
+    "MainAbility/pages/XComponent/xComponentModifierUndefined",
+    "MainAbility/pages/Path/commandsUndefined",
+    "MainAbility/pages/Path/commandsUndefinedModifier",
+    "MainAbility/pages/Polyline/pointsUndefined",
+    "MainAbility/pages/Polyline/pointsUndefinedModifier",
+    "MainAbility/pages/Video/videoUndefined",
+    "MainAbility/pages/Video/videoUndefinedModifier"
+  ]
+}

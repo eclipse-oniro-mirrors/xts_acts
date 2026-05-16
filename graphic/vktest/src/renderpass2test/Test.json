@@ -1,0 +1,74 @@
+{
+    "description": "Config for ActsVulkanRenderpass2Test test cases",
+    "driver": {
+        "module-name": "ActsVulkanRenderpass2Test",
+        "native-test-timeout": "120000",
+        "native-test-device-path": "/data/local/tmp",
+        "runtime-hint": "100s",
+        "type": "CppTest"
+    },
+    "kits": [
+        {
+            "pre-push" : [
+            ],
+            "post-push" : [
+                "mount -o rw,remount /",
+                "chmod -R 777 /data/local/tmp/*",
+                "rm -rf /data/local/tmp/*.qpa",
+                "rm -rf /data/local/tmp/*.xml",
+                "mkdir -p /data/storage/shader_cache/local",
+                "mkdir /data/local/tmp/vulkan",
+                "tar zxvf /data/local/tmp/vulkandata.tar.gz -C /data/local/tmp/vulkan",
+                "chmod -R 777 /data/local/tmp/vulkan/vk-default/*",
+                "cp -r /data/local/tmp/vulkan/vk-default /data/local/tmp",
+                "cp -r /data/local/tmp/vulkan/data/vulkan/* /data/local/tmp/vulkan",
+                "cp -r /data/local/tmp/vulkan/vk-default/deqp_vk_execute /data/local/tmp/"
+            ],
+            
+            "push": [
+                "ActsVulkanRenderpass2Test->/data/local/tmp/ActsVulkanRenderpass2Test",
+                "vulkandata/libdeqp_ohos_platform.z.so->/data/local/tmp/libdeqp_ohos_platform.z.so",
+                "vulkandata/librosen_context.z.so->/data/local/tmp/librosen_context.z.so",
+                "vulkandata/libdeqp_spirv.z.so->/data/local/tmp/libdeqp_spirv.z.so",
+                "vulkandata/libdeqp_amber.z.so->/data/local/tmp/libdeqp_amber.z.so",
+                "vulkandata/libdeqp_spvremapper.z.so->/data/local/tmp/libdeqp_spvremapper.z.so", 
+                "vulkandata/libskia_canvaskit.z.so->/data/local/tmp/libskia_canvaskit.z.so",  
+                "vulkandata/vulkandata.tar.gz->/data/local/tmp/vulkandata.tar.gz"               
+            ],
+            "type": "PushKit"
+        },
+        {
+            "type": "CommandKit",
+            "teardown": [
+                {
+                    "name": "pull",
+                    "value": "/data/local/tmp/ActsVulkanRenderpass2Test.qpa->ActsVulkanRenderpass2Test.qpa"
+                }
+            ]
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "remount",
+                "mkdir /data/test",
+                "cd /data/local/tmp",
+                "rm -rf libdeqp_ohos_platform.z.so",
+                "rm -rf librosen_context.z.so",
+                "rm -rf libdeqp_spirv.z.so",
+                "rm -rf libdeqp_spvremapper.z.so",
+                "rm -rf libdeqp_amber.z.so",
+                "rm -rf libskia_canvaskit.z.so",
+                "ln -s /data/local/tmp/libdeqp_ohos_platform.z.so /system/lib/libdeqp_ohos_platform.z.so",
+                "ln -s /data/local/tmp/librosen_context.z.so /system/lib/librosen_context.z.so",
+                "ln -s /data/local/tmp/libdeqp_spirv.z.so /system/lib/libdeqp_spirv.z.so",
+                "ln -s /data/local/tmp/libdeqp_spvremapper.z.so /system/lib/libdeqp_spvremapper.z.so",
+                "ln -s /data/local/tmp/libdeqp_amber.z.so /system/lib/libdeqp_amber.z.so",
+                "ln -s /data/local/tmp/libskia_canvaskit.z.so /system/lib/libskia_canvaskit.z.so"
+            ],
+            "teardown-localcommand": [
+                "python testcases/vulkandata/genlocal.py ActsVulkanRenderpass2Test renderpass2.txt"
+            ]
+        }
+
+    ]
+}

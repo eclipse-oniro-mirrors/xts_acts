@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "description_mainability",
+      "value": "ETS_Empty Ability"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "label"
+    },
+    {
+      "name":"string_hello",
+      "value":"Hello"
+    },
+    {
+      "name":"string_world",
+      "value":"World"
+    },
+    {
+      "name":"message_arrive",
+      "value":"We will arrive at %s."
+    },
+    {
+      "name": "phone_entry_dsc",
+      "value": "i am an entry for phone"
+    },
+    {
+      "name": "phone_entry_main",
+      "value": "the phone entry ability"
+    },
+    {
+      "name": "entry_label",
+      "value": "ActsContextTest"
+    },
+    {
+      "name": "form_description",
+      "value": "my form"
+    },
+    {
+      "name": "serviceability_description",
+      "value": "my whether"
+    },
+    {
+      "name": "description_application",
+      "value": "demo for test"
+    },
+    {
+      "name": "app_name",
+      "value": "Demo"
+    },
+    {
+      "name": "start_50",
+      "value": "50"
+    },
+    {
+      "name": "module_test_desc",
+      "value": "test ability description"
+    },
+    {
+      "name": "Divider_width",
+      "value": "10px"
+    },
+    {
+      "name": "Divider_startMargin",
+      "value": "5px"
+    },
+    {
+      "name": "Divider_endMargin",
+      "value": "5px"
+    },
+    {
+      "name": "textInput_Size_test",
+      "value": "4px"
+    },
+    {
+      "name": "TextInput_ShowError_test",
+      "value": "string"
+    },
+    {
+      "name": "Check_Mark_Size_test",
+      "value": "50"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "MainAbility_label"
+    },
+    {
+      "name": "Caretwidth001",
+      "value": "5vp"
+    },
+    {
+      "name": "fontFamily",
+      "value": "HarmonyOS Sans"
+    },
+    {
+      "name": "lineHeight",
+      "value": "20vp"
+    },
+    {
+      "name": "maxFontScale",
+      "value": "3"
+    },
+    {
+      "name": "minFontScale",
+      "value": "0.5"
+    }
+  ]
+}

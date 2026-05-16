@@ -1,0 +1,9 @@
+{
+  "src": [
+    "MainAbility/pages/XTSIndex",
+    "MainAbility/pages/testgesture",
+    "MainAbility/pages/button/ButtonOnHoverEventTest",
+    "MainAbility/pages/button/ButtonAxisEventTest",
+    "MainAbility/pages/button/ButtonRollAngleTest"
+  ]
+}

@@ -1,0 +1,520 @@
+<!DOCTYPE html>                                                                                                                                                                                                                                                                                      <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Prompt API Test</title>
+    <a href="navigation.html">返回导航页</a>
+    <style>
+        body {
+          font-family: system-ui, -apple-system, sans-serif;
+          max-width: 900px;
+          margin: 40px auto;
+          padding: 20px;
+          line-height: 1.6;
+        }
+        .section {
+          background: #f8f9fa;
+          padding: 20px;
+          margin: 20px 0;
+          border-radius: 8px;
+          border-left: 4px solid #1a73e8;
+        }
+        h2 { margin-top: 0; }
+        button {
+          background: #1a73e8;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 14px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+        }
+        button:hover { background: #1557b0; }
+        button:disabled {
+          background: #ccc;
+          cursor: not-allowed;
+        }
+        textarea, input[type="text"] {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-family: monospace;
+          margin: 10px 0;
+          box-sizing: border-box;
+        }
+        .status {
+          padding: 10px;
+          margin: 10px 0;
+          border-radius: 4px;
+        }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.info { background: #d1ecf1; color: #0c5460; }
+        .result {
+          background: white;
+          padding: 15px;
+          margin: 10px 0;
+          border-radius: 4px;
+          white-space: pre-wrap;
+          word-break: break-word;
+          border: 1px solid #e0e0e0;
+        }
+        .code {
+          background: #2d2d2d;
+          color: #f8f8f2;
+          padding: 15px;
+          border-radius: 4px;
+          overflow-x: auto;
+          font-family: 'Courier New', monospace;
+          font-size: 13px;
+        }
+        .param {
+          display: inline-block;
+          background: #e8f0fe;
+          padding: 2px 8px;
+          border-radius: 4px;
+          font-size: 12px;
+          margin: 2px;
+        }
+    </style>
+</head>
+<body>
+<!--    <h1>Chrome Prompt API Test Case</h1>-->
+<!--    <p>Test the LanguageModel API with all available parameters.</p>-->
+<!-- Create Session -->
+<div class="section">
+    <h2>2. Create Session</h2>
+    <label>Temperature: <span id="tempValue">1.0</span></label>
+    <input type="range" id="temperature" min="0.1" max="2" step="0.1" value="1"
+           oninput="document.getElementById('tempValue').textContent = this.value">
+
+    <label>TopK: <span id="topKValue">3</span></label>
+    <input type="range" id="topK" min="1" max="128" step="1" value="3"
+           oninput="document.getElementById('topKValue').textContent = this.value">
+
+    <br><br>
+    <label>
+        <input type="checkbox" id="useInitialPrompts"> Use Initial Prompts
+    </label>
+    <label>
+        <input type="checkbox" id="useMultimodal" checked> Enable Multimodal
+    </label>
+    <br><br>
+    <button onclick="createSession()" id="createId">Create</button>
+    <button onclick="destroySession()" id="destroyId">Destroy</button>
+    <button onclick="cloneSession()">Clone</button>
+    <div id="sessionResult"></div>
+</div>
+
+<!-- Simple Prompt -->
+<div class="section">
+    <h2>3. Simple Prompt</h2>
+    <textarea id="simplePrompt" rows="3">Write a haiku about programming.</textarea>
+    <button onclick="executeSimplePrompt()" id="executeSimplePromptId">Execute</button>
+    <div id="simpleResult"></div>
+</div>
+
+<!-- Streaming Prompt -->
+<div class="section">
+    <h2>4. Streaming Prompt</h2>
+    <textarea id="streamPrompt" rows="3">Write a short story about a robot learning to paint.</textarea>
+    <button onclick="executeStreamPrompt()" id="streamBtn">Execute Streaming</button>
+    <button onclick="abortPrompt()" id="abortBtn" disabled>Abort</button>
+    <div id="streamResult"></div>
+</div>
+
+<!-- Check Availability -->
+<div class="section">
+    <h2>1. Check Availability</h2>
+    <button onclick="checkAvailability()">Check Availability</button>
+    <button onclick="getModelParams()">Get Model Params</button>
+    <div id="availabilityResult"></div>
+</div>
+
+<!-- JSON Schema Constraint -->
+<div class="section">
+    <h2>5. Response Constraint (JSON Schema)</h2>
+    <textarea id="constraintPrompt" rows="3">Rate this restaurant: The food was delicious, service was excellent.</textarea>
+    <div class="code">
+        {
+        "type": "object",
+        "properties": {
+        "rating": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "sentiment": { "type": "string", "enum": ["positive", "negative", "neutral"] },
+        "summary": { "type": "string" }
+        },
+        "required": ["rating", "sentiment"]
+        }
+    </div>
+    <button onclick="executeConstraintPrompt()">Execute with JSON Schema</button>
+    <div id="constraintResult"></div>
+</div>
+
+<!-- Multimodal with Image -->
+<div class="section">
+    <h2>6. Multimodal Prompt (Image)</h2>
+    <input type="file" id="imageInput" accept="image/*" onchange="loadImage()">
+    <br><br>
+    <img id="previewImage" style="max-width: 300px; display: none;">
+    <br><br>
+    <textarea id="imagePrompt" rows="2">Describe this image in detail.</textarea>
+    <button onclick="executeImagePrompt()">Execute with Image</button>
+    <div id="imageResult"></div>
+</div>
+
+<!-- Prefix Mode -->
+<div class="section">
+    <h2>7. Prefix Mode (Format Guide)</h2>
+    <textarea id="prefixPrompt" rows="3">Create a TOML config file for a web server.</textarea>
+    <button onclick="executePrefixPrompt()">Execute with Prefix</button>
+    <div id="prefixResult"></div>
+</div>
+
+<!-- Context/Append -->
+<div class="section">
+    <h2>8. Append Context</h2>
+    <textarea id="contextPrompt" rows="3">What did I just tell you?</textarea>
+    <button onclick="appendContext()">Append Context</button>
+    <button onclick="executeContextPrompt()">Execute</button>
+    <div id="contextResult"></div>
+</div>
+
+<!-- Session Stats -->
+<div class="section">
+    <h2>9. Session Stats</h2>
+    <button onclick="showSessionStats()">Show Stats</button>
+    <div id="statsResult"></div>
+</div>
+
+<script>
+    let session = null;
+    let currentController = null;
+    let uploadedImage = null;
+    const executeButton = document.getElementById('executeSimplePromptId');
+    function executeClick() {
+        executeButton.click();
+    }
+
+    const destroyButton = document.getElementById('destroyId');
+    function destroyClick() {
+        destroyButton.click();
+    }
+    function showStatus(elementId, message, type = 'info') {
+      const el = document.getElementById(elementId);
+      el.innerHTML = `<div class="status ${type}">${message}</div>`;
+    }
+
+    // Helper: Show result
+    function showResult(elementId, content) {
+      const el = document.getElementById(elementId);
+      el.innerHTML = `<div class="result">${content}</div>`;
+    }
+
+    // 1. Check Availability
+    async function checkAvailability() {
+      try {
+        const availability = await LanguageModel.availability();
+        showStatus('availabilityResult',
+          `Availability: <strong>${availability}</strong>`, 'success');
+      } catch (e) {
+        showStatus('availabilityResult', `Error: ${e.message}`, 'error');
+      }
+    }
+
+    async function getModelParams() {
+      try {
+        const params = await LanguageModel.params();
+
+        // Manually construct plain object
+        const plainParams = {
+          defaultTopK: params.defaultTopK,
+          maxTopK: params.maxTopK,
+          defaultTemperature: params.defaultTemperature,
+          maxTemperature: params.maxTemperature,
+        };
+
+        showResult('availabilityResult',
+          `Model Parameters:\n${JSON.stringify(plainParams, null, 2)}`);
+      } catch (e) {
+        showStatus('availabilityResult', `Error: ${e.message}`, 'error');
+      }
+    }
+
+    // 2. Create Session
+    async function createSession() {
+      try {
+        const params = await LanguageModel.params();
+        const temp = parseFloat(document.getElementById('temperature').value);
+        const topK = parseInt(document.getElementById('topK').value);
+
+        const options = {
+          temperature: Math.min(temp, params.maxTemperature),
+          topK: Math.min(topK, params.maxTopK),
+        };
+
+        if (document.getElementById('useInitialPrompts').checked) {
+          options.initialPrompts = [
+            { role: 'system', content: 'You are a helpful, friendly, and knowledgeable assistant.' },
+            { role: 'user', content: 'What is the capital of France?' },
+            { role: 'assistant', content: 'The capital of France is Paris.' },
+          ];
+        }
+
+        if (document.getElementById('useMultimodal').checked) {
+          options.expectedInputs = [
+            { type: 'text', languages: ['en'] },
+            { type: 'image' },
+          ];
+          options.expectedOutputs = [
+            { type: 'text', languages: ['en'] },
+          ];
+        }
+
+        // Download monitor
+        options.monitor = (m) => {
+          m.addEventListener('downloadprogress', (e) => {
+            showStatus('sessionResult',
+              `Downloading model: ${(e.loaded * 100).toFixed(0)}%`, 'info');
+          });
+        };
+
+        session = await LanguageModel.create(options);
+        showStatus('sessionResult',
+          `Session created successfully!\nTemperature: ${options.temperature}\nTopK: ${options.topK}`,
+          'success');
+      } catch (e) {
+        showStatus('sessionResult', `Error: ${e.message}`, 'error');
+      }
+    }
+
+    function destroySession() {
+      if (session) {
+        session.destroy();
+        session = null;
+        showStatus('sessionResult', 'Session destroyed', 'info');
+      }
+    }
+
+    async function cloneSession() {
+      if (!session) {
+        showStatus('sessionResult', 'No session to clone', 'error');
+        return;
+      }
+      try {
+        session = await session.clone();
+        showStatus('sessionResult', 'Session cloned successfully', 'success');
+      } catch (e) {
+        showStatus('sessionResult', `Error: ${e.message}`, 'error');
+      }
+    }
+
+    // 3. Simple Prompt
+    async function executeSimplePrompt() {
+      if (!session) {
+        showStatus('simpleResult', 'Please create a session first', 'error');
+        return;
+      }
+      try {
+        const prompt = document.getElementById('simplePrompt').value;
+        const result = await session.prompt(prompt);
+        showResult('simpleResult', result);
+      } catch (e) {
+        showStatus('simpleResult', `Error: ${e.message}`, 'error');
+      }
+    }
+
+    // 4. Streaming Prompt
+    async function executeStreamPrompt() {
+      if (!session) {
+        showStatus('streamResult', 'Please create a session first', 'error');
+        return;
+      }
+
+      currentController = new AbortController();
+      document.getElementById('abortBtn').disabled = false;
+      document.getElementById('streamBtn').disabled = true;
+
+      try {
+        const prompt = document.getElementById('streamPrompt').value;
+        const stream = session.promptStreaming(prompt, {
+          signal: currentController.signal,
+        });
+
+        let fullResult = '';
+        for await (const chunk of stream) {
+          fullResult += chunk;
+          showResult('streamResult', fullResult + '<span style="color:#888">▌</span>');
+        }
+        showResult('streamResult', fullResult);
+      } catch (e) {
+        if (e.name === 'AbortError') {
+          showStatus('streamResult', 'Prompt aborted', 'info');
+        } else {
+          showStatus('streamResult', `Error: ${e.message}`, 'error');
+        }
+      } finally {
+        document.getElementById('abortBtn').disabled = true;
+        document.getElementById('streamBtn').disabled = false;
+      }
+    }
+
+    function abortPrompt() {
+      if (currentController) {
+        currentController.abort();
+      }
+    }
+
+    // 5. JSON Schema Constraint
+    async function executeConstraintPrompt() {
+      if (!session) {
+        showStatus('constraintResult', 'Please create a session first', 'error');
+        return;
+      }
+      try {
+        const prompt = document.getElementById('constraintPrompt').value;
+        const schema = {
+          type: "object",
+          properties: {
+            rating: { type: "integer", minimum: 1, maximum: 5 },
+            sentiment: { type: "string", enum: ["positive", "negative", "neutral"] },
+            summary: { type: "string" }
+          },
+          required: ["rating", "sentiment"]
+        };
+
+        const result = await session.prompt(prompt, {
+          responseConstraint: schema,
+        });
+
+        const parsed = JSON.parse(result);
+        showResult('constraintResult',
+          `Parsed JSON:\n${JSON.stringify(parsed, null, 2)}`);
+      } catch (e) {
+        showStatus('constraintResult', `Error: ${e.message}`, 'error');
+      }
+    }
+
+    // 6. Load Image
+    function loadImage() {
+      const file = document.getElementById('imageInput').files[0];
+      if (file) {
+        uploadedImage = file;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = document.getElementById('previewImage');
+          img.src = e.target.result;
+          img.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    async function executeImagePrompt() {
+      if (!session) {
+        showStatus('imageResult', 'Please create a session first', 'error');
+        return;
+      }
+      if (!uploadedImage) {
+        showStatus('imageResult', 'Please upload an image first', 'error');
+        return;
+      }
+      try {
+        const prompt = document.getElementById('imagePrompt').value;
+        const result = await session.prompt([
+          {
+            role: 'user',
+            content: [
+              { type: 'text', value: prompt },
+              { type: 'image', value: uploadedImage },
+            ],
+          },
+        ]);
+        showResult('imageResult', result);
+      } catch (e) {
+        showStatus('imageResult', `Error: ${e.message}`, 'error');
+      }
+    }
+
+    // 7. Prefix Mode
+    async function executePrefixPrompt() {
+      if (!session) {
+        showStatus('prefixResult', 'Please create a session first', 'error');
+        return;
+      }
+      try {
+        const prompt = document.getElementById('prefixPrompt').value;
+        const result = await session.prompt([
+          {
+            role: 'user',
+            content: prompt,
+          },
+          {
+            role: 'assistant',
+            content: '```toml\n',
+            prefix: true,
+          },
+        ]);
+        showResult('prefixResult', result);
+      } catch (e) {
+        showStatus('prefixResult', `Error: ${e.message}`, 'error');
+      }
+    }
+
+    // 8. Context/Append
+    async function appendContext() {
+      if (!session) {
+        showStatus('contextResult', 'Please create a session first', 'error');
+        return;
+      }
+      try {
+        await session.append([
+          {
+            role: 'system',
+            content: 'The user is interested in artificial intelligence and machine learning.',
+          },
+        ]);
+        showStatus('contextResult', 'Context appended successfully', 'success');
+      } catch (e) {
+        showStatus('contextResult', `Error: ${e.message}`, 'error');
+      }
+    }
+
+    async function executeContextPrompt() {
+      if (!session) {
+        showStatus('contextResult', 'Please create a session first', 'error');
+        return;
+      }
+      try {
+        const prompt = document.getElementById('contextPrompt').value;
+        const result = await session.prompt(prompt);
+        showResult('contextResult', result);
+      } catch (e) {
+        showStatus('contextResult', `Error: ${e.message}`, 'error');
+      }
+    }
+
+    // 9. Session Stats
+    function showSessionStats() {
+      if (!session) {
+        showStatus('statsResult', 'No active session', 'error');
+        return;
+      }
+      const stats = {
+        inputUsage: session.inputUsage,
+        inputQuota: session.inputQuota,
+        usagePercent: ((session.inputUsage / session.inputQuota) * 100).toFixed(1),
+      };
+      showResult('statsResult', JSON.stringify(stats, null, 2));
+    }
+
+    // Auto-check availability on load
+    window.onload = () => {
+      checkAvailability();
+      getModelParams();
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<video id="video" width="400px" height="400px" autoplay="autoplay">
+</video>
+<input type="button" title="HTML5麦克风" value="开启麦克风" onclick="getMedia()" />
+<script>
+    function getMedia() {
+      let constraints = {
+        video: {
+          width: 500,
+          height: 500
+        },
+        audio: true
+      }
+      let video = document.getElementById("video");
+      let promise = navigator.mediaDevices.getUserMedia(constraints);
+      promise.then(function(MediaStream) {
+        video.srcObject = MediaStream;
+        video.play();
+      })
+    }
+</script>
+</body>
+</html>

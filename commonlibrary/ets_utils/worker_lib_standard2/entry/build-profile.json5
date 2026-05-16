@@ -1,0 +1,80 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+{
+	apiType: 'stageMode',
+	buildOption: {
+    "sourceOption": {
+      "workers": [
+        './src/ohosTest/ets/workers/worker.ts',
+        './src/ohosTest/ets/workers/worker_002.ts',
+        './src/ohosTest/ets/workers/worker_003.ts',
+        './src/ohosTest/ets/workers/worker_004.ts',
+        './src/ohosTest/ets/workers/worker_005.ts',
+        './src/ohosTest/ets/workers/worker_006.ts',
+        './src/ohosTest/ets/workers/worker_007.ts',
+        './src/ohosTest/ets/workers/worker_008.ts',
+        './src/ohosTest/ets/workers/worker_009.ts',
+        './src/ohosTest/ets/workers/worker_010.ts',
+        './src/ohosTest/ets/workers/worker_011.ts',
+        './src/ohosTest/ets/workers/worker_012.ts',
+        './src/ohosTest/ets/workers/worker_013.ts',
+        './src/ohosTest/ets/workers/worker_014.ts',
+        './src/ohosTest/ets/workers/worker_015.ts',
+        './src/ohosTest/ets/workers/worker_016.ts',
+        './src/ohosTest/ets/workers/worker_017.ts',
+        './src/ohosTest/ets/workers/worker_018.ts',
+        './src/ohosTest/ets/workers/worker_019.ts',
+        './src/ohosTest/ets/workers/worker_020.ts',
+        './src/ohosTest/ets/workers/worker_021.ts',
+        './src/ohosTest/ets/workers/worker_022.ts',
+        './src/ohosTest/ets/workers/worker_025.ts',
+        './src/ohosTest/ets/workers/worker_026.ts',
+        './src/ohosTest/ets/workers/worker_027.ts',
+        './src/ohosTest/ets/workers/worker_028.ts',
+        './src/ohosTest/ets/workers/worker_029.ts',
+        './src/ohosTest/ets/workers/worker_030.ts',
+        './src/ohosTest/ets/workers/workerAtFront_001.ets',
+        './src/ohosTest/ets/workers/workerAtFront_002.ets',
+        './src/ohosTest/ets/workers/workerAtFront_003.ets',
+        './src/ohosTest/ets/workers/workerAtFront_004.ets',
+        './src/ohosTest/ets/workers/workerAtFront_005.ets',
+        './src/ohosTest/ets/workers/workerAtFront_006.ets',
+        './src/ohosTest/ets/workers/workerAtFront_007.ets',
+        './src/ohosTest/ets/workers/workerAtFront_008.ets',
+      ]
+    }
+	},
+	"buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": true
+          }
+        }
+      }
+    },
+  ],
+	targets: [
+		{
+			name: 'default',
+		},
+    {
+      name: 'ohosTest',
+    }
+	],
+}

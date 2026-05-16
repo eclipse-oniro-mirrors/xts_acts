@@ -1,0 +1,23 @@
+{
+    "description": "Configuration for device syscap test",
+    "environment": [
+        {
+            "type": "device"
+        }
+    ],
+    "driver": {
+        "type": "DeviceTestSuite",
+        "testsuite": "ActsPCSSyscapMinSetTest.py",
+        "suitecases": [
+            "./testSyscapMinSetTest.py"
+        ]
+    },
+    "kits": [
+        {
+            "type": "PushKit",
+            "push": [
+                "./syscap -> /data/local/tmp/syscap"
+            ]
+        }
+    ]
+}

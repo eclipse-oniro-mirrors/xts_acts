@@ -1,0 +1,22 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "60000",
+        "shell-timeout": "60000",
+        "testcase-timeout": 15000,
+        "bundle-name": "com.test.lifecycle_crossplatform_xts",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "commonTestAbilityApp.hap",
+                "ActsLifeCycleEtsFeatureTest.hap",
+                "ActsLifeCycleEtsTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}

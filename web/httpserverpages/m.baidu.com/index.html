@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度一下</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: #f5f6f8;
+            min-height: 100vh;
+            padding-bottom: 70px;
+        }
+        .mobile-header {
+            background: #fff;
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 22px; color: #4e6ef2; font-weight: bold; }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #f5f6f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            position: relative;
+        }
+        .header-icon-btn .badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: #ff4d4f;
+            color: #fff;
+            font-size: 10px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-box {
+            flex: 1;
+            display: flex;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 8px 14px;
+            border: none;
+            font-size: 14px;
+            outline: none;
+        }
+        .search-box .voice-btn {
+            width: 36px;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-box .qr-btn {
+            width: 36px;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-box button.search-btn {
+            padding: 8px 16px;
+            background: #4e6ef2;
+            color: #fff;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .suggestions-panel {
+            background: #fff;
+            border: 1px solid #eee;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            padding: 8px 0;
+            display: none;
+            position: absolute;
+            top: 44px;
+            left: 48px;
+            right: 90px;
+            z-index: 200;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .suggestions-panel.show { display: block; }
+        .suggestion-item {
+            padding: 10px 16px;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .suggestion-item:hover { background: #f5f6f8; }
+        .suggestion-item .sug-icon { color: #999; font-size: 12px; }
+        .suggestion-item .sug-hot {
+            background: #ff4d4f;
+            color: #fff;
+            font-size: 10px;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+        .tab-bar {
+            display: flex;
+            border-bottom: 2px solid #f0f0f0;
+            padding: 0 16px;
+            background: #fff;
+            overflow-x: auto;
+        }
+        .tab {
+            padding: 10px 16px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            position: relative;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .tab.active { color: #4e6ef2; font-weight: bold; }
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 3px;
+            background: #4e6ef2;
+            border-radius: 2px;
+        }
+        .weather-widget {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            margin: 12px 16px;
+            border-radius: 12px;
+            padding: 16px;
+            color: #fff;
+        }
+        .weather-widget .weather-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .weather-widget .weather-temp { font-size: 36px; font-weight: bold; }
+        .weather-widget .weather-icon { font-size: 48px; }
+        .weather-widget .weather-city { font-size: 14px; opacity: 0.9; }
+        .weather-widget .weather-desc { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+        .weather-widget .weather-detail {
+            display: flex;
+            gap: 20px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            font-size: 12px;
+        }
+        .weather-widget .weather-detail span { opacity: 0.9; }
+        .notification-panel {
+            background: #fff;
+            margin: 0 16px 12px;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .notification-panel .notif-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .notification-panel .notif-header h3 { font-size: 15px; color: #333; }
+        .notification-panel .notif-header .notif-clear { font-size: 12px; color: #4e6ef2; cursor: pointer; }
+        .notif-item {
+            display: flex;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f8f8f8;
+        }
+        .notif-item:last-child { border-bottom: none; }
+        .notif-item .notif-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff4d4f;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+        .notif-item .notif-content { font-size: 13px; color: #333; line-height: 1.5; }
+        .notif-item .notif-time { font-size: 11px; color: #999; margin-top: 2px; }
+        .user-profile {
+            background: #fff;
+            margin: 12px 16px;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .user-profile .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .user-profile .user-info { flex: 1; }
+        .user-profile .user-name { font-size: 16px; color: #333; font-weight: bold; }
+        .user-profile .user-level {
+            font-size: 12px;
+            color: #ff9800;
+            margin-top: 3px;
+        }
+        .user-profile .user-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 6px;
+        }
+        .user-profile .stat-item { text-align: center; }
+        .user-profile .stat-item .stat-num { font-size: 16px; color: #333; font-weight: bold; }
+        .user-profile .stat-item .stat-label { font-size: 11px; color: #999; }
+        .user-profile .login-btn {
+            padding: 6px 16px;
+            background: #4e6ef2;
+            color: #fff;
+            border: none;
+            border-radius: 16px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .lottery-banner {
+            background: linear-gradient(135deg, #ff9a56, #ff6b6b);
+            margin: 12px 16px;
+            border-radius: 12px;
+            padding: 16px;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .lottery-banner .lottery-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .lottery-banner .lottery-desc {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        .lottery-banner .lottery-btn {
+            display: inline-block;
+            padding: 6px 24px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 16px;
+            font-size: 14px;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .lottery-banner .lottery-deco {
+            position: absolute;
+            font-size: 60px;
+            opacity: 0.15;
+        }
+        .lottery-banner .deco-left { top: -10px; left: 10px; }
+        .lottery-banner .deco-right { bottom: -10px; right: 10px; }
+        .calculator-widget {
+            background: #fff;
+            margin: 12px 16px;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .calculator-widget .calc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .calculator-widget .calc-header h3 { font-size: 15px; color: #333; }
+        .calculator-widget .calc-display {
+            background: #f5f6f8;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: right;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+            min-height: 48px;
+            font-family: monospace;
+        }
+        .calculator-widget .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+        .calculator-widget .calc-btn {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #f5f6f8;
+            color: #333;
+        }
+        .calculator-widget .calc-btn.op { background: #e8f0fe; color: #4e6ef2; }
+        .calculator-widget .calc-btn.eq { background: #4e6ef2; color: #fff; }
+        .news-flash {
+            background: #fff;
+            margin: 12px 16px;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .news-flash h3 { font-size: 16px; margin-bottom: 10px; color: #333; }
+        .flash-item {
+            display: flex;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f8f8f8;
+        }
+        .flash-item:last-child { border-bottom: none; }
+        .flash-item .flash-tag {
+            background: #ff4d4f;
+            color: #fff;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .flash-item .flash-tag.blue { background: #4e6ef2; }
+        .flash-item .flash-tag.orange { background: #ff9800; }
+        .flash-item .flash-tag.green { background: #52c41a; }
+        .flash-item .flash-text { font-size: 14px; color: #333; line-height: 1.4; }
+        .trending-section {
+            background: #fff;
+            margin: 12px 16px;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .trending-section .trending-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .trending-section h3 { font-size: 16px; color: #333; }
+        .trending-section .trending-more { font-size: 13px; color: #4e6ef2; cursor: pointer; }
+        .trending-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f8f8f8;
+            cursor: pointer;
+        }
+        .trending-item:last-child { border-bottom: none; }
+        .trending-item .trending-rank {
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+            flex-shrink: 0;
+            color: #999;
+            background: #f5f6f8;
+        }
+        .trending-item:nth-child(1) .trending-rank,
+        .trending-item:nth-child(2) .trending-rank,
+        .trending-item:nth-child(3) .trending-rank {
+            background: #ff4d4f;
+            color: #fff;
+        }
+        .trending-item .trending-text {
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .trending-item .trending-heat { font-size: 11px; color: #999; flex-shrink: 0; }
+        .trending-item .trending-hot-tag {
+            background: #fff0f0;
+            color: #ff4d4f;
+            font-size: 10px;
+            padding: 1px 5px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+        .card-list { padding: 0 16px; }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .card h3 { font-size: 15px; color: #333; margin-bottom: 8px; line-height: 1.4; }
+        .card .card-source { font-size: 12px; color: #999; }
+        .card .card-img {
+            width: 100%;
+            height: 140px;
+            border-radius: 8px;
+            margin: 8px 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        .card .card-desc { font-size: 13px; color: #666; line-height: 1.6; }
+        .card .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+        .card .card-actions {
+            display: flex;
+            gap: 16px;
+        }
+        .card .card-action {
+            font-size: 12px;
+            color: #999;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .shopping-section {
+            background: #fff;
+            margin: 12px 16px;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .shopping-section .shopping-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .shopping-section h3 { font-size: 16px; color: #333; }
+        .shopping-section .shopping-more { font-size: 13px; color: #4e6ef2; cursor: pointer; }
+        .shopping-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+        .shopping-item {
+            flex-shrink: 0;
+            width: 130px;
+        }
+        .shopping-item .shop-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #f6d365, #fda085);
+        }
+        .shopping-item .shop-price {
+            font-size: 16px;
+            color: #ff4d4f;
+            font-weight: bold;
+        }
+        .shopping-item .shop-price .price-symbol { font-size: 12px; }
+        .shopping-item .shop-title {
+            font-size: 12px;
+            color: #333;
+            margin-top: 3px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .shopping-item .shop-sales { font-size: 11px; color: #999; margin-top: 2px; }
+        .poll-section {
+            background: #fff;
+            margin: 12px 16px;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .poll-section h3 { font-size: 16px; color: #333; margin-bottom: 4px; }
+        .poll-section .poll-question { font-size: 14px; color: #666; margin-bottom: 12px; }
+        .poll-option {
+            padding: 12px 14px;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+        .poll-option:hover { border-color: #4e6ef2; }
+        .poll-option.selected { border-color: #4e6ef2; background: #f0f5ff; }
+        .poll-option .poll-radio {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .poll-option.selected .poll-radio {
+            border-color: #4e6ef2;
+        }
+        .poll-option.selected .poll-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4e6ef2;
+        }
+        .poll-option .poll-text { font-size: 14px; color: #333; flex: 1; }
+        .poll-option .poll-percent {
+            font-size: 13px;
+            color: #4e6ef2;
+            font-weight: bold;
+        }
+        .poll-section .poll-vote-btn {
+            width: 100%;
+            padding: 10px;
+            background: #4e6ef2;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+        .poll-section .poll-voters { font-size: 12px; color: #999; text-align: center; margin-top: 8px; }
+        .category-section {
+            background: #fff;
+            margin: 12px 16px;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .category-section h3 { font-size: 16px; margin-bottom: 10px; }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+        .category-item {
+            text-align: center;
+            padding: 12px 4px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .category-item .cat-icon { font-size: 22px; margin-bottom: 4px; }
+        .category-item .cat-text { font-size: 11px; color: #666; }
+        .video-section {
+            background: #fff;
+            margin: 12px 16px;
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .video-section .video-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .video-section h3 { font-size: 16px; }
+        .video-section .video-more { font-size: 13px; color: #4e6ef2; cursor: pointer; }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .video-item { }
+        .video-item .video-thumb {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            position: relative;
+        }
+        .video-item .video-thumb .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 28px;
+            height: 28px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
+        }
+        .video-item .video-thumb .duration {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            font-size: 10px;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+        .video-item .video-title { font-size: 13px; color: #333; line-height: 1.3; margin-top: 6px; }
+        .video-item .video-meta { font-size: 11px; color: #999; margin-top: 3px; }
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+            z-index: 100;
+        }
+        .footer-nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .footer-nav a .nav-icon { font-size: 20px; }
+        .footer-nav a.active { color: #4e6ef2; }
+        .section-divider {
+            height: 8px;
+            background: #f5f6f8;
+        }
+        .voice-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 300;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        .voice-overlay.show { display: flex; }
+        .voice-overlay .voice-anim {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #4e6ef2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-bottom: 16px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .voice-overlay .voice-text { font-size: 16px; margin-bottom: 24px; }
+        .voice-overlay .voice-cancel {
+            padding: 8px 32px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: #fff;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-header">
+        <div class="logo">百度</div>
+        <div class="search-box" style="position: relative;">
+            <input type="text" id="searchInput" placeholder="搜索" autocomplete="off">
+            <button class="voice-btn" id="voiceBtn" title="语音搜索">&#127908;</button>
+            <button class="qr-btn" id="qrBtn" title="扫码">&#128247;</button>
+            <button class="search-btn">搜索</button>
+            <div class="suggestions-panel" id="suggestionsPanel">
+                <div class="suggestion-item"><span class="sug-hot">热</span> OpenHarmony最新版本发布</div>
+                <div class="suggestion-item"><span class="sug-icon">&#128269;</span> 天气预报今天</div>
+                <div class="suggestion-item"><span class="sug-icon">&#128269;</span> 今日股市行情</div>
+                <div class="suggestion-item"><span class="sug-hot">热</span> AI大模型最新进展</div>
+                <div class="suggestion-item"><span class="sug-icon">&#128269;</span> 新能源汽车推荐</div>
+                <div class="suggestion-item"><span class="sug-icon">&#128269;</span> 周末好去处推荐</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="header-icon-btn" id="notifBtn">
+                &#128276;
+                <span class="badge">3</span>
+            </button>
+            <button class="header-icon-btn" id="profileBtn">&#128100;</button>
+        </div>
+    </div>
+
+    <div class="voice-overlay" id="voiceOverlay">
+        <div class="voice-anim">&#127908;</div>
+        <div class="voice-text">正在聆听...</div>
+        <button class="voice-cancel">取消</button>
+    </div>
+
+    <div class="tab-bar">
+        <div class="tab active">推荐</div>
+        <div class="tab">热点</div>
+        <div class="tab">科技</div>
+        <div class="tab">娱乐</div>
+        <div class="tab">体育</div>
+        <div class="tab">财经</div>
+        <div class="tab">健康</div>
+        <div class="tab">教育</div>
+    </div>
+
+    <div class="weather-widget" id="weatherWidget">
+        <div class="weather-top">
+            <div>
+                <div class="weather-city" id="weatherCity">正在获取位置...</div>
+                <div class="weather-temp">26°</div>
+                <div class="weather-desc">多云转晴 · 体感温度 28°</div>
+            </div>
+            <div class="weather-icon">&#9925;</div>
+        </div>
+        <div class="weather-detail">
+            <span>&#128168; 湿度 65%</span>
+            <span>&#127788; UV指数 4</span>
+            <span>&#127788;&#65039; 空气质量 良</span>
+        </div>
+    </div>
+
+    <div class="notification-panel" id="notifPanel">
+        <div class="notif-header">
+            <h3>&#128276; 消息通知</h3>
+            <span class="notif-clear">全部已读</span>
+        </div>
+        <div class="notif-item">
+            <div class="notif-dot"></div>
+            <div>
+                <div class="notif-content">您关注的OpenHarmony发布了新版本，快去看看吧！</div>
+                <div class="notif-time">5分钟前</div>
+            </div>
+        </div>
+        <div class="notif-item">
+            <div class="notif-dot"></div>
+            <div>
+                <div class="notif-content">今日热搜榜已更新，有3条新内容</div>
+                <div class="notif-time">30分钟前</div>
+            </div>
+        </div>
+        <div class="notif-item">
+            <div class="notif-dot"></div>
+            <div>
+                <div class="notif-content">系统提示：您的账号安全等级可以提升</div>
+                <div class="notif-time">2小时前</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-profile" id="userProfile">
+        <div class="avatar">&#128100;</div>
+        <div class="user-info">
+            <div class="user-name">百度用户</div>
+            <div class="user-level">&#11088; Lv.8 百度达人</div>
+            <div class="user-stats">
+                <div class="stat-item"><div class="stat-num">1,280</div><div class="stat-label">关注</div></div>
+                <div class="stat-item"><div class="stat-num">356</div><div class="stat-label">粉丝</div></div>
+                <div class="stat-item"><div class="stat-num">89</div><div class="stat-label">获赞</div></div>
+            </div>
+        </div>
+        <button class="login-btn">登录</button>
+    </div>
+
+    <div class="lottery-banner" id="lotteryBanner">
+        <div class="lottery-deco deco-left">&#127881;</div>
+        <div class="lottery-deco deco-right">&#127880;</div>
+        <div class="lottery-title">&#127881; 幸运大转盘</div>
+        <div class="lottery-desc">每日登录即有机会赢取大奖，最高可得888元红包</div>
+        <span class="lottery-btn">立即参与</span>
+    </div>
+
+    <div class="news-flash">
+        <h3>&#128293; 百度热榜</h3>
+        <div class="flash-item">
+            <span class="flash-tag">热</span>
+            <span class="flash-text">科技产业迎来重大突破，多项核心技术实现自主可控</span>
+        </div>
+        <div class="flash-item">
+            <span class="flash-tag blue">新</span>
+            <span class="flash-text">经济发展新趋势报告发布，数字经济占比持续提升</span>
+        </div>
+        <div class="flash-item">
+            <span class="flash-tag orange">荐</span>
+            <span class="flash-text">国际体育赛事精彩纷呈，中国代表团表现优异</span>
+        </div>
+        <div class="flash-item">
+            <span class="flash-tag green">暖</span>
+            <span class="flash-text">绿色能源转型加速推进，碳中和目标稳步实现</span>
+        </div>
+    </div>
+
+    <div class="trending-section">
+        <div class="trending-header">
+            <h3>&#128293; 热搜榜</h3>
+            <span class="trending-more">查看更多 &gt;</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">1</span>
+            <span class="trending-text">OpenHarmony 5.0正式发布 全新分布式架构</span>
+            <span class="trending-hot-tag">爆</span>
+            <span class="trending-heat">985万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">2</span>
+            <span class="trending-text">AI大模型能力评测结果公布 国产模型表现亮眼</span>
+            <span class="trending-hot-tag">热</span>
+            <span class="trending-heat">876万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">3</span>
+            <span class="trending-text">神舟十九号航天员乘组圆满完成出舱任务</span>
+            <span class="trending-hot-tag">新</span>
+            <span class="trending-heat">752万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">4</span>
+            <span class="trending-text">全国高考作文题引热议 各地真题汇总</span>
+            <span class="trending-heat">698万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">5</span>
+            <span class="trending-text">新能源汽车销量再创新纪录 月交付破百万</span>
+            <span class="trending-heat">634万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">6</span>
+            <span class="trending-text">全球首款固态电池量产车型正式下线</span>
+            <span class="trending-heat">587万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">7</span>
+            <span class="trending-text">央行发布最新货币政策报告 利率调整预期升温</span>
+            <span class="trending-heat">523万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">8</span>
+            <span class="trending-text">世界杯亚洲区预选赛赛程公布</span>
+            <span class="trending-heat">498万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">9</span>
+            <span class="trending-text">国产芯片突破14nm工艺良率达到量产水平</span>
+            <span class="trending-heat">465万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">10</span>
+            <span class="trending-text">暑期旅游热门目的地排行榜出炉</span>
+            <span class="trending-heat">412万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">11</span>
+            <span class="trending-text">量子计算取得重大进展 千比特量子芯片问世</span>
+            <span class="trending-heat">389万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">12</span>
+            <span class="trending-text">教育部发布新课标 人工智能课程纳入中小学</span>
+            <span class="trending-heat">356万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">13</span>
+            <span class="trending-text">全国多地迎来强降雨天气 防汛形势严峻</span>
+            <span class="trending-heat">334万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">14</span>
+            <span class="trending-text">2026年考研时间确定 备考攻略引发关注</span>
+            <span class="trending-heat">298万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">15</span>
+            <span class="trending-text">国际空间站迎来新一批科学实验载荷</span>
+            <span class="trending-heat">267万</span>
+        </div>
+        <div class="trending-item">
+            <span class="trending-rank">16</span>
+            <span class="trending-text">智能家居市场规模突破万亿大关</span>
+            <span class="trending-heat">245万</span>
+        </div>
+    </div>
+
+    <div class="calculator-widget">
+        <div class="calc-header">
+            <h3>&#129518; 快捷计算器</h3>
+            <span style="font-size: 12px; color: #999; cursor: pointer;">收起</span>
+        </div>
+        <div class="calc-display" id="calcDisplay">0</div>
+        <div class="calc-buttons">
+            <button class="calc-btn" onclick="calcInput('C')">C</button>
+            <button class="calc-btn op" onclick="calcInput('back')">&#9003;</button>
+            <button class="calc-btn op" onclick="calcInput('%')">%</button>
+            <button class="calc-btn op" onclick="calcInput('/')">&divide;</button>
+            <button class="calc-btn" onclick="calcInput('7')">7</button>
+            <button class="calc-btn" onclick="calcInput('8')">8</button>
+            <button class="calc-btn" onclick="calcInput('9')">9</button>
+            <button class="calc-btn op" onclick="calcInput('*')">&times;</button>
+            <button class="calc-btn" onclick="calcInput('4')">4</button>
+            <button class="calc-btn" onclick="calcInput('5')">5</button>
+            <button class="calc-btn" onclick="calcInput('6')">6</button>
+            <button class="calc-btn op" onclick="calcInput('-')">-</button>
+            <button class="calc-btn" onclick="calcInput('1')">1</button>
+            <button class="calc-btn" onclick="calcInput('2')">2</button>
+            <button class="calc-btn" onclick="calcInput('3')">3</button>
+            <button class="calc-btn op" onclick="calcInput('+')">+</button>
+            <button class="calc-btn" onclick="calcInput('0')">0</button>
+            <button class="calc-btn" onclick="calcInput('.')">.</button>
+            <button class="calc-btn eq" onclick="calcInput('=')" style="grid-column: span 2;">=</button>
+        </div>
+    </div>
+
+    <div class="card-list">
+        <div class="card">
+            <h3>OpenHarmony生态持续繁荣，开发者数量突破新高</h3>
+            <div class="card-img"></div>
+            <div class="card-desc">开源操作系统领域持续发展，越来越多的开发者和企业加入OpenHarmony生态，推动国产操作系统走向世界舞台...</div>
+            <div class="card-footer">
+                <div class="card-source">科技日报 &middot; 1小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 2.3万</span>
+                    <span class="card-action">&#128172; 1,256</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>人工智能技术在医疗健康领域的创新应用</h3>
+            <div class="card-img" style="background: linear-gradient(135deg, #43e97b, #38f9d7);"></div>
+            <div class="card-desc">AI辅助诊断、智能药物研发等技术正在改变传统医疗模式，多家三甲医院已引入AI辅助诊疗系统...</div>
+            <div class="card-footer">
+                <div class="card-source">健康时报 &middot; 2小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 1.8万</span>
+                    <span class="card-action">&#128172; 896</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>全球半导体产业格局变化与技术创新</h3>
+            <div class="card-desc">芯片制造工艺持续突破，先进封装技术成为新的竞争焦点，全球半导体产业链加速重构...</div>
+            <div class="card-footer">
+                <div class="card-source">经济观察报 &middot; 3小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 1.2万</span>
+                    <span class="card-action">&#128172; 567</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>新能源汽车智能化发展趋势分析</h3>
+            <div class="card-img" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
+            <div class="card-desc">智能驾驶、车联网、新能源等技术融合发展，汽车产业加速变革，多家车企发布全新智能平台...</div>
+            <div class="card-footer">
+                <div class="card-source">汽车之家 &middot; 4小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 9,876</span>
+                    <span class="card-action">&#128172; 423</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>数字人民币推广应用最新进展</h3>
+            <div class="card-desc">数字人民币试点范围持续扩大，应用场景不断丰富，涵盖交通出行、餐饮消费、政务服务等多个领域...</div>
+            <div class="card-footer">
+                <div class="card-source">新华网 &middot; 5小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 7,654</span>
+                    <span class="card-action">&#128172; 312</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>6G通信技术研发取得阶段性突破</h3>
+            <div class="card-img" style="background: linear-gradient(135deg, #fa709a, #fee140);"></div>
+            <div class="card-desc">我国在太赫兹通信、智能超表面等6G关键技术领域取得重要进展，部分指标达到国际领先水平...</div>
+            <div class="card-footer">
+                <div class="card-source">通信世界 &middot; 6小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 6,543</span>
+                    <span class="card-action">&#128172; 289</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>智慧城市建设进入深水区 数据要素价值凸显</h3>
+            <div class="card-desc">全国已有超过500个城市开展智慧城市建设，城市大脑、数字孪生等技术加速落地应用...</div>
+            <div class="card-footer">
+                <div class="card-source">智慧城市 &middot; 7小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 5,432</span>
+                    <span class="card-action">&#128172; 198</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>量子通信网络建设提速 打造信息安全新屏障</h3>
+            <div class="card-img" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);"></div>
+            <div class="card-desc">量子保密通信骨干网已覆盖多个重点城市，量子密钥分发技术在实际应用中展现出独特优势...</div>
+            <div class="card-footer">
+                <div class="card-source">科技前沿 &middot; 8小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 4,321</span>
+                    <span class="card-action">&#128172; 156</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>国产大飞机C919商业运营满周年 运力持续提升</h3>
+            <div class="card-desc">C919累计交付超过50架，安全运营超6万小时，航线网络持续扩大，获得多家航空公司追加订单...</div>
+            <div class="card-footer">
+                <div class="card-source">航空报 &middot; 9小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 3,210</span>
+                    <span class="card-action">&#128172; 134</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>脑机接口技术临床试验取得积极成果</h3>
+            <div class="card-img" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);"></div>
+            <div class="card-desc">国内首例植入式脑机接口临床试验进展顺利，受试者已能够通过意念控制外部设备完成多种操作...</div>
+            <div class="card-footer">
+                <div class="card-source">医学前沿 &middot; 10小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 2,876</span>
+                    <span class="card-action">&#128172; 98</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>深海探测技术取得新突破 万米级载人潜水器完成科考</h3>
+            <div class="card-desc">我国自主研发的万米级载人潜水器成功完成多次深海科考任务，采集到珍贵样本数据...</div>
+            <div class="card-footer">
+                <div class="card-source">海洋科学 &middot; 11小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 2,109</span>
+                    <span class="card-action">&#128172; 76</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>可控核聚变研究迈出关键一步 等离子体运行时间刷新纪录</h3>
+            <div class="card-desc">新一代可控核聚变实验装置成功实现长脉冲高约束模式运行，标志着我国在核聚变领域保持国际领先...</div>
+            <div class="card-footer">
+                <div class="card-source">能源前沿 &middot; 12小时前</div>
+                <div class="card-actions">
+                    <span class="card-action">&#128077; 1,987</span>
+                    <span class="card-action">&#128172; 65</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="poll-section">
+        <h3>&#128499; 今日投票</h3>
+        <div class="poll-question">您最期待以下哪项科技创新突破？</div>
+        <div class="poll-option" onclick="selectPoll(this)">
+            <div class="poll-radio"></div>
+            <span class="poll-text">通用人工智能（AGI）</span>
+            <span class="poll-percent">38%</span>
+        </div>
+        <div class="poll-option" onclick="selectPoll(this)">
+            <div class="poll-radio"></div>
+            <span class="poll-text">可控核聚变商业化</span>
+            <span class="poll-percent">27%</span>
+        </div>
+        <div class="poll-option" onclick="selectPoll(this)">
+            <div class="poll-radio"></div>
+            <span class="poll-text">脑机接口广泛应用</span>
+            <span class="poll-percent">20%</span>
+        </div>
+        <div class="poll-option" onclick="selectPoll(this)">
+            <div class="poll-radio"></div>
+            <span class="poll-text">量子计算实用化</span>
+            <span class="poll-percent">15%</span>
+        </div>
+        <button class="poll-vote-btn">投票</button>
+        <div class="poll-voters">已有 12,456 人参与投票</div>
+    </div>
+
+    <div class="shopping-section">
+        <div class="shopping-header">
+            <h3>&#128722; 好物推荐</h3>
+            <span class="shopping-more">更多优惠 &gt;</span>
+        </div>
+        <div class="shopping-scroll">
+            <div class="shopping-item">
+                <div class="shop-img"></div>
+                <div class="shop-price"><span class="price-symbol">&yen;</span>299</div>
+                <div class="shop-title">无线蓝牙耳机 降噪运动</div>
+                <div class="shop-sales">已售 2.3万</div>
+            </div>
+            <div class="shopping-item">
+                <div class="shop-img" style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb);"></div>
+                <div class="shop-price"><span class="price-symbol">&yen;</span>1,599</div>
+                <div class="shop-title">智能手表 健康监测</div>
+                <div class="shop-sales">已售 1.8万</div>
+            </div>
+            <div class="shopping-item">
+                <div class="shop-img" style="background: linear-gradient(135deg, #d4fc79, #96e6a1);"></div>
+                <div class="shop-price"><span class="price-symbol">&yen;</span>49</div>
+                <div class="shop-title">手机支架 桌面懒人</div>
+                <div class="shop-sales">已售 5.6万</div>
+            </div>
+            <div class="shopping-item">
+                <div class="shop-img" style="background: linear-gradient(135deg, #fbc2eb, #a6c1ee);"></div>
+                <div class="shop-price"><span class="price-symbol">&yen;</span>89</div>
+                <div class="shop-title">Type-C快充数据线</div>
+                <div class="shop-sales">已售 8.9万</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-section">
+        <div class="video-header">
+            <h3>&#127916; 热门视频</h3>
+            <span class="video-more">更多 &gt;</span>
+        </div>
+        <div class="video-grid">
+            <div class="video-item">
+                <div class="video-thumb">
+                    <div class="play-icon">&#9654;</div>
+                    <span class="duration">05:32</span>
+                </div>
+                <div class="video-title">科技前沿：AI改变生活</div>
+                <div class="video-meta">128万次播放</div>
+            </div>
+            <div class="video-item">
+                <div class="video-thumb" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <div class="play-icon">&#9654;</div>
+                    <span class="duration">08:15</span>
+                </div>
+                <div class="video-title">探索太空新发现</div>
+                <div class="video-meta">96万次播放</div>
+            </div>
+            <div class="video-item">
+                <div class="video-thumb" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                    <div class="play-icon">&#9654;</div>
+                    <span class="duration">03:48</span>
+                </div>
+                <div class="video-title">城市风景航拍合集</div>
+                <div class="video-meta">85万次播放</div>
+            </div>
+            <div class="video-item">
+                <div class="video-thumb" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                    <div class="play-icon">&#9654;</div>
+                    <span class="duration">12:06</span>
+                </div>
+                <div class="video-title">新能源汽车深度测评</div>
+                <div class="video-meta">73万次播放</div>
+            </div>
+            <div class="video-item">
+                <div class="video-thumb" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                    <div class="play-icon">&#9654;</div>
+                    <span class="duration">06:22</span>
+                </div>
+                <div class="video-title">美食制作教程精选</div>
+                <div class="video-meta">61万次播放</div>
+            </div>
+            <div class="video-item">
+                <div class="video-thumb" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);">
+                    <div class="play-icon">&#9654;</div>
+                    <span class="duration">09:41</span>
+                </div>
+                <div class="video-title">旅行Vlog：云南之旅</div>
+                <div class="video-meta">55万次播放</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-section">
+        <h3>分类导航</h3>
+        <div class="category-grid">
+            <div class="category-item"><div class="cat-icon">&#128300;</div><div class="cat-text">热点</div></div>
+            <div class="category-item"><div class="cat-icon">&#128187;</div><div class="cat-text">科技</div></div>
+            <div class="category-item"><div class="cat-icon">&#127916;</div><div class="cat-text">娱乐</div></div>
+            <div class="category-item"><div class="cat-icon">&#9917;</div><div class="cat-text">体育</div></div>
+            <div class="category-item"><div class="cat-icon">&#128176;</div><div class="cat-text">财经</div></div>
+            <div class="category-item"><div class="cat-icon">&#127891;</div><div class="cat-text">教育</div></div>
+            <div class="category-item"><div class="cat-icon">&#128640;</div><div class="cat-text">军事</div></div>
+            <div class="category-item"><div class="cat-icon">&#127760;</div><div class="cat-text">国际</div></div>
+            <div class="category-item"><div class="cat-icon">&#128694;</div><div class="cat-text">健康</div></div>
+            <div class="category-item"><div class="cat-icon">&#127968;</div><div class="cat-text">房产</div></div>
+            <div class="category-item"><div class="cat-icon">&#128663;</div><div class="cat-text">汽车</div></div>
+            <div class="category-item"><div class="cat-icon">&#128247;</div><div class="cat-text">摄影</div></div>
+            <div class="category-item"><div class="cat-icon">&#127912;</div><div class="cat-text">艺术</div></div>
+            <div class="category-item"><div class="cat-icon">&#128054;</div><div class="cat-text">宠物</div></div>
+            <div class="category-item"><div class="cat-icon">&#127860;</div><div class="cat-text">美食</div></div>
+            <div class="category-item"><div class="cat-icon">&#9992;&#65039;</div><div class="cat-text">旅行</div></div>
+            <div class="category-item"><div class="cat-icon">&#128588;</div><div class="cat-text">时尚</div></div>
+            <div class="category-item"><div class="cat-icon">&#128250;</div><div class="cat-text">影视</div></div>
+            <div class="category-item"><div class="cat-icon">&#127918;</div><div class="cat-text">游戏</div></div>
+            <div class="category-item"><div class="cat-icon">&#128218;</div><div class="cat-text">读书</div></div>
+        </div>
+    </div>
+
+    <div class="footer-nav">
+        <a href="#" class="active"><span class="nav-icon">&#127968;</span>首页</a>
+        <a href="#"><span class="nav-icon">&#128269;</span>搜索</a>
+        <a href="#"><span class="nav-icon">&#128250;</span>视频</a>
+        <a href="#"><span class="nav-icon">&#128100;</span>我的</a>
+    </div>
+    <script>
+        function test() { return true; }
+        (function() {
+            try { localStorage.setItem('baidu_visit', '1'); } catch(e) {}
+            try { sessionStorage.setItem('baidu_session', '1'); } catch(e) {}
+            document.cookie = 'baidu_test=1; path=/';
+            document.cookie = 'BAIDUID=test_xts_' + Date.now() + '; path=/; domain=.baidu.com';
+        })();
+        (function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(pos) {
+                    var cityEl = document.getElementById('weatherCity');
+                    if (cityEl) cityEl.textContent = '当前位置: ' + pos.coords.latitude.toFixed(2) + ', ' + pos.coords.longitude.toFixed(2);
+                }, function() {
+                    var cityEl = document.getElementById('weatherCity');
+                    if (cityEl) cityEl.textContent = '北京市 海淀区';
+                });
+            }
+        })();
+        (function() {
+            var input = document.getElementById('searchInput');
+            var panel = document.getElementById('suggestionsPanel');
+            if (input && panel) {
+                input.addEventListener('focus', function() { panel.classList.add('show'); });
+                input.addEventListener('blur', function() { setTimeout(function() { panel.classList.remove('show'); }, 200); });
+                input.addEventListener('input', function() { panel.classList.add('show'); });
+            }
+        })();
+        (function() {
+            var voiceBtn = document.getElementById('voiceBtn');
+            var overlay = document.getElementById('voiceOverlay');
+            if (voiceBtn && overlay) {
+                voiceBtn.addEventListener('click', function() { overlay.classList.add('show'); });
+                overlay.querySelector('.voice-cancel').addEventListener('click', function() { overlay.classList.remove('show'); });
+            }
+        })();
+        (function() {
+            var qrBtn = document.getElementById('qrBtn');
+            if (qrBtn) {
+                qrBtn.addEventListener('click', function() {
+                    try { localStorage.setItem('baidu_qr_scan', '1'); } catch(e) {}
+                });
+            }
+        })();
+        function calcInput(val) {
+            var display = document.getElementById('calcDisplay');
+            if (!display) return;
+            var current = display.textContent;
+            if (val === 'C') { display.textContent = '0'; return; }
+            if (val === 'back') { display.textContent = current.length > 1 ? current.slice(0, -1) : '0'; return; }
+            if (val === '=') {
+                try {
+                    var result = Function('"use strict"; return (' + current + ')')();
+                    display.textContent = parseFloat(result.toFixed(10));
+                } catch(e) { display.textContent = 'Error'; }
+                return;
+            }
+            if (current === '0' && val !== '.') { display.textContent = val; }
+            else { display.textContent = current + val; }
+        }
+        function selectPoll(el) {
+            var options = document.querySelectorAll('.poll-option');
+            for (var i = 0; i < options.length; i++) { options[i].classList.remove('selected'); }
+            el.classList.add('selected');
+            try { localStorage.setItem('baidu_poll', el.querySelector('.poll-text').textContent); } catch(e) {}
+        }
+        (function() {
+            var tabs = document.querySelectorAll('.tab');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].addEventListener('click', function() {
+                    for (var j = 0; j < tabs.length; j++) { tabs[j].classList.remove('active'); }
+                    this.classList.add('active');
+                });
+            }
+        })();
+        (function() {
+            var profileBtn = document.getElementById('profileBtn');
+            var loginBtn = document.querySelector('.login-btn');
+            if (loginBtn) {
+                loginBtn.addEventListener('click', function() {
+                    try { localStorage.setItem('baidu_user_login', '1'); } catch(e) {}
+                    document.cookie = 'baidu_user=logged_in; path=/';
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

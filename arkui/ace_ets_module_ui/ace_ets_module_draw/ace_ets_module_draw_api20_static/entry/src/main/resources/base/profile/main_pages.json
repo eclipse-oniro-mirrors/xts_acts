@@ -1,0 +1,43 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/CanvasRenderingContext2D/RoundRectPage",
+        "MainAbility/pages/CanvasRenderingContext2D/StartImageAnalyzerErrorCode",
+        "MainAbility/pages/Circle/CircleResource",
+        "MainAbility/pages/Ellipse/EllipseResource",
+        "MainAbility/pages/Line/LineResource",
+        "MainAbility/pages/Path/PathResource",
+        "MainAbility/pages/Polygon/PolygonResource",
+        "MainAbility/pages/Polyline/PolylineResource",
+        "MainAbility/pages/Rect/RectResource",
+        "MainAbility/pages/Shape/ShapeResource",
+
+        "MainAbility/pages/CanvasRenderingContext2D/ImageBitmapWidthHeight",
+        "MainAbility/pages/CanvasRenderingContext2D/ImageDataWidthHeightData",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasWidthHeightCanvas",
+        "MainAbility/pages/CanvasRenderingContext2D/OffCanvasWidthHeight",
+
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DFillStyle",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DFilter",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DGlobalAlpha",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DGlobalCompositeOperation",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DImageSmoothingEnabled",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DImageSmoothingQuality",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DLetterSpacing",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DStrokeStyle",
+
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DDirection",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DFont",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DLineCap",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DLineDashOffset",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DLineJoin",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DLineWidth",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DMiterLimit",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DShadowBlur",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DShadowColor",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DShadowOffsetX",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DShadowOffsetY",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DTextAlign",
+        "MainAbility/pages/CanvasRenderingContext2D/CanvasRenderingContext2DTextBaseline"
+    ]
+}

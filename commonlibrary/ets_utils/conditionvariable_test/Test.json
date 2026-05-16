@@ -1,0 +1,23 @@
+{
+	"description": "Configuration for startup taskpool js api Tests",
+	"driver": {
+		"type": "OHJSUnitTest",
+		"test-timeout": "800000",
+		"shell-timeout": "800000",
+		"testcase-timeout":"30000",
+		"bundle-name": "com.example.conditionvariabletest",
+		"module-name": "entry_test",
+		"compile-mode": "esmodule"
+	},
+	"kits": [
+		{
+			"test-file-name": ["ActsConditionVariableTest.hap"],
+			"type": "AppInstallKit",
+			"cleanup-apps": true
+		},
+		{
+			"type": "ShellKit",
+			"run-command": ["power-shell wakeup", "power-shell setmode 602"]
+		}
+	]
+}

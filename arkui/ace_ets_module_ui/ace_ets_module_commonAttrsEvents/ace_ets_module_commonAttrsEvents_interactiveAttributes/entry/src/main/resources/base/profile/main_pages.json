@@ -1,0 +1,25 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/enabled/enable",
+        "MainAbility/pages/TouchInteractionControl/monopolizeEvents/monopolize",
+        "MainAbility/pages/responseRegion/responseRegionList",
+        "MainAbility/pages/componentUtils/ComponentUtilsTestPage",
+        "MainAbility/pages/BackgroundImage/BackgroundImageNullAndUndefined",
+        "MainAbility/pages/CommonMethod/overlayNullAndUndefined",
+        "MainAbility/pages/CommonMethod/monopolizeEventsNullAndUndefined",
+        "MainAbility/pages/CommonMethod/restoreIdNullAndUndefined",
+        "MainAbility/pages/CommonMethod/obscuredNullAndUndefined",
+        "MainAbility/pages/ZIndex/ZIndexNullAndUndefined",
+        "MainAbility/pages/CommonMethod/responseRegionNullAndUndefined",
+        "MainAbility/pages/CommonMethod/mouseResponseRegionNullAndUndefined",
+        "MainAbility/pages/CommonMethod/responseRegionListNullAndUndefined",
+        "MainAbility/pages/CommonMethod/hitTestBehaviorNullAndUndefined",
+        "MainAbility/pages/CommonMethod/backgroundNullAndUndefined",
+        "MainAbility/pages/CommonMethod/backgroundImageNullAndUndefined",
+        "MainAbility/pages/CommonMethod/backgroundImageSizeNullAndUndefined",
+        "MainAbility/pages/ColorMetrics/backgroundColorCreateHDRColorTest",
+        "MainAbility/pages/ColorMetrics/createHDRColorWithLogExposure",
+        "MainAbility/pages/ColorMetrics/createHDRColorWithLinearExposure"
+    ]
+}

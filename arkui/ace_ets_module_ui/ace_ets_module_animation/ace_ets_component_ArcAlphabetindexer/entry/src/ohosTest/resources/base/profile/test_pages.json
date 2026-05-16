@@ -1,0 +1,8 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/ArcAlp/ArcAlp",
+        "MainAbility/pages/arcAlphabetIndexer/ArcAlphabetIndexerColorNull",
+        "MainAbility/pages/arcAlphabetIndexer/ArcAlphabetIndexerColorUndefined"
+    ]
+}

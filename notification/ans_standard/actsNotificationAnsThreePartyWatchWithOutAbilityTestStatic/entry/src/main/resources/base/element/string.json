@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "NotificationSubscriberExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "NotificationSubscriberExtAbility_label",
+      "value": "ThirdPartyWearableApp"
+    },
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "notification",
+      "value": "NOTIFICATION_CONTROLLER"
+    },
+    {
+      "name": "access_bluetooth",
+      "value": "ACCESS_BLUETOOTH"
+    },
+    {
+      "name": "NotificationSubscriberExtensionAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "NotificationSubscriberExtensionAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "notificationsubscriberextability_desc",
+      "value": "description"
+    },
+    {
+      "name": "notificationsubscriberextability_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryBackupAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryBackupAbility_label",
+      "value": "label"
+    }
+  ]
+}

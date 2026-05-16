@@ -1,0 +1,13 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/index/second",
+    "MainAbility/pages/TextTimer/TextTimerfontWeight",
+    "MainAbility/pages/TextTimer/TextTimerStartTime",
+    "MainAbility/pages/TextTimer/TextTimerConfigurationStartTime",
+    "MainAbility/pages/TextClock/TextClockFormat",
+    "MainAbility/pages/QRCode/QRCodeResourceStr",
+    "MainAbility/pages/Badge/BabgeBadgeParamWithString",
+    "MainAbility/pages/Badge/BadgeStyle"
+  ]
+}

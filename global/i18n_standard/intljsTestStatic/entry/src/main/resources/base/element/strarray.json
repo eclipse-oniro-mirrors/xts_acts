@@ -1,0 +1,37 @@
+{
+    "strarray": [
+      {
+        "name": "sizeList",
+        "value":[
+          {
+            "value":"small"
+          },
+          {
+            "value":"middle"
+          },
+          {
+            "value":"large"
+          },
+          {
+            "value":"extra large"
+          }
+        ]
+      },
+      {
+        "name": "sizeList2",
+        "value":[
+          {
+            "value":"$string:entry_label"
+          }
+        ]
+      },
+      {
+        "name": "sizeListThree",
+        "value":[
+          {
+            "value":"$string:test_stringLoopA"
+          }
+        ]
+      }
+    ]
+  }

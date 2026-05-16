@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度地图</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", sans-serif; background: #f0f0f0; min-height: 100vh; }
+        .map-container { width: 100%; height: 100vh; background: linear-gradient(135deg, #e8f4e8 0%, #d4e8d4 30%, #c8dcc8 60%, #b8d0b8 100%); position: relative; overflow: hidden; }
+        .map-search { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 8px; }
+        .map-search input { width: 350px; padding: 10px 16px; border: 2px solid #4e6ef2; border-radius: 6px; font-size: 14px; outline: none; }
+        .map-search button { padding: 10px 20px; background: #4e6ef2; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
+        .map-controls { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 2px; z-index: 10; }
+        .map-controls button { width: 36px; height: 36px; background: white; border: 1px solid #ddd; font-size: 18px; cursor: pointer; }
+        .map-controls button:first-child { border-radius: 4px 4px 0 0; }
+        .map-controls button:last-child { border-radius: 0 0 4px 4px; }
+        .map-marker { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -100%); font-size: 32px; z-index: 5; }
+        .road-h { position: absolute; top: 45%; left: 0; right: 0; height: 8px; background: #fff; z-index: 1; }
+        .road-v { position: absolute; top: 0; bottom: 0; left: 48%; width: 8px; background: #fff; z-index: 1; }
+        .road-h2 { position: absolute; top: 25%; left: 5%; right: 30%; height: 6px; background: #f5f5f5; z-index: 1; }
+        .road-h3 { position: absolute; top: 70%; left: 15%; right: 10%; height: 6px; background: #f5f5f5; z-index: 1; }
+        .road-v2 { position: absolute; top: 10%; bottom: 20%; left: 25%; width: 6px; background: #f5f5f5; z-index: 1; }
+        .road-v3 { position: absolute; top: 15%; bottom: 15%; left: 70%; width: 6px; background: #f5f5f5; z-index: 1; }
+        .road-d1 { position: absolute; top: 35%; left: 5%; right: 40%; height: 4px; background: #eee; transform: rotate(15deg); z-index: 1; }
+        .road-d2 { position: absolute; top: 55%; left: 30%; right: 5%; height: 4px; background: #eee; transform: rotate(-10deg); z-index: 1; }
+        .road-main { position: absolute; top: 0; bottom: 0; left: 35%; width: 10px; background: #fff8dc; z-index: 1; transform: rotate(5deg); }
+        .road-h4 { position: absolute; top: 85%; left: 20%; right: 40%; height: 5px; background: #f5f5f5; z-index: 1; }
+        .road-v4 { position: absolute; top: 30%; bottom: 40%; left: 85%; width: 5px; background: #f5f5f5; z-index: 1; }
+        .road-h5 { position: absolute; top: 15%; left: 40%; right: 25%; height: 4px; background: #eee; z-index: 1; }
+        .road-v5 { position: absolute; top: 50%; bottom: 10%; left: 12%; width: 4px; background: #eee; z-index: 1; }
+        .building { position: absolute; background: #ddd; border-radius: 3px; z-index: 2; }
+        .b1 { width: 60px; height: 40px; top: 25%; left: 20%; }
+        .b2 { width: 80px; height: 50px; top: 20%; left: 60%; }
+        .b3 { width: 50px; height: 35px; top: 55%; left: 30%; }
+        .b4 { width: 70px; height: 45px; top: 50%; left: 65%; }
+        .b5 { width: 45px; height: 55px; top: 15%; left: 40%; }
+        .b6 { width: 55px; height: 40px; top: 75%; left: 45%; }
+        .b7 { width: 65px; height: 35px; top: 60%; left: 15%; }
+        .b8 { width: 40px; height: 50px; top: 35%; left: 80%; }
+        .b9 { width: 50px; height: 30px; top: 82%; left: 20%; }
+        .b10 { width: 35px; height: 45px; top: 10%; left: 15%; }
+        .b11 { width: 55px; height: 38px; top: 38%; left: 10%; }
+        .b12 { width: 42px; height: 42px; top: 28%; left: 52%; }
+        .park { position: absolute; background: #b8d8b8; border-radius: 50%; z-index: 1; }
+        .p1 { width: 80px; height: 80px; top: 35%; left: 35%; }
+        .p2 { width: 60px; height: 60px; top: 15%; left: 80%; }
+        .p3 { width: 50px; height: 50px; top: 75%; left: 75%; }
+        .p4 { width: 70px; height: 70px; top: 80%; left: 30%; }
+        .water { position: absolute; background: #b8d0e8; border-radius: 40%; z-index: 1; }
+        .w1 { width: 120px; height: 60px; top: 65%; left: 10%; }
+        .w2 { width: 80px; height: 50px; top: 80%; left: 55%; }
+        .w3 { width: 60px; height: 40px; top: 5%; left: 50%; }
+        .label { position: absolute; font-size: 12px; color: #555; z-index: 3; background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 3px; white-space: nowrap; }
+        .l1 { top: 23%; left: 20%; }
+        .l2 { top: 18%; left: 60%; }
+        .l3 { top: 53%; left: 30%; }
+        .l4 { top: 48%; left: 65%; }
+        .l5 { top: 43%; left: 45%; }
+        .l6 { top: 63%; left: 10%; }
+        .l7 { top: 78%; left: 30%; }
+        .l8 { top: 13%; left: 80%; }
+        .l9 { top: 8%; left: 50%; }
+        .l10 { top: 33%; left: 78%; }
+        .scale-bar { position: absolute; bottom: 30px; right: 80px; z-index: 10; display: flex; flex-direction: column; align-items: center; }
+        .scale-line { width: 100px; height: 2px; background: #333; position: relative; }
+        .scale-line::before { content: ''; position: absolute; left: 0; top: -4px; width: 2px; height: 10px; background: #333; }
+        .scale-line::after { content: ''; position: absolute; right: 0; top: -4px; width: 2px; height: 10px; background: #333; }
+        .scale-text { font-size: 11px; color: #333; margin-top: 3px; }
+        .compass { position: absolute; bottom: 30px; left: 20px; width: 50px; height: 50px; z-index: 10; }
+        .compass-ring { width: 50px; height: 50px; border: 2px solid #333; border-radius: 50%; position: relative; background: rgba(255,255,255,0.9); }
+        .compass-n { position: absolute; top: 2px; left: 50%; transform: translateX(-50%); font-size: 12px; font-weight: bold; color: #e74c3c; }
+        .compass-s { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #333; }
+        .compass-e { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 11px; color: #333; }
+        .compass-w { position: absolute; left: 4px; top: 50%; transform: translateY(-50%); font-size: 11px; color: #333; }
+        .compass-arrow { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 12px solid #e74c3c; }
+        .street-view-btn { position: absolute; right: 20px; bottom: 80px; z-index: 10; width: 40px; height: 40px; background: white; border: 1px solid #ddd; border-radius: 4px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; }
+        .layer-controls { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); z-index: 10; background: white; border-radius: 8px; padding: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+        .layer-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; font-size: 13px; cursor: pointer; border-radius: 4px; }
+        .layer-item:hover { background: #f5f5f5; }
+        .layer-item input[type="checkbox"] { accent-color: #4e6ef2; }
+        .search-results { position: absolute; top: 60px; left: 50%; transform: translateX(-50%); width: 386px; background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); z-index: 10; max-height: 300px; overflow-y: auto; display: none; }
+        .search-results.visible { display: block; }
+        .result-item { display: flex; gap: 10px; padding: 12px 15px; border-bottom: 1px solid #f0f0f0; cursor: pointer; }
+        .result-item:hover { background: #f0f6ff; }
+        .result-item:last-child { border-bottom: none; }
+        .result-icon { font-size: 20px; flex-shrink: 0; width: 28px; text-align: center; }
+        .result-info h4 { font-size: 14px; color: #333; margin-bottom: 3px; }
+        .result-info p { font-size: 12px; color: #999; }
+        .route-planner { position: absolute; top: 70px; left: 20px; z-index: 10; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); width: 280px; }
+        .route-planner h3 { font-size: 14px; margin-bottom: 12px; color: #333; }
+        .route-inputs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+        .route-inputs input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; outline: none; }
+        .route-modes { display: flex; gap: 8px; margin-bottom: 12px; }
+        .route-mode { padding: 6px 14px; border: 1px solid #ddd; border-radius: 20px; font-size: 12px; cursor: pointer; background: white; }
+        .route-mode.active { background: #4e6ef2; color: white; border-color: #4e6ef2; }
+        .route-btn { width: 100%; padding: 8px; background: #4e6ef2; color: white; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; }
+        .poi-list { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; gap: 8px; }
+        .poi-chip { padding: 6px 14px; background: white; border-radius: 20px; font-size: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; display: flex; align-items: center; gap: 4px; }
+        .poi-chip:hover { background: #f0f6ff; }
+        .map-info { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: white; padding: 8px 16px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); font-size: 12px; color: #666; z-index: 10; white-space: nowrap; }
+        .traffic-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; pointer-events: none; }
+        .traffic-line { position: absolute; height: 4px; opacity: 0.7; }
+        .tl1 { top: 45%; left: 0; right: 0; background: #4caf50; }
+        .tl2 { top: 25%; left: 5%; right: 30%; background: #ff9800; }
+        .tl3 { top: 70%; left: 15%; right: 10%; background: #f44336; }
+        .traffic-overlay.hidden { display: none; }
+        .poi-panel { position: absolute; top: 70px; right: 20px; z-index: 10; background: white; border-radius: 8px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); width: 260px; max-height: 400px; overflow-y: auto; display: none; }
+        .poi-panel.visible { display: block; }
+        .poi-panel h3 { font-size: 14px; margin-bottom: 12px; color: #333; }
+        .poi-entry { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+        .poi-entry:last-child { border-bottom: none; }
+        .poi-entry .pe-icon { font-size: 18px; flex-shrink: 0; width: 24px; text-align: center; }
+        .poi-entry .pe-info h4 { font-size: 13px; color: #333; }
+        .poi-entry .pe-info p { font-size: 11px; color: #999; }
+    </style>
+</head>
+<body>
+    <div class="map-container">
+        <div class="map-search">
+            <input type="text" placeholder="搜索地点、路线、公交" id="mapSearchInput">
+            <button onclick="toggleSearch()">搜索</button>
+        </div>
+        <div class="search-results" id="searchResults">
+            <div class="result-item"><div class="result-icon">&#127970;</div><div class="result-info"><h4>故宫博物院</h4><p>北京市东城区景山前街4号 | 4.8分</p></div></div>
+            <div class="result-item"><div class="result-icon">&#127979;</div><div class="result-info"><h4>天安门广场</h4><p>北京市东城区 | 4.9分</p></div></div>
+            <div class="result-item"><div class="result-icon">&#127976;</div><div class="result-info"><h4>北京大学</h4><p>北京市海淀区颐和园路5号 | 4.7分</p></div></div>
+            <div class="result-item"><div class="result-icon">&#127981;</div><div class="result-info"><h4>中关村科技园</h4><p>北京市海淀区 | 4.5分</p></div></div>
+            <div class="result-item"><div class="result-icon">&#127968;</div><div class="result-info"><h4>中关村大街购物中心</h4><p>北京市海淀区中关村大街 | 4.3分</p></div></div>
+        </div>
+        <div class="route-planner">
+            <h3>&#128205; 路线规划</h3>
+            <div class="route-inputs">
+                <input type="text" placeholder="输入起点" value="我的位置">
+                <input type="text" placeholder="输入终点">
+            </div>
+            <div class="route-modes">
+                <button class="route-mode active">&#128663; 驾车</button>
+                <button class="route-mode">&#128647; 公交</button>
+                <button class="route-mode">&#128694; 步行</button>
+                <button class="route-mode">&#128692; 骑行</button>
+            </div>
+            <button class="route-btn">搜索路线</button>
+        </div>
+        <div class="map-marker">&#128205;</div>
+        <div class="road-h"></div>
+        <div class="road-v"></div>
+        <div class="road-h2"></div>
+        <div class="road-h3"></div>
+        <div class="road-v2"></div>
+        <div class="road-v3"></div>
+        <div class="road-d1"></div>
+        <div class="road-d2"></div>
+        <div class="road-main"></div>
+        <div class="road-h4"></div>
+        <div class="road-v4"></div>
+        <div class="road-h5"></div>
+        <div class="road-v5"></div>
+        <div class="building b1"></div>
+        <div class="building b2"></div>
+        <div class="building b3"></div>
+        <div class="building b4"></div>
+        <div class="building b5"></div>
+        <div class="building b6"></div>
+        <div class="building b7"></div>
+        <div class="building b8"></div>
+        <div class="building b9"></div>
+        <div class="building b10"></div>
+        <div class="building b11"></div>
+        <div class="building b12"></div>
+        <div class="park p1"></div>
+        <div class="park p2"></div>
+        <div class="park p3"></div>
+        <div class="park p4"></div>
+        <div class="water w1"></div>
+        <div class="water w2"></div>
+        <div class="water w3"></div>
+        <div class="label l1">&#127970; 故宫博物院</div>
+        <div class="label l2">&#127979; 天安门广场</div>
+        <div class="label l3">&#127976; 北京大学</div>
+        <div class="label l4">&#127981; 中关村科技园</div>
+        <div class="label l5">&#127968; 购物中心</div>
+        <div class="label l6">&#127795; 颐和园</div>
+        <div class="label l7">&#127795; 紫竹院公园</div>
+        <div class="label l8">&#127979; 奥林匹克公园</div>
+        <div class="label l9">&#128167; 昆明湖</div>
+        <div class="label l10">&#127973; 五道口商圈</div>
+        <div class="traffic-overlay" id="trafficOverlay">
+            <div class="traffic-line tl1"></div>
+            <div class="traffic-line tl2"></div>
+            <div class="traffic-line tl3"></div>
+        </div>
+        <div class="layer-controls">
+            <div class="layer-item"><input type="checkbox" checked> <span>&#128506; 地图</span></div>
+            <div class="layer-item"><input type="checkbox" checked id="trafficToggle"> <span>&#128678; 实时路况</span></div>
+            <div class="layer-item"><input type="checkbox"> <span>&#128205; 卫星图</span></div>
+            <div class="layer-item"><input type="checkbox"> <span>&#128692; 路况预测</span></div>
+            <div class="layer-item"><input type="checkbox"> <span>&#128647; 公交线路</span></div>
+        </div>
+        <div class="map-controls">
+            <button>+</button>
+            <button>-</button>
+        </div>
+        <div class="street-view-btn" title="全景">&#128247;</div>
+        <div class="scale-bar">
+            <div class="scale-line"></div>
+            <div class="scale-text">500m</div>
+        </div>
+        <div class="compass">
+            <div class="compass-ring">
+                <div class="compass-n">N</div>
+                <div class="compass-s">S</div>
+                <div class="compass-e">E</div>
+                <div class="compass-w">W</div>
+                <div class="compass-arrow"></div>
+            </div>
+        </div>
+        <div class="poi-list">
+            <div class="poi-chip" onclick="togglePoi()">&#127970; 景点</div>
+            <div class="poi-chip">&#127846; 美食</div>
+            <div class="poi-chip">&#127976; 学校</div>
+            <div class="poi-chip">&#127973; 酒店</div>
+            <div class="poi-chip">&#127981; 公司</div>
+            <div class="poi-chip">&#127973; 购物</div>
+            <div class="poi-chip">&#127968; 住宅</div>
+        </div>
+        <div class="poi-panel" id="poiPanel">
+            <h3>&#127970; 附近景点</h3>
+            <div class="poi-entry"><div class="pe-icon">&#127970;</div><div class="pe-info"><h4>故宫博物院</h4><p>距离 2.3km | 4.8分 | 08:30-17:00</p></div></div>
+            <div class="poi-entry"><div class="pe-icon">&#127795;</div><div class="pe-info"><h4>颐和园</h4><p>距离 5.1km | 4.9分 | 06:30-18:00</p></div></div>
+            <div class="poi-entry"><div class="pe-icon">&#127795;</div><div class="pe-info"><h4>圆明园</h4><p>距离 4.8km | 4.6分 | 07:00-19:00</p></div></div>
+            <div class="poi-entry"><div class="pe-icon">&#127970;</div><div class="pe-info"><h4>天坛公园</h4><p>距离 8.2km | 4.7分 | 06:00-22:00</p></div></div>
+            <div class="poi-entry"><div class="pe-icon">&#127970;</div><div class="pe-info"><h4>北海公园</h4><p>距离 3.1km | 4.5分 | 06:00-21:00</p></div></div>
+            <div class="poi-entry"><div class="pe-icon">&#127970;</div><div class="pe-info"><h4>景山公园</h4><p>距离 2.5km | 4.4分 | 06:00-21:00</p></div></div>
+        </div>
+        <div class="map-info">&#128205; 当前位置: 北京市海淀区 | 经度: 116.397128 纬度: 39.916527</div>
+    </div>
+    <script>
+        function test() { return true; }
+        function toggleSearch() {
+            document.getElementById('searchResults').classList.toggle('visible');
+        }
+        function togglePoi() {
+            document.getElementById('poiPanel').classList.toggle('visible');
+        }
+        document.getElementById('trafficToggle').addEventListener('change', function() {
+            document.getElementById('trafficOverlay').classList.toggle('hidden', !this.checked);
+        });
+    </script>
+</body>
+</html>

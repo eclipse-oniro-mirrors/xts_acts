@@ -1,0 +1,19 @@
+{
+    "devices": {
+        "general": [],
+        "custom": [
+            {
+                "xts": [
+                    "SystemCapability.Multimedia.Media.VideoDecoder",
+                    "SystemCapability.Multimedia.Media.Core",
+                    "SystemCapability.Multimedia.Media.CodecBase",
+                    "SystemCapability.Graphic.Graphic2D.NativeImage",
+                    "SystemCapability.Graphic.Graphic2D.NativeBuffer",
+                    "SystemCapability.Graphic.Graphic2D.NativeWindow",
+                    "SystemCapability.Graphic.Graphic2D.NativeDrawing",
+                    "SystemCapability.Security.CryptoFramework"
+                ]
+            }
+        ]
+    }
+}

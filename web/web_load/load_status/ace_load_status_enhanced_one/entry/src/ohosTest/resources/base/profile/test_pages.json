@@ -1,0 +1,14 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "testability/pages/WebAttributeTest",
+    "testability/pages/WebOnBeforeUnload",
+    "testability/pages/WebAttributeEnhancedTest",
+    "testability/pages/WebBlockNetworkSpecial",
+    "testability/pages/WebMixedModeSpecial",
+    "testability/pages/WebCacheModeSpecial",
+    "testability/pages/WebOnBeforeUnloadTwo",
+    "testability/pages/WebOnBeforeUnloadThree"
+  ]
+}
+

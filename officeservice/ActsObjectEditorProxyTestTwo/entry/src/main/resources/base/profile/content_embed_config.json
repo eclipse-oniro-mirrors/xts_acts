@@ -1,0 +1,19 @@
+{
+    "content_embed_config": [
+        {
+            "oeid": "000209FF-BBBB-DDDD-CAAA-000000000046",
+            "file_exts": ".ole",
+            "name": "$string:ole_name",
+            "description": "$string:ole_description",
+            "icon": "$media:icon"
+        },
+        {
+            "oeid": "000209FF-BBBB-DDDD-CAAA-000000000041",
+            "file_exts": ".ole",
+            "name": "$string:ole_name",
+            "description": "$string:ole_description",
+            "icon": "$media:icon"
+        }
+    ]
+}
+

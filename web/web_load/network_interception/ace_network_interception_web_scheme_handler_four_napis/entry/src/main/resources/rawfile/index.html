@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      function testxhr(url) {
+      var formData = new FormData();
+      var myBlob = new Blob(["This is my blob content"], {type : "text/plain"});
+      formData.append("upload", myBlob);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', url, true);
+      xhr.send(formData);
+      xhr.onreadystatechange = function (err) {
+        console.log(err.target.status + " debug");
+      }
+    }    
+    </script>
+</head>
+<body>
+
+<a href="custom://www.example.com/302.html"><h1>302跳转</h1></a>
+
+<h1 onclick="testxhr('custom://www.example.com/xhr/normal/')">正常的xhr请求，https://  传递postdata</h1>
+
+</body>
+</html>

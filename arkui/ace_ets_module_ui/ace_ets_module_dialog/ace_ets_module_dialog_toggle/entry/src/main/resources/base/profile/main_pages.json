@@ -1,0 +1,29 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/Toggle/TogglePage",
+        "MainAbility/pages/Toggle/Toggle",
+        "MainAbility/pages/Toggle/toggle3", 
+
+        "MainAbility/pages/Toggle/ToggleContentModifier",
+        "MainAbility/pages/Toggle/ToggleSwitchStyle",
+        "MainAbility/pages/Toggle/ToggleIsOn",
+        "MainAbility/pages/Toggle/ToggleEnabled",
+
+        "MainAbility/pages/Toggle/toggleNode",
+        "MainAbility/pages/Toggle/toggleOnChangeModifier",
+
+        "MainAbility/pages/Toggle/ToggleContentModifierNullTest",
+        "MainAbility/pages/Toggle/ToggleSelectedColorNullTest",
+        "MainAbility/pages/Toggle/ToggleSwitchPointColorNullTest",
+        "MainAbility/pages/Toggle/ToggleSwitchStyleNullTest",
+
+        "MainAbility/pages/buttonNull/ButtonContentModifierNullTest",
+        "MainAbility/pages/buttonNull/ButtonFontColorNullTest",
+        "MainAbility/pages/buttonNull/ButtonFontFamilyNullTest",
+        "MainAbility/pages/buttonNull/ButtonFontStyleNullTest",
+        "MainAbility/pages/buttonNull/ButtonFontWeightNullTest",
+        "MainAbility/pages/buttonNull/ButtonLabelStyleNullTest",
+        "MainAbility/pages/buttonNull/ButtonRoleNormalTest"
+    ]
+}

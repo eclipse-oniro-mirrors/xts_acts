@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人民日报 - 人民网</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei", "SimSun", serif; background: #f5f5f5; min-height: 100vh; color: #333; }
+        .header { background: #c41a1a; color: white; padding: 15px 20px; text-align: center; }
+        .header h1 { font-size: 32px; font-weight: bold; letter-spacing: 8px; }
+        .header p { font-size: 14px; opacity: 0.9; margin-top: 5px; }
+        .date-bar { background: #b71c1c; color: rgba(255,255,255,0.8); padding: 8px 20px; text-align: center; font-size: 13px; }
+        .nav-bar { background: white; display: flex; justify-content: center; gap: 25px; padding: 0; border-bottom: 2px solid #c41a1a; }
+        .nav-bar a { text-decoration: none; color: #333; font-size: 15px; padding: 12px 0; }
+        .nav-bar a:hover, .nav-bar a.active { color: #c41a1a; font-weight: bold; }
+        .main-layout { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+        .headline { background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px; border-left: 4px solid #c41a1a; }
+        .headline h2 { font-size: 22px; margin-bottom: 12px; line-height: 1.5; }
+        .headline .hl-img { width: 100%; height: 300px; background: linear-gradient(135deg, #c41a1a, #e57373); border-radius: 6px; margin: 15px 0; }
+        .headline p { font-size: 15px; line-height: 1.8; color: #555; }
+        .news-list { background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px; }
+        .news-list h3 { font-size: 18px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #c41a1a; }
+        .news-item { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        .news-item:last-child { border-bottom: none; }
+        .news-item h4 { font-size: 16px; margin-bottom: 5px; line-height: 1.5; }
+        .news-item h4:hover { color: #c41a1a; cursor: pointer; }
+        .news-item .source { font-size: 12px; color: #999; }
+        .editorial { background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px; }
+        .editorial h3 { font-size: 18px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #c41a1a; }
+        .editorial-item { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        .editorial-item:last-child { border-bottom: none; }
+        .editorial-item h4 { font-size: 16px; margin-bottom: 5px; line-height: 1.5; color: #c41a1a; }
+        .editorial-item p { font-size: 14px; color: #666; line-height: 1.7; }
+        .opinion { background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px; }
+        .opinion h3 { font-size: 18px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #c41a1a; }
+        .opinion-item { padding: 12px 0; border-bottom: 1px solid #f0f0f0; display: flex; gap: 15px; }
+        .opinion-item:last-child { border-bottom: none; }
+        .opinion-avatar { width: 50px; height: 50px; border-radius: 50%; background: #ddd; flex-shrink: 0; }
+        .opinion-item h4 { font-size: 15px; line-height: 1.5; }
+        .opinion-item p { font-size: 13px; color: #888; margin-top: 4px; }
+        .photo-gallery { background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px; }
+        .photo-gallery h3 { font-size: 18px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #c41a1a; }
+        .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .photo-item { height: 120px; border-radius: 6px; cursor: pointer; position: relative; }
+        .photo-item::after { content: attr(data-label); position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 15px 8px 6px; font-size: 12px; }
+        .pi-1 { background: linear-gradient(135deg, #c41a1a, #e57373); }
+        .pi-2 { background: linear-gradient(135deg, #1565c0, #42a5f5); }
+        .pi-3 { background: linear-gradient(135deg, #2e7d32, #66bb6a); }
+        .pi-4 { background: linear-gradient(135deg, #e65100, #ff9800); }
+        .pi-5 { background: linear-gradient(135deg, #6a1b9a, #ab47bc); }
+        .pi-6 { background: linear-gradient(135deg, #00695c, #26a69a); }
+        .video-section { background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px; }
+        .video-section h3 { font-size: 18px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #c41a1a; }
+        .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .video-card { cursor: pointer; }
+        .video-card .thumb { height: 120px; border-radius: 6px; position: relative; margin-bottom: 8px; }
+        .video-card .thumb::after { content: '\25B6'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; color: white; }
+        .video-card h4 { font-size: 14px; line-height: 1.4; }
+        .sidebar { }
+        .sidebar-section { background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+        .sidebar-section h3 { font-size: 16px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+        .sidebar-item { padding: 8px 0; font-size: 14px; border-bottom: 1px solid #f8f8f8; }
+        .sidebar-item:last-child { border-bottom: none; }
+        .sidebar-item a { text-decoration: none; color: #333; }
+        .sidebar-item a:hover { color: #c41a1a; }
+        .hot-rank { list-style: none; padding: 0; }
+        .hot-rank li { padding: 8px 0; border-bottom: 1px solid #f8f8f8; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+        .hot-rank li:last-child { border-bottom: none; }
+        .rank-num { width: 20px; height: 20px; background: #999; color: white; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+        .rank-num.top { background: #c41a1a; }
+        .footer { background: #333; color: #999; text-align: center; padding: 20px; font-size: 12px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>人民日报</h1>
+        <p>PEOPLE'S DAILY</p>
+    </div>
+    <div class="date-bar">2024年12月26日 星期四 农历冬月廿六</div>
+    <div class="nav-bar">
+        <a href="#" class="active">首页</a>
+        <a href="#">时政</a>
+        <a href="#">国际</a>
+        <a href="#">社会</a>
+        <a href="#">财经</a>
+        <a href="#">科技</a>
+        <a href="#">文化</a>
+        <a href="#">体育</a>
+    </div>
+    <div class="main-layout">
+        <div class="main-news">
+            <div class="headline">
+                <h2>全面建设社会主义现代化国家取得新成就</h2>
+                <div class="hl-img"></div>
+                <p>本报讯 全国各地深入贯彻落实新发展理念，推动高质量发展取得显著成效。在经济建设、科技创新、民生改善等各个领域，都取得了令人瞩目的成就，为实现中华民族伟大复兴的中国梦奠定了坚实基础。</p>
+            </div>
+            <div class="news-list">
+                <h3>要闻</h3>
+                <div class="news-item"><h4>科技创新驱动高质量发展，关键核心技术攻关取得突破</h4><div class="source">人民日报 2小时前</div></div>
+                <div class="news-item"><h4>绿色发展理念深入人心，生态文明建设成效显著</h4><div class="source">人民日报 3小时前</div></div>
+                <div class="news-item"><h4>乡村振兴战略深入实施，农业农村现代化稳步推进</h4><div class="source">人民日报 4小时前</div></div>
+                <div class="news-item"><h4>数字经济蓬勃发展，数字化转型加速推进</h4><div class="source">人民日报 5小时前</div></div>
+                <div class="news-item"><h4>文化自信更加坚定，中华优秀传统文化传承发展</h4><div class="source">人民日报 6小时前</div></div>
+                <div class="news-item"><h4>对外开放持续深化，共建一带一路高质量发展</h4><div class="source">人民日报 7小时前</div></div>
+            </div>
+            <div class="editorial">
+                <h3>人民日报社论</h3>
+                <div class="editorial-item">
+                    <h4>坚持以人民为中心的发展思想</h4>
+                    <p>人民是历史的创造者，是决定党和国家前途命运的根本力量。必须坚持人民主体地位，坚持立党为公、执政为民，践行全心全意为人民服务的根本宗旨。</p>
+                </div>
+                <div class="editorial-item">
+                    <h4>坚定不移推进改革开放</h4>
+                    <p>改革开放是决定当代中国命运的关键一招。新时代改革开放具有许多新的内涵和特点，其中很重要的一点就是制度建设分量更重。</p>
+                </div>
+                <div class="editorial-item">
+                    <h4>加强党的建设新的伟大工程</h4>
+                    <p>办好中国的事情，关键在党。必须坚持和加强党的全面领导，坚持党要管党、全面从严治党，把党建设得更加坚强有力。</p>
+                </div>
+            </div>
+            <div class="news-list">
+                <h3>国际新闻</h3>
+                <div class="news-item"><h4>中国与多国深化经贸合作，推动构建开放型世界经济</h4><div class="source">人民日报 1小时前</div></div>
+                <div class="news-item"><h4>联合国大会通过重要决议，中国方案获广泛支持</h4><div class="source">人民日报 3小时前</div></div>
+                <div class="news-item"><h4>全球气候治理取得积极进展，中国贡献获国际认可</h4><div class="source">人民日报 5小时前</div></div>
+            </div>
+            <div class="opinion">
+                <h3>观点评论</h3>
+                <div class="opinion-item">
+                    <div class="opinion-avatar" style="background:linear-gradient(135deg,#c41a1a,#e57373);"></div>
+                    <div><h4>以高水平科技自立自强支撑高质量发展</h4><p>特约评论员 | 1小时前</p></div>
+                </div>
+                <div class="opinion-item">
+                    <div class="opinion-avatar" style="background:linear-gradient(135deg,#1565c0,#42a5f5);"></div>
+                    <div><h4>论新型城镇化建设的中国路径</h4><p>人民日报评论部 | 3小时前</p></div>
+                </div>
+                <div class="opinion-item">
+                    <div class="opinion-avatar" style="background:linear-gradient(135deg,#2e7d32,#66bb6a);"></div>
+                    <div><h4>乡村振兴需要更多年轻人投身其中</h4><p>人民时评 | 5小时前</p></div>
+                </div>
+            </div>
+            <div class="photo-gallery">
+                <h3>新闻图片</h3>
+                <div class="photo-grid">
+                    <div class="photo-item pi-1" data-label="科技创新成果展"></div>
+                    <div class="photo-item pi-2" data-label="绿色生态建设"></div>
+                    <div class="photo-item pi-3" data-label="乡村振兴新面貌"></div>
+                    <div class="photo-item pi-4" data-label="城市夜景"></div>
+                    <div class="photo-item pi-5" data-label="文化活动盛况"></div>
+                    <div class="photo-item pi-6" data-label="国际交流合作"></div>
+                </div>
+            </div>
+            <div class="video-section">
+                <h3>人民视频</h3>
+                <div class="video-grid">
+                    <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#c41a1a,#e57373);"></div><h4>新时代伟大成就纪录片</h4></div>
+                    <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#1565c0,#42a5f5);"></div><h4>高质量发展系列报道</h4></div>
+                    <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#2e7d32,#66bb6a);"></div><h4>绿水青山就是金山银山</h4></div>
+                    <div class="video-card"><div class="thumb" style="background:linear-gradient(135deg,#e65100,#ff9800);"></div><h4>科技创新引领未来</h4></div>
+                </div>
+            </div>
+            <div class="news-list">
+                <h3>社会新闻</h3>
+                <div class="news-item"><h4>全国铁路暑运启动，预计发送旅客8.6亿人次</h4><div class="source">人民日报 30分钟前</div></div>
+                <div class="news-item"><h4>多地推出便民惠民新举措，提升群众获得感</h4><div class="source">人民日报 1小时前</div></div>
+                <div class="news-item"><h4>全国高校毕业生就业形势总体稳定向好</h4><div class="source">人民日报 2小时前</div></div>
+                <div class="news-item"><h4>养老服务体系建设加快推进，居家养老惠及更多家庭</h4><div class="source">人民日报 4小时前</div></div>
+            </div>
+            <div class="news-list">
+                <h3>财经新闻</h3>
+                <div class="news-item"><h4>前三季度GDP同比增长5.2%，经济运行持续向好</h4><div class="source">人民日报 1小时前</div></div>
+                <div class="news-item"><h4>新能源汽车产销量创历史新高，出口持续增长</h4><div class="source">人民日报 3小时前</div></div>
+                <div class="news-item"><h4>资本市场改革深化，注册制全面落地见效</h4><div class="source">人民日报 4小时前</div></div>
+                <div class="news-item"><h4>数字人民币试点范围扩大，应用场景不断丰富</h4><div class="source">人民日报 6小时前</div></div>
+            </div>
+            <div class="news-list">
+                <h3>科技新闻</h3>
+                <div class="news-item"><h4>量子计算研究取得重大突破，计算速度大幅提升</h4><div class="source">人民日报 2小时前</div></div>
+                <div class="news-item"><h4>国产大飞机C919商业运营满周年，安全运送旅客超百万</h4><div class="source">人民日报 5小时前</div></div>
+                <div class="news-item"><h4>北斗卫星导航系统全球服务能力持续提升</h4><div class="source">人民日报 7小时前</div></div>
+            </div>
+            <div class="news-list">
+                <h3>文化体育</h3>
+                <div class="news-item"><h4>故宫博物院数字化展览线上开幕，观众可沉浸式体验</h4><div class="source">人民日报 1小时前</div></div>
+                <div class="news-item"><h4>中国代表团在亚运会上取得优异成绩</h4><div class="source">人民日报 3小时前</div></div>
+                <div class="news-item"><h4>非物质文化遗产传承人培养计划启动</h4><div class="source">人民日报 6小时前</div></div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3>热点排行</h3>
+                <ul class="hot-rank">
+                    <li><span class="rank-num top">1</span>科技创新重大突破</li>
+                    <li><span class="rank-num top">2</span>经济发展新态势</li>
+                    <li><span class="rank-num top">3</span>生态文明建设成果</li>
+                    <li><span class="rank-num">4</span>教育改革新举措</li>
+                    <li><span class="rank-num">5</span>国际形势新变化</li>
+                    <li><span class="rank-num">6</span>乡村振兴新进展</li>
+                    <li><span class="rank-num">7</span>医疗卫生改革</li>
+                    <li><span class="rank-num">8</span>文化传承创新</li>
+                    <li><span class="rank-num">9</span>数字经济新动能</li>
+                    <li><span class="rank-num">10</span>对外开放新格局</li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3>人民日报社论</h3>
+                <div class="sidebar-item"><a href="#">坚持以人民为中心的发展思想</a></div>
+                <div class="sidebar-item"><a href="#">坚定不移推进改革开放</a></div>
+                <div class="sidebar-item"><a href="#">加强党的建设新的伟大工程</a></div>
+                <div class="sidebar-item"><a href="#">推动构建人类命运共同体</a></div>
+            </div>
+            <div class="sidebar-section">
+                <h3>专题报道</h3>
+                <div class="sidebar-item"><a href="#">学习贯彻党的二十大精神</a></div>
+                <div class="sidebar-item"><a href="#">高质量发展调研行</a></div>
+                <div class="sidebar-item"><a href="#">乡村振兴在行动</a></div>
+                <div class="sidebar-item"><a href="#">文化传承发展</a></div>
+                <div class="sidebar-item"><a href="#">生态文明建设</a></div>
+            </div>
+            <div class="sidebar-section">
+                <h3>人民视频</h3>
+                <div style="height:150px;background:linear-gradient(135deg,#c41a1a,#e57373);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;">&#9654; 精彩视频</div>
+            </div>
+            <div class="sidebar-section">
+                <h3>数据新闻</h3>
+                <div class="sidebar-item"><a href="#">2024年经济数据图解</a></div>
+                <div class="sidebar-item"><a href="#">全国人口普查数据分析</a></div>
+                <div class="sidebar-item"><a href="#">绿色发展指数报告</a></div>
+                <div class="sidebar-item"><a href="#">科技创新数据看板</a></div>
+            </div>
+            <div class="sidebar-section">
+                <h3>订阅服务</h3>
+                <div class="sidebar-item"><a href="#">人民日报电子版</a></div>
+                <div class="sidebar-item"><a href="#">人民日报客户端</a></div>
+                <div class="sidebar-item"><a href="#">人民网微博</a></div>
+                <div class="sidebar-item"><a href="#">微信公众号</a></div>
+            </div>
+            <div class="sidebar-section">
+                <h3>今日推荐</h3>
+                <div class="sidebar-item"><a href="#">深度解读：新发展格局下的中国经济</a></div>
+                <div class="sidebar-item"><a href="#">评论员文章：以改革促发展</a></div>
+                <div class="sidebar-item"><a href="#">影像中国：大美河山</a></div>
+                <div class="sidebar-item"><a href="#">人民论坛：社会治理新探索</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">&copy; 2024 人民日报社 版权所有 | 人民网</div>
+    <script>function test() { return true; }</script>
+</body>
+</html>

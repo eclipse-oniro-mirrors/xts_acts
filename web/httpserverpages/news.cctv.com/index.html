@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCTV-新闻</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei", sans-serif; background: #f0f0f0; min-height: 100vh; color: #333; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #0078d4, #00b4d8); z-index: 1000; transition: width 0.1s; width: 0; }
+        .header { background: #1a1a2e; color: white; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 20px; font-weight: bold; }
+        .logo span { color: #0078d4; }
+        .header-nav { display: flex; gap: 15px; }
+        .header-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; }
+        .header-nav a:hover { color: white; }
+        .search-box { display: flex; }
+        .search-box input { padding: 6px 12px; border: none; border-radius: 4px 0 0 4px; font-size: 13px; }
+        .search-box button { padding: 6px 16px; background: #0078d4; color: white; border: none; border-radius: 0 4px 4px 0; }
+        .breadcrumb { padding: 10px 20px; font-size: 13px; color: #999; background: white; border-bottom: 1px solid #eee; }
+        .article-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .article { background: white; border-radius: 8px; padding: 30px; }
+        .article h1 { font-size: 26px; line-height: 1.4; margin-bottom: 15px; }
+        .article-meta { display: flex; gap: 20px; font-size: 13px; color: #999; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; flex-wrap: wrap; }
+        .article-content { font-size: 17px; line-height: 2; color: #333; }
+        .article-content p { margin-bottom: 20px; text-indent: 2em; }
+        .article-image { width: 100%; height: 400px; background: linear-gradient(135deg, #0078d4, #00b4d8); border-radius: 8px; margin: 20px 0; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; }
+        .article-image.small { width: 50%; height: 280px; float: right; margin: 10px 0 10px 20px; }
+        .article-image.small-2 { width: 45%; height: 260px; float: left; margin: 10px 20px 10px 0; background: linear-gradient(135deg, #e74c3c, #e67e22); }
+        .clear { clear: both; }
+        .article-tags { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; display: flex; gap: 10px; flex-wrap: wrap; }
+        .article-tags .tag { padding: 4px 12px; background: #f0f6ff; border-radius: 4px; font-size: 13px; color: #0078d4; }
+        .social-share { display: flex; gap: 10px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; }
+        .social-share span { font-size: 13px; color: #999; line-height: 32px; margin-right: 5px; }
+        .share-btn { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; cursor: pointer; text-decoration: none; }
+        .share-btn.weibo { background: #e6162d; }
+        .share-btn.wechat { background: #07c160; }
+        .share-btn.qq { background: #12b7f5; }
+        .share-btn.link { background: #999; }
+        .video-embed { width: 100%; height: 400px; background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 8px; margin: 20px 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; }
+        .video-embed .play-icon { width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 10px; }
+        .video-embed p { font-size: 14px; color: #ccc; }
+        .image-gallery { margin: 25px 0; }
+        .image-gallery h3 { font-size: 18px; margin-bottom: 15px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .gallery-item { height: 150px; border-radius: 8px; cursor: pointer; position: relative; overflow: hidden; }
+        .gallery-item::after { content: attr(data-label); position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 20px 10px 8px; font-size: 12px; }
+        .gi-1 { background: linear-gradient(135deg, #0078d4, #00b4d8); }
+        .gi-2 { background: linear-gradient(135deg, #e74c3c, #e67e22); }
+        .gi-3 { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+        .gi-4 { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .gi-5 { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .gi-6 { background: linear-gradient(135deg, #1abc9c, #16a085); }
+        .author-panel { display: flex; gap: 15px; align-items: center; padding: 20px; background: #f8f9fa; border-radius: 8px; margin-top: 25px; }
+        .author-avatar { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #0078d4, #00b4d8); display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; flex-shrink: 0; }
+        .author-info h4 { font-size: 15px; margin-bottom: 4px; }
+        .author-info p { font-size: 13px; color: #999; line-height: 1.5; }
+        .author-stats { display: flex; gap: 20px; margin-top: 6px; }
+        .author-stats .as-item { text-align: center; }
+        .author-stats .as-num { font-size: 16px; color: #0078d4; font-weight: bold; }
+        .author-stats .as-label { font-size: 11px; color: #999; }
+        .author-follow { margin-left: auto; padding: 6px 20px; background: #0078d4; color: white; border: none; border-radius: 20px; font-size: 13px; cursor: pointer; }
+        .comment-section { background: white; border-radius: 8px; padding: 20px; margin-top: 20px; }
+        .comment-section h3 { font-size: 18px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #0078d4; }
+        .comment-input-area { display: flex; gap: 10px; margin-bottom: 20px; }
+        .comment-input-area textarea { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; resize: none; height: 80px; outline: none; }
+        .comment-input-area button { padding: 10px 20px; background: #0078d4; color: white; border: none; border-radius: 8px; cursor: pointer; align-self: flex-end; }
+        .comment-item { display: flex; gap: 12px; padding: 15px 0; border-bottom: 1px solid #f0f0f0; }
+        .comment-item:last-child { border-bottom: none; }
+        .comment-avatar { width: 36px; height: 36px; border-radius: 50%; background: #ddd; flex-shrink: 0; }
+        .comment-body { flex: 1; }
+        .comment-body .cb-user { font-size: 14px; color: #0078d4; font-weight: 500; margin-bottom: 4px; }
+        .comment-body .cb-text { font-size: 14px; color: #333; line-height: 1.8; }
+        .comment-body .cb-meta { font-size: 12px; color: #999; margin-top: 6px; display: flex; gap: 15px; }
+        .related-news { background: white; border-radius: 8px; padding: 20px; margin-top: 20px; }
+        .related-news h3 { font-size: 18px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #0078d4; }
+        .related-item { display: flex; gap: 15px; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        .related-item:last-child { border-bottom: none; }
+        .related-item .ri-img { width: 120px; height: 75px; border-radius: 4px; flex-shrink: 0; }
+        .related-item:nth-child(1) .ri-img { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .related-item:nth-child(2) .ri-img { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .related-item:nth-child(3) .ri-img { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .related-item:nth-child(4) .ri-img { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .related-item:nth-child(5) .ri-img { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .related-item:nth-child(6) .ri-img { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .related-item:nth-child(7) .ri-img { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .related-item:nth-child(8) .ri-img { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .related-item:nth-child(9) .ri-img { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .related-item:nth-child(10) .ri-img { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .related-item h4 { font-size: 15px; line-height: 1.4; }
+        .related-item p { font-size: 12px; color: #999; margin-top: 4px; }
+        .key-points { background: #f0f6ff; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .key-points h3 { font-size: 16px; margin-bottom: 12px; color: #0078d4; }
+        .key-points ul { list-style: none; padding: 0; }
+        .key-points li { padding: 8px 0; font-size: 15px; line-height: 1.6; border-bottom: 1px solid #e0e8f0; display: flex; gap: 8px; }
+        .key-points li:last-child { border-bottom: none; }
+        .key-points li::before { content: '\2713'; color: #0078d4; font-weight: bold; flex-shrink: 0; }
+        .footer { background: #1a1a2e; color: #666; text-align: center; padding: 20px; font-size: 12px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="header">
+        <div class="logo"><span>CCTV</span> 新闻</div>
+        <div class="header-nav">
+            <a href="#">首页</a>
+            <a href="#">直播</a>
+            <a href="#">视频</a>
+            <a href="#">热点</a>
+        </div>
+        <div class="search-box"><input type="text" placeholder="搜索新闻"><button>搜索</button></div>
+    </div>
+    <div class="breadcrumb">首页 &gt; 科技 &gt; 正文</div>
+    <div class="article-container">
+        <div class="article">
+            <h1>人工智能赋能千行百业 数字经济高质量发展开创新局面</h1>
+            <div class="article-meta">
+                <span>央视新闻客户端</span>
+                <span>2024-07-26 10:30</span>
+                <span>来源：央视网</span>
+                <span>阅读：12.5万</span>
+                <span>评论：326</span>
+            </div>
+            <div class="article-content">
+                <p>央视网消息 随着新一代信息技术的快速发展，人工智能正以前所未有的速度和规模赋能千行百业，成为推动数字经济高质量发展的核心引擎。从智能制造到智慧城市，从医疗健康到教育科研，AI技术的应用场景不断拓展，为经济社会带来了深刻变革。</p>
+                <div class="article-image">人工智能技术展示图</div>
+                <p>在工业领域，AI驱动的智能制造正在重塑传统制造业。通过机器视觉、深度学习等技术，工厂实现了从产品检测到质量控制的全面智能化。智能机器人在生产线上高效运转，大幅提升了生产效率和产品质量。据工信部统计，全国已建成超过2100家数字化车间和智能工厂，智能制造试点示范项目生产效率平均提升48%。</p>
+                <div class="article-image small-2">智能制造应用场景</div>
+                <p>在医疗健康领域，AI辅助诊断系统能够快速准确地分析医学影像，帮助医生更早发现疾病。智能药物研发平台利用大数据和机器学习技术，显著缩短了新药研发周期，降低了研发成本。目前全国已有超过200家三甲医院引入AI辅助诊断系统，诊断准确率达到95%以上。</p>
+                <div class="clear"></div>
+                <div class="article-image small" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">智慧医疗场景</div>
+                <p>在智慧城市建设方面，AI技术被广泛应用于交通管理、环境监测、公共安全等领域。智能交通系统能够实时分析交通流量，优化信号灯配时，有效缓解城市交通拥堵。环境监测平台通过AI分析，实现对空气质量的精准预测和预警。</p>
+                <div class="clear"></div>
+                <div class="key-points">
+                    <h3>核心要点</h3>
+                    <ul>
+                        <li>全国已建成超过2100家数字化车间和智能工厂</li>
+                        <li>智能制造试点示范项目生产效率平均提升48%</li>
+                        <li>超过200家三甲医院引入AI辅助诊断系统</li>
+                        <li>AI辅助诊断准确率达到95%以上</li>
+                        <li>数字经济规模突破50万亿元，占GDP比重超40%</li>
+                    </ul>
+                </div>
+                <div class="video-embed">
+                    <div class="play-icon">&#9654;</div>
+                    <p>点击播放相关视频报道</p>
+                    <p style="font-size:12px;color:#666;margin-top:5px;">时长 03:28 | 来源：央视新闻</p>
+                </div>
+                <p>教育部相关负责人表示，人工智能与教育深度融合，正在推动教育方式的根本性变革。智能教学系统可以根据学生的学习情况提供个性化的学习方案，AI助教可以辅助教师完成批改作业、答疑解惑等工作，让教师将更多精力投入到创造性教学中。据统计，全国已有超过3万所学校开展了AI+教育试点。</p>
+                <p>农业农村领域同样迎来了AI技术的深度应用。智慧农业平台利用卫星遥感、无人机巡检和AI分析技术，实现了对农作物生长状况的实时监测和精准管理。AI病虫害识别系统能够帮助农户及时发现并处理病虫害问题，有效保障粮食安全。农业智能化让粮食产量平均提升15%以上。</p>
+                <p>在金融服务领域，AI风控系统能够实时分析海量交易数据，精准识别潜在风险。智能投顾平台为投资者提供个性化的资产配置建议。AI客服系统7x24小时在线服务，大幅提升了金融服务效率和用户体验。</p>
+                <p>专家指出，未来随着大模型、通用人工智能等技术的持续突破，AI将在更多领域发挥关键作用，为数字经济高质量发展注入源源不断的动力。同时，也要关注AI发展带来的伦理和安全挑战，建立健全相关法律法规和监管体系。</p>
+            </div>
+            <div class="image-gallery">
+                <h3>精彩图集</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item gi-1" data-label="AI智能工厂生产线"></div>
+                    <div class="gallery-item gi-2" data-label="智慧医疗诊断系统"></div>
+                    <div class="gallery-item gi-3" data-label="智能交通管理系统"></div>
+                    <div class="gallery-item gi-4" data-label="AI教育课堂"></div>
+                    <div class="gallery-item gi-5" data-label="智慧农业监测"></div>
+                    <div class="gallery-item gi-6" data-label="金融科技应用"></div>
+                </div>
+            </div>
+            <div class="article-tags">
+                <span class="tag">人工智能</span>
+                <span class="tag">数字经济</span>
+                <span class="tag">科技创新</span>
+                <span class="tag">高质量发展</span>
+                <span class="tag">智能制造</span>
+                <span class="tag">智慧城市</span>
+            </div>
+            <div class="social-share">
+                <span>分享到：</span>
+                <a class="share-btn weibo" title="微博">&#20248;</a>
+                <a class="share-btn wechat" title="微信">&#24494;</a>
+                <a class="share-btn qq" title="QQ">Q</a>
+                <a class="share-btn link" title="复制链接">&#128279;</a>
+            </div>
+            <div class="author-panel">
+                <div class="author-avatar">&#128100;</div>
+                <div class="author-info">
+                    <h4>央视新闻记者</h4>
+                    <p>央视新闻客户端记者，长期关注科技创新与产业发展领域报道。</p>
+                    <div class="author-stats">
+                        <div class="as-item"><div class="as-num">1.2万</div><div class="as-label">粉丝</div></div>
+                        <div class="as-item"><div class="as-num">356</div><div class="as-label">文章</div></div>
+                        <div class="as-item"><div class="as-num">890万</div><div class="as-label">阅读</div></div>
+                    </div>
+                </div>
+                <button class="author-follow">+ 关注</button>
+            </div>
+        </div>
+        <div class="comment-section">
+            <h3>热门评论 (326)</h3>
+            <div class="comment-input-area">
+                <textarea placeholder="写下你的评论..."></textarea>
+                <button>发表评论</button>
+            </div>
+            <div class="comment-item">
+                <div class="comment-avatar"></div>
+                <div class="comment-body">
+                    <div class="cb-user">科技爱好者</div>
+                    <div class="cb-text">AI技术发展太快了，期待更多应用落地，为老百姓带来实实在在的便利。</div>
+                    <div class="cb-meta"><span>30分钟前</span><span>&#128077; 892</span><span>&#128172; 回复 23</span></div>
+                </div>
+            </div>
+            <div class="comment-item">
+                <div class="comment-avatar" style="background:linear-gradient(135deg,#e74c3c,#e67e22);"></div>
+                <div class="comment-body">
+                    <div class="cb-user">教育工作者</div>
+                    <div class="cb-text">AI赋能教育是未来的趋势，希望能在教育公平方面发挥更大作用。</div>
+                    <div class="cb-meta"><span>1小时前</span><span>&#128077; 654</span><span>&#128172; 回复 15</span></div>
+                </div>
+            </div>
+            <div class="comment-item">
+                <div class="comment-avatar" style="background:linear-gradient(135deg,#2ecc71,#27ae60);"></div>
+                <div class="comment-body">
+                    <div class="cb-user">医疗从业者</div>
+                    <div class="cb-text">AI辅助诊断确实提高了效率，但也要注意医疗安全和隐私保护。</div>
+                    <div class="cb-meta"><span>2小时前</span><span>&#128077; 521</span><span>&#128172; 回复 18</span></div>
+                </div>
+            </div>
+            <div class="comment-item">
+                <div class="comment-avatar" style="background:linear-gradient(135deg,#9b59b6,#8e44ad);"></div>
+                <div class="comment-body">
+                    <div class="cb-user">制造业从业者</div>
+                    <div class="cb-text">我们工厂也在推进智能化改造，效率提升非常明显，未来可期。</div>
+                    <div class="cb-meta"><span>3小时前</span><span>&#128077; 438</span><span>&#128172; 回复 9</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="related-news">
+            <h3>相关新闻</h3>
+            <div class="related-item"><div class="ri-img"></div><div><h4>大模型技术突破推动产业智能化升级</h4><p>2小时前</p></div></div>
+            <div class="related-item"><div class="ri-img"></div><div><h4>数字基础设施建设加快推进</h4><p>3小时前</p></div></div>
+            <div class="related-item"><div class="ri-img"></div><div><h4>数据要素市场化配置改革深化</h4><p>4小时前</p></div></div>
+            <div class="related-item"><div class="ri-img"></div><div><h4>人工智能芯片国产化取得重要进展</h4><p>5小时前</p></div></div>
+            <div class="related-item"><div class="ri-img"></div><div><h4>工信部发布AI产业发展三年行动计划</h4><p>6小时前</p></div></div>
+            <div class="related-item"><div class="ri-img"></div><div><h4>多省市出台AI产业扶持政策</h4><p>7小时前</p></div></div>
+            <div class="related-item"><div class="ri-img"></div><div><h4>AI+教育融合发展论坛在京举办</h4><p>8小时前</p></div></div>
+            <div class="related-item"><div class="ri-img"></div><div><h4>全球AI专利申请量中国居首位</h4><p>9小时前</p></div></div>
+            <div class="related-item"><div class="ri-img"></div><div><h4>智慧城市AI应用场景持续拓展</h4><p>10小时前</p></div></div>
+            <div class="related-item"><div class="ri-img"></div><div><h4>AI伦理与安全治理国际研讨会召开</h4><p>12小时前</p></div></div>
+        </div>
+    </div>
+    <div class="footer">&copy; 2024 央视网 CCTV.com 版权所有</div>
+    <script>
+        function test() { return true; }
+        window.addEventListener('scroll', function() {
+            var bar = document.getElementById('progressBar');
+            var scrolled = window.scrollY;
+            var total = document.documentElement.scrollHeight - window.innerHeight;
+            bar.style.width = (scrolled / total * 100) + '%';
+        });
+    </script>
+</body>
+</html>

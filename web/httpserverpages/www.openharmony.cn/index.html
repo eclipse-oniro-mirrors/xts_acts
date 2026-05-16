@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAtom OpenHarmony</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft YaHei", sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            color: #333;
+        }
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            height: 64px;
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #333;
+            margin-right: 40px;
+        }
+        .brand-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #0078d4, #00b4d8);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .brand-text { font-size: 18px; font-weight: 600; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+            padding: 8px 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: #0078d4; }
+        .nav-links a.active { color: #0078d4; font-weight: 600; }
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #0078d4;
+            border-radius: 2px;
+        }
+        .hero {
+            background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0078d4 100%);
+            color: white;
+            padding: 80px 30px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 16px; }
+        .hero p { font-size: 18px; opacity: 0.9; max-width: 700px; margin: 0 auto 30px; line-height: 1.6; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            padding: 12px 32px;
+            background: #0078d4;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover { background: #005a9e; }
+        .btn-secondary {
+            padding: 12px 32px;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
+        .btn-outline {
+            padding: 12px 32px;
+            background: transparent;
+            color: #0078d4;
+            text-decoration: none;
+            border: 2px solid #0078d4;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .btn-outline:hover { background: #0078d4; color: white; }
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 40px 20px;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 32px; font-weight: 700; color: #0078d4; }
+        .stat-label { font-size: 14px; color: #666; margin-top: 5px; }
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-title h2 { font-size: 30px; margin-bottom: 10px; }
+        .section-title p { color: #666; font-size: 16px; }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        .feature-card h3 { font-size: 18px; margin-bottom: 10px; }
+        .feature-card p { color: #666; line-height: 1.6; font-size: 14px; }
+        .code-block {
+            background: #1e1e2e;
+            color: #cdd6f4;
+            padding: 24px;
+            border-radius: 12px;
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+            position: relative;
+        }
+        .code-block .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #313244;
+        }
+        .code-block .code-lang {
+            font-size: 12px;
+            color: #a6adc8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .code-block .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .code-block .code-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .code-block .dot-red { background: #f38ba8; }
+        .code-block .dot-yellow { background: #f9e2af; }
+        .code-block .dot-green { background: #a6e3a1; }
+        .code-block .keyword { color: #cba6f7; }
+        .code-block .string { color: #a6e3a1; }
+        .code-block .comment { color: #6c7086; font-style: italic; }
+        .code-block .func { color: #89b4fa; }
+        .code-block .type { color: #f9e2af; }
+        .code-block .number { color: #fab387; }
+        .code-block .operator { color: #89dceb; }
+        .code-block .decorator { color: #f5c2e7; }
+        .code-block .property { color: #94e2d5; }
+        .code-block .line-num {
+            color: #585b70;
+            user-select: none;
+            display: inline-block;
+            width: 30px;
+            text-align: right;
+            margin-right: 16px;
+        }
+        .code-tabs {
+            display: flex;
+            gap: 0;
+            margin-top: 20px;
+        }
+        .code-tab {
+            padding: 10px 24px;
+            background: #d4d4d8;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            font-weight: 500;
+            color: #555;
+        }
+        .code-tab.active {
+            background: #1e1e2e;
+            color: #cdd6f4;
+        }
+        .ecosystem-section {
+            background: white;
+            padding: 60px 30px;
+        }
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .eco-card {
+            text-align: center;
+            padding: 24px 16px;
+            border-radius: 12px;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s;
+        }
+        .eco-card:hover { border-color: #0078d4; box-shadow: 0 4px 16px rgba(0,120,212,0.15); }
+        .eco-card .eco-icon { font-size: 36px; margin-bottom: 12px; }
+        .eco-card h4 { font-size: 15px; margin-bottom: 6px; }
+        .eco-card p { font-size: 13px; color: #666; }
+        .footer {
+            background: #0a1628;
+            color: #999;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; flex-wrap: wrap; }
+        .footer-links a { color: #ccc; text-decoration: none; font-size: 14px; }
+        .footer-links a:hover { color: #0078d4; }
+        .footer p { font-size: 13px; }
+        .version-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        .version-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #0078d4, #00b4d8);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .timeline-content {
+            width: 45%;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 24px;
+            width: 18px;
+            height: 18px;
+            background: #0078d4;
+            border: 4px solid #e3f2fd;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .timeline-content h4 { font-size: 16px; color: #0078d4; margin-bottom: 8px; }
+        .timeline-content .date { font-size: 13px; color: #999; margin-bottom: 8px; }
+        .timeline-content p { font-size: 14px; color: #555; line-height: 1.6; }
+        .timeline-content .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            background: #e3f2fd;
+            color: #0078d4;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 6px;
+            margin-top: 8px;
+        }
+        .arch-diagram {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .arch-layer {
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            text-align: center;
+            position: relative;
+        }
+        .arch-layer h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .arch-modules {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .arch-module {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .arch-layer-app {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border: 2px solid #90caf9;
+        }
+        .arch-layer-app .arch-module {
+            background: white;
+            color: #1565c0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .arch-layer-framework {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border: 2px solid #a5d6a7;
+        }
+        .arch-layer-framework .arch-module {
+            background: white;
+            color: #2e7d32;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .arch-layer-services {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px solid #ffcc80;
+        }
+        .arch-layer-services .arch-module {
+            background: white;
+            color: #e65100;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .arch-layer-kernel {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            border: 2px solid #f48fb1;
+        }
+        .arch-layer-kernel .arch-module {
+            background: white;
+            color: #c62828;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .arch-arrow {
+            text-align: center;
+            font-size: 24px;
+            color: #999;
+            margin: 4px 0;
+        }
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+        .partner-logo {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s;
+            min-height: 100px;
+        }
+        .partner-logo:hover {
+            border-color: #0078d4;
+            box-shadow: 0 4px 16px rgba(0,120,212,0.15);
+            transform: translateY(-2px);
+        }
+        .partner-logo .logo-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+            text-align: center;
+        }
+        .partner-logo .logo-icon {
+            font-size: 32px;
+            margin-bottom: 6px;
+        }
+        .testimonial-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .testimonial-card {
+            min-width: 100%;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+        .testimonial-card .quote {
+            font-size: 20px;
+            line-height: 1.8;
+            color: #333;
+            font-style: italic;
+            margin-bottom: 24px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .testimonial-card .quote::before {
+            content: '\201C';
+            font-size: 60px;
+            color: #0078d4;
+            display: block;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+        }
+        .testimonial-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0078d4, #00b4d8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .testimonial-info h4 { font-size: 16px; color: #333; }
+        .testimonial-info p { font-size: 14px; color: #666; }
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .carousel-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            background: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: #555;
+        }
+        .carousel-btn:hover { border-color: #0078d4; color: #0078d4; }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .carousel-dot.active { background: #0078d4; width: 28px; border-radius: 5px; }
+        .faq-section { background: white; padding: 60px 30px; }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .faq-item:hover { border-color: #0078d4; }
+        .faq-question {
+            padding: 20px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+            color: #333;
+        }
+        .faq-question .faq-icon {
+            font-size: 20px;
+            transition: transform 0.3s;
+            color: #0078d4;
+        }
+        .faq-item.open .faq-question .faq-icon {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 20px;
+        }
+        .faq-answer p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+        }
+        .newsletter-section {
+            background: linear-gradient(135deg, #0a1628, #1a3a5c, #0078d4);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+        }
+        .newsletter-section h2 { font-size: 28px; margin-bottom: 12px; }
+        .newsletter-section p { font-size: 16px; opacity: 0.85; margin-bottom: 30px; }
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .newsletter-form input::placeholder { color: rgba(255,255,255,0.6); }
+        .newsletter-form input:focus { border-color: #00b4d8; }
+        .newsletter-form button {
+            padding: 14px 28px;
+            background: white;
+            color: #0078d4;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .newsletter-form button:hover { background: #e3f2fd; }
+        .getting-started { background: #f0f7ff; padding: 60px 30px; }
+        .steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .step-item {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        .step-number {
+            width: 56px;
+            height: 56px;
+            min-width: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0078d4, #00b4d8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0,120,212,0.3);
+        }
+        .step-content {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 30px;
+            flex: 1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .step-content h4 { font-size: 18px; margin-bottom: 8px; color: #0078d4; }
+        .step-content p { font-size: 14px; color: #666; line-height: 1.7; }
+        .step-connector {
+            width: 2px;
+            height: 24px;
+            background: #bbdefb;
+            margin-left: 27px;
+        }
+        .release-notes { background: white; padding: 60px 30px; }
+        .release-list { max-width: 800px; margin: 0 auto; }
+        .release-item {
+            border-left: 4px solid #0078d4;
+            background: #f8f9fa;
+            border-radius: 0 12px 12px 0;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        .release-item:hover { background: white; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+        .release-item h4 { font-size: 18px; margin-bottom: 8px; }
+        .release-item .release-date { font-size: 13px; color: #999; margin-bottom: 12px; }
+        .release-item ul { list-style: none; padding: 0; }
+        .release-item li {
+            padding: 4px 0;
+            font-size: 14px;
+            color: #555;
+            padding-left: 20px;
+            position: relative;
+        }
+        .release-item li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: #0078d4;
+            font-weight: bold;
+        }
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .community-stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .community-stat-card .stat-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+        .community-stat-card .counter {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0078d4;
+        }
+        .community-stat-card .counter-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 6px;
+        }
+        .contribution-guide {
+            background: white;
+            padding: 60px 30px;
+        }
+        .contribution-steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .contribution-card {
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+        .contribution-card:hover { border-color: #0078d4; }
+        .contribution-card .step-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #0078d4;
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .contribution-card h4 { font-size: 16px; margin-bottom: 8px; }
+        .contribution-card p { font-size: 14px; color: #666; line-height: 1.6; }
+        .download-section {
+            background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+            padding: 60px 30px;
+        }
+        .download-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .version-selector {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .version-option {
+            padding: 10px 20px;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            background: white;
+            color: #555;
+        }
+        .version-option:hover { border-color: #0078d4; color: #0078d4; }
+        .version-option.active {
+            border-color: #0078d4;
+            background: #0078d4;
+            color: white;
+        }
+        .download-info {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .download-info h4 { font-size: 16px; margin-bottom: 12px; }
+        .download-info .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+        .download-info .info-row:last-child { border-bottom: none; }
+        .download-info .info-label { color: #666; }
+        .download-info .info-value { color: #333; font-weight: 500; }
+        .download-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+        .download-btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        .download-btn-main {
+            background: linear-gradient(135deg, #0078d4, #00b4d8);
+            color: white;
+        }
+        .download-btn-main:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,120,212,0.4); }
+        .download-btn-secondary {
+            background: #f0f7ff;
+            color: #0078d4;
+        }
+        .download-btn-secondary:hover { background: #e3f2fd; }
+        .api-docs-preview {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .api-sidebar {
+            background: #f8f9fa;
+            padding: 24px;
+            border-right: 1px solid #eee;
+            min-width: 240px;
+        }
+        .api-sidebar h4 { font-size: 14px; color: #999; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+        .api-nav-item {
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #555;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+        }
+        .api-nav-item:hover { background: #e3f2fd; color: #0078d4; }
+        .api-nav-item.active { background: #0078d4; color: white; }
+        .api-content { padding: 30px; flex: 1; }
+        .api-content h3 { font-size: 22px; margin-bottom: 8px; }
+        .api-content .api-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .api-content .api-desc { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 20px; }
+        .api-param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .api-param-table th {
+            text-align: left;
+            padding: 10px 16px;
+            background: #f8f9fa;
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+            border-bottom: 2px solid #e8e8e8;
+        }
+        .api-param-table td {
+            padding: 10px 16px;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .api-param-table code {
+            background: #f0f7ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #0078d4;
+        }
+        .api-layout {
+            display: flex;
+            min-height: 400px;
+        }
+        .training-section { background: white; padding: 60px 30px; }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .course-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .course-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .course-banner {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+        .course-body { padding: 20px; }
+        .course-body .course-level {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .level-beginner { background: #e8f5e9; color: #2e7d32; }
+        .level-intermediate { background: #fff3e0; color: #e65100; }
+        .level-advanced { background: #fce4ec; color: #c62828; }
+        .course-body h4 { font-size: 16px; margin-bottom: 8px; }
+        .course-body p { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 12px; }
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #999;
+        }
+        .alt-bg { background: #f0f7ff; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">
+                <div class="brand-icon">OH</div>
+                <div class="brand-text">OpenHarmony</div>
+            </a>
+            <div class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#">文档</a>
+                <a href="#">下载</a>
+                <a href="#">社区</a>
+                <a href="#">博客</a>
+                <a href="#">关于</a>
+            </div>
+        </div>
+    </nav>
+    <div class="hero">
+        <h1>OpenAtom OpenHarmony</h1>
+        <p>面向全场景、全连接、全智能时代的分布式操作系统，为万物互联提供统一的语言和平台。</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn-primary">快速开始</a>
+            <a href="#" class="btn-secondary">查看文档</a>
+        </div>
+    </div>
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">680+</div>
+            <div class="stat-label">代码仓库</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">60+</div>
+            <div class="stat-label">子系统</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">15000+</div>
+            <div class="stat-label">API接口</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">合作伙伴</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">
+            <h2>核心特性</h2>
+            <p>OpenHarmony 提供丰富的特性和能力，帮助开发者构建创新应用</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon" style="background:#e3f2fd;">&#128640;</div>
+                <h3>分布式架构</h3>
+                <p>统一的分布式能力，支持设备间无缝协同，实现跨设备的资源调度和任务迁移。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:#fff3e0;">&#9889;</div>
+                <h3>高性能</h3>
+                <p>优化的系统内核和运行时，提供流畅的用户体验和高效的资源利用。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:#e8f5e9;">&#128274;</div>
+                <h3>安全可信</h3>
+                <p>多层次的安全防护体系，从内核到应用提供全方位的安全保障。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:#fce4ec;">&#127912;</div>
+                <h3>ArkUI框架</h3>
+                <p>声明式UI开发框架，支持跨设备界面开发，提供丰富的组件和动画能力。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:#f3e5f5;">&#128187;</div>
+                <h3>ArkTS语言</h3>
+                <p>基于TypeScript扩展的应用开发语言，提供高效的开发体验和类型安全保障。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:#e0f7fa;">&#128268;</div>
+                <h3>一次开发 多端部署</h3>
+                <p>统一的开发范式，一套代码可在多种设备上运行，极大提升开发效率。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:#fff8e1;">&#128200;</div>
+                <h3>方舟编译器</h3>
+                <p>全新设计的编译器架构，支持多种语言前端，提供卓越的运行时性能优化。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:#e8eaf6;">&#128202;</div>
+                <h3>分布式数据管理</h3>
+                <p>跨设备数据同步与管理框架，支持多种数据模型，确保数据一致性和实时同步。</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:#efebe9;">&#128279;</div>
+                <h3>分布式软总线</h3>
+                <p>统一的通信基础能力，实现设备间发现、连接、组网的一体化协议栈。</p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">
+            <h2>代码示例</h2>
+            <p>快速体验 OpenHarmony ArkTS 开发的简洁与高效</p>
+        </div>
+        <div class="code-tabs">
+            <button class="code-tab active" onclick="switchCodeTab(0)">ArkTS UI</button>
+            <button class="code-tab" onclick="switchCodeTab(1)">分布式调用</button>
+            <button class="code-tab" onclick="switchCodeTab(2)">网络请求</button>
+        </div>
+        <div class="code-block" id="codeBlock0">
+            <div class="code-header">
+                <div class="code-dots">
+                    <span class="dot-red"></span>
+                    <span class="dot-yellow"></span>
+                    <span class="dot-green"></span>
+                </div>
+                <span class="code-lang">ArkTS</span>
+            </div>
+            <span class="line-num"> 1</span><span class="keyword">import</span> { <span class="type">Button</span>, <span class="type">Column</span>, <span class="type">Text</span> } <span class="keyword">from</span> <span class="string">'@ohos.arkui'</span>
+            <span class="line-num"> 2</span><span class="keyword">import</span> { <span class="type">router</span> } <span class="keyword">from</span> <span class="string">'@ohos.router'</span>
+            <span class="line-num"> 3</span>
+            <span class="line-num"> 4</span><span class="comment">// Define a custom component with declarative UI</span>
+            <span class="line-num"> 5</span><span class="decorator">@Entry</span>
+            <span class="line-num"> 6</span><span class="decorator">@Component</span>
+            <span class="line-num"> 7</span><span class="keyword">struct</span> <span class="type">IndexPage</span> {
+            <span class="line-num"> 8</span>  <span class="decorator">@State</span> <span class="property">count</span>: <span class="type">number</span> = <span class="number">0</span>
+            <span class="line-num"> 9</span>  <span class="decorator">@State</span> <span class="property">message</span>: <span class="type">string</span> = <span class="string">'Welcome to OpenHarmony'</span>
+            <span class="line-num">10</span>
+            <span class="line-num">11</span>  <span class="func">build</span>() {
+            <span class="line-num">12</span>    <span class="type">Column</span>() {
+            <span class="line-num">13</span>      <span class="type">Text</span>(<span class="keyword">this</span>.<span class="property">message</span>)
+            <span class="line-num">14</span>        .<span class="func">fontSize</span>(<span class="number">24</span>)
+            <span class="line-num">15</span>        .<span class="func">fontWeight</span>(<span class="type">FontWeight</span>.<span class="property">Bold</span>)
+            <span class="line-num">16</span>        .<span class="func">margin</span>({ <span class="property">bottom</span>: <span class="number">20</span> })
+            <span class="line-num">17</span>
+            <span class="line-num">18</span>      <span class="type">Text</span>(<span class="string">`Count: ${<span class="keyword">this</span>.count}`</span>)
+            <span class="line-num">19</span>        .<span class="func">fontSize</span>(<span class="number">18</span>)
+            <span class="line-num">20</span>        .<span class="func">fontColor</span>(<span class="string">'#0078d4'</span>)
+            <span class="line-num">21</span>
+            <span class="line-num">22</span>      <span class="type">Button</span>(<span class="string">'Click Me'</span>)
+            <span class="line-num">23</span>        .<span class="func">type</span>(<span class="type">ButtonType</span>.<span class="property">Capsule</span>)
+            <span class="line-num">24</span>        .<span class="func">onClick</span>(() <span class="operator">=></span> {
+            <span class="line-num">25</span>          <span class="keyword">this</span>.<span class="property">count</span>++
+            <span class="line-num">26</span>        })
+            <span class="line-num">27</span>    }
+            <span class="line-num">28</span>    .<span class="func">width</span>(<span class="string">'100%'</span>)
+            <span class="line-num">29</span>    .<span class="func">height</span>(<span class="string">'100%'</span>)
+            <span class="line-num">30</span>    .<span class="func">justifyContent</span>(<span class="type">FlexAlign</span>.<span class="property">Center</span>)
+            <span class="line-num">31</span>  }
+            <span class="line-num">32</span>}
+        </div>
+        <div class="code-block" id="codeBlock1" style="display:none;">
+            <div class="code-header">
+                <div class="code-dots">
+                    <span class="dot-red"></span>
+                    <span class="dot-yellow"></span>
+                    <span class="dot-green"></span>
+                </div>
+                <span class="code-lang">ArkTS</span>
+            </div>
+            <span class="line-num"> 1</span><span class="keyword">import</span> <span class="type">distributedDeviceManager</span> <span class="keyword">from</span> <span class="string">'@ohos.distributedDeviceManager'</span>
+            <span class="line-num"> 2</span><span class="keyword">import</span> { <span class="type">featureAbility</span> } <span class="keyword">from</span> <span class="string">'@ohos.ability.featureAbility'</span>
+            <span class="line-num"> 3</span>
+            <span class="line-num"> 4</span><span class="comment">// Discover and connect remote devices</span>
+            <span class="line-num"> 5</span><span class="keyword">const</span> <span class="property">dmInstance</span> = <span class="type">distributedDeviceManager</span>.<span class="func">createDeviceManager</span>(<span class="string">'com.example.app'</span>)
+            <span class="line-num"> 6</span>
+            <span class="line-num"> 7</span><span class="keyword">async function</span> <span class="func">startRemoteAbility</span>(<span class="property">deviceId</span>: <span class="type">string</span>) {
+            <span class="line-num"> 8</span>  <span class="keyword">const</span> <span class="property">want</span> = {
+            <span class="line-num"> 9</span>    <span class="property">bundleName</span>: <span class="string">'com.example.remoteapp'</span>,
+            <span class="line-num">10</span>    <span class="property">abilityName</span>: <span class="string">'RemoteAbility'</span>,
+            <span class="line-num">11</span>    <span class="property">deviceId</span>: <span class="property">deviceId</span>
+            <span class="line-num">12</span>  }
+            <span class="line-num">13</span>  <span class="keyword">await</span> <span class="type">featureAbility</span>.<span class="func">startAbility</span>(<span class="property">want</span>)
+            <span class="line-num">14</span>  <span class="func">console</span>.<span class="func">info</span>(<span class="string">`Started ability on ${<span class="property">deviceId}</span>`</span>)
+            <span class="line-num">15</span>}
+            <span class="line-num">16</span>
+            <span class="line-num">17</span><span class="comment">// Subscribe to device state changes</span>
+            <span class="line-num">18</span><span class="property">dmInstance</span>.<span class="func">on</span>(<span class="string">'deviceStateChange'</span>, (<span class="property">data</span>) <span class="operator">=></span> {
+            <span class="line-num">19</span>  <span class="keyword">if</span> (<span class="property">data</span>.<span class="property">action</span> === <span class="string">'ONLINE'</span>) {
+            <span class="line-num">20</span>    <span class="func">startRemoteAbility</span>(<span class="property">data</span>.<span class="property">device</span>.<span class="property">deviceId</span>)
+            <span class="line-num">21</span>  }
+            <span class="line-num">22</span>})
+        </div>
+        <div class="code-block" id="codeBlock2" style="display:none;">
+            <div class="code-header">
+                <div class="code-dots">
+                    <span class="dot-red"></span>
+                    <span class="dot-yellow"></span>
+                    <span class="dot-green"></span>
+                </div>
+                <span class="code-lang">ArkTS</span>
+            </div>
+            <span class="line-num"> 1</span><span class="keyword">import</span> <span class="type">http</span> <span class="keyword">from</span> <span class="string">'@ohos.net.http'</span>
+            <span class="line-num"> 2</span>
+            <span class="line-num"> 3</span><span class="comment">// Create an HTTP request to fetch data</span>
+            <span class="line-num"> 4</span><span class="keyword">async function</span> <span class="func">fetchData</span>(<span class="property">url</span>: <span class="type">string</span>): <span class="type">Promise</span>&lt;<span class="type">string</span>&gt; {
+            <span class="line-num"> 5</span>  <span class="keyword">const</span> <span class="property">request</span> = <span class="type">http</span>.<span class="func">createHttp</span>()
+            <span class="line-num"> 6</span>  <span class="keyword">try</span> {
+            <span class="line-num"> 7</span>    <span class="keyword">const</span> <span class="property">response</span> = <span class="keyword">await</span> <span class="property">request</span>.<span class="func">request</span>(
+            <span class="line-num"> 8</span>      <span class="property">url</span>,
+            <span class="line-num"> 9</span>      {
+            <span class="line-num">10</span>        <span class="property">method</span>: <span class="type">http</span>.<span class="type">RequestMethod</span>.<span class="property">GET</span>,
+            <span class="line-num">11</span>        <span class="property">header</span>: { <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span> },
+            <span class="line-num">12</span>        <span class="property">connectTimeout</span>: <span class="number">60000</span>,
+            <span class="line-num">13</span>        <span class="property">readTimeout</span>: <span class="number">60000</span>
+            <span class="line-num">14</span>      }
+            <span class="line-num">15</span>    )
+            <span class="line-num">16</span>    <span class="keyword">if</span> (<span class="property">response</span>.<span class="property">responseCode</span> === <span class="number">200</span>) {
+            <span class="line-num">17</span>      <span class="keyword">return</span> <span class="property">response</span>.<span class="property">result</span> <span class="keyword">as</span> <span class="type">string</span>
+            <span class="line-num">18</span>    }
+            <span class="line-num">19</span>    <span class="keyword">throw new</span> <span class="type">Error</span>(<span class="string">`HTTP ${<span class="property">response</span>.<span class="property">responseCode</span>}`</span>)
+            <span class="line-num">20</span>  } <span class="keyword">finally</span> {
+            <span class="line-num">21</span>    <span class="property">request</span>.<span class="func">destroy</span>()
+            <span class="line-num">22</span>  }
+            <span class="line-num">23</span>}
+        </div>
+    </div>
+    <div class="section alt-bg">
+        <div class="section-title">
+            <h2>系统架构</h2>
+            <p>OpenHarmony 分层架构设计，支撑全场景分布式体验</p>
+        </div>
+        <div class="arch-diagram">
+            <div class="arch-layer arch-layer-app">
+                <h4>&#128241; 应用层 (Applications)</h4>
+                <div class="arch-modules">
+                    <div class="arch-module">系统应用</div>
+                    <div class="arch-module">第三方应用</div>
+                    <div class="arch-module">原子化服务</div>
+                    <div class="arch-module">卡片应用</div>
+                </div>
+            </div>
+            <div class="arch-arrow">&#9660;</div>
+            <div class="arch-layer arch-layer-framework">
+                <h4>&#127912; 框架层 (Framework)</h4>
+                <div class="arch-modules">
+                    <div class="arch-module">ArkUI</div>
+                    <div class="arch-module">ArkTS</div>
+                    <div class="arch-module">Ability框架</div>
+                    <div class="arch-module">事件通知</div>
+                    <div class="arch-module">窗口管理</div>
+                    <div class="arch-module">XComponent</div>
+                </div>
+            </div>
+            <div class="arch-arrow">&#9660;</div>
+            <div class="arch-layer arch-layer-services">
+                <h4>&#9881; 系统服务层 (System Services)</h4>
+                <div class="arch-modules">
+                    <div class="arch-module">分布式软总线</div>
+                    <div class="arch-module">分布式数据管理</div>
+                    <div class="arch-module">分布式任务调度</div>
+                    <div class="arch-module">安全与权限</div>
+                    <div class="arch-module">网络管理</div>
+                    <div class="arch-module">媒体服务</div>
+                </div>
+            </div>
+            <div class="arch-arrow">&#9660;</div>
+            <div class="arch-layer arch-layer-kernel">
+                <h4>&#128187; 内核层 (Kernel)</h4>
+                <div class="arch-modules">
+                    <div class="arch-module">LiteOS-A</div>
+                    <div class="arch-module">LiteOS-M</div>
+                    <div class="arch-module">Linux Kernel</div>
+                    <div class="arch-module">HDF驱动框架</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ecosystem-section">
+        <div class="section-title">
+            <h2>生态系统</h2>
+            <p>丰富的开发工具和生态资源</p>
+        </div>
+        <div class="ecosystem-grid">
+            <div class="eco-card">
+                <div class="eco-icon">&#128187;</div>
+                <h4>DevEco Studio</h4>
+                <p>集成开发环境</p>
+            </div>
+            <div class="eco-card">
+                <div class="eco-icon">&#128230;</div>
+                <h4>应用市场</h4>
+                <p>应用分发平台</p>
+            </div>
+            <div class="eco-card">
+                <div class="eco-icon">&#128218;</div>
+                <h4>Gitee</h4>
+                <p>代码托管平台</p>
+            </div>
+            <div class="eco-card">
+                <div class="eco-icon">&#128101;</div>
+                <h4>社区论坛</h4>
+                <p>开发者交流社区</p>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">
+            <h2>版本历史</h2>
+            <p>OpenHarmony 持续演进，每个版本带来全新能力</p>
+        </div>
+        <div class="version-timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>OpenHarmony 5.0</h4>
+                    <div class="date">2024年10月</div>
+                    <p>全面增强分布式能力，新增ArkUI组件库扩展，优化方舟编译器性能，支持更多芯片平台。</p>
+                    <div><span class="tag">分布式2.0</span><span class="tag">ArkUI增强</span><span class="tag">性能优化</span></div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>OpenHarmony 4.1</h4>
+                    <div class="date">2024年6月</div>
+                    <p>引入增强安全框架，新增应用沙箱隔离机制，优化系统启动速度和内存管理。</p>
+                    <div><span class="tag">安全增强</span><span class="tag">沙箱机制</span></div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>OpenHarmony 4.0</h4>
+                    <div class="date">2024年1月</div>
+                    <p>ArkTS语言正式发布，统一声明式UI范式，提供完善的跨设备开发体验。</p>
+                    <div><span class="tag">ArkTS</span><span class="tag">声明式UI</span><span class="tag">跨设备</span></div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>OpenHarmony 3.2</h4>
+                    <div class="date">2023年8月</div>
+                    <p>完善标准系统应用模型，增强方舟运行时(ARK Runtime)能力，扩展API接口至15000+。</p>
+                    <div><span class="tag">应用模型</span><span class="tag">ARK Runtime</span></div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>OpenHarmony 3.1</h4>
+                    <div class="date">2022年12月</div>
+                    <p>增强分布式软总线能力，新增多设备协同管理框架，完善OpenHarmony SDK。</p>
+                    <div><span class="tag">软总线</span><span class="tag">协同管理</span></div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>OpenHarmony 1.0</h4>
+                    <div class="date">2020年9月</div>
+                    <p>OpenHarmony开源项目正式发布，面向全场景分布式操作系统的基础版本。</p>
+                    <div><span class="tag">开源发布</span><span class="tag">基础架构</span></div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </div>
+    <div class="section alt-bg">
+        <div class="section-title">
+            <h2>合作伙伴</h2>
+            <p>携手行业伙伴共建开放生态</p>
+        </div>
+        <div class="partners-grid">
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#128241;</div>
+                    <div class="logo-text">华为</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#128187;</div>
+                    <div class="logo-text">软通动力</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#128421;</div>
+                    <div class="logo-text">中兴通讯</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#127760;</div>
+                    <div class="logo-text">中国科学院</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#128640;</div>
+                    <div class="logo-text">阿里云</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#128736;</div>
+                    <div class="logo-text">京东</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#128247;</div>
+                    <div class="logo-text">百度</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#128200;</div>
+                    <div class="logo-text">美团</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#128187;</div>
+                    <div class="logo-text">中国软件</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#127760;</div>
+                    <div class="logo-text">360</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#128268;</div>
+                    <div class="logo-text">中国移动</div>
+                </div>
+            </div>
+            <div class="partner-logo">
+                <div style="text-align:center;">
+                    <div class="logo-icon">&#9889;</div>
+                    <div class="logo-text">中国联通</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">
+            <h2>开发者评价</h2>
+            <p>听听社区开发者怎么说</p>
+        </div>
+        <div class="testimonial-carousel">
+            <div class="testimonial-track" id="testimonialTrack">
+                <div class="testimonial-card">
+                    <div class="quote">OpenHarmony 的分布式架构设计非常优雅，让跨设备开发变得简单直观。ArkTS 的类型安全特性大大减少了运行时错误，团队的开发效率提升了至少 40%。</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">Z</div>
+                        <div class="testimonial-info">
+                            <h4>张明远</h4>
+                            <p>高级软件工程师 - 某科技上市公司</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote">DevEco Studio 的开发体验非常流畅，实时预览功能让我们能快速迭代 UI 设计。从原型到上架的整个流程都得到了很好的支持。</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">L</div>
+                        <div class="testimonial-info">
+                            <h4>李雪琳</h4>
+                            <p>前端技术负责人 - 互联网创业公司</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote">作为一个嵌入式开发者，OpenHarmony 的 LiteOS-M 内核非常适合我们的 IoT 设备。系统占用资源极小，但提供的功能却非常完善。</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">W</div>
+                        <div class="testimonial-info">
+                            <h4>王建国</h4>
+                            <p>嵌入式架构师 - 智能制造企业</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote">OpenHarmony 开源社区的活跃度令人印象深刻。遇到问题总能快速获得社区的帮助，文档也非常完善，是学习操作系统开发的绝佳平台。</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">C</div>
+                        <div class="testimonial-info">
+                            <h4>陈思宇</h4>
+                            <p>计算机科学研究生 - 某知名高校</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="carousel-btn" onclick="moveCarousel(1)">&#10095;</button>
+            </div>
+            <div class="carousel-dots" id="carouselDots">
+                <button class="carousel-dot active" onclick="goToSlide(0)"></button>
+                <button class="carousel-dot" onclick="goToSlide(1)"></button>
+                <button class="carousel-dot" onclick="goToSlide(2)"></button>
+                <button class="carousel-dot" onclick="goToSlide(3)"></button>
+            </div>
+        </div>
+    </div>
+    <div class="faq-section">
+        <div class="section-title">
+            <h2>常见问题</h2>
+            <p>快速解答您关于 OpenHarmony 的疑问</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>OpenHarmony 和 HarmonyOS 有什么区别？</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>OpenHarmony 是开放原子开源基金会孵化及运营的开源项目，面向全场景的分布式操作系统。HarmonyOS 是华为基于 OpenHarmony 开发的商业发行版，在开源版本基础上集成了华为自有的闭源组件和服务。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>如何开始 OpenHarmony 应用开发？</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>您需要下载安装 DevEco Studio 集成开发环境，配置好开发环境后，通过新建项目向导创建您的第一个 ArkTS 项目。官方文档提供了详细的入门教程和示例代码。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>OpenHarmony 支持哪些编程语言？</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>应用层主要使用 ArkTS（基于 TypeScript 的扩展语言）进行开发。系统层和驱动层使用 C/C++。此外还支持 JavaScript/CSS/HTML 进行轻量级应用开发。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>OpenHarmony 可以运行在哪些设备上？</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>OpenHarmony 支持从轻量级 IoT 设备（如智能手表、传感器）到标准设备（如手机、平板、智慧屏）以及大型设备（如车机）等多种设备形态。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>如何参与 OpenHarmony 开源社区贡献？</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>您可以通过 Gitee 平台 Fork 代码仓库，提交 Pull Request。也可以参与文档编写、Bug 报告、功能讨论等。加入社区 SIG（特殊兴趣小组）是深入参与的好方式。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>OpenHarmony 的开源许可证是什么？</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>OpenHarmony 项目采用 Apache License 2.0 开源许可证，允许商业使用、修改和分发。部分第三方组件可能使用不同的许可证。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="newsletter-section">
+        <h2>订阅开发者通讯</h2>
+        <p>获取最新的 OpenHarmony 技术文章、版本发布和社区动态</p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="请输入您的邮箱地址" />
+            <button type="button">订阅</button>
+        </div>
+    </div>
+    <div class="getting-started">
+        <div class="section-title">
+            <h2>快速入门指南</h2>
+            <p>五个步骤开始您的 OpenHarmony 开发之旅</p>
+        </div>
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>安装 DevEco Studio</h4>
+                    <p>从官网下载 DevEco Studio 集成开发环境并完成安装。支持 Windows 和 macOS 平台。安装过程中会自动配置 HarmonyOS SDK 和相关工具链。</p>
+                </div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>配置开发环境</h4>
+                    <p>启动 DevEco Studio，进入设置界面配置 SDK 路径、NDK、HDC 工具等。确保您的开发设备已启用开发者选项和 USB 调试。</p>
+                </div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>创建第一个项目</h4>
+                    <p>使用项目向导创建一个新的 Application 项目。选择 Empty Ability 模板，填写项目名称和包名，选择支持的设备类型。</p>
+                </div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>编写应用代码</h4>
+                    <p>在工程中的 pages/Index.ets 文件中使用 ArkTS 声明式语法编写您的 UI 界面和业务逻辑。利用 DevEco Studio 的实时预览功能查看效果。</p>
+                </div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h4>运行和调试</h4>
+                    <p>连接开发设备或启动模拟器，点击运行按钮部署应用到设备。使用 DevEco Studio 内置的调试工具进行断点调试和性能分析。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="release-notes">
+        <div class="section-title">
+            <h2>发布说明</h2>
+            <p>了解各版本的重要更新和变更</p>
+        </div>
+        <div class="release-list">
+            <div class="release-item">
+                <h4>OpenHarmony 5.0.1</h4>
+                <div class="release-date">发布日期: 2024年12月</div>
+                <ul>
+                    <li>修复分布式组网在特定场景下的稳定性问题</li>
+                    <li>优化 ArkUI 渲染引擎的内存占用</li>
+                    <li>新增 NDK 支持 C++17 标准库</li>
+                    <li>增强应用权限管理的细粒度控制</li>
+                    <li>改善开发者工具链的编译速度</li>
+                </ul>
+            </div>
+            <div class="release-item">
+                <h4>OpenHarmony 5.0.0</h4>
+                <div class="release-date">发布日期: 2024年10月</div>
+                <ul>
+                    <li>全新分布式软总线 2.0 架构，提升传输性能 200%</li>
+                    <li>ArkUI 新增 50+ 自定义组件和动画效果</li>
+                    <li>方舟编译器支持 AOT+JIT 混合编译模式</li>
+                    <li>新增分布式数据一致性同步框架</li>
+                    <li>支持 RISC-V 架构芯片平台</li>
+                </ul>
+            </div>
+            <div class="release-item">
+                <h4>OpenHarmony 4.1.0</h4>
+                <div class="release-date">发布日期: 2024年6月</div>
+                <ul>
+                    <li>引入增强安全框架和可信执行环境</li>
+                    <li>新增应用沙箱隔离机制</li>
+                    <li>系统冷启动速度提升 30%</li>
+                    <li>完善无障碍服务框架</li>
+                    <li>新增全球化多语言支持扩展</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">
+            <h2>社区数据</h2>
+            <p>开放的社区，持续增长的开发者生态</p>
+        </div>
+        <div class="community-stats">
+            <div class="community-stat-card">
+                <div class="stat-icon">&#128101;</div>
+                <div class="counter" data-target="320000">0</div>
+                <div class="counter-label">注册开发者</div>
+            </div>
+            <div class="community-stat-card">
+                <div class="stat-icon">&#128196;</div>
+                <div class="counter" data-target="6800">0</div>
+                <div class="counter-label">代码提交</div>
+            </div>
+            <div class="community-stat-card">
+                <div class="stat-icon">&#128230;</div>
+                <div class="counter" data-target="1500">0</div>
+                <div class="counter-label">开源项目</div>
+            </div>
+            <div class="community-stat-card">
+                <div class="stat-icon">&#127758;</div>
+                <div class="counter" data-target="42">0</div>
+                <div class="counter-label">SIG 小组</div>
+            </div>
+        </div>
+    </div>
+    <div class="contribution-guide">
+        <div class="section-title">
+            <h2>贡献指南</h2>
+            <p>参与 OpenHarmony 开源社区共建</p>
+        </div>
+        <div class="contribution-steps">
+            <div class="contribution-card">
+                <div class="step-badge">Step 1</div>
+                <h4>签署 CLA 协议</h4>
+                <p>在提交代码之前，需要先签署贡献者许可协议（CLA），确保您的贡献符合开源规范。</p>
+            </div>
+            <div class="contribution-card">
+                <div class="step-badge">Step 2</div>
+                <h4>Fork 代码仓库</h4>
+                <p>在 Gitee 上 Fork 您感兴趣的代码仓库到个人空间，创建特性分支进行开发。</p>
+            </div>
+            <div class="contribution-card">
+                <div class="step-badge">Step 3</div>
+                <h4>编写代码</h4>
+                <p>遵循 OpenHarmony 编码规范编写代码，确保通过所有自动化测试，并添加相应的单元测试。</p>
+            </div>
+            <div class="contribution-card">
+                <div class="step-badge">Step 4</div>
+                <h4>提交 Pull Request</h4>
+                <p>向上游仓库提交 PR，详细描述您的改动内容和动机，等待代码审核和 CI 验证通过。</p>
+            </div>
+            <div class="contribution-card">
+                <div class="step-badge">Step 5</div>
+                <h4>代码审核</h4>
+                <p>仓库维护者会审核您的代码，提出修改建议。通过审核后代码将被合并到主分支。</p>
+            </div>
+            <div class="contribution-card">
+                <div class="step-badge">Step 6</div>
+                <h4>持续参与</h4>
+                <p>加入 SIG 小组参与日常讨论，关注 Issue 列表，持续为社区贡献力量。</p>
+            </div>
+        </div>
+    </div>
+    <div class="download-section">
+        <div class="section-title">
+            <h2>下载中心</h2>
+            <p>获取 OpenHarmony 最新版本和开发工具</p>
+        </div>
+        <div class="download-container">
+            <div class="version-selector">
+                <button class="version-option active" onclick="selectVersion(this)">5.0.1 (最新)</button>
+                <button class="version-option" onclick="selectVersion(this)">5.0.0</button>
+                <button class="version-option" onclick="selectVersion(this)">4.1.0</button>
+                <button class="version-option" onclick="selectVersion(this)">4.0.0</button>
+                <button class="version-option" onclick="selectVersion(this)">3.2.0</button>
+            </div>
+            <div class="download-info">
+                <h4>版本详情</h4>
+                <div class="info-row">
+                    <span class="info-label">版本号</span>
+                    <span class="info-value" id="versionNum">OpenHarmony 5.0.1</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">发布日期</span>
+                    <span class="info-value" id="versionDate">2024-12-15</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">系统大小</span>
+                    <span class="info-value" id="versionSize">约 2.3 GB (标准系统)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">最低配置</span>
+                    <span class="info-value" id="versionReq">4核 CPU / 4GB RAM / 8GB 存储</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">支持架构</span>
+                    <span class="info-value" id="versionArch">ARM64, x86_64, RISC-V</span>
+                </div>
+            </div>
+            <div class="download-buttons">
+                <button class="download-btn download-btn-main">
+                    <span>&#128229;</span> 下载源代码
+                </button>
+                <button class="download-btn download-btn-secondary">
+                    <span>&#128187;</span> DevEco Studio
+                </button>
+                <button class="download-btn download-btn-secondary">
+                    <span>&#128218;</span> API 文档
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-title">
+            <h2>API 文档预览</h2>
+            <p>浏览核心 API 接口文档</p>
+        </div>
+        <div class="api-docs-preview">
+            <div class="api-layout">
+                <div class="api-sidebar">
+                    <h4>API 模块</h4>
+                    <div class="api-nav-item active" onclick="switchApi(this, 'ability')">Ability</div>
+                    <div class="api-nav-item" onclick="switchApi(this, 'router')">Router</div>
+                    <div class="api-nav-item" onclick="switchApi(this, 'network')">Network</div>
+                    <div class="api-nav-item" onclick="switchApi(this, 'storage')">Storage</div>
+                    <div class="api-nav-item" onclick="switchApi(this, 'media')">Media</div>
+                    <div class="api-nav-item" onclick="switchApi(this, 'device')">Device</div>
+                    <div class="api-nav-item" onclick="switchApi(this, 'notification')">Notification</div>
+                </div>
+                <div class="api-content" id="apiContent">
+                    <h3>Ability 模块</h3>
+                    <span class="api-badge">Since API version 9</span>
+                    <p class="api-desc">Ability 是应用所具备能力的抽象，也是应用程序的重要组成部分。每个 UIAbility 实例对应一个窗口，用于与用户进行交互。</p>
+                    <table class="api-param-table">
+                        <thead>
+                            <tr>
+                                <th>方法</th>
+                                <th>参数</th>
+                                <th>返回值</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>onCreate()</code></td>
+                                <td><code>want: Want</code></td>
+                                <td><code>void</code></td>
+                                <td>Ability 创建时回调</td>
+                            </tr>
+                            <tr>
+                                <td><code>onWindowStageCreate()</code></td>
+                                <td><code>windowStage: WindowStage</code></td>
+                                <td><code>void</code></td>
+                                <td>窗口创建时回调</td>
+                            </tr>
+                            <tr>
+                                <td><code>onForeground()</code></td>
+                                <td>无</td>
+                                <td><code>void</code></td>
+                                <td>Ability 切到前台</td>
+                            </tr>
+                            <tr>
+                                <td><code>onBackground()</code></td>
+                                <td>无</td>
+                                <td><code>void</code></td>
+                                <td>Ability 切到后台</td>
+                            </tr>
+                            <tr>
+                                <td><code>onDestroy()</code></td>
+                                <td>无</td>
+                                <td><code>void</code></td>
+                                <td>Ability 销毁时回调</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="training-section">
+        <div class="section-title">
+            <h2>培训课程</h2>
+            <p>系统化的学习路径，助您成为 OpenHarmony 开发专家</p>
+        </div>
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-banner" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);">&#128218;</div>
+                <div class="course-body">
+                    <span class="course-level level-beginner">入门</span>
+                    <h4>OpenHarmony 开发基础</h4>
+                    <p>从零开始学习 ArkTS 语言和 ArkUI 框架，掌握应用开发的基本流程和核心概念。</p>
+                    <div class="course-meta">
+                        <span>&#128337; 24 课时</span>
+                        <span>&#128101; 12,800 人学习</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-banner" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">&#128268;</div>
+                <div class="course-body">
+                    <span class="course-level level-intermediate">进阶</span>
+                    <h4>分布式应用开发实战</h4>
+                    <p>深入学习分布式软总线、跨设备迁移和多端协同的开发模式与最佳实践。</p>
+                    <div class="course-meta">
+                        <span>&#128337; 36 课时</span>
+                        <span>&#128101; 6,500 人学习</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-banner" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">&#128187;</div>
+                <div class="course-body">
+                    <span class="course-level level-advanced">高级</span>
+                    <h4>系统级开发与内核定制</h4>
+                    <p>学习 OpenHarmony 内核架构、驱动开发和系统移植，适合系统工程师。</p>
+                    <div class="course-meta">
+                        <span>&#128337; 48 课时</span>
+                        <span>&#128101; 3,200 人学习</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-banner" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);">&#128274;</div>
+                <div class="course-body">
+                    <span class="course-level level-intermediate">进阶</span>
+                    <h4>安全开发与隐私保护</h4>
+                    <p>掌握 OpenHarmony 安全框架、权限管理和应用沙箱机制，构建安全可靠的应用。</p>
+                    <div class="course-meta">
+                        <span>&#128337; 18 课时</span>
+                        <span>&#128101; 4,100 人学习</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-banner" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7);">&#127912;</div>
+                <div class="course-body">
+                    <span class="course-level level-beginner">入门</span>
+                    <h4>ArkUI 动效与自定义组件</h4>
+                    <p>学习 ArkUI 高级动画系统、自定义绘制和组件封装技巧，打造精美用户界面。</p>
+                    <div class="course-meta">
+                        <span>&#128337; 20 课时</span>
+                        <span>&#128101; 8,900 人学习</span>
+                    </div>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-banner" style="background:linear-gradient(135deg,#e0f7fa,#b2ebf2);">&#9889;</div>
+                <div class="course-body">
+                    <span class="course-level level-advanced">高级</span>
+                    <h4>性能优化与工程实践</h4>
+                    <p>深入理解方舟编译器和运行时，学习性能分析、内存优化和大型项目管理。</p>
+                    <div class="course-meta">
+                        <span>&#128337; 30 课时</span>
+                        <span>&#128101; 2,700 人学习</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">关于我们</a>
+            <a href="#">隐私政策</a>
+            <a href="#">使用条款</a>
+            <a href="#">联系我们</a>
+            <a href="#">开发者文档</a>
+            <a href="#">合作伙伴</a>
+        </div>
+        <p>&copy; 2024 OpenAtom Foundation. All rights reserved.</p>
+    </footer>
+    <script>
+        function test() { return true; }
+        var currentSlide = 0;
+        var totalSlides = 4;
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            var track = document.getElementById('testimonialTrack');
+            track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+            var dots = document.querySelectorAll('.carousel-dot');
+            for (var i = 0; i < dots.length; i++) {
+                dots[i].classList.toggle('active', i === currentSlide);
+            }
+        }
+
+        function toggleFaq(btn) {
+            var item = btn.parentElement;
+            var wasOpen = item.classList.contains('open');
+            var allItems = document.querySelectorAll('.faq-item');
+            for (var i = 0; i < allItems.length; i++) {
+                allItems[i].classList.remove('open');
+            }
+            if (!wasOpen) {
+                item.classList.add('open');
+            }
+        }
+
+        function switchCodeTab(index) {
+            var tabs = document.querySelectorAll('.code-tab');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.toggle('active', i === index);
+            }
+            for (var j = 0; j < 3; j++) {
+                var block = document.getElementById('codeBlock' + j);
+                if (block) {
+                    block.style.display = j === index ? 'block' : 'none';
+                }
+            }
+        }
+
+        function selectVersion(btn) {
+            var options = document.querySelectorAll('.version-option');
+            for (var i = 0; i < options.length; i++) {
+                options[i].classList.remove('active');
+            }
+            btn.classList.add('active');
+            var versionData = {
+                '5.0.1 (最新)': { num: 'OpenHarmony 5.0.1', date: '2024-12-15', size: '约 2.3 GB (标准系统)', req: '4核 CPU / 4GB RAM / 8GB 存储', arch: 'ARM64, x86_64, RISC-V' },
+                '5.0.0': { num: 'OpenHarmony 5.0.0', date: '2024-10-20', size: '约 2.2 GB (标准系统)', req: '4核 CPU / 4GB RAM / 8GB 存储', arch: 'ARM64, x86_64' },
+                '4.1.0': { num: 'OpenHarmony 4.1.0', date: '2024-06-10', size: '约 2.0 GB (标准系统)', req: '4核 CPU / 3GB RAM / 6GB 存储', arch: 'ARM64, x86_64' },
+                '4.0.0': { num: 'OpenHarmony 4.0.0', date: '2024-01-15', size: '约 1.9 GB (标准系统)', req: '4核 CPU / 3GB RAM / 6GB 存储', arch: 'ARM64, x86_64' },
+                '3.2.0': { num: 'OpenHarmony 3.2.0', date: '2023-08-25', size: '约 1.7 GB (标准系统)', req: '4核 CPU / 2GB RAM / 4GB 存储', arch: 'ARM64, x86_64' }
+            };
+            var text = btn.textContent;
+            var data = versionData[text];
+            if (data) {
+                document.getElementById('versionNum').textContent = data.num;
+                document.getElementById('versionDate').textContent = data.date;
+                document.getElementById('versionSize').textContent = data.size;
+                document.getElementById('versionReq').textContent = data.req;
+                document.getElementById('versionArch').textContent = data.arch;
+            }
+        }
+
+        function animateCounters() {
+            var counters = document.querySelectorAll('.counter');
+            for (var i = 0; i < counters.length; i++) {
+                var counter = counters[i];
+                var target = parseInt(counter.getAttribute('data-target'));
+                var duration = 2000;
+                var start = 0;
+                var startTime = null;
+                function step(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    var progress = Math.min((timestamp - startTime) / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    var current = Math.floor(eased * target);
+                    if (target >= 10000) {
+                        counter.textContent = (current / 10000).toFixed(1) + '万+';
+                    } else if (target >= 1000) {
+                        counter.textContent = (current / 1000).toFixed(1) + 'K+';
+                    } else {
+                        counter.textContent = current + '+';
+                    }
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    }
+                }
+                requestAnimationFrame(step);
+            }
+        }
+
+        function switchApi(element, module) {
+            var items = document.querySelectorAll('.api-nav-item');
+            for (var i = 0; i < items.length; i++) {
+                items[i].classList.remove('active');
+            }
+            element.classList.add('active');
+            var apiData = {
+                ability: { title: 'Ability 模块', badge: 'Since API version 9', desc: 'Ability 是应用所具备能力的抽象，也是应用程序的重要组成部分。每个 UIAbility 实例对应一个窗口，用于与用户进行交互。', rows: [['onCreate()', 'want: Want', 'void', 'Ability 创建时回调'], ['onWindowStageCreate()', 'windowStage: WindowStage', 'void', '窗口创建时回调'], ['onForeground()', '无', 'void', 'Ability 切到前台'], ['onBackground()', '无', 'void', 'Ability 切到后台'], ['onDestroy()', '无', 'void', 'Ability 销毁时回调']] },
+                router: { title: 'Router 模块', badge: 'Since API version 8', desc: 'Router 模块提供通过不同的 URL 地址进行页面跳转的能力，支持页面间参数传递和返回结果处理。', rows: [['pushUrl()', 'url: string, params: Object', 'Promise&lt;void&gt;', '跳转到指定页面'], ['replaceUrl()', 'url: string, params: Object', 'Promise&lt;void&gt;', '替换当前页面'], ['back()', 'params: Object', 'void', '返回上一页面'], ['getParams()', '无', 'Object', '获取页面参数'], ['clear()', '无', 'void', '清空页面栈']] },
+                network: { title: 'Network 模块', badge: 'Since API version 8', desc: 'Network 模块提供 HTTP 网络请求能力，支持 GET、POST、PUT、DELETE 等标准 HTTP 方法。', rows: [['createHttp()', '无', 'HttpRequest', '创建 HTTP 请求实例'], ['request()', 'url, options', 'Promise&lt;HttpResponse&gt;', '发起网络请求'], ['destroy()', '无', 'void', '销毁请求实例'], ['on()', "type: 'headersReceive'", 'void', '监听响应头事件']] },
+                storage: { title: 'Storage 模块', badge: 'Since API version 8', desc: 'Storage 模块提供轻量级数据存储能力，支持键值对形式的持久化存储，适用于保存应用配置等简单数据。', rows: [['get()', 'key: string', 'Promise&lt;Object&gt;', '获取存储数据'], ['put()', 'key: string, value: Object', 'Promise&lt;void&gt;', '写入存储数据'], ['delete()', 'key: string', 'Promise&lt;void&gt;', '删除存储数据'], ['clear()', '无', 'Promise&lt;void&gt;', '清空所有数据']] },
+                media: { title: 'Media 模块', badge: 'Since API version 8', desc: 'Media 模块提供音视频播放、录制、图像处理等多媒体能力，支持多种音视频格式。', rows: [['createVideoPlayer()', '无', 'VideoPlayer', '创建视频播放器'], ['createAudioPlayer()', '无', 'AudioPlayer', '创建音频播放器'], ['createImageCreator()', 'width, height, format', 'ImageCreator', '创建图像编码器']] },
+                device: { title: 'Device 模块', badge: 'Since API version 8', desc: 'Device 模块提供设备信息查询能力，包括设备类型、屏幕信息、系统版本等。', rows: [['deviceInfo.deviceType', '无', 'string', '获取设备类型'], ['deviceInfo.brand', '无', 'string', '获取设备品牌'], ['deviceInfo.model', '无', 'string', '获取设备型号'], ['deviceInfo.osFullName', '无', 'string', '获取系统版本']] },
+                notification: { title: 'Notification 模块', badge: 'Since API version 9', desc: 'Notification 模块提供通知发布和管理能力，支持文本、多行文本和图片等多种通知类型。', rows: [['publish()', 'request: NotificationRequest', 'Promise&lt;void&gt;', '发布通知'], ['cancel()', 'id: number', 'Promise&lt;void&gt;', '取消指定通知'], ['cancelAll()', '无', 'Promise&lt;void&gt;', '取消所有通知'], ['requestEnableNotification()', '无', 'Promise&lt;void&gt;', '请求通知权限']] }
+            };
+            var content = apiData[module];
+            if (content) {
+                var html = '<h3>' + content.title + '</h3>';
+                html += '<span class="api-badge">' + content.badge + '</span>';
+                html += '<p class="api-desc">' + content.desc + '</p>';
+                html += '<table class="api-param-table"><thead><tr><th>方法</th><th>参数</th><th>返回值</th><th>说明</th></tr></thead><tbody>';
+                for (var r = 0; r < content.rows.length; r++) {
+                    var row = content.rows[r];
+                    html += '<tr><td><code>' + row[0] + '</code></td><td><code>' + row[1] + '</code></td><td><code>' + row[2] + '</code></td><td>' + row[3] + '</td></tr>';
+                }
+                html += '</tbody></table>';
+                document.getElementById('apiContent').innerHTML = html;
+            }
+        }
+
+        var observer = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                    animateCounters();
+                    observer.disconnect();
+                }
+            }
+        });
+        var statsSection = document.querySelector('.community-stats');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    </script>
+</body>
+</html>

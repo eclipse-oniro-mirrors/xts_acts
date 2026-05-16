@@ -1,0 +1,30 @@
+{
+  "src": [
+    "MainAbility/pages/index/index",
+    "MainAbility/pages/Column/ColumnSpaceResourcePage",
+    "MainAbility/pages/Flex/FlexSpaceResourcePage",
+    "MainAbility/pages/Row/RowSpaceResourcePage",
+    "MainAbility/pages/CustomLayout/CustomLayoutUniqueidPage",
+    "MainAbility/pages/LayoutPolicy/LayoutPolicyFixAtIdealSize",
+    "MainAbility/pages/LayoutPolicy/LayoutPolicyWrapContent",
+    "MainAbility/pages/RenderNodeAttribute/RenderNodeAttribute",
+    "MainAbility/pages/RenderNodeAttribute/RenderNodeTransformAttribute",
+    "MainAbility/pages/RenderNodeAttribute/RenderNodeShadowAttribute",
+    "MainAbility/pages/RenderNodeAttribute/RenderNodeBorderAttribute",
+    "MainAbility/pages/RenderNodeAttribute/RenderNodeOtherAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetColumn",
+    "MainAbility/pages/TypeNode/TypeNodeGetFlexAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetImageAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetLoadingProgressAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetProgressAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetRelativeContainerAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetRowAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetStackAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetButtonAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetCheckboxAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetRadioAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetSliderAttribute",
+    "MainAbility/pages/TypeNode/TypeNodeGetToggleAttribute",
+    "MainAbility/pages/Stack/StackSyncLoadStatic"
+  ]
+}
